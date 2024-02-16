@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>INVOIC Enquiry</title>
+    <!-- Latest compiled and minified CSS -->
+
+    <script>
+        var __extends = Object.assign || function (target) {
+            for (var i = 1; i < arguments.length; i++) {
+                var source = arguments[i];
+                for (var key in source) {
+                    if (Object.prototype.hasOwnProperty.call(source, key)) {
+                        target[key] = source[key];
+                    }
+                }
+            } return target;
+        };
+
+        var screenCfg = {
+            fromScreen: '',
+            tabId: '',
+            window_Name: '',
+            numericalScreenId: '',
+            __rehydrate: false
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="container" class="main-container"></div>
+    <script>
+        var urlParams;
+        (window.onpopstate = function () {
+            var match,
+                pl = /\+/g,
+                search = /([^&=]+)=?([^&]*)/g,
+                decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+                query = window.location.search.substring(1);
+
+            urlParams = {};
+            while (match = search.exec(query))
+                urlParams[decode(match[1])] = decode(match[2]);
+        })();
+
+        screenCfg.fromScreen = urlParams.fromScreen;
+        screenCfg.tabId=urlParams.tabId;
+        screenCfg.window_Name=urlParams.window_Name;
+
+        function getScreenConfig() {
+            var newobj = window.__extends({}, screenCfg, {
+                __rehydrate: screenCfg.fromScreen === 'notoc' ? true : false
+
+            });
+            console.log('newObj', newobj);
+            return newobj
+        }
+
+        function navigateToScreen(path, params, method) {
+            window.location.href = 'dest.html'
+        }
+    </script>
+    <script src="vendor.min.js"></script>
+    <script src="main.min.js"></script>
+    <script src="appbridge.js"></script>
+    <script>
+        appBridge.renderApp()
+    </script>
+
+</body>
+</html>

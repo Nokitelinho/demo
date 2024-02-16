@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">	
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} 
+      %5p %c : - %m%n"/>
+
+	</layout>
+	</appender>
+	
+	<appender name="R" class="org.apache.log4j.RollingFileAppender"> 
+    <param name="file" value="SproutLog.log"/>
+    <param name="MaxFileSize" value="5000KB"/>
+    <!-- Keep one backup file -->
+    <param name="MaxBackupIndex" value="1"/>
+    <layout class="org.apache.log4j.PatternLayout"> 
+      <param name="ConversionPattern" value="%p %t %c - %m%n"/> 
+    </layout> 
+  </appender> 
+	
+
+	<logger name="org.springframework">
+	      <level value="WARN"/>			  
+		  <appender-ref ref="console" />
+		  <appender-ref ref="R" />
+    </logger>
+	<logger name="org.springframework.expressions">
+	      <level value="DEBUG"/>			  
+		  <appender-ref ref="console" />
+		  <appender-ref ref="R" />
+    </logger>
+
+	<logger name="sprout">
+	      <level value="DEBUG"/>			  
+		  <appender-ref ref="console" />
+		  <appender-ref ref="R" />
+    </logger>
+
+	<logger name="sprout-sample">
+	      <level value="WARN"/>			  
+		  <appender-ref ref="R" />
+		  <appender-ref ref="console" />
+    </logger>
+	
+	<logger name="org.springframework.web">
+	      <level value="WARN"/>			  
+		  <appender-ref ref="console" />
+    </logger>	
+	
+	<logger name="com.ibsplc.sprout.audit">
+	      <level value="WARN"/>			  
+		  <appender-ref ref="console" />
+		  <appender-ref ref="R" />
+    </logger>	
+
+<!--	<logger name="sprout-sample.svr.usermgmt" additivity="false">
+	      <level value="TRACE"/>			  
+		  <appender-ref ref="R" />
+    </logger>	
+-->	
+	
+	<logger name="org.hibernate">
+	      <level value="WARN"/>			  
+		  <appender-ref ref="console" />
+    </logger>	
+	<logger name="org.hibernate.SQL">
+	      <level value="WARN"/>			  
+		  <appender-ref ref="console" />
+    </logger>	
+	<logger name="org.hibernate.type">
+	      <level value="WARN"/>			  
+		  <appender-ref ref="console" />
+    </logger>	
+	<logger name="com.ibsplc.sprout.multitenant.custom.dao">
+	      <level value="DEBUG"/>			  
+		  <appender-ref ref="R" />
+    </logger>	
+
+
+</log4j:configuration>
+

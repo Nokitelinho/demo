@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<PER:Mappings xmlns:PER="http://www.ibsplc.com/xibase/persistence/mappings" product="TxAudit">
+
+<PER:Mapping>
+	<PER:MappingId>1</PER:MappingId>
+	<PER:ModuleName>xibase.framework.txaudit</PER:ModuleName>
+	<PER:Dao>com.ibsplc.xibase.server.framework.tx.audit.query.TxLogSqlDAO</PER:Dao>
+	<PER:ObjectDao>com.ibsplc.xibase.server.framework.tx.audit.log.TransactionLogObjectDao</PER:ObjectDao>
+	<PER:QueryXML>framework-txaudit-query.xml</PER:QueryXML>
+	<PER:Entities>
+		<PER:Package Name="com.ibsplc.xibase.server.framework.tx.audit.log">
+			<PER:Entity>TransactionLog</PER:Entity>
+			<PER:Entity>TransactionLogDetail</PER:Entity>
+			<PER:Entity>TransactionErrorLog</PER:Entity>
+			<PER:Entity>TransactionLogAttributes</PER:Entity>
+		</PER:Package>
+	</PER:Entities>
+</PER:Mapping>
+
+</PER:Mappings>

@@ -1,0 +1,272 @@
+/*
+ * AirlineCN66DetailsPK.java Created on Jun 15, 2007
+ *
+ * Copyright 2005 IBS Software Services (P) Ltd. All Rights Reserved.
+ *
+ * This software is the proprietary information of IBS Software Services (P) Ltd.
+ * Use is subject to license terms.
+ */
+package com.ibsplc.icargo.business.mail.mra.airlinebilling;
+
+import java.io.Serializable;
+
+import javax.persistence.Embeddable;
+
+import com.ibsplc.xibase.server.framework.persistence.keygen.Key;
+import com.ibsplc.xibase.server.framework.persistence.keygen.KeyCondition;
+import com.ibsplc.xibase.server.framework.persistence.keygen.KeyTable;
+import com.ibsplc.xibase.server.framework.persistence.keygen.TableKeyGenerator;
+
+/**
+ * TODO Add the purpose of this class
+ * 
+ * @author A-2407
+ * 
+ */
+@TableKeyGenerator(name = "ID_GEN", table = "MALMRAARLC66DTLKEY", key = "SEQNUM")
+@KeyTable(table = "MALMRAARLC66DTLKEY", keyColumn = "KEYTYP", valueColumn = "MAXSEQNUM")
+@Embeddable
+public class AirlineCN66DetailsPK implements Serializable {
+
+	/**
+	 * CompanyCode
+	 */
+
+	private String companyCode;
+
+	/**
+	 * airline Identifier
+	 */
+
+	private int airlineIdentifier;
+
+	/**
+	 * invoicer Number
+	 */
+
+	private String invoiceNumber;
+
+	/**
+	 * interline Billing Type
+	 */
+
+	private String interlineBillingType;
+
+	/**
+	 * interline Billing Type
+	 */
+
+	private int sequenceNumber;
+
+	/**
+	 * clearance Period
+	 */
+
+	private String clearancePeriod;
+	//Added as part of ICRD-265471
+	private String dsnIdr;
+	private long mailSeqNumber;
+	
+
+	/**
+	 * @return
+	 */
+	@Override
+	public int hashCode() {
+		return new StringBuilder().append(companyCode)
+				.append(airlineIdentifier).append(invoiceNumber).append(
+						interlineBillingType).append(sequenceNumber).append(
+						clearancePeriod).append(dsnIdr).append(mailSeqNumber).toString().hashCode();
+	}
+
+	/**
+	 * @param other
+	 * @return
+	 */
+	@Override
+	public boolean equals(Object other) {
+		if (other != null) {
+			return this.hashCode() == other.hashCode();
+		}
+		return false;
+	}
+
+	public AirlineCN66DetailsPK(String companyCode, int airlineIdentifier,
+			String invoiceNumber, String interlineBillingType,
+			int sequenceNumber, String clearancePeriod, String dsnIdr, long mailSeqNumber ) {
+		this.companyCode = companyCode;
+		this.airlineIdentifier = airlineIdentifier;
+		this.invoiceNumber = invoiceNumber;
+		this.interlineBillingType = interlineBillingType;
+		this.sequenceNumber = sequenceNumber;
+		this.clearancePeriod = clearancePeriod;
+		this.dsnIdr = dsnIdr;
+		this.mailSeqNumber = mailSeqNumber;
+
+	}
+
+	/**
+	 * 
+	 */
+	public AirlineCN66DetailsPK() {
+
+	}
+
+
+	/**
+	 * 
+	 * @param companyCode
+	 */
+	public void setCompanyCode(java.lang.String companyCode) {
+		this.companyCode=companyCode;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	@KeyCondition(column = "CMPCOD")
+	public java.lang.String getCompanyCode() {
+		return this.companyCode;
+	}
+
+	/**
+	 * 
+	 * @param interlineBillingType
+	 */
+	public void setInterlineBillingType(java.lang.String interlineBillingType) {
+		this.interlineBillingType=interlineBillingType;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	@KeyCondition(column = "INTBLGTYP")
+	public java.lang.String getInterlineBillingType() {
+		return this.interlineBillingType;
+	}
+
+	/**
+	 * 
+	 * @param sequenceNumber
+	 */
+	public void setSequenceNumber(int sequenceNumber) {
+		this.sequenceNumber=sequenceNumber;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	@Key(generator = "ID_GEN", startAt = "1")
+	public int getSequenceNumber() {
+		return this.sequenceNumber;
+	}
+
+	/**
+	 * 
+	 * @param airlineIdentifier
+	 */
+	public void setAirlineIdentifier(int airlineIdentifier) {
+		this.airlineIdentifier=airlineIdentifier;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	@KeyCondition(column = "ARLIDR")
+	public int getAirlineIdentifier() {
+		return this.airlineIdentifier;
+	}
+
+	/**
+	 * 
+	 * @param clearancePeriod
+	 */
+	public void setClearancePeriod(java.lang.String clearancePeriod) {
+		this.clearancePeriod=clearancePeriod;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	@KeyCondition(column = "CLRPRD")
+	public java.lang.String getClearancePeriod() {
+		return this.clearancePeriod;
+	}
+
+	/**
+	 * 
+	 * @param invoiceNumber
+	 */
+	public void setInvoiceNumber(java.lang.String invoiceNumber) {
+		this.invoiceNumber=invoiceNumber;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	@KeyCondition(column = "INVNUM")
+	public java.lang.String getInvoiceNumber() {
+		return this.invoiceNumber;
+	}
+	/**
+	 * 
+	 * @param dsnIdr
+	 */
+	public void setDsnIdr(java.lang.String dsnIdr) {
+		this.dsnIdr = dsnIdr;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	@KeyCondition(column = "DSNIDR")
+	public java.lang.String getDsnIdr() {
+		return this.dsnIdr;
+	}
+	/**
+	 * 
+	 * @param mailSeqNumber
+	 */
+	/*public void setMailSeqNumber(java.lang.String mailSeqNumber) {
+		this.mailSeqNumber = mailSeqNumber;
+	}
+	*//**
+	 * 
+	// * @return
+	 *//*
+/*	@KeyCondition(column = "MALSEQNUM")
+	public java.lang.String getMailSeqNumber() {
+		return this.mailSeqNumber;
+	}*/
+	/**
+	 * generated by xibase.tostring plugin at 1 October, 2014 1:13:53 PM IST
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sbul = new StringBuilder(182);
+		sbul.append("AirlineCN66DetailsPK [ ");
+		sbul.append("companyCode '").append(this.companyCode);
+		sbul.append("airlineIdentifier '").append(this.airlineIdentifier);
+		sbul.append("invoiceNumber '").append(this.invoiceNumber);
+		sbul.append("interlineBillingType '").append(this.interlineBillingType);
+		sbul.append("sequenceNumber '").append(this.sequenceNumber);
+		sbul.append("clearancePeriod '").append(this.clearancePeriod);
+		sbul.append("dsnIdr '").append(this.dsnIdr);
+		sbul.append("mailSeqNumber '").append(this.mailSeqNumber);
+		sbul.append("' ]");
+		return sbul.toString();
+	}
+	
+	public long getMailSeqNumber() {
+		return mailSeqNumber;
+	}
+
+	public void setMailSeqNumber(long mailSeqNumber) {
+		this.mailSeqNumber = mailSeqNumber;
+	}
+	
+	 
+	
+	
+	
+}

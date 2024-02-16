@@ -1,0 +1,52 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+<html>
+    <head>
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+        <title>List Settlement Batch</title>
+        <script>            
+            var screenAction = "mail.mra.ux.listsettlementbatch.defaultscreenload.do";           
+            var fromScreen = '<%=request.getParameter("fromScreen")%>';			
+			var batchId = '<%=request.getParameter("batchId")%>';
+            var batchDate = '<%=request.getParameter("batchDate")%>';
+            var paCode = '<%=request.getParameter("paCode")%>';
+			var batchStatus = '<%=request.getParameter("batchStatus")%>';
+			var batchSequenceNum = '<%=request.getParameter("batchSequenceNum")%>';
+            function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {                  
+                    __rehydrate: false,
+                    fromScreen: fromScreen,
+                    screenAction: screenAction
+                });
+                console.log('newObj', newobj);
+                return newobj
+            }
+        </script>
+        <common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+    </head>
+
+    <body>
+        <!-- The DIV container for redering results from react -->
+        <div id="container" class="main-container"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" /> 
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" />
+        {{/each}}
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+        <script>
+		 if (fromScreen === "AdvancePayment") {
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'STORE_ADVANCE_PAYMENT_FILTER',
+                        data: { batchId: batchId,batchDate:batchDate,paCode:paCode, batchStatus: batchStatus, batchSequenceNum: batchSequenceNum,fromScreen:fromScreen }
+                    })
+                });
+            }
+            else {
+            appBridge.renderApp();
+			}
+        </script>
+    </body>
+</html>

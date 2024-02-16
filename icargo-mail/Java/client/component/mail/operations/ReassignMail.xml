@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<components screenId="mailtracking.defaults.reassignmail"  xmlns="http://www.ibsplc.com/icargo/components-details">
+
+	   <component id="CMP_MAILTRACKING_DEFAULTS_REASSIGNMAIL_RADIOFLIGHT" name="Flight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_RAD_MYREQUEST</value>
+		</attribute>
+		
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+	   	</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.reassignmail.tooltip.flight</value>
+		</attribute>	   	
+	   </component>
+	   
+	   <component id="CMP_MAILTRACKING_DEFAULTS_REASSIGNMAIL_RADIODESTINATION" name="Destination">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_RAD_MYREQUEST</value>
+		</attribute>
+		
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+	   	</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.reassignmail.tooltip.destination</value>
+		</attribute>		
+	   </component>
+	   
+	    <component id="CMP_MAILTRACKING_DEFAULTS_REASSIGNMAIL_FLIGHTNO" name="FlightNo">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_FLIGHT_NUMBER</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.reassignmail.tooltip.flightnumber</value>
+		</attribute>		
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+	   	<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>		
+	   </component>
+	   
+	   <component id="CMP_MAILTRACKING_DEFAULTS_REASSIGNMAIL_FLIGHTDATE" name="Flight Date">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_CALENDAR</value>
+	   		</attribute>
+	   		<attribute>
+	   			<name>tooltip</name>
+	   			<value>mailtracking.defaults.reassignmail.tooltip.depdate</value>
+	   		</attribute>
+	   		<attribute>
+				<name>type</name>
+				<value>filter</value>
+	   		</attribute>
+	   		<attribute>
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>
+	   </component>
+	   
+ 	   
+	   
+	   <component id="CMP_MAILTRACKING_DEFAULTS_REASSIGNMAIL_CARRIERCODE" name="Carrier Code">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_AIRLINECODE_TYPE</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.reassignmail.tooltip.carriercode</value>
+		</attribute>		
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+	   </component>
+	   
+	   <component id="CMP_MAILTRACKING_DEFAULTS_REASSIGNMAIL_DESTINATION" name="Destination">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_STATIONCODE_FOR_LIST</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.reassignmail.tooltip.destination</value>
+		</attribute>		
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+	   </component>
+	  	
+	   <component id="CMP_MAILTRACKING_DEFAULTS_REASSIGNMAIL_DEPPORT" name="Departure port">
+	  		<attribute>
+	  			<name>businesstype-id</name>
+	  			<value>BT_TXT_STATIONCODE_FOR_LIST</value>
+	  		</attribute>
+	  		<attribute>
+	  			<name>tooltip</name>
+	  			<value>mailtracking.defaults.reassignmail.tooltip.depport</value>
+	  		</attribute>
+	   </component>
+	  
+	  
+	   <component id="BTN_MAILTRACKING_DEFAULTS_REASSIGNMAIL_LIST" name="List">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_LIST</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.reassignmail.tooltip.list</value>
+		</attribute>
+	   </component>
+	   
+	   <component id="BTN_MAILTRACKING_DEFAULTS_REASSIGNMAIL_CLEAR" name="Clear">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_CLEAR</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.reassignmail.tooltip.clear</value>
+		</attribute>
+	   </component>
+	   
+	   <component id="BTN_MAILTRACKING_DEFAULTS_REASSIGNMAIL_OK" name="OK">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_BUTTON</value>
+	   		</attribute>
+	   		
+	   		<attribute>
+	   			<name>styleclass-id</name>
+	   			<value>ST_BTN_SAVE</value>
+	   		</attribute>
+	   		
+	   		<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+	   
+	   		<attribute>
+	   			<name>tooltip</name>
+	   			<value>mailtracking.defaults.reassignmail.tooltip.ok</value>
+	   		</attribute>
+	   </component>
+	   
+           <component id="BTN_MAILTRACKING_DEFAULTS_REASSIGNMAIL_CLOSE" name="Close">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_CLOSE</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.reassignmail.tooltip.close</value>
+		</attribute>
+	   </component>
+	  
+	   <component id="BTN_MAILTRACKING_DEFAULTS_REASSIGNMAIL_ADDCONTAINER" name="Add Container">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.reassignmail.tooltip.addcontainer</value>
+		</attribute>
+	   </component>
+	   
+	   
+	    <component id="CMP_MAILTRACKING_DEFAULTS_REASSIGNMAIL_SCANDATE" name="Scan Date">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.reassignmail.tooltip.scandate</value>
+			</attribute>
+	   </component>
+
+	    <component id="TXT_MAILTRACKING_DEFAULTS_REASSIGNMAIL_SCANTIME" name="Scan Time">		
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_RELEASE_TIMER</value> 
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.reassignmail.tooltip.scantime</value>
+		       </attribute>
+	     </component> 
+	   
+
+	    
+</components>

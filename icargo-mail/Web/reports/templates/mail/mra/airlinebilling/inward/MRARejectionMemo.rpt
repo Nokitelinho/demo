@@ -1,0 +1,2327 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<inet:Report xmlns:inet="http://www.inetsoftware.de" major_version="8" minor_version="97" major_xml_version="7" minor_xml_version="8" count="3" id="0">
+    <Datasource dll="pdsora7.dll" host="DEV1" schema="" catalog="" user="ICR3DEV" password="" url="">
+      <Tablesource alias="DUMMY_VIEW_MRAARLREJMEMEXPDTL" databaseIdentifier="ICR3DEV.DUMMY_VIEW_MRAARLREJMEMEXPDTL">
+        <Column name="INVNUM" type="11" />
+        <Column name="CLRPRD" type="11" />
+        <Column name="DSN" type="11" />
+        <Column name="EXPCOD" type="11" />
+        <Column name="PVNRAT" type="6" />
+        <Column name="PVNWGT" type="6" />
+        <Column name="RPTWGT" type="6" />
+      </Tablesource>
+    </Datasource>
+  <Database>
+    <QueryChanges mask="0" count="4">
+      <Attribute name="queryChange" value="null"/>
+      <Attribute name="queryChange" value="null"/>
+      <Attribute name="queryChange" value="null"/>
+      <Attribute name="queryChange" value="null"/>
+    </QueryChanges>
+  </Database>
+  <FormulaFields count="5">
+    <Field type="FormulaField" valueType="11">
+      <Attribute name="name" value="yourInvoiceDate"/>
+      <Attribute name="shortName" value="yourInvoiceDate"/>
+      <Attribute name="formula type" value="0"/>
+      <Attribute name="basic syntax" value="false"/>
+      <![CDATA[UpperCase ( {?yourinvdate} )]]>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Attribute name="name" value="billingBilledAmt"/>
+      <Attribute name="shortName" value="billingBilledAmt"/>
+      <Attribute name="formula type" value="0"/>
+      <Attribute name="basic syntax" value="false"/>
+      <![CDATA[ToNumber ( {?billbilledamt}  )]]>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Attribute name="name" value="billingAcceptedAmt"/>
+      <Attribute name="shortName" value="billingAcceptedAmt"/>
+      <Attribute name="formula type" value="0"/>
+      <Attribute name="basic syntax" value="false"/>
+      <![CDATA[ToNumber ( {?billacceptamt}  )]]>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Attribute name="name" value="billingRejectedAmt"/>
+      <Attribute name="shortName" value="billingRejectedAmt"/>
+      <Attribute name="formula type" value="0"/>
+      <Attribute name="basic syntax" value="false"/>
+      <![CDATA[ToNumber (  {?billrejamt} )]]>
+    </Field>
+    <Field type="FormulaField" valueType="11">
+      <Attribute name="name" value="monthOftran"/>
+      <Attribute name="shortName" value="monthOftran"/>
+      <Attribute name="formula type" value="0"/>
+      <Attribute name="basic syntax" value="false"/>
+      <![CDATA[UpperCase ( {?monthOfTransact} )]]>
+    </Field>
+  </FormulaFields>
+
+  <PromptFields count="51">
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="ReportId"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="0"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="StaffId"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="1"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="Station"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="2"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="PrintDate"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="516"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="PrintTime"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="517"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="airlinename"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="520"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="airlineno"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="521"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="serialno"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="522"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="yourinvoiceno"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="523"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="yourinvdate"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="524"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="yourrefno"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="525"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="monofclearance"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="526"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="monoftransaction"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="527"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="contractcurrency"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="528"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="conbilliedamt"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="529"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="conacceptamt"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="530"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="conrejamt"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="531"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="conbillexgrat"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="532"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="billbilledamt"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="533"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="billacceptamt"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="534"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="billrejamt"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="535"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="billingcurr"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="536"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="billclrexgrat"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="537"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="clrbilledamt"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="538"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="clracceptamt"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="539"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="clrrejamt"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="540"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="clrcurr"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="541"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="reqauthind"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="542"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="refvalue"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="543"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="refdat"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="544"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="dupbillind"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="545"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="dupbillinvno"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="546"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="dupbillinvdat"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="547"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="timelimitind"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="548"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="chrnotcoverind"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="549"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="chrnotconfirmind"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="550"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="noapprind"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="551"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="nonreceptind"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="552"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="incorrexgratind"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="553"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="otherind"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="554"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="remarks"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="555"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="outinvno"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="556"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="outinvdate"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="557"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="outmonofclr"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="558"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="origin"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="destination"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="sectorFrom"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="sectorTo"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="dsn"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="memoCode"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="monthOfTransact"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+  </PromptFields>
+
+  <SQLFields count="0">
+  </SQLFields>
+
+  <SummaryFields count="2">
+    <Field type="SummaryField" valueType="-1">
+      <Attribute name="name" value="sum Field 0.37444752"/>
+      <Attribute name="operation" value="0"/>
+      <Attribute name="summary_nth" value="0"/>
+      <Attribute name="summary_type" value="1"/>
+      <Attribute name="chartFieldSelect" value="2"/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="show as percent value" value="false"/>
+      <Attribute name="execute on db" value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="-1">
+      <Attribute name="name" value=""/>
+      <Attribute name="operation" value="0"/>
+      <Attribute name="summary_nth" value="0"/>
+      <Attribute name="summary_type" value="1"/>
+      <Attribute name="chartFieldSelect" value="2"/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="show as percent value" value="false"/>
+      <Attribute name="execute on db" value="false"/>
+    </Field>
+  </SummaryFields>
+
+  <SortFields count="0">
+  </SortFields>
+
+  <GroupNameFields count="0">
+  </GroupNameFields>
+
+  <ReportProperties>
+    <Attribute name="page width" value="12240"/>
+    <Attribute name="page height" value="15840"/>
+    <Attribute name="page orientation" value="1"/>
+    <Attribute name="page margin left" value="360"/>
+    <Attribute name="page margin right" value="360"/>
+    <Attribute name="page margin top" value="360"/>
+    <Attribute name="page margin bottom" value="360"/>
+    <Attribute name="report title" value=""/>
+    <Attribute name="report author" value=""/>
+    <Attribute name="report keywords" value=""/>
+    <Attribute name="report subject" value=""/>
+    <Attribute name="report template" value=""/>
+    <Attribute name="report comments" value=""/>
+    <Attribute name="report last saved" value="19 Jan 2009 04:05:05 GMT"/>
+    <Attribute name="report created" value="22 Nov 2005 14:03:43 GMT"/>
+    <Attribute name="mailing label type 1" value="User-Defined Label"/>
+    <Attribute name="mailing label type 2" value=""/>
+    <Attribute name="format with multiple columns" value="false"/>
+    <Attribute name="mailing label width" value="0"/>
+    <Attribute name="mailing label height" value="0"/>
+    <Attribute name="mailing label distance vertical" value="0"/>
+    <Attribute name="mailing label distance horizontal" value="0"/>
+    <Attribute name="across then down" value="false"/>
+    <Attribute name="format groups with multiple columns" value="false"/>
+    <Attribute name="distinct" value="false"/>
+    <Attribute name="ignore filtering" value="false"/>
+    <Attribute name="ignore sorting" value="false"/>
+    <Attribute name="convert date time" value="2"/>
+    <Attribute name="data source" value="DEV1"/>
+    <Attribute name="data source desc" value="Oracle Server"/>
+    <Attribute name="suppress if no rows" value="false"/>
+    <Attribute name="convert null values to default" value="false"/>
+    <Attribute name="hide PageFooter inside ReportHeader" value="true"/>
+    <Attribute name="form print" value="false"/>
+    <Attribute name="printing enabled" value="true"/>
+    <Attribute name="clipboard enabled" value="true"/>
+    <Attribute name="export enabled" value="true"/>
+    <Attribute name="group tree visible" value="true"/>
+  </ReportProperties>
+  <AreaPair type="PageAreaPair" id="0">
+    <Area type="PageHeader" count="2">
+      <AreaProperties>
+        <Attribute name="drill down" value="true"/>
+        <Attribute name="keep together" value="true"/>
+        <Attribute name="underlay following section" value="true"/>
+      </AreaProperties>
+      <Section type="PageHeader" count="0" width="11520" height="0" id="0">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+      </Section>
+      <Section type="PageHeader" count="0" width="11520" height="0" id="1">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="PageFooter" count="1">
+      <AreaProperties>
+        <Attribute name="drill down" value="true"/>
+        <Attribute name="keep together" value="true"/>
+        <Attribute name="underlay following section" value="true"/>
+      </AreaProperties>
+      <Section type="PageFooter" count="1" width="11520" height="516" id="2">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="8550" y_position="105" width="2535" height="353">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="3"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="SpecialVarField" id="16"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="ReportAreaPair" id="0">
+    <Area type="ReportHeader" count="1">
+      <AreaProperties>
+        <Attribute name="drill down" value="true"/>
+        <Attribute name="underlay following section" value="true"/>
+      </AreaProperties>
+      <Section type="ReportHeader" count="97" width="11520" height="14400" id="3">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+        <Element type="Box" x2_position="10785" y2_position="13641" x_position="465" y_position="8961" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <BoxProperties>
+            <Attribute name="close border on page break" value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Box" x2_position="11160" y2_position="14400" x_position="150" y_position="135" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <BoxProperties>
+            <Attribute name="close border on page break" value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Line" x2_position="4140" y2_position="7856" x_position="4140" y_position="4991" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="11160" y2_position="5711" x_position="4140" y_position="5711" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="6450" y2_position="7856" x_position="6450" y_position="5351" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="8940" y2_position="7856" x_position="8940" y_position="5336" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="5085" y2_position="6446" x_position="5085" y_position="5726" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="7560" y2_position="6461" x_position="7560" y_position="5726" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="9990" y2_position="6446" x_position="9990" y_position="5726" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="5070" y2_position="7181" x_position="5070" y_position="6776" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="5070" y2_position="7856" x_position="5070" y_position="7496" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="7560" y2_position="7166" x_position="7560" y_position="6776" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="7545" y2_position="7856" x_position="7545" y_position="7481" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="9990" y2_position="7181" x_position="9990" y_position="6776" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="9975" y2_position="7856" x_position="9975" y_position="7481" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="11160" y2_position="3568" x_position="105" y_position="3568" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="11160" y2_position="5006" x_position="105" y_position="5006" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="11160" y2_position="5351" x_position="120" y_position="5351" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="11160" y2_position="6086" x_position="105" y_position="6086" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="11160" y2_position="6446" x_position="120" y_position="6446" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="11160" y2_position="6776" x_position="105" y_position="6776" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="11160" y2_position="7166" x_position="120" y_position="7166" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="11160" y2_position="7496" x_position="105" y_position="7496" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="11160" y2_position="7856" x_position="105" y_position="7856" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Text" count="2" x_position="3150" y_position="600" width="5265" height="765">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+            <Attribute name="can grow" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+              <Attribute name="keep together" value="true"/>
+              <Attribute name="can grow" value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="240"/>
+                <Attribute name="font style" value="1"/>
+              </FontProperties>
+            <![CDATA[	]]>
+            </Element>
+          </Element>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+              <Attribute name="keep together" value="true"/>
+              <Attribute name="can grow" value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="240"/>
+                <Attribute name="font style" value="1"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#title]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="480" y_position="3100" width="840" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#to]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6516" y_position="3100" width="1595" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="3"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#RM]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="480" y_position="3728" width="1920" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#yourinvno]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5121" y_position="3728" width="1135" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="3"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#dated]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="480" y_position="4193" width="3156" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#monofclearance]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="480" y_position="4632" width="2680" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#monofbilling]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4973" y_position="5096" width="6120" height="240">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#rejthrmonofclearance]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="480" y_position="6536" width="3000" height="240">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#exgrateused]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="480" y_position="6896" width="3240" height="240">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#incurrofbilling]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="480" y_position="7256" width="3240" height="240">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#exgrateused]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="480" y_position="7616" width="3670" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#incurrofclr]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4437" y_position="5456" width="1595" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#yourcharge]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6844" y_position="5456" width="1940" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#weaccept]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9222" y_position="5456" width="1698" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#wereject]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4200" y_position="5816" width="840" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#curr]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5307" y_position="5816" width="1053" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#amount]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6600" y_position="5816" width="840" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#curr]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9106" y_position="5816" width="734" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#curr]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7799" y_position="5816" width="1080" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#amount]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="10034" y_position="5816" width="1080" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#amount]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="480" y_position="6176" width="3675" height="240">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#incurrofcontract]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3833" y_position="8144" width="2949" height="240">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#reasonforrejection]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4611" y_position="8601" width="1835" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#remarks]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="465" y_position="13836" width="9595" height="480">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="2">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#acopyofthisrejection]]>
+            </Element>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="1347" y_position="3100" width="3960" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?airlinename"/>
+        </Element>
+        <Element type="FieldElement" x_position="5438" y_position="3100" width="1039" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?airlineno"/>
+        </Element>
+        <Element type="FieldElement" x_position="2400" y_position="3728" width="2671" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?yourinvoiceno"/>
+        </Element>
+        <Element type="FieldElement" x_position="3762" y_position="4193" width="1391" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?monofclearance"/>
+        </Element>
+        <Element type="FieldElement" x_position="4200" y_position="6866" width="720" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?billingcurr"/>
+        </Element>
+        <Element type="FieldElement" x_position="6600" y_position="6866" width="840" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?billingcurr"/>
+        </Element>
+        <Element type="FieldElement" x_position="9106" y_position="6866" width="734" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?billingcurr"/>
+        </Element>
+        <Element type="FieldElement" x_position="872" y_position="9291" width="9793" height="4020">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?remarks"/>
+        </Element>
+        <Element type="Text" count="1" x_position="8400" y_position="300" width="735" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+            <Attribute name="can grow" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Date ]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8400" y_position="750" width="735" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Staff Id]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8400" y_position="1200" width="735" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+              <Attribute name="keep together" value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Airport]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9150" y_position="300" width="120" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9150" y_position="750" width="120" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+            <Attribute name="can grow" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9150" y_position="1200" width="120" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="9300" y_position="750" width="1538" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?StaffId"/>
+        </Element>
+        <Element type="FieldElement" x_position="9300" y_position="1200" width="1508" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?Station"/>
+        </Element>
+        <Element type="FieldElement" x_position="10500" y_position="300" width="505" height="315">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?PrintTime"/>
+        </Element>
+        <Element type="FieldElement" x_position="9300" y_position="300" width="1245" height="285">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?PrintDate"/>
+        </Element>
+        <Element type="Line" x2_position="11160" y2_position="2456" x_position="105" y_position="2456" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="FieldElement" x_position="6250" y_position="3728" width="1755" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" refname="@yourInvoiceDate"/>
+        </Element>
+        <Element type="FieldElement" x_position="5145" y_position="6866" width="1200" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <Attribute name="thousand seperators symbol" value=","/>
+            <Attribute name="decimal seperators symbol" value="."/>
+            <Attribute name="currency symbol" value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" refname="@billingBilledAmt"/>
+        </Element>
+        <Element type="FieldElement" x_position="7650" y_position="6866" width="1200" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <Attribute name="thousand seperators symbol" value=","/>
+            <Attribute name="decimal seperators symbol" value="."/>
+            <Attribute name="currency symbol" value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" refname="@billingAcceptedAmt"/>
+        </Element>
+        <Element type="FieldElement" x_position="10035" y_position="6866" width="1080" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <Attribute name="thousand seperators symbol" value=","/>
+            <Attribute name="decimal seperators symbol" value="."/>
+            <Attribute name="currency symbol" value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" refname="@billingRejectedAmt"/>
+        </Element>
+        <Element type="FieldElement" x_position="8241" y_position="3100" width="2699" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?memoCode"/>
+        </Element>
+        <Element type="Text" count="1" x_position="8302" y_position="3728" width="1071" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="3"/>
+              <Attribute name="keep together" value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#dsnNo]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="9467" y_position="3728" width="855" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?dsn"/>
+        </Element>
+        <Element type="Text" count="1" x_position="5255" y_position="4193" width="876" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="3"/>
+              <Attribute name="keep together" value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#origin]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="6287" y_position="4193" width="720" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?origin"/>
+        </Element>
+        <Element type="Text" count="1" x_position="8002" y_position="4193" width="1371" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="3"/>
+              <Attribute name="keep together" value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#destination]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="9467" y_position="4193" width="556" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?destination"/>
+        </Element>
+        <Element type="Text" count="1" x_position="5261" y_position="4632" width="876" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="3"/>
+              <Attribute name="keep together" value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#uplift]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8002" y_position="4632" width="1371" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="3"/>
+              <Attribute name="keep together" value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTMRA042#discharge]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="6287" y_position="4632" width="705" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?sectorFrom"/>
+        </Element>
+        <Element type="FieldElement" x_position="9600" y_position="4650" width="615" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?sectorTo"/>
+        </Element>
+        <Element type="Text" count="1" x_position="502" y_position="2668" width="1564" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="2">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+              <Attribute name="keep together" value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[A]]>
+            </Element>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[IRLINE NAME]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="2120" y_position="2668" width="3319" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[SOUTH AFRICAN AIRWAYS]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5438" y_position="2668" width="840" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+              <Attribute name="keep together" value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[086]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="2044" y_position="2668" width="120" height="226">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6140" y_position="4193" width="120" height="226">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6140" y_position="4632" width="120" height="226">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9346" y_position="3728" width="120" height="226">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9346" y_position="4193" width="120" height="226">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9346" y_position="3728" width="120" height="226">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8115" y_position="3100" width="120" height="226">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3633" y_position="4193" width="120" height="226">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="3"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="3258" y_position="4632" width="1200" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" refname="@monthOftran"/>
+        </Element>
+        <Element type="Picture" x_position="750" y_position="300" width="2115" height="1665">
+          <PictureProperties>
+            <Attribute name="id" value="1"/>
+          </PictureProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="9300" y_position="4650" width="300" height="226">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="ReportFooter" count="1">
+      <AreaProperties>
+        <Attribute name="drill down" value="true"/>
+        <Attribute name="new page after" value="true"/>
+        <Attribute name="underlay following section" value="true"/>
+      </AreaProperties>
+      <Section type="ReportFooter" count="0" width="11520" height="0" id="4">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="DetailArea" id="1">
+    <Area type="Detail" count="1">
+      <AreaProperties>
+        <Attribute name="underlay following section" value="true"/>
+      </AreaProperties>
+      <Section type="Detail" count="0" width="11520" height="0" id="5">
+        <SectionProperties>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+
+<Image count="4958" name="embedding 1">
+<![CDATA[
+-1 -40 -1 -32 0 16 74 70 73 70 0 1 1 1 0 96 0 96 0 0 -1 -37 0 67 0 8 6 6 7 6 5 8 7 
+7 7 9 9 8 10 12 20 13 12 11 11 12 25 18 19 15 20 29 26 31 30 29 26 28 28 32 36 46 39 32 34 
+44 35 28 28 40 55 41 44 48 49 52 52 52 31 39 57 61 56 50 60 46 51 52 50 -1 -37 0 67 1 9 9 9 
+12 11 12 24 13 13 24 50 33 28 33 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 
+50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 -1 -64 0 
+17 8 0 83 0 -22 3 1 34 0 2 17 1 3 17 1 -1 -60 0 31 0 0 1 5 1 1 1 1 1 1 0 0 
+0 0 0 0 0 0 1 2 3 4 5 6 7 8 9 10 11 -1 -60 0 -75 16 0 2 1 3 3 2 4 3 5 5 
+4 4 0 0 1 125 1 2 3 0 4 17 5 18 33 49 65 6 19 81 97 7 34 113 20 50 -127 -111 -95 8 35 66 
+-79 -63 21 82 -47 -16 36 51 98 114 -126 9 10 22 23 24 25 26 37 38 39 40 41 42 52 53 54 55 56 57 58 67 
+68 69 70 71 72 73 74 83 84 85 86 87 88 89 90 99 100 101 102 103 104 105 106 115 116 117 118 119 120 121 122 -125 
+-124 -123 -122 -121 -120 -119 -118 -110 -109 -108 -107 -106 -105 -104 -103 -102 -94 -93 -92 -91 -90 -89 -88 -87 -86 -78 -77 -76 -75 -74 -73 -72 
+-71 -70 -62 -61 -60 -59 -58 -57 -56 -55 -54 -46 -45 -44 -43 -42 -41 -40 -39 -38 -31 -30 -29 -28 -27 -26 -25 -24 -23 -22 -15 -14 
+-13 -12 -11 -10 -9 -8 -7 -6 -1 -60 0 31 1 0 3 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 2 
+3 4 5 6 7 8 9 10 11 -1 -60 0 -75 17 0 2 1 2 4 4 3 4 7 5 4 4 0 1 2 119 0 1 
+2 3 17 4 5 33 49 6 18 65 81 7 97 113 19 34 50 -127 8 20 66 -111 -95 -79 -63 9 35 51 82 -16 21 98 
+114 -47 10 22 36 52 -31 37 -15 23 24 25 26 38 39 40 41 42 53 54 55 56 57 58 67 68 69 70 71 72 73 74 
+83 84 85 86 87 88 89 90 99 100 101 102 103 104 105 106 115 116 117 118 119 120 121 122 -126 -125 -124 -123 -122 -121 -120 -119 
+-118 -110 -109 -108 -107 -106 -105 -104 -103 -102 -94 -93 -92 -91 -90 -89 -88 -87 -86 -78 -77 -76 -75 -74 -73 -72 -71 -70 -62 -61 -60 -59 
+-58 -57 -56 -55 -54 -46 -45 -44 -43 -42 -41 -40 -39 -38 -30 -29 -28 -27 -26 -25 -24 -23 -22 -14 -13 -12 -11 -10 -9 -8 -7 -6 
+-1 -38 0 12 3 1 0 2 17 3 17 0 63 0 -9 -22 40 -94 -128 10 40 -94 -128 10 40 -94 -128 10 40 -94 -128 25 
+44 -117 12 77 35 103 106 -116 -100 12 -100 125 5 101 67 -30 -65 15 92 16 -79 -21 -102 113 127 -18 27 -108 12 62 -96 -100 
+-118 -41 32 48 32 -128 65 -32 -125 -34 -68 15 -30 -121 -121 78 -127 -81 -82 -83 111 24 -5 61 -45 124 -40 28 7 -20 107 58 
+-78 113 -115 -46 58 -16 84 41 -41 -86 -87 -44 -107 -82 123 123 107 90 82 38 -10 -44 -20 -107 15 -15 27 -124 3 -7 -44 54 
+-34 37 -47 47 47 5 -99 -82 -83 101 113 113 -3 -56 103 87 35 -21 -125 -59 121 -73 -123 110 -12 9 -76 56 -123 -44 75 117 
+112 -29 -9 -34 99 -112 35 62 -127 127 -121 -22 58 -42 55 -120 -4 55 100 -9 -115 113 -92 -77 71 26 -13 28 -120 -40 100 56 
+-25 -26 30 -97 -54 -72 -42 55 -56 -12 35 -107 66 85 37 77 -55 -90 -74 109 105 -7 -98 -19 69 120 -65 -121 126 38 106 90 
+28 -111 -40 -8 -119 26 -30 -44 97 69 -46 47 -52 -93 -36 15 -61 -1 0 -83 94 -71 -90 -22 -106 90 -67 -94 -35 88 -36 36 
+-48 -80 -56 101 57 -82 -56 84 -116 -43 -30 -49 59 21 -125 -83 -122 -107 -86 47 -97 66 -27 20 81 90 28 -95 69 20 80 1 
+69 20 80 1 69 20 80 1 69 20 80 1 69 20 80 1 69 20 80 1 69 20 80 1 69 20 80 1 69 20 80 1 
+69 20 80 1 69 20 80 1 88 -98 43 -48 -95 -15 15 -121 -18 108 101 69 102 101 37 55 2 70 -31 -48 113 -125 -113 -95 
+21 -73 69 15 81 -90 -45 -70 62 89 -76 -42 116 -3 35 85 -101 75 -43 -76 109 62 -50 -18 7 9 -25 56 -71 116 -10 39 
+18 -126 7 -25 94 -109 -91 25 -18 44 -42 -22 -45 78 -47 47 45 91 -127 37 -75 -52 -22 -83 -49 78 92 -127 -12 53 -113 -15 
+-53 -63 -37 30 31 18 89 -60 79 59 46 85 71 111 95 -61 -41 29 -21 -56 -76 93 94 -1 0 66 -67 91 -67 46 -10 123 
+73 8 39 116 47 -128 126 -85 -47 -66 -124 28 -41 44 -16 -50 -9 -125 -5 -43 -50 -119 98 106 77 123 -14 127 123 -1 0 -122 
+61 -10 -1 0 75 -126 72 -116 -110 120 50 43 -92 -28 31 42 -2 94 -65 -123 96 71 -83 -23 -66 23 105 36 -78 -16 -91 -2 
+-111 57 57 46 -102 -116 -123 75 113 -4 46 10 -2 -100 -30 -70 -33 -121 62 40 -44 -4 79 -93 -75 -18 -93 101 109 28 43 -124 
+-122 -22 44 -95 -99 -70 17 -27 -14 56 -18 65 -57 -96 -82 -121 88 -41 44 116 -16 -47 24 -46 -18 -17 25 22 -22 65 35 -35 
+-119 -5 -94 -94 45 -59 -38 -54 -25 46 38 117 -36 63 -115 37 30 -49 83 31 -62 -97 19 -12 -35 100 -83 -91 -5 45 -83 -26 
+-19 -96 -110 54 -65 -89 -29 93 -22 -78 -70 -122 82 25 72 -56 32 -28 26 -7 -29 86 -77 -65 -15 46 -84 102 -73 -45 82 71 
+35 11 13 -123 -66 -44 -116 123 -29 -17 31 82 127 78 -107 -45 105 58 -98 -67 -32 75 111 55 -60 58 -26 -101 29 -94 -82 86 
+-54 -22 115 45 -45 31 -18 -128 -71 -49 -41 -109 -21 -102 -22 -90 -27 39 107 28 24 108 92 -86 55 25 45 -70 -12 61 -118 -118 
+-63 -16 -49 -117 -12 127 21 -39 11 -115 50 -23 29 -121 15 17 63 50 31 66 43 122 -76 105 -89 102 122 1 69 20 82 0 
+-94 -118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -86 -34 -22 86 58 108 66 
+91 -5 -37 107 72 -40 -32 60 -14 -84 96 -97 76 -109 82 90 -34 90 -33 66 38 -76 -71 -122 -30 38 -23 36 46 29 79 -30 
+41 -39 -38 -32 77 69 20 82 0 -94 -118 40 0 -94 -118 40 2 -106 -83 -90 -63 -85 105 -77 -39 92 34 -68 114 -87 24 110 
+-103 -11 -81 -109 -11 15 7 92 105 -2 50 -72 -48 102 18 -83 -68 46 25 -91 -115 75 55 -108 123 40 29 91 -8 69 125 114 
+-105 16 -53 44 -111 71 52 111 36 68 9 17 88 18 -124 -14 50 59 86 46 -79 -32 -19 23 94 -70 -5 70 -93 108 -14 -79 
+24 96 36 101 13 -11 -63 20 -92 -101 86 -40 19 -79 -27 55 94 34 107 43 24 108 14 -93 -89 -8 110 -62 16 34 72 -39 
+-4 -21 -80 -125 -78 69 30 89 62 -84 65 -9 -86 54 62 37 -48 -84 -72 -79 -45 -18 -11 73 -120 57 -97 82 127 42 62 -93 
+-111 18 100 -100 -1 0 -74 115 -57 -67 122 -78 124 49 -16 84 127 119 -61 118 62 -1 0 33 -1 0 26 -103 126 30 120 65 
+27 43 -31 -21 16 127 -21 -99 105 66 -106 26 -110 -43 54 -52 42 82 -107 73 -13 -51 -35 -1 0 93 54 60 -54 -25 -60 122 
+-74 -85 108 99 93 69 -84 -48 3 -5 -117 47 -36 -94 -116 -15 -9 121 63 -9 -43 113 87 -6 66 41 -110 65 16 87 60 -74 
+-29 -106 -4 -49 -8 -12 -81 -94 99 -16 79 -122 98 -37 -27 -24 -106 107 -73 24 -60 125 41 -17 -32 -17 14 72 126 125 30 -47 
+-70 -98 83 -44 -26 -69 33 -118 -124 62 20 18 -92 -28 -84 -49 -106 -93 -5 118 -113 122 46 -12 -37 -71 109 46 80 -29 124 45 
+-113 -64 -10 63 67 94 -77 -32 -17 -115 113 -2 -18 -61 -59 42 33 126 20 94 -96 59 27 -35 -77 -54 -97 -45 -33 -80 -12 73 
+60 1 -31 57 73 50 104 22 76 79 -84 121 -88 95 -31 -81 -126 -28 -5 -34 27 -80 63 -10 -50 -107 92 69 26 -85 88 -69 
+-118 20 -89 7 -93 -48 -23 109 -18 96 -69 -123 102 -73 -107 37 -115 -122 67 33 -56 53 45 97 -23 -98 18 -46 116 70 79 -20 
+-104 -92 -79 -115 9 62 76 50 17 27 103 -79 83 -102 -40 91 -120 94 119 -127 102 -115 -90 -116 2 -15 -122 5 -108 30 -124 -114 
+-39 -82 47 67 -96 -110 -118 40 -92 1 69 20 80 1 69 20 80 1 69 20 80 1 69 20 80 1 69 20 80 7 -103 120 
+-65 75 -76 -72 -15 -52 122 -74 -97 -30 77 22 29 110 -50 -40 35 105 -70 -74 -57 -113 110 119 6 80 78 -24 -55 -18 -54 43 
+-99 111 23 93 63 -127 -17 -81 52 93 42 -41 66 3 84 75 125 83 80 -45 -128 120 -54 -106 -61 79 19 1 -122 29 -77 -50 
+51 -102 -11 -99 79 77 -80 -44 103 31 109 -48 45 -81 -52 120 -39 36 -15 70 -8 -49 92 110 -28 85 -120 -103 -96 -128 65 14 
+-104 99 -123 70 -43 -115 10 5 3 -48 12 -30 -70 -29 -119 -118 -118 77 94 -33 -41 -11 114 121 79 52 -42 -82 -83 60 61 113 
+-95 75 -31 95 19 94 95 -22 23 -105 49 -60 -42 -122 -4 -34 -83 -44 71 59 -100 -87 39 24 -57 -33 92 1 -118 -46 -16 -1 
+0 -120 86 13 115 -58 118 122 -82 -66 17 -19 103 97 111 21 -27 -54 -87 -118 61 -128 -27 65 -57 -53 -110 121 -6 87 95 103 
+97 103 -90 -52 -14 -40 -8 126 11 89 100 -31 -34 8 -29 66 -36 -9 35 25 -92 -67 -45 -20 -75 57 -110 91 -1 0 14 -37 
+-35 72 -125 10 -9 17 68 -27 121 -20 78 105 123 120 53 102 -66 125 119 11 51 -126 -46 -27 -44 47 -2 16 -57 -30 11 -83 
+123 86 -114 -18 -34 -38 121 86 81 63 -108 36 -28 -19 102 -54 -14 49 -116 118 52 -122 123 -53 111 -124 -110 120 -116 120 -113 82 
+123 -39 -19 21 -68 -55 111 87 98 -66 122 -81 24 7 -74 43 -46 100 -111 -26 -120 -57 46 -104 -49 25 24 40 -27 8 35 -23 
+-102 -117 -55 -120 -38 -3 -108 -24 -87 -10 127 -7 -27 -74 61 -97 -105 74 74 -70 -22 -70 -33 -27 -40 44 121 127 -120 124 79 -30 
+104 60 43 -31 -103 92 27 37 -72 -98 -35 26 -14 45 77 29 -18 3 99 112 -37 -127 -100 -114 114 15 21 -23 62 39 -15 13 
+-73 -122 60 61 54 -91 112 65 101 2 59 120 -119 27 -90 -107 -72 68 3 60 -110 127 64 79 106 -79 36 81 -53 2 67 38 
+-116 -81 20 100 20 -115 -106 50 -85 -113 65 -38 -99 58 -117 -97 47 -49 -46 68 -34 91 110 79 51 99 109 61 -120 -49 74 83 
+-85 9 -75 -18 -38 -51 -126 76 -15 -85 9 -4 65 -32 15 17 -37 120 -97 94 -75 -70 -126 -49 87 97 22 -80 -13 -51 27 -86 
+-54 73 49 -107 -38 75 5 85 56 -63 -12 53 -67 -81 -22 90 -106 -95 -15 47 -5 55 72 -44 -82 -25 -75 -97 78 75 -104 -19 
+-19 53 68 -73 82 123 50 -99 -83 -112 70 58 125 107 -46 39 38 -22 35 21 -58 -108 102 -116 -13 -78 77 -116 15 -32 77 71 
+28 17 69 50 -53 22 -118 -119 42 -88 69 117 88 -63 85 -57 76 -10 3 -91 107 44 92 100 -7 -100 117 -75 -65 -53 -18 14 
+83 -50 117 91 -67 90 -37 -60 -34 31 -47 94 -1 0 85 71 -109 76 -72 -98 123 56 117 5 105 -26 -107 87 114 -89 -103 -128 
+9 -32 -32 -32 103 21 90 -37 -59 58 -108 -1 0 5 -75 -67 65 -4 66 -14 106 -42 82 28 17 -120 -18 45 62 112 22 57 
+114 6 91 -17 115 -128 15 110 -107 -22 46 4 -105 9 114 -38 70 -23 -48 16 -110 -74 -51 -22 61 -113 81 84 39 -48 -12 -37 
+-115 100 -22 -46 -8 121 26 -3 -93 48 -68 -39 81 -26 33 -57 14 51 -121 28 127 16 56 -57 21 42 -68 44 -108 -93 -73 -11 
+-8 -123 -103 -63 -63 -30 11 -83 71 -60 -42 58 78 -71 -30 27 -115 31 74 58 93 -76 -42 115 71 58 -60 117 57 29 20 -71 
+51 17 -44 49 -58 20 -116 -2 53 -67 123 -84 90 -8 87 -61 -41 39 68 -42 110 117 -21 -5 -57 91 109 54 -46 75 -91 -71 
+34 99 -112 0 97 -50 -48 50 -51 -72 -12 94 -94 -70 -85 -117 104 46 -84 -59 -99 -58 -119 28 -10 -86 0 88 100 88 -39 0 
+3 0 5 60 125 42 59 107 27 59 65 15 -39 -68 63 12 30 78 -29 23 -107 28 107 -80 -112 115 -73 29 51 -45 -113 90 
+-103 86 -124 -99 -19 -89 96 -77 56 79 14 -8 -93 85 -76 -45 -11 -97 13 120 -106 -22 101 -42 45 109 30 -18 -50 -22 -32 8 
+100 -71 -120 -125 -110 49 -112 10 -80 -57 92 -112 71 28 26 -60 111 24 -8 -105 72 -8 118 46 -75 27 -53 -117 -37 13 74 -56 
+-67 -98 -75 111 24 -13 109 38 63 -14 -50 80 59 103 -128 -11 -21 -110 -59 28 -13 -119 -91 -47 -42 73 84 21 18 56 -116 -80 
+28 113 -109 -37 -81 -27 78 10 5 -73 -39 6 -110 5 -79 5 76 67 102 -52 30 -37 122 99 -4 106 -66 -79 78 -9 -28 -33 
+-89 -7 5 -103 -109 107 -81 -37 -24 -65 14 -20 -75 -67 98 -17 43 30 -97 20 -78 -53 36 -128 -76 -81 -80 28 3 -64 102 99 
+-48 14 -92 -15 94 88 -9 94 40 -16 -66 -87 111 -15 11 83 -45 -18 -30 23 82 24 -11 52 -106 88 -52 105 108 -28 8 -62 
+-88 59 -127 95 113 -44 -127 94 -49 50 45 -51 -70 65 62 -116 37 -123 74 -107 -118 64 -116 -86 71 35 0 -16 49 82 74 -51 
+60 70 25 116 -61 36 71 -126 -114 80 -87 31 66 105 81 -60 70 -101 119 -115 -17 -65 -96 53 115 -121 -41 60 70 103 -15 -17 
+-125 70 -103 -84 17 -90 -22 2 70 100 -122 117 -39 56 29 51 -21 -49 28 87 31 123 -30 13 93 108 124 69 125 6 -67 -86 
+-76 -74 122 -89 -39 -29 -110 27 -92 104 108 -93 45 -115 -14 32 12 74 14 -121 -125 -8 87 -79 45 -68 40 97 43 -94 70 -66 
+64 -3 -42 22 49 -27 -1 0 -69 -23 -8 82 -57 20 113 121 -90 61 25 80 -52 15 -101 -75 99 27 -13 -41 62 -65 -115 56 
+87 -124 116 -27 -2 -82 13 30 123 -30 15 20 106 30 21 -43 -12 -83 96 -22 109 -87 105 -70 -75 -105 -109 26 -60 -64 -60 110 
+-80 54 -78 47 101 111 -87 -86 122 95 -116 117 109 82 -26 -49 68 -42 -81 103 -45 111 116 103 -110 -25 92 -72 73 22 53 49 
+47 42 51 -114 67 100 103 29 -85 -48 -76 -35 15 78 -47 -30 -106 29 63 64 91 120 100 -108 76 97 86 95 44 63 -86 -95 
+56 95 -8 8 21 118 88 98 -72 -13 76 -38 50 73 -25 0 36 -34 -79 -99 -32 116 7 -42 -85 -21 20 -71 109 -55 -81 112 
+-77 60 -62 -45 -57 90 -28 90 -44 90 -18 -73 29 -51 -89 -124 -11 118 54 -47 23 80 -85 104 8 -3 -44 -69 -77 -97 -101 -100 
+-100 12 113 90 22 -113 -82 -49 -30 -65 -8 67 -101 -60 -114 -10 86 -32 106 34 -3 38 6 -18 104 27 -123 -124 -112 49 -61 6 
+37 -70 -111 -74 -67 2 85 23 22 -33 103 -101 72 18 65 -127 -5 -89 -40 87 -23 -114 -100 80 -118 -79 -52 38 77 32 36 -69 
+124 -67 -22 16 54 -47 -48 103 61 61 -86 101 -120 -125 -43 70 -33 -42 -116 44 -49 45 -44 53 -69 -83 15 90 55 -102 -66 -73 
+62 -95 -89 77 -88 21 -73 -70 -46 117 84 13 16 -33 -127 11 90 -29 -25 -37 -48 -19 -36 -36 122 -41 -79 -114 69 99 69 -89 
+-39 67 126 111 -30 -16 -19 -68 119 110 126 107 -124 -118 33 33 -49 82 88 115 -6 -42 -51 101 86 -92 103 107 33 -91 96 -94 
+-118 43 17 -123 20 81 64 25 122 -41 -120 116 -51 1 109 -37 81 -100 -57 -10 -119 4 113 -123 66 -25 -36 -100 14 20 119 39 
+-127 86 117 29 74 -45 74 -45 46 53 27 -55 68 118 -106 -15 -103 100 -112 2 -40 81 -50 120 -21 89 55 -34 11 -46 53 109 
+106 -29 84 -43 35 -110 -6 73 109 -2 -54 -111 76 -33 -69 -122 50 14 -32 -128 99 -17 103 -110 73 -19 -46 -89 -121 -61 -87 15 
+-122 127 -80 -105 82 -44 68 75 25 -118 27 -108 -97 100 -16 -88 -5 -95 93 64 -50 -47 -128 9 -50 113 -13 103 -100 -128 37 -89 
+-119 -83 -81 85 -116 22 119 -49 -5 -65 53 54 -60 28 56 -12 12 -92 -116 -5 18 13 55 74 -15 85 -106 -81 20 -45 67 109 
+123 13 -68 27 -68 -55 -82 33 -40 -118 87 -88 -28 -11 21 75 71 -16 84 122 110 -78 -70 -92 -6 -116 -41 19 -58 -115 28 98 
+40 99 -74 82 14 50 100 17 42 -7 -121 -113 -30 -32 118 0 -44 -105 30 8 -45 -82 -76 105 116 -119 110 -81 -114 -97 53 -53 
+92 79 8 -108 47 -99 -98 76 108 -63 119 108 -49 60 16 125 -15 -59 0 90 -73 -15 102 -109 117 -31 -55 53 -40 36 -103 -84 
+-93 4 -80 48 -78 -56 57 -2 -31 0 -13 -63 30 -96 -125 75 101 -30 123 43 -51 66 27 22 -122 -22 -38 -30 120 -52 -112 -92 
+-15 99 122 -114 -72 32 -100 126 56 -86 77 -32 45 20 73 -88 -3 -104 79 107 6 -93 16 -114 -18 -34 23 30 92 -124 30 31 
+4 28 55 110 56 -57 4 26 -73 111 -31 29 34 -53 87 -76 -44 -20 45 -59 -107 -59 -68 70 19 -10 85 88 -42 100 63 -61 
+32 3 -112 15 35 -89 52 1 107 90 -41 -12 -3 2 -34 57 -75 9 89 18 73 4 107 -78 50 -25 39 -71 3 -96 29 73 
+-24 42 89 -75 107 56 53 27 59 23 -109 -9 -9 -118 -49 14 -47 -107 96 -72 39 -97 -58 -77 117 31 6 -23 58 -58 -80 -6 
+-114 -88 -109 94 -79 -124 -63 28 18 -55 -5 -88 -112 -116 54 -43 24 -27 -121 82 115 -7 85 104 -68 20 -106 -106 -38 124 118 90 
+-42 -91 4 -70 120 100 -74 -103 -116 114 -78 -58 -35 80 -121 66 8 0 12 30 -93 3 -97 80 13 -106 -42 108 -109 94 77 25 
+-99 -123 -21 -63 -10 -123 93 -121 5 50 71 94 -103 -56 -23 75 111 -84 89 93 106 58 -123 -116 114 31 63 79 40 46 55 12 
+5 -36 -127 -57 61 -8 34 -79 -27 -16 -107 -53 -33 -61 -88 -57 -30 61 70 45 65 45 -2 -51 37 -64 -118 3 -26 38 -30 -64 
+-108 49 -19 12 51 -44 1 -57 80 105 -45 -8 42 -50 -18 45 78 59 -101 -21 -23 63 -75 60 -97 -73 50 -70 -95 -103 81 21 
+10 101 84 109 87 85 -7 -126 -29 -87 -63 90 0 -77 97 -30 -51 39 83 -47 110 117 107 89 101 107 107 117 44 -31 -95 100 
+-109 0 100 16 -124 2 65 -19 -21 -38 -101 107 -29 45 14 -6 -58 -58 -14 -42 -13 -50 -118 -10 -20 89 71 -75 14 -27 -104 -87 
+109 -114 -89 -108 56 4 -32 -127 -37 -42 -86 -65 -128 116 69 -70 -70 -102 -46 57 -83 5 -27 -87 -76 -70 -114 9 72 89 83 -115 
+-92 -125 -47 -105 31 41 -12 44 8 57 -30 123 -113 6 -23 -77 -22 -70 118 -92 -78 -35 65 117 100 -56 75 -61 46 -47 116 17 
+74 -88 -104 99 15 -128 -57 7 -88 -55 -63 25 52 0 77 -29 11 8 -2 -45 36 54 -70 -123 -43 -75 -84 -115 28 -41 54 -42 
+-83 36 106 -53 -9 -79 -114 91 105 -56 59 65 -63 4 117 20 -73 62 49 -45 45 -11 9 44 -111 103 -98 104 -29 89 88 70 
+-86 0 86 25 94 88 -116 -28 122 85 103 -16 124 -15 -3 -90 -37 77 -15 22 -91 -90 -23 -105 45 35 -67 -83 -78 -59 -70 55 
+114 75 -104 -92 101 44 -101 -103 -117 119 32 -97 -108 -83 54 -5 -64 -74 -73 55 -78 -35 91 106 23 22 -49 44 9 110 -31 -31 
+-122 -25 -27 65 -123 32 -52 -114 115 -64 -50 73 7 -98 51 -122 0 26 -70 -81 -120 108 52 93 5 -11 -101 -13 44 86 -120 3 
+62 19 123 40 39 -47 115 -45 -87 -57 106 -117 83 -15 110 -119 -92 -23 -42 55 -9 55 -118 109 -17 -54 11 86 -115 75 25 67 
+0 65 0 118 -63 4 -98 -125 60 -44 -73 122 18 95 105 22 -10 23 55 115 -2 -27 -111 -4 -24 -74 -58 -52 87 -40 12 1 
+-20 0 -84 -106 -8 121 -94 -29 82 17 61 -36 66 -8 21 1 100 12 45 85 -119 103 88 3 2 35 12 -59 -104 -6 -110 123 
+96 0 11 113 120 -57 78 -72 -65 -71 -76 -74 -122 -22 103 -74 -72 54 -46 -78 34 -123 18 3 -126 57 96 79 -27 86 116 -49 
+19 -23 90 -74 -87 -88 105 -106 -45 48 -68 -45 -56 19 -57 34 20 32 31 -30 25 -5 -61 -36 116 -84 -113 -8 64 -95 -113 82 
+-98 -14 -33 83 -107 12 -41 102 -15 -110 75 59 105 112 -28 -28 -128 -51 22 -19 -66 -100 -28 122 -45 -82 -66 30 -23 119 75 46 
+-21 -35 74 55 -106 -23 -82 26 88 103 17 -66 24 97 -30 -36 6 124 -90 -64 -54 -2 88 -96 9 -57 -113 52 41 44 26 -10 
+-34 105 103 -128 93 -101 53 100 -113 27 -28 29 118 -106 -64 35 60 103 -89 6 -119 60 119 -94 69 -89 -34 94 74 -13 -94 -39 
+-56 -79 78 -122 60 -78 51 116 -28 100 119 -11 -90 -35 -8 26 -62 -30 -40 -61 13 -35 -35 -80 -13 -42 100 0 71 34 -90 -43 
+10 20 44 -120 -53 -73 3 -90 51 -98 115 85 31 -31 -59 -124 -42 87 -80 -49 -87 95 -76 -73 114 -92 -83 36 126 84 106 -116 
+-121 43 -74 37 65 31 -44 -78 -110 122 18 104 3 80 -8 -69 79 75 59 -101 -87 97 -70 72 -96 -38 15 -54 -84 88 -98 -127 
+118 -79 -55 -87 -20 124 73 101 123 -87 -115 56 -59 115 111 120 -48 -7 -23 20 -15 -32 -70 122 -126 9 31 -99 102 -113 4 69 
+45 -99 -51 -99 -18 -91 61 -59 -68 -5 55 34 -38 -37 68 62 83 -33 100 99 57 -18 14 71 -90 42 -3 -89 -123 52 -83 63 
+90 -113 84 -80 -73 91 57 86 15 33 -93 -74 68 -114 57 23 57 27 -128 28 -111 -38 -128 52 -25 -67 -75 -75 -110 52 -72 -98 
+56 -102 76 -20 -34 -40 -35 -127 -109 -6 87 32 -34 40 -41 117 61 90 -48 104 -102 84 55 90 63 -38 10 77 127 107 123 20 
+-86 64 -22 49 -58 61 -56 -51 116 -6 -42 -117 97 -30 13 42 109 51 83 -125 -49 -77 -101 2 72 -9 21 -50 14 122 -114 71 
+78 -43 -49 90 67 -30 107 13 70 93 51 76 -45 45 44 -76 72 -31 88 -20 -27 -106 69 -108 66 84 127 -49 53 -38 -59 79 
+112 91 57 -25 60 -30 -128 45 39 -114 52 -45 -29 9 124 48 -47 78 -6 -124 101 114 96 -116 -54 -118 24 100 23 96 62 79 
+-58 -74 45 -75 104 -82 117 25 44 69 -67 -36 114 -58 -101 -53 75 1 84 35 32 112 -35 15 94 -99 107 35 -62 -106 -2 37 
+-114 75 -57 -15 10 105 -42 -25 121 17 -59 -90 -88 16 -53 -109 -109 41 -56 -34 24 -12 32 -102 -23 -88 0 -94 -118 40 0 -94 
+-118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -118 40 0 -94 
+-118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -118 40 0 -94 -118 40 3 -1 -39 
+]]>
+</Image>
+</inet:Report>

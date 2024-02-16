@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <extend>../../../../../../../../project.xml</extend>
+    <pomVersion>1</pomVersion>
+    <groupId>icargo-mra</groupId>
+    <id>persistence-mra-gpabilling</id>
+    <artifactId>persistence-mra-gpabilling</artifactId>
+    <name>MRA GPABILLING PERSISTENCE </name>    
+    <currentVersion>${mra.version.snapshot}</currentVersion>
+    <inceptionYear>2007</inceptionYear>
+    <logo>/images/logo.gif</logo>
+    <shortDescription>GPABILLING SUBSYSTEM PERSISTENCE</shortDescription>
+    <dependencies>
+    <!--<dependency>
+		<groupId>icargo-cra</groupId>
+		<artifactId>cra-defaults-vo</artifactId>
+		<version>${cra.dep.version}</version>
+        </dependency>
+        <dependency>
+        	<groupId>icargo-cra</groupId>
+        	<artifactId>cra-agentbilling-noncass-vo</artifactId>
+    	        <version>${cra.dep.version}</version>
+    	</dependency>
+	<dependency>
+		<groupId>icargo-operations</groupId>
+		<artifactId>operations-shipment-vo</artifactId>
+		<version>${operations.shipment.version}</version>
+	</dependency>--> 
+	    
+	    <dependency>
+		<groupId>icargo-mra</groupId>
+		<artifactId>mra-gpabilling-vo</artifactId>
+		<version>${mra.version.snapshot}</version>
+	    </dependency>
+    </dependencies>
+    <build>
+        <sourceDirectory>.</sourceDirectory>
+        <resources>          
+		  <resource>
+		    <targetPath>com/ibsplc/icargo/persistence/dao/mra/gpabilling</targetPath>
+		    <directory>.</directory>
+		    <includes>
+		      <include>*-query.xml</include>
+		    </includes>
+		  </resource>
+        </resources>
+    </build>
+</project>

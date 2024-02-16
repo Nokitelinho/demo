@@ -1,0 +1,1579 @@
+<?xml version="1.0"?>
+<components screenId="mailtracking.defaults.mailacceptance"  xmlns="http://www.ibsplc.com/icargo/components-details">
+
+	   <component id="CMP_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_RADIOFLIGHT" name="Flight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_RAD_MYREQUEST</value>
+		</attribute>
+
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+	   	</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.flight</value>
+		</attribute>
+	   </component>
+
+	   <component id="CMP_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_RADIODESTINATION" name="Destination">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_RAD_MYREQUEST</value>
+		</attribute>
+
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+	   	</attribute>
+	   	<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.carriercode</value>
+		</attribute>
+	   </component>
+
+	    <component id="CMP_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_FLIGHTNO" name="FlightNo">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_FLIGHT_NUMBER</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.flightnumber</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+
+	   </component>
+
+	   <component id="CMP_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_FLIGHTDATE" name="Flight Date">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_CALENDAR</value>
+	   		</attribute>
+	   		<attribute>
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>
+	   		<attribute>
+	   			<name>tooltip</name>
+	   			<value>mailtracking.defaults.mailacceptance.tooltip.depdate</value>
+	   		</attribute>
+	   		<attribute>
+				<name>type</name>
+				<value>filter</value>
+	   		</attribute>
+	   </component>
+
+
+
+	   <component id="CMP_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_CARRIERCODE" name="Carrier Code">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_AIRLINECODE_TYPE</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.carriercode</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+	   </component>
+
+	   <component id="CMP_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_DESTINATION" name="Destination">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_STATIONCODE_FOR_LIST</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.destination</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+	   </component>
+
+	   <component id="CMP_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_DEPPORT" name="Departure port">
+	  		<attribute>
+	  			<name>businesstype-id</name>
+	  			<value>BT_TXT_STATIONCODE_FOR_LIST</value>
+	  		</attribute>
+	  		<attribute>
+	  			<name>tooltip</name>
+	  			<value>mailtracking.defaults.mailacceptance.tooltip.depport</value>
+	  		</attribute>
+	   </component>
+
+
+	   <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_LIST" name="List">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_LIST</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.list</value>
+		</attribute>
+	   </component>
+
+	   <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_CLEAR" name="Clear">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_CLEAR</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.clear</value>
+		</attribute>
+	   </component>
+
+	   <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_ASSIGNCONTAINER" name="assign container">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_LONG</value>
+		</attribute>
+
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+			</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.assigncontainer</value>
+		</attribute>
+	   </component>
+
+	     <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_CLOSEFLIGHT" name="close flight">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_BUTTON</value>
+	   		</attribute>
+
+	   		<attribute>
+	   			<name>styleclass-id</name>
+	   			<value>ST_BTN_MEDIUM</value>
+	   		</attribute>
+
+	   		<attribute>
+	   			<name>type</name>
+	   			<value>detail</value>
+	   			</attribute>
+
+	   		<attribute>
+	   			<name>tooltip</name>
+	   			<value>mailtracking.defaults.mailacceptance.tooltip.closeflight</value>
+	   		</attribute>
+	   </component>
+
+	   <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_REOPENFLIGHT" name="reopen flight">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON</value>
+			</attribute>
+
+			<attribute>
+				<name>styleclass-id</name>
+				<value>ST_BTN_MEDIUM</value>
+			</attribute>
+
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+				</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.mailacceptance.tooltip.reopenflight</value>
+			</attribute>
+	   </component>
+
+	     <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_CAPTUREMAILDOC" name="capture mail doc">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_BUTTON</value>
+	   		</attribute>
+
+	   		<attribute>
+	   			<name>styleclass-id</name>
+	   			<value>ST_BTN_LONG</value>
+	   		</attribute>
+
+	   		<attribute>
+	   			<name>type</name>
+	   			<value>detail</value>
+	   			</attribute>
+
+	   		<attribute>
+	   			<name>tooltip</name>
+	   			<value>mailtracking.defaults.mailacceptance.tooltip.capturemaildoc</value>
+	   		</attribute>
+	   </component>
+
+	   <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_VIEWCAPACITY" name="view capacity">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.viewcapacity</value>
+		</attribute>
+	   </component>
+	   <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_PREADVICE" name="pre advice">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_MEDIUM</value>
+		</attribute>
+			<attribute>
+						<name>type</name>
+						<value>detail</value>
+			</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.preadvice</value>
+		</attribute>
+	   </component>
+
+	   <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_DELETE" name="Delete">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_BUTTON</value>
+	   		</attribute>
+
+	   		<attribute>
+	   			<name>styleclass-id</name>
+	   			<value>ST_BTN_DELETE</value>
+	   		</attribute>
+
+	   		<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+
+	   		<attribute>
+	   			<name>tooltip</name>
+	   			<value>mailtracking.defaults.mailacceptance.tooltip.delete</value>
+	   		</attribute>
+	   </component>
+
+	    <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_SAVE" name="Save">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_BUTTON</value>
+	   		</attribute>
+
+	   		<attribute>
+	   			<name>styleclass-id</name>
+	   			<value>ST_BTN_SAVE</value>
+	   		</attribute>
+
+	   		<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+
+
+	   		<attribute>
+	   			<name>tooltip</name>
+	   			<value>mailtracking.defaults.mailacceptance.tooltip.save</value>
+	   		</attribute>
+	   </component>
+
+           <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_CLOSE" name="Close">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_CLOSE</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.close</value>
+		</attribute>
+	   </component>
+
+
+
+
+	<component id="CMB_MAILTRACKING_DEFAULTS_ACCEPTMAIL_CONTNO" name="Cont No">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_CMB_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.contno</value>
+		</attribute>
+	</component>
+
+	<component id="CMB_MAILTRACKING_DEFAULTS_ACCEPTMAIL_WAREHOUSE" name="Warehouse">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_CMB_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.warehouse</value>
+		</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_LOCATION" name="Location">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.location</value>
+		</attribute>
+	</component>
+        <component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_REMARKS" name="Remarks">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_FREE_TEXT_DEFAULT</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.remarks</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_CONDOCNO" name="Con Doc No">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.condocno</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_DSNPA" name="PA Code">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.dsnpa</value>
+		</attribute>
+	</component>
+
+	
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_PA" name="PA Code">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.dsnpa</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_DSNORIGIN" name="Origin OE">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.dsnorigin</value>
+		</attribute>
+	</component>
+
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_DSNDESTN" name="Destn OE">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.dsndestn</value>
+		</attribute>
+	</component>
+
+	<component id="CMB_MAILTRACKING_DEFAULTS_ACCEPTMAIL_DSNCAT" name="Category code">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.dsncat</value>
+		</attribute>
+	</component>
+
+	<component id="CMB_MAILTRACKING_DEFAULTS_ACCEPTMAIL_CLASS" name="Class">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.class</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_DSN" name="DSN">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+	   	</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.dsn</value>
+		</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_DESPATCHYR" name="Yr">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+	   	</attribute>
+
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.despatchyr</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_STDNUMBAG" name="Stated Num Bags">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+	   	</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.stdnumbags</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_STDWGT" name="Stated Weight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_UNIT</value>
+		</attribute>
+
+		
+	   	<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.stdwgt</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_NUMBAGS" name="Num Bags">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+	   	</attribute>
+	   	
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.numbags</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_ACCWGT" name="Wgt">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_UNIT</value>
+		</attribute>
+
+	   	
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.accwgt</value>
+		</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_ACCVOL" name="Wgt">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_UNIT</value>
+		</attribute>
+
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.lbl.accvolume</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_MAILORIGIN" name="Origin OE">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.mailorigin</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_MAILDESTN" name="Origin OE">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.maildestn</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_MAILSC" name="SC">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.mailsc</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_MAILYR" name="Yr">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+	   	</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.mailyr</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_MAILDSN" name="DSN">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+	   	</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.maildsn</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_MAILRSN" name="RSN">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.mailrsn</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_MAILWT" name="Wgt">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_UNITCOMBO</value>
+	   	</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.mailwt</value>
+		</attribute>
+	</component>
+
+	<component id="CMB_MAILTRACKING_DEFAULTS_ACCEPTMAIL_CAT" name="Cat">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.cat</value>
+		</attribute>
+	</component>
+
+	<component id="CMB_MAILTRACKING_DEFAULTS_ACCEPTMAIL_RI" name="RI">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.ri</value>
+		</attribute>
+	</component>
+	<component id="CMB_MAILTRACKING_DEFAULTS_ACCEPTMAIL_HNI" name="HNI">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.hni</value>
+		</attribute>
+	</component>
+
+	  <component id="CMB_MAILTRACKING_DEFAULTS_ACCEPTMAIL_DSNDATE" name="DSN Date">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.dsndate</value>
+		</attribute>
+	   </component>
+
+	  <component id="CMB_MAILTRACKING_DEFAULTS_ACCEPTMAIL_SCANDATE" name="Scan Date">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.scandate</value>
+		</attribute>
+	   </component>
+	  <component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_SCANTIME" name="Scan Time">
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_RELEASE_TIMER</value> 
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.scantime</value>
+	       </attribute>
+	 </component> 
+	   
+
+	  <component id="BTN_MAILTRACKING_DEFAULTS_ACCEPTMAIL_LIST" name="List">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_LIST</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.list</value>
+		</attribute>
+	  </component>
+
+	  <component id="BTN_MAILTRACKING_DEFAULTS_ACCEPTMAIL_ACCEPT" name="Accept">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_SAVE</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.accept</value>
+		</attribute>
+	  </component>
+
+	  <component id="BTN_MAILTRACKING_DEFAULTS_ACCEPTMAIL_CAPTUREDAMAGE" name="CaptureDamage">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.capturedamage</value>
+		</attribute>
+	  </component>
+
+	  <component id="BTN_MAILTRACKING_DEFAULTS_ACCEPTMAIL_CANCEL" name="Cancel">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_CLOSE</value>
+		</attribute>
+       
+        <attribute>
+			<name>disable-on-lock-failure</name>
+			<value>false</value>
+		</attribute>
+
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.cancel</value>
+		</attribute>
+	   </component>
+
+	  <component id="BUT_MAILTRACKING_DEFAULTS_NOTACCEPEDULDS_OK" name="Ok">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON</value>
+			</attribute>
+
+			<attribute>
+				<name>styleclass-id</name>
+				<value>ST_BTN_CLOSE</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.acceptmail.tooltip.ok</value>
+			</attribute>
+	   </component>
+
+	  <component id="COMBO_MAILTRACKING_DEFAULTS_DAMAGEDETAILS_DAMAGECODE" name="DamageCode">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.damagedetails.tooltip.damagecode</value>
+		</attribute>
+	  </component>
+	  <component id="TXT_MAILTRACKING_DEFAULTS_DAMAGEDETAILS_DAMAGEREMARKS" name="Remarks">
+			<attribute>
+		<name>businesstype-id</name>
+		<value>BT_FREE_TEXT_REMARKS</value>
+			</attribute>
+			<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_EXTRA_LONG</value>
+			</attribute>
+			<attribute>
+		<name>styleclass-id</name>
+		<value>ST_TXT_EXTRA_LONG</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.defaults.damagedetails.tooltip.remarks</value>
+			</attribute>
+	 </component>
+	 <component id="BUT_MAILTRACKING_DEFAULTS_DAMAGEDETAILS_OK" name="Ok">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.damagedetails.tooltip.ok</value>
+		</attribute>
+	 </component>
+	 <component id="BUT_MAILTRACKING_DEFAULTS_DAMAGEDETAILS_CANCEL" name="Cancel">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.damagedetails.tooltip.cancel</value>
+		</attribute>
+	 </component>
+	 <component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_DESPATCHSC" name="SC">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		 <attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.despatchsc</value>
+		</attribute>
+	</component>
+	
+	
+	<component id="BT_MAILTRACKING_DEFAULTS_POPUP_ACCEPTMAIL_LOOKUP" name="Lookup Document">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_LONG</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.lookup</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_POPUP_LOOKUP_NUMBER" name="consignment">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.popup.lookup.tooltip.number</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_POPUP_LOOKUP_PACODE" name="PA code">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.popup.lookup.tooltip.pacode</value>
+		</attribute>
+	</component>
+
+
+	 <component id="BT_MAILTRACKING_DEFAULTS_POPUP_LOOKUP_OK" name="Ok">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.popup.lookup.tooltip.ok</value>
+		</attribute>
+	 </component>
+	 <component id="BT_MAILTRACKING_DEFAULTS_POPUP_LOOKUP_CANCEL" name="Cancel">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.popup.lookup.tooltip.cancel</value>
+		</attribute>
+	 </component>
+	 
+	 
+	 <component id="BTN_MAILTRACKING_DEFAULTS_POPUP_ACCEPTMAIL_CHANGESCANTIME" name="Change Scan Time">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_LONG</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.changescantime</value>
+		</attribute>
+	 </component>
+	<component id="BTN_MAILTRACKING_DEFAULTS_POPUP_ACCEPTMAIL_LISTCARDITS" name="list cardits">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_LONG</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.listcardits</value>
+		</attribute>
+	 </component>
+	 <component id="CMP_MAILTRACKING_DEFAULTS_CHANGESCANTIME_DATE" name="Scan Date">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.changescantime.tooltip.date</value>
+		</attribute>
+	 </component>
+
+	 <component id="CMP_MAILTRACKING_DEFAULTS_CHANGESCANTIME_TIME" name="Scan Time">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_RELEASE_TIMER</value> 
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.changescantime.tooltip.time</value>
+	       </attribute>
+	       <attribute>
+			<name>mandatory</name>
+			<value>true</value>
+	       </attribute>
+	 </component>
+	 <component id="BTN_MAILTRACKING_DEFAULTS_CHANGESCANTIME_OK" name="Ok">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.changescantime.tooltip.ok</value>
+		</attribute>
+	 </component>
+	 <component id="BTN_MAILTRACKING_DEFAULTS_CHANGESCANTIME_CANCEL" name="Cancel">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.changescantime.tooltip.cancel</value>
+		</attribute>
+	 </component>
+	 
+	 <component id="CMB_MAILTRACKING_DEFAULTS_ACCEPTMAIL_CONTAINERTYPE" name="Container Type">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_CMB_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.containertype</value>
+		</attribute>
+	 </component>
+
+	  <component id="CMB_MAILTRACKING_DEFAULTS_ACCEPTMAIL_POU" name="POU">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_CMB_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+	   	</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.pou</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+          </attribute>
+	 </component>
+
+	 <component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_CONTAINERNUM" name="Container Number">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.containernum</value>
+		</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_DESTINATION" name="Destination">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+	        </attribute>
+	        <attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+	   	</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.destination</value>
+		</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_CARRIER" name="Carrier">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.carrier</value>
+		</attribute>
+	</component>
+
+	 <component id="BTN_MAILTRACKING_DEFAULTS_ACCEPTMAIL_NEWCONTAINER" name="new container">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_MEDIUM</value>
+		</attribute>
+         
+        <attribute>
+			<name>disable-on-lock-failure</name>
+			<value>false</value>
+		</attribute>
+         
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.newcontainer</value>
+		</attribute>
+	 </component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_MAILCARRIER" name="Transfer from Carrier">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.mailcarrier</value>
+		</attribute>
+	</component>
+	<component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_REASSIGNCONTAINER" name="assign container">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+			</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.reassigncontainer</value>
+		</attribute>
+	   </component>
+	<component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_CAPTUREULDDAMAGE" name="capture uld damage">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_VERY_LONG</value>
+		</attribute>
+
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+			</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.captureulddamage</value>
+		</attribute>
+	   </component>
+	<component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_EXISTINGMAILBAG_OK" name="Cancel">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.existingmailbag.tooltip.ok</value>
+		</attribute>
+	 </component>
+	<component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_EXISTINGMAILBAG_CLOSE" name="Cancel">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.existingmailbag.tooltip.close</value>
+		</attribute>
+	 </component>
+	 <component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_STDVOLUME" name="Std Volume">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_UNIT</value>
+		</attribute>
+
+		 	
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.stdvolume</value>
+		</attribute>
+	 </component>
+	
+	 <component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_MAILVOLUME" name="Volume">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_UNIT</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.volume</value>
+		</attribute>
+	 </component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_BELLYCARDIT" name="Belly CartID">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_EXTRA_LONG</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.bellycartid</value>
+		</attribute>
+	</component>
+	 <component id="BTN_MAILTRACKING_DEFAULTS_BELLYCARTID_LIST" name="List">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_LIST</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.mailacceptance.tooltip.list</value>
+		</attribute>
+	 </component>
+	 <component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_CONTJNYID" name="Container Journey ID">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_EXTRA_LONG</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.contjnyid</value>
+		</attribute>
+	</component>
+	<component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_NEW" name="New">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON</value>
+			</attribute>
+
+
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.acceptmail.tooltip.new</value>
+			</attribute>
+	  </component>
+	  <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_CLEAR" name="Clear">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.acceptmail.tooltip.clear</value>
+			</attribute>
+	  </component>
+	   <component id="BTN_MAILTRACKING_DEFAULTS_MAILACCEPTANCE_OK" name="OK">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON</value>
+			</attribute>
+
+
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.acceptmail.tooltip.ok</value>
+			</attribute>
+	  </component>
+	  <component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_SEALNO" name="SealNo">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>		
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC_WITH_SP_CHARS</value>
+	   	</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.sealNo</value>
+		</attribute>
+	</component>
+	 <component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_SEALNUM" name="SealNo">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>		
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC_WITH_SP_CHARS</value>
+	   	</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.sealNo</value>
+		</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_CMPCOD" name="Schedule Type">
+    <attribute>
+   		<name>type</name>
+   		<value>details</value>
+</attribute>
+   <attribute>
+		<name>mandatory</name>
+		<value>true</value>
+</attribute>
+    <attribute>
+      <name>businesstype-id</name>
+      <value>BT_CMB_GENCOMBO</value>
+    </attribute>
+    <attribute>
+      <name>styleclass-id</name>
+      <value>ST_CMB_MEDIUM</value>
+    </attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.acceptmail.tooltip.compcod</value>
+    </attribute>
+  </component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_ACCEPTMAIL_MAILBAGID" name="MailBag ID">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_CAPS</value>
+		</attribute>			
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.acceptmail.tooltip.mailbagid</value>
+		</attribute>
+	</component>  
+	 <component id="BTN_MAIL_OPERATIONS_MAILACCEPTANCE_TRANSFER" name="Transfer">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_BUTTON_MEDIUM</value>
+	   		</attribute>
+	   		<attribute>
+	   			<name>tooltip</name>
+	   			<value>mailtracking.defaults.mailacceptance.tooltip.transfer</value>
+	   		</attribute>
+	   </component>
+</components>

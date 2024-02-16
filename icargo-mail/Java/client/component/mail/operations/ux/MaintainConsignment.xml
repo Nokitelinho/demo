@@ -1,0 +1,956 @@
+<?xml version="1.0"?>
+<components screenId="mail.operations.ux.consignment" xmlns="http://www.ibsplc.com/icargo/components-details">
+<component id="BTN_MAIL_OPERATIONS_UX_CONSIGNMENT_LIST" name="List">
+		<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.consignment.list</value>
+	   	</attribute>
+		
+</component>
+
+	<component id="TXT_MAIL_OPERATIONS_CONSIGNMENT_CONDOCNO" name="Con Doc No">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.condocno</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAIL_OPERATIONS_CONSIGNMENT_PA" name="PA Code">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.pa</value>
+		</attribute>
+	</component>
+	
+	 <component id="CMP_MAIL_OPERATIONS_CONSIGNMENT_CARRIERCODE" name="Carrier Code">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_AIRLINECODE_TYPE</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.carriercode</value>
+		</attribute>
+
+	</component>
+	
+	
+	<component id="TXT_MAIL_OPERATIONS_CONSIGNMENT_FLIGHTNUMBER" name="Flight Number">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.flightnumber</value>
+		</attribute>
+	</component>
+
+	<component id="CMP_MAIL_OPERATIONS_CONSIGNMENT_DEPDATE" name="Dep Date">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.depdate</value>
+		</attribute>
+	</component> 
+
+	<component id="CMP_MAIL_OPERATIONS_CONSIGNMENT_POL" name="POL">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_STATIONCODE_FOR_LIST</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.pol</value>
+		</attribute>
+ 	</component>
+	
+	<component id="CMP_MAIL_OPERATIONS_CONSIGNMENT_POU" name="POU">			
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+			
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_STATIONCODE_FOR_LIST</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.pou</value>
+		</attribute>
+ 	</component>
+	
+	<component id="CMP_MAIL_OPERATIONS_CONSIGNMENT_CONDATE" name="Con Date">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.condate</value>
+		</attribute>
+	</component>
+	
+	<component id="CMB_MAIL_OPERATIONS_CONSIGNMENT_TYPE" name="Type">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_CMB_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.type</value>
+		</attribute>
+	</component>
+	
+	<component id="CMB_MAILTRACKING_DEFAULTS_CONSIGNMENT_SUBTYPE" name="Type">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_CMB_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.subtype</value>
+		</attribute>
+	</component>
+	
+	<component id="CMB_MAIL_OPERATIONS_CONSIGNMENT_IBOBTYPE" name="Type">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_CMB_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.ibobtype</value>
+		</attribute>
+	</component>
+	
+<component id="TXT_MAIL_OPERATIONS_UX_CONSIGNMENT_OOE" name="Origin OE">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+        <attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute> 
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHA</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.ooe</value>
+		</attribute>
+	</component>
+
+
+	<component id="TXT_MAIL_OPERATIONS_UX_CONSIGNMENT_DOE" name="Destn OE">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHA</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+      	<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>  
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.doe</value>
+		</attribute>
+	</component>
+
+	<component id="CMB_MAIL_OPERATIONS_UX_CONSIGNMENT_CAT" name="Category code">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.cat</value>
+		</attribute>
+	</component>
+
+	<component id="CMB_MAIL_OPERATIONS_UX_CONSIGNMENT_CLASS" name="Class">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.class</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAIL_OPERATIONS_UX_CONSIGNMENT_SC" name="SC">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.sc</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAIL_OPERATIONS_UX_CONSIGNMENT_YR" name="Yr">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+	   	</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.yr</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAIL_OPERATIONS_UX_CONSIGNMENT_DSN" name="DSN">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>	
+		
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+	   	</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.dsn</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAIL_OPERATIONS_UX_CONSIGNMENT_RSN" name="RSN">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.rsn</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAIL_OPERATIONS_UX_CONSIGNMENT_NUMBAG" name="Num Bags">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+     		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>   
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.numbags</value>
+		</attribute>
+	</component>
+
+	<component id="CMB_MAIL_OPERATIONS_UX_CONSIGNMENT_RI" name="RI">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.ri</value>
+		</attribute>
+	</component>
+
+	<component id="CMB_MAIL_OPERATIONS_UX_CONSIGNMENT_HNI" name="HNI">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.hni</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAIL_OPERATIONS_UX_CONSIGNMENT_WT" name="Weight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_UNITCOMBO</value>
+		</attribute>
+		<attribute>
+		<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.wt</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAIL_OPERATIONS_UX_CONSIGNMENT_ULDNUM" name="ULD Num">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.uldnum</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAIL_OPERATIONS_UX_CONSIGNMENT_REMARKS" name="Remarks">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_FREE_TEXT_DEFAULT</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.remarks</value>
+		</attribute>
+	</component>
+	
+	<component id="BTN_MAIL_OPERATIONS_UX_CONSIGNMENT_DELETE" name="Delete Button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_SAVE</value>
+		</attribute>
+
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.consignment.delete</value>
+		</attribute>
+   	</component>
+	
+	<component id="BTN_MAIL_OPERATIONS_UX_CONSIGNMENT_DELETEMAILBAG" name="Delete Button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_SAVE</value>
+		</attribute>
+
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.consignment.deletemailbag</value>
+		</attribute>
+   	</component>
+
+   	<component id="BTN_MAIL_OPERATIONS_UX_CONSIGNMENT_PRINT" name="Print Button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON</value>
+			</attribute>
+            <attribute>
+			<name>styleclass-id</name>
+			  <value>ST_BTN_SAVE</value>
+		    </attribute>
+
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>mail.operations.ux.consignment.print</value>
+			</attribute>
+   	</component>
+	
+	<component id="BTN_MAIL_OPERATIONS_UX_CONSIGNMENT_SAVE" name="Save">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_SAVE</value>
+		</attribute>
+
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.consignment.save</value>
+		</attribute>
+   	</component>
+
+  	 <component id="BTN_MAIL_OPERATIONS_UX_CONSIGNMENT_CLOSE" name="Close">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_CLOSE</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.consignment.close</value>
+		</attribute>
+   	</component>
+	
+	<component id="BTN_MAIL_OPERATIONS_UX_CONSIGNMENT_CLEAR" name="Clear">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_CLEAR</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.consignment.clear</value>
+		</attribute>
+	</component>
+	
+	<component id="TXT_MAIL_OPERATIONS_UX_CONSIGNMENT_DECLAREDVALUE" name="DEC VALUE">
+	
+
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_MONEY_ENTRY</value>
+		</attribute>
+			
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.decvalue</value>
+		</attribute>
+		
+	</component>
+	
+	
+    <component id="TXT_MAIL_OPERATIONS_UX_CONSIGNMENT_CURCOD" name="CUR CODE">
+        <attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+        
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHA</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.currencycode</value>
+		</attribute>
+
+    </component>	
+    <component id="CMB_MAIL_OPERATIONS_UX_CONSIGNMENT_SUBTYPE" name="Type">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_CMB_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.subtype</value>
+		</attribute>
+	</component>
+	
+	 <component id="CMP_MAIL_OPERATIONS_UX_CONSIGMENT_MAILBAGID" name="MailBag ID">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_CAPS</value>
+		</attribute>			
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.mailbagid</value>
+		</attribute>
+    </component> 	
+    <component id="CMP_MAIL_OPERATIONS_UX_CONSIGMENT_DOMESTIC_MAILBAGID" name="MailBag ID">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_CAPS</value>
+		</attribute>			
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.mailbagid</value>
+		</attribute>
+    </component> 	
+	<component id="CMB_MAIL_OPERATIONS_UX_CONSIGNMENT_WEIGHT" name="Weight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.wt</value>
+		</attribute>
+    </component> 
+    <component id="BTN_MAIL_OPERATIONS_UX_CONSIGNMENT_NEW" name="New">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_CLOSE</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.new</value>
+		</attribute>
+   	</component>
+	<component id="BTN_MAIL_OPERATIONS_UX_CONSIGNMENT_ADD" name="Add">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_CLOSE</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.consignment.add</value>
+		</attribute>
+   	</component>
+	
+	<component id="CMB_MAIL_OPERATIONS_UX_CONSIGNMENT_RSNFROM" name="RSNFROM">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+		</attribute>
+       <attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.rsnfrom</value>
+		</attribute>		
+	</component>
+	
+	<component id="CMB_MAIL_OPERATIONS_UX_CONSIGNMENT_RSNTO" name="RSNTO">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.rsnto</value>
+		</attribute>
+	</component>
+	
+	   	<component id="BTN_MAIL_OPERATIONS_UX_CONSIGNMENT_PRINTMAILTAG" name="Delete">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON</value>
+			</attribute>
+            <attribute>
+			    <name>styleclass-id</name>
+			    <value>ST_BTN_SAVE</value>
+		    </attribute>
+
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+
+
+			<attribute>
+				<name>tooltip</name>
+				<value>mail.operations.ux.consignment.printmailtag</value>
+			</attribute>
+   	</component>
+	
+	<component id="CMP_MAIL_OPERATIONS_UX_SELECTEDMAILTAGCHECKBOX" name="selectedMailTag">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_RAD_MYREQUEST</value>
+		</attribute>
+
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+	   	</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.selectedmailtag</value>
+		</attribute>
+	   </component>
+
+	   <component id="CMP_MAIL_OPERATIONS_UX_ALLMAILTAGCHECKBOX" name="allMailTag">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_RAD_MYREQUEST</value>
+		</attribute>
+
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+	   	</attribute>
+	   	<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.allmailtag</value>
+		</attribute>
+	   </component> 
+  	
+	
+	<component id="BTN_MAIL_OPERATIONS_UX_CONSIGNMENT_ADD_MULTIPLE" name="AddMultiple Button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_CLOSE</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.consignment.addMultiple</value>
+		</attribute>
+   	</component>
+	
+	<component id="CMP_MAIL_OPERATIONS_UX_CONSIGMENT_DOMESTIC_ORIGIN" name="ORIGIN">
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+        <attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute> 
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHA</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.origin</value>
+		</attribute>
+   	</component>
+	
+	<component id="CMP_MAIL_OPERATIONS_UX_CONSIGMENT_DOMESTIC_DESTINATION" name="DESTINATION">
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+        <attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute> 
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHA</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.destination</value>
+		</attribute>
+   	</component>
+	
+	<component id="CMP_MAIL_OPERATIONS_UX_CONSIGMENT_DOMESTIC_RDT" name="RDT">
+	
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+       
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.rdt</value>
+		</attribute>
+   	</component>
+	<component id="CMP_MAIL_OPERATIONS_UX_CONSIGMENT_DOMESTIC_TSW" name="TSW">
+	
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+       
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.tsw</value>
+		</attribute>
+   	</component>
+	<component id="CMP_MAIL_OPERATIONS_UX_CONSIGMENT_DOMESTIC_SRVLEVEL" name="SERVICE LEVEL">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.consignment.tooltip.srvlevel</value>
+		</attribute>
+	</component>
+	
+	
+</components>

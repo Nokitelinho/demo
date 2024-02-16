@@ -1,0 +1,68 @@
+body{
+	display:flex;
+	height:0px;
+}
+#container{
+	display:flex;
+	flex-direction: column;
+}
+.header-panel{
+    display:flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+.section-panel{
+    flex-grow: 400;
+    display: flex;
+    flex-direction: column;
+}
+.inner-pannel{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.billing-table mark{
+	background-color: #B3E5FC
+}
+.flex-grow-1{
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+.flex-grow-only{
+	flex: 1;
+}
+.flex-column-custom{
+	display: flex;
+	flex-direction: column;
+	flex-grow: 400;
+}
+.spacer{
+	white-space: initial
+}
+.pre-wrap{
+	white-space: pre-wrap
+}
+.footer-panel{
+	position: static;
+	margin: 0 -1rem;
+	width: auto
+}
+.header-extra-data-panel {
+    padding: $sm;
+    line-height: 1;
+    min-width: 200px;
+    .header-extra-data-detail {
+        margin-bottom: $sm;
+        .form-control-label {
+            display: inline-block;
+            margin: 0 $xs 0 0;
+        }
+        .form-control-data {
+            display: inline-block
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

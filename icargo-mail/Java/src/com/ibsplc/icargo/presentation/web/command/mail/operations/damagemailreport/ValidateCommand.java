@@ -1,0 +1,155 @@
+/*
+ * ValidateCommand.java Created on JUL 1 2016
+ *
+ * Copyright 2008 IBS Software Services (P) Ltd. All Rights Reserved.
+ *
+ * This software is the proprietary information of IBS Software Services (P) Ltd.
+ * Use is subject to license terms.
+ */
+package com.ibsplc.icargo.presentation.web.command.mail.operations.damagemailreport;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.ibsplc.icargo.business.mail.operations.vo.MailConstantsVO;
+import com.ibsplc.icargo.business.shared.airline.vo.AirlineValidationVO;
+import com.ibsplc.icargo.business.shared.area.airport.vo.AirportValidationVO;
+import com.ibsplc.icargo.framework.security.vo.LogonAttributes;
+import com.ibsplc.icargo.framework.session.ApplicationSessionImpl;
+import com.ibsplc.icargo.framework.util.time.LocalDate;
+import com.ibsplc.icargo.framework.util.time.Location;
+import com.ibsplc.icargo.framework.web.command.BaseCommand;
+import com.ibsplc.icargo.framework.web.command.CommandInvocationException;
+import com.ibsplc.icargo.framework.web.command.InvocationContext;
+import com.ibsplc.icargo.presentation.delegate.shared.airline.AirlineDelegate;
+import com.ibsplc.icargo.presentation.delegate.shared.area.AreaDelegate;
+import com.ibsplc.icargo.presentation.web.struts.form.mail.operations.DamageMailReportForm;
+import com.ibsplc.xibase.client.framework.delegate.BusinessDelegateException;
+import com.ibsplc.xibase.server.framework.vo.ErrorVO;
+import com.ibsplc.xibase.util.log.Log;
+import com.ibsplc.xibase.util.log.factory.LogFactory;
+
+/**
+ * @author A-5991
+ *
+ */
+public class ValidateCommand  extends BaseCommand{
+
+	private Log log = LogFactory.getLogger("MAILOPERATIONS");	
+
+	/**
+	 * TARGET
+	 */
+	private static final String SUCCESS = "success";  
+	private static final String FAILURE = "failure";   
+	private static final String MODULE_NAME = "mail.operations";	
+	private static final String SCREEN_ID = "mailtracking.defaults.damagemailreport";
+
+	/**
+	 * This method overrides the executre method of BaseComand class
+	 * @param invocationContext
+	 * @throws CommandInvocationException
+	 */
+	public void execute(InvocationContext invocationContext)
+	throws CommandInvocationException {
+		log.entering("ScreenLoadDamageMailReportCommand","execute");    	  
+		DamageMailReportForm damageMailReportForm = (DamageMailReportForm)invocationContext.screenModel;
+		ApplicationSessionImpl applicationSession = getApplicationSession();
+		LogonAttributes logonAttributes = applicationSession.getLogonVO();
+
+		Collection<ErrorVO> errors = new ArrayList<ErrorVO>();
+		String companyCode = logonAttributes.getCompanyCode().toUpperCase();
+		
+		AirlineValidationVO airlineValidationVOAirLine = null;
+		AirportValidationVO airportValidationVOAirport = null;
+		
+		AirlineDelegate airlineDelegate = new AirlineDelegate();
+		AreaDelegate areaDelegate = new AreaDelegate();
+
+		//Validating DATE components
+		errors = validateDates(damageMailReportForm);
+		if (errors != null && errors.size() > 0) {
+			invocationContext.addAllError(errors);
+			invocationContext.target = FAILURE;
+			return;
+		}
+
+		//Validating AIRLINE Details
+	//commented by A-5844 for ICRD-67196
+	/*	String airline = damageMailReportForm.getAirline().toUpperCase();
+		if (airline != null && airline.length()>0) {
+			log.log(Log.FINE,"ValidateCarrierDetails");
+			Collection<ErrorVO> error = null;
+			try {
+				airlineValidationVOAirLine = airlineDelegate.validateAlphaCode(companyCode,airline);
+			}catch (BusinessDelegateException businessDelegateException) {
+				error = handleDelegateException(businessDelegateException);
+			}
+			if (error != null && error.size() > 0) {
+				invocationContext.addError(new ErrorVO("mailtracking.defaults.damageMailReport.msg.err.invalidcarrier",
+						new Object[]{airline}));
+				invocationContext.target = FAILURE;
+				return;
+			}
+
+		}*/
+
+		//Validate Airport
+		String airport=damageMailReportForm.getAirport().toUpperCase();
+		if (airport != null && airport.length()>0) {
+			log.log(Log.FINE,"ValidateAirPortPOLDetails");
+			Collection<ErrorVO> error = null;    		
+			try {
+				airportValidationVOAirport = areaDelegate.validateAirportCode(companyCode,airport);
+			}catch (BusinessDelegateException businessDelegateException) {
+				error = handleDelegateException(businessDelegateException);
+			}
+			if (error != null && error.size() > 0) {
+				invocationContext.addError(new ErrorVO("mailtracking.defaults.damageMailReport.msg.err.invalidairport",
+						new Object[]{airport}));    			
+				invocationContext.target = FAILURE;
+				return;
+			}
+		}
+		if((damageMailReportForm.getFlightCarrierCode()!=null && damageMailReportForm.getFlightCarrierCode().trim().length()>0)&&
+				(damageMailReportForm.getFlightNumber()!=null && damageMailReportForm.getFlightNumber().trim().length()>0)){
+			String flightnumber=damageMailReportForm.getFlightNumber();
+			if(damageMailReportForm.getFlightDate()==null || damageMailReportForm.getFlightDate().trim().length()==0){
+				invocationContext.addError(new ErrorVO("mailtracking.defaults.damageMailReport.msg.err.daterequired",
+						new Object[]{flightnumber}));    			
+				invocationContext.target = FAILURE;
+				return;
+			}
+		}
+		if(airlineValidationVOAirLine != null){
+			damageMailReportForm.setAirlineId(String.valueOf(airlineValidationVOAirLine.getAirlineIdentifier()));
+		}		
+		
+		damageMailReportForm.setValidFlag(MailConstantsVO.FLAG_YES);
+		invocationContext.target = SUCCESS;
+		log.exiting("ValidateDamageMailReportFilterCommand", "execute");
+	}
+	/**
+	 * THIS METHOD VALIDATE THE DATE FILEDS
+	 * @param mailHandedOverReportForm
+	 * @return Collection<ErrorVO>
+	 */
+	private Collection<ErrorVO> validateDates(DamageMailReportForm damageMailReportForm){
+		log.log(Log.FINE,"ValidateDATEDetails");
+		Collection<ErrorVO> errors = new ArrayList<ErrorVO>();
+		String fromDate=damageMailReportForm.getFromDate();
+		String toDate=damageMailReportForm.getToDate();
+		if((fromDate!=null && fromDate.length() >0) && (toDate !=null && toDate.length() >0)){
+			LocalDate frmDat=new LocalDate(LocalDate.NO_STATION,Location.NONE, false).setDate(damageMailReportForm.getFromDate());
+			LocalDate toDat=new LocalDate(LocalDate.NO_STATION,Location.NONE, false).setDate(damageMailReportForm.getToDate());
+			if(frmDat.isGreaterThan(toDat)){
+				log.log(Log.FINE,"ValidateGreaterDATEDetails");
+				errors.add(new ErrorVO("mailtracking.defaults.damageMailReport.msg.err.fromdatecannotbegreater"));
+			}
+		}else{
+			log.log(Log.FINE,"ValidateEqualDATEDetails");
+			errors.add(new ErrorVO("mailtracking.defaults.damageMailReport.msg.err.fromdatecannotbenull"));
+		}
+		return errors;		
+	}
+}

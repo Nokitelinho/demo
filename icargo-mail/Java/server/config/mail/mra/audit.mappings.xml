@@ -1,0 +1,65 @@
+<audit-mappings xmlns="http://www.ibsplc.com/icargo/audit/mappings" product="mail" subproduct="mra">
+	<!-- entity: the simple class name of the entity -->
+	<!-- name: the display name for the entity -->
+	<!-- the simple class name the Audit entity -->
+
+
+	<audit-entities package="com.ibsplc.icargo.business.mail.mra.defaults">
+		<audit name="mail.mra.gpareporting.GPAReportingDetails" entity="GPAReportingDetails" enabled="true">
+				PostalAdministrationAudit
+	</audit>
+	<audit name="mail.mra.billingsite" entity="BillingSiteMaster" enabled="true">
+				BillingSiteDetailsAudit
+	</audit>
+	<audit name="mail.mra.savemcadetails" entity="CCADetail" enabled="true">
+				MCADetailsAudit
+	</audit>
+	<audit name="mail.mra.saveBillingMatrix" entity="BillingMatrix" enabled="true">
+				BillingMatrixAudit
+	</audit>
+	<audit name="mail.mra.UPURateline" entity="UPURateAudit" enabled="true">UPURateAudit</audit>
+	</audit-entities>
+	<audit-entities package="com.ibsplc.icargo.business.mail.mra.airlinebilling">
+				
+				<audit name="mail.mra.airlinebilling.RejectionMemo" entity="RejectionMemo" enabled="true">
+						MRAAirlineBillingAudit
+				</audit>
+				<audit name="mail.mra.airlinebilling.AirlineCN66Details" entity="AirlineCN66Details" enabled="true">
+						MRAAirlineBillingAudit
+				</audit>
+				<audit name="mail.mra.airlinebilling.AirlineCN51Summary" entity="AirlineCN51Summary" enabled="true">
+						MRAAirlineBillingAudit
+				</audit>
+	</audit-entities>
+	<audit-entities package="com.ibsplc.icargo.business.mail.mra.receivablemanagement">
+		<audit name="mail.mra.batchSettlement" entity="BatchSettlementAudit" enabled="true">
+				BatchSettlementAudit 
+		</audit>
+	</audit-entities>
+</audit-mappings>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

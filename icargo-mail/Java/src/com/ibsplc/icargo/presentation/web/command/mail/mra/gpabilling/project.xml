@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <pomVersion>1</pomVersion>
+    <extend>../../../../../../../../../project.xml</extend>
+    <groupId>icargo-mra</groupId>
+    <id>command-mra-gpabilling</id>
+    <artifactId>command-mra-gpabilling</artifactId>
+    <name>mra gpabilling screen command</name>    
+    <currentVersion>${mra.version.snapshot}</currentVersion>
+    <inceptionYear>2007</inceptionYear>
+    <logo>/images/logo.gif</logo>
+    <shortDescription>MRA GPABILLING Screen Commands</shortDescription>
+    <dependencies>
+    	<dependency>
+    		<groupId>icargo-mra</groupId>
+	    	<artifactId>mra-gpabilling-vo</artifactId>
+	        <version>${mra.version.snapshot}</version>
+	    </dependency>
+    	<dependency>
+    		<groupId>icargo-mra</groupId>
+	    	<artifactId>delegate-mra-gpabilling</artifactId>
+		<version>${mra.version.snapshot}</version>
+	</dependency>	    	    
+        <dependency>
+		<groupId>icargo-mra</groupId>
+		<artifactId>session-interfaces-mra-gpabilling</artifactId>
+	    	<version>${mra.version.snapshot}</version>
+    	</dependency>  
+	<dependency>
+    		<groupId>icargo-mra</groupId>
+	    	<artifactId>form-mra-gpabilling</artifactId>
+		<version>${mra.version.snapshot}</version>
+	</dependency> 	
+	
+	<dependency>
+			<groupId>icargo-shared</groupId>
+			<artifactId>shared-defaults-onetime-vo</artifactId>
+			<version>${shared.defaults.version}</version>
+	</dependency>	
+	<dependency>
+			<groupId>icargo-shared</groupId>
+			<artifactId>delegate-shared-defaults</artifactId>
+			<version>${shared.defaults.version}</version>
+	</dependency>	
+	
+    </dependencies>    
+    <build>
+        <sourceDirectory>.</sourceDirectory>
+    </build>
+</project>

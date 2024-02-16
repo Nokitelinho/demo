@@ -1,0 +1,52 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+<html>
+    <head>
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+        <title>Mail Awb Booking</title>
+        <script>
+            var fromScreen = '<%=request.getParameter("fromScreen")%>'
+            function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {
+                    __rehydrate: false
+
+                });
+                console.log('newObj', newobj);
+                return newobj
+            }
+
+			/** To access data from parent store
+			 *  Here the selected mailbagvos
+			 * 	are retrieved from store.
+			 **/
+            var obj = window.parent.getMailbagDetails();
+            console.log('object from MTK067', obj);
+        </script>
+        <link rel='stylesheet' type='text/css' href='css/app/app.css' />
+        {{#each htmlWebpackPlugin.files.css}}
+            <link rel='stylesheet' href='{{csshelper this}}' />
+        {{/each}}
+    </head>
+
+    <body>
+        <!-- The DIV container for redering results from react -->
+        <div id="container" class="main-container"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" />
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" /> 
+        {{/each}}
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+
+        <script>
+            if (fromScreen === 'MTK067') {
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'SAVE_SELECTED_MAILBAGVOS',
+                        data: { mailbagVos: obj.mailbagVos, carditFilter: obj.carditFilter }
+                    })
+                });
+            }
+            else
+                appBridge.renderApp();
+        </script>
+    </body>
+</html>

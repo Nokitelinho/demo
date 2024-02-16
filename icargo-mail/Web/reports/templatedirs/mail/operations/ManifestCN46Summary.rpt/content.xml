@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<inet:Report xmlns:inet="http://www.inetsoftware.de" major_version="8" minor_version="97" major_xml_version="11" minor_xml_version="1" id="0">
+    <Datasource>
+
+      <DataSourceConfiguration name="ICOBSSSTG">
+        <property name="host" value="192.168.16.196:1522:ICODB32"/>
+        <property name="datasource_catalog" value=""/>
+        <property name="validationQuery" value=""/>
+        <property name="identifierQuoteString" value=""/>
+        <property name="supportsWhere" value="true"/>
+        <property name="catalog" value=""/>
+        <property name="defaultRowPrefetch" value=""/>
+        <property name="driverLibrary" value=""/>
+        <property name="user" value="ICOBSSTGDEV4"/>
+        <property name="supportsParenthesesForJoin" value="true"/>
+        <property name="supportsOrderBy" value="true"/>
+        <property name="databaseClassName" value=""/>
+        <property name="aliasToken" value=""/>
+        <property name="oracle.jdbc.TcpNoDelay" value="false"/>
+        <property name="datasource_schema" value=""/>
+        <property name="escapeEverything" value="false"/>
+        <property name="useFetchSizeWithLongColumn" value="false"/>
+        <property name="processEscapes" value="true"/>
+        <property name="url" value="jdbc:oracle:thin:@{host}"/>
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="savePassword" value="true"/>
+        <property name="defaultNChar" value="false"/>
+        <property name="quotesLowerCase" value="false"/>
+        <property name="password" value="00755F2BBA158D0D4988A6EF749E635100795362B019801C498FB5EC758D01BABC"/>
+        <property name="supportsSQL92" value="false"/>
+        <property name="restrictGetTables" value="false"/>
+        <property name="initSQL" value=""/>
+        <property name="oracle.jdbc.J2EE13Compliant" value="false"/>
+      </DataSourceConfiguration>
+    </Datasource>
+
+    <Datasource>
+
+      <DataSourceConfiguration name="ICOBSSSTG">
+        <property name="host" value="192.168.16.196:1522:ICODB32"/>
+        <property name="datasource_catalog" value=""/>
+        <property name="validationQuery" value=""/>
+        <property name="identifierQuoteString" value=""/>
+        <property name="supportsWhere" value="true"/>
+        <property name="catalog" value=""/>
+        <property name="defaultRowPrefetch" value=""/>
+        <property name="driverLibrary" value=""/>
+        <property name="user" value="ICOBSSTGDEV4"/>
+        <property name="supportsParenthesesForJoin" value="true"/>
+        <property name="supportsOrderBy" value="true"/>
+        <property name="databaseClassName" value=""/>
+        <property name="aliasToken" value=""/>
+        <property name="oracle.jdbc.TcpNoDelay" value="false"/>
+        <property name="datasource_schema" value=""/>
+        <property name="escapeEverything" value="false"/>
+        <property name="useFetchSizeWithLongColumn" value="false"/>
+        <property name="processEscapes" value="true"/>
+        <property name="url" value="jdbc:oracle:thin:@{host}"/>
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="savePassword" value="true"/>
+        <property name="defaultNChar" value="false"/>
+        <property name="quotesLowerCase" value="false"/>
+        <property name="password" value="007B81E89A5F07612D7AF72BAA92793AC9778DA190530A702D7DE428AB811BA150"/>
+        <property name="supportsSQL92" value="false"/>
+        <property name="restrictGetTables" value="false"/>
+        <property name="initSQL" value=""/>
+        <property name="oracle.jdbc.J2EE13Compliant" value="false"/>
+      </DataSourceConfiguration>
+      <Tablesource alias="DUMMY_VW_MTKCSGMAL" databaseIdentifier="ICOBSSTGDEV4.DUMMY_VW_MTKCSGMAL">
+
+        <Column name="ARPCOD" type="11" description="ARPCOD" />
+        <Column name="CSGDAT" type="11" description="CSGDAT" />
+        <Column name="CSGTYP" type="11" description="CSGTYP" />
+        <Column name="SUBTYP" type="11" description="SUBTYP" />
+        <Column name="RMK" type="11" description="RMK" />
+        <Column name="ORGEXGOFC" type="11" description="ORGEXGOFC" />
+        <Column name="DSTEXGOFC" type="11" description="DSTEXGOFC" />
+        <Column name="FSTFLTDEPDAT" type="11" description="FSTFLTDEPDAT" />
+        <Column name="DSN" type="11" description="DSN" />
+        <Column name="MALSUBCLS" type="11" description="MALSUBCLS" />
+        <Column name="POL" type="11" description="POL" />
+        <Column name="POU" type="11" description="POU" />
+        <Column name="FLIGHTNUMS" type="11" description="FLIGHTNUMS" />
+        <Column name="ORIGIN" type="11" description="ORIGIN" />
+        <Column name="DESTINATION" type="11" description="DESTINATION" />
+        <Column name="POACOD" type="11" description="POACOD" />
+        <Column name="LCSUBCLS" type="11" description="LCSUBCLS" />
+        <Column name="CPSUBCLS" type="11" description="CPSUBCLS" />
+        <Column name="EMSSUBCLS" type="11" description="EMSSUBCLS" />
+        <Column name="AIRLINENAME" type="11" description="AIRLINENAME" />
+        <Column name="FTLDATES" type="11" description="FTLDATES" />
+        <Column name="FTLNUM" type="11" description="FTLNUM" />
+        <Column name="FTLDATE" type="11" description="FTLDATE" />
+        <Column name="AIRTRANS" type="11" description="AIRTRANS" />
+        <Column name="POANAM" type="11" description="POANAM" />
+        <Column name="WGT" type="11" description="WGT" />
+        <Column name="PIECES" type="11" description="PIECES" />
+        <Column name="KEY" type="11" description="KEY" />
+      </Tablesource>
+
+    </Datasource>
+
+  <Database>
+  </Database>
+  <FormulaFields>
+    <Field type="FormulaField" valueType="6">
+      <Name value="WEIGHT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[ToNumber( {DUMMY_VW_MTKCSGMAL.WGT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="TOTALWGT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[Sum( {@WEIGHT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="11">
+      <Name value="SUBTYPE38"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if(  {DUMMY_VW_MTKCSGMAL.SUBTYP} ='CN38') then 'X']]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="11">
+      <Name value="SUBTYPE41"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if( {DUMMY_VW_MTKCSGMAL.SUBTYP}  ='CN41') then 'X']]></TextData>
+    </Field>
+  </FormulaFields>
+  <PromptFields>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="ReportId"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+      <Id value="0"/>
+    </Field>
+  </PromptFields>
+  <SQLFields>
+  </SQLFields>
+  <SummaryFields>
+    <Field type="SummaryField" valueType="6">
+      <Name value="Sum of @WEIGHT"/>
+      <Reference name="id" type="FormulaField" value="@WEIGHT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+  </SummaryFields>
+  <SortFields>
+  </SortFields>
+  <UserFunctions>
+  </UserFunctions>
+  <GroupNameFields>
+  </GroupNameFields>
+  <ReportProperties>
+    <PageWidth value="15840"/>
+    <PageHeight value="12240"/>
+    <PageOrientation value="2"/>
+    <PageMarginLeft value="363"/>
+    <PageMarginRight value="363"/>
+    <PageMarginTop value="363"/>
+    <PageMarginBottom value="363"/>
+    <MailingLabelType1 value="User-Defined Label"/>
+    <MailingLabelType2 value=""/>
+    <FormatWithMultipleColumns value="false"/>
+    <MailingLabelWidth value="0"/>
+    <MailingLabelHeight value="0"/>
+    <MailingLabelDistanceVertical value="0"/>
+    <MailingLabelDistanceHorizontal value="0"/>
+    <AcrossThenDown value="false"/>
+    <FormatGroupsWithMultipleColumns value="false"/>
+    <Distinct value="false"/>
+    <ShowSuppressedNodes value="true"/>
+    <IgnoreFiltering value="false"/>
+    <IgnoreSorting value="false"/>
+    <ConvertDateTime value="2"/>
+    <SuppressIfNoRows value="false"/>
+    <ConvertNullValuesToDefault value="false"/>
+    <HidePageFooterInsideReportHeader value="true"/>
+    <FormPrint value="false"/>
+    <PrintingEnabled value="true"/>
+    <ClipboardEnabled value="true"/>
+    <ExportEnabled value="true"/>
+    <GroupTreeVisible value="true"/>
+  </ReportProperties>
+  <AreaPair type="PageAreaPair">
+    <Area type="PageHeader">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <KeepTogether value="true"/>
+      </AreaProperties>
+      <Section type="PageHeader" width="11520" height="3840">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="Text" count="1" x_position="215" y_position="1455" width="2700" height="270">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Airline originating substitute bill]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="195" y_position="1905" width="2700" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Airport of origin of substitute bill]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5585" y_position="150" width="2700" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[SUBSTITUTE DELIVERY BILL]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7800" y_position="1350" width="1050" height="195">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Date]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Box" x2_position="10085" y2_position="2415" x_position="9785" y_position="2115" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Box" x2_position="10085" y2_position="2130" x_position="9785" y_position="1830" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="10130" y_position="1860" width="600" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[CN 38]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="10115" y_position="2145" width="600" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[CN 41]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="9300" y_position="1350" width="1500" height="210">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.CSGDAT"/>
+        </Element>
+        <Element type="FieldElement" x_position="3045" y_position="1950" width="3405" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.ORIGIN"/>
+        </Element>
+        <Element type="FieldElement" x_position="3080" y_position="1440" width="3970" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.AIRLINENAME"/>
+        </Element>
+        <Element type="Text" count="1" x_position="9635" y_position="210" width="750" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[CN 46]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="300" y_position="2505" width="3300" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Observations concerning mails as found]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="300" y_position="3120" width="3300" height="450">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.RMK"/>
+        </Element>
+        <Element type="Text" count="1" x_position="5885" y_position="2580" width="3150" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Designated operator of origin of mails]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="5885" y_position="3180" width="4765" height="450">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.POANAM"/>
+        </Element>
+        <Element type="Box" x2_position="10950" y2_position="3840" x_position="150" y_position="2490" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="FieldElement" x_position="9900" y_position="1800" width="600" height="240">
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" value="@SUBTYPE38"/>
+        </Element>
+        <Element type="FieldElement" x_position="9900" y_position="2100" width="540" height="240">
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" value="@SUBTYPE41"/>
+        </Element>
+        <Element type="Line" x_position="11100" y_position="0" width="0" height="0" x2_position="11100" y2_position="4650">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="0" y_position="0" width="0" height="0" x2_position="0" y2_position="4650">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="5100" y_position="2520" width="0" height="0" x2_position="5100" y2_position="3765">
+        </Element>
+        <Element type="Line" x_position="0" y_position="0" width="0" height="0" x2_position="11100" y2_position="0">
+        </Element>
+        <Element type="Picture" x_position="225" y_position="150" width="2595" height="825">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <PictureProperties>
+            <Reference value="1.png"/>
+          </PictureProperties>
+        </Element>
+        <Element type="Line" x_position="5101" y_position="3743" width="0" height="0" x2_position="5101" y2_position="3824">
+        </Element>
+      </Section>
+      <Section type="PageHeader" width="15114" height="1350">
+        <Element type="Subreport" x_position="150" y_position="150" width="10800" height="1050">
+          <SubreportProperties>
+            <Id value="1"/>
+          </SubreportProperties>
+        </Element>
+      </Section>
+      <Section type="PageHeader" width="11520" height="2850">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="Text" count="1" x_position="150" y_position="150" width="7500" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Descriptions of mails as found(from CN 35, CN 36, CP 84 or CP 85)]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="1350" width="900" height="600">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Mail No.]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="2400" y_position="1200" width="1050" height="600">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Office of Destination]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3450" y_position="1350" width="900" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[Flight No.]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4550" y_position="660" width="1770" height="450">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[Airport]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4500" y_position="1200" width="1200" height="1200">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[of                   transhipment]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="2" x_position="5700" y_position="1200" width="1015" height="1200">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[of ]]></TextData>
+            </Element>
+          </Element>
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[offloading]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6750" y_position="1200" width="900" height="600">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Date of Dispatch]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7800" y_position="600" width="2250" height="450">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[No of receptacles]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7800" y_position="1200" width="750" height="1050">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[Letter post]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="2" x_position="8550" y_position="1200" width="750" height="1050">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[]]></TextData>
+            </Element>
+          </Element>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[CP]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9300" y_position="1200" width="750" height="1200">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[EMS/ Other items]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="4" x_position="10200" y_position="750" width="785" height="1590">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[]]></TextData>
+            </Element>
+          </Element>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[]]></TextData>
+            </Element>
+          </Element>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[Gross Weight]]></TextData>
+            </Element>
+          </Element>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[ (kg)]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="1200" y_position="450" width="0" height="0" x2_position="1200" y2_position="2850">
+        </Element>
+        <Element type="Line" x_position="2250" y_position="450" width="0" height="0" x2_position="2250" y2_position="2850">
+        </Element>
+        <Element type="Line" x_position="3450" y_position="450" width="0" height="0" x2_position="3450" y2_position="2850">
+        </Element>
+        <Element type="Line" x_position="4350" y_position="450" width="0" height="0" x2_position="4350" y2_position="2850">
+        </Element>
+        <Element type="Line" x_position="6600" y_position="450" width="0" height="0" x2_position="6600" y2_position="2850">
+        </Element>
+        <Element type="Line" x_position="7800" y_position="450" width="0" height="0" x2_position="7800" y2_position="2850">
+        </Element>
+        <Element type="Line" x_position="8550" y_position="1050" width="0" height="0" x2_position="8550" y2_position="2850">
+        </Element>
+        <Element type="Line" x_position="9300" y_position="1050" width="0" height="0" x2_position="9300" y2_position="90">
+          <LineProperties>
+            <EndSection area="D" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="10050" y_position="450" width="0" height="0" x2_position="10050" y2_position="2850">
+        </Element>
+        <Element type="Line" x_position="0" y_position="450" width="0" height="0" x2_position="0" y2_position="960">
+          <LineProperties>
+            <EndSection area="D" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Box" x2_position="11114" y2_position="39" x_position="0" y_position="2400" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+              <LineProperties>
+                <EndSection area="RF" sectionIndex="0"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="Line" x_position="0" y_position="450" width="0" height="0" x2_position="10950" y2_position="450">
+        </Element>
+        <Element type="Line" x_position="11100" y_position="450" width="0" height="0" x2_position="11100" y2_position="300">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="1350" y_position="1200" width="750" height="750">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Office of Origin]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="9300" y_position="2850" width="0" height="0" x2_position="9300" y2_position="0">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="3450" y_position="2700" width="0" height="0" x2_position="3450" y2_position="2850">
+        </Element>
+        <Element type="Line" x_position="4650" y_position="1050" width="0" height="0" x2_position="6000" y2_position="1050">
+        </Element>
+        <Element type="Line" x_position="5550" y_position="1050" width="0" height="0" x2_position="5550" y2_position="2400">
+        </Element>
+        <Element type="Line" x_position="4500" y_position="1050" width="0" height="0" x2_position="4650" y2_position="1050">
+        </Element>
+        <Element type="Line" x_position="5550" y_position="2400" width="0" height="0" x2_position="5550" y2_position="0">
+          <LineProperties>
+            <EndSection area="D" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="5550" y_position="2850" width="0" height="0" x2_position="5550" y2_position="1050">
+          <LineProperties>
+            <EndSection area="D" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="6600" y_position="2850" width="0" height="0" x2_position="6600" y2_position="1050">
+          <LineProperties>
+            <EndSection area="D" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="7800" y_position="2850" width="0" height="0" x2_position="7800" y2_position="1050">
+          <LineProperties>
+            <EndSection area="D" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="3450" y_position="2700" width="0" height="0" x2_position="3450" y2_position="1050">
+          <LineProperties>
+            <EndSection area="D" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="4350" y_position="2850" width="0" height="0" x2_position="4350" y2_position="150">
+          <LineProperties>
+            <EndSection area="D" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="4350" y_position="1050" width="0" height="0" x2_position="4674" y2_position="1050">
+        </Element>
+        <Element type="Line" x_position="10950" y_position="450" width="0" height="0" x2_position="11100" y2_position="450">
+        </Element>
+        <Element type="Line" x_position="6000" y_position="1050" width="0" height="0" x2_position="6600" y2_position="1050">
+        </Element>
+        <Element type="Line" x_position="7800" y_position="1050" width="0" height="0" x2_position="10050" y2_position="1050">
+        </Element>
+      </Section>
+    </Area>
+    <Area type="PageFooter">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <KeepTogether value="true"/>
+      </AreaProperties>
+      <Section type="PageFooter" width="11520" height="0">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="ReportAreaPair">
+    <Area type="ReportHeader">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <NewPageBefore value="true"/>
+      </AreaProperties>
+      <Section type="ReportHeader" width="11520" height="20">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <Suppress value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="ReportFooter">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <NewPageAfter value="true"/>
+      </AreaProperties>
+      <Section type="ReportFooter" width="11520" height="4670">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="Text" count="1" x_position="3450" y_position="150" width="3900" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Total number of Receptacles & Gross Weight]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="95" y_position="660" width="2550" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Actual conveyance of mails]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Box" x2_position="11100" y2_position="2610" x_position="0" y_position="1050" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="1200" width="1650" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Airport of loading]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="2100" y_position="1200" width="2850" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.ORIGIN"/>
+        </Element>
+        <Element type="Text" count="1" x_position="5250" y_position="1200" width="900" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Flight No]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8100" y_position="1200" width="1500" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Date of Departure]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="185" y_position="2010" width="1915" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Airport of offloading]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="2135" y_position="2010" width="2850" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.DESTINATION"/>
+        </Element>
+        <Element type="Text" count="1" x_position="5285" y_position="2010" width="2550" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Office of destination of mails]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="8135" y_position="2010" width="1650" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.DSTEXGOFC"/>
+        </Element>
+        <Element type="Line" x_position="11100" y_position="0" width="0" height="0" x2_position="11100" y2_position="450">
+        </Element>
+        <Element type="FieldElement" x_position="6150" y_position="1200" width="1650" height="600">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.FTLNUM"/>
+        </Element>
+        <Element type="FieldElement" x_position="9690" y_position="1185" width="1350" height="600">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.FTLDATE"/>
+        </Element>
+        <Element type="Line" x_position="7800" y_position="0" width="0" height="0" x2_position="7800" y2_position="450">
+        </Element>
+        <Element type="Line" x_position="10050" y_position="0" width="0" height="0" x2_position="10050" y2_position="450">
+        </Element>
+        <Element type="FieldElement" x_position="10050" y_position="150" width="750" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <NumberProperties>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@TOTALWGT"/>
+        </Element>
+        <Element type="FieldElement" x_position="8250" y_position="150" width="1500" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.PIECES"/>
+        </Element>
+        <Element type="Line" x_position="0" y_position="1800" width="0" height="0" x2_position="11100" y2_position="1800">
+        </Element>
+        <Element type="Line" x_position="1505" y_position="4449" width="0" height="0" x2_position="1505" y2_position="4469">
+        </Element>
+        <Element type="Line" x_position="185" y_position="4410" width="0" height="0" x2_position="2585" y2_position="4410">
+        </Element>
+        <Element type="Line" x_position="3485" y_position="4410" width="0" height="0" x2_position="6185" y2_position="4410">
+        </Element>
+        <Element type="Line" x_position="7685" y_position="4410" width="0" height="0" x2_position="10535" y2_position="4410">
+        </Element>
+        <Element type="Text" count="1" x_position="185" y_position="3510" width="1050" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Signature]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="185" y_position="3210" width="2665" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Airline at airport of loading]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3485" y_position="3510" width="1200" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Signature]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3485" y_position="3210" width="2850" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Airline at airport of offloading]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7685" y_position="3660" width="1800" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Date and Signature]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7685" y_position="3210" width="3000" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Designated operator taking delivery of mails]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="0" y_position="450" width="0" height="0" x2_position="10950" y2_position="450">
+        </Element>
+        <Element type="Line" x_position="0" y_position="4650" width="0" height="0" x2_position="11100" y2_position="4650">
+        </Element>
+        <Element type="Line" x_position="7950" y_position="1050" width="0" height="0" x2_position="7950" y2_position="1800">
+        </Element>
+        <Element type="Line" x_position="5100" y_position="2550" width="0" height="0" x2_position="5100" y2_position="2570">
+        </Element>
+        <Element type="Line" x_position="5100" y_position="1050" width="0" height="0" x2_position="5100" y2_position="2550">
+        </Element>
+        <Element type="Line" x_position="5099" y_position="2559" width="0" height="0" x2_position="5099" y2_position="2602">
+        </Element>
+        <Element type="Line" x_position="10950" y_position="450" width="0" height="0" x2_position="11100" y2_position="450">
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="DetailArea">
+    <Area type="Detail">
+      <Section type="Detail" width="11520" height="1282">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="1185" y_position="300" width="1200" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.ORGEXGOFC"/>
+        </Element>
+        <Element type="FieldElement" x_position="2250" y_position="300" width="1200" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.DSTEXGOFC"/>
+        </Element>
+        <Element type="FieldElement" x_position="150" y_position="300" width="1050" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.DSN"/>
+        </Element>
+        <Element type="FieldElement" x_position="5700" y_position="300" width="750" height="750">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.POU"/>
+        </Element>
+        <Element type="FieldElement" x_position="7785" y_position="300" width="900" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.LCSUBCLS"/>
+        </Element>
+        <Element type="FieldElement" x_position="8700" y_position="300" width="635" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.CPSUBCLS"/>
+        </Element>
+        <Element type="FieldElement" x_position="9300" y_position="300" width="785" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.EMSSUBCLS"/>
+        </Element>
+        <Element type="FieldElement" x_position="6600" y_position="300" width="1200" height="750">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.FTLDATES"/>
+        </Element>
+        <Element type="FieldElement" x_position="3330" y_position="300" width="1050" height="750">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.FLIGHTNUMS"/>
+        </Element>
+        <Element type="FieldElement" x_position="4500" y_position="300" width="900" height="750">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.AIRTRANS"/>
+        </Element>
+        <Element type="FieldElement" x_position="10200" y_position="300" width="750" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.WGT"/>
+        </Element>
+        <Element type="Line" x_position="2250" y_position="0" width="0" height="0" x2_position="2250" y2_position="1050">
+          <LineProperties>
+            <ExpandToBottomOfPageWhenPrinting value="true"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="1200" y_position="0" width="0" height="0" x2_position="1200" y2_position="1050">
+          <LineProperties>
+            <ExpandToBottomOfPageWhenPrinting value="true"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="4350" y_position="150" width="0" height="0" x2_position="4350" y2_position="1200">
+        </Element>
+        <Element type="Line" x_position="8550" y_position="0" width="0" height="0" x2_position="8550" y2_position="0">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="10050" y_position="0" width="0" height="0" x2_position="10050" y2_position="0">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="0" y_position="900" width="0" height="0" x2_position="0" y2_position="390">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="1200" y_position="1050" width="0" height="0" x2_position="1200" y2_position="1200">
+        </Element>
+        <Element type="Line" x_position="7800" y_position="910" width="0" height="0" x2_position="7800" y2_position="1279">
+        </Element>
+        <Element type="Line" x_position="6600" y_position="1050" width="0" height="0" x2_position="6600" y2_position="0">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="5550" y_position="1014" width="0" height="0" x2_position="5550" y2_position="0">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="3450" y_position="1034" width="0" height="0" x2_position="3450" y2_position="0">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="1200" y_position="800" width="0" height="0" x2_position="1200" y2_position="0">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="2252" y_position="966" width="0" height="0" x2_position="2252" y2_position="0">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="4349" y_position="1164" width="0" height="0" x2_position="4349" y2_position="0">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="7801" y_position="1219" width="0" height="0" x2_position="7801" y2_position="0">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+</inet:Report>

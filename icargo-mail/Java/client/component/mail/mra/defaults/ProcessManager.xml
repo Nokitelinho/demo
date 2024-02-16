@@ -1,0 +1,540 @@
+<?xml version="1.0"?>
+<components screenId="mailtracking.mra.defaults.processmanager" xmlns="http://www.ibsplc.com/icargo/components-details">
+
+	<component id="CMP_MRA_Defaults_ProcessManager_ViewFlownMail_FLIGHTNO" name="Flight No">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_FLIGHT_NUMBER</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>FLIGHTNUMBER</value>
+		</attribute>
+	</component>
+
+	<component id="CMP_MRA_Defaults_ProcessManager_FLIGHTDATE" name="flightDate">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_CALENDAR</value>
+		</attribute>
+	        <attribute>
+			<name>tooltip</name>
+			<value>FLIGHTDATE</value>
+		</attribute>
+	</component>
+<component id="CMP_MRA_Defaults_ProcessManager_FROMDATE" name="From Date">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.fromdate</value>
+			</attribute>
+	</component>
+<component id="CMP_MRA_Defaults_ProcessManage_TODATE" name="To Date">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.todate</value>
+			</attribute>
+	</component>
+	<component id="CMP_MRA_Defaults_ProcessManager_category" name="Category">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CMB_GENCOMBO</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.category</value>
+			</attribute>
+	   </component>
+    <component id="CMP_MRA_Defaults_ProcessManager_subclass" name="Subclass">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CMB_GENCOMBO</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.subclass</value>
+			</attribute>
+	   </component>
+	   <component id="CMP_MRA_Defaults_ProcessManager_origin" name="Origin">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CMB_GENCOMBO</value>
+			</attribute>
+			<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.origin</value>
+			</attribute>
+	   </component>
+	   <component id="CMP_MRA_Defaults_ProcessManager_destination" name="Destination">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CMB_GENCOMBO</value>
+			</attribute>
+			<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.destination</value>
+			</attribute>
+	   </component>
+	   <component id="CMP_MRA_Defaults_ProcessManager_OOE" name="Origin OE">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.defaults.processmanager.tooltip.orgOOE</value>
+		</attribute>
+	</component>
+	<component id="CMP_MRA_Defaults_ProcessManager_DOE" name="Destination OE">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.defaults.processmanager.tooltip.desOOE</value>
+		</attribute>
+	</component>
+	<component xmlns="" id="CMP_CRA_Defaults_ProcessManager_AwbNo" name="Component AWB Numnber">
+	  <attribute>
+	   <name>businesstype-id</name>
+	   <value>BT_AWB</value>
+	  </attribute>
+	  <attribute>
+		<name>important</name>
+		<value>true</value>
+	 </attribute>
+	  <attribute>
+	   <name>tooltip</name>
+	   <value>cra.defaults.processmanager.tooltip.lbAWBNumber</value>
+	  </attribute>
+	 </component>
+   <component id="CMP_MRA_Defaults_ProcessManager_TOARLCOD" name="TOAIRLINE CODE">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.defaults.processmanager.tooltip.toairlinecode</value>
+		</attribute>
+		<attribute>
+					<name>lov</name>
+					<value>true</value>
+	</attribute>
+	<attribute>
+			<name>type</name>
+			<value>filter</value>
+	</attribute>
+	</component>
+
+	 <component id="CMP_MRA_Defaults_ProcessManager_FROMARLCOD" name="FROMAIRLINE CODE">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.defaults.processmanager.tooltip.fromairlinecode</value>
+		</attribute>
+		<attribute>
+					<name>lov</name>
+					<value>true</value>
+	</attribute>
+	<attribute>
+			<name>type</name>
+			<value>filter</value>
+	</attribute>
+	</component>
+	<component id="CMP_MRA_Defaults_ProcessManager_GPACODE" name="GPA Code">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.defaults.processmanager.tooltip.gpacode</value>
+	</attribute>
+	<attribute>
+					<name>lov</name>
+					<value>true</value>
+	</attribute>
+</component>
+	<component id="CMP_MRA_Defaults_ProcessManager_Process" name="Process to Execute">
+	 <attribute>
+	  <name>businesstype-id</name>
+	  <value>BT_SELECT</value>
+	 </attribute>
+	 <attribute>
+	  <name>styleclass-id</name>
+	  <value>ST_CMB_VERY_BIG</value>
+	 </attribute>
+	 <attribute>
+	  <name>tooltip</name>
+	  <value>mailtracking.mra.defaults.processmanager.tooltip.executeprocess</value>
+	 </attribute>
+	</component>
+
+	<component id="CMP_MRA_Defaults_ProcessManager_Execute" name="excecute">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>EXCECUTE</value>
+		</attribute>
+	</component>
+	<component id="CMP_MRA_Defaults_ProcessManager_Close" name="close">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>CLOSE</value>
+		</attribute>
+	</component>
+
+<component id="CMP_MRA_Defaults_ProcessManager_OOEE" name="Origin OEE">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.defaults.processmanager.tooltip.orginOOE</value>
+		</attribute>
+	</component>
+	<component id="CMP_MRA_Defaults_ProcessManager_DOEE" name="Destination OEE">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.defaults.processmanager.tooltip.destinationOOE</value>
+		</attribute>
+	</component>
+	<component id="CMP_MRA_Defaults_ProcessManager_Exception" name="Exception">
+	 <attribute>
+	  <name>businesstype-id</name>
+	  <value>BT_SELECT</value>
+	 </attribute>
+     <attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	 <attribute>
+	  <name>styleclass-id</name>
+	  <value>ST_CMB_VERY_BIG</value>
+	 </attribute>
+	 <attribute>
+	  <name>tooltip</name>
+	  <value>mailtracking.mra.defaults.processmanager.tooltip.exception</value>
+	 </attribute>
+	</component>
+	<component id="CMP_MRA_DEFAULTS_PROCESSMANAGER_CLEARANCEPERIOD" name="Clearance Period">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.clearanceperiod</value>
+			</attribute>
+	</component>
+
+
+
+<component id="CMP_MRA_Defaults_ProcessManager_FROMDATE_ForProrate" name="From Date For Prorate">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.fromdate</value>
+			</attribute>
+	</component>
+<component id="CMP_MRA_Defaults_ProcessManage_TODATE_ForProrate" name="To Date For Prorate">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.todate</value>
+			</attribute>
+	</component>
+
+
+<component id="CMP_MRA_Defaults_ProcessManager_MAILFROMDATE" name="From Date">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.mailfromdate</value>
+			</attribute>
+	</component>
+<component id="CMP_MRA_Defaults_ProcessManage_MAILTODATE" name="To Date">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.mailtodate</value>
+			</attribute>
+</component>	
+<component id="CMP_MRA_Defaults_ProcessManager_MAILBAG" name="MailbagID">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.defaults.processmanager.tooltip.mailbag</value>
+	</attribute>
+</component>
+	<component id="CMP_MRA_Defaults_ProcessManager_PACODE" name="GPA Code">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.defaults.processmanager.tooltip.pacode</value>
+	</attribute>
+	<attribute>
+					<name>lov</name>
+					<value>true</value>
+	</attribute>
+</component>
+
+
+<component id="CMP_MRA_Defaults_ProcessManager_FROMDATE_ForPass" name="From Date For Pass">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.passfrom</value>
+			</attribute>
+</component>
+	
+<component id="CMP_MRA_Defaults_ProcessManager_TODATE_ForPass" name="To Date For Pass">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+					<name>mandatory</name>
+					<value>true</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.mra.defaults.processmanager.tooltip.passto</value>
+			</attribute>
+</component>
+
+
+<component id="CMP_MRA_Defaults_ProcessManager_PeriodNumber" name="Period No.">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.defaults.processmanager.tooltip.periodno</value>
+	</attribute>
+	<attribute>
+	<name>mandatory</name>
+	<value>true</value>
+	</attribute>
+</component>
+
+
+
+	
+</components>

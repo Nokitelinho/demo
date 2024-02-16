@@ -1,0 +1,718 @@
+<?xml version="1.0"?>
+<components screenId="mail.operations.ux.carditdsnenquiry" xmlns="http://www.ibsplc.com/icargo/components-details">
+
+ <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_MAILBAGID" name="Mailbag ID">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.mailbagId</value>
+    </attribute>
+	
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHANUMERIC</value>
+	</attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_OOE" name="Origin OE">
+  
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.ooe</value>
+    </attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHA</value>
+	</attribute>
+	<attribute> 
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+    <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_DOE" name="Dest OE">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.doe</value>
+    </attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHA</value>
+	</attribute>
+	<attribute> 
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_CATEGORY" name="Mail Category">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value> 
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.carditenquiry.tooltip.mailcategory</value>
+		</attribute>
+	       <attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+	</component>
+	
+	 <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_SUBCLASS" name="Subclass">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.subclass</value>
+    </attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+   <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_YEAR" name="Year">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.year</value>
+    </attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_INTEGER</value>
+	</attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+  </component>
+    <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_DSN" name="DSN">
+     <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.dsn</value>
+    </attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_INTEGER</value>
+	</attribute>
+  </component>
+    <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_RSN" name="RSN">
+     <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.rsn</value>
+    </attribute>
+	
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_INTEGER</value>
+	</attribute>
+  </component>
+      <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_CONSIGNMENTNO" name="Consignment No">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.conno</value>
+    </attribute>
+	
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHANUMERIC</value>
+	</attribute>
+  </component>
+    <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_PACODE" name="PA Code">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>lov</name>
+		<value>true</value>
+	</attribute>  
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.pacode</value>
+    </attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHANUMERIC</value>
+	</attribute>
+  </component>
+    <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_AIRPORT" name="Uplit Airport">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.upliftAirport</value>
+	</attribute>
+    <attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHANUMERIC</value>
+	</attribute>	 
+  </component>
+   <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_MAILORIGIN" name="Origin Airport">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>lov</name>
+		<value>true</value>
+	</attribute> 
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.mailorigin</value>
+     </attribute> 
+    <attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHANUMERIC</value>
+	</attribute>	 
+  </component>
+   <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_MAILDESTINATION" name="Destination Airport">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>lov</name>
+		<value>true</value>
+	</attribute> 
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.maildestination</value>
+     </attribute> 
+    <attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHANUMERIC</value>
+     </attribute>   
+  </component>
+  
+
+<component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_DATEFROM" name="Date From">
+    <attribute>
+      <name>businesstype-id</name>
+      <value>BT_CALENDAR</value>
+    </attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.dateFrom</value>
+    </attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_DATETO" name="Date To">
+    <attribute>
+      <name>businesstype-id</name>
+      <value>BT_CALENDAR</value>
+    </attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.dateTo</value>
+    </attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_CONSIGNMENTDATE" name="Consignment Date">
+    <attribute>
+      <name>businesstype-id</name>
+      <value>BT_CALENDAR</value>
+    </attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.consignmentDate</value>
+    </attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+  </component>
+   <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_FLIGHTNO" name="Flight Number">
+    <attribute>
+	<name>businesstype-id</name>
+      <value>BT_FLIGHT_NUMBER</value>
+	</attribute>
+    <attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHANUMERIC</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.flightNumber</value>
+    </attribute>
+  </component>
+  <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_ULDNO" name="ULD">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_ULD_NUMBER</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.carditenquiry.tooltip.uld</value>
+       </attribute>    
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_MAILSTATUS" name="Mail Status">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value> 
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.carditenquiry.tooltip.mailstatus</value>
+		</attribute>
+	       <attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+	</component>
+		
+
+
+  <component id="BUT_MAIL_OPERATIONS_CARDITDSNENQUIRY_LIST" name="List Button">
+		<attribute>
+				<name>businesstype-id</name>
+             <value>BT_BUTTON</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.carditenquiry.tooltip.list</value>
+	   	</attribute>
+	</component>
+	<component id="BUT_MAIL_OPERATIONS_CARDITDSNENQUIRY_CLEAR" name="Clear Button">
+		<attribute>
+				<name>businesstype-id</name>
+                <value>BT_BUTTON</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.carditenquiry.tooltip.clear</value>
+	   	</attribute>
+	</component>
+	<component id="BUT_MAIL_OPERATIONS_CARDITDSNENQUIRY_CLOSE" name="Close Button">
+		<attribute>
+				<name>businesstype-id</name>
+                <value>BT_BUTTON</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.carditenquiry.tooltip.close</value>
+	   	</attribute>
+	</component>
+	<component id="BUT_MAIL_OPERATIONS_CARDITDSNENQUIRY_ATTACHALL" name="Attach Button">
+		<attribute>
+				<name>businesstype-id</name>
+                <value>BT_BUTTON</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.carditenquiry.tooltip.attachall</value>
+	   	</attribute>
+	</component>
+	<component id="BUT_MAIL_OPERATIONS_CARDITDSNENQUIRY_DETACHALL" name="Detach Button">
+		<attribute>
+				<name>businesstype-id</name>
+                <value>BT_BUTTON</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.carditenquiry.tooltip.detachall</value>
+	   	</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_FLIGHTTYPE" name="Flight Type">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value> 
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.carditenquiry.tooltip.flightType</value>
+		</attribute>
+	       <attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_AWBATTACHED" name="AWB attached">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value> 
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.carditdsnenquiry.tooltip.isawbattached</value>
+		</attribute>
+	       <attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+	</component>
+	 
+	<component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_RDT" name="DSN">
+    
+		<attribute>
+      <name>businesstype-id</name>
+      <value>BT_CALENDAR</value>
+    </attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.carditenquiry.tooltip.rdtDate</value>
+    </attribute>
+	
+  </component>
+  <component id="CMP_MAIL_OPERATIONS_CARDITENQUIRY_RDTTIME" name="Component To Time">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+         <attribute>
+			<name>tooltip</name>
+			<value>mail.operations.carditEnquiry.tooltip.rdtTime</value>
+		</attribute>		
+	</component>
+	
+	 <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_PRODUCT" name="Product">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.tooltip.productlov</value>
+    </attribute>
+	
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHANUMERIC</value>
+	</attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_BOOKINGFROM" name="Date From">
+    <attribute>
+      <name>businesstype-id</name>
+      <value>BT_CALENDAR</value>
+    </attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.tooltip.bookingFrom</value>
+    </attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_BOOKINGTO" name="Date To">
+    <attribute>
+      <name>businesstype-id</name>
+      <value>BT_CALENDAR</value>
+    </attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.tooltip.bookingTo</value>
+    </attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_SCC" name="Scc">
+  
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.tooltip.scclov</value>
+    </attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHA</value>
+	</attribute>
+	<attribute> 
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+  
+    <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_ORIGIN" name="Origin">
+  
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.lbl.origin</value>
+    </attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHA</value>
+	</attribute>
+	<attribute> 
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+  
+  
+    <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_VIAPOINT" name="Via point">
+  
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.tooltip.viaPoint</value>
+    </attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHA</value>
+	</attribute>
+	<attribute> 
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+   <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_DEST" name="Destination">
+  
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.lbl.destination</value>
+    </attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHA</value>
+	</attribute>
+	<attribute> 
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+  
+     <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_STATION" name="Station">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.tooltip.station</value>
+    </attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHA</value>
+	</attribute>
+	<attribute> 
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_SHIPPINGDATE" name="Shipping Date">
+    <attribute>
+      <name>businesstype-id</name>
+      <value>BT_CALENDAR</value>
+    </attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.tooltip.shippingDate</value>
+    </attribute>
+  </component>
+  
+   <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_FLIGHTFROM" name="Flight From">
+    <attribute>
+      <name>businesstype-id</name>
+      <value>BT_CALENDAR</value>
+    </attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.tooltip.flightFrom</value>
+    </attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_FLIGHTTO" name="Date To">
+    <attribute>
+      <name>businesstype-id</name>
+      <value>BT_CALENDAR</value>
+    </attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.tooltip.flightTo</value>
+    </attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_AGENTCODE" name="Agent Code">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.tooltip.agentCode</value>
+    </attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHA</value>
+	</attribute>
+	<attribute> 
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+  
+  <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_CUSTCODE" name="Customer Code">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.tooltip.customerCode</value>
+    </attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHA</value>
+	</attribute>
+	<attribute> 
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_USERID" name="User Id">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mailtracking.defaults.carditenquiry.tooltip.userid</value>
+    </attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHA</value>
+	</attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_MAILAWBBOOKING_SHIPMENTSTATUS" name="Shipment Status">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value> 
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.carditenquiry.tooltip.shipmentStatus</value>
+		</attribute>
+	       <attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+	</component>
+
+  <component id="BTN_MAIL_OPERATIONS_MAILAWBBOOKING_LIST" name="List Button">
+		<attribute>
+				<name>businesstype-id</name>
+             <value>BT_BUTTON</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.carditenquiry.tooltip.list</value>
+	   	</attribute>
+	</component>
+	<component id="BTN_MAIL_OPERATIONS_MAILAWBBOOKING_CLEAR" name="Clear Button">
+		<attribute>
+				<name>businesstype-id</name>
+                <value>BT_BUTTON</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.carditenquiry.tooltip.clear</value>
+	   	</attribute>
+	</component>
+	<component id="BTN_MAIL_OPERATIONS_MAILAWBBOOKING_CLOSE" name="Close Button">
+		<attribute>
+				<name>businesstype-id</name>
+                <value>BT_BUTTON</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.carditenquiry.tooltip.close</value>
+	   	</attribute>
+	</component>
+	<component id="BTN_MAIL_OPERATIONS_MAILAWBBOOKING_ATTACH" name="Attach Button">
+		<attribute>
+				<name>businesstype-id</name>
+                <value>BT_BUTTON</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.carditenquiry.tooltip.attachAWB</value>
+	   	</attribute>
+	</component>
+	
+  
+</components>
+
+

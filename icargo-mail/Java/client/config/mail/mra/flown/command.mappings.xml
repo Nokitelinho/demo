@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<command-mappings xmlns="http://www.ibsplc.com/icargo/command/mappings" product="mail" subproduct="mra">
+
+	<screen name="ViewFlownMail" id="mra.flown.viewflownmail">
+		
+		<action name="mra.flown.screenloadviewflownmail" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.viewflownmail.ScreenLoadViewFlownMailCommand" order="1"/>
+		</action>
+
+		<action name="mra.flown.viewflownmail.listsegments" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.viewflownmail.MandatoryCheckCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.viewflownmail.ValidateFlightCommand" order="2"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.viewflownmail.ListSegmentsCommand" order="3"/>
+		</action>
+		
+		<action name="mra.flown.viewflownmail.updatesessionwithduplicateflight" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.viewflownmail.UpdateSessionCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.viewflownmail.ListSegmentsCommand" order="2"/>
+		</action>
+
+		<action name="mra.flown.viewflownmail.clear" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.viewflownmail.ClearCommand" order="1"/>
+		</action>
+
+		<action name="mra.flown.viewflownmail.listflownmails" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.viewflownmail.ListCommand" order="1"/>
+		</action>
+
+		<action name="mra.flown.viewflownmail.processmails" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.viewflownmail.ProcessCommand" order="1"/>
+		</action>
+
+		<action name="mra.flown.viewflownmail.closescreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.viewflownmail.CloseCommand" order="1"/>
+		</action>
+
+
+		<action name="mra.flown.viewflownmail.closeflight" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.viewflownmail.CloseFlightCommand" order="1"/>
+		</action>
+		<action name="mra.flown.viewflownmail.viewAccount" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.viewflownmail.ViewAccountCommand" order="1"/>
+		</action>
+		
+	</screen>
+	
+	<screen name="FlownReportsForm" id="mra.flown.flownreports">
+
+		<action name="mra.flown.flownreports.screenloadflownreports" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.report.ScreenLoadFlownReportsCommand" order="1"/>
+		</action>
+
+		<action name="mra.flown.flownreports.listofflightswithflightstatus" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.report.PrintListOfFlightsCommand" order="1"/>
+		</action>
+
+		<action name="mra.flown.flownreports.listofflownmails" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.report.PrintListOfFlownMailsCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.flown.printMailRevenueReport" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.report.PrintMailRevenueReport" order="1"/>
+		</action>
+		
+	</screen>
+	
+	<screen name="AssignExceptionsForm" id="mailtracking.mra.flown.assignexceptions">
+		
+		<action name="mailtracking.mra.flown.assignexceptions.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.assignexceptions.ScreenLoadCommand" order="1"/>
+		</action>
+		
+		<action name="mailtracking.mra.flown.assignexceptions.listexceptions" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.assignexceptions.UpdateSessionCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.assignexceptions.ListCommand" order="2"/>
+		</action>
+		
+		<action name="mailtracking.mra.flown.assignexceptions.clearexceptions" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.assignexceptions.ClearCommand" order="1"/>
+		</action>
+		
+		<action name="mailtracking.mra.flown.assignexceptions.closeexceptions" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.assignexceptions.CloseCommand" order="1"/>
+		</action>
+		
+		<action name="mailtracking.mra.flown.assignexceptions.saveexceptions" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.assignexceptions.UpdateSessionCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.assignexceptions.SaveCommand" order="2"/>
+		</action>
+		
+		<action name="mailtracking.mra.flown.assignexceptions.processexceptions" >			
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.assignexceptions.ProcessCommand" order="1"/>
+		</action>
+		
+		<action name="mailtracking.mra.flown.assignexceptions.closeflight" >			
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.assignexceptions.CloseFlightCommand" order="1"/>
+		</action>
+		
+		<action name="mailtracking.mra.flown.assignexceptions.print" >			
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.assignexceptions.report.PrintCommand" order="1"/>
+		</action>
+		
+		<action name="mailtracking.mra.flown.assignexceptions.printdetails" >			
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.flown.assignexceptions.report.PrintDetailsCommand" order="1"/>
+		</action>
+		
+		
+		
+	</screen>
+	
+</command-mappings>

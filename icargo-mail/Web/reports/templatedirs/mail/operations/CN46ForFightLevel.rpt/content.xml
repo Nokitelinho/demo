@@ -1,0 +1,1286 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<inet:Report xmlns:inet="http://www.inetsoftware.de" major_version="8" minor_version="97" major_xml_version="11" minor_xml_version="1" id="0">
+    <Datasource>
+
+      <DataSourceConfiguration name="ICOBSSSTG">
+        <property name="host" value="192.168.16.196:1522:ICODB32"/>
+        <property name="datasource_catalog" value=""/>
+        <property name="validationQuery" value=""/>
+        <property name="identifierQuoteString" value=""/>
+        <property name="supportsWhere" value="true"/>
+        <property name="catalog" value=""/>
+        <property name="defaultRowPrefetch" value=""/>
+        <property name="driverLibrary" value=""/>
+        <property name="user" value="ICOBSSTGDEV4"/>
+        <property name="supportsParenthesesForJoin" value="true"/>
+        <property name="supportsOrderBy" value="true"/>
+        <property name="databaseClassName" value=""/>
+        <property name="aliasToken" value=""/>
+        <property name="oracle.jdbc.TcpNoDelay" value="false"/>
+        <property name="datasource_schema" value=""/>
+        <property name="escapeEverything" value="false"/>
+        <property name="useFetchSizeWithLongColumn" value="false"/>
+        <property name="processEscapes" value="true"/>
+        <property name="url" value="jdbc:oracle:thin:@{host}"/>
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="savePassword" value="true"/>
+        <property name="defaultNChar" value="false"/>
+        <property name="quotesLowerCase" value="false"/>
+        <property name="password" value="00F0909D38EDDC4F13D877FBD9528E68E1FC9CD432E1D15E13DF64F8D841EC34E5"/>
+        <property name="supportsSQL92" value="false"/>
+        <property name="restrictGetTables" value="false"/>
+        <property name="initSQL" value=""/>
+        <property name="oracle.jdbc.J2EE13Compliant" value="false"/>
+      </DataSourceConfiguration>
+    </Datasource>
+
+    <Datasource>
+
+      <DataSourceConfiguration name="ICOBSSSTG">
+        <property name="host" value="192.168.16.196:1522:ICODB32"/>
+        <property name="datasource_catalog" value=""/>
+        <property name="validationQuery" value=""/>
+        <property name="identifierQuoteString" value=""/>
+        <property name="supportsWhere" value="true"/>
+        <property name="catalog" value=""/>
+        <property name="defaultRowPrefetch" value=""/>
+        <property name="driverLibrary" value=""/>
+        <property name="user" value="ICOBSSTGDEV4"/>
+        <property name="supportsParenthesesForJoin" value="true"/>
+        <property name="supportsOrderBy" value="true"/>
+        <property name="databaseClassName" value=""/>
+        <property name="aliasToken" value=""/>
+        <property name="oracle.jdbc.TcpNoDelay" value="false"/>
+        <property name="datasource_schema" value=""/>
+        <property name="escapeEverything" value="false"/>
+        <property name="useFetchSizeWithLongColumn" value="false"/>
+        <property name="processEscapes" value="true"/>
+        <property name="url" value="jdbc:oracle:thin:@{host}"/>
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="savePassword" value="true"/>
+        <property name="defaultNChar" value="false"/>
+        <property name="quotesLowerCase" value="false"/>
+        <property name="password" value="00713E58F3195592335CFBE32DB4E362AB7D3211F9155883335BE8E02CA78135AF"/>
+        <property name="supportsSQL92" value="false"/>
+        <property name="restrictGetTables" value="false"/>
+        <property name="initSQL" value=""/>
+        <property name="oracle.jdbc.J2EE13Compliant" value="false"/>
+      </DataSourceConfiguration>
+      <Tablesource alias="DUMMY_VW_MTKCSGMAL" databaseIdentifier="ICOBSSTGDEV4.DUMMY_VW_MTKCSGMAL">
+
+        <Column name="CONNUM" type="11" description="CONNUM" />
+        <Column name="POU" type="11" description="POU" />
+        <Column name="TRANSARPNAM" type="11" description="TRANSARPNAM" />
+        <Column name="MALCTGCOD" type="11" description="MALCTGCOD" />
+        <Column name="MAILID" type="11" description="MAILID" />
+        <Column name="ORGEXGOFC" type="11" description="ORGEXGOFC" />
+        <Column name="DSTEXGOFC" type="11" description="DSTEXGOFC" />
+        <Column name="CSGDAT" type="11" description="CSGDAT" />
+        <Column name="FLTDAT" type="11" description="FLTDAT" />
+        <Column name="DSN" type="11" description="DSN" />
+        <Column name="RSN" type="11" description="RSN" />
+        <Column name="LCCOUNT" type="6" description="LCCOUNT" />
+        <Column name="CPCOUNT" type="6" description="CPCOUNT" />
+        <Column name="OTHERSCOUNT" type="6" description="OTHERSCOUNT" />
+        <Column name="WGT" type="11" description="WGT" />
+        <Column name="MALRMK" type="11" description="MALRMK" />
+        <Column name="FLTTIME" type="11" description="FLTTIME" />
+        <Column name="PRVFLTNUM" type="11" description="PRVFLTNUM" />
+        <Column name="PRVFLTDAT" type="11" description="PRVFLTDAT" />
+        <Column name="DSTPOACOD" type="11" description="DSTPOACOD" />
+        <Column name="SELNUM" type="11" description="SELNUM" />
+        <Column name="FLTNUM" type="11" description="FLTNUM" />
+        <Column name="POANAM" type="11" description="POANAM" />
+        <Column name="ARLNAM" type="11" description="ARLNAM" />
+        <Column name="GROUPING" type="11" description="GROUPING" />
+      </Tablesource>
+
+    </Datasource>
+
+  <Database>
+  </Database>
+  <FormulaFields>
+    <Field type="FormulaField" valueType="11">
+      <Name value="SUBTYPE38"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[
+	  if(  {DUMMY_VW_MTKCSGMAL.MALCTGCOD} ='A') then 'X'
+	  ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="11">
+      <Name value="SUBTYPE41"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[
+	  if(  {DUMMY_VW_MTKCSGMAL.MALCTGCOD} ='B') then 'X'
+	  ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="11">
+      <Name value="SUBTYPE47"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[
+	  if(  {DUMMY_VW_MTKCSGMAL.MALCTGCOD} ='C') then 'X'
+	  ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="PGLCCOUNT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[ToNumber( {DUMMY_VW_MTKCSGMAL.LCCOUNT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="TOTALPGLC"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[Sum( {@PGLCCOUNT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="LCCOUNT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[ToNumber( {DUMMY_VW_MTKCSGMAL.LCCOUNT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="TOTALLC"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[Sum( {@LCCOUNT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="PGCPCOUNT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[ToNumber( {DUMMY_VW_MTKCSGMAL.CPCOUNT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="TOTALPGCP"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[Sum( {@PGCPCOUNT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="CPCOUNT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[ToNumber( {DUMMY_VW_MTKCSGMAL.CPCOUNT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="TOTALCP"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[Sum( {@CPCOUNT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="PGOTHERSCOUNT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[ToNumber( {DUMMY_VW_MTKCSGMAL.OTHERSCOUNT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="TOTALPGOTHERSCOUNT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[Sum( {@PGOTHERSCOUNT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="OTHERSCOUNT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[ToNumber( {DUMMY_VW_MTKCSGMAL.OTHERSCOUNT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="TOTALOTHERSCOUNT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[Sum( {@OTHERSCOUNT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="PGWEIGHT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[ToNumber( {DUMMY_VW_MTKCSGMAL.WGT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="TOTALPGWGT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[Sum( {@PGWEIGHT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="WEIGHT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[ToNumber( {DUMMY_VW_MTKCSGMAL.WGT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="TOTALWGT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[Sum( {@WEIGHT} ) ]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="-1">
+      <Name value="temp944100005"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if(  {DUMMY_VW_MTKCSGMAL.SUBTYP} ='CN38') then 'X']]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="-1">
+      <Name value="temp1519237257"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if( {DUMMY_VW_MTKCSGMAL.SUBTYP}  ='CN41') then 'X']]></TextData>
+    </Field>
+  </FormulaFields>
+  <PromptFields>
+  </PromptFields>
+  <SQLFields>
+  </SQLFields>
+  <SummaryFields>
+    <Field type="SummaryField" valueType="6">
+      <Name value="Sum of @WEIGHT"/>
+      <Reference name="id" type="FormulaField" value="@WEIGHT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="512"/>
+      <ResetGroupNumber value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="Sum of @LCCOUNT"/>
+      <Reference name="id" type="FormulaField" value="@LCCOUNT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="512"/>
+      <ResetGroupNumber value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="Sum of @CPCOUNT"/>
+      <Reference name="id" type="FormulaField" value="@CPCOUNT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="512"/>
+      <ResetGroupNumber value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="Sum of @OTHERSCOUNT"/>
+      <Reference name="id" type="FormulaField" value="@OTHERSCOUNT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="512"/>
+      <ResetGroupNumber value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="Sum of @PGLCCOUNT"/>
+      <Reference name="id" type="FormulaField" value="@PGLCCOUNT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="Sum of @PGCPCOUNT"/>
+      <Reference name="id" type="FormulaField" value="@PGCPCOUNT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="Sum of @PGOTHERSCOUNT"/>
+      <Reference name="id" type="FormulaField" value="@PGOTHERSCOUNT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="Sum of @PGWEIGHT"/>
+      <Reference name="id" type="FormulaField" value="@PGWEIGHT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+  </SummaryFields>
+  <SortFields>
+  </SortFields>
+  <UserFunctions>
+  </UserFunctions>
+  <GroupNameFields>
+    <Field type="GroupNameField" valueType="11">
+      <GroupNumberType value="0"/>
+      <GroupNumber value="0"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.GROUPING"/>
+    </Field>
+  </GroupNameFields>
+  <ReportProperties>
+    <PageWidth value="12240"/>
+    <PageHeight value="15840"/>
+    <PageOrientation value="1"/>
+    <PageMarginLeft value="363"/>
+    <PageMarginRight value="363"/>
+    <PageMarginTop value="363"/>
+    <PageMarginBottom value="363"/>
+    <MailingLabelType1 value="User-Defined Label"/>
+    <MailingLabelType2 value=""/>
+    <FormatWithMultipleColumns value="false"/>
+    <MailingLabelWidth value="0"/>
+    <MailingLabelHeight value="0"/>
+    <MailingLabelDistanceVertical value="0"/>
+    <MailingLabelDistanceHorizontal value="0"/>
+    <AcrossThenDown value="false"/>
+    <FormatGroupsWithMultipleColumns value="false"/>
+    <Distinct value="false"/>
+    <ShowSuppressedNodes value="true"/>
+    <IgnoreFiltering value="false"/>
+    <IgnoreSorting value="false"/>
+    <ConvertDateTime value="2"/>
+    <SuppressIfNoRows value="false"/>
+    <ConvertNullValuesToDefault value="false"/>
+    <HidePageFooterInsideReportHeader value="true"/>
+    <FormPrint value="false"/>
+    <PrintingEnabled value="true"/>
+    <ClipboardEnabled value="true"/>
+    <ExportEnabled value="true"/>
+    <GroupTreeVisible value="true"/>
+  </ReportProperties>
+  <AreaPair type="PageAreaPair">
+    <Area type="PageHeader">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <KeepTogether value="true"/>
+      </AreaProperties>
+      <Section type="PageHeader" width="11514" height="5100">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="Text" count="1" x_position="300" y_position="300" width="3750" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#Cmpyorg]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="300" y_position="1200" width="3750" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#airportorg]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4950" y_position="300" width="3600" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="240"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRMAL002#Title]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6450" y_position="1200" width="1050" height="195">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#Date]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="10050" y_position="900" width="600" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#CN38]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="10050" y_position="1200" width="600" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#CN41]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9750" y_position="300" width="900" height="450">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="240"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRMAL002#CN46]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Box" x2_position="10950" y2_position="4950" x_position="150" y_position="2250" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="FieldElement" x_position="9750" y_position="1200" width="300" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" value="@SUBTYPE41"/>
+        </Element>
+        <Element type="Line" x_position="4950" y_position="2250" width="0" height="0" x2_position="4950" y2_position="4050">
+        </Element>
+        <Element type="Box" x2_position="10062" y2_position="1179" x_position="9750" y_position="867" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="10050" y_position="1500" width="600" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#CN47]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="300" y_position="2400" width="1950" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#FlightNoDep]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="150" y_position="3150" width="0" height="0" x2_position="10950" y2_position="3150">
+        </Element>
+        <Element type="Line" x_position="150" y_position="4050" width="0" height="0" x2_position="10950" y2_position="4050">
+        </Element>
+        <Element type="Line" x_position="4950" y_position="2250" width="0" height="0" x2_position="4950" y2_position="4050">
+        </Element>
+        <Element type="Line" x_position="7950" y_position="2250" width="0" height="0" x2_position="7950" y2_position="3000">
+        </Element>
+        <Element type="Line" x_position="7950" y_position="2250" width="0" height="0" x2_position="7950" y2_position="3150">
+        </Element>
+        <Element type="Text" count="1" x_position="5100" y_position="2400" width="1650" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#DateOfDeparture]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8100" y_position="2400" width="1650" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#TimeofDeparture]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="300" y_position="3300" width="1950" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#AirportofTranshipment]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5100" y_position="3300" width="1950" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#AirportOfOffloading]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="300" y_position="4200" width="3000" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#AdministrationOforgOfmails]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="5100" y_position="3600" width="5850" height="450">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.POU"/>
+        </Element>
+        <Element type="FieldElement" x_position="6450" y_position="1500" width="1800" height="450">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.CSGDAT"/>
+        </Element>
+        <Element type="FieldElement" x_position="5100" y_position="2700" width="1650" height="390">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.FLTDAT"/>
+        </Element>
+        <Element type="FieldElement" x_position="8100" y_position="2700" width="1800" height="390">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.FLTTIME"/>
+        </Element>
+        <Element type="FieldElement" x_position="300" y_position="600" width="4650" height="390">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.ARLNAM"/>
+        </Element>
+        <Element type="FieldElement" x_position="300" y_position="4500" width="5100" height="390">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.POANAM"/>
+        </Element>
+        <Element type="FieldElement" x_position="300" y_position="3600" width="4650" height="390">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.TRANSARPNAM"/>
+        </Element>
+        <Element type="FieldElement" x_position="300" y_position="1500" width="5700" height="450">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.TRANSARPNAM"/>
+        </Element>
+        <Element type="FieldElement" x_position="300" y_position="2700" width="2850" height="390">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.FLTNUM"/>
+        </Element>
+        <Element type="FieldElement" x_position="9750" y_position="900" width="300" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" value="@SUBTYPE38"/>
+        </Element>
+        <Element type="FieldElement" x_position="9750" y_position="1500" width="300" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" value="@SUBTYPE47"/>
+        </Element>
+        <Element type="Box" x2_position="10062" y2_position="1480" x_position="9750" y_position="1168" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Box" x2_position="10062" y2_position="1780" x_position="9750" y_position="1468" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+          </BoxProperties>
+        </Element>
+      </Section>
+      <Section type="PageHeader" width="11514" height="920">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="Text" count="1" x_position="4050" y_position="150" width="750" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#MailNo]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="1200" y_position="150" width="1050" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#OfficeOfDestination]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="2250" y_position="150" width="900" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#FlightNoArr]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5550" y_position="150" width="1800" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#NoOfreceptacles]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5550" y_position="600" width="600" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#LCAO]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6150" y_position="600" width="600" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#CP]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6750" y_position="600" width="600" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#Others]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7350" y_position="150" width="750" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#GrossWeight]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="150" width="1050" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#OfficeOfOrigin]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3150" y_position="150" width="900" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#DateOfarrival]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4800" y_position="150" width="750" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#RecNo]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8100" y_position="150" width="750" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#Remarks]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="1200" y_position="0" width="0" height="0" x2_position="1200" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="1200" y_position="0" width="0" height="0" x2_position="1200" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="5550" y_position="450" width="0" height="0" x2_position="7350" y2_position="450">
+        </Element>
+        <Element type="Line" x_position="6150" y_position="450" width="0" height="0" x2_position="6150" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="6150" y_position="450" width="0" height="0" x2_position="6150" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="6750" y_position="450" width="0" height="0" x2_position="6750" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="6750" y_position="450" width="0" height="0" x2_position="6750" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="2250" y_position="0" width="0" height="0" x2_position="2250" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="2250" y_position="0" width="0" height="0" x2_position="2250" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="3150" y_position="0" width="0" height="0" x2_position="3150" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="3150" y_position="0" width="0" height="0" x2_position="3150" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="4050" y_position="0" width="0" height="0" x2_position="4050" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="4050" y_position="0" width="0" height="0" x2_position="4050" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="4800" y_position="0" width="0" height="0" x2_position="4800" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="4800" y_position="0" width="0" height="0" x2_position="4800" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="5550" y_position="0" width="0" height="0" x2_position="5550" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="5550" y_position="0" width="0" height="0" x2_position="5550" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="7350" y_position="0" width="0" height="0" x2_position="7350" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="7350" y_position="0" width="0" height="0" x2_position="7350" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="8100" y_position="0" width="0" height="0" x2_position="8100" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="8100" y_position="0" width="0" height="0" x2_position="8100" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="150" y_position="900" width="0" height="0" x2_position="10950" y2_position="900">
+        </Element>
+        <Element type="Box" x2_position="10950" y2_position="450" x_position="150" y_position="0" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+              <LineProperties>
+                <EndSection area="D" sectionIndex="0"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="Line" x_position="8850" y_position="0" width="0" height="0" x2_position="8850" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="8850" y_position="0" width="0" height="0" x2_position="8850" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="10200" y_position="0" width="0" height="0" x2_position="10200" y2_position="900">
+        </Element>
+        <Element type="Line" x_position="10200" y_position="0" width="0" height="0" x2_position="10200" y2_position="900">
+        </Element>
+        <Element type="Text" count="1" x_position="8850" y_position="150" width="1350" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#ContainerNo]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="10200" y_position="150" width="750" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#SealNo]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="PageFooter">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <KeepTogether value="true"/>
+      </AreaProperties>
+      <Section type="PageFooter" width="11514" height="0">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <Suppress value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="ReportAreaPair">
+    <Area type="ReportHeader">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <NewPageBefore value="true"/>
+      </AreaProperties>
+      <Section type="ReportHeader" width="11514" height="0">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <Suppress value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="ReportFooter">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <Suppress value="true"/>
+        <NewPageAfter value="true"/>
+      </AreaProperties>
+      <Section type="ReportFooter" width="11514" height="0">
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="GroupAreaPair" id="1">
+    <AreaPairProperties>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.GROUPING"/>
+      <Reference name="group name" type="GroupNameField" id="1"/>
+    </AreaPairProperties>
+    <Area type="GroupHeader">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <NewPageBefore value="true"/>
+      </AreaProperties>
+      <Section type="GroupHeader" width="11514" height="0">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <Suppress value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="GroupFooter">
+      <AreaProperties>
+        <DrillDown value="true"/>
+      </AreaProperties>
+      <Section type="GroupFooter" width="11514" height="3000">
+        <SectionProperties>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="Box" x2_position="10950" y2_position="1200" x_position="150" y_position="150" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Line" x_position="150" y_position="660" width="0" height="0" x2_position="10950" y2_position="660">
+        </Element>
+        <Element type="Line" x_position="5550" y_position="150" width="0" height="0" x2_position="5550" y2_position="1200">
+        </Element>
+        <Element type="Text" count="1" x_position="4200" y_position="300" width="1200" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#Totalspage]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4200" y_position="750" width="900" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRMAL002#Totals]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="6150" y_position="150" width="0" height="0" x2_position="6150" y2_position="1200">
+        </Element>
+        <Element type="FieldElement" x_position="5700" y_position="300" width="300" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="3"/>
+            <UseLeadingZero value="false"/>
+            <NDecimalPlaces value="0"/>
+            <RoundingType value="11"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+            <ZeroValueString value="0"/>
+            <AllowFieldClipping value="false"/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@TOTALLC"/>
+        </Element>
+        <Element type="Line" x_position="6750" y_position="150" width="0" height="0" x2_position="6750" y2_position="1200">
+        </Element>
+        <Element type="FieldElement" x_position="6300" y_position="300" width="300" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="3"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@TOTALCP"/>
+        </Element>
+        <Element type="FieldElement" x_position="6900" y_position="300" width="300" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="3"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@TOTALOTHERSCOUNT"/>
+        </Element>
+        <Element type="Line" x_position="7350" y_position="150" width="0" height="0" x2_position="7350" y2_position="1200">
+        </Element>
+        <Element type="FieldElement" x_position="7350" y_position="300" width="750" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <NDecimalPlaces value="1"/>
+            <RoundingType value="10"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@TOTALWGT"/>
+        </Element>
+        <Element type="Line" x_position="8100" y_position="150" width="0" height="0" x2_position="8100" y2_position="1200">
+        </Element>
+        <Element type="Line" x_position="1470" y_position="2589" width="0" height="0" x2_position="1470" y2_position="2609">
+        </Element>
+        <Element type="Line" x_position="450" y_position="2550" width="0" height="0" x2_position="2850" y2_position="2550">
+        </Element>
+        <Element type="Text" count="1" x_position="450" y_position="1650" width="1050" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#SignOfAirportLoading]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="450" y_position="1350" width="2665" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#AirlineAtAirportOfLoadingSign]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="3900" y_position="2550" width="0" height="0" x2_position="6600" y2_position="2550">
+        </Element>
+        <Element type="Text" count="1" x_position="3900" y_position="1650" width="1200" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#SignOfAirportOffloading]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3900" y_position="1350" width="2850" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#AirlineAtAirportOfOffloadingSign]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="7650" y_position="2550" width="0" height="0" x2_position="10500" y2_position="2550">
+        </Element>
+        <Element type="Text" count="1" x_position="7650" y_position="1800" width="1800" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#DateandSign]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7650" y_position="1350" width="3000" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[RPRMAL002#Postadmintakingdevofmails]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="7350" y_position="750" width="750" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+            <FontStyle value="1"/>
+          </FontProperties>
+          <NumberProperties>
+            <NDecimalPlaces value="1"/>
+            <RoundingType value="10"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@TOTALPGWGT"/>
+        </Element>
+        <Element type="FieldElement" x_position="6900" y_position="750" width="300" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+            <FontStyle value="1"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="3"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@TOTALPGOTHERSCOUNT"/>
+        </Element>
+        <Element type="FieldElement" x_position="6300" y_position="750" width="300" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+            <FontStyle value="1"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="3"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@TOTALPGCP"/>
+        </Element>
+        <Element type="FieldElement" x_position="5700" y_position="750" width="300" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+            <FontStyle value="1"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="3"/>
+            <NDecimalPlaces value="0"/>
+            <RoundingType value="11"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@TOTALPGLC"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="DetailArea">
+    <Area type="Detail">
+      <Section type="Detail" width="11514" height="470">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="150" y_position="150" width="1050" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.ORGEXGOFC"/>
+        </Element>
+        <Element type="FieldElement" x_position="1200" y_position="150" width="1050" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.DSTEXGOFC"/>
+        </Element>
+        <Element type="FieldElement" x_position="4050" y_position="150" width="750" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.DSN"/>
+        </Element>
+        <Element type="FieldElement" x_position="4800" y_position="150" width="750" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.RSN"/>
+        </Element>
+        <Element type="FieldElement" x_position="7350" y_position="150" width="750" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.WGT"/>
+        </Element>
+        <Element type="Line" x_position="150" y_position="450" width="0" height="0" x2_position="10950" y2_position="450">
+        </Element>
+        <Element type="FieldElement" x_position="8100" y_position="150" width="750" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.MALRMK"/>
+        </Element>
+        <Element type="FieldElement" x_position="2250" y_position="150" width="900" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.PRVFLTNUM"/>
+        </Element>
+        <Element type="FieldElement" x_position="3150" y_position="150" width="900" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.PRVFLTDAT"/>
+        </Element>
+        <Element type="FieldElement" x_position="5700" y_position="150" width="300" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <SuppressIfZero value="true"/>
+            <NDecimalPlaces value="0"/>
+            <RoundingType value="11"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.LCCOUNT"/>
+        </Element>
+        <Element type="FieldElement" x_position="6300" y_position="150" width="300" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <SuppressIfZero value="true"/>
+            <NDecimalPlaces value="0"/>
+            <RoundingType value="11"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.CPCOUNT"/>
+        </Element>
+        <Element type="FieldElement" x_position="6900" y_position="150" width="300" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <SuppressIfZero value="true"/>
+            <NDecimalPlaces value="0"/>
+            <RoundingType value="11"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.OTHERSCOUNT"/>
+        </Element>
+        <Element type="FieldElement" x_position="8850" y_position="150" width="1350" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.CONNUM"/>
+        </Element>
+        <Element type="FieldElement" x_position="10200" y_position="150" width="786" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.SELNUM"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+</inet:Report>

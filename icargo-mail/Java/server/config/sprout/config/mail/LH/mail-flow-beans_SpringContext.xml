@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+    <bean id="lhMailUploadController"
+	class="com.ibsplc.icargo.business.mail.operations.lh.LHMailUploadController">
+	</bean>
+	
+	<bean id="mail.operations.serachContainerFilterQueryBuilder" class="com.ibsplc.icargo.persistence.dao.xaddons.lh.mail.operations.LHSearchContainerFilterQueryBuilder" scope="prototype">
+	</bean>
+	
+	<bean id="lhmailController"
+	class="com.ibsplc.icargo.business.mail.operations.lh.LHMailController">
+	</bean>
+</beans>

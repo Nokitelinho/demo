@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event-configurations xmlns="http://www.example.org/event-configuration">
+    <event-type-mapping>
+
+		<event-type type="FLIGHT_CLOSE_EVENT">
+            <channel-type type="TRUCK_ORDER_CHANNEL"/>
+        </event-type>
+		<!--Added By A-5526 for ICRD-235779-->
+		<event-type type="MRA_INVOICEGENERATE_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>
+			
+    </event-type-mapping>
+    <channel-mapping>
+        
+		<channel type="TRUCK_ORDER_CHANNEL" class="com.ibsplc.icargo.business.addons.trucking.event.TruckOrderChannel"/>
+		<channel type="MSGBROKER_CHANNEL" class="com.ibsplc.icargo.framework.event.channels.MsgBrokerChannel"/>
+		<channel type="MAILOFFLOAD_CHANNEL" class="com.ibsplc.icargo.business.cashiering.defaults.event.AirlineBillingDetailsChannel"/>		
+
+    </channel-mapping>
+</event-configurations>

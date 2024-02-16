@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tx:txmonitor-mappings xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tx="http://www.ibsplc.com/icargo/business/txmonitor"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.ibsplc.com/icargo/business/txmonitor xibase/java/server/config/framework/xsd/txmonitor-mappings.xsd"
+	product="mail">
+
+	 <!--<tx:txmonitor actionName="saveAndProcessMailBags" methodName="saveAndProcessMailBags" 
+					parameterTypes="com.ibsplc.icargo.business.mailtracking.defaults.vo.ScannedMailDetailsVO"
+					validatorClass="com.ibsplc.icargo.business.mailtracking.defaults.errorhandling.MailtrackingMessageErrorValidator" 
+					post-processorClass="com.ibsplc.icargo.business.mailtracking.defaults.errorhandling.MailtrackigMessagePostProcessor" enabled="true"/>  -->
+					
+					 <tx:txmonitor actionName="saveMailUploadDetails" methodName="saveMailUploadDetails" 
+					parameterTypes="java.util.Collection,java.lang.String"
+					validatorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackingMessageErrorValidator" 
+					post-processorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackigMessagePostProcessor" enabled="true"/>
+
+					<tx:txmonitor actionName="saveMailDetailsFromJob" methodName="saveMailDetailsFromJob" 
+					parameterTypes="java.util.Collection,java.lang.String"
+					validatorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackingMessageErrorValidator" 
+					post-processorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackigMessagePostProcessor" enabled="true"/>
+
+					<tx:txmonitor actionName="performMailOperationForGHA" methodName="performMailOperationForGHA" 
+					parameterTypes="java.util.Collection,java.lang.String"
+					validatorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackingMessageErrorValidator" 
+					post-processorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackigMessagePostProcessor" enabled="true"/>
+
+					<tx:txmonitor actionName="saveMailUploadDetailsForAndroid" methodName="saveMailUploadDetailsForAndroid" 
+					parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailUploadVO, java.lang.String"
+					validatorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackingMessageErrorValidator" 
+					post-processorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackigMessagePostProcessor" enabled="true"/>
+
+					<tx:txmonitor actionName="validateMailBagDetails" methodName="validateMailBagDetails" 
+					parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailUploadVO"
+					validatorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackingMessageErrorValidator" 
+					post-processorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackigMessagePostProcessor" enabled="true"/>
+
+							
+					<tx:txmonitor actionName="performMailAWBTransactions" methodName="performMailAWBTransactions" 
+					parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailFlightSummaryVO,java.lang.String"
+					validatorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackingMessageErrorValidator" 
+					post-processorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackigMessagePostProcessor" enabled="true"/>
+					<tx:txmonitor actionName="performErrorStampingForFoundMailWebServices" methodName="performErrorStampingForFoundMailWebServices" 
+					parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailUploadVO, java.lang.String"
+					validatorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackingMessageErrorValidator" 
+					post-processorClass="com.ibsplc.icargo.business.mail.operations.errorhandling.MailtrackigMessagePostProcessor" enabled="true"/>
+				
+
+</tx:txmonitor-mappings>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN "
+	"http://struts.apache.org/dtds/struts-config_1_2.dtd " >
+
+<struts-config>
+
+	<global-forwards>
+		<forward name="error_fwd" path="/jsp/icargo_logon.jsp" />
+		<forward name="normal-report-preview-jsp" path="/jsp/includes/reports/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/jsp/includes/reports/NormalReportPrinter.jsp"/>
+		<forward name="normal-report-error-jsp" path="/jsp/includes/reports/NormalReportErrorHandler.jsp"/>
+	</global-forwards>
+
+	<action-mappings>
+	   <action path="/addons.mail.operations.mailawbbooking.defaultscreenload"
+		        name="DefaultSPAForm"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.DefaultSPARenderAction"
+				validate="false">
+			<forward name="_default_render_success" path="/app/addons/mail/operations/mailawbbooking/index.jsp"/>
+		</action>
+		
+		<!--Added by A-9951 for CR-124749 starts-->
+		<action path="/addons.mail.operations.listflight.defaultscreenload"
+		        name="DefaultSPAForm"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.DefaultSPARenderAction"
+				validate="false">
+			<forward name="_default_render_success" path="/app/addons/mail/operations/listflight/index.jsp"/>
+		</action>
+		<!--Added by A-9951 for CR-124749 ends-->
+	</action-mappings>
+	
+	<message-resources key="mailAwbBookingPopupResourceBundle" parameter="resources.addons.mail.operations.MailAwbBooking" null="false"/>
+	<message-resources key="carditEnquiryResourceBundles" parameter="resources.addons.mail.operations.CarditEnquryAddon" null="false"/>
+	<message-resources key="listFlightResourceBundle" parameter="resources.addons.mail.operations.ListFlight" null="false"/>
+	
+	<plug-in className="com.ibsplc.icargo.framework.plugin.CustomTagsPlugin">
+	 	<set-property property="configFileName" value="/WEB-INF/customtags.xml"/>
+ 	</plug-in>
+
+	<plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+		<set-property property="configFileName" value="/WEB-INF/errortags/mail/operations/errortags.xml"/>
+	</plug-in>
+</struts-config>

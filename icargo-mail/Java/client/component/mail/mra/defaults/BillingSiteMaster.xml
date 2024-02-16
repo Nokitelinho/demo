@@ -1,0 +1,374 @@
+<?xml version="1.0"?>
+<components screenId="mailtracking.mra.defaults.billingsitemaster" xmlns="http://www.ibsplc.com/icargo/components-details">
+
+	<!-- Component for BillingSite -->
+
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_BILLINGSITECODE" name="BillingSite">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+			
+			
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.lbl.tooltip.billingSiteCode</value>
+			</attribute>
+			
+			<!-- Added by A-2414 for invoking the lov on pressing ENTER starts-->
+			<attribute>
+				<name>lov</name>
+				<value>true</value>
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>			
+	</component>
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_BILLINGSITE" name="BillingSite">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_LONG</value>
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.lbl.tooltip.billingSite</value>
+			</attribute>
+			
+	</component>
+		
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_BTN_DISPLAY" name="display">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON_VERY_SMALL</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.btn.Display</value>
+			</attribute>
+	</component>
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_BTN_CLEAR" name="clear">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON_VERY_SMALL</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.btn.Clear</value>
+			</attribute>
+	</component>
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_FROMDATE" name="FromDate">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.lbl.fromDate</value>
+			</attribute>
+		
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_TODATE" name="ToDate">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.lbl.toDate</value>
+			</attribute>
+		
+	</component>
+	
+		<component id="CMP_MRA_DEFAULTS_BILLINGSITE_AIRLINEADDRESS" name="Airline Address">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_FREE_TEXT_DEFAULT</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.airlineAddress</value>
+			</attribute>
+		
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_CORRESADDRESS" name="Correpondence Address">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_FREE_TEXT_DEFAULT</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.correspondenceAddress</value>
+			</attribute>
+		
+	</component>
+	
+		<component id="CMP_MRA_DEFAULTS_BILLINGSITE_FREETEXT" name="FreeText">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_FREE_TEXT_DEFAULT</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.freetext</value>
+			</attribute>
+		
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_COUNTRIES" name="countries">
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_TXT_EXTRA_LONG</value>
+				</attribute>
+				<attribute>
+					<name>tooltip</name>
+					<value>mra.defaults.billingsite.tooltip.countries</value>
+				</attribute>
+				
+				<!-- Added by A-2414 for invoking the lov on pressing ENTER starts-->
+				<attribute>
+					<name>lov</name>
+					<value>true</value>
+				</attribute>
+				<!-- Added by A-2414 ends -->
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_COUNTRY" name="country">
+				<attribute>
+					<name>businesstype-id</name>
+				<value>BT_TXT_LONG</value>
+				</attribute>
+				<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_LONG</value>
+		</attribute>
+				<attribute>
+					<name>tooltip</name>
+					<value>mra.defaults.billingsite.tooltip.country</value>
+				</attribute>
+			
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_CURRENCY" name="Currency">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_SMALL</value>
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>
+			<attribute>
+					<name>formatter-id</name>
+					<value>FRM_RESTRICT_ALPHA</value>
+				</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.currency</value>
+			</attribute>
+	</component>
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_BANK" name="bank">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+			<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_LONG</value>
+		</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.bankname</value>
+			</attribute>
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_BRANCH" name="branch">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+			<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_LONG</value>
+		</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.branch</value>
+			</attribute>
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_ACCNO" name="accno">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+			<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_LONG</value>
+		</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.accno</value>
+			</attribute>
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_CITY" name="city">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+			<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_LONG</value>
+		</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.city</value>
+			</attribute>
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_SWIFTCODE" name="swiftcode">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+			<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_LONG</value>
+		</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.swiftcode</value>
+			</attribute>
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_IBAN" name="iban">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+			<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_LONG</value>
+		</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.ibanno</value>
+			</attribute>
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_SIGNATOR2" name="signator2">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_LONG</value>
+		</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.signator2</value>
+			</attribute>
+	</component>
+	
+		<component id="CMP_MRA_DEFAULTS_BILLINGSITE_DESIGNATION2" name="designation2">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_LONG</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.designation2</value>
+			</attribute>
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_SIGNATOR1" name="signator1">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_LONG</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.signator1</value>
+			</attribute>
+	</component>
+	
+		<component id="CMP_MRA_DEFAULTS_BILLINGSITE_DESIGNATION1" name="designation1">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_LONG</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.designation1</value>
+			</attribute>
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_BTN_SAVE" name="save">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON_VERY_SMALL</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.btn.Save</value>
+			</attribute>
+		
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_BTN_DELETE" name="delete">
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_BUTTON_VERY_SMALL</value>
+				</attribute>
+				<attribute>
+					<name>tooltip</name>
+					<value>mra.defaults.billingsite.tooltip.btn.Delete</value>
+				</attribute>
+	                
+	</component>
+	
+	<component id="CMP_MRA_DEFAULTS_BILLINGSITE_BTN_CLOSE" name="close">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON_VERY_SMALL</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.defaults.billingsite.tooltip.btn.Close</value>
+			</attribute>
+	</component>
+	
+		
+</components>
+
+
+
+

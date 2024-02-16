@@ -1,0 +1,316 @@
+<?xml version="1.0"?>
+<command-mappings xmlns="http://www.ibsplc.com/icargo/command/mappings" product="mail" subproduct="mra">
+
+
+	<!--Added By Ruby For Issue Rejection Memo Starts -->
+
+	<screen name="mailtracking.mra.airlinebilling.inward.issuerejectionmemo" id="mailtracking.mra.airlinebilling.inward.issuerejectionmemo">
+
+		<action name="mailtracking.mra.inwardbilling.issuerejectionmemo.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.issuerejectionmemo.ScreenloadCommand" order="1"/>
+		</action>
+
+
+		<action name="mra.airlinebilling.inward.listofrejectionmemos.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.listofrejectionmemos.ScreenloadPopupCommand" order="1"/>
+		</action>
+
+	</screen>
+
+	<!--Added By Ruby For Issue Rejection Memo Ends -->
+
+	<!--Added By Ruby For Capture Rejection Memo Starts -->
+
+	<screen name="mailtracking.mra.airlinebilling.inward.capturerejectionmemo" id="mailtracking.mra.airlinebilling.inward.capturerejectionmemo">
+
+		<action name="mailtracking.mra.inwardbilling.capturerejectionmemo.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.capturerejectionmemo.ScreenloadCommand" order="1"/>
+		</action>
+
+	</screen>
+
+	<!--Added By Ruby For Capture Rejection Memo Ends -->
+	<screen name="mra.airlinebilling.inward.assignexceptions" id="mra.airlinebilling.inward.assignexceptions">
+
+		<action name="mra.airlinebilling.inward.assignexceptions.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.assignexceptions.ScreenloadCommand" order="1"/>
+		</action>
+
+	</screen>
+
+	<!-- screen name="mra.airlinebilling.inward.listofrejctionmemos" id="mra.airlinebilling.inward.listofrejctionmemos">
+
+		<action name="mra.airlinebilling.inward.listofrejectionmemos.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.listofrejectionmemos.ScreenloadPopupCommand" order="1"/>
+		</action>
+
+	</screen-->
+
+	<!--Added By Shivjith For Assign Exceptions Starts -->
+
+	<screen name="mailtracking.mra.airlinebilling.inward.airlineexceptions" id="mailtracking.mra.airlinebilling.inward.airlineexceptions">
+
+		<action name="mailtracking.mra.airlinebilling.inward.airlineexceptions.onScreenLoad">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.airlineexceptions.ScreenloadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.inward.airlineexceptions.onList">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.airlineexceptions.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.inward.airlineexceptions.onClear">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.airlineexceptions.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.inward.airlineexceptions.onSave">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.airlineexceptions.SaveCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.inward.airlineexceptions.onClose">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.airlineexceptions.CloseCommand" order="1"/>
+		</action>
+		<!--Added by Indu for report starts-->
+
+		<action name="mailtracking.mra.airlinebilling.inward.airlineexceptions.printexceptiondtl">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.airlineexceptions.report.ExceptionReportDetailPrintCommand" order="1"/>
+		</action>
+
+		<!--Added by Indu for report ends-->
+
+		<!--Added By Deepthi For Airline Exceptions Starts -->
+		<action name="mailtracking.mra.airlinebilling.inward.airlineexceptions.issuerejectionmemo">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.airlineexceptions.IssueRejectionMemoCommand" order="1"/>
+		</action>
+		
+		<action name="mailtracking.mra.airlinebilling.inward.airlineexceptions.accept">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.airlineexceptions.AcceptCommand" order="1"/>
+		</action>
+		
+		<action name="mailtracking.mra.airlinebilling.inward.airlineexceptions.remarkspopup">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.airlineexceptions.AcceptDSNCommand" order="1"/>
+		</action>
+		
+		<action name="mailtracking.mra.airlinebilling.inward.airlineexceptions.remarksok">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.airlineexceptions.AcceptDSNOkCommand" order="1"/>
+		</action>
+		<!--Added By Deepthi For Airline Exceptions Ends -->
+	</screen>
+
+	<!--Added By Shivjith For Assign Exceptions ends -->
+
+	<!--Added By Sreekanth For InvoiceExceptions Starts -->
+
+	<screen name="mailtracking.mra.airlinebilling.inward.invoiceexceptions" id="mailtracking.mra.airlinebilling.inward.invoiceexceptions">
+		<action name="mailtracking.mra.airlinebilling.inward.invoiceexceptionsscreenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.invoiceexceptions.ScreenloadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.inward.invoiceexceptionslist" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.invoiceexceptions.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.inward.invoiceexceptionsclear" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.invoiceexceptions.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.inward.invoiceexceptionsdelete" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.invoiceexceptions.DeleteCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.inward.invoiceexceptionsaccept" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.invoiceexceptions.AcceptCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.inward.invoiceexceptionsissuerm" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.invoiceexceptions.IssueRejectionMemoCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.inward.invoiceexceptionsclose" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.invoiceexceptions.CloseCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.inward.invoiceexceptionsviewexcdetails" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.invoiceexceptions.ExceptionDetailCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.airlinebilling.inward.printrejections" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.invoiceexceptions.report.RejectionPrintCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.inward.printexceptionininvoice" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.invoiceexceptions.report.ExceptionInInvoicePrintCommand" order="1"/>
+		</action>
+		<!--Added By Indu For AcceptInvoicePopUp Starts -->
+		<action name="mailtracking.mra.airlinebilling.inward.remarkspopup" >
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.invoiceexceptions.AcceptInvoiceCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.airlinebilling.inward.remarksok" >
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.invoiceexceptions.AcceptInvoiceOKCommand" order="1"/>
+		</action>
+		<!--Added By Indu For AcceptInvoicePopUp ends -->
+	</screen>
+
+	<!--Added By Sreekanth For InvoiceExceptions Ends -->
+
+	<!--Added By Shivjith For Inward Billing reports Starts -->
+
+	<screen name="mailtracking.mra.airlinebilling.inward.reports" id="mailtracking.mra.airlinebilling.inward.reports">
+
+		<action name="mailtracking.mra.airlinebilling.inward.reports.onScreenLoad">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.report.ScreenloadCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.airlinebilling.inward.reports.genInvSmyClrPrd">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.report.InvoiceClearancePeriodPrintCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.airlinebilling.inward.reports.genInvSmyArl">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.report.InvoiceByAirlinePrintCommand" order="1"/>
+		</action>
+
+		<!--Added By Karthikeyan For Inward Billing reports Starts -->
+		<action name="mailtracking.mra.airlinebilling.inward.report.invoicedtlrptbyclrprint">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.report.InvoiceDtlByClrPrdPrintCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.airlinebilling.inward.report.invoicedetailsreportbyairline">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.report.InvoiceDetailByAirlinePrintCommand" order="1"/>
+		</action>
+		<!--Added By Karthikeyan For Inward Billing reports Starts -->
+
+	</screen>
+
+	<!--Added By Shivjith For Inward Billing reports ends -->
+	<!--Added By Nisha For Issue RM  -->
+	<screen name="mailtracking.mra.airlinebilling.inward.rejectionmemo" id="mailtracking.mra.airlinebilling.inward.rejectionmemo">
+
+				<action name="mailtracking.mra.airlinebilling.inward.rejectionmemo.onScreenLoad" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.rejectionmemo.ScreenLoadCommand" order="1"/>
+				</action>
+				<action name="mailtracking.mra.airlinebilling.inward.rejectionmemo.list" >
+								<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.rejectionmemo.ListCommand" order="1"/>
+				</action>
+				<action name="mailtracking.mra.airlinebilling.inward.rejectionmemo.save" >
+								<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.rejectionmemo.SaveCommand" order="1"/>
+				</action>
+				<action name="mailtracking.mra.airlinebilling.inward.rejectionmemo.clear" >
+								<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.rejectionmemo.ClearCommand" order="1"/>
+				</action>
+				<action name="mailtracking.mra.airlinebilling.inward.rejectionmemo.close" >
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.rejectionmemo.CloseCommand" order="1"/>
+				</action>
+				<action name="mailtracking.mra.airlinebilling.inward.rejectionmemo.print" >
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.rejectionmemo.report.PrintCommand" order="1"/>
+				</action>
+				<!--Added By Deepthi For Issue RM  -->
+				<action name="mailtracking.mra.airlinebilling.inward.rejectionmemo.calculateacceptedamt" >
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.rejectionmemo.CalculateAcceptedAmtCommand" order="1"/>
+				</action>
+				
+				<action name="mail.mra.airlinebilling.inward.loadsupportingdocspopup" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.rejectionmemo.AttachmentScreanloadCommand" order="1"/>
+				</action>
+		
+				<action name="mail.mra.airlinebilling.inward.attachfile" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.rejectionmemo.AttachmentAttachCommand" order="1"/>
+				</action>
+				
+				<action name="mail.mra.airlinebilling.inward.refreshrejectionmemoattachment" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.rejectionmemo.AttachmentRefreshCommand" order="1"/>
+				</action>
+		 
+		 		 <action name="mail.mra.airlinebilling.inward.downloadcommand" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.rejectionmemo.DownloadAttachmentCommand" order="1"/>
+				</action>
+				
+				<action name="mail.mra.airlinebilling.inward.deleteattachmentcommand" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.rejectionmemo.DeleteAttachmentCommand" order="1"/>
+				</action>
+		
+	</screen>
+	<!--Added By Indu For captureformone -->
+	<screen name="mailtracking.mra.airlinebilling.inward.captureformone" id="mailtracking.mra.airlinebilling.inward.captureformone">
+
+			<action name="mailtracking.mra.airlinebilling.inward.captureformone.onScreenLoad" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformone.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mra.airlinebilling.inward.captureformone.list" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformone.ListCommand" order="1"/>
+			</action>
+			<action name="mra.airlinebilling.inward.captureformone.clear" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformone.ClearCommand" order="1"/>
+			</action>
+			<action name="mra.airlinebilling.inward.captureformone.close" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformone.CloseCommand" order="1"/>
+			</action>
+			<action name="mra.airlinebilling.inward.captureformone.save" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformone.SaveCommand" order="1"/>
+			</action>
+
+			<action name="mra.airlinebilling.inward.captureformone.navigatebutton" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformone.NavigateScreenCommand" order="1"/>
+			</action>
+
+			<action name="mailtracking.mra.airlinebilling.inward.captureformone.ajaxonScreenLoad" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformone.PopulateAirlineNoCommand" order="1"/>
+			</action>
+			
+			
+
+	</screen>
+	<screen name="mailtracking.mra.airlinebilling.inward.captureformthree" id="mailtracking.mra.airlinebilling.inward.captureformthree">
+
+			<action name="mailtracking.mra.airlinebilling.inward.captureFormThree.onScreenLoad" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformthree.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.airlinebilling.inward.captureFormThree.list" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformthree.ListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.airlinebilling.inward.captureFormThree.clear" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformthree.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.airlinebilling.inward.captureFormThree.save" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformthree.SaveCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.airlinebilling.inward.captureFormThree.close" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformthree.CloseCommand" order="1"/>
+			</action>
+			
+			<action name="mailtracking.mra.airlinebilling.inward.captureFormThree.ajaxOnScreenLoad" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureformthree.PopulateAirlineNumberCommand" order="1"/>
+			</action>
+			
+			
+			
+	</screen>
+
+
+		<!--Added By Muralee <A-3447> for Capture Invoice Starts -->
+
+		<screen name="mailtracking.mra.airlinebilling.inward.captureinvoice" id="mailtracking.mra.airlinebilling.inward.captureinvoice">
+
+				<action name="mailtracking.mra.airlinebilling.inward.captureinvoice.onScreenLoad" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureinvoice.ScreenLoadCommand" order="1"/>
+				</action>
+				<action name="mailtracking.mra.airlinebilling.inward.captureinvoice.list" >
+							<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureinvoice.ListCommand" order="1"/>
+				</action>
+
+				<action name="mailtracking.mra.airlinebilling.inward.captureinvoice.update" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureinvoice.UpdateBillingDetailCommand" order="1"/>
+				</action>
+
+				<action name="mailtracking.mra.airlinebilling.inward.captureinvoice.close" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureinvoice.CloseCommand" order="1"/>
+				</action>
+
+				<action name="mailtracking.mra.airlinebilling.inward.captureinvoice.clear" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureinvoice.ClearCommand" order="1"/>
+				</action>
+
+				<action name="mailtracking.mra.airlinebilling.inward.captureinvoice.rejectinvoice" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureinvoice.RejectInvoiceCommand" order="1"/>
+				</action>
+				
+				<action name="mailtracking.mra.airlinebilling.inward.captureinvoice.ajaxScreenLoad" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureinvoice.PopulateAirlineNoCommand" order="1"/>
+				</action>
+				
+				<action name="mailtracking.mra.airlinebilling.inward.captureinvoice.ajaxScreenLoadforamtinusd" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.inward.captureinvoice.PopulateAirlineNoCommand" order="1"/>
+				</action>
+				
+			</screen>
+
+	<!--Added By  Muralee <A-3447>  for Capture Invoice Ends -->
+
+</command-mappings>

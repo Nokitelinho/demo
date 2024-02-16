@@ -1,0 +1,52 @@
+/*
+ * ClearCommand.java Created on Dec 1, 2006
+ *
+ * Copyright 2005 IBS Software Services (P) Ltd. All Rights Reserved.
+ *
+ * This software is the proprietary information of IBS Software Services (P) Ltd.
+ * Use is subject to license terms.
+ */
+package com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.defaults.memolov;
+
+
+import com.ibsplc.icargo.framework.web.command.BaseCommand;
+import com.ibsplc.icargo.framework.web.command.CommandInvocationException;
+import com.ibsplc.icargo.framework.web.command.InvocationContext;
+import com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.MemoLOVForm;
+import com.ibsplc.xibase.util.log.Log;
+import com.ibsplc.xibase.util.log.factory.LogFactory;
+
+/**
+ * @author A-2524
+ *
+ */
+public class ClearCommand extends BaseCommand {
+	private Log log = LogFactory.getLogger("MRA_AIRLINEBILLING");
+
+	private final static String CLEAR_SUCCESS = "clear_success";
+	private final static String EMPTY_STRING = "";
+		
+	private static final String CLASS_NAME = "ClearCommand";
+	
+	/**
+	 * execute method
+	 * @param invocationContext
+	 * @throws CommandInvocationException
+	 */
+	public void execute(InvocationContext invocationContext)
+			throws CommandInvocationException {
+		log.log(Log.FINE, "ClearCommand");
+		log.entering(CLASS_NAME, "execute");
+		MemoLOVForm memoLovForm = (MemoLOVForm)invocationContext.screenModel;
+		memoLovForm.setInvoiceNumber(EMPTY_STRING);
+		memoLovForm.setCode(EMPTY_STRING);
+		memoLovForm.setClearancePeriod(EMPTY_STRING);
+		memoLovForm.setAirlineCode(EMPTY_STRING);
+		memoLovForm.setMemoCode(EMPTY_STRING);
+		memoLovForm.setMemoLovVos(null);
+		log.exiting(CLASS_NAME,"execute");
+    	invocationContext.target=CLEAR_SUCCESS;
+
+	}
+
+}

@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<QRY:Definitions xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries" module="Framework">
+
+
+ <QRY:Definition>    
+ 	<QRY:Id>2</QRY:Id>
+	<QRY:Source Name="xibase.txaudit.log.statisticsSummary" Type="NATIVE"> 
+	<![CDATA[
+		SELECT
+		T.CMPCOD,T.PRDNAM,T.SUBMOD,T.ACTNAM,
+		COUNT(T.TXNIDR) AS NUMEXE,
+		ROUND(AVG(TXNTIM),2) AS AVGRSPTIM,
+		ROUND(STDDEV(TXNTIM),2) AS STDDEV,
+		ROUND(MAX(TXNTIM),2) AS HSTRSPTIM,
+		ROUND(MIN(TXNTIM),2) AS LSTRSPTIM
+		FROM XBSTXNLOG T
+		where T.CMPCOD=?
+		AND
+		(T.TXNENTTIM >= to_date(?,'yyyy-mm-dd HH24:MI:SS')
+		AND
+		T.TXNEXTTIM < to_date(?,'yyyy-mm-dd HH24:MI:SS')+1)
+	]]>
+	</QRY:Source>
+  </QRY:Definition>
+    
+    
+  <QRY:Definition>    
+  	<QRY:Id>3</QRY:Id>
+	<QRY:Source Name="sysenv.user.findExpectedResponseTime" Type="NATIVE"> 
+        <![CDATA[
+		SELECT 	EXPRSPTIM
+		FROM CNSTXNCNGDTL
+		WHERE TXNNAM = ?
+	]]>
+	</QRY:Source>
+   </QRY:Definition> 
+    
+    
+   <QRY:Definition>    
+	<QRY:Id>4</QRY:Id>
+	<QRY:Source Name="xibase.txaudit.log.responseSummary" Type="NATIVE"> 
+	<![CDATA[
+		SELECT
+		T.CMPCOD,T.PRDNAM as PRDCOD,T.SUBMOD,T.ACTNAM as TXNNAM,
+		COUNT(T.TXNIDR) AS NUMEXE,
+		ROUND(AVG(TXNTIM),2) AS AVGRSPTIM,
+		ROUND(STDDEV(TXNTIM),2) AS STDDEV,
+		ROUND(MAX(TXNTIM),2) AS HSTRSPTIM,
+		ROUND(MIN(TXNTIM),2) AS LSTRSPTIM
+		FROM 	XBSTXNLOG T , CNSTXNCNGDTL C
+		WHERE 	T.CMPCOD=? 
+		AND   	T.ACTNAM=C.TXNNAM
+		AND	T.CMPCOD=C.CMPCOD
+		AND	T.PRDNAM=C.PRDCOD
+		AND	T.SUBMOD=C.SUBMOD
+		AND	( T.TXNEXTTIM >= to_date(?,'yyyy-mm-dd HH24:MI:SS')
+		AND	
+		T.TXNEXTTIM < (to_date(?,'yyyy-mm-dd HH24:MI:SS')+1) )
+	]]>
+	</QRY:Source>
+    </QRY:Definition>
+    
+    
+     <QRY:Definition>    
+		<QRY:Id>5</QRY:Id>
+	   <QRY:Source Name="xibase.txaudit.log.exceededresponseSummary" Type="NATIVE"> 
+	   <![CDATA[
+		SELECT 	
+		COUNT(*) AS RSPTIMEXC,C.TOLPRC,T.PRDNAM as PRDCOD,
+		T.SUBMOD as SUBMOD,T.ACTNAM as TXNNAM
+		FROM	XBSTXNLOG T , CNSTXNCNGDTL C
+		WHERE 	T.CMPCOD=?
+		AND	T.ACTNAM = C.TXNNAM 
+		AND	T.CMPCOD=C.CMPCOD
+		AND	T.PRDNAM=C.PRDCOD
+		AND	T.SUBMOD=C.SUBMOD
+		AND	((TXNTIM) > C.EXPRSPTIM)
+		AND	(T.TXNEXTTIM >= to_date(?,'yyyy-mm-dd HH24:MI:SS')
+		AND	
+		T.TXNEXTTIM < (to_date(?,'yyyy-mm-dd HH24:MI:SS')+1) )
+	  ]]>		
+	  </QRY:Source>
+    </QRY:Definition>
+    
+    
+    <QRY:Definition>    
+	   <QRY:Id>6</QRY:Id>
+	   <QRY:Source Name="sysenv.user.findTransactions" Type="NATIVE"> 
+	   <![CDATA[
+		SELECT 	C.CMPCOD,C.PRDCOD,C.SUBMOD,C.TXNNAM,C.EXPRSPTIM,C.TOLPRC
+		FROM	CNSTXNCNGDTL C
+		WHERE 	C.PRDCOD=? 
+		AND 	C.SUBMOD=?
+	  ]]>	
+	  </QRY:Source>
+    </QRY:Definition> 
+    
+    
+    <QRY:Definition>    
+	   <QRY:Id>7</QRY:Id>
+	   <QRY:Source Name="xibase.txaudit.log.errordetails" Type="NATIVE"> 
+	   <![CDATA[
+		SELECT DISTINCT T.TXNIDR,T.TXNENTTIM,T.PRDNAM,T.SUBMOD,T.ACTNAM,
+				T.REFONE,T.REFTWO,T.REFTHR,T.REFFOR,T.REFFIV,
+				T.REFSIX,T.REFSEV,T.REFEGT,T.REFNIN,T.REFTEN,
+				E.ERRCOD,E.ERRDSC, T.RESSTA,T.RESRMK, 
+				ROW_NUMBER() OVER (PARTITION BY 1 ORDER BY 
+             ]]>	
+	     </QRY:Source>
+    </QRY:Definition> 
+   
+    
+    <QRY:Definition>    
+    	   <QRY:Id>8</QRY:Id>
+	   <QRY:Source Name="xibase.txaudit.log.txnErrDtlview" Type="NATIVE"> 
+	   <![CDATA[
+		SELECT
+			E.TXNIDR as TXNIDR,E.REQUEST as RQTATR,E.ERRDSC as EXCTRC
+		FROM	XBSTXNERRLOG E
+		WHERE	E.CMPCOD=?
+		AND	E.TXNIDR=?
+		AND     E.ERRCOD=?
+	   ]]>	
+	   </QRY:Source>
+   </QRY:Definition> 
+        
+        
+   <QRY:Definition>    
+	   <QRY:Id>9</QRY:Id>
+	   <QRY:Source Name="xibase.txaudit.log.txnsPerSecond" Type="NATIVE"> 
+	   <![CDATA[
+	           SELECT COUNT(T.ACTNAM) AS TXNCNT,
+	           	TO_CHAR(T.TXNENTTIM,'HH24') as HOURS 
+	           FROM	 XBSTXNLOG T
+		   WHERE T.CMPCOD=?
+		   AND   (T.TXNEXTTIM >= to_date(?,'yyyy-mm-dd HH24:MI:SS')
+		    	AND 
+		    	T.TXNEXTTIM < (to_date(?,'yyyy-mm-dd HH24:MI:SS')+1) )
+	   ]]>	
+	   </QRY:Source>
+  </QRY:Definition> 
+        
+  <QRY:Definition>    
+	  <QRY:Id>10</QRY:Id>
+	  <QRY:Source Name="xibase.txaudit.log.hourlyerrortransactions" Type="NATIVE"> 
+	  <![CDATA[
+		    SELECT COUNT(T.ACTNAM) AS ERRCNT,
+		    		TO_CHAR(T.TXNENTTIM,'HH24') as HOURS 
+		    FROM 	XBSTXNLOG T
+		    WHERE 	T.SUCCESS='N'
+                    AND		T.CMPCOD=?
+		    AND		(T.TXNEXTTIM >= to_date(?,'yyyy-mm-dd HH24:MI:SS')
+				AND	
+				T.TXNEXTTIM < (to_date(?,'yyyy-mm-dd HH24:MI:SS')+1) )
+	   ]]>	
+	   </QRY:Source>
+  </QRY:Definition> 
+    
+    <QRY:Definition>    
+  	  <QRY:Id>10</QRY:Id>
+  	  <QRY:Source Name="xibase.txaudit.log.findTxnAuditEnquiry" Type="NATIVE"> 
+  	  <![CDATA[
+  		    SELECT TXNLOG.PRDNAM, TXNLOG.SUBMOD, TXNLOG.ACTNAM, TXNLOG.USRIDR, TXNLOG.LOGTYP, TXNLOG.TXNIDR, TXNLOG.TXNENTTIM, TXNLOG.TXNEXTTIM , ATR.ATRVAL STNCOD 
+  		    FROM 	XBSTXNLOG TXNLOG, XBSTXNLOGADDATR ATR
+  		    WHERE 	TXNLOG.CMPCOD = ATR.CMPCOD(+) AND TXNLOG.TXNIDR = ATR.TXNIDR(+) AND ATR.ATRTYP(+)='STN' AND 
+  		    TXNLOG.CMPCOD=? 
+  	   ]]>	
+  	   </QRY:Source>
+    </QRY:Definition> 
+    
+    
+    <QRY:Definition>    
+  	  <QRY:Id>10</QRY:Id>
+  	  <QRY:Source Name="xibase.txaudit.log.findTxnErrDetails" Type="NATIVE"> 
+  	  <![CDATA[
+  		    Select transactionLog from 
+			com.ibsplc.xibase.server.framework.tx.audit.log.TransactionLog transactionLog
+			WHERE
+			transactionLog.txnInfoPK.companyCode = ? 
+  	   ]]>	
+  	   </QRY:Source>
+    </QRY:Definition> 
+        
+
+</QRY:Definitions>

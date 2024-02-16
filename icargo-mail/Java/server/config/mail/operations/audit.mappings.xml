@@ -1,0 +1,26 @@
+<audit-mappings xmlns="http://www.ibsplc.com/icargo/audit/mappings" product="mail" subproduct="operations">
+	<!-- entity: the simple class name of the entity -->
+	<!-- name: the display name for the entity -->
+	<!-- the simple class name the Audit entity -->
+
+
+	<audit-entities package="com.ibsplc.icargo.business.mail.operations">
+		<audit name="mail.operations.Container" entity="Container" enabled="true">
+				ContainerAudit
+		</audit>
+		<audit name="mail.operations.Mailbag" entity="Mailbag" enabled="true" historyEnabled="true">
+			MailbagAudit
+		</audit>
+		<audit name="mail.operations.AssignedFlight" entity="AssignedFlight" enabled="true">
+					AssignedFlightAudit
+		</audit>
+		<audit name="mail.operations.postalcalendar" entity="USPSPostalCalendar" enabled="true" historyEnabled="true">
+					PostalCalendarAudit
+		</audit>
+	</audit-entities>
+
+
+
+
+</audit-mappings>
+

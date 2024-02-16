@@ -1,0 +1,2645 @@
+<?xml version="1.0"?>
+<QRY:Definitions xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries" module="mail.mra.gpabilling">
+
+	<!-- Added by Prem for CN66Details -->
+	<QRY:Definition>
+		<QRY:Id>1</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findCN66Details" Type="NATIVE">
+		<![CDATA[
+				SELECT MAX(CN66.CMPCOD) CN66CMPCOD,
+				CN66.MALSEQNUM MALSEQNUM,
+					   MAX(TO_CHAR(SMY.BLGPRDFRM,'dd-mm-yyyy')||' to '||TO_CHAR(SMY.BLGPRDTOO,'dd-mm-yyyy')) BLDPRD,
+					  MAX(CN66.INVNUM) CN66INVNUM,
+					  MAX(CN66.MCAREFNUM )CCAREFNUM,
+					  MAX(CN66.GPACOD )CN66GPACOD,
+					  MAX(CN66.MALCTGCOD )CN66MALCTGCOD,
+					  (CN66.ORGCOD || '-' || CN66.DSTCOD) SECTOR,
+						 CN66.SUBCLSGRP CN66MALSUBCLS,
+					  CN66.ORGCOD CN66ORGCOD,
+						 CN66.DSTCOD CN66DSTCOD,
+					  MAX(CN66.ACTSUBCLS) ACTSUBCLS,
+					  MAX(CN66.RCVDAT )CN66RCVDAT,
+					  MAX(CN66.DSN) CN66DSN,
+					  MAX(MST.RSN) CN66RSN,
+					  MAX(CN66.RMK )CN66RMK,
+					  MAX(CN66.INVSERNUM) CN66SEQNUM,
+					  MAX(CN66.TOTPCS) CN66TOTPCS,
+						 MAX(MST.MALIDR) CN66BLGBAS,
+					  MAX(CN66.TOTWGT )CN66TOTWGT,
+					  MAX(CN66.BILSECFRM )BILFRM,
+					  MAX(CN66.BILSECTOO) BILTOO,
+					  MAX(CN66.FLTNUM )FLTNUM,
+					  MAX(CN66.FLTCARIDR) FLTCARIDR,
+					  MAX(CN66.FLTCARCOD) FLTCARCOD,
+					  CN66.FLTDAT FLTDAT,
+					  MAX(CN66.LSTUPDUSR) LSTUPDUSR,
+					  MAX(CN66.LSTUPDTIM) LSTUPDTIM,
+					  MAX(CN66.BLGSTA) BLGSTA,
+					  MAX(CN66.TOTAMTEXCVATBLGCUR) BLDAMT,
+					  MAX(CN66.APLRAT) APLRAT,
+					  MAX(CN66.FULCHG )FULCHG,
+					  MAX(CN66.RATIND) FULCHGRATIND,
+					  MAX(SMY.BLGCURCOD) C51SMYBLGCURCOD,
+					  MAX(CN66.VATAMTBLGCUR) VATAMT,
+					 -- MAX(SMY.TOTAMTLC)TOTAMTLC,
+					--  MAX(SMY.TOTAMTCP) TOTAMTCP,
+					  MAX(CN66.SRVTAXBLGCUR) SRVTAX,
+					  MAX(CN66.TDSBLGCUR) TDS,
+					  MAX(CN66.VALCHGBLGCUR) VALCHG,
+					  MAX(MST.DCLVAL) DCLVAL,
+					  MAX(CN66.NETAMTBLGCUR) NETAMT,
+					  MAX(MST.HSN) HSN,
+					  max(MST.REGIND) REGIND,
+					MAX(CN66.MALCHGBLGCUR) MALCHG,
+					MAX(CN66.OTHCHGBLGCUR) OTHCHG,
+					MAX(CN66.UNTCOD) UNTCOD,
+					MAX(MST.POAFLG) POAFLG,
+					MAX(MST.ULDNUM) CNTIDR,
+					MAX(MST.ACTULDWGT) ACTULDWGT,
+					MAX(MST.ACTULDWGTUNT) ACTULDWGTUNT
+					FROM MALMRAGPAC66DTL CN66,
+					  MALMRAGPAC51SMY SMY,
+					  MALMRABLGMST MST
+			   WHERE SMY.CMPCOD=CN66.CMPCOD
+			   AND SMY.INVNUM=CN66.INVNUM
+			   AND SMY.GPACOD=CN66.GPACOD
+			    AND MST.CMPCOD=CN66.CMPCOD
+			    AND MST.MALSEQNUM=CN66.MALSEQNUM
+				AND CN66.BLGSTA <> 'WD'
+			   AND CN66.CMPCOD = ?
+			     AND CN66.GPACOD = ?
+			     AND CN66.INVNUM = ?
+				 AND CN66.INVSERNUM = (SELECT MAX(INVSERNUM) FROM MALMRAGPAC51SMY
+                            WHERE CMPCOD = CN66.CMPCOD
+                            AND INVNUM = CN66.INVNUM
+                            AND GPACOD = CN66.GPACOD
+							AND INVSTA IN ('F','P','N'))
+
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<!-- Added by Prem for CN51Details -->
+	<QRY:Definition>
+		<QRY:Id>2</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findCN51Details" Type="NATIVE">
+		<![CDATA[
+									 SELECT distinct C51SMY.INVNUM C51DTLINVNUM ,
+									  C51SMY.INVDAT C51DTLINVDAT ,
+			  (C51DTL.ORGCOD
+				||'-'
+				||C51DTL.DSTCOD) SECTOR,
+			  C51DTL.CMPCOD C51DTLCMPCOD ,
+				C51SMY.GPACOD C51DTLGPACOD ,
+							  C51DTL.CTRCURCOD C51DTLCURCOD         ,
+							  C51DTL.MALCTGCOD C51DTLMALCTGCOD   ,
+							  C51DTL.SUBCLSGRP C51DTLMALSUBCLS   ,
+							  C51DTL.ORGCOD C51DTLORGCOD         ,
+							  C51DTL.DSTCOD C51DTLDSTCOD         ,
+							  C51DTL.TOTWGT C51DTLTOTWGT         ,
+							  C51DTL.TOTPCS C51DTLTOTPCS         ,
+							  C51DTL.TOTAMTEXCVATBLGCUR C51DTLTOTAMT      ,
+							  C51DTL.APLRAT C51DTLAPLRAT         ,
+							  C51DTL.SEQNUM C51DTLSEQNUM         ,
+							  C51DTL.SRVTAXBLGCUR SRVTAX                      ,
+							  C51DTL.TDSBLGCUR TDS                         ,
+							  C51DTL.NETAMTBLGCUR NETAMT                      ,
+							  C51DTL.VATAMTBLGCUR VATAMT                      ,
+							  C51SMY.TOTAMTCTRCUR C51SMYTOTBLDAMT,
+							  C51SMY.CTRCURCOD C51SMYCRTCURCOD   ,
+							  C51SMY.TOTAMTBLGCUR TOTAMTSTLCUR                ,
+							  C51SMY.BLGCURCOD                   ,
+							  TO_CHAR(C51SMY.BLGPRDFRM,'dd-mm-yyyy')||' to '||TO_CHAR(C51SMY.BLGPRDTOO,'dd-mm-yyyy') BLDPRD,
+							  C51SMY.INVSTA                      ,
+							  C51SMY.INVSERNUM                   ,
+							  C51DTL.VALCHGBLGCUR VALCHG	     	     ,
+							  cty.ctypirdis                      ,
+							  POA.POANAM,
+							  POA.POAADR                         ,
+							  POA.CTYNAM                           ,
+							  POA.STANAM                          ,
+							  POA.POSCOD                         ,
+							  C51DTL.MALCHGBLGCUR MALCHG,
+							  C51DTL.OTHCHGBLGCUR OTHCHG,
+							  C51DTL.UNTCOD UNTCOD,
+							  C51SMY.INTFCDFILNAM,
+							  C51SMY.POATYP,
+							  POA.VATNUM VATNUM,
+					TO_CHAR(C51SMY.INVDAT,'dd-MON-yy') INVDATMMMFORMAT
+			  FROM MALMRAGPAC51SMY C51SMY
+			  INNER JOIN MALMRAGPAC51DTL C51DTL
+								 ON C51SMY.CMPCOD = C51DTL.CMPCOD
+							AND C51SMY.GPACOD     = C51DTL.GPACOD
+							AND C51SMY.INVNUM     = C51DTL.INVNUM
+			  AND C51SMY.INVSERNUM = C51DTL.INVSERNUM
+			  AND C51SMY.INVSERNUM  =
+				(SELECT MAX(INVSERNUM)
+				FROM MALMRAGPAC51DTL
+				WHERE CMPCOD = C51DTL.CMPCOD
+				AND INVNUM   = C51DTL.INVNUM
+				AND GPACOD   = C51DTL.GPACOD
+				)
+							LEFT OUTER JOIN shrctypirmst CTY
+								 ON C51DTL.CMPCOD=CTY.CMPCOD
+							AND C51DTL.orgcod
+							  ||'-'
+							  ||C51DTL.dstcod = cty.ctypir
+							INNER JOIN MALPOAMST POA
+								 ON POA.CMPCOD    =C51DTL.CMPCOD
+							AND POA.POACOD        =C51DTL.GPACOD
+			  WHERE C51SMY.CMPCOD =?
+										 AND C51SMY.GPACOD = ?
+										 AND C51SMY.INVNUM = ?
+							ORDER BY SECTOR      ,
+							  C51DTLSEQNUM       ,
+							  C51DTLORGCOD       ,
+							  C51DTLDSTCOD       ,
+							  C51DTLMALCTGCOD    ,
+							  C51DTLMALSUBCLS
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<!-- Added by Kiran for findAllInvoices -->
+	<!-- Modified and added INVSERNUM by A-6991 FOR ICRD-211662 -->
+	<!-- Modified by A-8527 for ICRD-234294-->
+	<QRY:Definition>
+		<QRY:Id>3</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findAllInvoices" Type="NATIVE">
+		<![CDATA[
+		SELECT
+			C51SMY.CMPCOD, C51SMY.GPACOD,POAMST.POANAM, C51SMY.INVNUM,C51SMY.INVSERNUM,
+		    TO_CHAR(C51SMY.BLGPRDFRM,'dd-mm-yyyy')||' to '||TO_CHAR(C51SMY.BLGPRDTOO,'dd-mm-yyyy') BLDPRD, C51SMY.INVDAT BLDDAT,
+			C51SMY.TOTAMTCTRCUR, C51SMY.BLGCURCOD,
+		    C51SMY.TOTAMTBLGCUR TOTAMTBLGCUR, C51SMY.CTRCURCOD,C51SMY.INVSTA INVSTA,C51SMY.LSTUPDTIM,
+		    C51SMY.LSTUPDUSR,C51SMY.BLGPRDFRM,C51SMY.BLGPRDTOO,C51SMY.TOTAMTBLGCUR TOTAMTSTLCUR, 0 RBLRND,C51SMY.INTFCDFILNAM
+		    FROM MALMRAGPAC51SMY C51SMY ,MALPOAMST poamst
+		where  C51SMY.GPACOD = POAMST.POACOD AND
+     C51SMY.CMPCOD=POAMST.CMPCOD AND
+     C51SMY.CMPCOD=?
+		AND C51SMY.INVSERNUM=
+        (SELECT MAX(INVSERNUM)
+        FROM MALMRAGPAC51SMY
+        WHERE CMPCOD=poamst.CMPCOD
+        AND GPACOD  = POAMST.POACOD
+        AND INVNUM = C51SMY.INVNUM
+		AND INVSTA IN ('P','F','N')
+        )
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<!-- Added by Indu for findGPABillingEntries -->
+	<QRY:Definition>
+	        <QRY:Id>5</QRY:Id>
+	        <QRY:Source Name="mail.mra.gpabilling.findInvoiceLov" Type="NATIVE">
+	            <![CDATA[
+	              SELECT DISTINCT SMY.INVNUM,
+				  SMY.INVSERNUM,
+		      	     SMY.GPACOD,
+		      	     TO_CHAR(SMY.BLGPRDFRM,'dd-mm-yyyy')||' to '||TO_CHAR(SMY.BLGPRDTOO,'dd-mm-yyyy') BLDPRD,
+					 SMY.INVSTA
+      FROM MALMRAGPAC51SMY SMY,
+        MALMRAGPAC51DTL C51DTL
+      WHERE C51DTL.CMPCOD = SMY.CMPCOD
+      AND C51DTL.INVNUM   = SMY.INVNUM
+      AND C51DTL.GPACOD   = SMY.GPACOD
+      AND SMY.INVSERNUM   =
+        (SELECT MAX(INVSERNUM)
+        FROM MALMRAGPAC51SMY
+        WHERE CMPCOD = C51DTL.CMPCOD
+        AND INVNUM   = C51DTL.INVNUM
+        AND GPACOD   = C51DTL.GPACOD
+		AND INVSTA IN ('P','F','N')
+        )
+      AND SMY.CMPCOD=?
+	           ]]>
+	        </QRY:Source>
+    </QRY:Definition>
+     <!-- Added for InvoiceLov ends -->
+
+    <!-- Added by Sandeep for generate invoice begins -->
+<QRY:Definition>
+		<QRY:Id>6</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.generateinvoice" Type="PROCEDURE">
+			<![CDATA[
+					CALL PKG_MAL_MRA_GPABILLING_NEW.spr_mra_generateinvoice
+					(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+					)
+				]]>
+		</QRY:Source>
+
+	</QRY:Definition>
+	<!-- Added by Sandeep for generate invoice ends -->
+
+     <QRY:Definition>
+	        <QRY:Id>7</QRY:Id>
+	        <QRY:Source Name="mail.mra.gpabilling.findinvoicereportdetails" Type="NATIVE">
+	            <![CDATA[
+	             SELECT DISTINCT    DTL.ORGCOD
+		                || '-'
+		                || DTL.DSTCOD SECTOR,
+		                SMY.CMPCOD,
+		                SMY.GPACOD,
+		                SMY.INVNUM,
+						SMY.INVDAT BLDDAT,
+		                SMY.TOTAMTCTRCUR,
+						SMY.BLGCURCOD,
+		                SMY.TOTAMTBLGCUR,
+						SMY.CTRCURCOD,
+						SMY.BLGPRDFRM,
+						SMY.BLGPRDTOO
+	           FROM MALMRAGPAC51DTL DTL, MALMRAGPAC51SMY SMY
+			          WHERE SMY.CMPCOD = DTL.CMPCOD
+					  AND   SMY.GPACOD = DTL.GPACOD
+					  AND   SMY.INVNUM = DTL.INVNUM
+					  AND   SMY.INVNUM = ?
+					  AND   SMY.CMPCOD = ?
+	           ]]>
+	        </QRY:Source>
+    </QRY:Definition>
+    <QRY:Definition>
+     	        <QRY:Id>8</QRY:Id>
+     	        <QRY:Source Name="mail.mra.gpabilling.findbillingsummarydetails" Type="NATIVE">
+     	            <![CDATA[
+     	              SELECT C51.CMPCOD,
+     	              	     (TO_CHAR(C51.BLGPRDFRM,'dd-mm-yyyy')||' to '||TO_CHAR(C51.BLGPRDTOO,'dd-mm-yyyy')) BLDPRD,
+		      	     C51.GPACOD,
+		      	     C51.INVNUM,
+		      	     C51.INVDAT BLDDAT,
+		      	     C51.BLGCURCOD CRTCURCOD,
+		      	     C51.TOTAMTCTRCUR,
+					 C51.TOTAMTBASCUR,
+		      	     MST.POANAM
+
+		      	     FROM MALMRAGPAC51SMY C51
+		      	     INNER JOIN MALPOAMST MST
+		      	     ON C51.CMPCOD=MST.CMPCOD
+		      	     AND C51.GPACOD=MST.POACOD
+					AND C51.INVSERNUM =
+					  (SELECT MAX(INVSERNUM)
+					  FROM MALMRAGPAC51SMY
+					  WHERE CMPCOD  = C51.CMPCOD
+					  AND INVNUM    = C51.INVNUM
+					  AND GPACOD = C51.GPACOD
+					  AND INVSTA IN ('P','F','N')
+					  )
+		    WHERE C51.CMPCOD=?
+     	           ]]>
+     	        </QRY:Source>
+    </QRY:Definition>
+     <QRY:Definition>
+         	        <QRY:Id>9</QRY:Id>
+         	        <QRY:Source Name="mail.mra.gpabilling.findcn51detailsforprint" Type="NATIVE">
+         	            <![CDATA[
+         	             SELECT     SMY.CMPCOD,
+         	             (TO_CHAR(SMY.BLGPRDFRM,'dd-mm-yyyy')||' to '||TO_CHAR(SMY.BLGPRDTOO,'dd-mm-yyyy')) BLDPRD,
+			      		SMY.GPACOD,
+			     		SMY.BLGCURCOD,
+			     		DTL.ORGCOD,
+			     		DTL.DSTCOD,
+			     		DTL.MALCTGCOD,
+			     		DTL.SUBCLSGRP,
+			     		DTL.TOTWGT,
+			     		DTL.TOTAMTBLGCUR,
+			     		DTL.APLRAT,
+					DTL.NETAMTBLGCUR,
+					DTL.MALCHGBLGCUR,
+					DTL.OTHCHGBLGCUR,
+			     		MST.POANAM,
+			     		DTL.UNTCOD
+			     		FROM MALMRAGPAC51SMY SMY
+			      INNER JOIN MALMRAGPAC51DTL DTL
+			      ON SMY.CMPCOD=DTL.CMPCOD
+			      AND SMY.GPACOD=DTL.GPACOD
+			      AND SMY.INVNUM=DTL.INVNUM
+				  AND SMY.INVSERNUM = (SELECT MAX(INVSERNUM) FROM
+											MALMRAGPAC51SMY WHERE
+												CMPCOD=SMY.CMPCOD
+												AND INVNUM =SMY.INVNUM
+												AND GPACOD = SMY.GPACOD
+										)
+			      INNER JOIN MALPOAMST MST
+			      ON SMY.CMPCOD=MST.CMPCOD
+			      AND SMY.GPACOD=MST.POACOD
+ 				WHERE SMY.CMPCOD=?
+         	           ]]>
+         	        </QRY:Source>
+    </QRY:Definition>
+     <QRY:Definition>
+                   	        <QRY:Id>10</QRY:Id>
+                   	        <QRY:Source Name="mail.mra.gpabilling.findcn66detailsforprint" Type="NATIVE">
+                   	            <![CDATA[
+                   	           SELECT DISTINCT  SMY.CMPCOD,
+     			   	   (TO_CHAR(SMY.BLGPRDFRM,'dd-mm-yyyy')||' to '||TO_CHAR(SMY.BLGPRDTOO,'dd-mm-yyyy')) BLDPRD,
+     			   	   SMY.GPACOD,
+     			   	   MST.POANAM,
+     			   	   DTL.MALCTGCOD,
+     			   	   DTL.SUBCLSGRP,
+     			   	   DTL.RCVDAT,
+     			   	   DTL.DSN,
+     			   	   DTL.BILSECFRM,
+     			   	   DTL.BILSECTOO,
+     			   	   DTL.ORGCOD,
+     			   	   DTL.DSTCOD,
+     			   	   DTL.FLTCARCOD,
+     			   	   DTL.FLTNUM,
+     			   	   DTL.TOTWGT,
+     			   	   DTL.UNTCOD
+                       FROM MALMRAGPAC51SMY SMY
+                       INNER JOIN MALMRAGPAC66DTL DTL
+                       ON DTL.CMPCOD= SMY.CMPCOD
+                       AND DTL.GPACOD= SMY.GPACOD
+                       AND DTL.INVNUM= SMY.INVNUM
+                       INNER JOIN MALPOAMST MST
+                       ON MST.CMPCOD  = SMY.CMPCOD   
+                       AND MST.POACOD =SMY.GPACOD 
+     				WHERE SMY.CMPCOD=?
+                   	           ]]>
+                   	        </QRY:Source>
+    </QRY:Definition>
+	<!-- modified by A-4823 for ICRD 7316-->
+      <QRY:Definition>
+                   	        <QRY:Id>11</QRY:Id>
+                   	        <QRY:Source Name="mail.mra.gpabilling.findsettlementdetails" Type="NATIVE">
+                   	            <![CDATA[
+                   	          SELECT POA.POACOD GPACOD ,
+									  POA.CMPCOD              ,
+									  STL.GPACOD STLGPACOD    ,
+									  STL.CMPCOD STLCMPCOD    ,
+									  STL.STLDAT              ,
+									  STL.STLCUR          ,
+									  STL.STLREFNUM       ,
+									  SUBSTR(STL.STLREFNUM, 12, 1) IDNO,
+									  STL.SEQNUM GPASEQNUM,
+									  DTL.STLMODNUM          ,
+									  DTL.PAYDAT          ,
+									  DTL.BRNNAM          ,
+									  DTL.STLAMT          ,
+									  DTL.CHQDELFLG       ,
+									  DTL.RMK             ,
+									  DTL.BNKNAM          ,
+									  DTL.SEQNUM          ,
+									  DTL.SERNUM          ,
+									  INV.SEQNUM  INVSEQNUM     ,
+									  INV.INVNUM          ,
+
+									  INV.RMK  INVRMK          ,
+									  INV.GPACOD INVGPACOD,
+									  INV.CMPCOD INVCMPCOD,
+									  INV.SERNUM INVSERNUM,
+									  C51.INVSTA          ,
+									  C51.STLSTA          ,
+									  TO_CHAR(C51.BLGPRDFRM,'dd-mm-yyyy')||' to '||TO_CHAR(C51.BLGPRDTOO,'dd-mm-yyyy') BLDPRD,
+									  C51.BLGPRDTOO   ,
+									  C51.TOTAMTBLGCUR    ,
+									  C51.TOTAMTCTRCUR	,
+									  C51.CTRCURCOD       ,
+									  C51.BLGCURCOD       ,
+									  C51.DUEAMT,
+									  POA.POANAM          ,
+									  C51.stlamt C51STLAMT,
+									  COALESCE(STL.STLCUR ,POADTL.STLCUR) POASTLCURCOD
+									   FROM MALPOAMST POA
+									INNER JOIN MALPOADTL POADTL ON
+									POA.CMPCOD= POADTL.CMPCOD
+									AND POA.POACOD= POADTL.POACOD
+
+									LEFT OUTER JOIN MALMRAGPASTL STL
+										 ON POA.POACOD = STL.GPACOD
+									AND POA.CMPCOD     = STL.CMPCOD
+									LEFT OUTER JOIN MALMRAGPASTLDTL DTL
+										 ON STL.CMPCOD = DTL.CMPCOD
+									AND STL.GPACOD     = DTL.GPACOD
+									AND STL.STLREFNUM  = DTL.STLREFNUM
+									AND STL.SEQNUM     = DTL.SEQNUM
+
+									LEFT OUTER JOIN MALMRAGPASTLINVDTL INV
+										 ON DTL.CMPCOD = INV.CMPCOD
+									AND DTL.GPACOD     = INV.GPACOD
+									AND DTL.STLREFNUM  = INV.STLREFNUM
+									AND DTL.SEQNUM     = INV.SEQNUM
+									AND DTL.SERNUM     = INV.SERNUM
+									LEFT OUTER JOIN MALMRAGPAC51SMY C51
+									ON INV.CMPCOD = C51.CMPCOD
+									AND INV.GPACOD = C51.GPACOD
+									AND INV.INVNUM=C51.INVNUM
+									  WHERE POA.CMPCOD = ?
+									  AND POADTL.PARCOD= 'STLINFO'
+									  AND C51.INVSTA <> 'P'
+                   	           ]]>
+                   	        </QRY:Source>
+    </QRY:Definition>
+     <QRY:Definition>
+                   	        <QRY:Id>12</QRY:Id>
+                   	        <QRY:Source Name="mail.mra.gpabilling.findsettlementhistory" Type="NATIVE">
+                   	            <![CDATA[
+                   	         SELECT stl.cmpcod,
+							  stl.gpacod,
+							  stl.stldat,
+							  stl.stlcur,
+							  stl.stlrefnum,
+							  dtl.STLMODNUM,
+							  dtl.PAYDAT,
+							  dtl.BRNNAM,
+							  dtl.STLAMT,
+							  dtl.CHQDELFLG,
+							  dtl.rmk,
+							  dtl.BNKNAM,
+							  inv.invnum
+							FROM malmragpastl stl
+							INNER JOIN MALMRAGPASTLDTL dtl ON stl.cmpcod = dtl.cmpcod
+							 AND stl.gpacod = dtl.gpacod
+							 AND stl.stlrefnum = dtl.stlrefnum
+							 AND stl.seqnum = dtl.seqnum
+							 INNER JOIN MALMRAGPASTLINVDTL inv ON dtl.cmpcod = inv.cmpcod
+							 AND dtl.gpacod = inv.gpacod
+							 AND dtl.stlrefnum = inv.stlrefnum
+							 AND dtl.seqnum = inv.SEQNUM
+							 AND dtl.sernum = inv.SERNUM
+							 AND stl.cmpcod = ?
+							 AND stl.gpacod = ?
+							 AND inv.invnum = ?
+                   	           ]]>
+                   	        </QRY:Source>
+    </QRY:Definition>
+
+    <QRY:Definition>
+		                   	        <QRY:Id>13</QRY:Id>
+		                   	        <QRY:Source Name="mail.mra.gpabilling.findgpabillinginvoiceenquiry" Type="NATIVE">
+		                   	         <![CDATA[
+										   SELECT C51SMY.CMPCOD C51SMYCMPCOD,
+      											 C51SMY.GPACOD C51SMYGPACOD,
+												   C51SMY.INVNUM C51SMYINVNUM,
+												   C66DTL.SUBCLSGRP C66MALSUBCLS,
+												   C66DTL.BLGBAS C66BLGBAS, C66DTL.DSN C66DSN,
+												   C66DTL.RMK C66RMK, C66DTL.ORGCOD C66ORGCOD,
+												   C66DTL.DSTCOD C66DSTCOD,
+												   C66DTL.TOTWGT C66TOTWGT,
+												   C66DTL.BLGSTA C66BLGSTA,
+												   C66DTL.RCVDAT C66RCVDAT,
+												   C66DTL.LSTUPDTIM C66LSTUPTIME,
+												   C66DTL.APLRAT C66APLRAT,
+												   C66DTL.SEQNUM C66SEQNUM,
+												   C66DTL.BLGBAS C66BLGBAS,
+												   C66DTL.CSGDOCNUM C66CSGDOCNUM,
+												   C66DTL.CSGSEQNUM C66CSGSEQNUM,
+												   C66DTL.CCAREFNUM C66CCAREFNUM,
+												   C66DTL.ACTSUBCLS ACTSUBCLS,
+												   C51SMY.BLDPRD C51SMYBLDPRD,
+												   C66DTL.BLDAMT C66AMT, C66DTL.FULCHG FULCHG,
+												   C66DTL.RATIND FULCHGRATIND,C66DTL.FLTCARCOD,
+												   C66DTL.FLTNUM,C66DTL.FLTDAT,
+												   C66DTL.SRVTAX,C66DTL.TDS,C66DTL.NETAMT,
+												   C51SMY.BLGPRDFRM C51SMYBLGPRDFRM,
+												   C51SMY.BLGPRDTOO C51SMYBLGPRDTOO,
+												   C51SMY.INVSTA C51SMYINVSTA,
+												   C51SMY.INVDAT C51SMYBLDDAT,
+												   C51SMY.BLGCURCOD C51SMYBLGCURCOD,
+												   POAMST.POANAM
+											  FROM MALMRAGPAC66DTL C66DTL,
+												   MALMRAGPAC51SMY C51SMY,
+												   MALPOAMST POAMST
+											 WHERE C51SMY.CMPCOD = C66DTL.CMPCOD
+											    AND C51SMY.GPACOD = C66DTL.GPACOD
+											    AND C51SMY.INVNUM = C66DTL.INVNUM
+											    AND C66DTL.CMPCOD = POAMST.CMPCOD
+											    AND C66DTL.GPACOD = POAMST.POACOD
+												AND C51SMY.CMPCOD = ?
+												AND C51SMY.INVNUM = ?
+
+		                   	           ]]>
+		                   	        </QRY:Source>
+	    </QRY:Definition>
+
+     <QRY:Definition>
+				<QRY:Id>14</QRY:Id>
+				<QRY:Source Name="mail.mra.gpabilling.findproformainvoicediffreport" Type="NATIVE">
+				    <![CDATA[
+					    SELECT SMY.CMPCOD CMPCOD, SMY.INVNUM INVNUM,
+					       SMY.INVSTA INVSTA, CCADTL.MCAREFNUM CCAREFNUM,
+					       CCADTL.DUEARL DUEARL,
+					       SMY.TOTAMTBLGCUR TOTAMTBLGCUR,
+					       SMY.BLGCURCOD BLGCURCOD, DTL.DSN DSN,
+					       DTL.BLGSTA BLGSTA, DTL.BLDAMTBLGCUR BLDAMT,
+					       DTL.RMK RMK, DTL.TOTWGT TOTWGT,
+					       SMY.BLGPRDFRM BLGPRDFRM,
+					       SMY.BLGPRDTOO BLGPRDTOO
+					  FROM MALMRAGPAC51SMY SMY, MALMRAGPAC66DTL DTL
+					  LEFT OUTER JOIN MALMRAMCA CCADTL
+						ON DTL.CMPCOD = CCADTL.CMPCOD
+					       AND DTL.MALSEQNUM = CCADTL.MALSEQNUM
+						 WHERE SMY.CMPCOD = DTL.CMPCOD
+						   AND SMY.INVNUM = DTL.INVNUM
+						   AND SMY.INVSTA = ?
+				   ]]>
+				</QRY:Source>
+    </QRY:Definition>
+
+
+
+    		  <!-- Added by Meenu for Accounting -->
+
+		   <QRY:Definition>
+					<QRY:Id>63</QRY:Id>
+					<QRY:Source Name="mail.mra.gpabilling.triggerGPABillingAccounting" Type="PROCEDURE">
+						<![CDATA[
+								CALL PKG_MAL_MRA_ACC.spr_mra_malgpablgacc
+										(
+											?,
+											?,
+											?,
+											?,
+											?,
+											?,
+											?
+										)
+							]]>
+					</QRY:Source>
+
+		</QRY:Definition>
+
+		 <QRY:Definition>
+	        <QRY:Id>15</QRY:Id>
+	        <QRY:Source Name="mail.mra.gpabilling.findinvoicereportdata" Type="NATIVE">
+	            <![CDATA[
+				    SELECT SMY.CMPCOD,
+					  SMY.GPACOD,
+					  SMY.INVNUM,
+					  SMY.INVDAT BLDDAT,
+					  SMY.TOTAMTCTRCUR,
+					  SMY.BLGCURCOD,
+					  SMY.TOTAMTBLGCUR,
+					  SMY.CTRCURCOD,
+					  (TO_CHAR(SMY.BLGPRDFRM,'MON-yyyy') )BLGPRDFRM,
+					  SMY.BLGPRDTOO,
+					  (TO_CHAR(SMY.BLGPRDFRM,'dd-mm-yyyy')
+					  ||' 
+					to '
+					  ||TO_CHAR(SMY.BLGPRDTOO,'dd-mm-yyyy')) BLDPRD,
+					  POA.CMPCOD,
+					  POA.POACOD,
+					  POA.ACCNUM,
+					  POA.POANAM,
+					  POA.POAADR,
+					  POA.CNTCOD,
+					  MALBOX.MSGENBFLG,
+					  MALBOX.PRTRDT,
+					  MALBOX.MSGEVTLOC,
+					  POA.CONPSN,
+					  POA.CTYNAM,
+					  POA.STANAM,
+					  POA.CNTCOD,
+					  POA.MOBNUM,
+					  POA.POSCOD,
+					  POA.PHNONE,
+					  POA.PHNTWO,
+					  POA.FAX,
+					  POA.EMLADR,
+					  POA.DBTINVCOD,
+					  DTL.MALCTGCOD,
+					  NULL TOTAMTSTLCUR,
+					  POA.VATNUM,
+					  POA.DUEDAY,
+					  blgsitmst.rmk,
+					  blgsitmst.arladr,
+					  bnkdtl.bnknam,
+					  bnkdtl.bnkbrn,
+					  bnkdtl.ctynam,
+					  bnkdtl.cntnam,
+					  bnkdtl.swtcod,
+					  TO_CHAR(BLGPRDFRM, 'MON-yyyy') as dateperiod,
+					   POA.VATNUM VATNUM,
+					TO_CHAR(SMY.INVDAT,'dd-MON-yyyy') INVDATMMMFORMAT,
+					bnkdtl.accnum bnkdtlAccnum
+					FROM MALMRAGPAC51DTL DTL,
+					  MALMRAGPAC51SMY SMY,
+					  MALPOAMST POA
+					LEFT OUTER JOIN MALMALBOX MALBOX
+					ON POA.CMPCOD =MALBOX.CMPCOD
+					AND POA.POACOD=MALBOX.MALBOXIDR
+					LEFT OUTER JOIN malmrablgsitcntdtl sitcntdtl
+					ON sitcntdtl.cmpcod    = poa.cmpcod
+					AND sitcntdtl.cntcod = poa.cntcod
+					LEFT OUTER JOIN malmrablgsitmst blgsitmst
+					ON blgsitmst.cmpcod     = sitcntdtl.cmpcod
+					AND blgsitmst.blgsitcod = sitcntdtl.blgsitcod
+					LEFT OUTER JOIN malmrablgsitbnkdtl bnkdtl
+					ON blgsitmst.cmpcod     = bnkdtl.cmpcod
+					AND blgsitmst.blgsitcod = bnkdtl.blgsitcod
+					WHERE SMY.CMPCOD        = DTL.CMPCOD
+					AND SMY.GPACOD          = DTL.GPACOD
+					AND SMY.INVNUM          = DTL.INVNUM
+					AND SMY.GPACOD          = POA.POACOD
+					AND SMY.CMPCOD          = POA.CMPCOD
+									 AND SMY.CMPCOD = ?
+
+
+	           ]]>
+	        </QRY:Source>
+    </QRY:Definition>
+
+
+
+	<QRY:Definition>
+	<QRY:Id>16</QRY:Id>
+	<QRY:Source Name="mail.mra.gpabilling.findairlineaddress" Type="NATIVE">
+			<![CDATA[
+
+						 SELECT ARLMST.ARLNAM,
+								ARLMST.BLGADR,
+								ARLMST.BLGPHNONE,
+								ARLMST.BLGPHNTWO,
+								ARLMST.BLGFAX
+								FROM SHRARLMST ARLMST
+								WHERE ARLMST.CMPCOD=?
+								AND ARLMST.ARLIDR =?
+				]]>
+	</QRY:Source>
+    </QRY:Definition>
+
+
+	<!-- added by A-4823 for ICRD 7316-->
+	<QRY:Definition>
+	<QRY:Id>17</QRY:Id>
+	<QRY:Source Name="mail.mra.gpabilling.findUnsettledInvoicesForGPA" Type="NATIVE">
+			<![CDATA[
+						 SELECT C51.GPACOD,POA.POANAM,
+							  C51.CMPCOD      ,
+							  TO_CHAR(C51.BLGPRDFRM,'dd-mm-yyyy')||' to '||TO_CHAR(C51.BLGPRDTOO,'dd-mm-yyyy')BLDPRD,
+							  C51.BLGPRDTOO   ,
+							  C51.INVNUM      ,
+							  C51.INVSERNUM   ,
+							  C51.BLGCURCOD   ,
+							  C51.LSTUPDUSR   ,
+							  C51.LSTUPDTIM   ,
+							  C51.INVSTA      ,
+							  C51.CTRCURCOD   ,
+							  C51.TOTAMTBLGCUR,
+							  C51.STLAMT      ,
+							  C51.STLSTA      ,
+							  C51.DUEAMT,
+							  C51.TOTAMTCTRCUR,
+							  POADTL.STLCUR STLCURCOD
+							   FROM MALMRAGPAC51SMY C51
+							LEFT OUTER JOIN MALPOAMST POA
+								 ON C51.GPACOD  = POA.POACOD
+							AND C51.CMPCOD      = POA.CMPCOD
+             AND C51.INVSERNUM=(SELECT MAX(INVSERNUM)
+             FROM MALMRAGPAC51SMY
+             WHERE CMPCOD = C51.CMPCOD
+             AND INVNUM   = C51.INVNUM
+             AND GPACOD   = C51.GPACOD
+             AND C51.STLSTA !='S'
+             AND C51.INVSTA !='R')
+							LEFT OUTER JOIN MALPOADTL POADTL
+							ON POA.CMPCOD= POADTL.CMPCOD
+							AND POA.POACOD= POADTL.POACOD
+        WHERE C51.CMPCOD      = ?
+							--AND C51.GPACOD      = ?
+							AND POADTL.PARCOD='STLINFO'
+							AND C51.INVSTA <> 'P'
+
+				]]>
+	</QRY:Source>
+    </QRY:Definition>
+	<!-- added by A-4823 for ICRD 7316-->
+	<!-- Modified by A-8236 for ICRD-256464-->
+
+	<QRY:Definition>
+	<QRY:Id>18</QRY:Id>
+	<QRY:Source Name="mail.mra.gpabilling.findSettledInvoicesForGPA" Type="NATIVE">
+			<![CDATA[
+							SELECT inv.invnum,
+								  inv.stlrefnum,
+								  inv.stlamt,
+								  inv.SEQNUM,
+								  inv.SERNUM,
+								  c51.gpacod,
+								  c51.cmpcod,
+								  TO_CHAR(C51.BLGPRDFRM,'dd-mm-yyyy')||' to '||TO_CHAR(C51.BLGPRDTOO,'dd-mm-yyyy') BLDPRD,
+								  C51.BLGPRDTOO   ,
+								  c51.invnum,
+								  C51.INVSERNUM,
+								  c51.blgcurcod,
+								  c51.lstupdusr,
+								  c51.lstupdtim,
+								  c51.invsta,
+								  c51.blgcurcod,
+								  c51.CTRCURCOD,
+								  c51.totamtblgcur,
+								  c51.stlamt,
+								  c51.stlsta,
+								  c51.TOTAMTCTRCUR,
+								  c51.dueamt,
+								  dtl.STLAMT,
+								  dtl.sernum,
+								  stl.stlcur STLCURCOD
+								FROM MALMRAGPASTLINVDTL inv
+								INNER JOIN MALMRAGPASTLDTL dtl ON inv.cmpcod = dtl.cmpcod
+								 AND inv.gpacod = dtl.gpacod
+								 AND inv.stlrefnum = dtl.stlrefnum
+								 AND inv.SERNUM = dtl.sernum
+								 AND inv.SEQNUM = dtl.seqnum
+								 INNER JOIN malmragpastl stl ON stl.cmpcod= dtl.cmpcod
+								 AND stl.gpacod= dtl.gpacod
+								 AND stl.stlrefnum= dtl.stlrefnum
+								 AND stl.seqnum= dtl.seqnum
+								INNER JOIN MALMRAGPAC51SMY c51 ON inv.gpacod = c51.gpacod
+								 AND inv.cmpcod = c51.cmpcod
+								 AND inv.invnum = c51.invnum
+								WHERE inv.cmpcod = ?
+								 AND inv.gpacod = ?
+								 AND inv.stlrefnum = ?
+								 AND INV.SEQNUM = ?
+				]]>
+	</QRY:Source>
+    </QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>19</QRY:Id>
+	<QRY:Source Name="mail.mra.gpabilling.findSettlementCurrency" Type="NATIVE">
+			<![CDATA[
+						SELECT CMPCOD,POACOD,STLCURCOD
+							FROM MALPOAMST
+							WHERE CMPCOD= ?
+							AND POACOD= ?
+				]]>
+	</QRY:Source>
+    </QRY:Definition>
+
+
+	<QRY:Definition>
+	<QRY:Id>20</QRY:Id>
+	<QRY:Source Name="mail.mra.gpabilling.findpomailsummarydetails" Type="NATIVE">
+			<![CDATA[
+					  SELECT C66DTL.SUBCLSGRP,
+									  C66DTL.MALCTGCOD,
+									  C66DTL.ORGCOD,
+									  C66DTL.DSTCOD,
+									  NULL BLGRAT,
+									  C66DTL.CTRCURCOD,
+									  cty.ctypirdis,
+									  BLGDTL.APLRAT,
+									  STLDTL.RMK,
+									  STL.STLDAT,
+									  STL.STLCUR,
+									  SUM(BLGDTL.SRVTAX) SRVTAX,
+									  SUM(BLGDTL.TDS) TDS,
+									  INVDTL.STLAMT,
+									  SUM(BLGDTL.WGTCHGCTR) WGTCHG,
+									  SUM(BLGDTL.NETAMT) NETAMT,
+									  SUM(BLGDTL.UPDWGTCHGCTR) UPDWGT,
+									  FLTNUMTAB.FLTNUMS
+									FROM MALMRAGPABLGDTL BLGDTL
+									LEFT OUTER JOIN MALMRAGPAC66DTL C66DTL
+									ON BLGDTL.CMPCOD     = C66DTL.CMPCOD
+									AND BLGDTL.UPDBILTOOPOA = C66DTL.GPACOD
+									AND BLGDTL.MALSEQNUM    = C66DTL.MALSEQNUM
+									AND BLGDTL.FLTCARIDR = C66DTL.FLTCARIDR
+									AND BLGDTL.FLTNUM    = C66DTL.FLTNUM
+									AND BLGDTL.FLTDAT    = C66DTL.FLTDAT
+									LEFT OUTER JOIN MALMRAGPASTLINVDTL INVDTL
+									ON C66DTL.CMPCOD  = INVDTL.CMPCOD
+									AND C66DTL.INVNUM = INVDTL.INVNUM
+									AND C66DTL.GPACOD = INVDTL.GPACOD
+									LEFT OUTER JOIN MALMRAGPASTLDTL STLDTL
+									ON STLDTL.CMPCOD     =INVDTL.CMPCOD
+									AND STLDTL.GPACOD    = INVDTL.GPACOD
+									AND STLDTL.SEQNUM    =INVDTL.SEQNUM
+									AND STLDTL.STLREFNUM =INVDTL.STLREFNUM
+									AND STLDTL.SERNUM    =INVDTL.SERNUM
+									INNER JOIN MALCSGDTL CSG ON
+									CSG.CMPCOD=BLGDTL.CMPCOD
+									AND CSG.MALSEQNUM=BLGDTL.MALSEQNUM
+									LEFT OUTER JOIN MALMRAGPASTL STL
+									ON STL.CMPCOD     =STLDTL.CMPCOD
+									AND STL.GPACOD    = STLDTL.GPACOD
+									AND STL.STLREFNUM = STLDTL.STLREFNUM
+									AND STL.SEQNUM    = STLDTL.SEQNUM
+									INNER JOIN
+									  (SELECT CMPCOD,
+										MALSEQNUM,
+										LTRIM( SYS_CONNECT_BY_PATH( FLTCARCOD
+										|| ' '
+										||FLTNUM, ',' ), ',' ) FLTNUMS
+									  FROM
+										(SELECT CMPCOD,
+										  MALSEQNUM,
+										  FLTCARCOD,
+										  FLTNUM,
+										  FLTDAT,
+										  ROW_NUMBER( ) OVER( PARTITION BY CMPCOD, MALSEQNUM ORDER BY FLTDAT ) RNM
+										FROM
+										  (SELECT CMPCOD,
+											MALSEQNUM,
+											FLTNUM,
+											FLTCARCOD,
+											FLTDAT
+										  FROM MALMRAGPABLGDTL
+										  WHERE blgsta = 'BD'
+										  )
+										)
+									  WHERE CONNECT_BY_ISLEAF   = 1
+										CONNECT BY PRIOR CMPCOD = CMPCOD
+									  AND PRIOR MALSEQNUM          = MALSEQNUM
+									  AND PRIOR RNM             = RNM - 1
+										START WITH RNM          = 1
+									  ) FLTNUMTAB
+									ON FLTNUMTAB.CMPCOD     = BLGDTL.CMPCOD
+									AND FLTNUMTAB.MALSEQNUM    = BLGDTL.MALSEQNUM
+									LEFT OUTER JOIN SHRCTYPIRMST CTY
+									ON C66DTL.CMPCOD = CTY.CMPCOD
+									AND c66dtl.orgcod
+									  ||'-'
+									  ||c66dtl.dstcod   = cty.ctypir
+									WHERE BLGDTL.CMPCOD = ?
+									AND CSG.CSGDAT BETWEEN ?
+									AND ?
+									AND c66dtl.ORGCOD IN ( SELECT SRVARPCOD
+									FROM SHRCTYMST CTYMST
+									INNER JOIN MALEXGOFCMST EXG
+									ON CTYMST.CMPCOD=EXG.CMPCOD
+									AND ctymst.cntcod=EXG.cntcod
+									AND ctymst.ctycod= EXG.ctycod
+													]]>
+	</QRY:Source>
+    </QRY:Definition>
+	<!-- added by A-4823 for ICRD 7316 trigger accounting on Settlement save-->
+	<QRY:Definition>
+	<QRY:Id>21</QRY:Id>
+	<QRY:Source Name="mail.mra.gpabilling.triggeraccounting" Type="PROCEDURE">
+			<![CDATA[
+						CALL PKG_MAL_MRA_ACC_NEW.SPR_MRA_MALGPASTLACC(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+						)
+													]]>
+	</QRY:Source>
+    </QRY:Definition>
+    <QRY:Definition>
+    	<QRY:Id>22</QRY:Id>
+    	<QRY:Source Name="mail.mra.gpabilling.findgpaforunsetteldinvoices" Type="NATIVE">
+    			<![CDATA[
+						SELECT  C51.GPACOD,
+							C51.CMPCOD,
+							MAX(C51.LSTUPDUSR) LSTUPDUSR,
+							MAX(C51.LSTUPDTIM) LSTUPDTIM,
+							POADTL.STLCUR STLCURCOD
+							 FROM MALMRAGPAC51SMY C51
+							LEFT OUTER JOIN MALPOAMST POA
+								 ON C51.GPACOD  = POA.POACOD
+							AND C51.CMPCOD      = POA.CMPCOD
+							LEFT OUTER JOIN MALPOADTL POADTL
+							ON POA.CMPCOD= POADTL.CMPCOD
+							AND POA.POACOD= POADTL.POACOD
+							  WHERE C51.STLSTA != 'S'
+							AND C51.CMPCOD      = ?
+							AND C51.GPACOD      = ?
+							AND POADTL.PARCOD='STLINFO'
+              					GROUP BY C51.GPACOD,C51.CMPCOD, poadtl.stlcur
+    				]]>
+    	</QRY:Source>
+    </QRY:Definition>
+    <!-- added by A-4823 for ICRD 7316 to find outstanding cheques on settlement save-->
+	<QRY:Definition>
+	<QRY:Id>22</QRY:Id>
+	<QRY:Source Name="mail.mra.gpabilling.findoutstandingchequeamounts" Type="NATIVE">
+			<![CDATA[
+					 SELECT STL.CMPCOD,
+						  STL.GPACOD,
+						  STL.STLREFNUM,
+						  DTL.OUTSTLAMT,
+						  STL.SEQNUM,
+						  DTL.SERNUM,
+						  STL.STLCUR,
+						  DTL.CHQDELFLG
+						FROM MALMRAGPASTL STL
+						INNER JOIN MALMRAGPASTLDTL DTL ON
+						STL.CMPCOD=DTL.CMPCOD
+						AND STL.GPACOD= DTL.GPACOD
+						AND STL.STLREFNUM=DTL.STLREFNUM
+						AND STL.SEQNUM=DTL.SEQNUM
+						WHERE DTL.OUTSTLAMT>0
+						AND STL.CMPCOD=?
+						AND STL.GPACOD=?
+						AND DTL.CHQDELFLG='0'
+								]]>
+	</QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>22</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findinvoicereporttkdata" Type="NATIVE">
+			<![CDATA[
+				WITH INVDTL as
+					(select ? POADAT, ? SITDAT, ? POACOD , ? CMPCOD, ? INVNUM from dual)
+				SELECT MALMRABLGSITMST.BLGSITCOD BLGSITCOD,
+					MALMRABLGSITMST.CMPCOD CMPCOD,
+					MALMRABLGSITMST.BLGSITNAM BLGSITNAM,
+					MALMRABLGSITMST.ARLADR ARLADR,
+					MALMRABLGSITMST.CORADR CORADR,
+					MALMRABLGSITMST.SIGONE SGNONE,
+					MALMRABLGSITMST.DSGONE DSGONE,
+					MALMRABLGSITMST.RMK RMK,
+					MALMRABLGSITMST.SIGTWO SGNTWO,
+					MALMRABLGSITMST.DSGTWO DSGTWO,
+					MALMRAGPAC51SMY.LSTUPDUSR LSTUPDUSR,
+					MALMRABLGSITBNKDTL.CURCOD,
+					MALMRABLGSITBNKDTL.BNKNAM,
+					MALMRABLGSITBNKDTL.BNKBRN,
+					MALMRABLGSITBNKDTL.ACCNUM,
+					MALMRABLGSITBNKDTL.CTYNAM,
+					MALMRABLGSITBNKDTL.CNTNAM,
+					MALMRABLGSITBNKDTL.SWTCOD,
+					MALMRABLGSITBNKDTL.IBNNUM,
+					MALMRABLGSITBNKDTL.SERNUM BNKSERNUM,
+					MALMRAGPAC51SMY.BLGCURCOD,
+					MALMRAGPAC51SMY.TOTAMTBLGCUR,
+          (TO_CHAR(MALMRAGPAC51SMY.BLGPRDFRM,'dd-MON-yyyy')||' to '||TO_CHAR(MALMRAGPAC51SMY.BLGPRDTOO,'dd-MON-yyyy')) BLDPRD,
+					MALPOAMST.POANAM,
+					MALPOAMST.POAADR,
+					MALPOAMST.CTYNAM CITY,
+					MALPOAMST.STANAM STATE,
+					MALPOAMST.CNTCOD COUNTRYCODE,
+					MALPOAMST.CNTNAM COUNTRY,
+					CNT.CNTNAM COUNTRYNAME,
+					MALPOAMST.FAX,
+					NULL TOTAMTSTLCUR,
+					MALPOAMST.VATNUM,
+					MALPOAMST.DUEDAY,
+					MALMRABLGSITCNTDTL.CNTCOD,
+					MALMRAGPAC51DTL.MALCTGCOD,
+					MALMRAGPAC51SMY.INVNUM,
+					MALPOADTL.PARVAL,
+					MALMRAGPAC51SMY.GPACOD,
+					MALMRAGPAC51SMY.INVDAT
+					FROM INVDTL
+					    INNER JOIN MALMRABLGSITMST ON
+						MALMRABLGSITMST.CMPCOD = INVDTL.CMPCOD
+						LEFT OUTER JOIN MALMRABLGSITBNKDTL ON
+							MALMRABLGSITBNKDTL.BLGSITCOD = MALMRABLGSITMST.BLGSITCOD AND
+							MALMRABLGSITBNKDTL.CMPCOD = MALMRABLGSITMST.CMPCOD
+						LEFT OUTER JOIN MALMRABLGSITCNTDTL ON
+							MALMRABLGSITCNTDTL.BLGSITCOD = MALMRABLGSITMST.BLGSITCOD AND
+							MALMRABLGSITCNTDTL.CMPCOD = MALMRABLGSITMST.CMPCOD
+						INNER JOIN MALPOAMST ON
+							MALPOAMST.CNTCOD IN (MALMRABLGSITCNTDTL.CNTCOD) OR MALMRABLGSITCNTDTL.CNTCOD IS NULL
+						INNER JOIN MALMRAGPAC51SMY ON
+							MALMRAGPAC51SMY.GPACOD = MALPOAMST.POACOD AND
+							MALMRAGPAC51SMY.CMPCOD = MALPOAMST.CMPCOD AND
+							MALMRAGPAC51SMY.INVSERNUM =
+											(SELECT MAX(INVSERNUM)
+											FROM MALMRAGPAC51SMY SMY
+											WHERE CMPCOD = MALMRAGPAC51SMY.CMPCOD
+														AND INVNUM = MALMRAGPAC51SMY.INVNUM
+											AND GPACOD   = MALMRAGPAC51SMY.GPACOD
+											AND INVNUM 	 = INVDTL.INVNUM
+											)
+						LEFT OUTER JOIN MALMRAGPAC51DTL ON
+							MALMRAGPAC51DTL.GPACOD = MALMRAGPAC51SMY.GPACOD AND
+							MALMRAGPAC51DTL.CMPCOD = MALMRAGPAC51SMY.CMPCOD AND
+							MALMRAGPAC51DTL.INVNUM = MALMRAGPAC51SMY.INVNUM AND
+							MALMRAGPAC51DTL.INVSERNUM = MALMRAGPAC51SMY.INVSERNUM
+						LEFT OUTER JOIN MALPOADTL ON
+							MALPOAMST.CMPCOD = MALPOADTL.CMPCOD AND
+							MALPOAMST.POACOD = MALPOADTL.POACOD
+							AND MALPOADTL.PARCOD    = 'CCID'
+							AND TO_DATE(INVDTL.POADAT) BETWEEN MALPOADTL.VLDFRM AND MALPOADTL.VLDTOO
+						LEFT OUTER JOIN SHRCNTMST CNT ON
+						  MALPOAMST.CMPCOD =CNT.CMPCOD  AND
+						  MALPOAMST.CNTCOD = CNT.CNTCOD
+						WHERE
+							TO_DATE(INVDTL.SITDAT) BETWEEN MALMRABLGSITMST.FRMDAT AND MALMRABLGSITMST.TOODAT
+							AND MALPOAMST.ACTFLG ='ACTIVE'
+							AND MALPOAMST.POACOD = INVDTL.POACOD
+							AND MALPOAMST.CMPCOD = INVDTL.CMPCOD
+							AND MALMRAGPAC51SMY.INVNUM = INVDTL.INVNUM
+
+								]]>
+	</QRY:Source>
+    </QRY:Definition>
+	<!--Added by A-4809 for BUG ICRD-67238-->
+	<QRY:Definition>
+		<QRY:Id>23</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findmaildetailsforaudit" Type="NATIVE">
+		<![CDATA[
+			select C66.CMPCOD,
+					C66.INVNUM,
+					SMY.INVDAT BLDDAT,
+					MST.ORGEXGOFC,
+					MST.DSTEXGOFC,
+					MST.MALCTGCOD,
+					MST.MALSUBCLS,
+					MST.DSN,
+					MST.YER,
+					MST.MALIDR
+					FROM
+					MALMRAGPAC66DTL C66,
+					MALMRAGPAC51SMY SMY,
+					MALMRABLGMST MST
+					where
+					C66.CMPCOD=MST.CMPCOD
+					AND C66.BLGBAS=MST.MALIDR
+					AND C66.MALSEQNUM=MST.MALSEQNUM
+					AND C66.INVNUM=SMY.INVNUM
+					AND C66.CMPCOD=SMY.CMPCOD
+					AND C66.CMPCOD=?
+					AND C66.INVNUM=?
+		]]>
+		</QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>24</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findCN66DetailsReport" Type="NATIVE">
+		<![CDATA[
+					SELECT MAX(CN66.CMPCOD) CN66CMPCOD,
+					  MAX(TO_CHAR(SMY.BLGPRDFRM,'dd-mm-yyyy')||' to '||TO_CHAR(SMY.BLGPRDTOO,'dd-mm-yyyy')) BLDPRD,
+					  MAX(CN66.INVNUM) CN66INVNUM,
+					  MAX(CN66.MCAREFNUM )CCAREFNUM,
+					  MAX(CN66.GPACOD )CN66GPACOD,
+					  MAX(CN66.MALCTGCOD )CN66MALCTGCOD,
+					  (CN66.ORGCOD || '-' || CN66.DSTCOD) SECTOR,
+					  CN66.SUBCLSGRP CN66MALSUBCLS,
+					  CN66.ORGCOD CN66ORGCOD,
+					  CN66.DSTCOD CN66DSTCOD,
+					  MAX(CN66.ACTSUBCLS) ACTSUBCLS,
+					  MAX(CN66.RCVDAT )CN66RCVDAT,
+					  MAX(CN66.DSN) CN66DSN,
+					  MAX(MST.RSN) CN66RSN,
+					  MAX(MST.CSGDOCNUM) CSGDOCNUM,
+					  MAX(CN66.RMK )CN66RMK,
+					  MAX(CN66.MALSEQNUM) CN66SEQNUM,
+					  MAX(CN66.TOTPCS) CN66TOTPCS,
+					  MAX(MST.MALIDR) CN66BLGBAS,
+					  MAX(CN66.TOTWGT )CN66TOTWGT,
+					  MAX(CN66.BILSECFRM )BILFRM,
+					  MAX(CN66.BILSECTOO) BILTOO,
+					  MAX(CN66.FLTNUM )FLTNUM,
+					  MAX(CN66.FLTCARIDR) FLTCARIDR,
+					  MAX(CN66.FLTCARCOD) FLTCARCOD,
+					  CN66.FLTDAT FLTDAT,
+					  MAX(CN66.LSTUPDUSR) LSTUPDUSR,
+					  MAX(CN66.LSTUPDTIM) LSTUPDTIM,
+					  MAX(CN66.BLGSTA) BLGSTA,
+					  MAX(CN66.TOTAMTEXCVATBLGCUR) BLDAMT,
+					  MAX(CN66.APLRAT) APLRAT,
+					  MAX(CN66.FULCHG )FULCHG,
+					  MAX(CN66.RATIND) FULCHGRATIND,
+					  MAX(SMY.BLGCURCOD) C51SMYBLGCURCOD,
+					  MAX(SMY.CTRCURCOD) C51SMYCTRCURCOD,
+					  MAX(CN66.VATAMTBLGCUR) VATAMT,
+					  MAX(PKG_FRMWRK.FUN_CONVCURR(CN66.CMPCOD,SMY.BLGCURCOD,'XDR','F',CN66.RCVDAT,SMY.TOTAMTLCBLGCUR))TOTAMTLC,
+					  MAX(PKG_FRMWRK.FUN_CONVCURR(CN66.CMPCOD,SMY.BLGCURCOD,'XDR','F',CN66.RCVDAT,SMY.TOTAMTCPBLGCUR))TOTAMTCP,
+					  MAX(CN66.NETAMTBLGCUR)TOTNETBLGCUR, 
+					  MAX(CN66.NETAMTCTRCUR)TOTNETCTRCUR,
+					  MAX(CN66.SRVTAXBLGCUR) SRVTAX,
+					  MAX(CN66.TDSBLGCUR) TDS,
+					  MAX(CN66.VALCHGBLGCUR) VALCHG,
+					  MAX(MST.DCLVAL) DCLVAL,
+					  MAX(CN66.NETAMTBLGCUR) NETAMT,
+					  MAX(MST.HSN) HSN,
+					  max(MST.REGIND) REGIND,
+					  MAX(CN66.MALCHGBLGCUR) MALCHG,
+					MAX(CN66.OTHCHGBLGCUR) OTHCHG,
+					MAX(POMST.STLCURCOD) STLCURCOD,
+					MAX(CN66.UNTCOD) UNTCOD,
+					MAX(MST.POAFLG) POAFLG,
+					MAX(MST.ULDNUM) CNTIDR,
+					MAX(MST.ACTULDWGT) ACTULDWGT,
+					MAX(MST.ACTULDWGTUNT) ACTULDWGTUNT,
+					MAX(POMST.POANAM) POANAM,
+					MAX(POMST.POAADR) POAADR,
+					MAX(SMY.INVDAT) INVDAT,
+					MAX(CN66.MCAREFNUM) MCA,
+					MAX(POMST.VATNUM) VATNUM,
+					MAX(TO_CHAR(SMY.INVDAT,'dd-MON-yy')) INVDATMMMFORMAT
+					FROM MALMRAGPAC66DTL CN66,
+					  MALMRAGPAC51SMY SMY,
+					  MALMRABLGMST MST,
+					  MALPOAMST POMST
+					WHERE SMY.CMPCOD=CN66.CMPCOD
+					AND SMY.INVNUM  =CN66.INVNUM
+					AND SMY.GPACOD  =CN66.GPACOD
+					AND MST.CMPCOD  =CN66.CMPCOD
+					AND SMY.INVSERNUM = (SELECT MAX(INVSERNUM) FROM
+					MALMRAGPAC51SMY WHERE
+					CMPCOD=SMY.CMPCOD
+					and INVNUM =SMY.INVNUM and GPACOD = SMY.GPACOD)
+					AND MST.MALSEQNUM  =CN66.MALSEQNUM
+					AND POMST.POACOD = CN66.GPACOD
+					AND POMST.CMPCOD = CN66.CMPCOD
+					AND POMST.ACTFLG='ACTIVE'
+					AND CN66.CMPCOD = ?
+					AND CN66.GPACOD = ?
+					AND CN66.INVNUM = ?
+					AND CN66.BLGSTA <> 'WD'
+					GROUP BY (CN66.ORGCOD || '-' || CN66.DSTCOD),CN66.SUBCLSGRP,CN66.MALSEQNUM,CN66.ORGCOD,CN66.DSTCOD,CN66.FLTDAT
+					order by (CN66.ORGCOD || '-' || CN66.DSTCOD),CN66.SUBCLSGRP,CN66.FLTDAT
+		]]>
+		</QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>25</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.finalizeinvoice" Type="PROCEDURE">
+			<![CDATA[
+					CALL PKG_MAL_MRA_GPABILLING_NEW.SPR_MRA_FINALIZE_INVOICE
+					(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+					)
+				]]>
+		</QRY:Source>
+
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>26</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.withdrawinvoice" Type="PROCEDURE">
+			<![CDATA[
+					CALL PKG_MAL_MRA_GPABILLING_NEW.SPR_MRA_WITHDRAW_INVOICE
+					(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+
+					)
+				]]>
+		</QRY:Source>
+
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>26</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.withdrawmails" Type="PROCEDURE">
+			<![CDATA[
+					CALL PKG_MAL_MRA_GPABILLING_NEW.SPR_MRA_WITHDRAW_MAILS
+					(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+
+					)
+				]]>
+		</QRY:Source>
+
+	</QRY:Definition>
+	<!--Added by A-7794 for BUG ICRD-ICRD-194277-->
+	<QRY:Definition>
+		<QRY:Id>27</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findinvoicedetails" Type="NATIVE">
+		<![CDATA[
+			SELECT INVNUM,INVSERNUM,
+				GPACOD,
+				ACCNUM ,
+				DUEAMT,
+				TOTAMTBLGCUR,
+				BLGCURCOD,
+				CTRCURCOD,
+				STLSTA
+		FROM MALMRAGPAC51SMY SMY ,
+			MALPOAMST MST
+		WHERE SMY.CMPCOD = MST.CMPCOD
+			AND SMY.GPACOD   = MST.POACOD
+			AND SMY.INVNUM   = ?
+			AND SMY.BLGPRDTOO = ?
+			AND MST.ACCNUM   = ?
+		]]>
+		</QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>28</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findlatestinvoicedetails" Type="NATIVE">
+		<![CDATA[
+			 SELECT STLREFNUM,INVNUM,
+    SERNUM,
+    SEQNUM
+  FROM MALMRAGPASTLINVDTL invdtl
+  WHERE CMPCOD    = ?
+  AND INVNUM  = ?
+  AND GPACOD    = ?
+  AND SERNUM =
+    (SELECT MAX(SERNUM )
+    FROM MALMRAGPASTLINVDTL
+    WHERE CMPCOD  = invdtl.CMPCOD
+    AND GPACOD    = invdtl.GPACOD
+    AND SEQNUM = invdtl.SEQNUM
+    AND INVNUM    = invdtl.INVNUM
+    )]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>29</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findsettlementseqnum" Type="NATIVE">
+		<![CDATA[
+		SELECT SEQNUM FROM MALMRAGPASTL WHERE GPACOD = ? AND STLREFNUM = ?
+			 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+    <QRY:Definition>
+		<QRY:Id>30</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.checkforcountofmailbagsunderperforma" Type="NATIVE">
+		<![CDATA[
+		SELECT COUNT(C66.malseqnum)NUMPCS from MALMRAGPAC66DTL C66 where   BLGSTA <>'WD'
+                        AND INVSERNUM=(SELECT MAX(INVSERNUM)
+        FROM MALMRAGPAC51SMY
+        WHERE CMPCOD = C66.CMPCOD
+        AND INVNUM   = C66.INVNUM
+        AND GPACOD   = C66.GPACOD
+		AND INVSTA IN ('P','F','N'))
+        AND CMPCOD=?
+		AND GPACOD=?
+		AND INVNUM=?
+			 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>31</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findsettlementforGPA" Type="NATIVE">
+		<![CDATA[
+select
+STL.GPACOD,
+  STL.CMPCOD,
+  STL.STLDAT,
+  STL.STLCUR STLCURCOD,
+  STL.STLREFNUM STLREFNUM,
+  STL.SEQNUM GPASEQNUM,
+  DTL.STLMODNUM ,
+  DTL.PAYDAT ,
+  DTL.BRNNAM ,
+  DTL.STLAMT ,
+  DTL.CHQDELFLG ,
+  DTL.RMK ,
+  DTL.BNKNAM ,
+  DTL.SEQNUM ,
+  DTL.SERNUM ,
+ INV.INVNUM INVNUM
+ FROM
+MALMRAGPASTL STL INNER JOIN
+MALMRAGPASTLINVDTL  INV
+ON INV.CMPCOD     = STL.CMPCOD
+AND INV.GPACOD    = STL.GPACOD
+AND INV.STLREFNUM = STL.STLREFNUM
+AND INV.SEQNUM    = STL.SEQNUM
+INNER JOIN MALMRAGPASTLDTL DTL
+ON INV.CMPCOD     = DTL.CMPCOD
+AND INV.GPACOD    = DTL.GPACOD
+AND INV.STLREFNUM = DTL.STLREFNUM
+AND INV.SEQNUM    = DTL.SEQNUM
+AND INV.SERNUM    = DTL.SERNUM
+INNER JOIN MALMRAGPAC51SMY C51
+ON INV.CMPCOD  = C51.CMPCOD
+AND INV.GPACOD = C51.GPACOD
+AND INV.INVNUM =C51.INVNUM
+AND C51.INVSERNUM=(SELECT MAX(INVSERNUM)
+        FROM MALMRAGPAC51SMY
+        WHERE CMPCOD = C51.CMPCOD
+        AND INVNUM   = C51.INVNUM
+        AND GPACOD   = C51.GPACOD
+		AND INVSTA IN ('P','F','N'))
+ WHERE C51.CMPCOD =?
+			 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>32</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.invoicelevelsettlement" Type="NATIVE">
+		<![CDATA[
+SELECT  POA.POACOD GPACOD ,
+									  POA.CMPCOD              ,
+									  STL.GPACOD STLGPACOD    ,
+									  STL.CMPCOD STLCMPCOD    ,
+									  STL.STLDAT              ,
+									  STL.STLCUR          ,
+									  STL.STLREFNUM       ,
+									  SUBSTR(STL.STLREFNUM, 12, 1) IDNO,
+									  STL.SEQNUM GPASEQNUM,
+									  DTL.STLMODNUM          ,
+									  DTL.PAYDAT          ,
+									  DTL.BRNNAM          ,
+									  DTL.STLAMT          ,
+									  DTL.CHQDELFLG       ,
+									  DTL.RMK             ,
+									  DTL.BNKNAM          ,
+									  DTL.SEQNUM          ,
+									  DTL.SERNUM          ,
+									  INV.SEQNUM  INVSEQNUM     ,
+									  INV.INVNUM          ,
+
+									  INV.RMK  INVRMK          ,
+									  INV.GPACOD INVGPACOD,
+									  INV.CMPCOD INVCMPCOD,
+									  INV.SERNUM INVSERNUM,
+									  C51.INVSTA          ,
+									  C51.STLSTA          ,
+									  TO_CHAR(C51.BLGPRDFRM,'dd-mm-yyyy')||' to '||TO_CHAR(C51.BLGPRDTOO,'dd-mm-yyyy') BLDPRD,
+									  C51.BLGPRDTOO   ,
+									  C51.TOTAMTBLGCUR    ,
+									  C51.TOTAMTCTRCUR	,
+									  C51.CTRCURCOD       ,
+									  C51.BLGCURCOD       ,
+									  C51.DUEAMT,
+									  POA.POANAM          ,
+									  C51.stlamt C51STLAMT,
+									  COALESCE(STL.STLCUR ,POADTL.STLCUR) POASTLCURCOD
+									   FROM MALPOAMST POA
+									INNER JOIN MALPOADTL POADTL ON
+									POA.CMPCOD= POADTL.CMPCOD
+									AND POA.POACOD= POADTL.POACOD
+
+									INNER JOIN MALMRAGPASTL STL
+										 ON POA.POACOD = STL.GPACOD
+									AND POA.CMPCOD     = STL.CMPCOD
+									INNER JOIN MALMRAGPASTLDTL DTL
+										 ON STL.CMPCOD = DTL.CMPCOD
+									AND STL.GPACOD     = DTL.GPACOD
+									AND STL.STLREFNUM  = DTL.STLREFNUM
+									AND STL.SEQNUM     = DTL.SEQNUM
+
+									INNER JOIN MALMRAGPASTLINVDTL INV
+										 ON DTL.CMPCOD = INV.CMPCOD
+									AND DTL.GPACOD     = INV.GPACOD
+									AND DTL.STLREFNUM  = INV.STLREFNUM
+									AND DTL.SEQNUM     = INV.SEQNUM
+									AND DTL.SERNUM     = INV.SERNUM
+									INNER JOIN MALMRAGPAC51SMY C51
+									ON INV.CMPCOD = C51.CMPCOD
+									AND INV.GPACOD = C51.GPACOD
+									AND INV.INVNUM=C51.INVNUM
+                  AND C51.INVSERNUM =(SELECT MAX(INVSERNUM)
+                    FROM MALMRAGPAC51SMY
+                    WHERE CMPCOD = C51.CMPCOD
+                    AND INVNUM   = C51.INVNUM
+                    AND GPACOD   = C51.GPACOD
+					AND INVSTA IN ('P','F','N'))
+                                WHERE POA.CMPCOD = ?
+			 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by A-7794 for KE CN66Details -->
+	<QRY:Definition>
+		<QRY:Id>30</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findCN66DetailsReportForKE" Type="NATIVE">
+		<![CDATA[
+				SELECT MAX(CN66.CMPCOD) CN66CMPCOD,
+         CN66.FLTNUM FLTNUM,
+        CN66.FLTCARIDR FLTCARIDR,
+        CN66.FLTDAT FLTDAT,
+        MAX(CN66.FLTCARCOD) FLTCARCOD,
+        MAX(TO_CHAR(SMY.BLGPRDFRM,'dd-mm-yyyy')
+        ||' to '
+        ||TO_CHAR(SMY.BLGPRDTOO,'dd-mm-yyyy')) BLDPRD,
+        MAX(CN66.INVNUM) CN66INVNUM,
+        MAX(CN66.MCAREFNUM )CCAREFNUM,
+        MAX(CN66.GPACOD )CN66GPACOD,
+        MAX(CN66.MALCTGCOD )CN66MALCTGCOD,
+        (MAX(CN66.ORGCOD)
+        || '-'
+        || MAX(CN66.DSTCOD)) SECTOR,
+        MAX(CN66.SUBCLSGRP) CN66MALSUBCLS,
+        MAX(CN66.ORGCOD) CN66ORGCOD,
+        MAX(CN66.DSTCOD) CN66DSTCOD,
+        MAX(CN66.ACTSUBCLS) ACTSUBCLS,
+        MAX(CN66.RCVDAT )CN66RCVDAT,
+        MAX(CN66.DSN) CN66DSN,
+        MAX(MST.RSN) CN66RSN,
+        MAX(CN66.RMK )CN66RMK,
+        MAX(CN66.INVSERNUM) CN66SEQNUM,
+        MAX(CN66.TOTPCS) CN66TOTPCS,
+        MAX(CN66.TOTWGT )CN66TOTWGT,
+        MAX(CN66.BILSECFRM )BILFRM,
+        MAX(CN66.BILSECTOO) BILTOO,
+
+        MAX(CN66.LSTUPDUSR) LSTUPDUSR,
+        MAX(CN66.LSTUPDTIM) LSTUPDTIM,
+        MAX(CN66.BLGSTA) BLGSTA,
+        MAX(CN66.TOTAMTEXCVATBLGCUR) BLDAMT,
+        MAX(CN66.APLRAT) APLRAT,
+        MAX(CN66.FULCHG )FULCHG,
+        MAX(CN66.RATIND) FULCHGRATIND,
+        MAX(SMY.BLGCURCOD) C51SMYBLGCURCOD,
+        MAX(CN66.VATAMTBLGCUR) VATAMT,
+        MAX(CN66.SRVTAXBLGCUR) SRVTAX,
+        MAX(CN66.TDSBLGCUR) TDS,
+        MAX(CN66.VALCHGBLGCUR) VALCHG,
+        MAX(MST.DCLVAL) DCLVAL,
+        MAX(CN66.NETAMTBLGCUR) NETAMT,
+        MAX(MST.HSN) HSN,
+        MAX(MST.REGIND) REGIND,
+        MAX(CN66.MALCHGBLGCUR) MALCHG,
+        MAX(CN66.OTHCHGBLGCUR) OTHCHG
+      FROM MALMRAGPAC66DTL CN66,
+        MALMRAGPAC51SMY SMY,
+        MALMRABLGMST MST
+      WHERE SMY.CMPCOD =CN66.CMPCOD
+      AND SMY.INVNUM   =CN66.INVNUM
+      AND SMY.GPACOD   =CN66.GPACOD
+      AND MST.CMPCOD   =CN66.CMPCOD
+      AND MST.MALSEQNUM=CN66.MALSEQNUM
+      AND CN66.CMPCOD    = ?
+      AND CN66.GPACOD    = ?
+      AND CN66.INVNUM    = ?
+      AND CN66.INVSERNUM =
+        (SELECT MAX(INVSERNUM)
+        FROM MALMRAGPAC51SMY
+        WHERE CMPCOD = CN66.CMPCOD
+        AND INVNUM   = CN66.INVNUM
+        AND GPACOD   = CN66.GPACOD
+		AND INVSTA IN ('P','F','N')
+        )
+      GROUP BY CN66.MALSEQNUM,
+      CN66.FLTCARIDR,CN66.FLTNUM,
+      CN66.FLTDAT
+      ORDER BY CN66.MALSEQNUM,
+      CN66.FLTCARIDR,CN66.FLTNUM,
+      CN66.FLTDAT
+			 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>31</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.settledmailbagdetails" Type="NATIVE">
+		<![CDATA[
+								SELECT POA.POACOD as GPACOD ,
+  POA.CMPCOD ,
+  INV.SEQNUM as  INVSEQNUM,
+  INV.INVNUM,
+  INV.RMK as  INVRMK,
+  INV.GPACOD as INVGPACOD,
+  INV.CMPCOD as INVCMPCOD,
+  INV.SERNUM as SERNUM,
+  C51.INVSERNUM,
+  C51.INVSTA ,
+  C51.STLAMT ,
+  C51.STLSTA,
+  C66DTL.CASCLSFLG,
+  c66dtl.rcvdat,
+  C66DTL.STLSTA C66STLSTA ,
+  CONCAT_WS('', TO_CHAR(c51.blgprdfrm, 'dd-mm-yyyy'), ' to ', TO_CHAR(c51.blgprdtoo, 'dd-mm-yyyy')) AS blgprdtoo,
+  C51.BLGPRDTOO BLGPRD ,
+  C66DTL.NETAMTBLGCUR ,
+  C51.TOTAMTBLGCUR ,
+  C66DTL.CTRCURCOD ,
+  C51.BLGCURCOD ,
+  C66DTL.DUEAMT as C66DUE_AMT,
+  POA.POANAM ,
+  C66DTL.STLAMT as C66STLAMT,
+  BLGMST.MALIDR as  MALIDR,
+  BLGMST.MALSEQNUM,
+
+
+
+      CASE
+    WHEN C66DTL.ctrcurcod <> c51.blgcurcod
+    THEN pg_catalog.ROUND(pkg_frmwrk.fun_convcurrwr(poa.cmpcod::text, C66DTL.ctrcurcod::text, c51.blgcurcod::text, 'F'::TEXT, STL.STLDAT, PAR.PARVAL::NUMERIC,
+      (SELECT SUM(revnetamt - netamt)
+      FROM malmramca AS mca
+      WHERE mca.cmpcod  = INV.cmpcod
+      AND mca.malseqnum = INV.malseqnum
+      AND mca.mcatyp    = 'I'
+      AND mca.mcasta    = 'A'
+      ))::NUMERIC,
+	  CASE 
+	WHEN OVRRND.PARVAL ='N' THEN 0
+	ELSE 
+	OVRRND.PARVAL::INT
+	END)
+    ELSE COALESCE(
+      (SELECT SUM(revnetamt - netamt)
+      FROM malmramca AS mca
+      WHERE mca.cmpcod  = INV.cmpcod
+      AND mca.malseqnum = INV.malseqnum
+      AND mca.mcatyp    = 'I'
+      AND mca.mcasta    = 'A'
+            ),0)
+
+        END REVNETAMT,
+  POADTL.STLCUR,
+  STL.STLDAT,
+  DTL.STLMODNUM,
+  STL.STLREFNUM,
+  DTL.STLAMT as AMT,
+  INV.STLAMT as INVSTLAMT,
+  POA.STLTOLPER,
+  POA.STLTOLVAL,
+  POA.STLTOLMAXVAL,
+  POA.STLLVL
+FROM MALMRAGPASTLINVDTL INV
+INNER JOIN MALPOAMST POA
+ON inv.CMPCOD = POA.CMPCOD
+AND inv.GPACOD= POA.POACOD
+INNER JOIN MALMRAGPASTL STL
+ON INV.CMPCOD     = STL.CMPCOD
+AND INV.GPACOD    = STL.GPACOD
+AND INV.STLREFNUM = STL.STLREFNUM
+AND INV.SEQNUM    = STL.SEQNUM
+INNER JOIN MALPOADTL POADTL
+ON POA.CMPCOD = POADTL.CMPCOD
+AND POA.POACOD= POADTL.POACOD
+AND STL.STLDAT BETWEEN POADTL.VLDFRM AND POADTL.VLDTOO
+INNER JOIN MALMRAGPASTLDTL DTL
+ON INV.CMPCOD     = DTL.CMPCOD
+AND INV.GPACOD    = DTL.GPACOD
+AND INV.STLREFNUM = DTL.STLREFNUM
+AND INV.SEQNUM    = DTL.SEQNUM
+AND INV.SERNUM    = DTL.SERNUM
+INNER JOIN MALMRAGPAC51SMY C51
+ON INV.CMPCOD  = C51.CMPCOD
+AND INV.GPACOD = C51.GPACOD
+AND INV.INVNUM =C51.INVNUM
+INNER JOIN MALMRAGPAC66DTL C66DTL
+ON C51.CMPCOD     = C66DTL.CMPCOD
+AND C51.GPACOD    = C66DTL.GPACOD
+AND C51.INVNUM    = C66DTL.INVNUM
+AND C51.INVSERNUM    = C66DTL.INVSERNUM
+AND C51.INVSERNUM = (SELECT MAX(INVSERNUM)
+        FROM MALMRAGPAC51SMY
+        WHERE CMPCOD = C66DTL.CMPCOD
+        AND INVNUM   = C66DTL.INVNUM
+        AND GPACOD   = C66DTL.GPACOD
+		AND INVSTA = 'F')
+and INV.MALSEQNUM= C66DTL.MALSEQNUM
+INNER JOIN MALMRABLGMST BLGMST
+ON C66DTL.CMPCOD     = BLGMST.CMPCOD
+AND C66DTL.MALSEQNUM = BLGMST.MALSEQNUM
+
+  INNER JOIN SHRSYSPAR PAR
+      ON PAR.CMPCOD =POA.CMPCOD
+      AND PAR.PARCOD='logonattributes.ownairlineidentifier'
+      INNER JOIN SHRSYSPAR OVRRND
+      ON OVRRND.CMPCOD      =POA.CMPCOD
+      AND OVRRND.PARCOD     ='mailtracking.mra.overrideroundingvalue'
+
+
+
+WHERE POA.CMPCOD     = ?
+AND POADTL.PARCOD    = 'STLINFO'
+AND INV.INVNUM       = ?
+
+
+			 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>32</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.unsettledmailbagdetails" Type="NATIVE">
+		<![CDATA[
+SELECT C51.GPACOD,
+  POA.POANAM,
+  C51.CMPCOD,
+  C51.INVSTA,
+  CONCAT_WS('', TO_CHAR(c51.blgprdfrm, 'dd-mm-yyyy'), ' to ', TO_CHAR(c51.blgprdtoo, 'dd-mm-yyyy')) AS blgprdtoo,
+  c51.blgprdtoo                                                                                     AS bldprd,
+  c51.invnum,
+  c51.invsernum,
+  BLGMST.MALIDR,
+  BLGMST.MALSEQNUM,
+  C66.NETAMTBLGCUR,
+  C66.MCAREFNUM,
+  c66.stlsta AS c66stlsta,
+  c66.stlamt AS c66stlamt,
+  c66.dueamt AS c66due_amt,
+  C66.CASCLSFLG,
+  C51.BLGCURCOD ,
+  C51.LSTUPDUSR ,
+  C51.LSTUPDTIM ,
+  C66.CTRCURCOD ,
+  C51.TOTAMTBLGCUR,
+  C51.STLAMT ,
+  C51.STLSTA ,
+  C51.DUEAMT,
+  C51.TOTAMTCTRCUR,
+  POADTL.STLCUR ,
+  POA.STLTOLPER,
+  POA.STLTOLVAL,
+  POA.STLTOLMAXVAL,
+  POA.STLLVL,
+  BLGMST.RCVDAT,
+
+  C66.RMK INVRMK,
+
+	CASE
+	WHEN C66.CTRCURCOD<>C51.BLGCURCOD and OVRRND.PARVAL= 'N'
+			then (PKG_FRMWRK.FUN_CONVCURR(POA.CMPCOD,C66.CTRCURCOD,C51.BLGCURCOD,'F',BLGMST.RCVDAT, (SELECT SUM(REVNETAMT-NETAMT)
+			FROM MALMRAMCA MCA
+			WHERE MCA.CMPCOD = BLGMST.CMPCOD
+			AND MCA.MALSEQNUM = BLGMST.MALSEQNUM
+			AND MCA.MCATYP = 'I'
+			AND MCA.MCASTA = 'A'
+			))::numeric)
+          WHEN C66.CTRCURCOD<>C51.BLGCURCOD
+          THEN ROUND(PKG_FRMWRK.FUN_CONVCURRWR(POA.CMPCOD,C66.CTRCURCOD,C51.BLGCURCOD,'F',BLGMST.RCVDAT,PAR.PARVAL::numeric,
+            (SELECT SUM(REVNETAMT-NETAMT)
+        FROM MALMRAMCA MCA
+        WHERE MCA.CMPCOD  = BLGMST.CMPCOD
+        AND MCA.MALSEQNUM = BLGMST.MALSEQNUM
+        AND MCA.MCATYP    = 'I'
+        AND MCA.MCASTA    = 'A'
+            ))::numeric,OVRRND.PARVAL::int)
+          ELSE coalesce(
+            (SELECT SUM(REVNETAMT-NETAMT)
+        FROM MALMRAMCA MCA
+        WHERE MCA.CMPCOD  = BLGMST.CMPCOD
+        AND MCA.MALSEQNUM = BLGMST.MALSEQNUM
+        AND MCA.MCATYP    = 'I'
+        AND MCA.MCASTA    = 'A'
+  ),0)
+        END REVNETAMT,
+
+  NULL STLDAT,
+  NULL STLMODNUM,
+  NULL STLREFNUM ,
+  NULL AMT,
+  NULL INVSTLAMT,
+ NULL SERNUM
+
+FROM malmragpac51smy       AS c51
+INNER JOIN malmragpac66dtl AS c66
+
+ON C51.GPACOD     = C66.GPACOD
+AND C51.INVNUM    = C66.INVNUM
+AND C51.INVSERNUM    = C66.INVSERNUM
+AND C51.INVSERNUM =
+  (SELECT MAX(INVSERNUM)
+        FROM MALMRAGPAC51SMY
+        WHERE CMPCOD = C66.CMPCOD
+        AND INVNUM   = C66.INVNUM
+        AND GPACOD   = C66.GPACOD
+  AND INVSTA   ='F'
+  )
+AND C51.CMPCOD    = C66.CMPCOD
+INNER JOIN malmrablgmst AS blgmst
+ON C66.CMPCOD     = BLGMST.CMPCOD
+AND C66.MALSEQNUM = BLGMST.MALSEQNUM
+INNER JOIN malpoamst AS poa
+ON C51.GPACOD  = POA.POACOD
+AND C51.CMPCOD = POA.CMPCOD
+INNER JOIN malpoadtl AS poadtl
+ON POA.CMPCOD     = POADTL.CMPCOD
+AND POA.POACOD    = POADTL.POACOD
+AND CURRENT_DATE BETWEEN POADTL.VLDFRM AND POADTL.VLDTOO
+INNER JOIN SHRSYSPAR PAR
+ON PAR.CMPCOD =POA.CMPCOD
+AND PAR.PARCOD='logonattributes.ownairlineidentifier'
+INNER JOIN SHRSYSPAR OVRRND
+ON OVRRND.CMPCOD      =POA.CMPCOD
+AND OVRRND.PARCOD='mailtracking.mra.overrideroundingvalue'
+WHERE C66.STLSTA NOT IN ( 'S','C')
+AND C51.CMPCOD    = ?
+AND POADTL.PARCOD ='STLINFO'
+AND C51.INVNUM    = ?
+
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+<QRY:Definition>
+		<QRY:Id>32</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.mailbagsettlementhistorydetails" Type="NATIVE">
+		<![CDATA[
+SELECT stl.cmpcod,
+  stl.gpacod,
+  stl.stldat,
+  stl.stlcur,
+  stl.stlrefnum,
+  dtl.STLMODNUM,
+  dtl.PAYDAT,
+  dtl.BRNNAM,
+  inv.STLAMT,
+  dtl.CHQDELFLG,
+  inv.rmk,
+  dtl.BNKNAM,
+  inv.invnum,
+  (select mcarefnum from MALMRAMCA MCA  where inv.cmpcod = MCA.CMPCOD
+AND INV.MALSEQNUM = MCA.MALSEQNUM AND MCA.MCATYP    = 'I'
+  AND MCA.MCASTA    = 'A') mcarefnum
+FROM  MALMRAGPASTLINVDTL inv
+INNER JOIN MALMRAGPASTLDTL dtl
+ON inv.cmpcod     = dtl.cmpcod
+AND inv.gpacod    = dtl.gpacod
+AND inv.stlrefnum = dtl.stlrefnum
+AND inv.seqnum    = dtl.SEQNUM
+AND inv.sernum    = dtl.SERNUM
+INNER JOIN malmragpastl stl
+ON stl.cmpcod     = dtl.cmpcod
+AND stl.gpacod    = dtl.gpacod
+AND stl.stlrefnum = dtl.stlrefnum
+AND stl.seqnum    = dtl.seqnum
+AND inv.cmpcod    = ?
+AND inv.gpacod    = ?
+AND inv.malseqnum    = ?
+
+
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>32</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.settlementdetails" Type="NATIVE">
+		<![CDATA[
+select
+STL.GPACOD GPACOD ,
+  STL.CMPCOD CMPCOD ,
+  STL.STLDAT ,
+  STL.STLCUR STLCURCOD,
+  STL.STLREFNUM ,
+  STL.SEQNUM GPASEQNUM,
+  DTL.LSTUPDUSR,
+  DTL.STLMODNUM ,
+  DTL.PAYDAT ,
+  DTL.BRNNAM ,
+  DTL.STLAMT ,
+  DTL.CHQDELFLG ,
+  DTL.RMK ,
+  DTL.BNKNAM ,
+  DTL.SEQNUM ,
+  DTL.SERNUM ,
+  INV.INVNUM
+ FROM
+MALMRAGPASTL STL INNER JOIN
+MALMRAGPASTLINVDTL  INV
+ON INV.CMPCOD     = STL.CMPCOD
+AND INV.GPACOD    = STL.GPACOD
+AND INV.STLREFNUM = STL.STLREFNUM
+AND INV.SEQNUM    = STL.SEQNUM
+INNER JOIN MALMRAGPASTLDTL DTL
+ON INV.CMPCOD     = DTL.CMPCOD
+AND INV.GPACOD    = DTL.GPACOD
+AND INV.STLREFNUM = DTL.STLREFNUM
+AND INV.SEQNUM    = DTL.SEQNUM
+AND INV.SERNUM    = DTL.SERNUM
+INNER JOIN MALMRAGPAC51SMY C51
+ON INV.CMPCOD  = C51.CMPCOD
+AND INV.GPACOD = C51.GPACOD
+AND INV.INVNUM =C51.INVNUM
+INNER JOIN MALPOADTL POADTL
+ON C51.CMPCOD = POADTL.CMPCOD
+AND C51.GPACOD= POADTL.POACOD
+AND STL.STLDAT BETWEEN POADTL.VLDFRM AND POADTL.VLDTOO
+WHERE POADTL.CMPCOD     = ?
+AND POADTL.PARCOD    = 'STLINFO'
+AND INV.INVNUM =?
+
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>33</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.mailbagLevelSettlement" Type="PROCEDURE">
+			<![CDATA[
+					CALL PKG_MAL_MRA_GPABILLING_NEW.SPR_MRA_BULK_MAILBAGSETTLEMENT
+					(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+
+					)
+				]]>
+		</QRY:Source>
+
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>34</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findreminderdetailsgpabilling" Type="NATIVE">
+			<![CDATA[
+			 SELECT MST.MALIDR,
+  MST.MALSEQNUM,
+  (SELECT MAX(MCA.MCAREFNUM)
+  FROM MALMRAMCA MCA
+  WHERE MCA.CMPCOD  = C66.CMPCOD
+  AND MCA.MALSEQNUM = C66.MALSEQNUM
+  AND MCA.MCATYP    = 'I'
+  AND MCA.MCASTA    = 'A'
+  AND MCA.MCAREFNUM    =
+    (SELECT MAX(MCAREFNUM)
+    FROM MALMRAMCA MALMCA
+    WHERE MALMCA.CMPCOD  = MCA.CMPCOD
+    AND MALMCA.MALSEQNUM = MCA.MALSEQNUM
+    AND MCA.MCATYP       = 'I'
+    AND MCA.MCASTA       = 'A'
+    )
+  ) MCANO,
+  C66.GPACOD,
+  C66.INVNUM,
+  C66.INVSERNUM,
+  '' RBLINVNUM,
+  'GPA Billing' TYPOFBLG,
+  '' REMSTA,
+  MST.RCVDAT,
+  MST.ORGARPCOD,
+  MST.DSTARPCOD,
+  C51SMY.BLGCURCOD,
+  C66.NETAMTBLGCUR ,
+  CASE
+      WHEN C66.CTRCURCOD<>C51SMY.BLGCURCOD
+      THEN ROUND(PKG_FRMWRK.FUN_CONVCURRWR(C51SMY.CMPCOD,C66.CTRCURCOD,C51SMY.BLGCURCOD,'F',MST.RCVDAT,PAR.PARVAL::NUMERIC,
+        (SELECT SUM(REVNETAMT-NETAMT)
+  FROM MALMRAMCA MCA
+          WHERE MCA.CMPCOD  = MST.CMPCOD
+          AND MCA.MALSEQNUM = MST.MALSEQNUM
+  AND MCA.MCATYP    = 'I'
+  AND MCA.MCASTA    = 'A'
+          ))::NUMERIC,OVRRND.PARVAL::INT)
+          ELSE COALESCE(
+          (SELECT SUM(REVNETAMT-NETAMT)
+            FROM MALMRAMCA MCA
+            WHERE MCA.CMPCOD  = MST.CMPCOD
+            AND MCA.MALSEQNUM = MST.MALSEQNUM
+            AND MCA.MCATYP    = 'I'
+            AND MCA.MCASTA    = 'A'
+          ),0)END
+  MCAAMT,
+  C66.STLAMT ,
+  C66.DUEAMT,
+  (SELECT MAX(RBLRND)
+        FROM MALMRAGPARBLDTL
+        WHERE CMPCOD  = C66.CMPCOD
+        AND GPACOD    = C66.GPACOD
+        AND INVNUM    = C66.INVNUM
+        AND MALSEQNUM = C66.MALSEQNUM
+        ) REMNUM
+FROM MALMRAGPAC66DTL C66 ,
+  MALMRABLGMST MST,
+  MALMRAGPAC51SMY C51SMY,
+  SHRSYSPAR PAR,SHRSYSPAR OVRRND
+WHERE C66.CMPCOD = MST.CMPCOD
+AND C66.MALSEQNUM = MST.MALSEQNUM
+AND C66.CMPCOD = C51SMY.CMPCOD
+AND C66.GPACOD = C51SMY.GPACOD
+AND C66.INVNUM = C51SMY.INVNUM
+AND C66.INVSERNUM    = C51SMY.INVSERNUM
+AND C51SMY.INVSERNUM =
+  (SELECT MAX(INVSERNUM)
+        FROM MALMRAGPAC51SMY
+        WHERE CMPCOD = C66.CMPCOD
+        AND INVNUM   = C66.INVNUM
+        AND GPACOD   = C66.GPACOD
+  AND INVSTA   = 'F'
+  )
+AND C51SMY.INVSTA = 'F'
+AND C66.STLSTA NOT IN ( 'S','C')
+AND PAR.CMPCOD =C51SMY.CMPCOD
+AND PAR.PARCOD='logonattributes.ownairlineidentifier'
+AND OVRRND.CMPCOD      =C51SMY.CMPCOD
+AND OVRRND.PARCOD     ='mailtracking.mra.overrideroundingvalue'
+AND C66.CMPCOD = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>37</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.gparebill" Type="PROCEDURE">
+			<![CDATA[
+					CALL PKG_MAL_MRA_GPABILLING_NEW.SPR_MRA_GENERATEREBILINV
+					(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+					)
+				]]>
+		</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+		<QRY:Id>38</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findremainderlist" Type="NATIVE">
+			<![CDATA[
+					SELECT MST.MALIDR,
+					MST.MALSEQNUM,
+					RMKDTL.MCAREFNUM MCANO,
+					RMKDTL.GPACOD,
+					RMKDTL.INVNUM,
+					RMKDTL.INVSERNUM,
+					RMKDTL.RBLINVNUM,
+					'GPA Billing' TYPOFBLG,
+					'Rebill generated' REMSTA,
+					RMKDTL.RCVDAT,
+					RMKDTL.ORGCOD ORGARPCOD,
+					RMKDTL.DSTCOD DSTARPCOD,
+					RMKDTL.BLGCURCOD,
+					RMKDTL.NETAMTBLGCUR ,
+					RMKDTL.MCAAMT,
+					RMKDTL.STLAMT ,
+					RMKDTL.DUEAMT,
+					RMKDTL.RBLRND REMNUM
+				  FROM MALMRAGPARBLDTL RMKDTL ,
+					MALMRABLGMST MST
+				  WHERE RMKDTL.CMPCOD  = MST.CMPCOD
+				  AND RMKDTL.DUEAMT <> 0
+				  AND RMKDTL.MALSEQNUM = MST.MALSEQNUM AND RMKDTL.CMPCOD = ?
+				]]>
+		</QRY:Source>
+
+	</QRY:Definition>
+
+
+<QRY:Definition>
+		<QRY:Id>39</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.processSettlementUploadDetails" Type="PROCEDURE">
+			<![CDATA[
+				CALL Pkg_Frmwrk_Extdta.spr_main(?,?,?,?,?,?,?)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+		<QRY:Id>40</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.fetchDataForUpload" Type="PROCEDURE">
+			<![CDATA[
+				 SELECT
+ STLTMP.CMPCOD,
+ STLTMP.CURCOD,
+ STLTMP.DSTCOD,
+ STLTMP.FILTYP,
+ STLTMP.FLNSEC,
+ STLTMP.INVNUM,
+ STLTMP.MALCHG,
+ STLTMP.MALRAT,
+ STLTMP.NETAMT,
+ STLTMP.ORGCOD,
+ STLTMP.PACOD,
+ STLTMP.STLAMT,
+ STLTMP.STLMTCUR,
+ STLTMP.STLRMKS,
+ STLTMP.SURCHG,
+ STLTMP.TAX,
+ STLTMP.WGT,
+ FILUPD.FILNAM,
+ DTL.MALSEQNUM,
+ FILUPD.PRCIDR,
+ STLTMP.MALIDR,
+ C51.GPACOD C51GPA,
+ C51.INVNUM C51INVNUM,
+ C51.INVSERNUM,
+ DTL.STLAMT C66STLAMT,
+ DTL.DUEAMT C66DUEAMT,
+ C51.BLGCURCOD,
+    COALESCE(
+        (SELECT (REVNETAMT-NETAMT)
+        FROM MALMRAMCA MCA
+        WHERE MCA.CMPCOD  = DTL.CMPCOD
+        AND MCA.MALSEQNUM = DTL.MALSEQNUM
+        AND MCA.MCATYP    = 'I'
+        AND MCA.MCASTA    = 'A'
+        AND MCA.ISSDAT    =
+          (SELECT MAX(ISSDAT)
+          FROM MALMRAMCA MALMCA
+          WHERE MALMCA.CMPCOD  = MCA.CMPCOD
+          AND MALMCA.MALSEQNUM = MCA.MALSEQNUM
+          AND MCA.MCATYP       = 'I'
+          AND MCA.MCASTA       = 'A'
+          )
+        ),0) REVNETAMT,
+  POAMST.STLLVL,
+  POAMST.STLTOLMAXVAL,
+  POAMST.STLTOLPER,
+  POAMST.STLTOLVAL
+FROM MALMRASTLTMP STLTMP
+INNER JOIN SHRFILUPD FILUPD
+ON STLTMP.CMPCOD= FILUPD.CMPCOD
+AND STLTMP.FILNAM=FILUPD.PRCIDR
+LEFT OUTER JOIN  MALMRABLGMST MST
+ON MST.CMPCOD = STLTMP.CMPCOD
+AND MST.MALIDR = STLTMP.MALIDR
+LEFT OUTER JOIN MALMRAGPAC66DTL DTL
+ON MST.CMPCOD= DTL.CMPCOD
+AND MST.MALSEQNUM = DTL.MALSEQNUM
+AND STLTMP.INVNUM = DTL.INVNUM
+AND STLTMP.PACOD = DTL.GPACOD
+LEFT OUTER JOIN MALMRAGPAC51SMY C51
+ON STLTMP.CMPCOD=C51.CMPCOD
+AND STLTMP.INVNUM = C51.INVNUM
+AND STLTMP.PACOD = C51.GPACOD
+AND DTL.CMPCOD = C51.CMPCOD
+AND DTL.INVNUM = C51.INVNUM
+AND DTL.GPACOD = C51.GPACOD
+AND DTL.INVSERNUM = C51.INVSERNUM
+LEFT OUTER JOIN MALPOAMST POAMST
+ON STLTMP.CMPCOD = POAMST.CMPCOD
+AND STLTMP.PACOD = POAMST.POACOD
+AND C51.CMPCOD = POAMST.CMPCOD
+AND C51.GPACOD = POAMST.POACOD
+AND  STLTMP.CMPCOD=?
+AND STLTMP.FILTYP =?
+ORDER BY STLTMP.CMPCOD,STLTMP.INVNUM
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>36</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.filenameValidation" Type="PROCEDURE">
+			<![CDATA[
+				SELECT COUNT(UPD.FILNAM) as NUMPCS
+				FROM SHRFILUPD UPD
+				WHERE UPD.CMPCOD 	= ?
+				AND UPD.FILTYP 		= ?
+				AND UPD.FILNAM      = ?
+				
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+		<QRY:Id>41</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.removeDataFromTempTable" Type="PROCEDURE">
+			<![CDATA[
+				CALL PKG_MAL_MRA_GPABILLING_NEW.SPR_MAIL_UPL(?,?,?,?,?,?)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>43</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findgparemaks" Type="NATIVE">
+		
+			<![CDATA[
+				SELECT DISTINCT RMK.CMPCOD,
+				  COALESCE(rmk.rmk,' ') RMK,
+				  RMK.RBLRND,
+				  RMK.MALSEQNUM,
+				  RBL.RBLSTA
+			    from
+				MALMRAGPARMKDTL rmk inner join 
+				malmrablgmst mst on 
+				MST.CMPCOD = rmk.CMPCOD
+				and MST.MALSEQNUM = rmk.MALSEQNUM
+				left outer join malmragparbldtl rbl
+				on rmk.cmpcod = rbl.cmpcod
+				and rmk.invnum = rbl.invnum
+				and RMK.GPACOD = RBL.GPACOD
+				and RMK.MALSEQNUM = RBL.MALSEQNUM
+				WHERE rmK.cmpcod    = ?
+				AND mst.MALIDR = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+<!-- Added By A-8527 for ICRD-234294 Starts -->
+	<QRY:Definition>
+		<QRY:Id>44</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findAllInvoices.union" Type="NATIVE">
+		<![CDATA[
+		UNION ALL
+		SELECT C51SMY.CMPCOD,
+		C51SMY.GPACOD,
+		POAMST.POANAM,
+		C51SMY.INVNUM,
+		C51SMY.INVSERNUM,
+		TO_CHAR(C51SMY.BLGPRDFRM,'dd-mm-yyyy')
+		||' to '
+		||TO_CHAR(C51SMY.BLGPRDTOO,'dd-mm-yyyy') BLDPRD,
+		C51SMY.INVDAT BLDDAT,
+		        CASE
+          WHEN C51SMY.STLAMT=0
+          THEN C51SMY.TOTAMTCTRCUR
+          ELSE C51SMY.DUEAMT
+        END TOTAMTCTRCUR,
+		C51SMY.BLGCURCOD,
+		C51SMY.TOTAMTBLGCUR TOTAMTBLGCUR,
+		C51SMY.CTRCURCOD,
+		C51SMY.INVSTA INVSTA,
+		C51SMY.LSTUPDTIM,
+		C51SMY.LSTUPDUSR,
+		C51SMY.BLGPRDFRM,
+		C51SMY.BLGPRDTOO,
+		C51SMY.TOTAMTBLGCUR TOTAMTSTLCUR,
+		(SELECT MAX(RBLRND) FROM MALMRAGPARBLDTL
+        WHERE CMPCOD = C51SMY.CMPCOD
+        AND INVNUM = C51SMY.INVNUM
+        AND INVSERNUM = C51SMY.INVSERNUM
+        AND GPACOD = C51SMY.GPACOD) RBLRND,
+		C51SMY.INTFCDFILNAM
+		FROM MALMRAGPAC51SMY C51SMY ,
+		MALPOAMST poamst
+		WHERE C51SMY.GPACOD = POAMST.POACOD
+		AND C51SMY.CMPCOD   =POAMST.CMPCOD
+		AND C51SMY.CMPCOD   =?
+		AND INVSTA  IN( 'R')
+
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>45</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findCN66Detailsrebillreport" Type="NATIVE">
+		<![CDATA[
+		SELECT RBL.CMPCOD CN66CMPCOD,
+		  (TO_CHAR(SMY.BLGPRDFRM,'dd-mm-yyyy')
+		  ||' to '
+		  ||TO_CHAR(SMY.BLGPRDTOO,'dd-mm-yyyy')) BLDPRD,
+		  (RBL.RBLINVNUM) CN66INVNUM,
+		  (RBL.MCAREFNUM )CCAREFNUM,
+		  (RBL.GPACOD )CN66GPACOD,
+		  (RBL.MALCTGCOD )CN66MALCTGCOD,
+		  (RBL.ORGCOD) CN66ORGCOD,
+		  (RBL.DSTCOD) CN66DSTCOD,
+		  (MST.MALIDR) CN66BLGBAS,
+		  (RBL.TOTWGT) CN66TOTWGT,
+		  (RBL.SUBCLSGRP) CN66MALSUBCLS,
+		  (RBL.BLGCURCOD) C51SMYBLGCURCOD,
+		  RBL.DUEAMT NETAMT,
+		  RBL.RMK CN66RMK
+		FROM MALMRAGPARBLDTL RBL,
+		  MALMRAGPAC51SMY SMY,
+		  MALMRABLGMST MST
+		WHERE RBL.CMPCOD    = SMY.CMPCOD
+		AND RBL.INVNUM    = SMY.INVNUM
+		AND RBL.GPACOD    = SMY.GPACOD
+		AND RBL.INVSERNUM = SMY.INVSERNUM
+		AND RBL.RBLINVNUM = SMY.RBLINVNUM
+		AND MST.CMPCOD     =RBL.CMPCOD
+		AND MST.MALSEQNUM =RBL.MALSEQNUM
+		AND RBL.CMPCOD   = ?
+		AND RBL.RBLINVNUM   = ?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!-- Added By A-8527 for ICRD-326072 Starts -->
+	<QRY:Definition>
+		<QRY:Id>46</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findinvoicereporttkdataforRebill" Type="NATIVE">
+			<![CDATA[
+				WITH INVDTL as
+					(select ? POADAT, ? SITDAT, ? POACOD , ? CMPCOD, ? INVNUM from dual)
+				SELECT MALMRABLGSITMST.BLGSITCOD BLGSITCOD,
+					MALMRABLGSITMST.CMPCOD CMPCOD,
+					MALMRABLGSITMST.BLGSITNAM BLGSITNAM,
+					MALMRABLGSITMST.ARLADR ARLADR,
+					MALMRABLGSITMST.CORADR CORADR,
+					MALMRABLGSITMST.SIGONE SGNONE,
+					MALMRABLGSITMST.DSGONE DSGONE,
+					MALMRABLGSITMST.SIGTWO SGNTWO,
+					MALMRABLGSITMST.DSGTWO DSGTWO,
+					MALMRABLGSITMST.RMK RMK,
+					MALMRABLGSITBNKDTL.CURCOD,
+					MALMRABLGSITBNKDTL.BNKNAM,
+					MALMRABLGSITBNKDTL.BNKBRN,
+					MALMRABLGSITBNKDTL.ACCNUM,
+					MALMRABLGSITBNKDTL.CTYNAM,
+					MALMRABLGSITBNKDTL.CNTNAM,
+					MALMRABLGSITBNKDTL.SWTCOD,
+					MALMRABLGSITBNKDTL.IBNNUM,
+					MALMRABLGSITBNKDTL.SERNUM BNKSERNUM,
+					MALMRAGPAC51SMY.BLGCURCOD,
+					MALMRAGPAC51SMY.TOTAMTBLGCUR,
+          (TO_CHAR(MALMRAGPAC51SMY.BLGPRDFRM,'dd-MON-yyyy')||' to '||TO_CHAR(MALMRAGPAC51SMY.BLGPRDTOO,'dd-MON-yyyy')) BLDPRD,
+					MALPOAMST.POANAM,
+					MALPOAMST.POAADR,
+					MALPOAMST.CTYNAM CITY,
+					MALPOAMST.STANAM STATE,
+					MALPOAMST.CNTCOD COUNTRYCODE,
+					MALPOAMST.CNTNAM COUNTRY,
+					CNT.CNTNAM COUNTRYNAME,
+					MALPOAMST.FAX,
+					NULL TOTAMTSTLCUR,
+					MALPOAMST.VATNUM,
+					MALPOAMST.DUEDAY,
+					MALMRABLGSITCNTDTL.CNTCOD,
+					MALMRAGPAC51DTL.MALCTGCOD,
+					MALMRAGPAC51SMY.INVNUM,
+					MALPOADTL.PARVAL,
+					MALMRAGPAC51SMY.GPACOD,
+					MALMRAGPAC51SMY.INVDAT
+					FROM INVDTL
+					    INNER JOIN MALMRABLGSITMST ON
+						MALMRABLGSITMST.CMPCOD = INVDTL.CMPCOD
+						LEFT OUTER JOIN MALMRABLGSITBNKDTL ON
+							MALMRABLGSITBNKDTL.BLGSITCOD = MALMRABLGSITMST.BLGSITCOD AND
+							MALMRABLGSITBNKDTL.CMPCOD = MALMRABLGSITMST.CMPCOD
+						LEFT OUTER JOIN MALMRABLGSITCNTDTL ON
+							MALMRABLGSITCNTDTL.BLGSITCOD = MALMRABLGSITMST.BLGSITCOD AND
+							MALMRABLGSITCNTDTL.CMPCOD = MALMRABLGSITMST.CMPCOD
+						INNER JOIN MALPOAMST ON
+							MALPOAMST.CNTCOD IN (MALMRABLGSITCNTDTL.CNTCOD) OR MALMRABLGSITCNTDTL.CNTCOD IS NULL
+						INNER JOIN MALMRAGPAC51SMY ON
+							MALMRAGPAC51SMY.GPACOD = MALPOAMST.POACOD AND
+							MALMRAGPAC51SMY.CMPCOD = MALPOAMST.CMPCOD AND
+							MALMRAGPAC51SMY.INVSERNUM =
+											(SELECT MAX(INVSERNUM)
+											FROM MALMRAGPAC51SMY SMY
+											WHERE CMPCOD = MALMRAGPAC51SMY.CMPCOD
+														AND INVNUM = MALMRAGPAC51SMY.INVNUM
+											AND GPACOD   = MALMRAGPAC51SMY.GPACOD
+											AND INVNUM 	 = INVDTL.INVNUM
+											)
+						LEFT OUTER JOIN MALMRAGPAC51DTL ON
+							MALMRAGPAC51DTL.GPACOD = MALMRAGPAC51SMY.GPACOD AND
+							MALMRAGPAC51DTL.CMPCOD = MALMRAGPAC51SMY.CMPCOD AND
+							MALMRAGPAC51DTL.INVNUM = MALMRAGPAC51SMY.INVNUM
+						LEFT OUTER JOIN MALPOADTL ON
+							MALPOAMST.CMPCOD = MALPOADTL.CMPCOD AND
+							MALPOAMST.POACOD = MALPOADTL.POACOD
+							AND MALPOADTL.PARCOD    = 'CCID'
+							AND TO_DATE(INVDTL.POADAT) BETWEEN MALPOADTL.VLDFRM AND MALPOADTL.VLDTOO
+						LEFT OUTER JOIN SHRCNTMST CNT ON
+						  MALPOAMST.CMPCOD =CNT.CMPCOD  AND
+						  MALPOAMST.CNTCOD = CNT.CNTCOD
+						WHERE
+							TO_DATE(INVDTL.SITDAT) BETWEEN MALMRABLGSITMST.FRMDAT AND MALMRABLGSITMST.TOODAT
+							AND MALPOAMST.ACTFLG ='ACTIVE'
+							AND MALPOAMST.POACOD = INVDTL.POACOD
+							AND MALPOAMST.CMPCOD = INVDTL.CMPCOD
+							AND MALMRAGPAC51SMY.INVNUM = INVDTL.INVNUM
+								]]>
+	</QRY:Source>
+    </QRY:Definition>
+	<!-- Added By A-8527 for ICRD-326072 Ends -->
+	
+	<!-- Added By A-9477 for IASCB-94550 Starts -->
+	<QRY:Definition>
+		<QRY:Id>47</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.settledmailbagdetails.oracle" Type="NATIVE">
+		<![CDATA[
+		SELECT POA.POACOD GPACOD ,
+      POA.CMPCOD ,
+      INV.SEQNUM INVSEQNUM,
+      INV.INVNUM,
+      INV.RMK INVRMK,
+      INV.GPACOD INVGPACOD,
+      INV.CMPCOD INVCMPCOD,
+      INV.SERNUM SERNUM,
+      C51.INVSERNUM,
+      C51.INVSTA ,
+      C51.STLAMT ,
+      C51.STLSTA,
+      C66DTL.CASCLSFLG,
+      c66dtl.rcvdat,
+      C66DTL.STLSTA C66STLSTA ,
+       TO_CHAR(c51.blgprdfrm, 'dd-mm-yyyy')
+        || ' to '
+        || TO_CHAR(c51.blgprdtoo, 'dd-mm-yyyy') blgprdtoo ,
+        C51.BLGPRDTOO BLGPRD ,
+      C66DTL.NETAMTBLGCUR ,
+      C51.TOTAMTBLGCUR ,
+      C66DTL.CTRCURCOD ,
+      C51.BLGCURCOD ,
+      C66DTL.DUEAMT C66DUE_AMT,
+      POA.POANAM ,
+      C66DTL.STLAMT C66STLAMT,
+      BLGMST.MALIDR MALIDR,
+      BLGMST.MALSEQNUM,
+      CASE
+	 
+	      WHEN C66.CTRCURCOD<>C51.BLGCURCOD and OVRRND.PARVAL= 'N'
+			then (PKG_FRMWRK.FUN_CONVCURR(POA.CMPCOD,C66.CTRCURCOD,C51.BLGCURCOD,'F',BLGMST.RCVDAT, (SELECT SUM(REVNETAMT-NETAMT)
+			FROM MALMRAMCA MCA
+			WHERE MCA.CMPCOD = BLGMST.CMPCOD
+			AND MCA.MALSEQNUM = BLGMST.MALSEQNUM
+			AND MCA.MCATYP = 'I'
+			AND MCA.MCASTA = 'A'
+			))::numeric)
+        WHEN C66DTL.ctrcurcod <> c51.blgcurcod
+        THEN ROUND(pkg_frmwrk.fun_convcurrwr(poa.cmpcod, C66DTL.ctrcurcod, c51.blgcurcod, 'F', STL.STLDAT, PAR.PARVAL,
+          (SELECT SUM(revnetamt - netamt)
+          FROM malmramca mca
+          WHERE mca.cmpcod  = INV.cmpcod
+          AND mca.malseqnum = INV.malseqnum
+          AND mca.mcatyp    = 'I'
+          AND mca.mcasta    = 'A'
+          )), OVRRND.PARVAL)
+        ELSE COALESCE(
+          (SELECT SUM(revnetamt - netamt)
+          FROM malmramca mca
+          WHERE mca.cmpcod  = INV.cmpcod
+          AND mca.malseqnum = INV.malseqnum
+          AND mca.mcatyp    = 'I'
+          AND mca.mcasta    = 'A'
+          ),0)
+      END revnetamt,
+      POADTL.STLCUR,
+      STL.STLDAT,
+      DTL.STLMODNUM,
+      STL.STLREFNUM,
+      DTL.STLAMT AMT,
+      INV.STLAMT INVSTLAMT,
+      POA.STLTOLPER,
+      POA.STLTOLVAL,
+      POA.STLTOLMAXVAL,
+      POA.STLLVL
+    FROM MALMRAGPASTLINVDTL INV
+    INNER JOIN MALPOAMST POA
+    ON inv.CMPCOD = POA.CMPCOD
+    AND inv.GPACOD= POA.POACOD
+    INNER JOIN MALMRAGPASTL STL
+    ON INV.CMPCOD     = STL.CMPCOD
+    AND INV.GPACOD    = STL.GPACOD
+    AND INV.STLREFNUM = STL.STLREFNUM
+    AND INV.SEQNUM    = STL.SEQNUM
+    INNER JOIN MALPOADTL POADTL
+    ON POA.CMPCOD = POADTL.CMPCOD
+    AND POA.POACOD= POADTL.POACOD
+    AND STL.STLDAT BETWEEN POADTL.VLDFRM AND POADTL.VLDTOO
+    INNER JOIN MALMRAGPASTLDTL DTL
+    ON INV.CMPCOD     = DTL.CMPCOD
+    AND INV.GPACOD    = DTL.GPACOD
+    AND INV.STLREFNUM = DTL.STLREFNUM
+    AND INV.SEQNUM    = DTL.SEQNUM
+    AND INV.SERNUM    = DTL.SERNUM
+    INNER JOIN MALMRAGPAC51SMY C51
+    ON INV.CMPCOD  = C51.CMPCOD
+    AND INV.GPACOD = C51.GPACOD
+    AND INV.INVNUM =C51.INVNUM
+    INNER JOIN MALMRAGPAC66DTL C66DTL
+    ON C51.CMPCOD     = C66DTL.CMPCOD
+    AND C51.GPACOD    = C66DTL.GPACOD
+    AND C51.INVNUM    = C66DTL.INVNUM
+    AND C51.INVSERNUM = C66DTL.INVSERNUM
+    AND C51.INVSERNUM =
+      (SELECT MAX(INVSERNUM)
+      FROM MALMRAGPAC51SMY
+      WHERE CMPCOD = C66DTL.CMPCOD
+      AND INVNUM   = C66DTL.INVNUM
+      AND GPACOD   = C66DTL.GPACOD
+      AND INVSTA   = 'F'
+      )
+    AND INV.MALSEQNUM= C66DTL.MALSEQNUM
+    INNER JOIN MALMRABLGMST BLGMST
+    ON C66DTL.CMPCOD     = BLGMST.CMPCOD
+    AND C66DTL.MALSEQNUM = BLGMST.MALSEQNUM
+    INNER JOIN SHRSYSPAR PAR
+    ON PAR.CMPCOD =POA.CMPCOD
+    AND PAR.PARCOD='logonattributes.ownairlineidentifier'
+    INNER JOIN SHRSYSPAR OVRRND
+    ON OVRRND.CMPCOD  =POA.CMPCOD
+    AND OVRRND.PARCOD ='mailtracking.mra.overrideroundingvalue'
+    WHERE POA.CMPCOD  = ?
+    AND POADTL.PARCOD = 'STLINFO'
+    AND INV.INVNUM    = ?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!-- Added By A-9477 for IASCB-94550 Starts -->
+			
+<QRY:Definition>
+		<QRY:Id>48</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.unsettledmailbagdetails.oracle" Type="NATIVE">
+		<![CDATA[
+SELECT C51.GPACOD,
+  POA.POANAM,
+  C51.CMPCOD,
+  C51.INVSTA,
+  TO_CHAR(C51.BLGPRDFRM,'dd-mm-yyyy')
+  ||' to '
+  ||TO_CHAR(C51.BLGPRDTOO,'dd-mm-yyyy')
+  BLGPRDTOO ,
+      C51.BLGPRDTOO BLDPRD   ,
+  C51.INVNUM ,
+  C51.INVSERNUM ,
+  BLGMST.MALIDR,
+  BLGMST.MALSEQNUM,
+  C66.NETAMTBLGCUR,
+  C66.MCAREFNUM,
+  C66.STLSTA C66STLSTA,
+  C66.STLAMT C66STLAMT,
+  C66.DUEAMT C66DUE_AMT,
+  C66.CASCLSFLG,
+  C51.BLGCURCOD ,
+  C51.LSTUPDUSR ,
+  C51.LSTUPDTIM ,
+  C66.CTRCURCOD ,
+  C51.TOTAMTBLGCUR,
+  C51.STLAMT ,
+  C51.STLSTA ,
+  C51.DUEAMT,
+  C51.TOTAMTCTRCUR,
+  POADTL.STLCUR ,
+  POA.STLTOLPER,
+  POA.STLTOLVAL,
+  POA.STLTOLMAXVAL,
+  POA.STLLVL,
+  BLGMST.RCVDAT,
+  C66.RMK INVRMK,
+  
+	CASE
+	WHEN C66.CTRCURCOD<>C51.BLGCURCOD and OVRRND.PARVAL= 'N'
+			then (PKG_FRMWRK.FUN_CONVCURR(POA.CMPCOD,C66.CTRCURCOD,C51.BLGCURCOD,'F',BLGMST.RCVDAT, (SELECT SUM(REVNETAMT-NETAMT)
+			FROM MALMRAMCA MCA
+			WHERE MCA.CMPCOD = BLGMST.CMPCOD
+			AND MCA.MALSEQNUM = BLGMST.MALSEQNUM
+			AND MCA.MCATYP = 'I'
+			AND MCA.MCASTA = 'A'
+			))::numeric)
+	    
+          WHEN C66.CTRCURCOD<>C51.BLGCURCOD 
+          THEN ROUND(PKG_FRMWRK.FUN_CONVCURRWR(POA.CMPCOD,C66.CTRCURCOD,C51.BLGCURCOD,'F',BLGMST.RCVDAT,PAR.PARVAL,
+            (SELECT SUM(REVNETAMT-NETAMT)
+        FROM MALMRAMCA MCA
+        WHERE MCA.CMPCOD  = BLGMST.CMPCOD
+        AND MCA.MALSEQNUM = BLGMST.MALSEQNUM
+        AND MCA.MCATYP    = 'I'
+        AND MCA.MCASTA    = 'A'
+            )),OVRRND.PARVAL)
+          ELSE NVL(
+            (SELECT SUM(REVNETAMT-NETAMT)
+        FROM MALMRAMCA MCA
+        WHERE MCA.CMPCOD  = BLGMST.CMPCOD
+        AND MCA.MALSEQNUM = BLGMST.MALSEQNUM
+        AND MCA.MCATYP    = 'I'
+        AND MCA.MCASTA    = 'A'
+  ),0)
+        END REVNETAMT, 	
+		
+  NULL STLDAT,
+  NULL STLMODNUM,
+  NULL STLREFNUM ,
+  NULL AMT,
+  NULL INVSTLAMT,
+ NULL SERNUM
+FROM MALMRAGPAC51SMY C51
+INNER JOIN MALMRAGPAC66DTL C66
+ON C51.GPACOD     = C66.GPACOD
+AND C51.INVNUM    = C66.INVNUM
+AND C51.INVSERNUM    = C66.INVSERNUM
+AND C51.INVSERNUM = (SELECT MAX(INVSERNUM)
+        FROM MALMRAGPAC51SMY
+        WHERE CMPCOD = C66.CMPCOD
+        AND INVNUM   = C66.INVNUM
+        AND GPACOD   = C66.GPACOD
+		AND INVSTA ='F')
+AND C51.CMPCOD    = C66.CMPCOD
+INNER JOIN MALMRABLGMST BLGMST
+ON C66.CMPCOD     = BLGMST.CMPCOD
+AND C66.MALSEQNUM = BLGMST.MALSEQNUM
+INNER JOIN MALPOAMST POA
+ON C51.GPACOD  = POA.POACOD
+AND C51.CMPCOD = POA.CMPCOD
+INNER JOIN MALPOADTL POADTL
+ON POA.CMPCOD     = POADTL.CMPCOD
+AND POA.POACOD    = POADTL.POACOD
+AND SYSDATE BETWEEN POADTL.VLDFRM AND POADTL.VLDTOO
+INNER JOIN SHRSYSPAR PAR ON
+PAR.CMPCOD=POA.CMPCOD
+AND PAR.PARCOD='logonattributes.ownairlineidentifier'
+INNER JOIN SHRSYSPAR OVRRND ON
+OVRRND.CMPCOD=POA.CMPCOD
+AND OVRRND.PARCOD='mailtracking.mra.overrideroundingvalue'
+WHERE C66.STLSTA NOT IN ( 'S','C')       
+AND C51.CMPCOD    = ?
+AND POADTL.PARCOD ='STLINFO'
+AND C51.INVNUM    = ?
+
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by A-4809 for IASCB-61705 Starts -->
+	<QRY:Definition>
+		<QRY:Id>49</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findInvoicesforPASS" Type="NATIVE">
+			<![CDATA[
+				SELECT DISTINCT SMY.PRDNUM,C66.BRHOFC,SMY.CMPCOD,MAX(SMY.INTFCDFILNAM) INTFCDFILNAM FROM
+					MALMRAGPAC51SMY SMY , MALMRAGPAC66DTL C66,MALPOAMST POAMST WHERE
+					SMY.CMPCOD = C66.CMPCOD AND SMY.INVNUM = C66.INVNUM AND
+					SMY.GPACOD = C66.GPACOD AND SMY.INVSERNUM = C66.INVSERNUM 
+					  AND SMY.INVSERNUM=
+					  (SELECT MAX(INVSERNUM)
+					  FROM MALMRAGPAC51SMY
+					  WHERE CMPCOD=SMY.CMPCOD
+					  AND GPACOD  = SMY.GPACOD
+					  AND INVNUM = SMY.INVNUM
+					  AND INVSTA = 'N'
+					  )	
+					  AND POAMST.CMPCOD=SMY.CMPCOD
+					  AND POAMST.POACOD=SMY.GPACOD
+					  AND SMY.CMPCOD = ? AND SMY.PRDNUM = ?
+					AND SMY.BLGPRDFRM = ? AND SMY.BLGPRDTOO = ?
+				]]>
+	</QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>50</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findSequenceNumberforPASS" Type="NATIVE">
+			<![CDATA[
+				SELECT PKG_MAL_MRA_DEFAULTS.FUN_GETSEQUENCEFORPASSFILE(?,?,?,?,?,?) SEQNUM 
+				FROM DUAL
+				]]>
+	</QRY:Source>
+    </QRY:Definition>	
+	<!-- Added by A-4809 for IASCB-61705 Ends -->	
+	<QRY:Definition>
+		<QRY:Id>51</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findPassFileNamesOracle" Type="NATIVE">
+			<![CDATA[
+			WITH TBL AS (
+			SELECT C51SMY.BLGPRDFRM,C51SMY.BLGPRDTOO,C51SMY.PRDNUM,C51SMY.INTFCDFILNAM
+			FROM MALMRAGPAC51SMY C51SMY
+			WHERE C51SMY.CMPCOD = ?
+				]]>
+	</QRY:Source>
+    </QRY:Definition>	
+	<QRY:Definition>
+		<QRY:Id>52</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findPassFileNames" Type="NATIVE">
+			<![CDATA[
+				SELECT
+					C51SMY.BLGPRDFRM,C51SMY.BLGPRDTOO,C51SMY.PRDNUM,UNNEST(STRING_TO_ARRAY(C51SMY.INTFCDFILNAM, ',')) AS INTFCDFILNAM
+				FROM
+					MALMRAGPAC51SMY C51SMY
+				WHERE C51SMY.CMPCOD = ?
+				]]>
+	</QRY:Source>
+    </QRY:Definition>	
+	
+	
+		<QRY:Definition>
+		<QRY:Id>53</QRY:Id>
+		<QRY:Source Name="mail.mra.gpabilling.findAllInvoicesForPassFileNameUpdate" Type="NATIVE">
+			<![CDATA[
+				SELECT C51SMY.CMPCOD,
+  C51SMY.GPACOD,
+  POAMST.POANAM,
+  C51SMY.INVNUM,
+  C51SMY.INVSERNUM,
+  C51SMY.INTFCDFILNAM,
+  C66.BRHOFC,
+  C51SMY.BLGPRDFRM,
+  C51SMY.BLGPRDTOO
+FROM MALMRAGPAC51SMY C51SMY
+INNER JOIN MALMRAGPAC66DTL C66
+ON C51SMY.CMPCOD     = C66.CMPCOD
+AND C51SMY.INVNUM    = C66.INVNUM
+AND C51SMY.GPACOD    = C66.GPACOD
+AND C51SMY.INVSERNUM = C66.INVSERNUM
+INNER JOIN MALPOAMST poamst
+ON C51SMY.GPACOD    = POAMST.POACOD
+AND C51SMY.CMPCOD   =POAMST.CMPCOD
+WHERE C51SMY.CMPCOD =?
+AND C51SMY.INVSERNUM=
+  (SELECT MAX(INVSERNUM)
+  FROM MALMRAGPAC51SMY
+  WHERE CMPCOD=poamst.CMPCOD
+  AND GPACOD  = POAMST.POACOD
+  AND INVNUM  = C51SMY.INVNUM
+  AND INVSTA IN ('P','F','N')
+  )
+				]]>
+	</QRY:Source> 
+    </QRY:Definition>
+	
+	
+	
+</QRY:Definitions>

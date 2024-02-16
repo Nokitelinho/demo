@@ -1,0 +1,174 @@
+body {
+    display: flex;
+    height: 0;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-panel {}
+
+.section-panel {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 1rem 0;
+    > form{
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+    .card {
+        flex-grow: 1;
+    }
+}
+
+.footer-panel {
+    position: static;
+    margin: 0 -1rem;
+    width: auto;
+}
+
+.flex-grow-0 {
+    flex-grow: 0
+}
+
+.flex-grow-1 {
+    flex-grow: 1
+}
+
+.card .table-header__customheader {
+    padding: 0;
+    border: 0;
+}
+
+.consignment-enquiry-list {
+    .paginator__wrap {
+        min-width: auto;
+        max-width: auto;
+        width: auto;
+    }
+}
+
+//tables
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn {
+    padding: 0 0 0 0.5rem;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:first-child,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn:first-child {
+    padding-left: 1rem;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:last-child,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn:last-child {
+    padding-right: 1rem;
+}
+
+.ReactVirtualized__Table {
+    .form-check-input {
+        margin: 0;
+    }
+}
+
+.table-header__customheader .table-header__custompanel{
+  flex: 0 0 auto !important;
+}
+
+.tab {
+    border-bottom: 1px solid #ddd;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .btn-group {
+        .btnbar {
+            font-size: 16px;
+            font-weight: normal;
+            padding: 1rem;
+            line-height: 1;
+        }
+    }
+    &.tab-sm {
+        .btn-group {
+            .btnbar {
+                font-size: 12px;
+                padding: 12px;
+            }
+        }
+    }
+    &.tab-icon {
+        border: 0;
+        .btn-group {
+            .btnbar {
+                padding: 12px;
+                min-width: auto;
+                i {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+
+
+.text-light-grey {
+    color: #aaa;
+}
+
+.handsontable {
+    .htCore {
+        tr {
+            &:first-child {
+                th {
+                    border-top: 0;
+                    padding: $xs;
+                    text-align: left;
+                    background: #f2f8ff;
+                    font-weight: bold;
+                    height: auto !important;
+                    line-height: 1;
+                    color: #666;
+                    &:first-child {
+                        border-left: 0;
+                    }
+                    &:last-child {
+                        border-right: 0;
+                    }
+                    .relative {
+                        padding: 0;
+                    }
+                }
+            }
+            td {
+                padding: $xs;
+                line-height: 1;
+                color: #333;
+                height: auto;
+                &:first-child {
+                    border-left: 0;
+                }
+                &:last-child {
+                    border-right: 0;
+                }
+            }
+            &:last-child {
+                td {
+                    //                    border-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+#mailBagsTable-headerholder > .reset_header_icons{
+  width: auto !important;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus, .show > .btn-secondary.dropdown-toggle:focus{
+  box-shadow: none;
+}

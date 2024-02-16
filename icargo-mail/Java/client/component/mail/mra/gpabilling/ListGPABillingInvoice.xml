@@ -1,0 +1,284 @@
+<?xml version="1.0"?>
+<components screenId="mailtracking.mra.gpabilling.listgpabillinginvoice" xmlns="http://www.ibsplc.com/icargo/components-details">
+
+<component id="CMP_MRA_LISTGPABILLING_FROMDATE" name="FromDate">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+	</attribute>
+
+	<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+	</attribute>
+
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.fromdate</value>
+	</attribute>
+	</component>
+<component id="CMP_MRA_LISTGPABILLING_TODATE" name="ToDate">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+	</attribute>
+
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.todate</value>
+	</attribute>
+	</component>
+
+<component id="CMP_MRA_LISTGPABILLING_GPACODE" name="GPACode">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.gpacode</value>
+	</attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHANUMERIC</value>
+	</attribute>
+	<attribute>
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_LISTGPABILLING_INVOICENO" name="InvoiceNo">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_LONG</value>
+	</attribute>
+
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.lbl.tooltip.invoiceno</value>
+	</attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHANUMERIC</value>
+	</attribute>
+	<attribute>
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+</component>
+
+<component id="CMP_MRA_GPABILLING_LIST" name="List">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.list</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_GPABILLING_CLEAR" name="Clear">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.clear</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_GPABILLING_WITHDRAWINV" name="WithdrawInvoice">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.withdrawinvoice</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+</component>
+<component id="CMP_MRA_GPABILLING_FINALIZEINV" name="FinalizeInvoice">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.finalizeinvoice</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+</component>
+<component id="CMP_MRA_GPABILLING_LISTACCDETAILS" name="ListAccDetails">
+	<attribute>
+	<name>businesstype-id</name>
+	<value>BT_BUTTON_LONG</value>
+	</attribute>
+	<attribute>
+	<name>tooltip</name>
+	<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.listaccdetails</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_GPABLG_OUTSTND_RECVBLES" name="OutstandingReceivables">
+	<attribute>
+	<name>businesstype-id</name>
+	<value>BT_BUTTON_LONG</value>
+	</attribute>
+	<attribute>
+	<name>tooltip</name>
+	<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.outstadingreceivebles</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_GPABILLING_INVOICEDETAILS" name="InvoiceDetails">
+	<attribute>
+	<name>businesstype-id</name>
+	<value>BT_BUTTON_LONG</value>
+	</attribute>
+	<attribute>
+	<name>tooltip</name>
+	<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.invoicedetails</value>
+	</attribute>
+	<attribute>
+	<name>type</name>
+	<value>detail</value>
+	</attribute>
+
+</component>
+<component id="CMP_MRA_GPABILLING_CLOSE" name="close">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.close</value>
+	</attribute>
+	</component>
+<component id="CMP_MRA_GPABILLING_PRINT" name="print">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.print</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	</component>
+<component id="CMP_MRA_GPABILLING_EMAILINVOICE" name="emailinvoice">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.emailinvoice</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	</component>
+<component id="CMP_MRA_GPABILLING_PRINTALL" name="printall">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.printall</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	</component>
+<component id="CMP_MRA_LISTGPABILLING_INVOICESTATUS" name="Invoice Status">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CMB_GENCOMBO</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listgpabillinginvoice.tooltip.invoicestatus</value>
+	</attribute>
+	</component>
+
+<component id="CMP_MRA_GPABLG_LISTCN51_VIEW" name="view">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BTN_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.listcn51.tooltip.view</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+
+</component>
+	<component id="CMP_MRA_LISTGPABILLING_PASSFILENAME" name="PASS File Name">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_EXTRA_LONG</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.mra.gpabilling.listgpabillinginvoice.lbl.passfilename</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+	</component>
+	<component id="CMP_MRA_LISTGPABILLING_PERIODNO" name="Period No">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.mra.gpabilling.listgpabillinginvoice.lbl.periodno</value>
+		</attribute>
+	</component>
+	  <component id="CMP_MRA_LISTGPABILLING_PASS" name="PASS">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CHECKBOX</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.mra.gpabilling.listgpabillinginvoice.lbl.pass</value>
+		</attribute>
+	 </component>
+	<component id="CMP_MRA_GPABILLING_DOWNLOAD_PASSFILE" name="Download PASS File">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mail.mra.gpabilling.listgpabillinginvoice.lbl.downloadpassfile</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	</component>	 
+</components>

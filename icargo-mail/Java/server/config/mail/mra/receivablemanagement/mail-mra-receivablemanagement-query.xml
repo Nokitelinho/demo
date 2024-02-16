@@ -1,0 +1,346 @@
+<?xml version="1.0"?>
+<QRY:Definitions xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries" module="mail.mra.receivable">
+
+		<QRY:Definition>
+		<QRY:Id>1</QRY:Id>
+					
+		<QRY:Source Name="mailtracking.mra.receivablemanagement.listPaymentBatchDetails" Type="NATIVE">
+			<![CDATA[
+					SELECT STL.CMPCOD,
+							STL.BTHSTLIDR,
+							STL.POACOD,
+							STL.BTHSTLSEQNUM,
+							STL.STLDAT,
+							STL.STLCURCOD,
+							STL.BTHSTA,
+							STL.BTHTOTAMT,
+							STL.APLAMT,
+							STL.UNNAPLAMT,
+							STL.RMK,
+							STL.PCRIDR,
+							STL.SRC,
+							STL.FILNAM,
+							STL.RECCNT,
+							STL.LSTUPDUSR,
+							STL.LSTUPDTIM
+					FROM MALMRAGPABTHSTL STL
+					WHERE STL.CMPCOD = ?
+					
+			]]>
+		</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+		<QRY:Id>2</QRY:Id>
+		<QRY:Source Name="mail.mra.receivablemanagement.validateFileName" Type="NATIVE">
+			<![CDATA[
+				SELECT COUNT(*) filcount
+					FROM malmragpabthstl STL
+					WHERE STL.cmpcod = ?
+					AND STL.filnam = ?
+					
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>3</QRY:Id>
+		<QRY:Source Name="mail.mra.receivablemanagement.findbatchuploaddetails" Type="NATIVE">
+			<![CDATA[
+				SELECT CMPCOD,FILNAM,SERNUM,
+					REF001 GPACOD,REF002 MALIDR, REF003 MALDAT,
+					REF004 CSGDOCNUM, REF005 PAYDAT, REF006 PAYAMT, REF007 CURCOD 
+					FROM SHRGENEXTTAB WHERE FILTYP = 'MRABTHSTL' 
+					AND FILNAM = ?
+					AND CMPCOD=?	
+			]]>
+		</QRY:Source>
+		</QRY:Definition>
+		
+	<QRY:Definition>
+		<QRY:Id>4</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.receivablemanagement.listSettlementBatchDetails" Type="NATIVE">
+			<![CDATA[
+					SELECT CMPCOD,
+					  BTHSTLIDR,
+					  POACOD,
+					  BTHSTLSEQNUM,
+					  MALSEQNUM,
+					  STLDAT,
+					  MALIDR,
+					  MALDAT,
+					  CSGDOCNUM,
+					  STLCURCOD,
+					  ACCNUM,
+					  INVNUM,
+					  BTHTOTAMT,
+					  APLAMT,
+					  UNNAPLAMT,
+					  PAYDAT,
+					  RSN,
+					  RMK
+					FROM MALMRAGPABTHSTLDTL
+					WHERE CMPCOD  = ?
+					AND POACOD    =?
+					AND BTHSTLSEQNUM =?
+					AND BTHSTLIDR =?					
+                    ORDER BY APLAMT					
+			]]>
+		</QRY:Source>
+		</QRY:Definition>
+
+		<QRY:Definition>
+		<QRY:Id>5</QRY:Id>
+		<QRY:Source Name="mail.mra.receivablemanagement.loadMRASettlementBatchUploadIntoTable" Type="PROCEDURE">
+			<![CDATA[
+				CALL Pkg_Frmwrk_Extdta.spr_main(?,?,?,?,?,?,?)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+        <QRY:Definition>
+		<QRY:Id>6</QRY:Id>
+		<QRY:Source Name="mail.mra.receivablemanagement.triggeraccounting" Type="PROCEDURE">
+						<![CDATA[
+					CALL PKG_MAL_MRA_ACC_NEW.SPR_MRA_ACC_UNAPPLIED_CASH(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+						
+					)
+				]]>
+		</QRY:Source>
+		</QRY:Definition>
+	
+	<QRY:Definition>
+		<QRY:Id>7</QRY:Id>
+		<QRY:Source Name="mail.mra.receivablemanagement.findbatchsequencenumber" Type="NATIVE">
+			<![CDATA[
+				SELECT BTHSTLSEQNUM
+		   FROM MALMRAGPABTHSTL mst WHERE MST.CMPCOD =?
+		 AND MST.BTHSTLIDR=?
+	
+			]]>
+		</QRY:Source>
+		</QRY:Definition>
+  	<QRY:Definition>
+		<QRY:Id>8</QRY:Id>
+		<QRY:Source Name="mail.mra.receivablemanagement.deleteattachment" Type="PROCEDURE">
+			<![CDATA[
+				CALL PKG_MAL_MRA_GPABILLING_NEW.SPR_GPA_RCVMNG_DELATTACHMENT(?,?,?,?,?,?,?)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	
+
+   <QRY:Definition>
+		<QRY:Id>9</QRY:Id>
+		<QRY:Source Name="mail.mra.receivablemanagement.triggerreverseaccounting" Type="PROCEDURE">
+						<![CDATA[
+					CALL PKG_MAL_MRA_ACC_NEW.SPR_NEGATE_ENTRIES(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+						
+					)
+				]]>
+		</QRY:Source>
+		</QRY:Definition>
+	
+	
+	<QRY:Definition>
+		<QRY:Id>10</QRY:Id>
+		<QRY:Source Name="mail.mra.receivablemanagement.updatesettlementdetails" Type="PROCEDURE">
+			<![CDATA[
+					CALL PKG_MAL_MRA_GPABILLING_NEW.SPR_MRA_UPDSTLDTLS
+					(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+					)
+				]]>
+		</QRY:Source>
+
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>11</QRY:Id>
+		<QRY:Source Name="mail.mra.receivablemanagement.findSettlementBatchDetails" Type="NATIVE">
+			<![CDATA[
+				SELECT BTHSTL.CMPCOD,
+				  BTHSTL.STLCURCOD,
+				  DTL.DSTCOD,
+				  BTHSTL.FILTYP,
+				  BTHSTL.BTHSTLIDR,
+				  BTHSTL.BTHSTLSEQNUM,
+				  (DTL.BILSECFRM||'-'||DTL.BILSECTOO) FLNSEC,
+				  DTL.INVNUM,
+				  DTL.MALCHGBLGCUR MALCHG,
+				  DTL.APLRAT,
+				  DTL.NETAMTBLGCUR NETAMT,
+				  DTL.ORGCOD,
+				  BTHSTL.POACOD,
+				  STLDTL.BTHTOTAMT STLAMT,
+				  BTHSTL.STLCURCOD,
+				  NULL STLRMKS,
+				  DTL.OTHCHGBLGCUR SURCHG,
+				  DTL.SRVTAXBLGCUR TAX,
+				  DTL.TOTWGT WGT,
+				  BTHSTL.FILNAM,
+				  DTL.MALSEQNUM,
+				  BTHSTL.PCRIDR PRCIDR,
+				  MST.MALIDR,
+				  C51.GPACOD C51GPA,
+				  C51.INVNUM C51INVNUM,
+				  C51.INVSERNUM,
+				  DTL.STLAMT C66STLAMT,
+				  DTL.DUEAMT C66DUEAMT,
+				  C51.BLGCURCOD,
+				  COALESCE(
+				  (SELECT (REVNETAMT-NETAMT)
+				  FROM MALMRAMCA MCA
+				  WHERE MCA.CMPCOD  = DTL.CMPCOD
+				  AND MCA.MALSEQNUM = DTL.MALSEQNUM
+				  AND MCA.MCATYP    = 'I'
+				  AND MCA.MCASTA    = 'A'
+				  AND MCA.ISSDAT    =
+					(SELECT MAX(ISSDAT)
+					FROM MALMRAMCA MALMCA
+					WHERE MALMCA.CMPCOD  = MCA.CMPCOD
+					AND MALMCA.MALSEQNUM = MCA.MALSEQNUM
+					AND MCA.MCATYP       = 'I'
+					AND MCA.MCASTA       = 'A'
+					)
+				  ),0) REVNETAMT,
+				  POAMST.STLLVL,
+				  POAMST.STLTOLMAXVAL,
+				  POAMST.STLTOLPER,
+				  POAMST.STLTOLVAL,
+				  (SELECT SUM(INRDTL.BTHTOTAMT)
+				  FROM MALMRAGPABTHSTLDTL INRDTL,MALMRAGPAC66DTL C66
+				  WHERE INRDTL.CMPCOD = STLDTL.CMPCOD 
+				  AND INRDTL.BTHSTLIDR = STLDTL.BTHSTLIDR 
+				  AND INRDTL.CMPCOD = C66.CMPCOD 
+				  AND INRDTL.MALSEQNUM = C66.MALSEQNUM 
+				  AND INRDTL.POACOD = C66.GPACOD 
+				  GROUP BY INRDTL.CMPCOD,INRDTL.BTHSTLIDR
+				  )BTHTOTAMT				  
+				FROM MALMRAGPABTHSTL BTHSTL
+				INNER JOIN MALMRAGPABTHSTLDTL STLDTL
+				ON BTHSTL.CMPCOD        = STLDTL.CMPCOD
+				AND BTHSTL.BTHSTLIDR    = STLDTL.BTHSTLIDR
+				AND BTHSTL.BTHSTLSEQNUM = STLDTL.BTHSTLSEQNUM
+				AND BTHSTL.POACOD       = STLDTL.POACOD
+				INNER JOIN MALMRABLGMST MST
+				ON MST.CMPCOD  = STLDTL.CMPCOD
+				AND MST.MALSEQNUM = STLDTL.MALSEQNUM
+				INNER JOIN MALMRAGPAC66DTL DTL
+				ON MST.CMPCOD     = DTL.CMPCOD
+				AND MST.MALSEQNUM = DTL.MALSEQNUM
+				AND STLDTL.POACOD = DTL.GPACOD
+				INNER JOIN MALMRAGPAC51SMY C51
+				ON DTL.CMPCOD     = C51.CMPCOD
+				AND DTL.INVNUM    = C51.INVNUM
+				AND DTL.GPACOD    = C51.GPACOD
+				AND DTL.INVSERNUM = C51.INVSERNUM
+				INNER JOIN MALPOAMST POAMST
+				ON C51.CMPCOD      = POAMST.CMPCOD
+				AND C51.GPACOD     = POAMST.POACOD
+				INNER JOIN SHRSYSPAR PAR
+				ON PAR.CMPCOD 	   = C51.CMPCOD
+				AND PAR.PARCOD     = 'mailtracking.mra.periodforsettlementbatch'
+				AND BTHSTL.CMPCOD  = ?
+				AND BTHSTL.FILTYP  ='MRABTHSTL'
+				AND BTHSTL.BTHSTA IN ('NW','PA')
+				AND STLDTL.UNNAPLAMT > 0
+				AND C51.INVSTA = 'F'
+				%s
+				ORDER BY BTHSTL.CMPCOD,
+				  C51.INVNUM,BTHSTL.BTHSTLIDR
+
+			]]>
+		</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+		<QRY:Id>12</QRY:Id>
+		<QRY:Source Name="mail.mra.receivablemanagement.findUnmatchedSettlementBatchDetails" Type="NATIVE">
+			<![CDATA[
+				SELECT * FROM (SELECT BTHSTL.CMPCOD,
+				  BTHSTL.BTHSTLIDR,
+				  BTHSTL.BTHSTLSEQNUM,
+				  STLDTL.MALSEQNUM,
+				  BTHSTL.POACOD,
+				  COALESCE((SELECT MAX((CASE WHEN C66.MALSEQNUM IS NULL THEN 'Y' ELSE 'N' END)
+					||'-'||
+					(CASE WHEN C66.GPACOD <> STLDTL.POACOD THEN 'Y' ELSE 'N' END) )
+				  FROM MALMRAGPAC66DTL C66
+				  WHERE C66.CMPCOD  = STLDTL.CMPCOD
+				  AND C66.MALSEQNUM = STLDTL.MALSEQNUM
+				  ),'Y-Y') AS GPAINVMISMATCH
+				FROM MALMRAGPABTHSTL BTHSTL
+				INNER JOIN MALMRAGPABTHSTLDTL STLDTL
+				ON BTHSTL.CMPCOD        = STLDTL.CMPCOD
+				AND BTHSTL.BTHSTLIDR    = STLDTL.BTHSTLIDR
+				AND BTHSTL.BTHSTLSEQNUM = STLDTL.BTHSTLSEQNUM
+				AND BTHSTL.POACOD       = STLDTL.POACOD
+				AND BTHSTL.CMPCOD       = ?
+				AND BTHSTL.FILTYP       ='MRABTHSTL'
+				AND BTHSTL.BTHSTA      IN ('NW','PA')
+				AND STLDTL.RSN         IS NULL
+				AND STLDTL.UNNAPLAMT >0 )QRY
+				WHERE GPAINVMISMATCH <> 'N-N' 
+			]]>
+		</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+		<QRY:Id>13</QRY:Id>
+		<QRY:Source Name="mail.mra.receivablemanagement.triggercashclearanceaccounting" Type="PROCEDURE">
+						<![CDATA[
+					CALL PKG_MAL_MRA_ACC_NEW.SPR_MRA_ACC_CLEAR_BATCH(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+					)
+				]]>
+		</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+		<QRY:Id>14</QRY:Id>
+		<QRY:Source Name="mail.mra.receivablemanagement.findmailsequencenumber" Type="NATIVE">
+			<![CDATA[
+			select
+	BLGMST.MALSEQNUM
+from
+	MALMRABLGMST BLGMST
+left outer join SHRSYSPAR PAR
+						on
+	PAR.CMPCOD = BLGMST.CMPCOD
+	and PAR.PARCOD = 'mailtracking.mra.gpabilling.graceperiodforunappliedcash'
+where
+	BLGMST.MALIDR =?
+	and BLGMST.CMPCOD =?
+	and TO_NUMBER(to_Date(TO_CHAR(CURRENT_DATE, 'YYYYMMDD'), 'YYYYMMDD')-to_Date(TO_CHAR(BLGMST.RCVDAT, 'YYYYMMDD'), 'YYYYMMDD'))<=(TO_NUMBER(coalesce(PAR.PARVAL, '180'))::numeric)
+
+         ]]>
+		</QRY:Source>
+		</QRY:Definition>
+	
+</QRY:Definitions>

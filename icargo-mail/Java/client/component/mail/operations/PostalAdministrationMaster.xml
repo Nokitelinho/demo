@@ -1,0 +1,919 @@
+<?xml version="1.0"?>
+<components screenId="mailtracking.defaults.masters.postaladministration"  xmlns="http://www.ibsplc.com/icargo/components-details">
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_GPACODE" name="GPA Code">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.gpacode</value>
+		</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_ACCNO" name="Acc Num">
+			
+			<attribute>
+				<name>lov</name>
+				<value>true</value>
+			</attribute>
+			<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.accnum</value>
+			</attribute>
+	</component>
+	
+	
+	
+	
+	
+	
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_COUNTRY" name="Country Code">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.country</value>
+		</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_SETTLEMENTCURRENCY" name="Currency">
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.settlementcurrency</value>
+		</attribute>
+	</component>
+	<component
+		id="CMB_MAILTRACKING_DEFAULTS_PAMASTER_BILLINGSOURCE"
+		name="Combo Box">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.billingsource</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+	</component>
+	<component
+		id="CMB_MAILTRACKING_DEFAULTS_PAMASTER_BASETYPE"
+		name="Combo Box">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_SELECT</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.basetype</value>
+		</attribute>
+	</component>
+	<component
+		id="CMB_MAILTRACKING_DEFAULTS_PAMASTER_BILLINGFREQUENCY"
+		name="Combo Box">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_SELECT</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.billingfrequency</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+	</component>
+	
+	
+
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_PANAM" name="PA Name">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_EXTRA_LONG</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.panam</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_AREA_MAILTRACKING_DEFAULTS_PAMASTER_ADDRESS" name="Adress">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_FREE_TEXT_DEFAULT</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.adress</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_AREA_MAILTRACKING_DEFAULTS_PAMASTER_ISPOSTALRESDIT" name="Is Postal Resdit">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CHECKBOX</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.ispostalresdit</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_AREA_MAILTRACKING_DEFAULTS_PAMASTER_ISMSGEVTLOCNEEDED" name="Is Message Event Location Needed">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CHECKBOX</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.ismsgevtlocneeded</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_CLASS" name="Mail Class">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.clas</value>
+		</attribute>
+	</component>
+
+   	<component id="RAD_MAILTRACKING_DEFAULTS_PAMASTER_MESSAGEY" name="Yes">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_RAD_MYREQUEST</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.yes</value>
+		</attribute>
+   	</component>
+
+   	<component id="RAD_MAILTRACKING_DEFAULTS_PAMASTER_MESSAGEN" name="No">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_RAD_MYREQUEST</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.no</value>
+		</attribute>
+   	</component>
+
+   	<component id="RAD_MAILTRACKING_DEFAULTS_PAMASTER_MESSAGEP" name="Partial">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_RAD_MYREQUEST</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.partial</value>
+		</attribute>
+   	</component>
+
+
+	<component id="COMB_MAILTRACKING_DEFAULTS_PAMASTER_CATEGORY" name="Category">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.oemaster.tooltip.category</value>
+		</attribute>
+	</component>
+
+
+
+
+
+	<component id="BUT_MAILTRACKING_DEFAULTS_PAMASTER_LIST" name="List button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.list</value>
+		</attribute>
+	</component>
+
+	<component id="BUT_MAILTRACKING_DEFAULTS_PAMASTER_CLEAR" name="Clear button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.clear</value>
+		</attribute>
+	</component>
+
+	<component id="BUT_MAILTRACKING_DEFAULTS_PAMASTER_SAVE" name="Save button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.save</value>
+		</attribute>
+	</component>
+	<component id="BUT_MAILTRACKING_DEFAULTS_PAMASTER_ACTIVATE" name="Activate button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BTN_SMALL</value>
+			</attribute>
+			
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.activate</value>
+			</attribute>
+			<attribute>
+						<name>type</name>
+						<value>detail</value>
+			</attribute>
+	</component>
+	<component id="BUT_MAILTRACKING_DEFAULTS_PAMASTER_INACTIVATE" name="Inactivate button">
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_BTN_SMALL</value>
+				</attribute>
+				<attribute>
+							<name>type</name>
+							<value>detail</value>
+				</attribute>
+				
+				<attribute>
+					<name>tooltip</name>
+					<value>mailtracking.defaults.pamaster.tooltip.inactivate</value>
+				</attribute>
+	</component>
+	
+
+	<component id="BUT_MAILTRACKING_DEFAULTS_PAMASTER_CLOSE" name="Close button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.close</value>
+		</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_STATUS" name="Status">
+			
+			<attribute>
+				<name>lov</name>
+				<value>true</value>
+			</attribute>
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_SMALL</value>
+			</attribute>
+			
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.status</value>
+			</attribute>
+			
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_DEBINVCODE" name="Status">
+				
+				<attribute>
+					<name>lov</name>
+					<value>true</value>
+				</attribute>
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_TXT_SMALL</value>
+				</attribute>
+				<attribute>
+					<name>type</name>
+					<value>detail</value>
+				</attribute>
+				<attribute>
+					<name>tooltip</name>
+					<value>mailtracking.defaults.pamaster.tooltip.debinvcod</value>
+				</attribute>
+				<attribute>
+					<name>formatter-id</name>
+					<value>FRM_RESTRICT_ALPHA</value>
+	   			</attribute>
+				
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_CUSCODE" name="Customer Code">
+				
+				<attribute>
+					<name>lov</name>
+					<value>true</value>
+				</attribute>
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_TXT_MEDIUM</value>
+				</attribute>		
+				<attribute>
+					<name>styleclass-id</name>
+					<value>ST_TXT_EXTRA_LONG</value>
+				</attribute>
+				<attribute>
+					<name>type</name>
+					<value>detail</value>
+				</attribute>
+				<attribute>
+					<name>tooltip</name>
+					<value>mailtracking.defaults.pamaster.tooltip.cusCode</value>
+				</attribute>				
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_CONPER" name="conPer">
+
+			<attribute>
+				<name>lov</name>
+				<value>true</value>
+			</attribute>
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.conperson</value>
+			</attribute>
+
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_CITY" name="city">
+	
+				<attribute>
+					<name>lov</name>
+					<value>true</value>
+				</attribute>
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_TXT_MEDIUM</value>
+				</attribute>
+				<attribute>
+			     <name>mandatory</name>
+			     <value>true</value>
+		        </attribute>
+				<attribute>
+					<name>type</name>
+					<value>detail</value>
+				</attribute>
+				<attribute>
+					<name>tooltip</name>
+					<value>mailtracking.defaults.pamaster.tooltip.city</value>
+				</attribute>
+	
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_STATE" name="state">
+
+				<attribute>
+					<name>lov</name>
+					<value>true</value>
+				</attribute>
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_TXT_MEDIUM</value>
+				</attribute>
+				<attribute>
+					<name>type</name>
+					<value>detail</value>
+				</attribute>
+				<attribute>
+					<name>tooltip</name>
+					<value>mailtracking.defaults.pamaster.tooltip.state</value>
+				</attribute>
+		
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_COUNTRY_NAME" name="country">
+			
+				<attribute>
+					<name>lov</name>
+					<value>true</value>
+				</attribute>
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_TXT_MEDIUM</value>
+				</attribute>
+				<attribute>
+					<name>type</name>
+					<value>detail</value>
+				</attribute>
+				<attribute>
+					<name>tooltip</name>
+					<value>mailtracking.defaults.pamaster.tooltip.country</value>
+				</attribute>
+			
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_MOBILE" name="mobile">
+				
+				<attribute>
+					<name>lov</name>
+					<value>true</value>
+				</attribute>
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_TXT_MEDIUM</value>
+				</attribute>
+				<attribute>
+					<name>type</name>
+					<value>detail</value>
+				</attribute>
+
+				<attribute>
+					<name>tooltip</name>
+					<value>mailtracking.defaults.pamaster.tooltip.mobile</value>
+				</attribute>
+
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_POSTCOD" name="postcod">
+
+			<attribute>
+				<name>lov</name>
+				<value>true</value>
+			</attribute>
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_SMALL</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.postcod</value>
+			</attribute>
+	
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_PHONE1" name="phone1">
+	
+				<attribute>
+					<name>lov</name>
+					<value>true</value>
+				</attribute>
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_TXT_MEDIUM</value>
+				</attribute>
+				<attribute>
+					<name>type</name>
+					<value>detail</value>
+				</attribute>
+				<attribute>
+					<name>tooltip</name>
+					<value>mailtracking.defaults.pamaster.tooltip.phone1</value>
+				</attribute>
+		
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_PHONE2" name="phone2">
+		
+					<attribute>
+						<name>lov</name>
+						<value>true</value>
+					</attribute>
+					<attribute>
+						<name>businesstype-id</name>
+						<value>BT_TXT_MEDIUM</value>
+					</attribute>
+					<attribute>
+						<name>type</name>
+						<value>detail</value>
+					</attribute>
+		
+					<attribute>
+						<name>tooltip</name>
+						<value>mailtracking.defaults.pamaster.tooltip.phone2</value>
+					</attribute>
+			
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_FAX" name="fax">
+			
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+	       </attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.fax</value>
+		</attribute>
+				
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_EMAIL" name="fax">
+	
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_EXTRA_LONG</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.defaults.pamaster.tooltip.email</value>
+	</attribute>
+	</component>
+	
+	
+	<component id="CMP_MAILTRACKING_DEFAULTS_PAMASTER_VALIDFROM" name="validfrom">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+	</attribute>
+
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.defaults.pamaster.tooltip.validfrom</value>
+	</attribute>
+	
+	</component>
+
+	<component id="CMP_MAILTRACKING_DEFAULTS_PAMASTER_VALIDTO" name="validto">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+	</attribute>
+
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.defaults.pamaster.tooltip.validto</value>
+	</attribute>
+	
+	</component>
+	<component id="TXT_AREA_MAILTRACKING_DEFAULTS_PAMASTER_REMARKS" name="remarks">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_FREE_TEXT_REMARKS</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.remarks</value>
+			</attribute>
+	</component>
+	<component id="CMB_MAILTRACKING_DEFAULTS_PAMASTER_RESDITVER" name="Resdit Version">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+		<!--<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>-->
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.resditversion</value>
+		</attribute>
+	</component>
+	
+	<!--added by a-7540 for icrd-243365-->
+	<component id="CMB_MAILTRACKING_DEFAULTS_PAMASTER_LATVALIDATION" name="LAT Validation">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>
+		<!--<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>-->
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.latValidation</value>
+		</attribute>
+	</component>
+	
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_VATNUM" name="Vat Num">
+			
+			<attribute>
+				<name>lov</name>
+				<value>true</value>
+			</attribute>
+			
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_SMALL</value>
+			</attribute>
+			<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.vatnum</value>
+			</attribute>
+	</component>
+	<component id="CMB_MAILTRACKING_DEFAULTS_PAMASTER_CODE"	name="Combo Box">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_SELECT</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.code</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_VALUE" name="Value">			
+			<attribute>
+				<name>styleclass-id</name>
+				<value>ST_TXT_MEDIUM_NOCASE</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_SMALL</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.value</value>
+			</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_REMARKS" name="Remarks">			
+			<attribute>
+				<name>styleclass-id</name>
+				<value>ST_TXT_MEDIUM_NOCASE</value>
+			</attribute>
+			
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_SMALL</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.remarks</value>
+			</attribute>
+	</component>
+		<component id="CMP_MAILTRACKING_DEFAULTS_PAMASTER_EMAILREQD" name="Email Ivoice required">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CHECKBOX</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.emailinvoice</value>
+		</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_DUEINDAYS" name="Due In Days">
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_SMALL</value>
+			</attribute>
+			<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.dueindays</value>
+			</attribute>
+	</component>
+	<component id="CMP_MAILTRACKING_DEFAULTS_PAMASTER_GIBCUSTOMERFLAG" name="GIB Customer checkbox">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CHECKBOX</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_CMB_GEN_CHKBOX</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.defaults.pamaster.tooltip.gibCustomerFlag</value>
+		</attribute>
+</component>
+<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_PARTYID" name="Party ID">			
+			<attribute>
+				<name>styleclass-id</name>
+				<value>ST_TXT_MEDIUM_NOCASE</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_SMALL</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.partyid</value>
+			</attribute>
+	</component>
+		<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_RESDITTRIGGERINGPERIOD" name="Resdit Triggering Period">
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_SMALL</value>
+			</attribute>
+			<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.resdittriggeringperiod</value>
+			</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_DUPMAILBAGPERIOD" name="Duplicate MailBag Period">
+			<attribute>
+				<name>type</name>
+				<value>detail</value>
+			</attribute>
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_SMALL</value>
+			</attribute>
+			<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mailtracking.defaults.pamaster.tooltip.dupMailbagPeriod</value>
+			</attribute>
+	</component>
+			<!--Added as part of IASCB-853 starts-->
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_SECONDARYEMAIL1" name="email">
+	
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_EXTRA_LONG</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.defaults.pamaster.tooltip.secondaryemail1</value>
+	</attribute>
+	</component>
+	<component id="TXT_MAILTRACKING_DEFAULTS_PAMASTER_SECONDARYEMAIL2" name="email">
+	
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_EXTRA_LONG</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.defaults.pamaster.tooltip.secondaryemail2</value>
+	</attribute>
+	</component>
+	<!--Added as part of IASCB-853 ends-->
+</components>

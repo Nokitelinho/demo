@@ -1,0 +1,97 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+<html>
+    <head>
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+        <title>Offload</title>
+        <script>
+            var fromScreen = '<%=request.getParameter("fromScreen")%>'
+            console.log('fromScreen=', fromScreen);
+            var containerNumber = '<%=request.getParameter("containerNumber")%>';
+            var carrierCode = '<%=request.getParameter("carrierCode")%>';
+            var flightNumber = '<%=request.getParameter("flightNumber")%>';
+            var flightDate = '<%=request.getParameter("flightDate")%>';
+            var airport = '<%=request.getParameter("airport")%>';
+            var fromDate = '<%=request.getParameter("fromDate")%>';
+            var toDate = '<%=request.getParameter("toDate")%>';
+            var mailbags = '<%=request.getParameter("mailbags")%>';
+            var screenAction = "mail.operations.ux.offload.defaultscreenload.do";
+            var mailbagId = '<%=request.getParameter("mailbagId")%>';
+            var operation = '<%=request.getParameter("operation")%>';
+
+            function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {
+                    __rehydrate: false,
+                    fromScreen: fromScreen,
+                    screenAction: screenAction
+                });
+                console.log('newObj123', newobj);
+                return newobj
+            }
+        </script>
+        <common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+    </head>
+
+    <body>
+        <!-- The DIV container for redering results from react -->
+        <div id="container" class="main-container"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" /> 
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" /> 
+        {{/each}}
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+
+        <script>
+            if (fromScreen === 'mail.operations.ux.containerenquiry') {
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'SHOW_OFFLOAD_FROM_LISTCONTAINER',
+                        data: {
+                            containerNumber: containerNumber, carrierCode: carrierCode, flightNumber: flightNumber,
+                            flightDate: flightDate, airport: airport, fromDate: fromDate, toDate: toDate
+                        }
+                    })
+                });
+            }
+            else if (fromScreen === 'mail.operations.ux.mailbagenquiry') {
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'SHOW_OFFLOAD_FROM_MAILBAGENQUIRY',
+                        data: {
+                            carrierCode: carrierCode, flightNumber: flightNumber, mailbags: mailbags,
+                            flightDate: flightDate, airport: airport, fromDate: fromDate, toDate: toDate
+                        }
+                    })
+                });
+            }
+            else if (fromScreen === 'mail.operations.ux.mailoutbound' && operation === 'offloadMailbag') {
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'OFFLOAD_MAILBAG_FROM_OUTBOUND',
+                        data: {
+                            carrierCode: carrierCode, flightNumber: flightNumber, flightDate: flightDate,
+                            containerNumber: containerNumber, mailbags: mailbags
+                        }
+                    })
+                });
+            }
+            else if (fromScreen === 'mail.operations.ux.mailoutbound.container' && operation === 'offloadContainer') {
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'OFFLOAD_CONTAINER_FROM_OUTBOUND',
+                        data: {
+                            carrierCode: carrierCode, flightNumber: flightNumber, flightDate: flightDate,
+                            containerNumber: containerNumber
+                        }
+                    })
+                });
+            }
+            else {
+                console.log('inside main screen');
+                appBridge.renderApp();
+            }
+        </script>
+    </body>
+</html>

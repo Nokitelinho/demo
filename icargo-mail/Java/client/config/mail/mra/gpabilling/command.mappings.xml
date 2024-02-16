@@ -1,0 +1,570 @@
+<?xml version="1.0"?>
+<command-mappings xmlns="http://www.ibsplc.com/icargo/command/mappings" product="mail" subproduct="mra">
+
+	<screen name="ListCN51s" id="mailtracking.mra.gpabilling.listcn51s">
+
+		<action name="mailtracking.mra.gpabilling.listcn51s.onScreenLoad" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.listcn51s.onList" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.listcn51s.onPrintALL" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51.report.PrintAllCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.listcn51s.onClear" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.listcn51s.onView" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51.ViewCN51Command" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.listcn51s.onClose" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51.CloseCommand" order="1"/>
+		</action>
+
+	</screen>
+
+	<!--  Added by A-3434 for ListGPABillingInvoice begins -->
+
+	<screen name="ListGPABillingInvoice" id="mailtracking.mra.gpabilling.listgpabillinginvoice">
+
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.onScreenLoad" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.list" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.clear" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.ClearCommand" order="1"/>
+		</action>
+		<!--  Added by A-3447 for finalizeInvoice  starts -->
+
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.finalizeInvoice" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.FinalizeInvoiceCommand" order="1"/>
+		</action>
+		<!--  Added by A-6991 for finalizeInvoice  starts -->
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.withdrawInvoice" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.WithdrawInvoiceCommand" order="1"/>
+		</action>
+        <!--  Added by A-3447 for finalizeInvoice  ends -->
+		<!--  Added by A-6991 for finalizeInvoice  ends -->
+
+		<!--  Added by A-3447 for InvoiceDetail starts -->
+
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.invoicedetails" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.InvoiceDetailCommand" order="1"/>
+		</action>
+
+		<!--  Added by A-3447 for InvoiceDetail  ends -->
+
+		<!--  Added by A-3447 for ViewCN5566  starts -->
+
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.viewcn66">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.ViewCN51Command" order="1"/>
+		</action>
+
+		<!--  Added by A-3447 for ViewCN5566  ends -->
+		<!--  Added by Deepthi  for ListGPABilling Invoice  starts -->
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.print" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.report.PrintCommand" order="1"/>
+		</action>
+		<!--  Added by Deepthi for list GPA Billing Invoice Print  ends -->
+		
+		<!--  Added by A-3447 for ListAccEntries  starts -->
+		
+		<action name="mra.gpabilling.listgpabillingInvoice.listaccdetails" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.ShowAccountingDtlsCommand" order="1"/>
+		</action>
+		
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.outstandingreceivables" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.RebillInvoiceDetailsCommand" order="1"/>
+		</action>
+		<!--  Added by A-3447 for ListAccEntries  Ends -->
+		
+		<!--Added by A-4809 for ICRD-42160 Starts-->
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.sendemailinvoice" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.EmailInvoiceCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.printall" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.report.PrintAllCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.printallinvoicedetails" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.report.tk.InvoiceDetailsPrintComand" order="1"/>
+		</action>	
+		<!--Added by A-4809 for ICRD-42160 Ends-->
+		<action name="mail.mra.gpabilling.listgpabillinginvoice.downloadpassfile" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.DownloadPASSFileCommand" order="1"/>
+		</action>			
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoicesq.print" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.report.sq.PrintCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.printallSQ" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.report.sq.PrintAllCommand" order="1"/>
+		</action>
+	</screen>
+
+	<!--  Added by A-3434 for ListGPABillingInvoice ends -->
+
+	<!--  Added by A-3434 for AirNZ CR 163 begins -->
+
+	<screen name="GPABillingInvoiceEnquiryForm" id="mailtracking.mra.gpabilling.gpabillinginvoiceenquiry">
+	
+			<action name="mailtracking.mra.gpabilling.generateLoadInvoice" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoiceenquiry.ScreenLoadEInvoice" order="1"/>
+			</action>
+			
+			<action name="mailtracking.mra.gpabilling.sendandfinalizeInvoice" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoiceenquiry.SendAndFinalizeInvoiceCommand" order="1"/>
+			</action>
+
+
+
+			<action name="mailtracking.mra.gpabilling.gpabillinginvoiceenquiry" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoiceenquiry.ClearCommand" order="1"/>
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoiceenquiry.ScreenLoadCommand" order="2"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoiceenquiry.list" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoiceenquiry.ListCommand" order="1"/>
+			</action>
+
+			<action name="mailtracking.mra.gpabilling.invoiceenquiry.clear" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoiceenquiry.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.changebillingstatus" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.changestatus.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.changestatus.save" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.changestatus.SaveCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoiceenquirypopulategpaname" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoiceenquiry.PopulateGpaNameCommand" order="1"/>
+			</action>
+				<!--  Added by A-3447 for AirNZ CR 162 begins -->
+			<action name="mailtracking.mra.gpabilling.invoiceenquiry.close" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoiceenquiry.CloseCommand" order="1"/>
+			</action>
+			<!--  Added by A-3447 for AirNZ CR 162 ends -->
+			 <action name="mailtracking.mra.gpabilling.inward.invoiceenquiry.print" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoiceenquiry.report.PrintCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoiceenquiry.finalizeInvoice" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoiceenquiry.FinalizeInvoiceCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoiceenquiry.navigate" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoiceenquiry.NavigateCommand" order="1"/>
+			</action>
+
+
+    </screen>
+    <!--  Added by A-3434 for AirNZ CR 163 ends -->
+	<screen name="SurchargeBillingDetailsForm" id="mailtracking.mra.gpabilling.surcharge.surchargepopup">
+		<action name="mailtracking.mra.gpabilling.surcharge" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.surcharge.ScreenloadSurchargeDetailsCommand" order="1"/>
+		</action>
+	</screen>
+
+
+	<screen name="GPABillingEntriesForm" id="mailtracking.mra.gpabilling.billingentries.listgpabillingentries">
+
+		<action name="mailtracking.mra.gpabilling.billingentries.onScreenLoad">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.changestatuspopup">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.ChangeStatusCommand" order="1"/>
+			</action>
+		<action name="mailtracking.mra.gpabilling.listbillingentries">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.ListCommand" order="1"/>
+			</action>
+		<action name="mailtracking.mra.gpabilling.clearbillingentries">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.ClearCommand" order="1"/>
+			</action>
+		<action name="mailtracking.mra.gpabilling.changestatusok">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.ChangeStatusOkCommand" order="1"/>
+			</action>
+		<action name="mailtracking.mra.gpabilling.screenreload">
+							<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.ScreenReloadCommand" order="1"/>
+			</action>
+		<action name="mailtracking.mra.gpabilling.savebillingentries">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.SaveCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.billingentries.close">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.CloseCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.listbillingsurcharge">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.SurchargeDetailsCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.rerate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.RerateCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.routing">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.RoutingCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.voidaction">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.VoidMailbagsCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.automca">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.billingentries.NavigateMCACommand" order="1"/>
+		</action>
+		
+	</screen>
+
+	<!--  Added by Sandeep for Listcn51cn66 begins -->
+
+		<screen name="mailtracking.mra.gpabilling.listcn51cn66" id="mailtracking.mra.gpabilling.listcn51cn66">
+			<action name="mailtracking.mra.gpabilling.onscreenloadlistcn51cn66">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.onlistcn51cn66">
+		  		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.ListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.onClearcn51cn66">
+		  		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.onClosecn51cn66">
+		  		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.CloseCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.onCN66TabListcn51cn66">
+				  <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.CN66TabListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.onCN66TabClearcn51cn66">
+		  		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.CN66TabClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.onSavecn51cn66">
+		 		 <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.SaveCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.cn51cn66surcharge">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.SurchargeDetailsCommand" order="1"/>
+			</action>	
+            <!--Added by A-6991 for ICRD-211662 Starts-->
+			<action name="mailtracking.mra.gpabilling.cn51cn66withdrawmail">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.WithdrawMailsCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.cn51cn66finalizeinvoice">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.FinalizeProformaInvoiceCommand" order="1"/>
+			</action>
+			<!--Added by A-6991 for ICRD-211662 Ends-->
+			<action name="mtk.mra.gpabilling.generatecn66repPrint">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.CN66ReportPrintCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.generatecn51report">
+			   <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.CN51ReportPrintCommand" order="1"/>
+			</action>
+			<!--for indigo specific reports-->
+			<action name="mtk.mra.gpabilling.generatecn666erepPrint">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.indigo.CN66ReportPrintCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.generatecn516ereport">
+			   <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.indigo.CN51ReportPrintCommand" order="1"/>
+			</action>
+			<!--for indigo specific reports-->
+			<action name="mailtracking.mra.gpabilling.generateinvoicereport">
+			   <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.InvoiceDetailsPrintComand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.listcn51cn66.viewaccount" >
+ 			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.ViewAccountCommand" order="1"/>
+		         </action>
+			<action name="mtk.mra.gpabilling.generatecn51tkrepPrint">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.tk.CN51ReportPrintCommand" order="1"/>
+			</action>
+			
+			<action name="mtk.mra.gpabilling.generatecnInvoicetkrPrint">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.tk.InvoiceDetailsPrintCommand" order="1"/>
+			</action>
+			<action name="mtk.mra.gpabilling.generatecnGPAInvoicestkrPrint">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.tk.GPAInvoicesPrintCommand" order="1"/>
+			</action>			
+
+			<!-- FOR SQ_SPECIFIC -->
+			<action name="mtk.mra.gpabilling.generatecnInvoicesqPrint">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.sq.InvoiceDetailsPrintCommand" order="1"/>
+			</action>
+			<action name="mtk.mra.gpabilling.generatecn51sqrepPrint">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.sq.CN51ReportPrintCommand" order="1"/>
+			</action>
+			<action name="mtk.mra.gpabilling.generatecnGPAInvoicesqPrint">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.sq.GPAInvoicesPrintCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.listgpabillingInvoicesq.print" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.report.sq.PrintCommand" order="1"/>
+			</action>
+				<action name="mailtracking.mra.gpabilling.listgpabillingInvoice.printallSQ" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.listinvoice.report.sq.PrintAllCommand" order="1"/>
+		</action>
+			
+			<!--  Added by A-7794 as part of ICRD-234354 starts -->
+			<action name="mail.mra.gpabilling.generatekecn51report">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.ke.CN51ReportPrintCommand" order="1"/>
+            </action>
+            <action name="mail.mra.gpabilling.generatekecn66report">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.ke.CN66ReportPrintCommand" order="1"/>
+            </action>
+			<!--  Added by A-7794 as part of ICRD-234354 ends -->
+	</screen>
+	<!--  Added by Sandeep for Listcn51cn66 ends -->
+	<!-- Added for InvoiceLov starts -->
+	<screen name="InvoiceLOV" id="mailtracking.mra.gpabilling.invoicelov">
+
+			<action name="showInvoiceLOV" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.InvoiceLovListCommand" order="1"/>
+			</action>
+
+			<action name="clearInvoiceLOV" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.cn51cn66.InvoiceLovClearCommand" order="1"/>
+			</action>
+	</screen>
+	<!-- Added for InvoiceLov ends -->
+
+
+	<!-- Added for GenerateInvoice Screen Starts -->
+
+	<screen name="GenerateInvoiceScreen" id="mailtracking.mra.gpabilling.generateinvoice">
+
+		<action name="mailtracking.mra.gpabilling.generateinvoice.onScreenLoad" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.generateinvoice.ScreenLoadCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.gpabilling.generateinvoice.onGenInv" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.generateinvoice.GenerateInvoiceCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.gpabilling.generateinvoice.onClose" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.generateinvoice.CloseCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.generateinvoice.findBillingPeriod" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.generateinvoice.BillingPeriodCommand" order="1"/>
+		</action>
+		<!---Added by A-4809 for ICRD-42160 Turkish specific Starts -->
+		<!--<action name="mailtracking.mra.gpabilling.generateinvoice" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.generateinvoice.tk.GenerateInvoiceCommand" order="1"/>
+		</action>-->
+		<!---Added by A-4809 for ICRD-42160 Ends -->
+	</screen>
+	<screen name="GPABillingReports" id="mailtracking.mra.gpabilling.gpabillingreports">
+
+		<action name="mailtracking.mra.gpabilling.reports.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.GPAReportScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.defaults.gpa.list" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.FindGPANameCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.reports.printblgsmyperiodwise" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.BlgSmyPeriodWisePrintCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.reports.printblgsmygpawise" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.BlgSmyGpaWisePrintCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.gpabilling.reports.printcn51periodwise" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.CN51DetailsPrdWisePrintCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.reports.printcn51gpawise" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.CN51DetailsGpaWisePrintCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.reports.printcn66periodwise" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.CN66DetailsPrdWisePrintCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.reports.printcn66gpawise" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.CN66DetailsGpaWisePrintCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.reports.printgpabillablereport" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.GPABillableReportPrintCommand" order="1"/>
+		</action>
+
+	</screen>
+
+	<!-- Added for GenerateInvoice Screen ends -->
+	<!-- Added for Invoice Settlement starts -->
+	<screen name="InvoiceSettlement" id="mailtracking.mra.gpabilling.invoicesettlement">
+
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.onScreenLoad" >
+							<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.list" >
+							<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.ListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.history" >
+							<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.InvoiceSettlementHistoryCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.print" >
+							<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.ReconciliationReportCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.save" >
+							<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.SaveCommand" order="1"/>
+							<!--commented by A-5116 for ICRD-17510 -->
+						<!--	<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.ClearCommand" order="2"/>   -->
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.clear" >
+							<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.close" >
+							<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.CloseCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.reload" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.ReloadCommand" order="1"/>
+			</action>
+			<!--added for ICRD 7316 starts-->
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.availablepopup" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.ListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.ok" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.OkCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.create" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.CreateCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.populategpaname" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.PopulateGpaNameCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.printsettlement" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.PrintCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.listinvoice" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.ListInvoiceCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.invoicesettlement.listaccdetails" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.invoicesettlement.ShowAccountingDetailsCommand" order="1"/>
+		</action>
+			<!--added for ICRD 7316 ends-->
+	</screen>
+	<!-- Added for Invoice Settlement ends -->
+
+	<!-- Added for Proforma-Invoice Difference Report starts -->
+	<screen name="ProformaInvoiceDiffReport" id="mailtracking.mra.gpabilling.proformainvoicediffreport">
+
+			<action name="mailtracking.mra.gpabilling.reports.proformainvoicescreenload" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.proformainvoicediffreport.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.printproformainvoicediffreport" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.report.ProformaInvoiceDiffPrintCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.gpabilling.closeproformainvoicediffreport" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.proformainvoicediffreport.CloseCommand" order="1"/>
+			</action>
+
+	</screen>
+	<!-- Added for Proforma-Invoice Difference Report ends -->
+	<!--added by a-4823 for POMailSummary starts-->
+	<screen name="POMailSummary" id="mailtracking.mra.gpabilling.pomailsummary">
+		<action name="mailtracking.mra.gpabilling.pomailsummary.screenload" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.pomailsummary.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.pomailsummary.clear" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.pomailsummary.ClearCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.gpabilling.pomailsummary.print" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.pomailsummary.report.PrintCommand" order="1"/>
+		</action>
+	</screen>
+	<!--added by a-4823 for POMailSummary ends-->
+	<!--ADDED BY A-7531-->
+	<screen name="Invoice Settlement Mailbag Level" id="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel">
+
+	<action name="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.screenload" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.invoicesettlementmailbag.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.clear" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.invoicesettlementmailbag.ClearCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.list" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.invoicesettlementmailbag.ListCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.openPopup" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.invoicesettlementmailbag.ListCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.create" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.invoicesettlementmailbag.CreateCommand" order="1"/>
+
+		</action>
+		<action name="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.ok" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.invoicesettlementmailbag.OKCommand" order="1"/>
+
+		</action>
+		<action name="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.viewhistory" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.invoicesettlementmailbag.ViewHistoryCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.search" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.invoicesettlementmailbag.SearchCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.close" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.invoicesettlementmailbag.CloseCommand" order="1"/>
+		</action>
+
+		<!--added by a-7871 for ICRD-235799 -->
+		<action name="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.save" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.invoicesettlementmailbag.SaveCommand" order="1"/>
+		</action>
+
+		<!-- 8331-->
+		<action name="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.remarksSave" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.invoicesettlementmailbag.RemarksCommand" order="1"/>
+		</action>
+
+       <action name="mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.listaccdetails" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.invoicesettlementmailbag.ShowAccountingDetailsCommand" order="1"/>
+		</action>
+
+	</screen>
+	<screen name="InvoiceLOVUX" id="mailtracking.mra.gpabilling.ux">
+
+			<action name="clearInvoiceLOV" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.InvoiceLovClearCommand" order="1"/>
+		</action>
+		<action name="showNewInvoiceLOV" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.InvoiceLovListCommand" order="1"/>
+		</action>
+	</screen>
+	<screen name="List Billing Entries" id="mail.mra.gpabilling.ux.gpabillingenquiry">
+		<action name="mail.mra.gpabilling.ux.gpabillingenquiry.fetchdetailsonscreenload" >
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.gpabillingenquiry.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mail.mra.gpabilling.ux.gpabillingenquiry.fetchdetailsonlist" >
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.gpabillingenquiry.ListBillingEntryCommand" order="1"/>
+		</action>	
+		<action name="mail.mra.gpabilling.ux.gpabillingenquiry.fetchdetailsonrerate" >
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.gpabillingenquiry.ReRateCommand" order="1"/>
+		</action>	
+		<action name="mail.mra.gpabilling.ux.gpabillingenquiry.fetchdetailsonsurchargedetails" >
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.gpabillingenquiry.SurchargeDetailsCommand" order="1"/>
+		</action>	
+		<action name="mail.mra.gpabilling.ux.gpabillingenquiry.fetchdetailsonautomca" >
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.gpabillingenquiry.AutoMCACommand" order="1"/>
+		</action>
+		<action name="mail.mra.gpabilling.ux.gpabillingenquiry.fetchdetailsonchnagestatus" >
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.gpabillingenquiry.ChangeBillingStatusCommand" order="1"/>
+		</action>		
+		<action name="mail.mra.gpabilling.ux.gpabillingenquiry.fetchdetailsonupdatebilling" >
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.gpabillingenquiry.UpdateBillingStatusCommand" order="1"/>
+		</action>
+		<action name="mail.mra.gpabilling.ux.gpabillingenquiry.fetchdetailsonchangestatussave" >
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.gpabillingenquiry.ChangeBillingStatusSaveCommand" order="1"/>
+		</action>
+		<action name="mail.mra.gpabilling.ux.gpabillingenquiry.listconsignmentdetails" >
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.gpabillingenquiry.ListConsignmentDetailsCommand" order="1"/>
+		</action>
+	</screen>
+	<screen name="GeneratePASSBillingFile" id="mail.mra.gpabilling.ux.generatepassbillingfile">
+		<action name="mail.mra.gpabilling.ux.generatepassbillingfile.defaultscreenload">
+				<command class="com.ibsplc.icargo.framework.web.command.screenload.DefaultScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mail.mra.gpabilling.ux.generatepassbillingfile.screenload" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.generatepassbillingfile.ScreenLoadCommand" order="1"/>
+	    </action>
+		<action name="mail.mra.gpabilling.ux.generatepassbillingfile.generate" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.generatepassbillingfile.GenerateCommand" order="1"/>
+	    </action>
+		<action name="mail.mra.gpabilling.ux.generatepassbillingfile.populateperiod" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.generatepassbillingfile.PopulateBillingPeriodCommand" order="1"/>
+	    </action>
+	 </screen>
+	 <screen name="FileNameLov" id="mail.mra.gpabilling.ux.filenamelov">
+		<action name="mail.mra.gpabilling.ux.filenamelov.list" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.gpabilling.ux.lov.ListFileNameLovCommand" order="1"/>
+		</action>
+	</screen>
+</command-mappings>

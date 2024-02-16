@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<QRY:Definitions
+	xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries"
+	module="lhmail.operations">
+	<QRY:Definition>
+		<QRY:Id>1</QRY:Id>
+		<QRY:Source Name="xaddons.lh.mail.operations.findpalov" Type="NATIVE">
+	<![CDATA[
+	SELECT CMPCOD, POACOD, POANAM
+    FROM MALPOAMST
+    WHERE CMPCOD = ?
+]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>2</QRY:Id>
+		<QRY:Source Name="xaddons.lh.mail.operation.despatch.basequery"
+			Type="NATIVE">
+<![CDATA[
+ WITH malmstfull AS (
+    SELECT
+        mst.*
+    FROM
+        malmst mst
+    WHERE   MST.CMPCOD =? AND
+    MST.POACOD = ? 
+]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>3</QRY:Id>
+		<QRY:Source
+			Name="xaddons.lh.mail.operation.despatch.mailbaglistingquery" Type="NATIVE">
+<![CDATA[
+ ), count_out AS (
+  SELECT dsn, count(1) AS recptacle_count
+  FROM (
+    SELECT DISTINCT malidr, dsn
+    FROM malmstfull
+    WHERE malsta <> 'NEW'
+  ) subquery
+  GROUP BY dsn
+)
+SELECT *
+FROM (
+  SELECT
+    COALESCE(count_out.recptacle_count, -1) AS recptacle_count,
+    mst.dsn,
+    mst.malidr,
+    mst.rsn,
+    mst.malsta,
+    mst.scnprt,
+    mst.scndat,
+    mst.dspdat,
+    mst.malctg,
+    mst.malsubcls,
+    mst.orgexgofc,
+    mst.dstexgofc,
+    mst.wgt,
+    arlmst.twoaphcod,
+    seg.fltnum,
+    fltseg.pol,
+    fltseg.pou,
+    leg.std
+  FROM malmstfull mst
+  INNER JOIN maluldsegdtl seg ON mst.cmpcod = seg.cmpcod AND mst.malseqnum = seg.malseqnum
+  LEFT JOIN count_out ON mst.dsn = count_out.dsn
+  INNER JOIN shrarlmst arlmst ON arlmst.cmpcod = seg.cmpcod AND arlmst.arlidr = seg.fltcaridr
+  INNER JOIN malfltseg fltseg ON fltseg.cmpcod = seg.cmpcod
+    AND fltseg.fltcaridr = seg.fltcaridr
+    AND fltseg.fltnum = seg.fltnum
+    AND fltseg.fltseqnum = seg.fltseqnum
+    AND fltseg.segsernum = seg.segsernum
+  INNER JOIN fltoprleg leg ON leg.cmpcod = fltseg.cmpcod
+    AND leg.fltcaridr = fltseg.fltcaridr
+    AND leg.fltnum = fltseg.fltnum
+    AND leg.fltseqnum = seg.fltseqnum
+    AND leg.legorg = fltseg.pol
+  UNION ALL
+  SELECT
+    COALESCE(count_out.recptacle_count, -1) AS recptacle_count,
+    mst.dsn,
+    mst.malidr,
+    mst.rsn,
+    mst.malsta,
+    mst.scnprt,
+    mst.scndat,
+    mst.dspdat,
+    mst.malctg,
+    mst.malsubcls,
+    mst.orgexgofc,
+    mst.dstexgofc,
+    mst.wgt,
+    arlmst.twoaphcod,
+    '-1' AS fltnum,
+    'EMPTY' AS pol,
+    'EMPTY' AS pou,
+    NULL AS std
+  FROM malmstfull mst
+  INNER JOIN malarpulddtl seg ON mst.cmpcod = seg.cmpcod AND mst.malseqnum = seg.malseqnum
+  LEFT JOIN count_out ON mst.dsn = count_out.dsn
+  INNER JOIN shrarlmst arlmst ON arlmst.cmpcod = seg.cmpcod
+    AND arlmst.arlidr = seg.fltcaridr
+    AND seg.uldnum <> 'BULK-ARR-LH'
+  ORDER BY dspdat DESC
+) data
+LIMIT 70000;
+]]>
+		</QRY:Source>
+	</QRY:Definition>
+<QRY:Definition>
+	<QRY:Id>4</QRY:Id>
+	<QRY:Source Name="xaddons.lh.mail.operation.despatch.mailbaglistingqueryfororacle"
+		Type="NATIVE">
+<![CDATA[
+  ) , COUNT_OUT AS (SELECT DSN , COUNT(1) recptacle_count FROM ( SELECT DISTINCT MALIDR,DSN FROM malmstfull where malsta<>'NEW') GROUP BY dsn) 
+ SELECT * from(  
+    SELECT (SELECT recptacle_count FROM COUNT_OUT WHERE DSN = mst.dsn ) recptacle_count,
+    mst.dsn,
+     mst.malidr,
+            mst.rsn,
+            mst.malsta,
+			mst.scnprt,
+			mst.scndat,
+            mst.dspdat,
+            mst.malctg,
+            mst.malsubcls,
+            mst.orgexgofc,
+            mst.dstexgofc,
+            mst.wgt,
+            arlmst.twoaphcod,
+            seg.fltnum,
+            fltseg.pol,
+            fltseg.pou,
+            leg.std
+           FROM
+            malmstfull mst
+            INNER JOIN maluldsegdtl seg ON mst.cmpcod = seg.cmpcod
+                                           AND mst.malseqnum = seg.malseqnum
+            INNER JOIN shrarlmst arlmst ON arlmst.cmpcod = seg.cmpcod
+                                           AND arlmst.arlidr = seg.fltcaridr
+            INNER JOIN malfltseg fltseg ON fltseg.cmpcod = seg.cmpcod
+                                           AND fltseg.fltcaridr = seg.fltcaridr
+                                           AND fltseg.fltnum = seg.fltnum
+                                           AND fltseg.fltseqnum = seg.fltseqnum
+                                           AND fltseg.segsernum = seg.segsernum  
+            INNER JOIN fltoprleg leg ON leg.cmpcod = fltseg.cmpcod
+                                           AND leg.fltcaridr = fltseg.fltcaridr
+                                            AND leg.fltnum = fltseg.fltnum
+                                             AND leg.fltseqnum = seg.fltseqnum
+                                            AND leg.legorg = fltseg.pol   
+        UNION ALL 
+             SELECT (SELECT recptacle_count FROM COUNT_OUT WHERE DSN = mst.dsn ) recptacle_count,
+              mst.dsn,
+            mst.malidr,
+             mst.rsn,
+            mst.malsta,
+			mst.scnprt,
+			mst.scndat,
+            mst.dspdat,
+            mst.malctg,
+            mst.malsubcls,
+            mst.orgexgofc,
+            mst.dstexgofc,
+            mst.wgt,
+            arlmst.twoaphcod,
+            '-1' fltnum ,
+            'EMPTY' pol,
+            'EMPTY' pou ,
+            NULL std
+        FROM
+            malmstfull mst
+            INNER JOIN malarpulddtl seg ON mst.cmpcod = seg.cmpcod
+                                           AND mst.malseqnum = seg.malseqnum
+            INNER JOIN shrarlmst arlmst ON arlmst.cmpcod = seg.cmpcod
+                                           AND arlmst.arlidr = seg.fltcaridr
+										    AND seg.uldnum <>'BULK-ARR-LH'
+										    order by dspdat desc
+										    ) data where rownum <70000
+]]>
+	</QRY:Source>
+</QRY:Definition>
+
+					
+
+</QRY:Definitions>

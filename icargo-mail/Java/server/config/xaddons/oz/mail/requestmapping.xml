@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--The file contains mapping information for request URI and to its corresponding handler
+and  screen. There will be entries for each request URI which need to be mapped.
+This file is used to build request mapping objects.-->
+<request-mappings>
+	<url-mapping url="ozmail">
+    	<submodule-mapping submodule="operations">
+        	<request-service-name>OZMAIL_OPERATIONS</request-service-name>
+			
+		
+		<!-- A-7531 Added for ICRD-192536-->
+		<request-action actionName="findMailBookingAWBs" methodName="findMailBookingAWBs" parameterTypes="com.ibsplc.icargo.business.xaddons.oz.mail.operations.vo.MailBookingFilterVO,int" permissionCheck="false" />
+	    <request-action actionName="saveMailBookingDetails" methodName="saveMailBookingDetails" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.xaddons.oz.mail.operations.vo.MailBookingDetailVO" permissionCheck="false" />
+		<request-action actionName="dettachMailBookingDetails" methodName="dettachMailBookingDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="fetchBookedFlightDetails" methodName="fetchBookedFlightDetails" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="saveMailBookingFlightDetails" methodName="saveMailBookingFlightDetails" parameterTypes="java.util.Collection,java.util.Collection" permissionCheck="false" />
+	</submodule-mapping>
+
+
+
+    </url-mapping>
+  </request-mappings>

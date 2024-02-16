@@ -1,0 +1,283 @@
+body {
+    display: flex;
+    height: 0;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.section-panel {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 1rem 0;
+    .card {
+        flex-grow: 1;
+    }
+}
+
+.footer-panel {
+    position: static;
+    margin: 0 -1rem;
+    width: auto;
+}
+
+//common styles
+.flex-grow-0 {
+    flex-grow: 0
+}
+
+.flex-grow-1 {
+    flex-grow: 1
+}
+
+.text-light-grey {
+    color: #aaa;
+}
+
+//layout - header extra data
+.header-extra-data-panel {
+    padding: $sm;
+    line-height: 1;
+    min-width: 200px;
+    .header-extra-data-detail {
+        margin-bottom: $sm;
+        .form-control-label {
+            display: inline-block;
+            margin: 0 $xs 0 0;
+        }
+        .form-control-data {
+            display: inline-block
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.flight-multi-panel-close {
+    position: absolute;
+    right: -17px;
+    top: 13px;
+}
+
+.table-header__icons .ico-updown-dark.ico-updown-dark-down {
+    display: none
+}
+
+.mail-inbound-flight-details-list {
+    .paginator__wrap {
+        min-width: initial;
+        max-width: none;
+        width: auto;
+        .pagination{
+            max-width: none;
+        }
+    }
+}
+
+.paginator__wrap.paginator__wrap--nano {
+    min-width: initial;
+}
+
+.mail-inbound-flight-details-list,
+.mail-inbound-flight-details-list-small,
+.mail-inbound-container-details-list-small,
+.mail-inbound-mailbag-details-list-small {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.mail-inbound-flight-details-list-small,
+.mail-inbound-container-details-list-small,
+.mail-inbound-mailbag-details-list-small {
+    .pagination .page-item .page-link,
+    .btn {
+        height: 28px;
+        padding: 6px 10px;
+        line-height: 0;
+    }
+}
+
+.mail-inbound-mailbag-details-list-small {
+    .table-header__customheader {
+        padding: 0;
+    }
+    .mailbag-tab-view {
+        .table-header__customheader {
+            border: 0;
+        }
+        .btn {
+            i {
+                margin: 0;
+            }
+        }
+    }
+    .dsn-tab-view {}
+}
+
+.card-header {
+    .btn {
+        i {
+            margin: 0;
+        }
+    }
+}
+
+.popover.table-filter {
+    min-width: 400px;
+    max-width: 400px !important;
+}
+
+//tables
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn {
+    padding: 0 0 0 0.5rem;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn {
+    white-space: inherit;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:first-child,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn:first-child {
+    padding-left: 1rem;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:last-child,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn:last-child {
+    padding-right: 1rem;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Grid__innerScrollContainer .ReactVirtualized__Table__row.table-row:last-child {
+    border-bottom: 1px solid #ddd;
+}
+
+.ReactVirtualized__Table .form-check-input {
+    margin: 0;
+}
+
+.tab {
+    .btn-group {
+        .btnbar {
+            font-size: 16px;
+            font-weight: normal;
+            padding: 1rem;
+            line-height: 1;
+            min-width: auto;
+        }
+    }
+    &.tab-icon {
+        border: 0;
+        .btn-group {
+            .btnbar {
+                padding: 12px;
+                min-width: unset;
+                i {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+.card-header,
+.tab {
+    .icon {
+        vertical-align: middle;
+    }
+}
+
+.mailbag-dropdownmenu {
+    width: 324px;
+    height: 238px;
+    &.show {
+        display: flex !important;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .dropdown-item {
+        width: 160px;
+    }
+    &.status-new{
+        width: auto !important;
+        height: auto !important;
+    }
+}
+
+.popover-body .btn {
+    font-size: 14px;
+    padding: 0 0.625rem;
+    height: 2rem;
+}
+
+.handsontable {
+    .htCore {
+        tr {
+            &:first-child {
+                th {
+                    border-top: 0;
+                    padding: $xs;
+                    text-align: left;
+                    background: #f2f8ff;
+                    font-weight: bold;
+                    height: auto !important;
+                    line-height: 1;
+                    color: #666;
+                    &:first-child {
+                        border-left: 0;
+                    }
+                    &:last-child {
+                        border-right: 0;
+                    }
+                    .relative {
+                        padding: 0;
+                    }
+                }
+            }
+            td {
+                padding: $xs;
+                line-height: 1;
+                color: #333;
+                height: auto;
+                &:first-child {
+                    border-left: 0;
+                }
+                &:last-child {
+                    border-right: 0;
+                }
+            }
+            &:last-child {
+                td {
+                    //                    border-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+.modal_990px{
+	max-width:990px;
+	.modal-body{
+		max-height: 448px;
+		overflow-y: auto;
+	}
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn .dropdown{
+  text-align: right;
+}
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn .dropdown .dropdown-toggle{
+  border: 0;
+  padding: 0 4px !important;
+}
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn .dropdown .dropdown-toggle:focus{
+  box-shadow: none;
+}
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn .dropdown .dropdown-toggle i{
+  margin: 0;
+}

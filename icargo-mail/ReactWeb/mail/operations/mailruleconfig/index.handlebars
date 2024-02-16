@@ -1,0 +1,40 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+	<html>
+	<head>
+ 		<jsp:include page="/jsp/includes/app/appheader.jsp" />
+		<title>template Screen</title>
+		
+         <script>
+            var fromScreen = '<%=request.getParameter("fromScreen")%>';
+			 var screenAction = "mail.operations.ux.mailruleconfig.defaultscreenload.do";
+
+            function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {
+                    __rehydrate:  false,
+                    fromScreen: fromScreen,
+                    screenAction: screenAction
+                });
+                return newobj
+            }
+        </script>
+
+		<common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+	</head>
+
+	<body>
+       <!-- The DIV container for redering results from react -->
+        <div id="container" class="main-container"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" />
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" /> 
+        {{/each}}
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+        <script>
+            appBridge.renderApp();
+        </script>
+    </body>
+
+	</html>

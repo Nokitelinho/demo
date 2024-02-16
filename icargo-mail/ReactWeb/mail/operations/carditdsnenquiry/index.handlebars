@@ -1,0 +1,48 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+<html>
+    <head>
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+        <title>Cardit DSN Enquiry</title>
+        <script>
+            var fromScreen = '<%=request.getParameter("fromScreen")%>'
+            function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {
+                    __rehydrate: false
+                });
+                console.log('newObj', newobj);
+                return newobj
+            }
+
+            /** Method to be access from lite pop up js
+             * to access data in store. Here the selected mailbagvos
+             * are saved in store.
+             **/
+            function getMailbagDetails() {
+                var bridgeInstance = Gateway.default().bridge;
+                var state = bridgeInstance.getStoreInstance().getState();
+                var mailbagVos = state.commonReducer.selectedMailbagVos;
+                var carditFilter = state.filterReducer.carditFilter;
+                console.log('mailbagVos', mailbagVos);
+                return { mailbagVos: mailbagVos, carditFilter: carditFilter };
+
+            }
+        </script>
+      <common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+    </head>
+
+    <body>
+        <!-- The DIV container for redering results from react -->
+        <div id="container" class="main-container"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" />
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" /> 
+        {{/each}}
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+        <script>
+            appBridge.renderApp();
+        </script>
+    </body>
+</html>

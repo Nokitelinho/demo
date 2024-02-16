@@ -1,0 +1,489 @@
+<?xml version="1.0"?>
+<components screenId="mail.operations.ux.outbound" xmlns="http://www.ibsplc.com/icargo/components-details">
+<component id="CMP_Mail_Operations_Outbound_List" name="List Button">
+		<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BTN_SMALL</value>
+			</attribute>
+		
+</component>
+	
+	
+	<component id="CMP_MAIL_OPERATIONS_ADD_DSN" name="DSN">
+     <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    	
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_INTEGER</value>
+	</attribute>
+	
+	<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.mailoutbound.dsn</value>
+		</attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_ADD_RSN" name="RSN">
+     <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    	
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_INTEGER</value>
+	</attribute>
+	
+	<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.mailoutbound.rsn</value>
+		</attribute>
+  </component>
+  
+   <component id="CMP_MAIL_OPERATIONS_MAILOUTBOUND_FROMDATE" name="FromDate">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.mailoutbound.fromdate</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	     <component id="CMP_MAIL_OPERATIONS_MAILOUTBOUND_TODATE" name="ToDate">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.mailoutbound.todate</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	    <component id="CMP_MAIL_OPERATIONS_MAILOUTBOUND_REMARKS" name="remarks">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_EXTRA_LONG</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+			<value>mail.operations.mailoutbound.remarks</value>
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>false</value>
+			</attribute>
+			
+	   </component>
+	      <component id="CMP_MAIL_OPERATIONS_MAILOUTBOUND_DESTINATION" name="Destn">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.mailoutbound.destination</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHA</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	       <component id="CMP_MAIL_OPERATIONS_MAILOUTBOUND_CARRIERCODE" name="carrierCode">
+		<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_EXTRA_LONG</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+			<value>mail.operations.mailoutbound.carrier</value>
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>false</value>
+			</attribute>
+		
+	   </component>
+	   <component id="CMP_MAIL_OPERATIONS_MAILOUTBOUND_FLIGHTNUM" name="flightNumber">
+		<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_EXTRA_LONG</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+			<value>mail.operations.mailoutbound.flightnumber</value>
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>false</value>
+			</attribute>
+		
+	   </component>
+	    <component id="CMP_MAIL_OPERATIONS_MAILOUTBOUND_FLIGHTDATE" name="flightDate">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.mailoutbound.flightdate</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	    <component id="CMP_MAIL_OPERATIONS_MAILOUTBOUND_POU" name="pou">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.mailoutbound.pou</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHA</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_MAIL_OPERATIONS_MAILOUTBOUND_POL" name="pol">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.mailoutbound.pol</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHA</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	    <component id="CMP_MAIL_OPERATIONS_CONTAINERENQUIRY_DESTINATIONLOV" name="Destn">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.containerenquiry.tooltip.destination</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHA</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	<component id="CMP_MAIL_OPERATIONS_CONTAINERENQUIRY_CARRIERLOV" name="carLov">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.containerenquiry.tooltip.carrierCode</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHA</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_MAIL_OPERATIONS_CONTAINERENQUIRY_REMARKS" name="remarks">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_EXTRA_LONG</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+			<value>mail.operations.mailoutbound.remarks</value>
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>false</value>
+			</attribute>
+			
+	   </component>
+	   <component id="CMP_MAIL_OPERATIONS_OUTBOUND_AUTO_ATTACH_AWB" name="Auto Attach AWB">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+  <component id="CMP_MAIL_OPERATIONS_OUTBOUND_GENERATE_MANIFEST" name="Generate Manifest">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_PRE_ADVICE" name="Pre Advice">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_REASSIGN_TO_CARRIER" name="Reassign To Carrier">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_REASSIGN_TO_FLIGHT" name="Reassign To Flight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_ATTACH_ROUTING" name="Attach Routing">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_ATTACH_AWB" name="Attach AWB">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_MODIFY_CONTAINER" name="Modify Container">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_UNASSIGN_CONTAINER" name="Unassign Container">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_OFFLOAD_CONTAINER" name="Offload Container">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_REASSIGN_MAILBAG" name="Reassign Mailbag">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_DELETE_MAILBAG" name="Delete Mailbag">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_MODIFY_MAILBAG" name="Modify Mailbag">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_RETURN_MAILBAG" name="Return Mailbag">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_CAPTURE_DAMAGE" name="Capture Damage">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_VIEW_MAIL_HISTORY" name="View Mail History">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_CHANGE_SCAN_TIME" name="Change Scan Time">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_MAIL_REMARKS" name="Mail Remarks">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_OFFLOAD_MAILBAG" name="Offload Mailbag">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_CLOSE_FLIGHT" name="Close Flight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_REOPEN_FLIGHT" name="Reopen Flight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_VIEW_CONDOC" name="Reopen Flight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_DSN_ATTACH_AWB" name="Reopen Flight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_DSN_DETACH_AWB" name="Reopen Flight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_DSN_ATTACH_ROUTING" name="Reopen Flight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_UX__YEAR" name="Yr">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+	   	</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.mailoutbound.year</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_MAILOUTBOUND_ACTUAL_WEIGHT" name="actual weight">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.mailoutbound.actualweight</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_MAILOUTBOUND_CONTENT_ID" name="content id">
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.mailoutbound.contentid</value>
+		</attribute>
+	   </component>
+	   <component id="CMP_MAIL_OPERATIONS_OUTBOUND_DELETE_CONTAINER" name="Delete Container">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+<component id="CMP_MAIL_OPERATIONS_OUTBOUND_ULD_MARK_FULL" name="Mark as ULD Full">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_ULD_UNMARK_FULL" name="Mark ULD as not Full">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+		<component id="CMP_MAIL_OPERATIONS_OUTBOUND_PRINT_ULD_TAG" name="Print ULD Tag">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OUTBOUND_PRINT_CN46" name="Print CN46">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+</components>

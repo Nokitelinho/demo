@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN "
+	"http://struts.apache.org/dtds/struts-config_1_2.dtd " >
+
+
+<struts-config>
+
+	<form-beans>
+		<!-- ADDED BY MEERA - -->
+
+		<form-bean name="MRAAssignExceptionsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpareporting.AssignExceptionsForm"  />
+		<form-bean name="CaptureGPAReportForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpareporting.CaptureGPAReportForm"  />
+		<form-bean name="UploadGPAReportForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpareporting.UploadGPAReportForm"  />
+		<form-bean name="GPAReportForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpareporting.GPAReportForm"  />
+		<form-bean name="DespatchLOVForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpareporting.ux.DespatchLOVForm" />
+		<form-bean name="InvoicLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpareporting.ux.InvoicLovForm" />
+		 <form-bean name="ListInvoicForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpareporting.ux.ListInvoicForm" />
+		 <form-bean name="ClaimHistoryPopupForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpareporting.ux.ClaimHistoryPopupForm" />
+		<form-bean name="GenerateandListClaimForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpareporting.ux.GenerateandListClaimForm" />
+		<form-bean name="ClaimDetailsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpareporting.ux.ClaimDetailsForm" />
+</form-beans>
+	<!-- Global Forwards -->
+		<global-forwards>
+			<forward name="normal-report-preview-jsp" path="/jsp/includes/reports/NormalReportViewer.jsp"/>
+			<forward name="normal-report-printer-jsp" path="/jsp/includes/reports/NormalReportPrinter.jsp"/>
+			<forward name="normal-report-error-jsp" path="/jsp/includes/reports/NormalReportErrorHandler.jsp"/>
+	</global-forwards>
+
+	<action-mappings>
+
+
+		<!-- Added for MRA Assign Exceptions screen starts -->
+
+		<action path="/mailtracking.mra.gpareporting.screenloadassignexceptions"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/AssignExceptions.jsp" />
+	       </action>
+		<action path="/mailtracking.mra.gpareporting.listassignexceptions"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/gpareporting/AssignExceptions.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/gpareporting/AssignExceptions.jsp" />
+	        </action>
+		<action path="/mailtracking.mra.gpareporting.clearassignexceptions"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/AssignExceptions.jsp" />
+	        </action>
+		<action path="/mailtracking.mra.gpareporting.saveassignexceptions"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="save_success" path="/jsp/mail/mra/gpareporting/AssignExceptions.jsp" />
+			<forward name="save_failure" path="/jsp/mail/mra/gpareporting/AssignExceptions.jsp" />
+	        </action>
+		<action path="/mailtracking.mra.gpareporting.processassignexceptions"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/gpareporting/AssignExceptions.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/gpareporting/AssignExceptions.jsp" />
+	        </action>
+
+		<action path="/mailtracking.mra.gpareporting.closeassignexceptions"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/home.jsp" />
+	        </action>
+
+		<!-- Added for MRA Assign Exceptions screen ends -->
+
+	<!-- Upload GPA Report screen mappings starts -->
+
+	       <action path="/mailtracking.mra.gpareporting.screenloaduploadgpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UploadGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/UploadGPAReport.jsp" />
+	       </action>
+	       <action path="/mailtracking.mra.gpareporting.uploadfileuploadgpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UploadGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="upload_success" path="/jsp/mail/mra/gpareporting/UploadGPAReport.jsp" />
+			<forward name="upload_failure" path="/jsp/mail/mra/gpareporting/UploadGPAReport.jsp" />
+	       </action>
+		<action path="/mailtracking.mra.gpareporting.closeuploadgpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UploadGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/home.jsp" />
+	       </action>
+
+	<!-- Upload GPA Report screen mappings ends -->
+
+<!-- added by Meera starts -->
+		<!-- Added for CaptureGPAReport Starts-->
+		<action path="/mailtracking.mra.gpareporting.viewaccount"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="view_success" path="/cra.accounting.listaccountingentrieslist.do?invokingScreen=captureGPAReport" />
+			<forward name="view_failure" path="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+	       </action>
+
+	       <action path="/mailtracking.mra.gpareporting.capturegpareport.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+	       </action>
+
+	       <action path="/mailtracking.mra.gpareporting.listcapturegpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+	       </action>
+
+	       <action path="/mailtracking.mra.gpareporting.capturegpareport.adddetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+	       </action>
+
+	       <action path="/mailtracking.mra.gpareporting.modifycapturegpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+	       </action>
+
+	       <action path="/mailtracking.mra.gpareporting.capturegpareport.deletecapturegpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReport_ajax.jsp" />
+	       </action>
+
+	       <action path="/mailtracking.mra.gpareporting.clearcapturegpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+	       </action>
+
+
+	       <action path="/mailtracking.mra.gpareporting.savecapturegpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+	       </action>
+
+	       <action path="/mailtracking.mra.gpareporting.closecapturegpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/home.jsp"  />
+			<forward name="assignexptns_listaction" path="/mailtracking.mra.gpareporting.listassignexceptions.do?windowFlag=fromCaptureGPAReport"  />
+	       </action>
+
+	       <action path="/mailtracking.mra.gpareporting.processcapturegpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+			<forward name="action_failure" path="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+	       </action>
+	        <action path="/mailtracking.mra.gpareporting.listagaincapturegpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+	       </action>
+
+	       <action path="/mailtracking.mra.gpareporting.displaycapturegpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+	       </action>
+
+		<action path="/mailtracking.mra.gpareporting.gpareportassignexceptions"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/mailtracking.mra.gpareporting.displaycapturegpareport.do" />
+	       </action>
+	       <action path="/mailtracking.mra.gpareporting.viewaccount"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="view_success" path="/cra.accounting.listaccountingentrieslist.do?invokingScreen=captureGPAReport" />
+	       		<forward name="view_failure" path="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+	       </action>
+
+	       <!-- Added for CaptureGPAReport popUp-->
+
+	       <action path="/mailtracking.mra.gpareporting.capturegpareportpopup.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false"
+			forward="/jsp/mail/mra/gpareporting/CaptureGPAReportPopUp.jsp" />
+
+		<action path="/mailtracking.mra.gpareporting.capturegpareportpopup.selectnextpage"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReportPopUp.jsp" />
+
+	       </action>
+	       <action path="/mailtracking.mra.gpareporting.capturegpareportpopup.deletepage"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReportPopUp.jsp" />
+
+	       </action>
+	       <action path="/mailtracking.mra.gpareporting.capturegpareportpopup.addpage"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReportPopUp.jsp" />
+
+	       </action>
+
+	       <action path="/mailtracking.mra.gpareporting.capturegpareportpopup.ok"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReportPopUp.jsp" />
+
+	       </action>
+	       <action path="/mailtracking.mra.gpareporting.capturegpareportpopup.addflight"
+	       			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	       			name="CaptureGPAReportForm"
+	       			scope="request"
+	       			validate="false">
+	       			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReportPopUp.jsp" />
+
+	       </action>
+	       <action path="/mailtracking.mra.gpareporting.capturegpareportpopup.deleteflight"
+	       			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	       			name="CaptureGPAReportForm"
+	       			scope="request"
+	       			validate="false">
+	       			<forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReportPopUp.jsp" />
+
+	       </action>
+
+	       <action path="/mailtracking.mra.gpareporting.capturegpareportpopup.showdsnpopup"
+	       	       	  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	       	       	   name="CaptureGPAReportForm"
+	       	       	   scope="request"
+	       	       	    validate="false">
+	       	     <forward name="action_success" path="/jsp/mail/mra/gpareporting/CaptureGPAReportPopUp.jsp" />
+	       </action>
+
+
+
+	       <action path="/mailtracking.mra.gpareporting.capturegpareportpopup.closeanddisplaymainscreen"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false"
+			forward="/jsp/mail/mra/gpareporting/CaptureGPAReport_ajax.jsp" />
+
+		<action path="/mailtracking.mra.gpareporting.capturegpareportpopup.close"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureGPAReportForm"
+			scope="request"
+			validate="false"
+			forward="/jsp/mail/mra/gpareporting/CaptureGPAReport.jsp" />
+
+
+
+	       <!-- Added for CaptureGPAReport Ends-->
+		<!-- For GPAReports -->
+	       <action path="/mailtracking.mra.gpareporting.screenloadgpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/gpareporting/GPAReports.jsp" />
+	       </action>
+
+	       <action path="/mailtracking.mra.gpareporting.exceptionsassigneedetailsreport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPAReportForm"
+			scope="request"
+			validate="false"/>
+
+	       <action path="/mailtracking.mra.gpareporting.exceptionsassigneesummaryreport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPAReportForm"
+			scope="request"
+			validate="false"/>
+
+	       <action path="/mailtracking.mra.gpareporting.exceptiondetailsreport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPAReportForm"
+			scope="request"
+			validate="false"/>
+
+	       <action path="/mailtracking.mra.gpareporting.exceptionsummaryreport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPAReportForm"
+			scope="request"
+			validate="false"/>
+
+		<action path="/mailtracking.mra.gpareporting.closegpareport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPAReportForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/home.jsp" />
+	       </action>
+		   <!-- Added by A-7929 as part of ICRD-232401 starts  -->
+		   <action path="/mail.mra.gpareporting.ux.invoicenquiry.defaultscreenload"
+		        name="DefaultSPAForm"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.DefaultSPARenderAction"
+				validate="false">
+			<forward name="_default_render_success" path="/app/mail/mra/invoicenquiry/index.jsp"/>
+          </action>
+		   <!-- Added by A-7929 as part of ICRD-232401 ends  -->
+	<!-- For GPAReports -->
+
+	<!-- Added by A-8464 as part of ICRD-232401 ends  -->
+	<action
+			name="DespatchLOVForm"
+			path="/showNewDespatchLOV"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpareporting/ux/DespatchLOV.jsp"/>
+	</action>
+
+	<action path="/listNewDespatchLOV"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="DespatchLOVForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/gpareporting/ux/DespatchLOV.jsp" />
+	</action>
+
+	<action path="/clearNewDespatchLOV"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="DespatchLOVForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/gpareporting/ux/DespatchLOV.jsp" />
+	</action>
+
+	<action
+			name="InvoicLovForm"
+			path="/showNewInvoicLOV"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpareporting/ux/InvoicLOV.jsp"/>
+	</action>
+
+	<action path="/listNewInvoicLOV"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="InvoicLovForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/gpareporting/ux/InvoicLOV.jsp" />
+	</action>
+
+	<action path="/clearNewInvoicLOV"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="InvoicLovForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/gpareporting/ux/InvoicLOV.jsp" />
+	</action>
+	<!-- Added by A-8464 as part of ICRD-232401 ends  -->
+	<!--added by A-8527 for ICRD-232401 Starts-->
+		 <action path="/mail.mra.gpareporting.ux.listinvoic.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListInvoicForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpareporting/ux/ListInvoic.jsp" />
+		</action>
+		<action path="/mail.mra.gpareporting.ux.listinvoic.list"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListInvoicForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/gpareporting/ux/ListInvoic.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/gpareporting/ux/ListInvoic.jsp" />
+		</action>
+		<action path="/mail.mra.gpareporting.ux.listinvoic.rejectConfirmation"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListInvoicForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/gpareporting/ux/InvoicRejectPopup.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/gpareporting/ux/ListInvoic.jsp" />
+		</action>
+		<action
+			path="/mail.mra.gpareporting.ux.listinvoic.remarksClose"
+			name="ListInvoicForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="close_success" path="/jsp/mail/mra/gpareporting/ux/InvoicRejectPopup.jsp" />
+		</action>
+		<action path="/mail.mra.gpareporting.ux.listinvoic.process"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListInvoicForm"
+			scope="request"
+			validate="false">
+			<forward name="process_success" path="/jsp/mail/mra/gpareporting/ux/ListInvoic.jsp" />
+			<forward name="process_failure" path="/jsp/mail/mra/gpareporting/ux/ListInvoic.jsp" />
+		</action>
+		<action path="/mail.mra.gpareporting.ux.listinvoic.reject"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListInvoicForm"
+			scope="request"
+			validate="false">
+			<forward name="reject_success" path="/mail.mra.gpareporting.ux.listinvoic.list.do" />
+			<forward name="reject_failure" path="/jsp/mail/mra/gpareporting/ux/ListInvoic.jsp" />
+		</action>
+		<action path="/mail.mra.gpareporting.ux.listinvoic.clear"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListInvoicForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/gpareporting/ux/ListInvoic.jsp" />
+		</action>
+		<!--added by A-8527 for ICRD-232401 Ends-->
+		<!--added by A-7929 for ICRD-232401 starts-->
+		<action path="/mail.mra.gpareporting.ux.claimHistoryPopup.screenLoad"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ClaimHistoryPopupForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpareporting/ux/ClaimHistoryPopup.jsp" />
+			<forward name="screenload_failure" path="/jsp/mail/mra/gpareporting/ux/ClaimHistoryPopup.jsp" />
+		</action>
+		<!--added by A-7929 for ICRD-232401 Ends-->
+		<!--added by A-8527 for ICRD-ICRD-262471 Starts-->
+		<action path="/mail.mra.gpareporting.ux.generateandlistclaim.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GenerateandListClaimForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpareporting/ux/GenerateandListClaim.jsp" />
+		</action>
+		<action path="/mail.mra.gpareporting.ux.generateandlistclaim.list"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GenerateandListClaimForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/gpareporting/ux/GenerateandListClaim.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/gpareporting/ux/GenerateandListClaim.jsp" />
+		</action>
+		<action path="/mail.mra.gpareporting.ux.generateandlistclaim.clear"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GenerateandListClaimForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/gpareporting/ux/GenerateandListClaim.jsp" />
+		</action>
+		<action path="/mail.mra.gpareporting.ux.generateandlistclaim.genclaim"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GenerateandListClaimForm"
+			scope="request"
+			validate="false">
+			<forward name="generate_success" path="/jsp/mail/mra/gpareporting/ux/GenerateandListClaim.jsp" />
+		</action>		
+		<action path="/mail.mra.gpareporting.ux.claimDetails.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ClaimDetailsForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpareporting/ux/ClaimDetails.jsp" />
+		</action>
+		<action path="/mail.mra.gpareporting.ux.claimDetails.list"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ClaimDetailsForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/gpareporting/ux/ClaimDetails.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/gpareporting/ux/ClaimDetails.jsp" />
+		</action>
+		<action path="/mail.mra.gpareporting.ux.claimDetails.clear"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ClaimDetailsForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/gpareporting/ux/ClaimDetails.jsp" />
+		</action>
+		<!--added by A-8527 for ICRD-ICRD-262471 Ends-->
+	</action-mappings>
+
+
+	<message-resources  key="mraassignexceptions"  parameter="resources.mail.mra.gpareporting.AssignExceptions" null="false"/>
+	<message-resources  key="capturegpareport"  parameter="resources.mail.mra.gpareporting.CaptureGPAReport" null="false"/>
+	<message-resources  key="uploadgpareport"  parameter="resources.mail.mra.gpareporting.UploadGPAReport" null="false"/>
+	<message-resources  key="gpareportResources"  parameter="resources.mail.mra.gpareporting.GPAReports" null="false"/>
+	<message-resources  key="invoicEnquiryResourceBundle"  parameter="resources.mail.mra.gpareporting.ux.InvoicEnquiry" null="false"/>
+	<message-resources key="despatchlov" parameter="resources.mail.mra.gpareporting.ux.DespatchLOV_en_US" null="false"/>
+	<message-resources key="invoiclov" parameter="resources.mail.mra.gpareporting.ux.InvoicLOV_en_US" null="false"/>
+	 <!--added by A-8527 for ICRD-232401 Starts-->
+	<message-resources key="ListInvoicResourceBundle" parameter="resources.mail.mra.gpareporting.ux.ListInvoic_en_US" null="false"/>
+	<message-resources  key="ClaimHistoryPopupResources"  parameter="resources.mail.mra.gpareporting.ux.ClaimHistoryPopup" null="false"/>
+	 <!--added by A-8527 for ICRD-ICRD-262471 Starts-->
+	<message-resources key="GenerateandListClaimResourceBundle" parameter="resources.mail.mra.gpareporting.ux.GenerateandListClaim_en_US" null="false"/>
+	<message-resources key="ClaimDetailsResourceBundle" parameter="resources.mail.mra.gpareporting.ux.ClaimDetails_en_US" null="false"/>
+	<plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+		<set-property property="configFileName" value="/WEB-INF/errortags/mail/mra/gpareporting/errortags.xml"/>
+	</plug-in>
+</struts-config>

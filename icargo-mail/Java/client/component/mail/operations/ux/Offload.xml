@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<components screenId="mail.operations.ux.offload" xmlns="http://www.ibsplc.com/icargo/components-details">
+
+ <component id="CMP_MAIL_OPERATIONS_OFFLOAD_FLIGHTNO" name="Flight Number">
+    <attribute>
+	<name>businesstype-id</name>
+      <value>BT_FLIGHT_NUMBER</value>
+	</attribute>
+    <attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHANUMERIC</value>
+	</attribute>
+  </component>
+  
+   <component id="CMP_MAIL_OPERATIONS_OFFLOAD_UPLIFTAIRPORT" name="Uplift Airport">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.offload.tooltip.upliftairport</value>
+     </attribute> 	 
+  </component>
+  
+   <component id="CMP_MAIL_OPERATIONS_OFFLOAD_CONTAINERNO" name="Container No">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.offload.tooltip.containerNo</value>
+    </attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_OFFLOAD_CONTAINERTYPE" name="Container Type">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value> 
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.offload.containerType</value>
+		</attribute>
+	</component>
+	
+	 <component id="CMP_MAIL_OPERATIONS_OFFLOAD_LIST" name="List Button">
+		<attribute>
+				<name>businesstype-id</name>
+             <value>BT_BUTTON</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.offload.tooltip.list</value>
+	   	</attribute>
+	</component>
+	<component id="CMP_MAIL_OPERATIONS_OFFLOAD_CLEAR" name="Clear Button">
+		<attribute>
+				<name>businesstype-id</name>
+                <value>BT_BUTTON</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.offload.tooltip.clear</value>
+	   	</attribute>
+	</component>
+	
+ <component id="CMP_MAIL_OPERATIONS_OFFLOAD_MAILBAGID" name="Mailbag ID">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.offload.tooltip.mailbagId</value>
+    </attribute>
+	
+	
+  </component>
+ <component id="CMP_MAIL_OPERATIONS_OFFLOAD_OOE" name="Origin OE">
+  
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.offload.tooltip.ooe</value>
+    </attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHA</value>
+	</attribute>
+	<attribute> 
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+    <component id="CMP_MAIL_OPERATIONS_OFFLOAD_DOE" name="Dest OE">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.offload.tooltip.doe</value>
+    </attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHA</value>
+	</attribute>
+	<attribute> 
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+  <component id="CMP_MAIL_OPERATIONS_OFFLOAD_CATEGORY" name="Mail Category">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value> 
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.offload.tooltip.mailcategory</value>
+		</attribute>
+	       <attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+	</component>
+	
+	 <component id="CMP_MAIL_OPERATIONS_OFFLOAD_SUBCLASS" name="Subclass">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.offload.tooltip.subclass</value>
+    </attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+  
+   <component id="CMP_MAIL_OPERATIONS_OFFLOAD_YEAR" name="Year">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.offload.tooltip.year</value>
+    </attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_INTEGER</value>
+	</attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+  </component>
+    <component id="CMP_MAIL_OPERATIONS_OFFLOAD_DSN" name="DSN">
+     <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.offload.tooltip.dsn</value>
+    </attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_INTEGER</value>
+	</attribute>
+  </component>
+    <component id="CMP_MAIL_OPERATIONS_OFFLOAD_RSN" name="RSN">
+     <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.offload.tooltip.rsn</value>
+    </attribute>
+	
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_INTEGER</value>
+	</attribute>
+  </component>
+ <component id="CMP_MAIL_OPERATIONS_OFFLOAD_MAILCLASS" name="Mail Class">
+    <attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+    <attribute>
+      <name>tooltip</name>
+      <value>mail.operations.offload.tooltip.mailclass</value>
+    </attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+  </component>
+	
+	
+</components>

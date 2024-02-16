@@ -1,0 +1,437 @@
+<?xml version="1.0"?>
+<components screenId="mailtracking.mra.gpabilling.invoicesettlement" xmlns="http://www.ibsplc.com/icargo/components-details">
+<component id="CMP_MRA_GPABILLING_SETTLEINV_FROMDATE" name="From Date">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.fromdate</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_GPABILLING_SETTLEINV_TODATE" name="To Date">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.todate</value>
+	</attribute>
+	</component>
+
+<component id="CMP_MRA_GPABILLING_SETTLEINV_GPACODE" name="GPA Code">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.gpacode</value>
+	</attribute>
+	
+</component>
+<component id="CMP_MRA_GPABILLING_SETTLEINV_INVNUM" name="Invoice Number">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.invrefno</value>
+	</attribute>	
+</component>
+<component id="CMP_MRA_GPABILLING_SETTLEINV_SETTLESTATUS" name="Settlement Status">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CMB_GENCOMBO</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.settlementsatus</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_GPABILLING_SETTLEINV_AMT" name="Settling Amount">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_MONEY_ENTRY</value>
+	</attribute>
+	
+	<attribute>
+				<name>formatter-id</name>
+				<value>FRM_RESTRICT_DECIMAL</value>
+	</attribute>
+	<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+	<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.gpabilling.invoicesettlement.settlingamt</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_GPABILLING_SETTLEINV_BTNLIST" name="List">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.btn.list</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_GPABILLING_SETTLEINV_BTNCLEAR" name="Clear">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.btn.clear</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_GPABILLING_SETTLEINV_BTNHISTORY" name="History">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.btn.history</value>
+		</attribute>
+</component>
+<component id="CMP_MRA_GPABILLING_SETTLEINV_BTNREPORT" name="Report">
+	<attribute>
+	<name>businesstype-id</name>
+	<value>BT_BUTTON_LONG</value>
+	</attribute>
+	<attribute>
+	<name>tooltip</name>
+	<value>mailtracking.mra.gpabilling.invoicesettlement.btn.reconciliationreport</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_GPABILLING_SETTLEINV_BTNCLOSE" name="close">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.btn.close</value>
+	</attribute>
+	</component>
+<component id="CMP_MRA_GPABILLING_SETTLEINV_BTNSAVE" name="save">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.btn.save</value>
+	</attribute>
+	</component>
+	
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_GPANAME" name="GPA Name">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.gpaname</value>
+	</attribute>
+	</component>
+
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_CHEQUENOFILTER" name="Cheque No">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.gpabilling.invoicesettlement.chequeno</value>
+		</attribute>
+	</component>
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_SETLREFNO" name="Setl Ref No">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.gpabilling.invoicesettlement.settlerefno</value>
+		</attribute>
+	</component>
+	
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_SETLCURR" name="GPA Name">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.settlecurr</value>
+	</attribute>
+	<attribute>
+			<name>lov</name>
+			<value>true</value>
+	</attribute>
+	</component>   
+	   
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_SETLDATE" name="From Date">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.settledate</value>
+	</attribute>
+	</component>
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_BTNVIEWHISTORY" name="History">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.viewhistory</value>
+		</attribute>
+	</component>
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_BTNPRINT" name="print">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>	
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.print</value>
+	</attribute>
+	</component>
+	
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_BTNLISTACCDETAILS" name="listaccdet">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.listaccdetails</value>
+	</attribute>
+	</component>
+	
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_BTNINVOICEDETAILS" name="invoicedet">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.invoicedetails</value>
+	</attribute>
+	</component>
+	
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_CHQDATE" name="From Date">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.chequedate</value>
+	</attribute>
+	</component>
+	
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_STLAMT" name="Settling Amount">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_MONEY_ENTRY</value>
+	</attribute>
+	
+	<attribute>
+				<name>formatter-id</name>
+				<value>FRM_RESTRICT_DECIMAL</value>
+	</attribute>
+	<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.gpabilling.invoicesettlement.settlingamt</value>
+	</attribute>
+</component>
+
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_BANK" name="bank">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.gpabilling.invoicesettlement.bank</value>
+		</attribute>
+	</component>
+	
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_BRANCH" name="branch">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.gpabilling.invoicesettlement.branch</value>
+		</attribute>
+	</component>
+	
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_REMARKS" name="remarks">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.gpabilling.invoicesettlement.remarks</value>
+		</attribute>
+	</component>
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_DELETE" name="delete">
+	<attribute>
+			<name>styleclass-id</name>
+			<value>ST_CMB_GEN_CHKBOX</value>
+	</attribute>
+	<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.gpabilling.invoicesettlement.delete</value>
+		</attribute>
+	</component>
+	<component id="CMP_MRA_GPABILLING_SETTLEAVAILPOPUP_BTNOK" name="ok">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.ok</value>
+	</attribute>
+	</component>
+	
+	<component id="CMP_MRA_GPABILLING_SETTLEAVAILPOPUP_BTNCREATE" name="create">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.create</value>
+	</attribute>
+	</component>
+	
+	<component id="CMP_MRA_GPABILLING_SETTLEAVAILPOPUP_BTNCLOSE" name="close">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mailtracking.mra.gpabilling.invoicesettlement.cancel</value>
+	</attribute>
+	</component>
+	<component id="CMP_MRA_GPABILLING_SETTLEINV_CHEQUENO" name="Cheque No">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>		
+		<attribute>
+			<name>type</name>
+			<value>detail</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mailtracking.mra.gpabilling.invoicesettlement.chequeno</value>
+		</attribute>
+	</component>
+	
+</components>

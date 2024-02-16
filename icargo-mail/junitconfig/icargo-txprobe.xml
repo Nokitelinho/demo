@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  iCargo TX Probe Configuration
+
+  Copyright 2012 IBS Software Services (P) Ltd. All Rights Reserved.
+
+  This software is the proprietary information of IBS Software Services (P) Ltd.
+  Use is subject to license terms.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+   <bean id="iCargoProbeConfig" class="com.ibsplc.icargo.framework.probe.TxProbeConfig">
+      <property name="enabled" value="false" />
+      <property name="enableHttpProbing" value="true" />
+      <property name="enableServiceProbing" value="true" />
+      <property name="enableJmsWebServiceProbing" value="true" />
+      <property name="enableHttpWebServiceProbing" value="true" />
+      <property name="enableSqlProbing" value="true" />
+      <property name="enableInterfaceMessageProbing" value="true" />
+      <property name="dispatcher" ref="dispatcher" />
+      <property name="aggregationServerConfig" ref="aggregationServerConfig" />
+      <property name="httpProbeConfig" ref="httpProbeConfig" />
+      <property name="serviceProbeConfig" ref="serviceProbeConfig" />
+      <property name="webServiceProbeConfig" ref="webServiceProbeConfig" />
+      <property name="sqlProbeConfig" ref="sqlProbeConfig" />
+      <property name="interfaceProbeConfig" ref="interfaceProbeConfig" />
+   </bean>
+
+   <bean id="dispatcher" class="com.ibsplc.icargo.framework.probe.dispatcher.RingBufferDispatcher">
+      <!-- must be a power of 2 -->
+      <property name="maxQueueDepth" value="4096" />
+      <property name="workerCount" value="4" />
+   </bean>
+
+
+   <bean id="httpProbeConfig" class="com.ibsplc.icargo.framework.probe.http.HttpProbeConfig">
+      <property name="logHttpHeaders" value="true" />
+      <property name="logRequestParameters" value="true" />
+      <property name="logErrors" value="true" />
+      <property name="sessionIdHeader" value="JSESSIONID" />
+   </bean>
+
+   <bean id="serviceProbeConfig" class="com.ibsplc.icargo.framework.probe.service.ServiceProbeConfig">
+	   <property name="logRequest" value="true" />
+	   <property name="logResponse" value="true" />
+	   <property name="logErrors" value="true" />
+	   <property name="logRequestContext" value="true" />
+	   <property name="logSecurityContext" value="true" />
+   </bean>
+
+   <bean id="webServiceProbeConfig" class="com.ibsplc.icargo.framework.probe.ws.WebServiceProbeConfig">
+   	   <property name="logRequest" value="true" />
+   	   <property name="logResponse" value="true" />
+   	   <property name="logHeaders" value="true" />
+   	   <property name="logFault" value="true" />
+   </bean>
+
+   <bean id="sqlProbeConfig" class="com.ibsplc.icargo.framework.probe.sql.SqlProbeConfig">
+	   <property name="logExecute" value="true" />
+	   <property name="logExecuteUpdate" value="true" />
+	   <property name="logExecuteBatch" value="true" />
+	   <property name="logExecuteQuery" value="true" />
+	   <property name="logErrors" value="true" />
+   </bean>
+
+   <bean id="interfaceProbeConfig" class="com.ibsplc.icargo.framework.probe.intf.InterfaceProbeConfig">
+   	   <property name="logMessageBody" value="true" />
+   	   <property name="logMessageHeaders" value="true" />
+   	   <property name="enabledInterfaces">
+	      <array value-type="java.lang.String">
+	         <value>NACCS</value>
+	         <value>BE</value>
+		  </array>
+      </property>
+   </bean>
+
+   <bean id="aggregationServerConfig" class="com.ibsplc.icargo.framework.probe.AggregationServerConfig">
+      <property name="address" value="localhost:10200,localhost:10300" />
+	  <property name="tcpNoDelay" value="true" />
+	  <property name="tcpKeepAlive" value="true" />
+	  <property name="reconnectInterval" value="2000" />
+   </bean>
+
+
+<!--
+    user resolution strategy default : ApplicationSessionUserResolver
+
+   <bean id="userResolver" class="com.ibsplc.icargo.framework.probe.http.ApplicationSessionUserResolver" />
+   <bean id="userResolver" class="com.ibsplc.icargo.framework.probe.http.HttpHeaderUserResolver">
+      <property name="headers">
+         <array value-type="java.lang.String">
+		   <value>X-USERID</value>
+		   <value>THYLOGINNAME</value>
+         </array>
+      </property>
+   </bean>
+   -->
+
+<!--
+   correlationid resolution strategy default : generate
+   <bean id="correlationStrategy" class="com.ibsplc.icargo.framework.probe.http.HttpHeaderCorrelationStrategy">
+      <property name="generateIfAbsent" value="true">
+      <property name="corrleationHeaders">
+	     <array value-type="java.lang.String">
+	        <value>EXT-CONVERSATION-ID</value>
+	     </array>
+      </property>
+   </bean>
+-->
+
+</beans>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+		
+	<beans:bean id="carditEnquiryResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/CarditEnquiry</beans:value>
+                 <beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
+	
+	<beans:bean id="mailbagEnquiryResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/MailbagEnquiry</beans:value>
+               	<beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
+	
+	<beans:bean id="listContainerResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/ListContainer</beans:value>
+               	<beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
+    <beans:bean id="mailOutboundResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/MailOutbound</beans:value>
+                 <beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
+	
+<beans:bean id="mailInboundResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/MailInbound</beans:value>
+               	<beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
+    
+    <beans:bean id="consignmentResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames"> 
+            <beans:list> 
+                <beans:value>classpath:resources/mail/operations/ux/MaintainConsignment</beans:value> 
+                <beans:value>classpath:resources/Common</beans:value> 
+                                <beans:value>classpath:resources/CustomTag</beans:value> 
+            </beans:list> 
+        </beans:property> 
+        <beans:property name="defaultEncoding" value="UTF-8"/> 
+    </beans:bean>
+
+	<beans:bean id="offloadResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames"> 
+            <beans:list> 
+                <beans:value>classpath:resources/mail/operations/ux/Offload</beans:value> 
+                <beans:value>classpath:resources/Common</beans:value> 
+                                <beans:value>classpath:resources/CustomTag</beans:value> 
+            </beans:list> 
+        </beans:property> 
+        <beans:property name="defaultEncoding" value="UTF-8"/> 
+    </beans:bean>
+
+	<beans:bean id="mailPerformanceResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/MailPerformanceMonitor</beans:value>
+                 <beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
+
+	<beans:bean id="mailboxIdResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/MailboxId</beans:value>
+                 <beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
+	
+
+	<beans:bean id="mailruleconfigResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/MailRuleConfig</beans:value>
+                 <beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>  
+
+    <beans:bean id="consignmentsecuritydeclarationResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/ConsignmentSecurityDeclaration</beans:value>
+                 <beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
+
+	<!-- <beans:bean id="mailPerformanceResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/MailPerformanceMonitor</beans:value>
+                 <beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean> -->
+
+	   <beans:bean id="carditDSNEnquiryResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/CarditDsnEnquiry</beans:value>
+                 <beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
+	  <beans:bean id="mailbagSecurityResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/MailbagSecurityDetails</beans:value>
+                 <beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
+<!-- IASCB-134368-->
+	<beans:bean id="mailcontainerlistResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/MailContainerList</beans:value>
+               	<beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
+	
+	<beans:bean id="mailtransitResourceBundle" class="com.ibsplc.icargo.framework.web.spring.resource.ICargoResourceBundle">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>classpath:resources/mail/operations/ux/MailTransitOverview</beans:value>
+                 <beans:value>classpath:resources/Common</beans:value>
+				<beans:value>classpath:resources/CustomTag</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
+</beans:beans>

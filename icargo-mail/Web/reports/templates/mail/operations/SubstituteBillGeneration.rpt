@@ -1,0 +1,1369 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<inet:Report xmlns:inet="http://www.inetsoftware.de" major_version="8" minor_version="0" major_xml_version="7" minor_xml_version="9" count="9" id="0">
+    <Datasource dll="ICODB02_configuration.dll">
+      <DataSourceConfiguration name="ICODB02">
+        <property name="alterSession" value="false"/>
+        <property name="aliasToken" value=""/>
+        <property name="host" value="192.168.9.27"/>
+        <property name="url" value="jdbc:inetora"/>
+        <property name="service" value=""/>
+        <property name="databaseClassName" value=""/>
+        <property name="loginTimeout" value=""/>
+        <property name="logonMode" value="normal"/>
+        <property name="supportsOrderBy" value="true"/>
+        <property name="dedicated" value="false"/>
+        <property name="supportsSQL92" value="false"/>
+        <property name="port9" value="1521"/>
+        <property name="port8" value="1521"/>
+        <property name="port7" value="1521"/>
+        <property name="port6" value="1521"/>
+        <property name="port10" value="1521"/>
+        <property name="port5" value="1521"/>
+        <property name="port4" value="1521"/>
+        <property name="port3" value="1521"/>
+        <property name="host9" value=""/>
+        <property name="port2" value="1521"/>
+        <property name="host8" value=""/>
+        <property name="port1" value="1521"/>
+        <property name="host7" value=""/>
+        <property name="host6" value=""/>
+        <property name="sid" value="ICODB02"/>
+        <property name="validationQuery" value=""/>
+        <property name="host5" value=""/>
+        <property name="host4" value=""/>
+        <property name="host3" value=""/>
+        <property name="host2" value=""/>
+        <property name="host1" value=""/>
+        <property name="driverLibrary" value=""/>
+        <property name="driverClassName" value="com.inet.ora.OraDriver"/>
+        <property name="user" value="base_ghadev1"/>
+        <property name="supportsWhere" value="true"/>
+        <property name="host10" value=""/>
+        <property name="failover" value="false"/>
+        <property name="password" value="00FB437B880E2B79E7041A5F8B8EDA4679F74F198B1C3D43DF0B135A8A9D9D9352"/>
+        <property name="identifierQuoteString" value=""/>
+        <property name="port" value="1521"/>
+        <property name="quotesLowerCase" value="false"/>
+        <property name="opencursors" value="300"/>
+        <property name="queryTimeout" value=""/>
+        <property name="loadbalance" value="false"/>
+        <property name="caseSensitive" value="false"/>
+        <property name="supportsParenthesesForJoin" value="true"/>
+        <property name="savePassword" value="true"/>
+      </DataSourceConfiguration>
+      <Tablesource alias="DUMMY_VW_SUBBILGEN" databaseIdentifier="BASE_GHADEV1.DUMMY_VW_SUBBILGEN">
+        <Column name="COUNT" type="11" />
+        <Column name="DPTDATE" type="11" />
+        <Column name="ARPTCODE" type="11" />
+        <Column name="FLTSTR" type="11" />
+        <Column name="DESPATCHDATE" type="11" />
+        <Column name="POU" type="11" />
+        <Column name="ORIGIN" type="11" />
+        <Column name="DESTN" type="11" />
+        <Column name="FLT" type="11" />
+        <Column name="OOE" type="11" />
+        <Column name="DOE" type="11" />
+        <Column name="MAILCAT" type="11" />
+        <Column name="YR" type="11" />
+        <Column name="DSN" type="11" />
+        <Column name="MAILSUBCLASS" type="11" />
+        <Column name="RN" type="11" />
+        <Column name="RGN" type="11" />
+        <Column name="WT" type="11" />
+        <Column name="CARRIER" type="11" />
+        <Column name="DEST" type="11" />
+      </Tablesource>
+    </Datasource>
+  <Database>
+    <QueryChanges mask="0" count="2">
+      <Attribute name="queryChange" value="null"/>
+      <Attribute name="queryChange" value="null"/>
+    </QueryChanges>
+  </Database>
+  <FormulaFields count="4">
+    <Field type="FormulaField" valueType="6">
+      <Attribute name="name" value="Weight"/>
+      <Attribute name="shortName" value="Weight"/>
+      <Attribute name="formula type" value="0"/>
+      <Attribute name="basic syntax" value="false"/>
+      <![CDATA[toNumber ({DUMMY_VW_SUBBILGEN.WT})]]>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Attribute name="name" value="pagenumber"/>
+      <Attribute name="shortName" value="pagenumber"/>
+      <Attribute name="formula type" value="0"/>
+      <Attribute name="basic syntax" value="false"/>
+      <![CDATA[PageNumber]]>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Attribute name="name" value="group"/>
+      <Attribute name="shortName" value="group"/>
+      <Attribute name="formula type" value="0"/>
+      <Attribute name="basic syntax" value="false"/>
+      <![CDATA[groupNumber]]>
+    </Field>
+    <Field type="FormulaField" valueType="8">
+      <Attribute name="name" value="repeated"/>
+      <Attribute name="shortName" value="repeated"/>
+      <Attribute name="formula type" value="0"/>
+      <Attribute name="basic syntax" value="false"/>
+      <![CDATA[InRepeatedGroupHeader]]>
+    </Field>
+  </FormulaFields>
+
+  <PromptFields count="6">
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="PrintDate"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="PrintTime"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="ReportID"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="StaffId"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="Station"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="reportType"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+    </Field>
+  </PromptFields>
+
+  <SQLFields count="0">
+  </SQLFields>
+
+  <SummaryFields count="6">
+    <Field type="SummaryField" valueType="6">
+      <Attribute name="name" value="totalCount"/>
+      <Reference name="id" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.OOE"/>
+      <Attribute name="operation" value="6"/>
+      <Attribute name="summary_nth" value="0"/>
+      <Attribute name="summary_type" value="1"/>
+      <Attribute name="chartFieldSelect" value="2"/>
+      <Attribute name="group_number" value="6"/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="show as percent value" value="false"/>
+      <Attribute name="execute on db" value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Attribute name="name" value="totalWeight"/>
+      <Reference name="id" type="FormulaField" refname="@Weight"/>
+      <Attribute name="operation" value="0"/>
+      <Attribute name="summary_nth" value="0"/>
+      <Attribute name="summary_type" value="1"/>
+      <Attribute name="chartFieldSelect" value="2"/>
+      <Attribute name="group_number" value="6"/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="show as percent value" value="false"/>
+      <Attribute name="execute on db" value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Attribute name="name" value="netWeight"/>
+      <Reference name="id" type="FormulaField" refname="@Weight"/>
+      <Attribute name="operation" value="0"/>
+      <Attribute name="summary_nth" value="0"/>
+      <Attribute name="summary_type" value="512"/>
+      <Attribute name="chartFieldSelect" value="2"/>
+      <Attribute name="reset_group_number" value="1"/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="show as percent value" value="false"/>
+      <Attribute name="execute on db" value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Attribute name="name" value="netCount"/>
+      <Reference name="id" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.DPTDATE"/>
+      <Attribute name="operation" value="6"/>
+      <Attribute name="summary_nth" value="0"/>
+      <Attribute name="summary_type" value="512"/>
+      <Attribute name="chartFieldSelect" value="2"/>
+      <Attribute name="reset_group_number" value="1"/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="show as percent value" value="false"/>
+      <Attribute name="execute on db" value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Attribute name="name" value="flag"/>
+      <Reference name="id" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.OOE"/>
+      <Attribute name="operation" value="6"/>
+      <Attribute name="summary_nth" value="0"/>
+      <Attribute name="summary_type" value="0"/>
+      <Attribute name="chartFieldSelect" value="2"/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="show as percent value" value="false"/>
+      <Attribute name="execute on db" value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Attribute name="name" value="resGroup"/>
+      <Reference name="id" type="FormulaField" refname="@group"/>
+      <Attribute name="operation" value="6"/>
+      <Attribute name="summary_nth" value="0"/>
+      <Attribute name="summary_type" value="768"/>
+      <Attribute name="chartFieldSelect" value="2"/>
+      <Reference name="reset_field" type="FormulaField" refname="@pagenumber"/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="show as percent value" value="false"/>
+      <Attribute name="execute on db" value="false"/>
+    </Field>
+  </SummaryFields>
+
+  <SortFields count="0">
+  </SortFields>
+
+  <GroupNameFields count="6">
+    <Field type="GroupNameField" valueType="11">
+      <Attribute name="name" value=""/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="group_number" value="0"/>
+    </Field>
+    <Field type="GroupNameField" valueType="11">
+      <Attribute name="name" value=""/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="group_number" value="1"/>
+    </Field>
+    <Field type="GroupNameField" valueType="11">
+      <Attribute name="name" value=""/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="group_number" value="2"/>
+    </Field>
+    <Field type="GroupNameField" valueType="11">
+      <Attribute name="name" value=""/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="group_number" value="3"/>
+    </Field>
+    <Field type="GroupNameField" valueType="11">
+      <Attribute name="name" value=""/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="group_number" value="4"/>
+    </Field>
+    <Field type="GroupNameField" valueType="11">
+      <Attribute name="name" value=""/>
+      <Attribute name="group number type" value="0"/>
+      <Attribute name="group_number" value="5"/>
+    </Field>
+  </GroupNameFields>
+
+  <ReportProperties>
+    <Attribute name="page width" value="12240"/>
+    <Attribute name="page height" value="15840"/>
+    <Attribute name="page orientation" value="1"/>
+    <Attribute name="page margin left" value="363"/>
+    <Attribute name="page margin right" value="363"/>
+    <Attribute name="page margin top" value="363"/>
+    <Attribute name="page margin bottom" value="363"/>
+    <Attribute name="report title" value="Report1"/>
+    <Attribute name="report last saved" value="22 Nov 2010 11:00:48 GMT"/>
+    <Attribute name="report created" value="10 Mar 2009 05:07:36 GMT"/>
+    <Attribute name="mailing label type 1" value=""/>
+    <Attribute name="mailing label type 2" value=""/>
+    <Attribute name="format with multiple columns" value="false"/>
+    <Attribute name="mailing label width" value="0"/>
+    <Attribute name="mailing label height" value="0"/>
+    <Attribute name="mailing label distance vertical" value="0"/>
+    <Attribute name="mailing label distance horizontal" value="0"/>
+    <Attribute name="across then down" value="false"/>
+    <Attribute name="format groups with multiple columns" value="false"/>
+    <Attribute name="distinct" value="false"/>
+    <Attribute name="ignore filtering" value="false"/>
+    <Attribute name="ignore sorting" value="false"/>
+    <Attribute name="convert date time" value="0"/>
+    <Attribute name="suppress if no rows" value="false"/>
+    <Attribute name="convert null values to default" value="false"/>
+    <Attribute name="hide PageFooter inside ReportHeader" value="false"/>
+    <Attribute name="form print" value="false"/>
+    <Attribute name="printing enabled" value="true"/>
+    <Attribute name="clipboard enabled" value="true"/>
+    <Attribute name="export enabled" value="true"/>
+    <Attribute name="group tree visible" value="true"/>
+  </ReportProperties>
+  <AreaPair type="PageAreaPair" id="0">
+    <Area type="PageHeader" count="2">
+      <Section type="PageHeader" count="26" width="11514" height="3750" id="0">
+        <Element type="Text" count="1" x_position="150" y_position="150" width="3750" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+            <![CDATA[CN 46-Substitute Bill Generation]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="300" y_position="750" width="2700" height="450">
+          <CommonProperties>
+            <Attribute name="can grow" value="true"/>
+            <Attribute name="can grow count" value="2"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+              <Attribute name="can grow" value="true"/>
+              <Attribute name="can grow count" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Airport of origin of substitute delivery bill	       :	]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="3150" y_position="900" width="2550" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.ARPTCODE"/>
+        </Element>
+        <Element type="Text" count="1" x_position="6150" y_position="750" width="1350" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Date of Departure]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="8250" y_position="900" width="2550" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.DPTDATE"/>
+        </Element>
+        <Element type="FieldElement" x_position="8250" y_position="1500" width="2550" height="240">
+          <CommonProperties>
+            <Attribute name="suppress" value="true"/>
+            <Attribute name="horizontal align" value="1"/>
+            <PropertyFormula valueType="-1" propertyType="suppress">
+              <Attribute name="name" value="suppress"/>
+              <Attribute name="basic syntax" value="false"/>
+              <![CDATA[if( {?reportType} = 'CARRIER')
+then true
+else false]]>
+            </PropertyFormula>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.FLT"/>
+        </Element>
+        <Element type="FieldElement" x_position="8250" y_position="2100" width="2550" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.FLTSTR"/>
+        </Element>
+        <Element type="FieldElement" x_position="8250" y_position="2700" width="2550" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.POU"/>
+        </Element>
+        <Element type="Text" count="1" x_position="6150" y_position="3150" width="1800" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Date of Despatch]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="8250" y_position="3150" width="2550" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.DESPATCHDATE"/>
+        </Element>
+        <Element type="Line" x2_position="11052" y2_position="3450" x_position="150" y_position="3450" width="0" height="0">
+          <LineProperties>
+            <Attribute name="line width" value="30"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x2_position="11052" y2_position="1350" x_position="150" y_position="1350" width="0" height="0">
+          <LineProperties>
+            <Attribute name="line width" value="10"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x2_position="11052" y2_position="1950" x_position="150" y_position="1950" width="0" height="0">
+          <LineProperties>
+            <Attribute name="line width" value="10"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x2_position="11052" y2_position="2550" x_position="150" y_position="2550" width="0" height="0">
+          <LineProperties>
+            <Attribute name="line width" value="10"/>
+          </LineProperties>
+        </Element>
+        <Element type="Box" x2_position="11052" y2_position="3750" x_position="150" y_position="600" width="0" height="0">
+          <BoxProperties>
+            <Attribute name="close border on page break" value="true"/>
+              <LineProperties>
+                <Attribute name="line width" value="30"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="300" y_position="2100" width="1950" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Destination City]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="300" y_position="1500" width="1950" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Origin City]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="2400" y_position="1500" width="2550" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.ORIGIN"/>
+        </Element>
+        <Element type="FieldElement" x_position="2400" y_position="2100" width="2550" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.DESTN"/>
+        </Element>
+        <Element type="Text" count="1" x_position="6150" y_position="2100" width="1800" height="300">
+          <CommonProperties>
+            <Attribute name="can grow" value="true"/>
+            <Attribute name="can grow count" value="2"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+              <Attribute name="can grow" value="true"/>
+              <Attribute name="can grow count" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Subsequent Flights]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6150" y_position="1500" width="1275" height="300">
+          <CommonProperties>
+            <Attribute name="suppress" value="true"/>
+            <PropertyFormula valueType="-1" propertyType="suppress">
+              <Attribute name="name" value="suppress"/>
+              <Attribute name="basic syntax" value="false"/>
+              <![CDATA[if( {?reportType} = 'CARRIER')
+then true
+else false]]>
+            </PropertyFormula>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="suppress" value="true"/>
+              <Attribute name="horizontal align" value="1"/>
+              <PropertyFormula valueType="-1" propertyType="suppress">
+                <Attribute name="name" value="suppress"/>
+                <Attribute name="basic syntax" value="false"/>
+                <![CDATA[if( {?reportType} = 'CARRIER')
+then true
+else false]]>
+              </PropertyFormula>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Flight]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6150" y_position="2700" width="1350" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Offload Ports]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6150" y_position="1500" width="1275" height="300">
+          <CommonProperties>
+            <Attribute name="suppress" value="true"/>
+            <PropertyFormula valueType="-1" propertyType="suppress">
+              <Attribute name="name" value="suppress"/>
+              <Attribute name="basic syntax" value="false"/>
+              <![CDATA[if( {?reportType} = 'CARRIER')
+then false
+else true]]>
+            </PropertyFormula>
+          </CommonProperties>
+          <Element type="Paragraph" count="2">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+              <PropertyFormula valueType="-1" propertyType="suppress">
+                <Attribute name="name" value="suppress"/>
+                <Attribute name="basic syntax" value="false"/>
+                <![CDATA[if( {?reportType} = 'CARRIER')
+then false
+else true]]>
+              </PropertyFormula>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Carrier]]>
+            </Element>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[/Dest]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="8850" y_position="1500" width="1200" height="240">
+          <CommonProperties>
+            <Attribute name="suppress" value="true"/>
+            <Attribute name="horizontal align" value="1"/>
+            <PropertyFormula valueType="-1" propertyType="suppress">
+              <Attribute name="name" value="suppress"/>
+              <Attribute name="basic syntax" value="false"/>
+              <![CDATA[if( {?reportType} = 'CARRIER')
+then false
+else true]]>
+            </PropertyFormula>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.DEST"/>
+        </Element>
+        <Element type="FieldElement" x_position="8250" y_position="1500" width="450" height="240">
+          <CommonProperties>
+            <Attribute name="suppress" value="true"/>
+            <Attribute name="horizontal align" value="1"/>
+            <PropertyFormula valueType="-1" propertyType="suppress">
+              <Attribute name="name" value="suppress"/>
+              <Attribute name="basic syntax" value="false"/>
+              <![CDATA[if( {?reportType} = 'CARRIER')
+then false
+else true]]>
+            </PropertyFormula>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.CARRIER"/>
+        </Element>
+        <Element type="Text" count="1" x_position="8700" y_position="1500" width="150" height="300">
+          <CommonProperties>
+            <Attribute name="suppress" value="true"/>
+            <PropertyFormula valueType="-1" propertyType="suppress">
+              <Attribute name="name" value="suppress"/>
+              <Attribute name="basic syntax" value="false"/>
+              <![CDATA[if( {?reportType} = 'CARRIER')
+then false
+else true]]>
+            </PropertyFormula>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="suppress" value="true"/>
+              <Attribute name="horizontal align" value="1"/>
+              <PropertyFormula valueType="-1" propertyType="suppress">
+                <Attribute name="name" value="suppress"/>
+                <Attribute name="basic syntax" value="false"/>
+                <![CDATA[if( {?reportType} = 'CARRIER')
+then false
+else true]]>
+              </PropertyFormula>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[/]]>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+      <Section type="PageHeader" count="24" width="11514" height="920" id="1">
+        <Element type="Text" count="1" x_position="150" y_position="150" width="900" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[OOE]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="1050" y_position="150" width="900" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[DOE]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="1950" y_position="150" width="900" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+              </FontProperties>
+            <![CDATA[Mail Category]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4800" y_position="150" width="900" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Despatch Number]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="2850" y_position="150" width="900" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Mail Subclass]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5700" y_position="150" width="1050" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Receptacle Number]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6750" y_position="150" width="900" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Final/Reg Ind]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7650" y_position="150" width="900" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Weight(Kgs)]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8700" y_position="150" width="1200" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Total Weight (Kgs)]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9900" y_position="150" width="1200" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Total Number]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x2_position="11036" y2_position="900" x_position="11036" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="9900" y2_position="900" x_position="9900" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="8700" y2_position="900" x_position="8700" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="7650" y2_position="900" x_position="7650" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="6750" y2_position="900" x_position="6750" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="5700" y2_position="900" x_position="5700" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="4800" y2_position="900" x_position="4800" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="3750" y2_position="900" x_position="3750" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="2850" y2_position="900" x_position="2850" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="1950" y2_position="900" x_position="1950" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="1050" y2_position="910" x_position="1050" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="150" y2_position="900" x_position="150" y_position="0" width="0" height="0">
+          <LineProperties>
+            <Attribute name="expand to bottom of page when printing" value="true"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x2_position="11059" y2_position="900" x_position="150" y_position="900" width="0" height="0">
+        </Element>
+        <Element type="Text" count="1" x_position="3750" y_position="150" width="990" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Last Digit of year]]>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="PageFooter" count="1">
+      <Section type="PageFooter" count="0" width="11514" height="0" id="2">
+        <SectionProperties>
+          <Attribute name="suppress" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="ReportAreaPair" id="0">
+    <Area type="ReportHeader" count="1">
+      <Section type="ReportHeader" count="0" width="11514" height="0" id="3">
+        <SectionProperties>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="new page after" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="ReportFooter" count="1">
+      <Section type="ReportFooter" count="0" width="11514" height="0" id="4">
+        <SectionProperties>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="GroupAreaPair" id="1">
+    <AreaPairProperties>
+      <Reference name="id" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.COUNT"/>
+      <Reference name="group name" type="GroupNameField" id="0"/>
+    </AreaPairProperties>
+    <Area type="GroupHeader" count="1">
+      <Section type="GroupHeader" count="0" width="11514" height="0" id="5">
+        <SectionProperties>
+          <Attribute name="new page before" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="GroupFooter" count="1">
+      <Section type="GroupFooter" count="8" width="11514" height="2400" id="6">
+        <Element type="Box" x2_position="11097" y2_position="2400" x_position="150" y_position="150" width="0" height="0">
+          <BoxProperties>
+            <Attribute name="close border on page break" value="true"/>
+              <LineProperties>
+                <Attribute name="line width" value="30"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="300" y_position="300" width="2550" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Airline at airport of loading]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4200" y_position="300" width="2550" height="600">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Airline at airport of  offloading]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7800" y_position="300" width="1950" height="750">
+          <CommonProperties>
+            <Attribute name="can grow" value="true"/>
+            <Attribute name="can grow count" value="3"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+              <Attribute name="can grow" value="true"/>
+              <Attribute name="can grow count" value="3"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[PA on taking delivery of Mails]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x2_position="11097" y2_position="1050" x_position="150" y_position="1050" width="0" height="0">
+          <LineProperties>
+            <Attribute name="line width" value="30"/>
+          </LineProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="300" y_position="1950" width="1050" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Signature]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4200" y_position="1950" width="1050" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Signature]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7800" y_position="1950" width="1950" height="450">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Date and Signature]]>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="GroupAreaPair" id="2">
+    <AreaPairProperties>
+      <Reference name="id" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.OOE"/>
+      <Reference name="group name" type="GroupNameField" id="1"/>
+    </AreaPairProperties>
+    <Area type="GroupHeader" count="1">
+      <Section type="GroupHeader" count="0" width="11514" height="0" id="7">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="keep together" value="true"/>
+          <Attribute name="suppress empty section" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="GroupFooter" count="1">
+      <Section type="GroupFooter" count="3" width="11514" height="450" id="8">
+        <Element type="Text" count="1" x_position="7665" y_position="150" width="900" height="285">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Total]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="8595" y_position="150" width="1200" height="300">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <NumberProperties>
+            <Attribute name="thousand seperators symbol" value=","/>
+            <Attribute name="decimal seperators symbol" value="."/>
+            <Attribute name="currency symbol" value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="SummaryField" refname="#netWeight"/>
+        </Element>
+        <Element type="FieldElement" x_position="9810" y_position="150" width="1350" height="300">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <NumberProperties>
+            <Attribute name="thousand seperators symbol" value=","/>
+            <Attribute name="decimal seperators symbol" value="."/>
+            <Attribute name="currency symbol" value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="SummaryField" refname="#netCount"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="GroupAreaPair" id="3">
+    <AreaPairProperties>
+      <Reference name="id" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.DOE"/>
+      <Reference name="group name" type="GroupNameField" id="2"/>
+    </AreaPairProperties>
+    <Area type="GroupHeader" count="1">
+      <Section type="GroupHeader" count="0" width="11514" height="0" id="9">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="keep together" value="true"/>
+          <Attribute name="suppress empty section" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="GroupFooter" count="1">
+      <Section type="GroupFooter" count="0" width="11514" height="0" id="10">
+        <SectionProperties>
+          <Attribute name="suppress" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="GroupAreaPair" id="4">
+    <AreaPairProperties>
+      <Reference name="id" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.MAILCAT"/>
+      <Reference name="group name" type="GroupNameField" id="3"/>
+    </AreaPairProperties>
+    <Area type="GroupHeader" count="1">
+      <Section type="GroupHeader" count="0" width="11514" height="0" id="11">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="print at bottom of page" value="true"/>
+          <Attribute name="keep together" value="true"/>
+          <Attribute name="suppress empty section" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="GroupFooter" count="1">
+      <Section type="GroupFooter" count="0" width="11514" height="0" id="12">
+        <SectionProperties>
+          <Attribute name="suppress" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="GroupAreaPair" id="5">
+    <AreaPairProperties>
+      <Reference name="id" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.YR"/>
+      <Reference name="group name" type="GroupNameField" id="4"/>
+    </AreaPairProperties>
+    <Area type="GroupHeader" count="1">
+      <Section type="GroupHeader" count="0" width="11514" height="0" id="13">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="keep together" value="true"/>
+          <Attribute name="suppress empty section" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="GroupFooter" count="1">
+      <Section type="GroupFooter" count="0" width="11514" height="0" id="14">
+        <SectionProperties>
+          <Attribute name="suppress" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="GroupAreaPair" id="6">
+    <AreaPairProperties>
+      <Attribute name="repeat group header" value="true"/>
+      <Attribute name="keep group together" value="1"/>
+      <Reference name="id" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.DSN"/>
+      <Reference name="group name" type="GroupNameField" id="5"/>
+    </AreaPairProperties>
+    <Area type="GroupHeader" count="1">
+      <Section type="GroupHeader" count="0" width="11514" height="0" id="15">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="GroupFooter" count="1">
+      <Section type="GroupFooter" count="0" width="11514" height="0" id="16">
+        <SectionProperties>
+          <Attribute name="suppress" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="DetailArea" id="7">
+    <Area type="Detail" count="1">
+      <Section type="Detail" count="26" width="11514" height="470" id="17">
+        <Element type="Line" x2_position="8700" y2_position="450" x_position="4800" y_position="450" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="4800" y2_position="450" x_position="150" y_position="450" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="suppress" value="true"/>
+            <PropertyFormula valueType="-1" propertyType="suppress">
+              <Attribute name="name" value="suppress"/>
+              <Attribute name="basic syntax" value="false"/>
+              <![CDATA[{DUMMY_VW_SUBBILGEN.OOE} = next ({DUMMY_VW_SUBBILGEN.OOE}) and
+{DUMMY_VW_SUBBILGEN.DOE} = next ({DUMMY_VW_SUBBILGEN.DOE}) and
+{DUMMY_VW_SUBBILGEN.YR} = next ({DUMMY_VW_SUBBILGEN.YR}) and
+{DUMMY_VW_SUBBILGEN.MAILCAT} = next ({DUMMY_VW_SUBBILGEN.MAILCAT}) and 
+{DUMMY_VW_SUBBILGEN.DSN} = next ({DUMMY_VW_SUBBILGEN.DSN})]]>
+            </PropertyFormula>
+          </CommonProperties>
+          <LineProperties>
+            <Attribute name="suppress" value="true"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x2_position="11059" y2_position="450" x_position="8550" y_position="450" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="suppress" value="true"/>
+            <PropertyFormula valueType="-1" propertyType="suppress">
+              <Attribute name="name" value="suppress"/>
+              <Attribute name="basic syntax" value="false"/>
+              <![CDATA[{DUMMY_VW_SUBBILGEN.OOE} = next ({DUMMY_VW_SUBBILGEN.OOE}) and
+{DUMMY_VW_SUBBILGEN.DOE} = next ({DUMMY_VW_SUBBILGEN.DOE}) and
+{DUMMY_VW_SUBBILGEN.YR} = next ({DUMMY_VW_SUBBILGEN.YR}) and
+{DUMMY_VW_SUBBILGEN.MAILCAT} = next ({DUMMY_VW_SUBBILGEN.MAILCAT}) and 
+{DUMMY_VW_SUBBILGEN.DSN} = next ({DUMMY_VW_SUBBILGEN.DSN})]]>
+            </PropertyFormula>
+          </CommonProperties>
+          <LineProperties>
+            <Attribute name="suppress" value="true"/>
+          </LineProperties>
+        </Element>
+        <Element type="FieldElement" x_position="1071" y_position="211" width="877" height="235">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="can grow" value="true"/>
+            <Attribute name="can grow count" value="1"/>
+            <Attribute name="suppress if dublicated" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.DOE"/>
+        </Element>
+        <Element type="FieldElement" x_position="2100" y_position="150" width="726" height="231">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="can grow" value="true"/>
+            <Attribute name="can grow count" value="1"/>
+            <Attribute name="suppress if dublicated" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.MAILCAT"/>
+        </Element>
+        <Element type="FieldElement" x_position="2850" y_position="150" width="745" height="224">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.MAILSUBCLASS"/>
+        </Element>
+        <Element type="FieldElement" x_position="5700" y_position="150" width="1028" height="221">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.RN"/>
+        </Element>
+        <Element type="FieldElement" x_position="6750" y_position="150" width="877" height="221">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.RGN"/>
+        </Element>
+        <Element type="FieldElement" x_position="155" y_position="210" width="900" height="243">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="suppress if dublicated" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.OOE"/>
+        </Element>
+        <Element type="FieldElement" x_position="7650" y_position="150" width="880" height="222">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.WT"/>
+        </Element>
+        <Element type="FieldElement" x_position="9900" y_position="150" width="1184" height="226">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="suppress if dublicated" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <NumberProperties>
+            <Attribute name="thousand seperators symbol" value=","/>
+            <Attribute name="decimal seperators symbol" value="."/>
+            <Attribute name="currency symbol" value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="SummaryField" refname="#totalCount"/>
+        </Element>
+        <Element type="FieldElement" x_position="8700" y_position="150" width="1176" height="219">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="suppress if dublicated" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <NumberProperties>
+            <Attribute name="thousand seperators symbol" value=","/>
+            <Attribute name="decimal seperators symbol" value="."/>
+            <Attribute name="currency symbol" value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="SummaryField" refname="#totalWeight"/>
+        </Element>
+        <Element type="FieldElement" x_position="4800" y_position="150" width="900" height="226">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="can grow" value="true"/>
+            <Attribute name="can grow count" value="1"/>
+            <Attribute name="suppress if dublicated" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.DSN"/>
+        </Element>
+        <Element type="Line" x2_position="150" y2_position="450" x_position="150" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="1050" y2_position="463" x_position="1050" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="1950" y2_position="458" x_position="1950" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="6750" y2_position="460" x_position="6750" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="5700" y2_position="460" x_position="5700" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="3750" y2_position="462" x_position="3750" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="2850" y2_position="461" x_position="2850" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="4800" y2_position="460" x_position="4800" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="9900" y2_position="459" x_position="9900" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="8700" y2_position="458" x_position="8700" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="7650" y2_position="459" x_position="7650" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="Line" x2_position="11036" y2_position="450" x_position="11036" y_position="0" width="0" height="0">
+        </Element>
+        <Element type="FieldElement" x_position="3750" y_position="150" width="875" height="224">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="can grow" value="true"/>
+            <Attribute name="can grow count" value="1"/>
+            <Attribute name="suppress if dublicated" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_SUBBILGEN.YR"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+
+</inet:Report>

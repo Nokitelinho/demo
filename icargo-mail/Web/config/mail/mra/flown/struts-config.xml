@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN "
+	"http://struts.apache.org/dtds/struts-config_1_2.dtd " >
+
+
+<struts-config>
+
+	<form-beans>
+
+		<form-bean name="ViewFlownMailForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.flown.ViewFlownMailForm"  />
+		<form-bean name="MRAFlnAssignExceptionsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.flown.AssignExceptionsForm"  />
+		<form-bean name="FlownReportsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.flown.report.FlownReportsForm" />
+
+	</form-beans>
+	<global-forwards>
+		   <forward name="error_fwd" path="/jsp/icargo_logon.jsp" />
+		   <forward name="normal-report-viewer" path="/jsp/includes/reports/NormalReportViewer.jsp"/>
+		   <forward name="normal-report-printer" path="/jsp/includes/reports/NormalReportPrinter.jsp"/>
+		   <forward name="special-report-printer" path="/jsp/includes/reports/SpecialReportPrinter.jsp"/>
+		   <forward name="normal-report-error-jsp" path="/jsp/includes/reports/NormalReportErrorHandler.jsp"/>
+
+	</global-forwards>
+
+	<action-mappings>
+
+<!-- Added by Santha Kumar for ViewFlownMails starts -->
+
+		<action
+			name="ViewFlownMailForm"
+			path="/mra.flown.screenloadviewflownmail"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/flown/ViewFlownMail.jsp" />
+		</action>
+
+		<action
+			name="ViewFlownMailForm"
+			path="/mra.flown.viewflownmail.listsegments"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/mra.flown.viewflownmail.listflownmails.do" />
+			<forward name="action_success" path="/jsp/mail/mra/flown/ViewFlownMail.jsp" />
+			<forward name="action_failure" path="/jsp/mail/mra/flown/ViewFlownMail.jsp" />
+		</action>
+
+		<action
+			name="ViewFlownMailForm"
+			path="/mra.flown.viewflownmail.updatesessionwithduplicateflight"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/mra.flown.viewflownmail.listflownmails.do" />
+			<forward name="action_success" path="/jsp/mail/mra/flown/ViewFlownMail.jsp" />
+			<forward name="action_failure" path="/jsp/mail/mra/flown/ViewFlownMail.jsp" />
+		</action>
+
+		<action
+			name="ViewFlownMailForm"
+			path="/mra.flown.viewflownmail.clear"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/flown/ViewFlownMail.jsp" />
+		</action>
+
+		<action
+			name="ViewFlownMailForm"
+			path="/mra.flown.viewflownmail.listflownmails"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/flown/ViewFlownMail.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/flown/ViewFlownMail.jsp" />
+		</action>
+
+		<action
+			name="ViewFlownMailForm"
+			path="/mra.flown.viewflownmail.processmails"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="process_success" path="/jsp/mail/mra/flown/ViewFlownMail.jsp" />
+			<forward name="process_failure" path="/jsp/mail/mra/flown/ViewFlownMail.jsp" />
+		</action>
+
+		<action
+			name="ViewFlownMailForm"
+			path="/mra.flown.viewflownmail.closeflight"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="close_success" path="/jsp/mail/mra/flown/ViewFlownMail.jsp" />
+			<forward name="close_failure" path="/jsp/mail/mra/flown/ViewFlownMail.jsp" />
+		</action>
+
+		<action
+			name="ViewFlownMailForm"
+			path="/mra.flown.viewflownmail.closescreen"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+		</action>
+		<action path="/mra.flown.viewflownmail.viewAccount"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ViewFlownMailForm"
+			scope="request"
+			validate="false">
+			<forward name="view_success" path="/cra.accounting.listaccountingentrieslist.do?invokingScreen=viewflownmail"/>
+			<forward name="view_failure" path="/jsp/mail/mra/flown/ViewFlownMail.jsp"/>
+		</action>
+
+<!-- Added for ViewFlownMails ends -->
+
+
+<!-- Added by Santha Kumar for Flown Reports Starts -->
+		<action
+			name="FlownReportsForm"
+			path="/mra.flown.flownreports.screenloadflownreports"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="action_success" path="/jsp/mail/mra/flown/FlownReports.jsp" />
+		</action>
+
+		<action
+			name="FlownReportsForm"
+			path="/mra.flown.flownreports.listofflightswithflightstatus"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<action
+			name="FlownReportsForm"
+			path="/mra.flown.flownreports.listofflownmails"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+		<action path="/mailtracking.mra.flown.printMailRevenueReport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="FlownReportsForm"
+			scope="request"
+			validate="false">
+			<forward name="printMailRevenueReport_success" path="/jsp/mail/mra/flown/FlownReports.jsp"/>
+		</action>
+
+<!-- Added for Flown Reports Ends -->
+		<!-- added by prasanth starts -->
+
+		<action path="/mailtracking.mra.flown.assignexceptions.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAFlnAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/flown/AssignExceptions.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.flown.assignexceptions.listexceptions"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAFlnAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/flown/AssignExceptions.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/flown/AssignExceptions.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.flown.assignexceptions.clearexceptions"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAFlnAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/flown/AssignExceptions.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.flown.assignexceptions.closeexceptions"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAFlnAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.flown.assignexceptions.saveexceptions"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAFlnAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="save_success" path="/jsp/mail/mra/flown/AssignExceptions.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.flown.assignexceptions.processexceptions"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAFlnAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="process_success" path="/jsp/mail/mra/flown/AssignExceptions.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.flown.assignexceptions.closeflight"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAFlnAssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="close_success" path="/jsp/mail/mra/flown/AssignExceptions.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.flown.assignexceptions.print"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAFlnAssignExceptionsForm"
+			scope="request"
+			validate="false">
+		</action>
+
+		<action path="/mailtracking.mra.flown.assignexceptions.printdetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAFlnAssignExceptionsForm"
+			scope="request"
+			validate="false">
+		</action>
+
+		<!-- added by prasanth ends -->
+
+	</action-mappings>
+
+
+	<message-resources  key="flownmailresources"  parameter="resources.mail.mra.flown.ViewFlownMail" null="false"/>
+	<message-resources  key="mraarlassignexceptions"  parameter="resources.mail.mra.flown.AssignExceptions" null="false"/>
+	<message-resources  key="flownreportsresources"  parameter="resources.mail.mra.flown.FlownReports" null="false"/>
+	<plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+				<set-property property="configFileName" value="/WEB-INF/errortags/mail/mra/flown/errortags.xml"/>
+	 </plug-in>
+</struts-config>

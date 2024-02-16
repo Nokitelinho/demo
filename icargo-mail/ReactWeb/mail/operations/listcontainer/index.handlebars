@@ -1,0 +1,107 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+<html>
+    <head>
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+        <title>Container Enquiry</title>
+        <script>
+            var fromScreen = '<%=request.getParameter("fromScreen")%>'
+            var screenAction = "mail.operations.ux.containerenquiry.defaultscreenload.do";
+            var isPopup = '<%=request.getParameter("isPopup")%>'; //Added by A-7929 as part of ICRD-ICRD-334270
+
+            var containerNumber = '<%=request.getParameter("containerNumber")%>';
+            var fromDate = '<%=request.getParameter("fromDate")%>';
+            var todate = '<%=request.getParameter("todate")%>';
+            var airport = '<%=request.getParameter("airport")%>';
+            var type = '<%=request.getParameter("type")%>';
+            var flightNumber = '<%=request.getParameter("flightNumber")%>';
+            var flightDate = '<%=request.getParameter("flightDate")%>';
+            var carrierCode = '<%=request.getParameter("carrierCode")%>';
+            var legSerialNumber = '<%=request.getParameter("legSerialNumber")%>';
+            var flightSeqNumber = '<%=request.getParameter("flightSeqNumber")%>';
+            var assignedTo = '<%=request.getParameter("assignedTo")%>';
+            var destination = '<%=request.getParameter("destination")%>';
+            var valildationforimporthandling = '<%=request.getParameter("valildationforimporthandling")%>';
+
+            function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {
+                    __rehydrate: fromScreen === 'OFFLOAD' || fromScreen === 'MTK057' ? true : false,
+                    fromScreen: fromScreen,
+                    screenAction: screenAction,
+                    isPopup: isPopup
+                });
+                console.log('newObj', newobj);
+                return newobj
+            }
+        </script>
+        <common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+    </head>
+
+    <body>
+        <!-- The DIV container for redering results from react -->
+        <div id="container" class="main-container"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" /> 
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" /> 
+        {{/each}}
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+
+        <script>
+            //Added by A-8164 for mailinbound 
+            if (fromScreen === 'MailInbound') {
+                appBridge.renderApp(function () {
+                    console.log('here121');
+                    //console.log(consignmentFilter);
+                    let containers = containerNumber ? containerNumber.split('/') : []; 
+                    let containersToBeSaved = [];
+                    if (containers != null && containers.length > 0) {
+                        for (var i = 0; i < containers.length; i++) {
+                            if (containers[i].trim().length > 0) {
+                                containersToBeSaved.push(containers[i]);
+                            }
+                        }
+						/*containers.forEach(element => {
+							if(element.trim().length>0){
+								containersToBeSaved.push(element);
+							}
+						});*/
+                    }
+                    appBridge.dispatchAction({
+                        type: 'FILTER_FRM_INBOUND',
+                        data: {
+                            'containersToBeSaved': containersToBeSaved,
+                             'airport': airport, 'operationType': type
+                        },
+                        flightDetails: {                            
+                            'flightNumber': flightNumber, 'flightDate': flightDate,
+                            'carrierCode': carrierCode, 'legSerialNumber': legSerialNumber,
+                            'flightSeqNumber': flightSeqNumber,'valildationforimporthandling':valildationforimporthandling
+                        }
+                    })
+                });
+            } else if (fromScreen === 'MailOutbound') {
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'FILTER_FRM_OUTBOUND',
+                        data: {
+                            'airport': airport, 'operationType': type,
+                            'flightNumber': flightNumber, 'flightDate': flightDate,
+                            'carrierCode': carrierCode, 'navigation': true, 'assignedTo': assignedTo, 'showEmpty': true, 'destination': destination
+                        }
+                    })
+                });
+            }else if (fromScreen === 'OFFLOAD') {
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'FILTER_FRM_OFFLOAD'
+                    })
+                });
+            }
+            else {
+                appBridge.renderApp();
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<command-mappings xmlns="http://www.ibsplc.com/icargo/command/mappings" product="mail" subproduct="operations">
+
+
+<screen name="SearchConsignment" id="mailtracking.defaults.searchconsignment">
+
+
+		<action name="mailtracking.defaults.listconsignment.mailbookingpopup.screenload" >
+			<command class="com.ibsplc.icargo.framework.web.command.BaseCommand" order="1" delete="true"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.xaddons.bs.mail.operations.mailbooking.MailBookingPopupScreenloadCommand" order="2" insert="true"/>
+		</action>
+		
+		<action name="mailtracking.defaults.listconsignment.bookedflightspopup.screenload" >
+		    <command class="com.ibsplc.icargo.framework.web.command.BaseCommand" order="1" delete="true"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.xaddons.bs.mail.operations.mailbooking.ScreenLoadBookedFlightsCommand" order="2" insert="true"/>
+		</action>
+		
+		<action name="mailtracking.defaults.listconsignment.mailbookingpopup.clear" >
+		    <command class="com.ibsplc.icargo.framework.web.command.BaseCommand" order="1" delete="true"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.xaddons.bs.mail.operations.mailbooking.ClearCommand" order="2" insert="true"/>
+		</action>
+		
+		
+		<action name="mailtracking.defaults.listconsignment.mailbookingpopup.list" >
+		    <command class="com.ibsplc.icargo.framework.web.command.BaseCommand" order="1" delete="true"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.xaddons.bs.mail.operations.mailbooking.ListCommand" order="2" insert="true"/>
+		</action>
+		
+		
+		<action name="mailtracking.defaults.listconsignment.mailbookingpopup.attachMailAWB" >
+		    <command class="com.ibsplc.icargo.framework.web.command.BaseCommand" order="1" delete="true"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.xaddons.bs.mail.operations.mailawbbooking.AttachMailAWBCommand" order="2" insert="true"/>
+		</action>
+		
+		
+		<action name="mailtracking.defaults.listconsignment.mailbookingpopup.dettachMailAWB" >
+		    <command class="com.ibsplc.icargo.framework.web.command.BaseCommand" order="1" delete="true"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.xaddons.bs.mail.operations.mailawbbooking.DettachMailAWBCommand" order="2" insert="true"/>
+		</action>
+		
+		
+		<action name="mailtracking.defaults.listconsignment.bookedflight.ok.attachMailAWB" >
+		    <command class="com.ibsplc.icargo.framework.web.command.BaseCommand" order="1" delete="true"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.xaddons.bs.mail.operations.mailbooking.BookedFlightsPopupOkCommand" order="2" insert="true"/>
+		</action>
+		 
+
+
+</screen>
+</command-mappings>

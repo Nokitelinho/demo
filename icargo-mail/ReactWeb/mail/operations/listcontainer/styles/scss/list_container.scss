@@ -1,0 +1,117 @@
+body {
+    display: flex;
+    height: 0;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-panel {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 1rem 0;
+    > form {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;        
+        > .card{
+            flex-grow: 1
+        }
+    }
+}
+
+.footer-panel {
+    position: static;
+    margin: 0 -1rem;
+    width: auto;
+}
+
+.container-details-list {
+    .paginator__wrap {
+        min-width: auto;
+        max-width: none;
+        width: auto;
+        .pagination{
+            max-width: none;
+        }
+    }
+}
+
+//common styles
+.flex-grow-0 {
+    flex-grow: 0
+}
+
+.flex-grow-1 {
+    flex-grow: 1
+}
+
+//color
+.text-light-grey {
+    color: #aaa;
+}
+
+.form-control-data {
+    color: #333;
+}
+
+//layout - header extra data
+.header-extra-data-panel {
+    padding: $sm;
+    line-height: 1;
+    min-width: 200px;
+    .header-extra-data-detail {
+        margin-bottom: $sm;
+        .form-control-label {
+            display: inline-block;
+            margin: 0 $xs 0 0;
+        }
+        .form-control-data {
+            display: inline-block
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:first-child {
+    padding-left: 1rem;
+}
+
+.table-header__icons .ico-updown-dark.ico-updown-dark-down {
+    display: none
+}
+
+.cell .dropdown .dropdown-toggle{
+    border: 0;
+    padding: 0 4px !important;
+    height: auto;
+    background: transparent;
+}
+.cell .dropdown .dropdown-toggle:focus,
+.cell .dropdown .dropdown-toggle:active,
+.cell .dropdown .dropdown-toggle:active:focus{
+    box-shadow: none;
+    background: transparent;
+}
+.cell .dropdown .dropdown-toggle i{
+    margin: 0;
+    vertical-align: middle;
+}
+
+.modal_990px{
+	max-width:990px;
+	.modal-body{
+		max-height: 448px;
+		overflow-y: auto;
+	}
+}
+
+.dropdown-menu{
+    max-height: 56vh !important;
+    overflow-y: auto !important;
+}

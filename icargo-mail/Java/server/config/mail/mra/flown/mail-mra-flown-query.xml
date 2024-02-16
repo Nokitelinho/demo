@@ -1,0 +1,340 @@
+<?xml version="1.0"?>
+<QRY:Definitions xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries" module="mail.mra.flown">
+
+
+	<QRY:Definition>
+		<QRY:Id>1</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.flown.findmailbags" Type="NATIVE">
+		<![CDATA[
+			SELECT
+			 MAL.CMPCOD, MAL.FLTCARIDR,  MAL.FLTNUM,  MAL.FLTSEQNUM,  MAL.SEGSERNUM,
+			 FLT.SEGSTA,MST.ORGEXGOFC, MST.DSTEXGOFC,
+			 MST.MALCTGCOD,  MST.MALSUBCLS,   MST.YER,  MST.DSN, MST.RSN,  MST.HSN,  MST.REGIND,
+			 MST.CSGDOCNUM, MST.CSGSEQNUM,  MST.POACOD, MAL.SCNPRT,MST.GRSWGT,MST.DSPWGT,MST.DSPWGTUNT FROM MALMRAFLNMALSEG MAL,MALMRAFLNSEG FLT,MALMRABLGMST MST  WHERE
+			 MAL.CMPCOD=FLT.CMPCOD AND
+			 MAL.FLTNUM= FLT.FLTNUM AND
+			 MAL.FLTCARIDR = FLT.FLTCARIDR AND
+			 MAL.FLTSEQNUM = FLT.FLTSEQNUM AND
+			 MAL.SEGSERNUM = FLT.SEGSERNUM
+			 AND
+			 MST.MALSEQNUM=MAL.MALSEQNUM AND
+			 MST.CMPCOD=MAL.CMPCOD AND 
+			 FLT.CMPCOD = ? AND
+			 FLT.FLTNUM = ? AND
+			 FLT.FLTCARIDR = ? AND
+			 FLT.FLTSEQNUM = ? AND
+			 FLT.SEGSERNUM = ? order by MST.DSN
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+		<QRY:Id>2</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.flown.findDSN" Type="NATIVE">
+		<![CDATA[
+			SELECT DSN.CMPCOD,DSN.FLTCARIDR, DSN.FLTNUM,DSN.FLTSEQNUM, DSN.SEGSERNUM,
+			 
+			 FLT.SEGSTA
+			 
+			 FROM MALMRAFLNMALSEG DSN,MALMRAFLNSEG FLT WHERE
+			 DSN.CMPCOD=FLT.CMPCOD AND
+			 DSN.FLTNUM= FLT.FLTNUM AND
+			 DSN.FLTCARIDR = FLT.FLTCARIDR AND
+			 DSN.FLTSEQNUM = FLT.FLTSEQNUM AND
+			 DSN.SEGSERNUM = FLT.SEGSERNUM
+			 AND
+
+			DSN.CMPCOD = ? AND
+			DSN.FLTNUM = ?  AND
+			DSN.FLTCARIDR = ? AND
+			DSN.FLTSEQNUM = ? AND
+			DSN.SEGSERNUM =?
+
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	
+
+	
+
+
+
+
+
+
+
+
+	<QRY:Definition>
+			<QRY:Id>4</QRY:Id>
+			<QRY:Source Name="mailtracking.mra.flown.findFlightDetails" Type="NATIVE">
+			<![CDATA[
+				SELECT FLTMST.CMPCOD, FLTMST.FLTCARIDR, FLTMST.FLTNUM, FLTMST.FLTSEQNUM,
+
+				   FLTMST.FLTORG, FLTMST.FLTDST, FLTMST.LSTUPDUSR, FLTMST.LSTUPDTIM,
+				   FLTMST.FLTDAT, FLTMST.FLTSTA,
+				   FLTSEG.SEGSERNUM, FLTSEG.SEGORG,
+				   FLTSEG.SEGDST, FLTSEG.SEGSTA
+				 FROM FLTOPRMST FLTMST, FLTOPRSEG FLTSEG
+				 WHERE FLTMST.FLTNUM = FLTSEG.FLTNUM
+				 AND FLTMST.CMPCOD = FLTSEG.CMPCOD
+				 AND FLTMST.FLTCARIDR = FLTSEG.FLTCARIDR
+					 AND FLTMST.FLTSEQNUM = FLTSEG.FLTSEQNUM
+					 AND FLTMST.FLTNUM = ?
+					 AND FLTMST.FLTCARIDR = ?
+					 AND FLTMST.FLTSEQNUM = ?
+	                 AND FLTMST.CMPCOD = ?
+
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+				<QRY:Id>5</QRY:Id>
+				<QRY:Source Name="mailtracking.mra.flown.findlistofflownflights" Type="NATIVE">
+				<![CDATA[
+					SELECT
+						MST.FLTNUM FLTNUM,
+						MST.FLTDAT FLTDAT,
+						MST.FLTORG FLTORG,
+						MST.FLTDST FLTDST,
+						MST.FLTSTA FLTSTA,
+						MST.FLTCARIDR FLTCARIDR,
+						MST.FLTSEQNUM FLTSEQNUM,
+						SEG.POL SEGORG,
+						SEG.POU SEGDST,
+						SEG.SEGSTA SEGSTA,
+						SEG.SEGSERNUM SEGSERNUM,
+						ARL.TWOAPHCOD TWOAPHCOD
+						FROM FLTOPRMST MST, MALMRAFLNSEG SEG, SHRARLMST ARL
+						WHERE
+						MST.CMPCOD = SEG.CMPCOD AND
+						MST.FLTNUM = SEG.FLTNUM AND
+						MST.FLTCARIDR = SEG.FLTCARIDR AND
+						MST.FLTSEQNUM = SEG.FLTSEQNUM AND
+						MST.FLTCARIDR = ARL.ARLIDR AND
+						MST.CMPCOD = ARL.CMPCOD AND
+						MST.CMPCOD = ?
+					]]>
+				</QRY:Source>
+	</QRY:Definition>
+
+
+
+	<QRY:Definition>
+				<QRY:Id>5</QRY:Id>
+				<QRY:Source Name="mailtracking.mra.flown.findlistofflownmails" Type="NATIVE">
+				<![CDATA[
+					SELECT
+						MST.FLTNUM FLTNUM,
+						MST.FLTDAT FLTDAT,
+						MST.FLTCARIDR FLTCARIDR,
+						MST.FLTSEQNUM FLTSEQNUM,
+						MST.FLTORG,
+						MST.FLTDST,
+						SEG.POL SEGORG,
+						SEG.POU SEGDST,
+						SEG.SEGSTA SEGSTA,
+						SEG.SEGSERNUM SEGSERNUM,
+						
+						NULL WGTUNT,
+						ARL.TWOAPHCOD TWOAPHCOD
+						FROM FLTOPRMST MST, MALMRAFLNSEG SEG, MALMRAFLNMALSEG DSN, SHRARLMST ARL, FLTOPRSEG OPRSEG
+						WHERE MST.CMPCOD = SEG.CMPCOD
+						AND MST.FLTNUM = SEG.FLTNUM
+						AND MST.FLTCARIDR = SEG.FLTCARIDR
+						AND MST.FLTSEQNUM = SEG.FLTSEQNUM
+						AND MST.FLTCARIDR = ARL.ARLIDR
+						AND MST.CMPCOD    = ARL.CMPCOD
+						AND SEG.CMPCOD = DSN.CMPCOD
+						AND SEG.FLTNUM = DSN.FLTNUM
+						AND SEG.FLTCARIDR = DSN.FLTCARIDR
+						AND SEG.FLTSEQNUM = DSN.FLTSEQNUM
+						AND SEG.SEGSERNUM = DSN.SEGSERNUM
+						AND OPRSEG.CMPCOD = SEG.CMPCOD
+						AND OPRSEG.FLTNUM = SEG.FLTNUM
+						AND OPRSEG.FLTSEQNUM = SEG.FLTSEQNUM
+						AND OPRSEG.FLTCARIDR = SEG.FLTCARIDR
+						AND OPRSEG.SEGSERNUM = SEG.SEGSERNUM
+						AND MST.CMPCOD = ?
+						]]>
+				</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+				<QRY:Id>6</QRY:Id>
+				<QRY:Source Name="mailtracking.mra.flown.findlistofflownmailbags" Type="NATIVE">
+				<![CDATA[
+					SELECT MST.FLTNUM FLTNUM,
+						  MST.FLTDAT FLTDAT,
+						  MST.FLTCARIDR FLTCARIDR,
+						  MST.FLTSEQNUM FLTSEQNUM,
+						  MST.FLTORG,
+						  MST.FLTDST,
+						  SEG.POL SEGORG,
+						  SEG.POU SEGDST,
+						  SEG.SEGSTA SEGSTA,
+						  SEG.SEGSERNUM SEGSERNUM,
+						  BLGMST.ORGEXGOFC DSNORG,
+						  BLGMST.DSTEXGOFC DSNDST,
+						  BLGMST.DSN DSN,
+						  1 DSNBAG,
+						  BLGMST.DSPWGT DSNWGT,
+						  UNT.DSPVAL WGTUNT,
+						  ARL.TWOAPHCOD TWOAPHCOD
+						FROM FLTOPRMST MST,
+						  MALMRAFLNSEG SEG,
+						  MALMRAFLNMALSEG MAL,
+						  SHRARLMST ARL,
+						  MALMRABLGMST BLGMST,
+						  SHRUNTRND UNT
+						WHERE MST.CMPCOD  = SEG.CMPCOD
+						AND MAL.CMPCOD  = BLGMST.CMPCOD
+						AND MAL.MALSEQNUM  = BLGMST.MALSEQNUM
+						AND MST.FLTNUM    = SEG.FLTNUM
+						AND MST.FLTCARIDR = SEG.FLTCARIDR
+						AND MST.FLTSEQNUM = SEG.FLTSEQNUM
+						AND MST.FLTCARIDR = ARL.ARLIDR
+						AND MST.CMPCOD    = ARL.CMPCOD
+						AND SEG.CMPCOD    = MAL.CMPCOD
+						AND SEG.FLTNUM    = MAL.FLTNUM
+						AND SEG.FLTCARIDR = MAL.FLTCARIDR
+						AND SEG.FLTSEQNUM = MAL.FLTSEQNUM
+						AND SEG.SEGSERNUM = MAL.SEGSERNUM
+						AND UNT.CMPCOD=BLGMST.CMPCOD
+                        AND UNT.UNTTYP='MWT'
+                        AND UNT.UNTCOD=BLGMST.DSPWGTUNT
+						AND MST.CMPCOD    = ?
+						]]>
+				</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+		<QRY:Id>8</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.flown.processflight" Type="PROCEDURE">
+			<![CDATA[
+					CALL PKG_MAL_MRA_FLOWN.SPR_MRA_FLNPROCESSING(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+					)
+				]]>
+		</QRY:Source>
+
+	</QRY:Definition>
+	
+	<QRY:Definition>
+		<QRY:Id>10</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.flown.findmailRevenueDetails" Type="NATIVE">
+		<![CDATA[
+			               SELECT txn.csgdocnum            ,
+				         txn.csgseqnum                  ,
+				         txn.poacod  POACOD                   ,
+				         TXN.CMPCOD CMPCOD              ,
+				         ROUND(SUM(TXNDTL.DRR),2) DRR   ,
+				         ROUND(SUM(TXNDTL.CRR),2) CRR   ,
+				         MAX(TRUNC(TXN.CREDAT)) CREDAT  ,
+				         MAX(TXN.MSTDOCNUM) MSTDOCNUM   ,
+				         MAX(TRUNC(TXN.EXEDAT)) EXEDAT  ,
+				         max(orgexg.exgofccod) ORGEXGOFC,
+				         max(orgexg.ctycod )  ORGCTY,
+				         max(orgexg.cntcod) ORGCNT  , 
+				         max(dstexg.exgofccod) DSTEXGOFC     ,
+				         max(dstexg.ctycod )  DSTCTY,
+				         max(dstexg.cntcod) DSTCNT,
+				         TXN.FLTNUM FLTNUM    ,
+				         TXN.SEGORGCOD SEGORGCOD   ,
+				         TXN.SEGDSTCOD SEGDSTCOD  ,
+				         MAX(TXN.REGIND) REGIND   ,
+				         
+				         MAX(BLGMST.GRSWGT) WGT ,
+				         TXN.BLGBAS BLGBAS      ,
+				         txn.mstdocnum  DSN,
+				         MAX(TXN.FUNPNT) FUNPNT ,
+				         MAX(LEG.ACRTYP) ACRTYP ,
+				         MAX(SUBCLS.SUBCLSGRP) SUBCLS
+				          FROM CRAACCTXN TXN,
+				         CRAACCTXNDTL TXNDTL,
+				         CRAACCMST MST      ,
+				         MALMRABLGMST BLGMST,
+				         fltoprmst FLTMST   ,
+				         FLTOPRLEG LEG      ,
+				         MALSUBCLSMST SUBCLS,
+				         MALEXGOFCMST ORGEXG,
+				         MALEXGOFCMST DSTEXG
+				         WHERE FLTMST.CMPCOD               = TXN.CMPCOD
+				       AND FLTMST.FLTDAT                   = TXN.EXEDAT
+				       AND FLTMST.FLTNUM                   = TXN.FLTNUM
+						AND FLTMST.FLTSEQNUM = TXN.FLTSEQNUM 
+				       AND FLTMST.CMPCOD                   = LEG.CMPCOD
+				       AND FLTMST.FLTCARIDR                = LEG.FLTCARIDR
+				       AND FLTMST.FLTNUM                   = LEG.FLTNUM
+				       AND FLTMST.FLTSEQNUM                = LEG.FLTSEQNUM
+				       AND LEG.CMPCOD                      = TXN.CMPCOD
+				       AND LEG.FLTNUM                      = TXN.FLTNUM
+				       AND LEG.LEGORG                      = TXN.SEGORGCOD
+				       AND LEG.LEGDST                      = TXN.SEGDSTCOD
+				       AND SUBCLS.CMPCOD                   = txn.cmpcod
+				       AND SUBCLS.SUBCLSCOD                = SUBSTR(TXN.BLGBAS,14,2)
+				       AND TXNDTL.ACCTXNIDR                = TXN.ACCTXNIDR
+				       AND TXNDTL.FUNPNT                   = TXN.FUNPNT
+				       AND TXNDTL.SUBSYS                   = TXN.SUBSYS
+				       AND TXNDTL.CMPCOD                   = TXN.CMPCOD
+				       AND MST.ACCCOD                      = TXNDTL.ACCCOD
+				       AND MST.SUBSYS                      = TXNDTL.SUBSYS
+				       AND MST.CMPCOD                      = TXNDTL.CMPCOD
+				       AND BLGMST.CMPCOD                   = TXN.CMPCOD
+				       AND BLGMST.MALIDR                   = TXN.blgbas
+				       AND BLGMST.csgdocnum                = TXN.csgdocnum
+				       AND BLGMST.csgseqnum                = TXN.csgseqnum
+				       AND BLGMST.POACOD                   = TXN.POACOD
+				       AND BLGMST.CMPCOD                   = ORGEXG.CMPCOD
+				       AND BLGMST.ORGEXGOFC                = ORGEXG.EXGOFCCOD
+				       AND BLGMST.CMPCOD                   = DSTEXG.CMPCOD
+				       AND BLGMST.DSTEXGOFC                = DSTEXG.EXGOFCCOD
+				       AND (TXNDTL.crr                    <> 0
+				       OR TXNDTL.drr                      <> 0)
+				       AND TXN.FUNPNT                      = 'FM'
+				       AND TXN.SUBSYS                      = 'M'
+					AND TXN.CMPCOD                      = ?
+				]]>
+		</QRY:Source>
+		</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>11</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.flown.importarrivedmailstomra" Type="PROCEDURE">
+			<![CDATA[
+				CALL PKG_MAL_MRA_IMPORTMAIL.SPR_MRA_PROCESSMAL(
+					?,
+					?,
+					?,
+					?
+				)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>		
+	<QRY:Definition>
+		<QRY:Id>12</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.flown.importmissedmailsondeliveryscantomra" Type="PROCEDURE">
+			<![CDATA[
+				CALL PKG_MAL_MRA_IMPORTMAIL.SPR_MRA_FORCE_IMPORT_NODLVSCAN(
+					?,
+					?,
+					?,
+					?,
+					?,
+					?
+				)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+</QRY:Definitions>

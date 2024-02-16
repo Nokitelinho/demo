@@ -1,0 +1,107 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+
+<html>
+
+    <head>
+
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+
+        <title>Mail Transit Overview</title>
+
+        <script>
+            // var fromScreen = '<%=request.getParameter("fromScreen")%>'
+           var airportCode='<%=request.getParameter("airportCode")%>'
+            var fromDate='<%=request.getParameter("fromDate")%>'
+            var toDate='<%=request.getParameter("toDate")%>'
+            var flightNumber='<%=request.getParameter("flightNumber")%>'
+            var carrierCode='<%=request.getParameter("carrierCode")%>'
+            var flightDate='<%=request.getParameter("flightDate")%>'
+            var fromScreen = '<%=request.getParameter("fromScreen")%>'
+
+            var isPopup = '<%=request.getParameter("isPopup")%>'; //Added by A-7929 as part of ICRD-334270
+
+            //Updated by A-8672 for ICRD-269973
+
+           
+            
+
+            var screenAction = "mail.operations.ux.mailtransitoverview.defaultscreenload.do";
+
+            var valildationforimporthandling = '<%=request.getParameter("valildationforimporthandling")%>';
+
+            function getScreenConfig() {
+
+                var newobj = window.__extends({}, screenCfg, {
+
+                    __rehydrate:  false,
+
+                    fromScreen: fromScreen,
+
+                    screenAction: screenAction,
+
+                    isPopup: isPopup
+
+                });
+
+                console.log('newObj', newobj);
+
+                return newobj
+
+            }
+
+        </script>
+
+        <common:include type="css" src="/css/app/app.css" />
+
+        {{#each htmlWebpackPlugin.files.css}}
+
+            <common:include type="css" src='{{csshelper this}}' />
+
+        {{/each}}
+
+    </head>
+
+
+
+    <body>
+
+        <!-- The DIV container for redering results from react -->
+
+        <div id="container" class="main-container footer-height-scroll"></div>
+
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" />
+
+        {{#each htmlWebpackPlugin.files.js}}
+
+            <common:include type="script" src="{{jshelper this}}" />
+
+        {{/each}}
+
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+
+
+
+        {{!-- <script> --}}
+            <script>
+            if 
+                (fromScreen === 'mail.operations.ux.mailinbound') {
+                console.log('here111');
+                appBridge.renderApp(function () {
+                    console.log('here121');
+                    //console.log(consignmentFilter);
+                    appBridge.dispatchAction({
+                        type: 'INBOUND',
+                        data: {'airportCode':airportCode, 'fromDate':fromDate,'toDate':toDate,'flightNumber':flightNumber,'carrierCode':carrierCode,'flightDate':flightDate,'fromScreen': fromScreen }
+                    })
+                });
+            }
+            else {
+                appBridge.renderApp();
+            }
+        </script>
+
+         
+
+    </body>
+
+</html>

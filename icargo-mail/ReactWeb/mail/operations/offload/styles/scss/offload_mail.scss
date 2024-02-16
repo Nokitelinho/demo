@@ -1,0 +1,105 @@
+body{
+    display: flex;
+}
+.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-panel {
+    flex-grow: 1;
+    margin: 1rem 0;
+    display: flex;
+    > .card{
+        flex-grow: 1;
+    }
+}
+
+.footer-panel {
+    position: static;
+    margin: 0 -1rem;
+    width: auto;
+}
+
+.text-light-grey {
+    color: #aaa;
+}
+
+
+.header-extra-data-panel {
+    padding: $sm;
+    line-height: 1;
+    min-width: 200px;
+    .header-extra-data-detail {
+        margin-bottom: $sm;
+        .form-control-label {
+            display: inline-block;
+            margin: 0 $xs 0 0;
+        }
+        .form-control-data {
+            display: inline-block
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.tab {
+    border-bottom: 1px solid #ddd;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: #f7f7f7;
+    .btn-group {
+        .btnbar {
+            font-size: 16px;
+            font-weight: normal;
+            padding: 1rem;
+            line-height: 1;
+            min-width: auto;
+            background: #f7f7f7;
+            &.active{
+                background: #fff;
+            }
+        }
+    }
+    &.tab-sm {
+        .btn-group {
+            .btnbar {
+                font-size: 12px;
+                padding: 14px 24px;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.paginator__wrap {
+    min-width: unset;
+    max-width: unset;
+    width: auto;
+}
+
+.table-header__icons .ico-updown-dark.ico-updown-dark-down {
+    display: none
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:first-child,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn:first-child {
+    padding-left: 1rem;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:last-child,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn:last-child {
+    padding-right: 1rem;
+}
+
+.ReactVirtualized__Table .form-check-input {
+    margin: 0;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Grid__innerScrollContainer .ReactVirtualized__Table__row.table-row:last-child {
+    border-bottom: 1px solid #ddd;
+}

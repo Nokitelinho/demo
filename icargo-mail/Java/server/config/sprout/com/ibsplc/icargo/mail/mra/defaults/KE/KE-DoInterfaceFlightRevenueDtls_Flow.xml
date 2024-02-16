@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
+	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	
+	<input name="companyCode" required="true" />	
+	<input name="maxRecord" required="true" />
+	<input name="isFromRetrigger" required="true" />	
+
+	<action-state id="doInterfaceFlightRevenueDtls_Flow">
+		<evaluate expression="kEMRADefaultsController.doInterfaceFlightRevenueDtls(companyCode,isFromRetrigger)"/>
+		<transition to="doInterface" />		   
+	</action-state>
+	<action-state id="doInterface">
+		<evaluate expression="kEMRADefaultsController.doInterface(companyCode,maxRecord,isFromRetrigger)"/>
+		<transition to="doInterfaceFlightRevenueDtls" />		   
+	</action-state>
+	<action-state id="doInterfaceFlightRevenueDtls">
+		<evaluate expression="mRADefaultscontroller.doInterfaceFlightRevenueDtls(companyCode)"/>
+		<transition to="end" />		   
+	</action-state>
+	<end-state id="end">
+		
+	</end-state>
+</flow>	

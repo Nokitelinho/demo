@@ -1,0 +1,1080 @@
+<?xml version="1.0"?>
+<QRY:Definitions xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries" module="mail.mra.airlinebilling">
+
+	<QRY:Definition>
+		<QRY:Id>1</QRY:Id>
+		<QRY:Source Name="mra.airlinebilling.defaults.displayUPUCalendarDetails" Type="NATIVE">
+		<![CDATA[
+			SELECT
+				C.CMPCOD, C.CLRPRD, C.FRMDAT, C.TOODAT, C.SUBDAT, C.GENAFT,
+				C.LSTUPDTIM,C.LSTUPDUSR
+			FROM
+				CRAIATCALMST C
+
+			WHERE
+				C.CMPCOD=?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+			<QRY:Id>2</QRY:Id>
+			<QRY:Source Name="mailtracking.mra.airlinebilling.findcn66details" Type="NATIVE">
+			<![CDATA[
+				   SELECT
+				   CN66.CMPCOD, CN66.ARLIDR, CN66.INVNUM,CN66.LSTCURCOD,
+				   CN66.INTBLGTYP, CN66.SEQNUM, CN66.CLRPRD,
+				   CN66.CARFRM, CN66.CARTOO, CN66.CARCOD,
+				   CN66.FLTNUM, CN66.FLTDAT, CN66.ORGCOD,
+				   CN66.DSTCOD, CN66.ORGEXGOFC, CN66.DSTEXGOFC,
+				   CN66.MALCTGCOD, CN66.SUBCLSGRP, CN66.DSN,
+				   MST.RSN, CN66.YER, CN66.MALSTA,CN66.APLRAT,CN66.BLDAMTLSTUR,
+				   CN66.TOTPCS, CN66.TOTWGT, CN66.DSNDAT, CN66.FLTCARIDR, SMY.INVSTA C51STA,
+				  CN66.LSTUPDUSR,CN66.LSTUPDTIM,SMY.LSTCURCOD LSTCURCODSMY,MST.HSN,MST.REGIND,CN66.MALSEQNUM,MST.MALIDR,MST.CSGDOCNUM,MST.CSGSEQNUM 
+				   FROM MALMRAARLC66DTL CN66
+INNER JOIN MALMRABLGMST MST
+      ON MST.CMPCOD    = CN66.CMPCOD
+     -- AND MST.MALIDR   =CN66.BLGBAS
+	    AND MST.MALSEQNUM   =CN66.MALSEQNUM  
+		AND MST.DSN = CN66.DSN
+		AND (CN66.MALSTA not in ('D') OR CN66.MALSTA is null)
+      --AND MST.CSGDOCNUM=CN66.CSGDOCNUM
+     -- AND MST.CSGSEQNUM=CN66.CSGSEQNUM
+			   LEFT OUTER JOIN MALMRAARLC51SMY SMY ON
+				CN66.CMPCOD = SMY.CMPCOD AND
+				CN66.ARLIDR = SMY.ARLIDR AND
+				CN66.INVNUM = SMY.INVNUM AND
+				CN66.INTBLGTYP = SMY.INTBLGTYP AND
+				CN66.CLRPRD = SMY.CLRPRD
+
+
+			   WHERE
+				CN66.CMPCOD = ? AND
+				CN66.INVNUM = ? AND
+				CN66.CLRPRD = ? AND
+				CN66.ARLIDR = ?
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+			<QRY:Id>3</QRY:Id>
+			<QRY:Source Name="mailtracking.mra.airlinebilling.displayexceptiondetails" Type="NATIVE">
+			<![CDATA[
+				SELECT EXP.CMPCOD, EXP.ARLIDR, EXP.EXPCOD,
+				           EXP.SERNUM, EXP.INVNUM, EXP.CLRPRD,
+				           EXP.INTBLGTYP, EXP.ARLCOD, EXP.DSN,
+				           BLGMST.RSN, BLGMST.YER, EXP.ORGCOD,
+				           BLGMST.ORGEXGOFC, EXP.DSTCOD, BLGMST.DSTEXGOFC,
+				           BLGMST.MALSUBCLS, EXP.MALCTGCOD, EXP.ASGCOD,
+				           EXP.ASGDAT, EXP.MEMCOD,
+				           EXP.EXPSTA, EXP.PVNRAT, EXP.PVNWGT,
+				           EXP.PVNAMTLSTCUR, EXP.RPDWGT, EXP.RPDAMTLSTCUR,
+				           EXP.RPDRAT, 
+				            EXP.LSTUPDTIM,
+				           EXP.LSTUPDUSR,MEM.MEMSTA,EXP.RMK,
+				             DTL.SEQNUM,BLGMST.HSN,EXP.SECFRM,
+                           EXP.SECTOO,BLGMST.REGIND
+				      FROM MALMRAARLEXPDTL EXP LEFT OUTER JOIN MALMRAARLMEM MEM
+				     ON EXP.CMPCOD=MEM.CMPCOD
+				        AND EXP.ARLIDR=MEM.ARLIDR
+				        AND EXP.MEMCOD=MEM.MEMCOD
+                 LEFT OUTER JOIN MALMRABLGMST BLGMST
+                 ON EXP.CMPCOD=BLGMST.CMPCOD
+                -- AND EXP.POACOD=BLGMST.POACOD
+				-- AND EXP.BLGBAS=BLGMST.MALIDR
+				 AND EXP.MALSEQNUM=BLGMST.MALSEQNUM
+
+
+				        LEFT OUTER JOIN MALMRAARLC66DTL DTL
+				             ON EXP.CMPCOD =DTL.CMPCOD
+				        AND EXP.ARLIDR     =DTL.ARLIDR
+				        AND EXP.INVNUM     =DTL.INVNUM
+				        AND EXP.INTBLGTYP  =DTL.INTBLGTYP
+				        AND EXP.CLRPRD     =DTL.CLRPRD
+				       AND  EXP.DSN          = DTL.DSN
+					  -- AND EXP.BLGBAS    = DTL.BLGBAS
+					     AND EXP.MALSEQNUM    = DTL.MALSEQNUM
+				     WHERE EXP.CMPCOD = ?
+				       AND EXP.CLRPRD IN (
+				         SELECT MST.CLRPRD
+				         FROM CRAIATCALMST  MST
+				        WHERE TO_NUMBER(TO_CHAR(MST.FRMDAT,'YYYYMMDD')) >= ?
+				        AND TO_NUMBER(TO_CHAR(MST.TOODAT,'YYYYMMDD')) <= ?)
+          				AND EXP.ARLCOD = ?
+
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>4</QRY:Id>
+		<QRY:Source Name="mailTracking.mra.airlineBilling.findCN51Details" Type="NATIVE">
+		<![CDATA[
+			SELECT
+			ARLCN51SMY.CMPCOD,
+			ARLCN51SMY.ARLIDR, ARLCN51SMY.INVNUM,
+			ARLCN51SMY.INTBLGTYP,ARLCN51SMY.CLRPRD,ARLCN51SMY.TOTAMTCRTCUR AS TOTSMYCRTAMT,
+			ARLCN51SMY.C51STA,ARLCN51SMY.BLGCURCOD,ARLCN51SMY.CRTCURCOD,ARLCN51SMY.LSTCURCOD,
+			ARLCN51SMY.INVSTA,ARLCN51SMY.C51AMTLSTCUR
+			FROM MALMRAARLC51SMY ARLCN51SMY left outer join MALMRAARLC51DTL ARLCN51DTL
+			on ARLCN51SMY.CMPCOD = ARLCN51DTL.CMPCOD
+			  AND ARLCN51SMY.ARLIDR = ARLCN51DTL.ARLIDR
+			  AND ARLCN51SMY.INVNUM = ARLCN51DTL.INVNUM
+			  AND ARLCN51SMY.INTBLGTYP = ARLCN51DTL.INTBLGTYP
+		          AND ARLCN51SMY.CLRPRD = ARLCN51DTL.CLRPRD
+			WHERE  ARLCN51SMY.CMPCOD = ?
+			
+			AND ARLCN51SMY.ARLIDR = ?
+			AND ARLCN51SMY.INTBLGTYP = ?
+              		AND ARLCN51SMY.INVNUM = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	  <QRY:Definition>
+		<QRY:Id>5</QRY:Id>
+		<QRY:Source Name="mra.airlinebilling.findExceptionInInvoice" Type="NATIVE">
+		<![CDATA[
+			SELECT
+			EXP.CMPCOD, EXP.ARLIDR, EXP.INVNUM, EXP.CLRPRD, EXP.RMK, EXP.EXPSTA,
+			EXP.MEMSTA,EXP.PVNAMTLSTCUR
+,EXP.RPDAMT,EXP.DIFAMT,EXP.CRTCURCOD,EXP.INTBLGTYP,
+			EXP.ARLCOD,EXP.MEMCOD,iat.frmdat,iat.toodat,
+			EXP.LSTUPDTIM,EXP.LSTUPDUSR
+			FROM
+			MALMRAARLEXPINV EXP,
+			( select max(iat.frmdat) frmdat,max(iat.toodat)toodat ,
+			iat.clrprd ,iat.cmpcod
+			from craiatcalmst iat
+			where cmpcod = ?
+			group by iat.cmpcod,iat.clrprd) iat
+			WHERE
+			EXP.CMPCOD = iat.cmpcod
+			and EXP.clrprd = iat.clrprd
+			and EXP.CMPCOD = ?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>6</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.airlinebilling.defaults.findInvoiceDetails" Type="NATIVE">
+		<![CDATA[
+			Select
+				INV.INVNUM, INV.INTBLGTYP, INV.CLRPRD, INV.ARLCOD,INV.BLDDAT
+
+			From
+				MALMRAARLC51SMY INV
+
+			Where
+				INV.CMPCOD = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>7</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.airlinebilling.defaults.findMemoDetails" Type="NATIVE">
+		<![CDATA[
+			Select
+				EXPDTL.ARLCOD, EXPDTL.MEMCOD, EXPDTL.INVNUM,EXPDTL.CLRPRD
+
+			  From  MALMRAARLEXPDTL EXPDTL
+
+			 Where  EXPDTL.MEMCOD IS NOT NULL
+
+			   AND  EXPDTL.CMPCOD = ?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>8</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.airlinebilling.findMemoDetails" Type="NATIVE">
+		<![CDATA[
+			 SELECT MEM.CMPCOD,MEM.ARLIDR,MEM.MEMCOD,MEM.INWINVNUM,MEM.DSN,MEM.INWCLRPRD,
+			           MEM.MEMDAT,MEM.PROVAMTLSTCUR,DTL.RPDAMTLSTCUR,MEM.BLGBLDAMT,MEM.RMK,PAR.PARVAL
+			         FROM MALMRAARLMEM MEM LEFT OUTER JOIN  MALMRAARLEXPDTL DTL
+             ON  MEM.CMPCOD= DTL.CMPCOD
+			       AND MEM.MEMCOD=DTL.MEMCOD
+			       AND MEM.ARLIDR=DTL.ARLIDR
+			       AND MEM.DSN=DTL.DSN
+             INNER JOIN SHRSYSPAR PAR ON PAR.CMPCOD = MEM.CMPCOD
+			       WHERE
+				    PAR.PARCOD ='mailtracking.defaults.DsnLevelImportToMRA'
+			       AND MEM.CMPCOD=?
+      			       AND MEM.ARLIDR=?
+
+
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>9</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.airlinebilling.defaults.processmail" Type="PROCEDURE">
+		<![CDATA[
+			CALL PKG_MAL_MRA_ARLBLG_NEW.spr_mtk_mra_process_mails (
+				?,
+				?,
+				?,
+				?,
+				?,
+				?,
+				?,
+				?
+			)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>10</QRY:Id>
+			<QRY:Source Name="mailtracking.mra.airlinebilling.displayexceptiondetailsininvoice" Type="NATIVE">
+			<![CDATA[
+
+			SELECT     EXP.CMPCOD, EXP.ARLIDR, EXP.EXPCOD, EXP.SERNUM, EXP.INVNUM,
+				   EXP.CLRPRD,EXP.INTBLGTYP, EXP.ARLCOD, EXP.DSN, EXP.RSN,
+				   EXP.YER, EXP.ORGCOD, EXP.ORGEXGOFC, EXP.DSTCOD, EXP.DSTEXGOFC,
+				   EXP.MALSUBCLS, EXP.MALCTGCOD, EXP.ASGCOD,EXP.ASGDAT, EXP.MEMCOD,
+				   EXP.EXPSTA, EXP.PVNRAT, EXP.PVNWGT, EXP.RPDWGT,
+				   EXP.LSTUPDTIM,EXP.LSTUPDUSR
+
+			FROM MALMRAARLEXPDTL  EXP
+
+			WHERE 		EXP.CMPCOD= ?
+					AND EXP.ARLIDR=?
+					AND EXP.INVNUM=?
+		  	                AND EXP.CLRPRD=?
+			]]>
+					</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>11</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.airlinebilling.outward.generateinvoice"
+			Type="PROCEDURE">
+			<![CDATA[
+				CALL PKG_MAL_MRA_ARLBLG_NEW.SPR_GEN_MRA_OUTWRDINV(
+				?,
+				?,
+				?,
+				?,
+				?,
+				?,
+				?
+				)
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	         	<QRY:Definition>
+						<QRY:Id>12</QRY:Id>
+						<QRY:Source Name="mailtracking.mra.airlinebilling.findoutwardinvoicereportdetails" Type="NATIVE">
+						<![CDATA[
+
+									SELECT DISTINCT    DTL.CARFRM
+								                || '-'
+								                || DTL.CARTOO SECTOR,
+								                SMY.CMPCOD,
+								                SMY.INVNUM,
+												SMY.BLDDAT,
+								                SMY.TOTAMTCRTCUR,
+												SMY.ARLIDR,
+												SMY.BLGCURCOD,
+								                SMY.TOTAMTLSTCUR,
+												SMY.CRTCURCOD,
+												CAL.FRMDAT,
+												CAL.TOODAT
+							           FROM MALMRAARLC51DTL DTL, MALMRAARLC51SMY SMY,CRAIATCALMST CAL
+									          WHERE SMY.CMPCOD = DTL.CMPCOD
+											  AND   SMY.ARLIDR = DTL.ARLIDR
+											  AND   SMY.INVNUM = DTL.INVNUM
+											  AND   SMY.CMPCOD = CAL.CMPCOD
+											  AND   SMY.CLRPRD = CAL.CLRPRD
+											  AND   SMY.CMPCOD = ?
+											  AND   SMY.CLRPRD = ?
+
+								]]>
+					</QRY:Source>
+		</QRY:Definition>
+
+		<QRY:Definition>
+		<QRY:Id>13</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.airlinebilling.reports.invoicedetails" Type="NATIVE">
+		<![CDATA[
+			SELECT
+
+				SMY.CMPCOD,  SMY.ARLIDR,  SMY.INVNUM,  SMY.INTBLGTYP,  SMY.CLRPRD,  SMY.ARLCOD,
+				SMY.TOTAMTLSTCUR, SMY.TOTAMTCRTCUR, SMY.BLGCURCOD, SMY.CRTCURCOD, ARL.ARLNAM,
+				SMY.INTFCDFILNAM, SMY.INVSTA
+
+			FROM
+				MALMRAARLC51SMY SMY INNER JOIN SHRARLMST ARL
+
+			ON
+				SMY.CMPCOD = ARL.CMPCOD
+				AND SMY.ARLIDR = ARL.ARLIDR
+
+				INNER JOIN CRAIATCALMST CDRMST
+
+			ON
+				SMY.CMPCOD = CDRMST.CMPCOD
+				AND SMY.CLRPRD = CDRMST.CLRPRD
+
+
+			WHERE
+				SMY.CMPCOD = ?
+				AND SMY.INTBLGTYP = ?
+		]]>
+		</QRY:Source>
+		</QRY:Definition>
+
+
+		<QRY:Definition>
+				<QRY:Id>14</QRY:Id>
+				<QRY:Source Name="mailtracking.mra.airlinebilling.inward.findinvoicedetailsbyclearancePrd" Type="NATIVE">
+				<![CDATA[
+				SELECT    C51.CMPCOD,C51.CLRPRD,C51.INVNUM,SMY.LSTCURCOD,SHR.ARLIDR,
+				           SUM(C51.TOTAMTCRTCUR) AS TOTAMT,C51.SUBCLSGRP,
+					   SHR.ARLNAM,SHR.TWOAPHCOD, SHR.THRNUMCOD
+					   FROM  MALMRAARLC51DTL C51 INNER JOIN SHRARLMST SHR
+					   ON
+
+					   C51.CMPCOD = SHR.CMPCOD  AND
+					   C51.ARLIDR = SHR.ARLIDR
+
+					   INNER JOIN CRAIATCALMST CDRMST
+
+					   ON
+
+					   C51.CMPCOD = CDRMST.CMPCOD AND
+					   C51.CLRPRD = CDRMST.CLRPRD
+
+					   INNER JOIN MALMRAARLC51SMY SMY
+
+						ON C51.CMPCOD  = SMY.CMPCOD
+						AND C51.ARLIDR = SMY.ARLIDR
+						AND C51.INVNUM = SMY.INVNUM
+					   WHERE
+					   C51.CMPCOD = ?   AND
+					   C51.INTBLGTYP = ?
+				]]>
+				</QRY:Source>
+		</QRY:Definition>
+
+		<QRY:Definition>
+		<QRY:Id>15</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.airlinebilling.findCN51s" Type="NATIVE">
+		<![CDATA[
+					SELECT
+						CMPCOD, ARLIDR, INVNUM,
+						INTBLGTYP, CLRPRD, ARLCOD,
+						C51STA, BLGCURCOD, CRTCURCOD,
+						BLDDAT, TOTAMTLSTCUR,TOTAMTCRTCUR,
+						LSTUPDTIM,LSTUPDUSR,INVRCPTDAT,INVSTA,INTINVTYP
+					FROM MALMRAARLC51SMY
+					WHERE CMPCOD = ?
+ 				         AND trunc(BLDDAT) >= TO_DATE(?,'yyyy-MM-dd')
+   					  AND trunc(BLDDAT) <= TO_DATE(?,'yyyy-MM-dd')
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+
+
+	<QRY:Definition>
+		<QRY:Id>16</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.airlinebilling.findOutwardRejectionMemo" Type="NATIVE">
+		<![CDATA[
+			 SELECT MEM.CMPCOD CMPCOD , MEM.INVNUM INVNUM ,
+				MEM.ARLIDR ARLIDR,  MEM.MEMCOD MEMCOD,
+				MEM.INTBLGTYP INTBLGTYP , MEM.CLRPRD CLRPRD,
+				MEM.MEMDAT MEMDAT,  MEM.PVNAMTLSTCUR PVNAMT,
+				MEM.RPDAMTLSTCUR RPDAMT,  MEM.DIFAMTLSTCUR DIFAMT ,
+				MEM.RMK RMK , MEM.INBINVNUM INBINVNUM ,
+				MEM.CRTCURCOD CRTCURCOD, ARL.ARLNAM ARLNAM
+
+			FROM MALMRAARLMEMINV MEM,SHRARLMST ARL
+
+			WHERE
+				 MEM.CMPCOD = ARL.CMPCOD 	AND
+				 MEM.ARLIDR = ARL.ARLIDR	AND
+				 MEM.CMPCOD =  ?		AND
+				 MEM.ARLIDR =  ?		AND
+				 MEM.INTBLGTYP = ?
+
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+				<QRY:Id>17</QRY:Id>
+				<QRY:Source Name="mailtracking.mra.airlinebilling.findRejectionMemoDetail" Type="NATIVE">
+				<![CDATA[
+					SELECT MST.ARLNAM, MEM.CMPCOD, MEM.ARLIDR,
+					       MEM.MEMCOD, MEM.TOOARLCOD, MEM.INWINVNUM,
+					       MEM.INWINVDAT, MEM.INWCLRPRD,
+					       MEM.OUTINVNUM, MEM.OUTINVDAT,
+					       MEM.OUTCLRPRD, MEM.BLGCURCOD,
+					       MEM.CRTCURCOD, MEM.CLRCURCOD,
+					       MEM.CRTBLDAMT, MEM.CRTAPTAMT,
+					       MEM.CRTREJAMT, MEM.CLRBLDAMT,
+					       MEM.CLRAPTAMT, MEM.CLRREJAMT,
+					       MEM.BLGBLDAMT, MEM.BLGAPTAMT,
+					       MEM.BLGREJAMT, MEM.CRTBLGEXGRAT,
+					       MEM.BLGCLREXGRAT, MEM.REQAUTIND,
+					       MEM.REQAUTREF, MEM.REQAUTDAT,
+					       MEM.DUPBILIND, MEM.DUPBILINVNUM,
+					       MEM.DUPBILINVDAT, MEM.CHGNOTCRTIND,
+					       MEM.CHGNOTCONCRTIND, MEM.NOAPRVIND,
+					       MEM.NORCPTIND, MEM.INCORTEXGIND,
+					       MEM.OTHIND, MEM.MEMSTA, MEM.RMK,
+					       MEM.OUTTIMLMTIND, MEM.OUTINVNUM,
+					       MEM.OUTINVDAT, MEM.OUTCLRPRD, MEM.PROVAMTLSTCUR,
+					       MEM.LSTUPDUSR, MEM.LSTUPDTIM, MEM.DSN,MEM.MEMDAT,
+					       DTL.ORGCOD, DTL.DSTCOD, DTL.SECFRM,
+					       DTL.SECTOO,PAR.PARVAL,MEM.ATHIND
+					  FROM MALMRAARLMEM MEM LEFT OUTER JOIN SHRARLMST MST
+					       ON MST.CMPCOD = MEM.CMPCOD
+					       AND MST.ARLIDR = MEM.ARLIDR
+					       LEFT OUTER JOIN MALMRAARLEXPDTL DTL
+					       ON MEM.CMPCOD = DTL.CMPCOD
+					       AND MEM.MEMCOD = DTL.MEMCOD
+     					       AND MEM.ARLIDR = DTL.ARLIDR
+							LEFT OUTER JOIN SHRSYSPAR PAR
+							ON MEM.CMPCOD = PAR.CMPCOD
+							AND PAR.PARCOD ='mailtracking.defaults.DsnLevelImportToMRA'
+					WHERE
+					MEM.CMPCOD = ?
+
+
+
+
+
+
+					]]>
+				</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+					<QRY:Id>18</QRY:Id>
+					<QRY:Source Name="mailtracking.mra.airlinebilling.findExgRate" Type="NATIVE">
+					<![CDATA[
+
+
+						SELECT
+						(RAT.CNVFCT || ','||CURMST.RNDUNT ||','||CURMST.RNDTYP) AS CNVFCT
+			  			 FROM SHREXGRATMST RAT
+			  			 INNER JOIN SHRCURMST CURMST ON
+							 RAT.CMPCOD = CURMST.CMPCOD
+						  INNER JOIN CRAIATCALMST IAT ON
+							IAT.CMPCOD=RAT.CMPCOD
+							AND IAT.FRMDAT>=RAT.VLDFRM
+							AND IAT.TOODAT<=RAT.VLDTO
+						WHERE
+							RAT.CMPCOD=?
+
+						]]>
+					</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+					<QRY:Id>19</QRY:Id>
+					<QRY:Source Name="mailtracking.mra.airlinebilling.findBlgCurCode" Type="NATIVE">
+					<![CDATA[
+						SELECT MST.BASCURCOD
+						FROM SHRARLMST MST
+						WHERE
+						MST.CMPCOD=?
+						]]>
+					</QRY:Source>
+		</QRY:Definition>
+
+
+<QRY:Definition>
+				<QRY:Id>20</QRY:Id>
+				<QRY:Source Name="mailtracking.mra.airlinebilling.findAcctTxnIdr" Type="PROCEDURE">
+				<![CDATA[
+					CALL PKG_MAL_MRA_ACC.spr_mra_malrejmemacc (
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?
+					)
+					]]>
+				</QRY:Source>
+	</QRY:Definition>
+<QRY:Definition>
+			<QRY:Id>21</QRY:Id>
+				<QRY:Source Name="mailtracking.mra.airlinebilling.findArlAudit" Type="NATIVE">
+					<![CDATA[
+				SELECT
+				    AUD.CMPCOD ,AUD.ADLINF , AUD.ACTCOD,
+				    AUD.UPDUSR,AUD.UPDTXNTIM
+				FROM
+				    MALMRAARLAUD AUD
+				WHERE
+				    AUD.CMPCOD = ?
+				     AND TRUNC(UPDTXNTIMUTC) >= ?
+			             AND TRUNC(UPDTXNTIMUTC) <= ?
+				  ]]>
+				 </QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+			<QRY:Id>21</QRY:Id>
+			<QRY:Source Name="mra.airlinebilling.findformones"
+				Type="NATIVE">
+				<![CDATA[
+					SELECT FRM.CMPCOD, FRM.ARLIDR, FRM.CLRPRD, FRM.ARLCOD,
+										        FRM.CLSTYP, FRM.EXGRATLSTBLGCUR,
+										        FRM.TOTAMTBLGCUR,FRM.TOTAMTLSTCUR, FRM.FRMONESTA,FRM.INTBLGTYP,
+												FRM.BLGCURCOD,FRM.LSTCURCOD
+											FROM MALMRAARLFRMONE FRM
+										WHERE
+
+											FRM.INTBLGTYP = 'O' AND
+											FRM.CMPCOD = ? AND
+											FRM.CLRPRD = ?
+				]]>
+			</QRY:Source>
+</QRY:Definition>
+
+
+	<QRY:Definition>
+					<QRY:Id>23</QRY:Id>
+					<QRY:Source Name="mra.airlinebilling.findairlinedetails"
+						Type="NATIVE">
+						<![CDATA[
+							SELECT BLG.ARLCOD,BLG.ARLIDR,
+							BLG.OUTMISAMTLSTCUR,BLG.OUTTOTAMTLSTCUR,
+
+							BLG.ARLNUM,BLG.CLRPRD,BLG.CMPCOD,
+
+							(SELECT ATRVAL
+							FROM SHRARLATR ATR,
+							MALMRAARLBLG BLG,
+							CRAIATCALMST CRA
+							WHERE
+							ATR.ARLIDR =BLG.ARLIDR
+							AND ATR.CMPCOD = BLG.CMPCOD
+							AND ATR.VALFRMDAT<CRA.FRMDAT
+							AND COALESCE(ATR.VALTOODAT,TO_DATE('01-JAN-2999','DD-MON-YYYY')) > CRA.TOODAT
+							AND ATR.CMPCOD = CRA.CMPCOD
+							AND BLG.CLRPRD = CRA.CLRPRD
+							AND ATR.ARLIDR = ?
+							AND BLG.CLRPRD = ?
+							AND ATR.ATRTYP='BC'
+
+							AND ATR.CMPCOD=?)BLGCUR
+
+
+
+
+						]]>
+					</QRY:Source>
+		</QRY:Definition>
+
+		<QRY:Definition>
+				<QRY:Id>24</QRY:Id>
+					<QRY:Source Name="mailtracking.mra.airlinebilling.findFormOneDetails" Type="NATIVE">
+						<![CDATA[
+					SELECT INV.CMPCOD, INV.ARLIDR, INV.CLRPRD,
+					       INV.CLSTYP, INV.INVNUM, INV.INVDAT,
+					       FRMONE.ARLCOD, INV.LSTCURCOD,
+					       INV.TOTMISAMTLSTCUR INVMISAMT, FRMONE.BLGCURCOD,
+					       INV.EXGRATLSTBLGCUR, INV.TOTBLGAMTLSTCUR,
+					       SMY.INVSTA, SMY.INVFRMONESTA FRMONESTA,
+					       INV.LSTUPDTIM, FRMONE.TOTAMTBLGCUR,
+					       FRMONE.TOTMISAMTLSTCUR, INV.INTBLGTYP,
+					       BLG.LSTUPDTIM AS BLGLSTTIM,
+					       BLG.LSTUPDUSR AS BLGLSTUSR
+					  FROM MALMRAARLFRMONEINV INV,
+					       MALMRAARLFRMONE FRMONE,
+					       MALMRAARLC51SMY SMY,
+					       MALMRAARLBLG BLG
+					 WHERE INV.CMPCOD = FRMONE.CMPCOD
+					   AND INV.ARLIDR = FRMONE.ARLIDR
+					   AND INV.CLRPRD = FRMONE.CLRPRD
+					   AND SMY.CMPCOD = FRMONE.CMPCOD
+					   AND SMY.ARLIDR = FRMONE.ARLIDR
+					   AND SMY.CLRPRD = FRMONE.CLRPRD
+					   AND SMY.INVNUM = INV.INVNUM
+					   AND INV.CLRPRD = BLG.CLRPRD
+					   AND INV.CMPCOD = BLG.CMPCOD
+					   AND INV.ARLIDR = BLG.ARLIDR
+					   AND INV.INTBLGTYP = 'I'
+					   AND INV.CMPCOD = ?
+					   AND INV.ARLIDR = ?
+					   AND INV.CLRPRD = ?
+
+
+					  ]]>
+					 </QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+					<QRY:Id>1</QRY:Id>
+					<QRY:Source Name="mra.airlinebilling.outward.findFormOneDetails"
+						Type="NATIVE">
+						<![CDATA[
+
+				SELECT INV.CMPCOD,INV.ARLIDR,INV.CLRPRD,INV.CLSTYP,INV.INVNUM,INV.INVDAT,FRMONE.ARLCOD,
+						INV.LSTCURCOD,INV.TOTMISAMTLSTCUR INVMISAMT,FRMONE.BLGCURCOD,
+						INV.TOTBLGAMTLSTCUR,INV.INVSTA,INV.INVFRMONESTA,FRMONE.EXGRATLSTBLGCUR,
+						INV.LSTUPDTIM,FRMONE.TOTAMTBLGCUR,FRMONE.TOTMISAMTLSTCUR,INV.TOTBASAMT FROM MALMRAARLFRMONEINV INV,
+						MALMRAARLFRMONE FRMONE WHERE
+						INV.CMPCOD=FRMONE.CMPCOD AND INV.ARLIDR=FRMONE.ARLIDR
+						AND INV.CLRPRD=FRMONE.CLRPRD
+						AND INV.CMPCOD=?
+						AND INV.ARLIDR=?
+						AND INV.CLRPRD=?
+						AND INV.INTBLGTYP='O'
+
+					]]>
+					</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+					<QRY:Id>26</QRY:Id>
+						<QRY:Source Name="mailtracking.mra.airlinebilling.findFormThreeDetails" Type="NATIVE">
+							<![CDATA[
+								SELECT CMPCOD,ARLIDR,ARLCOD,ARLNUM,CLRPRD,INWMISAMTLSTCUR,INWTOTAMTLSTCUR,INWCRDAMTLSTCUR,INWNETAMT,CREDAT,
+								FORTHRSTA
+								FROM MALMRAARLBLG
+								WHERE CMPCOD=? AND
+								      CLRPRD=?
+
+					  ]]>
+					 </QRY:Source>
+		</QRY:Definition>
+
+		<QRY:Definition>
+					<QRY:Id>27</QRY:Id>
+						<QRY:Source Name="mailtracking.mra.airlinebilling.findSerialNumber" Type="NATIVE">
+							<![CDATA[
+								SELECT MAX(SERNUM) SERNUM
+								FROM MALMRAARLBLGTMP
+
+
+					  ]]>
+					 </QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+					<QRY:Id>28</QRY:Id>
+					<QRY:Source Name="mailtracking.mra.airlinebilling.saveformthreedetails" Type="PROCEDURE">
+					<![CDATA[
+						CALL PKG_MAL_MRA_ARLBLG_NEW.spr_mra_arlblg_formthreesave(
+						   ?,?,?,?,?,?
+						)
+					]]>
+					</QRY:Source>
+		</QRY:Definition>
+
+
+	<QRY:Definition>
+				<QRY:Id>29</QRY:Id>
+				<QRY:Source Name="mra.airlinebilling.inward.captureinvoice"
+					Type="NATIVE">
+					<![CDATA[
+		SELECT SMY.CMPCOD,SMY.INTBLGTYP , SMY.ARLIDR,SMY.CLRPRD,
+			SMY.INVNUM, SMY.LSTCURCOD,SMY.NETAMTLSTCUR,SMY.EXGRATCTRLST, SMY.NETAMTUSD,SMY.TOTWGT,SMY.INVSTA,SMY.INVFRMONESTA ,
+			SMY.INVSRC,SMY.BLDDAT,SMY.LSTUPDTIM,SMY.LSTUPDUSR,SMY.INVRCPTDAT,SMY.ARLCOD
+			FROM MALMRAARLC51SMY SMY  WHERE
+				SMY.CMPCOD = ? AND
+				SMY.CLRPRD = ?AND
+				SMY.ARLCOD= ? AND
+				SMY.INVNUM= ? AND
+				to_number(to_char(SMY.BLDDAT,'YYYYMMDD'))= ?
+				]]>
+				</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+					<QRY:Id>28</QRY:Id>
+					<QRY:Source Name="mailtracking.mra.airlinebilling.triggerRejectionMemoAccounting" Type="PROCEDURE">
+					<![CDATA[
+					CALL PKG_MAL_MRA_ACC.SPR_MRA_MALREJMEMACC (
+			  			  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?
+					)
+					]]>
+					</QRY:Source>
+		</QRY:Definition>
+
+	<QRY:Definition>
+			<QRY:Id>30</QRY:Id>
+			<QRY:Source Name="mailTracking.mra.airlineBilling.captureCN51Details"
+				Type="NATIVE">
+				<![CDATA[
+			 SELECT ARLCN51DTL.CMPCOD,ARLCN51DTL.ARLIDR,
+	   			ARLCN51DTL.INVNUM,ARLCN51DTL.INTBLGTYP,
+	   			ARLCN51DTL.CLRPRD,
+			 	ARLCN51DTL.SEQNUM,
+				ARLCN51DTL.CARFRM, ARLCN51DTL.CARTOO,ARLCN51DTL.MALCTGCOD,
+				ARLCN51DTL.SUBCLSGRP, ARLCN51DTL.TOTWGT,ARLCN51DTL.APLRAT,
+				ARLCN51DTL.BLGCURCOD,ARLCN51DTL.TOTAMTCRTCUR AS TOTDTLCRTAMT,
+				ARLCN51SMY.LSTCURCOD
+				FROM MALMRAARLC51DTL ARLCN51DTL left outer join MALMRAARLC51SMY ARLCN51SMY
+			        on ARLCN51DTL.CMPCOD = ARLCN51SMY.CMPCOD
+				  AND ARLCN51DTL.ARLIDR = ARLCN51SMY.ARLIDR
+				  AND ARLCN51DTL.INVNUM = ARLCN51SMY.INVNUM
+				  AND ARLCN51DTL.INTBLGTYP = ARLCN51SMY.INTBLGTYP
+				  AND ARLCN51DTL.CLRPRD = ARLCN51SMY.CLRPRD
+			  	  where ARLCN51DTL.CMPCOD = ?
+			    	  AND ARLCN51DTL.ARLIDR = ?
+			          AND ARLCN51DTL.INTBLGTYP = ?
+			          AND ARLCN51DTL.INVNUM = ?
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			        <QRY:Id>31</QRY:Id>
+			        <QRY:Source Name="mailtracking.mra.airlinebilling.findinvoicereportdata" Type="NATIVE">
+			            <![CDATA[
+						SELECT
+
+						SMY.CMPCOD, SMY.ARLCOD,
+						     SMY.INVNUM, SMY.BLDDAT,
+						     SMY.TOTAMTCRTCUR, SMY.BLGCURCOD,
+						     SMY.TOTAMTLSTCUR, SMY.CRTCURCOD,
+									 SMY.CLRPRD,null ACCNUM,
+						     ARL.ARLNAM, ARL.BLGADR,
+						     CNT.CNTNAM,
+						     ARL.CONPER,
+						     CTY.CTYNAM,
+						     ARL.BLGSTANAM,
+						     ARL.BLGMOBNUM,
+						     ARL.BLGPHNONE, ARL.BLGPHNTWO,
+						     ARL.BLGFAX,
+						     ARL.BLGEML,
+						     DTL.MALCTGCOD,
+						     SMY.NETAMTUSD
+							FROM  MALMRAARLC51DTL DTL
+
+							LEFT OUTER JOIN
+						     MALMRAARLC51SMY SMY
+							 ON
+							 SMY.CMPCOD = DTL.CMPCOD
+							 AND SMY.ARLIDR = DTL.ARLIDR
+							 AND SMY.INVNUM = DTL.INVNUM
+							 AND SMY.INTBLGTYP=DTL.INTBLGTYP
+
+							LEFT OUTER JOIN
+							SHRARLMST ARL
+							ON
+							SMY.ARLIDR = ARL.ARLIDR
+							AND SMY.CMPCOD = ARL.CMPCOD
+
+							LEFT OUTER JOIN  SHRCTYMST CTY ON
+							CTY.CTYCOD = ARL.BLGCTYCOD
+							AND CTY.CMPCOD = ARL.CMPCOD
+
+							LEFT OUTER JOIN  SHRCNTMST CNT ON
+							CNT.CNTCOD = ARL.BLGCNTCOD
+							AND CNT.CMPCOD = ARL.CMPCOD
+
+							WHERE
+							  SMY.INVNUM = ?
+							AND SMY.CMPCOD = ?
+							AND SMY.CLRPRD=?
+							AND SMY.INTBLGTYP=?
+
+
+
+
+			           ]]>
+			        </QRY:Source>
+		    </QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>32</QRY:Id>
+		<QRY:Source Name="mailtracking.mra.airlinebilling.findairlineaddress" Type="NATIVE">
+				<![CDATA[
+
+					 SELECT ARLMST.ARLNAM,
+								ARLMST.BLGADR,
+								ARLMST.BLGPHNONE,
+								ARLMST.BLGPHNTWO,
+								ARLMST.BLGFAX
+								FROM SHRARLMST ARLMST
+								WHERE ARLMST.CMPCOD=?
+								AND ARLMST.ARLIDR =?
+
+					]]>
+		</QRY:Source>
+    </QRY:Definition>
+
+
+    <QRY:Definition>
+			<QRY:Id>33</QRY:Id>
+			<QRY:Source Name="mailtracking.mra.airlinebilling.triggeracceptbuttonAccounting" Type="PROCEDURE">
+			<![CDATA[
+			CALL PKG_MAL_MRA_ACC.SPR_MRA_MALINOUTACC(
+				  ?,
+				  ?,
+				  ?,
+				  ?,
+				  ?,
+				  ?,
+				  ?,
+				  ?,
+				  ?,
+				  ?,
+				  ?,
+				  ?,
+				  ?
+			)
+			]]>
+			</QRY:Source>
+   </QRY:Definition>
+   <QRY:Definition>
+			<QRY:Id>34</QRY:Id>
+			<QRY:Source Name="mail.mra.airlinebilling.outwardfilegeneration" Type="PROCEDURE">
+			<![CDATA[
+			SELECT MAX(SMY.CMPCOD) CMPCOD,
+  MAX(SMY.INVNUM) INVNUM,
+  MAX(SMY.ARLIDR) BLDARL,
+  MAX(SMY.BLDDAT) BLDDAT,
+  MAX(SMY.CLRPRD) CLRPRD,
+  MAX(SMY.INVRCPTDAT) INVDAT,
+  MAX(MST.FRMDAT) FRMDAT,
+  MAX(MST.TOODAT) TOODAT,
+  MAX(SMY.BLGCURCOD) BLGCURCOD,
+  MAX(SMY.CRTCURCOD) CRTCURCOD,
+  MAX(SMY.TOTWGT) QTY,
+  SUM(C66DTL.TOTWGT) C66QTY,
+  MAX(C66DTL.APLRAT) APLRAT,
+  MAX(SMY.TOTAMTCRTCUR) MALCHG,
+  MAX(C66DTL.OTHCHGLSTCUR) OTHCHG,
+  SUM(C66DTL.BLDAMTLSTUR) BLDAMT,
+  MAX(C66DTL.CARFRM) ORGCOD,
+  MAX(C66DTL.CARTOO) DSTCOD,
+  MAX(C66DTL.DSN) DSN,
+  MAX(C66DTL.MALCTGCOD) MALCTGCOD,
+  MAX(C66DTL.SUBCLSGRP) SUBCLSGRP,
+  MAX(MAL.MALCLS) MALCLS,
+  COUNT(C66DTL.DSN) NOMAIL,
+  MAX(MAL.CSGDOCNUM) CSGDOCNUM,
+  MAX(SMY.INTBLGTYP) BLGTYP,
+  MAX(C66DTL.SEQNUM) RECSEQNUM,
+  MAX(ARLMST.CLRIND) STLMTHD,
+  MAX(ARLMST.DIGSIGREQ) DIGSIGREQ,
+  MAX(SMY.TOTAMTLSTCUR) TOTAMTBLGCUR,
+  SUM(C66DTL.MALCHGLSTCUR) C66MALCHG,
+  SUM(C66DTL.OTHCHGLSTCUR) C66OTHCHG,
+  MAX(C66DTL.FLTNUM) FLTNUM,
+  MAX(C66DTL.CARCOD) CARCOD,
+  MAX(C66DTL.FLTDAT) FLTDAT,
+  MAX(SMY.NETAMTUSD) INVAMTINUSD,
+  MAX(C66DTL.FLTDAT) FLTDAT,
+  MAX(ARL.THRNUMCOD) ARLTHRNUM,
+  MAX(OWNARL.THRNUMCOD) OWNARLPFX,
+  MAX(MAL.MALSUBCLS) MALSUBCLS
+ -- MAX(DTL.RATCOD) RATCOD,
+--  MAX(DTL.RATLINIDR) RATLINIDR
+FROM MALMRAARLC51SMY SMY,
+  MALMRAARLC66DTL C66DTL,
+--  MALMRABLGDTL DTL,
+  CRAARLMST ARLMST,
+  SHRARLMST ARL,
+  CRAIATCALMST MST,
+  SHRARLMST OWNARL,
+   MALMST MAL
+	WHERE SMY.CMPCOD = C66DTL.CMPCOD
+		AND SMY.INVNUM   = C66DTL.INVNUM
+		AND SMY.CLRPRD   = C66DTL.CLRPRD
+		AND SMY.ARLIDR   = C66DTL.ARLIDR
+--    AND C66DTL.CMPCOD = SMY.CMPCOD
+--    AND C66DTL.INVNUM = SMY.INVNUM
+--    AND C66DTL.CLRPRD = SMY.CLRPRD
+--    AND C66DTL.ARLIDR = SMY.ARLIDR
+    AND ARLMST.CMPCOD = C66DTL.CMPCOD
+    AND ARLMST.ARLIDR = C66DTL.ARLIDR
+    AND ARLMST.CMPCOD = SMY.CMPCOD
+    AND ARLMST.ARLIDR = SMY.ARLIDR
+    AND OWNARL.CMPCOD= C66DTL.CMPCOD
+    AND OWNARL.TWOAPHCOD = C66DTL.CMPCOD
+    AND ARLMST.CMPCOD = ARL.CMPCOD
+    AND ARLMST.ARLIDR = ARL.ARLIDR
+    AND SMY.CMPCOD = ARL.CMPCOD
+    AND SMY.ARLIDR = ARL.ARLIDR
+		AND C66DTL.CMPCOD   = MST.CMPCOD
+		AND C66DTL.CLRPRD   = MST.CLRPRD
+		 AND C66DTL.CMPCOD = MAL.CMPCOD
+		 AND C66DTL.MALSEQNUM = MAL.MALSEQNUM
+	--AND C66DTL.CMPCOD = DTL.CMPCOD
+	--AND C66DTL.MALSEQNUM = DTL.MALSEQNUM
+   -- AND C66DTL.CARFRM = DTL.SECFRM
+    --AND C66DTL.CARTOO = DTL.SECTOO
+   -- AND DTL.PAYFLG='R'
+    --AND  DTL.BILTOOPTYTYP ='A'
+		  AND (C66DTL.MALSTA not in ('D') OR C66DTL.MALSTA is null)
+		AND SMY.CMPCOD   =?
+		AND SMY.CLRPRD   =?
+    GROUP BY C66DTL.INVNUM,C66DTL.MALCTGCOD,MAL.MALSUBCLS,
+    C66DTL.SUBCLSGRP,C66DTL.APLRAT,
+    C66DTL.DSN
+	ORDER BY INVNUM,MALCTGCOD,MALSUBCLS,SUBCLSGRP,APLRAT,DSN
+			]]>
+			</QRY:Source>
+   </QRY:Definition>
+
+
+   	
+		<QRY:Definition>
+					<QRY:Id>35</QRY:Id>
+					<QRY:Source Name="mailtracking.mra.airlinebilling.withdrawMailBag" Type="PROCEDURE">
+					<![CDATA[
+					CALL PKG_MAL_MRA_ARLBLG_NEW.SPR_MRA_WITHDRAWMAILBAGS (
+			  			  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?,
+						  ?
+						  
+					)
+					]]>
+					</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+			<QRY:Id>2</QRY:Id>
+			<QRY:Source Name="mailtracking.mra.airlinebilling.findCN66DetailsVOsForStatusChange" Type="NATIVE">
+			<![CDATA[
+				   SELECT CN66.CMPCOD,
+  CN66.ARLIDR,
+  CN66.INVNUM,
+  CN66.LSTCURCOD,
+  CN66.INTBLGTYP,
+  CN66.SEQNUM,
+  CN66.CLRPRD,
+  CN66.CARFRM,
+  CN66.CARTOO,
+  CN66.CARCOD,
+  CN66.FLTNUM,
+  CN66.FLTDAT,
+  CN66.ORGCOD,
+  CN66.DSTCOD,
+  CN66.ORGEXGOFC,
+  CN66.DSTEXGOFC,
+  CN66.MALCTGCOD,
+  CN66.SUBCLSGRP,
+  CN66.DSN,
+  MST.RSN,
+  CN66.YER,
+  CN66.MALSTA,
+  CN66.APLRAT,
+  CN66.BLDAMTLSTUR,
+  CN66.TOTPCS,
+  CN66.TOTWGT,
+  CN66.DSNDAT,
+  CN66.FLTCARIDR,
+  CN66.LSTUPDUSR,
+  CN66.LSTUPDTIM,
+  MST.HSN,
+  MST.REGIND,
+  CN66.MALSEQNUM,
+  MST.MALIDR,
+  MST.CSGDOCNUM,
+  MST.CSGSEQNUM
+FROM MALMRAARLC66DTL CN66
+INNER JOIN MALMRABLGMST MST
+ON MST.CMPCOD      = CN66.CMPCOD
+AND MST.MALSEQNUM  =CN66.MALSEQNUM
+AND MST.DSN        = CN66.DSN
+WHERE CN66.CMPCOD  = ?
+AND CN66.INVNUM    = ?
+AND CN66.INTBLGTYP = ?
+AND CN66.MALSEQNUM= ?
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>35</QRY:Id>
+		    <QRY:Source Name="mail.mra.airlinebilling.downloadAttachment"
+					Type="NATIVE">
+					<![CDATA[
+					SELECT FILNAM,FILDAT from MRASISSUPDOCDTL
+						WHERE CMPCOD = ?
+						AND BLDARL = ?
+						AND CLRPRD = ?
+						AND INVNUM = ?
+						AND INVSERNUM = ?
+						AND BLGTYP = ?
+						
+						AND FILNAM = ?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+			<QRY:Id>36</QRY:Id>
+		    <QRY:Source Name="mail.mra.airlinebilling.findSupportingDocs"
+					Type="NATIVE">
+					<![CDATA[
+					SELECT 
+  MEM.CMPCOD,
+  MEM.ARLIDR ,
+  'I' INTBLGTYP ,
+  DOC.CLRPRD DOCCLRPRD,
+  DOC.INVNUM DOCINVNUM,
+  DOC.INVSERNUM DOCINVSERNUM,
+  DOC.BLDARL,
+  DOC.BLGTYP,
+  DOC.FILNAM,
+  DOC.DOCSERNUM,
+  DOC.SEQNUM,
+  DOC.DUPNUM,
+  DOC.MEMNUM,
+  DOC.CARORG,
+  DOC.CARDST
+ FROM MALMRAARLMEM MEM
+INNER  JOIN MRASISSUPDOCDTL DOC
+ON MEM.CMPCOD  = DOC.CMPCOD
+AND MEM.MEMCOD = DOC.MEMNUM
+AND MEM.ARLIDR = DOC.BLDARL
+WHERE MEM.CMPCOD =?
+
+
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+		<QRY:Definition>
+			<QRY:Id>37</QRY:Id>
+		    <QRY:Source Name="mail.mra.airlinebilling.docserialnumber"
+					Type="NATIVE">
+					<![CDATA[
+					SELECT COALESCE(MAX(DOCSERNUM), 0)+1 DOCSERNUM FROM MRASISSUPDOCDTL
+						WHERE CMPCOD = ?
+						AND BLDARL = ?						
+						AND CLRPRD = ?
+						AND INVNUM = ?
+						AND BLGTYP = ?		
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+
+</QRY:Definitions>

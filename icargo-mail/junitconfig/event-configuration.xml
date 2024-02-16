@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event-configurations xmlns="http://www.example.org/event-configuration">
+	<event-type-mapping>
+		<event-type type="DUMMY_EVENT">
+			<!--channel-type type="INT_PUBLISH"/-->
+			<channel-type type="ANOTHER_CHANNEL"/>
+		</event-type>
+		<event-type type="ALERT_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+			<channel-type type="WORKFLOW_CHANNEL"/>
+		</event-type>
+		<event-type type="DATAANALYSIS_EVENT" test="true">			
+		   <channel-type type="DATAANALYSIS_CHANNEL"/>
+		</event-type>
+		<!--Added by A-5111 for CR id:56887 Starts-->
+		<event-type type="OPERATIONAL_FLIGHT_CANCEL_EVENT">		
+			<channel-type type="WORKFLOW_CHANNEL"/>
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type> 
+		<event-type type="OPERATIONAL_FLIGHT_SAVE_EVENT">
+			<channel-type type="WORKFLOW_CHANNEL"/>
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type> 
+		<event-type type="MARK_FLIGHT_MOVEMENT_EVENT">
+			<channel-type type="WORKFLOW_CHANNEL"/>
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type> 
+		<!--Added by A-5111 for CR id:56887 Ends-->
+ <!--Added By A-5247 for CRQ_ICRD-56687 STARTS-->
+		<event-type type="SAVE_BOOKING_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+			<channel-type type="WORKFLOW_CHANNEL"/>
+			<!-- Commented by A-5827 for ICRD-104047 -->
+			<!--  channel-type type="DATAANALYSIS_CHANNEL"/-->
+			<channel-type type="BOOKINGQUEUE_CHANNEL"/>	
+		</event-type>	
+		<event-type type="BOOKINGQUEUE_EVENT">
+			<channel-type type="BOOKINGQUEUE_CHANNEL"/>			
+		</event-type>	
+		<event-type type="ORDINO_EVENT">
+             <channel-type type="MSGBROKER_CHANNEL"/>
+       </event-type> 
+		
+		<event-type type="STATUS_HISTORY_EVENT">
+		<channel-type type="WORKFLOW_CHANNEL"/>
+		</event-type> 
+			
+		<event-type type="CANCEL_BOOKING_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+			<channel-type type="WORKFLOW_CHANNEL"/>
+			<!--<channel-type type="DATAANALYSIS_CHANNEL"/>	 -->
+			<channel-type type="BOOKINGQUEUE_CHANNEL"/>	
+		</event-type>
+		<event-type type="BOOKINGFLIGHTS_UPDATE_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+			<channel-type type="WORKFLOW_CHANNEL"/>
+		</event-type>	
+		<event-type type="BOOKING_REASSIGN_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+			<channel-type type="WORKFLOW_CHANNEL"/>
+		</event-type>	
+		<event-type type="ACCEPTANCE_BOOKING_UPDATE_EVENT">
+			<channel-type type="WORKFLOW_CHANNEL"/>
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>
+		<event-type type="SPOTRATE_REQ_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+			<channel-type type="WORKFLOW_CHANNEL"/>
+		</event-type>
+		<event-type type="SPOTRATE_APR_REJ_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+			<channel-type type="WORKFLOW_CHANNEL"/>
+		</event-type>
+		<event-type type="UPDATE_SPOTRATE_SHIPMENT_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+			<channel-type type="WORKFLOW_CHANNEL"/>
+		</event-type>
+	<!--Added By A-5247 for CRQ_ICRD-56687 ENDS-->
+		<event-type type="FLIGHT_ADHOC_ALERT_EVENT">
+			<channel-type type="WORKFLOW_CHANNEL"/>
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>
+		<!--Added By A-4772 for CR ICRD-140286 ENDS-->
+		<event-type type="FLIGHT_ADHOC_ALERT_ATD_EVENT">
+			<channel-type type="WORKFLOW_CHANNEL"/>
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>
+		
+		<!--Added By A-5273 for CRQ_ICRD-51886-->
+		<event-type type="UPDATE_CREDITLIMIT_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>
+		<!--Added By A-5273 for CRQ_ICRD-51886-->
+		<!--Added By A-5117 for CRQ_ICRD-55730-->
+		<event-type type="SAVESHIPHISTORY_EVENT"> 
+			<channel-type type="MSGBROKER_CHANNEL"/> 
+			<channel-type type="WORKFLOW_CHANNEL"/>
+		</event-type>
+		<!--Added By A-5117 for CRQ_ICRD-55730-->
+		<event-type type="UPDATE_CLAIMS_EVENT"> 
+		<channel-type type="MSGBROKER_CHANNEL"/> 
+		</event-type>
+		<event-type type="SAVE_CLAIMS_EVENT"> 
+		<channel-type type="MSGBROKER_CHANNEL"/> 
+		</event-type>
+		<event-type type="GIBRESPONSE_PROCESSING_EVENT">
+		<channel-type type="WORKFLOW_CHANNEL"/>
+		</event-type>
+		<!--Added by A-5956 for CRQ_ICRD-40043 starts-->
+		<event-type type="CASSFILE_GENERATION_EVENT"> 
+		<channel-type type="MSGBROKER_CHANNEL"/> 
+		</event-type>
+		<!--Added by A-5956 for CRQ_ICRD-40043 ends-->
+		
+		<event-type type="STOCK_UPDATE_EVENT"> 
+		<channel-type type="MSGBROKER_CHANNEL"/> 
+		</event-type>
+		<event-type type="GUARANTEE_EXPIRY_EVENT"> 
+		<channel-type type="MSGBROKER_CHANNEL"/> 
+		</event-type>
+		<event-type type="RATELINE_EVENT"> 
+			<channel-type type="MSGBROKER_CHANNEL"/> 
+			<channel-type type="WORKFLOW_CHANNEL"/>
+		</event-type>
+		<event-type type="SAVE_BREAKDOWN_EVENT"> 
+			<channel-type type="DATAANALYSIS_CHANNEL"/> 
+			<channel-type type="BreakdownTaskCompletionChannel"/>
+		</event-type>
+		<event-type type="SAVE_ULD_BREAKDOWN_EVENT"> 
+			<channel-type type="DATAANALYSIS_CHANNEL"/> 
+			<channel-type type="BreakdownTaskCompletionChannel"/>
+		</event-type>
+		<event-type type="uldBreakdownEvent">
+			<channel-type type="BreakdownTaskCompletionChannel"/>
+		</event-type>
+		<!--Added by A-5956 for CRQ_ICRD-85414 starts-->
+		<event-type type="ARRIVAL_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>
+		<!--Added by A-5956 for CRQ_ICRD-85414 ends-->
+		
+		<!-- Added by A-5290 for CRQ_ICRD-151618 starts -->
+		<event-type type="SAVECDSREPORT_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>
+		<!-- Added by A-5290 for CRQ_ICRD-151618 ends -->
+		<event-type type="FORGOTPWD_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>
+		<!-- Added by A-5290 for ICRD-133312 -->
+		<event-type type="FINALIZEFLIGHT_EVENT">
+			<channel-type type="WORKFLOW_CHANNEL"/>
+			<channel-type type="MSGBROKER_CHANNEL"/>
+			<channel-type type="DATAANALYSIS_CHANNEL"/>
+		</event-type>
+		<event-type type="SAVESHPEVTHISFORETRK_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>		
+		<event-type type="CREATEUSR_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>
+		<event-type type="RESETPWD_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>
+		<!-- Added by A-5290 for ICRD-135016 -->
+		<event-type type="NOTIFYONEVTTRG_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>		
+		<event-type type="FILE_GEN_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>
+		<event-type type="SEND_NOA_EVENT">
+			<channel-type type="MSGBROKER_CHANNEL"/>
+		</event-type>
+		<event-type type="MAIL_ATD_CAPTUERE_NOTIFICATION_EVENT">
+	    <channel-type type="MSGBROKER_CHANNEL"/>
+       </event-type>
+	</event-type-mapping>
+	
+	<channel-mapping>
+		<channel type="INT_PUBLISH" class="com.ibsplc.icargo.framework.event.channels.JMSPublishChannel"/>
+		<channel type="ANOTHER_CHANNEL" class="com.ibsplc.icargo.framework.event.channels.DummyChannel"/>
+		<channel type="MSGBROKER_CHANNEL" class="com.ibsplc.icargo.framework.event.channels.MsgBrokerChannel"/>
+		<channel type="WORKFLOW_CHANNEL" class="com.ibsplc.icargo.framework.event.channels.WorkflowChannel"/>
+		<channel type="DATAANALYSIS_CHANNEL" class="com.ibsplc.icargo.framework.event.channels.DataAnalysisChannel"/>
+		<channel type="BOOKINGQUEUE_CHANNEL" class="com.ibsplc.icargo.business.workflow.defaults.event.BookingQueueTaskCompletionChannel"/>
+		<channel type="ProcessflowTaskCompletionChannel" class="com.ibsplc.icargo.business.workflow.defaults.event.ProcessflowTaskCompletionChannel"/>
+		<channel type="ProcessflowUndoTaskCompletionChannel" class="com.ibsplc.icargo.business.workflow.defaults.event.ProcessflowUndoTaskCompletionChannel"/>
+		<channel type="SURelocationTaskCompletionChannel" class="com.ibsplc.icargo.business.workflow.defaults.event.SURelocationTaskCompletionChannel"/>
+		<channel type="BreakdownTaskCompletionChannel" class="com.ibsplc.icargo.business.workflow.defaults.event.BreakdownTaskCompletionChannel"/>
+	</channel-mapping>
+	
+</event-configurations>

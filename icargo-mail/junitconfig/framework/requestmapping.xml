@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--The file contains mapping information for request URI and to its corresponding handler
+and  screen. There will be entries for each request URI which need to be mapped.
+This file is used to build request mapping objects.-->
+<request-mappings>
+<url-mapping url="framework">
+        <submodule-mapping submodule="txaudit">
+           <request-service-name>TX_AUDIT_MANAGER</request-service-name>
+	   <request-action actionName="getPerformanceStatisticsSummary" methodName="getPerformanceStatisticsSummary" parameterTypes="com.ibsplc.xibase.server.framework.tx.audit.vo.TxnAuditSummaryFilterVO" permissionCheck="false" />
+	   <request-action actionName="getTransactionSummary" methodName="getTransactionSummary" parameterTypes="com.ibsplc.xibase.server.framework.tx.audit.vo.TxnAuditSummaryFilterVO" permissionCheck="false" />
+	    <request-action actionName="getHourlyTransactionsCount" methodName="getHourlyTxnsCount" parameterTypes="com.ibsplc.xibase.server.framework.tx.audit.vo.TxnsPerSecondFilterVO" permissionCheck="false" />
+	   <request-action actionName="getHourlyErrorTransactionsCount" methodName="getHourlyErrorTransactionsCount" parameterTypes="com.ibsplc.xibase.server.framework.tx.audit.vo.TxnsPerSecondFilterVO" permissionCheck="false" />
+	   <request-action actionName="getTxErrorDetails" methodName="getTxErrorDetails" parameterTypes="com.ibsplc.xibase.server.framework.tx.audit.vo.TxErrorFilterVO" permissionCheck="false" />
+	   <request-action actionName="getTxErrorDetailedView" methodName="getTxErrorDetailedView" parameterTypes="java.lang.String, java.lang.String, java.lang.String" permissionCheck="false" />
+	   <request-action actionName="findTxnAuditEnquiry" methodName="findTxnAuditEnquiry" parameterTypes="com.ibsplc.xibase.server.framework.tx.audit.vo.TxnAuditSummaryFilterVO" permissionCheck="false" />
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+		<request-action actionName="resolveTransaction" methodName="resolveTransaction" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="getTxnParameters" methodName="getTxnParameters" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="resolveTransactionByReference" methodName="resolveTransactionByReference" parameterTypes="com.ibsplc.xibase.server.framework.tx.audit.vo.TxErrorFilterVO,java.lang.String" permissionCheck="false" />
+        </submodule-mapping>
+	<submodule-mapping submodule="logging">
+		<request-service-name>LOG_CONTROL</request-service-name>
+		<request-action actionName="saveLogConfiguration" methodName="saveLogConfiguration" parameterTypes="java.util.Map,boolean,[Ljava.lang.String;" permissionCheck="false" />
+		<request-action actionName="getLogConfiguration" methodName="getLogConfiguration" permissionCheck="false" />
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	</submodule-mapping>
+	<submodule-mapping submodule="security">
+		<request-service-name>SECURITY_PROVIDER</request-service-name>
+			<request-action actionName="loginUser" methodName="loginUser" parameterTypes="javax.security.auth.Subject" permissionCheck="false" />
+			<request-action actionName="logoffUser" methodName="logoffUser" parameterTypes="java.lang.String" permissionCheck="false" />
+			<request-action actionName="terminateUser" methodName="terminateUser" parameterTypes="java.lang.String" permissionCheck="false" />
+			<request-action actionName="updateLoginAttributes" methodName="updateLoginAttributes" parameterTypes="java.lang.String,com.ibsplc.icargo.framework.security.vo.LogonAttributes" permissionCheck="false" />
+			<request-action actionName="isWSSessionValid" methodName="isWSSessionValid" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+			<request-action actionName="checkPrivilegeForAction" methodName="checkPrivilegeForAction" parameterTypes="java.lang.String" permissionCheck="false" />
+
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	</submodule-mapping>
+	<submodule-mapping submodule="txaudit.log">
+        <request-service-name>TX_AUDIT_LOG_MANAGER</request-service-name>
+	 	<request-action actionName="log" methodName="log" parameterTypes="java.util.ArrayList" permissionCheck="false" />
+	 	<request-action actionName="logErrorDetails" methodName="logErrorDetails" parameterTypes="com.ibsplc.xibase.server.framework.tx.audit.vo.TransactionInfoVO" permissionCheck="false" />
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	 </submodule-mapping>
+	<submodule-mapping submodule="auditconfig">
+        <request-service-name>AUDITCONFIG_FRONT_CONTROLLER</request-service-name>
+	 	<request-action actionName="getAuditConfiguration" methodName="getAuditConfiguration" parameterTypes="com.ibsplc.xibase.server.framework.audit.configuration.business.vo.AuditConfigurationFliterVO" permissionCheck="false" />
+	 	<request-action actionName="updateAuditStatus" methodName="updateAuditStatus" parameterTypes="java.util.List,java.lang.String" permissionCheck="false" />
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	 </submodule-mapping>
+	 <submodule-mapping submodule="lock">
+	         <request-service-name>LOCK_SERVICE</request-service-name>
+	 	 	<request-action actionName="xibase.framework.persistence.lock.action" methodName="lock" parameterTypes="com.ibsplc.xibase.server.framework.persistence.lock.LockVO" permissionCheck="false" />
+	 	 	<request-action actionName="xibase.framework.persistence.unlock.action" methodName="release" parameterTypes="com.ibsplc.xibase.server.framework.persistence.lock.LockVO" permissionCheck="false" />
+	 	 	<request-action actionName="xibase.framework.persistence.releasealllocks.action" methodName="release" parameterTypes="" permissionCheck="false" />
+	 	 	<request-action actionName="xibase.framework.persistence.lockmultiple.action" methodName="lock" parameterTypes="java.util.Collection" permissionCheck="false" />
+	 	 	<request-action actionName="xibase.framework.persistence.unlockmultiple.action" methodName="release" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="xibase.framework.persistence.locktransaction.action" methodName="lockTransaction" parameterTypes="com.ibsplc.xibase.server.framework.persistence.lock.TransactionLockVO" permissionCheck="false" />
+			<request-action actionName="xibase.framework.persistence.releasetransaction.action" methodName="releaseTransaction" parameterTypes="com.ibsplc.xibase.server.framework.persistence.lock.TransactionLockVO" permissionCheck="false" />
+			<request-action actionName="xibase.framework.persistence.createlockrequest.action" methodName="createLockRequest" parameterTypes="com.ibsplc.xibase.server.framework.persistence.lock.LockRequestVO" permissionCheck="false" />
+			<request-action actionName="xibase.framework.persistence.validatelock.action" methodName="validateLocks" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="forceReleaseExpiredLocks" methodName="forceReleaseExpiredLocks" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	 </submodule-mapping>
+
+	 <submodule-mapping submodule="orchestration">
+			<request-service-name>GROUPTAG_ORCHESTRATION</request-service-name>
+			<request-action actionName="isSubGroupEnabled" methodName="isSubGroupEnabled" parameterTypes="java.lang.String" 	permissionCheck="false" />
+	 </submodule-mapping>
+</url-mapping>
+</request-mappings>

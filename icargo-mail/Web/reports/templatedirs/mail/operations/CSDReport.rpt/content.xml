@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<inet:Report xmlns:inet="http://www.inetsoftware.de" major_version="8" minor_version="97" major_xml_version="11" minor_xml_version="1" id="0">
+    <Datasource>
+
+      <DataSourceConfiguration name="ICOBSSSTG">
+        <property name="quotesLowerCase" value="false"/>
+        <property name="password" value="0061FB792F8137651817BFD2F9CEE523A76DF730258D3A741810ACD1F8DD87B587"/>
+        <property name="initSQL" value=""/>
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="oracle.jdbc.TcpNoDelay" value="false"/>
+        <property name="url" value="jdbc:oracle:thin:@{host}"/>
+        <property name="supportsOrderBy" value="true"/>
+        <property name="supportsParenthesesForJoin" value="true"/>
+        <property name="catalog" value=""/>
+        <property name="defaultRowPrefetch" value=""/>
+        <property name="identifierQuoteString" value=""/>
+        <property name="supportsSQL92" value="false"/>
+        <property name="supportsWhere" value="true"/>
+        <property name="restrictGetTables" value="false"/>
+        <property name="host" value="192.168.16.196:1522:ICODB32"/>
+        <property name="driverLibrary" value=""/>
+        <property name="oracle.jdbc.J2EE13Compliant" value="false"/>
+        <property name="datasource_schema" value=""/>
+        <property name="processEscapes" value="true"/>
+        <property name="databaseClassName" value=""/>
+        <property name="datasource_catalog" value=""/>
+        <property name="validationQuery" value=""/>
+        <property name="savePassword" value="true"/>
+        <property name="useFetchSizeWithLongColumn" value="false"/>
+        <property name="escapeEverything" value="false"/>
+        <property name="aliasToken" value=""/>
+        <property name="defaultNChar" value="false"/>
+        <property name="user" value="ICOBSSTGDEV4"/>
+      </DataSourceConfiguration>
+      <Tablesource alias="DUMMY_VW_AV7" databaseIdentifier="ICOBSSTGDEV4.DUMMY_VW_AV7">
+
+        <Column name="CONSTACOD" type="11" description="CONSTACOD" />
+        <Column name="SECSTADAT" type="11" description="SECSTADAT" />
+        <Column name="SECSTATIM" type="11" description="SECSTATIM" />
+        <Column name="SCRAPLAUT" type="11" description="SCRAPLAUT" />
+        <Column name="CSGDOCNUM" type="11" description="CSGDOCNUM" />
+        <Column name="CSGORG" type="11" description="CSGORG" />
+        <Column name="CSGDST" type="11" description="CSGDST" />
+        <Column name="SECSTACOD" type="11" description="SECSTACOD" />
+        <Column name="SECSCRMTHCOD" type="11" description="SECSCRMTHCOD" />
+        <Column name="SECRSNCOD" type="11" description="SECRSNCOD" />
+        <Column name="SCRAPLREG" type="11" description="SCRAPLREG" />
+        <Column name="SECSTAPTY" type="11" description="SECSTAPTY" />
+        <Column name="ADLSECINF" type="11" description="ADLSECINF" />
+        <Column name="MALCTG" type="11" description="MALCTG" />
+        <Column name="POU" type="11" description="POU" />
+      </Tablesource>
+
+    </Datasource>
+
+  <Database>
+  </Database>
+  <FormulaFields>
+  </FormulaFields>
+  <PromptFields>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="ReportId"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+      <Id value="0"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="consignmentNumber"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+  </PromptFields>
+  <SQLFields>
+  </SQLFields>
+  <SummaryFields>
+  </SummaryFields>
+  <SortFields>
+  </SortFields>
+  <UserFunctions>
+  </UserFunctions>
+  <GroupNameFields>
+  </GroupNameFields>
+  <ReportProperties>
+    <PageWidth value="15840"/>
+    <PageHeight value="12240"/>
+    <PageOrientation value="2"/>
+    <PageMarginLeft value="363"/>
+    <PageMarginRight value="363"/>
+    <PageMarginTop value="363"/>
+    <PageMarginBottom value="363"/>
+    <MailingLabelType1 value="User-Defined Label"/>
+    <MailingLabelType2 value=""/>
+    <FormatWithMultipleColumns value="false"/>
+    <MailingLabelWidth value="0"/>
+    <MailingLabelHeight value="0"/>
+    <MailingLabelDistanceVertical value="0"/>
+    <MailingLabelDistanceHorizontal value="0"/>
+    <AcrossThenDown value="false"/>
+    <FormatGroupsWithMultipleColumns value="false"/>
+    <Distinct value="false"/>
+    <ShowSuppressedNodes value="true"/>
+    <IgnoreFiltering value="false"/>
+    <IgnoreSorting value="false"/>
+    <ConvertDateTime value="2"/>
+    <SuppressIfNoRows value="false"/>
+    <ConvertNullValuesToDefault value="false"/>
+    <HidePageFooterInsideReportHeader value="true"/>
+    <FormPrint value="false"/>
+    <PrintingEnabled value="true"/>
+    <ClipboardEnabled value="true"/>
+    <ExportEnabled value="true"/>
+    <GroupTreeVisible value="true"/>
+  </ReportProperties>
+  <AreaPair type="PageAreaPair">
+    <Area type="PageHeader">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <KeepTogether value="true"/>
+      </AreaProperties>
+      <Section type="PageHeader" width="15114" height="0">
+        <SectionProperties>
+          <UnderlayFollowingSection value="true"/>
+        </SectionProperties>
+      </Section>
+      <Section type="PageHeader" width="15114" height="1800">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="Line" x_position="0" y_position="150" width="0" height="0" x2_position="11100" y2_position="150">
+        </Element>
+        <Element type="Line" x_position="5400" y_position="150" width="0" height="0" x2_position="5400" y2_position="1800">
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="300" width="5100" height="600">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Reguate-Entity Category and Identifier of the regulated party issued by the security status]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5700" y_position="300" width="2700" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Unique Consignment Identifier]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="9150" y_position="300" width="1500" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.CSGDOCNUM"/>
+        </Element>
+        <Element type="FieldElement" x_position="3750" y_position="600" width="1500" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.CONSTACOD"/>
+        </Element>
+        <Element type="Line" x_position="11100" y_position="150" width="0" height="0" x2_position="11100" y2_position="7500">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="0" y_position="150" width="0" height="0" x2_position="0" y2_position="7500">
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+      </Section>
+      <Section type="PageHeader" width="15114" height="1050">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="Line" x_position="150" y_position="0" width="0" height="0" x2_position="11100" y2_position="0">
+        </Element>
+        <Element type="Line" x_position="0" y_position="0" width="0" height="0" x2_position="300" y2_position="0">
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="150" width="2850" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Contents Of Consignment]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Box" x2_position="300" y2_position="750" x_position="150" y_position="600" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="450" y_position="600" width="1650" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Consolidation]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="3150" y_position="600" width="1500" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.MALCTG"/>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="PageFooter">
+      <AreaProperties>
+        <KeepTogether value="true"/>
+      </AreaProperties>
+      <Section type="PageFooter" width="15114" height="3000">
+        <SectionProperties>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="ReportAreaPair">
+    <Area type="ReportHeader">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <NewPageBefore value="true"/>
+      </AreaProperties>
+      <Section type="ReportHeader" width="15114" height="0">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="ReportFooter">
+      <AreaProperties>
+        <NewPageAfter value="true"/>
+      </AreaProperties>
+      <Section type="ReportFooter" width="15114" height="7520">
+        <SectionProperties>
+          <KeepTogether value="true"/>
+          <UnderlayFollowingSection value="true"/>
+        </SectionProperties>
+        <Element type="Line" x_position="2250" y_position="600" width="0" height="0" x2_position="11100" y2_position="600">
+        </Element>
+        <Element type="Line" x_position="0" y_position="0" width="0" height="0" x2_position="11100" y2_position="0">
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="150" width="1950" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Security Status]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="2400" y_position="150" width="5400" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Reasons for Issuing the Security Status]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="2400" y_position="750" width="2550" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Received from]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5400" y_position="750" width="2250" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Screening Method]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8250" y_position="750" width="2400" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Grounds for Exemption]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="150" y_position="750" width="1500" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.SECSTACOD"/>
+        </Element>
+        <Element type="FieldElement" x_position="2400" y_position="1350" width="1500" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.SCRAPLAUT"/>
+        </Element>
+        <Element type="FieldElement" x_position="5400" y_position="1350" width="2250" height="300">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.SECSCRMTHCOD"/>
+        </Element>
+        <Element type="FieldElement" x_position="8250" y_position="1350" width="1500" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.SECRSNCOD"/>
+        </Element>
+        <Element type="Line" x_position="0" y_position="2550" width="0" height="0" x2_position="11100" y2_position="2550">
+        </Element>
+        <Element type="Line" x_position="0" y_position="3450" width="0" height="0" x2_position="10950" y2_position="3450">
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="2700" width="3900" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Other Screening Method(s)(if applicable)]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="0" y_position="4950" width="0" height="0" x2_position="150" y2_position="4950">
+        </Element>
+        <Element type="Line" x_position="0" y_position="4950" width="0" height="0" x2_position="11100" y2_position="4950">
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="3600" width="2250" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Screening Status issued by]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="2550" y_position="4050" width="2850" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.SECSTAPTY"/>
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="4200" width="2400" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="160"/>
+              </FontProperties>
+              <TextData><![CDATA[Name of person or Employee id]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="2700" y_position="4350" width="0" height="0" x2_position="5400" y2_position="4350">
+          <LineProperties>
+            <Style value="3"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="5550" y_position="3450" width="0" height="0" x2_position="5550" y2_position="4950">
+        </Element>
+        <Element type="Text" count="1" x_position="5700" y_position="3600" width="2700" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Security Status Issued on]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5700" y_position="4200" width="750" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Date]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="6600" y_position="4200" width="1200" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.SECSTADAT"/>
+        </Element>
+        <Element type="Text" count="1" x_position="8550" y_position="4200" width="600" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Time]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="9150" y_position="4200" width="1500" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.SECSTATIM"/>
+        </Element>
+        <Element type="Line" x_position="150" y_position="6000" width="0" height="0" x2_position="11100" y2_position="6000">
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="5100" width="3628" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Regulated Entity Category and Identifier]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="5550" width="8700" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="160"/>
+              </FontProperties>
+              <TextData><![CDATA[(of any regulated party who has accepted the security status given to a consignment by another regulated party)]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="0" y_position="7500" width="0" height="0" x2_position="150" y2_position="7500">
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="6150" width="2721" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Additional Security Information]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="3300" y_position="6300" width="6300" height="750">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.ADLSECINF"/>
+        </Element>
+        <Element type="Line" x_position="2250" y_position="0" width="0" height="0" x2_position="2250" y2_position="2550">
+        </Element>
+        <Element type="Line" x_position="5100" y_position="600" width="0" height="0" x2_position="5100" y2_position="2550">
+        </Element>
+        <Element type="Line" x_position="7950" y_position="600" width="0" height="0" x2_position="7950" y2_position="2550">
+        </Element>
+        <Element type="Line" x_position="0" y_position="7500" width="0" height="0" x2_position="11100" y2_position="7500">
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="DetailArea">
+    <Area type="Detail">
+      <AreaProperties>
+        <KeepTogether value="true"/>
+      </AreaProperties>
+      <Section type="Detail" width="15114" height="1050">
+        <SectionProperties>
+          <KeepTogether value="true"/>
+          <UnderlayFollowingSection value="true"/>
+        </SectionProperties>
+        <Element type="Line" x_position="3450" y_position="0" width="0" height="0" x2_position="3450" y2_position="1050">
+        </Element>
+        <Element type="Line" x_position="6900" y_position="0" width="0" height="0" x2_position="6900" y2_position="1050">
+        </Element>
+        <Element type="Line" x_position="0" y_position="0" width="0" height="0" x2_position="11100" y2_position="0">
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="150" width="1800" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Origin]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3600" y_position="150" width="1800" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Destination]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7050" y_position="150" width="3900" height="450">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[Transfer/Transit Points (If Known)]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="1800" y_position="150" width="1500" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.CSGORG"/>
+        </Element>
+        <Element type="FieldElement" x_position="5400" y_position="150" width="1500" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.CSGDST"/>
+        </Element>
+        <Element type="FieldElement" x_position="7050" y_position="600" width="1500" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_AV7.POU"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+</inet:Report>

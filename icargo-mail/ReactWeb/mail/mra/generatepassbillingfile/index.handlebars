@@ -1,0 +1,53 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+	<html>
+	<head>
+ 		<jsp:include page="/jsp/includes/app/appheader.jsp" />
+		<title>Generate PASS Billing Screen</title>
+		<script>
+			var fromScreen = '<%=request.getParameter("fromScreen")%>'	
+			var screenAction = "mail.mra.gpabilling.ux.generatepassbillingfile.defaultscreenload.do";
+			function getScreenConfig() {
+				var newobj = window.__extends({}, screenCfg, {
+					 __rehydrate: fromScreen === 'PASS_BILLING'  ? true : false,
+                    fromScreen: fromScreen,
+                    screenAction: screenAction
+
+				});
+				console.log('newObj', newobj);
+				return newobj
+			}
+		</script>
+		<common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+	</head>
+
+	<body>
+		<!-- The DIV container for redering results from react -->
+		<div id="container" class="main-container"></div>
+		<jsp:include page="/jsp/includes/app/appfooter.jsp" />
+		{{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" /> 
+        {{/each}}
+		<jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+
+		<script>
+			if (fromScreen === 'cra.defaults.invoicegenerationlog') {
+                console.log('here111');
+                appBridge.renderApp(function () {
+                    console.log('here121');
+                    appBridge.dispatchAction({
+                        type: 'NAVIGATION_FILTER',
+                        data: {'fromScreen': fromScreen, 'pageURL': pageURL}
+                    })
+                });
+            }
+            else {
+			appBridge.renderApp();
+			}
+		</script>
+
+	</body>
+
+	</html>

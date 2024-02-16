@@ -1,0 +1,56 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+<html>
+    <head>
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+        <title>INVOIC Enquiry</title>
+        <script>
+            var fromScreen = '<%=request.getParameter("fromScreen")%>'
+            console.log('fromScreen=', fromScreen);
+            var invoicId = '<%=request.getParameter("invoicId")%>';
+            var fromDate = '<%=request.getParameter("fromDate")%>';
+            var toDate = '<%=request.getParameter("toDate")%>';
+            var gpaCode = '<%=request.getParameter("gpaCode")%>';
+            var screenAction = "mail.mra.gpareporting.ux.invoicenquiry.defaultscreenload.do";
+
+            function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {
+                    __rehydrate: false,
+                    fromScreen: fromScreen,
+                    screenAction: screenAction
+                });
+                console.log('newObj123', newobj);
+                return newobj
+            }
+        </script>
+        <common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+    </head>
+
+    <body>
+        <!-- The DIV container for redering results from react -->
+        <div id="container" class="main-container"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" /> 
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" /> 
+        {{/each}}
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+
+        <script>
+            if (fromScreen === 'List_INVOIC_SCREEN') {
+                console.log('when navigated from list invoic lite screen');
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'SHOW_INVOICENQUIRY_PAGE_WITH_FILTER',
+                        data: { invoicId: invoicId,gpaCode:gpaCode,fromScreen:'MRA078'}
+                    })
+                });
+            }
+            else {
+                console.log('inside main screen');
+                appBridge.renderApp();
+            }
+        </script>
+    </body>
+</html>

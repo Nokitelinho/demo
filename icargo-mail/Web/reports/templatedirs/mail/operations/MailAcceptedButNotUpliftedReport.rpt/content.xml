@@ -1,0 +1,1333 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<inet:Report xmlns:inet="http://www.inetsoftware.de" major_version="8" minor_version="97" major_xml_version="11" minor_xml_version="1" id="0">
+    <Datasource>
+
+      <DataSourceConfiguration name="ICOANZSTG">
+        <property name="alterSession" value="false"/>
+        <property name="aliasToken" value=""/>
+        <property name="escapeEverything" value="false"/>
+        <property name="host" value="ICA1150"/>
+        <property name="url" value="jdbc:inetora"/>
+        <property name="service" value=""/>
+        <property name="databaseClassName" value=""/>
+        <property name="loginTimeout" value=""/>
+        <property name="logonMode" value="normal"/>
+        <property name="supportsOrderBy" value="true"/>
+        <property name="dedicated" value="false"/>
+        <property name="supportsSQL92" value="false"/>
+        <property name="port9" value="1521"/>
+        <property name="port8" value="1521"/>
+        <property name="port7" value="1521"/>
+        <property name="port10" value="1521"/>
+        <property name="port6" value="1521"/>
+        <property name="port5" value="1521"/>
+        <property name="port4" value="1521"/>
+        <property name="port3" value="1521"/>
+        <property name="host9" value=""/>
+        <property name="port2" value="1521"/>
+        <property name="host8" value=""/>
+        <property name="port1" value="1521"/>
+        <property name="host7" value=""/>
+        <property name="host6" value=""/>
+        <property name="sid" value="gha"/>
+        <property name="validationQuery" value=""/>
+        <property name="host5" value=""/>
+        <property name="host4" value=""/>
+        <property name="host3" value=""/>
+        <property name="host2" value=""/>
+        <property name="host1" value=""/>
+        <property name="driverLibrary" value=""/>
+        <property name="driverClassName" value="com.inet.ora.OraDriver"/>
+        <property name="user" value="ICOANZSTG"/>
+        <property name="supportsWhere" value="true"/>
+        <property name="catalog" value=""/>
+        <property name="host10" value=""/>
+        <property name="failover" value="false"/>
+        <property name="password" value="00D32D269E1F1C78DC59D2C3B67542B3C1DA246F94131277C850D5D08F9F6AFB4A"/>
+        <property name="identifierQuoteString" value=""/>
+        <property name="port" value="1521"/>
+        <property name="quotesLowerCase" value="false"/>
+        <property name="opencursors" value="300"/>
+        <property name="queryTimeout" value=""/>
+        <property name="loadbalance" value="false"/>
+        <property name="caseSensitive" value="false"/>
+        <property name="supportsParenthesesForJoin" value="true"/>
+        <property name="savePassword" value="true"/>
+      </DataSourceConfiguration>
+      <Tablesource alias="DUMMY_VW_MAILSTATUSDETAILS" databaseIdentifier="ICARGOBP.DUMMY_VW_MAILSTATUSDETAILS">
+
+        <Column name="CONNUM" type="11" />
+        <Column name="FLTNUM" type="11" />
+        <Column name="POL" type="11" />
+        <Column name="POU" type="11" />
+        <Column name="FLTROU" type="11" />
+        <Column name="STD" type="11" />
+        <Column name="LEGSTA" type="11" />
+        <Column name="OOE" type="11" />
+        <Column name="DOE" type="11" />
+        <Column name="MALCTGCOD" type="11" />
+        <Column name="MALSUBCLS" type="11" />
+        <Column name="YER" type="11" />
+        <Column name="DSN" type="11" />
+        <Column name="RSN" type="11" />
+        <Column name="HNI" type="11" />
+        <Column name="RI" type="11" />
+        <Column name="WGT" type="11" />
+      </Tablesource>
+
+    </Datasource>
+
+  <Database>
+  </Database>
+  <FormulaFields>
+    <Field type="FormulaField" valueType="11">
+      <Name value="uppercase(PrintDate)"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[uppercase( {?PrintDate} );]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="intWeight"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[ToNumber (  {DUMMY_VW_MAILSTATUSDETAILS.WGT}   ) / 10]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="11">
+      <Name value="Status"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[IF  {DUMMY_VW_MAILSTATUSDETAILS.LEGSTA} = "CAN" THEN
+  "Cancelled"
+ELSE IF  {DUMMY_VW_MAILSTATUSDETAILS.LEGSTA} = "CRT" THEN
+  "Live"
+ELSE IF  {DUMMY_VW_MAILSTATUSDETAILS.LEGSTA} = "DEP" THEN
+  "Departed"
+ ELSE IF  {DUMMY_VW_MAILSTATUSDETAILS.LEGSTA} = "TBA" THEN
+  "To be Actioned"
+ELSE IF  {DUMMY_VW_MAILSTATUSDETAILS.LEGSTA} = "TBC" THEN
+  "To be Cancelled"]]></TextData>
+    </Field>
+  </FormulaFields>
+  <PromptFields>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="ReportId"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+      <Id value="856"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="StaffId"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+      <Id value="859"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="Station"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+      <Id value="860"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="PrintDate"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+      <Id value="857"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="PrintTime"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+      <Id value="858"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="airportPOL"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+      <Id value="838"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#34;&#34;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="airportPOU"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+      <Id value="839"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#34;&#34;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+  </PromptFields>
+  <SQLFields>
+  </SQLFields>
+  <SummaryFields>
+    <Field type="SummaryField" valueType="6">
+      <Name value="bags"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.OOE"/>
+      <Operation value="6"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumber value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="totalWeight"/>
+      <Reference name="id" type="FormulaField" value="@intWeight"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumber value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+  </SummaryFields>
+  <SortFields>
+  </SortFields>
+  <UserFunctions>
+  </UserFunctions>
+  <GroupNameFields>
+    <Field type="GroupNameField" valueType="11">
+      <Name value=""/>
+      <GroupNumberType value="0"/>
+      <GroupNumber value="0"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.CONNUM"/>
+    </Field>
+  </GroupNameFields>
+  <ReportProperties>
+    <PageWidth value="12240"/>
+    <PageHeight value="15840"/>
+    <PageOrientation value="1"/>
+    <PageMarginLeft value="360"/>
+    <PageMarginRight value="360"/>
+    <PageMarginTop value="360"/>
+    <PageMarginBottom value="360"/>
+    <MailingLabelType1 value="User-Defined Label"/>
+    <MailingLabelType2 value=""/>
+    <FormatWithMultipleColumns value="false"/>
+    <MailingLabelWidth value="0"/>
+    <MailingLabelHeight value="0"/>
+    <MailingLabelDistanceVertical value="0"/>
+    <MailingLabelDistanceHorizontal value="0"/>
+    <AcrossThenDown value="false"/>
+    <FormatGroupsWithMultipleColumns value="false"/>
+    <Distinct value="false"/>
+    <ShowSuppressedNodes value="true"/>
+    <IgnoreFiltering value="false"/>
+    <IgnoreSorting value="false"/>
+    <ConvertDateTime value="2"/>
+    <DataSource value="MailtrackingDSN"/>
+    <DataSourceDesc value="ODBC - MailtrackingDSN"/>
+    <SuppressIfNoRows value="false"/>
+    <ConvertNullValuesToDefault value="false"/>
+    <HidePageFooterInsideReportHeader value="true"/>
+    <FormPrint value="false"/>
+    <PrintingEnabled value="true"/>
+    <ClipboardEnabled value="true"/>
+    <ExportEnabled value="true"/>
+    <GroupTreeVisible value="true"/>
+  </ReportProperties>
+  <AreaPair type="PageAreaPair">
+    <Area type="PageHeader">
+      <AreaProperties>
+        <DrillDown value="true"/>
+      </AreaProperties>
+      <Section type="PageHeader" width="11520" height="1455">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="Text" count="1" x_position="3315" y_position="495" width="4520" height="790">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="240"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#TITLE]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="10500" y_position="470" width="510" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?PrintTime"/>
+        </Element>
+        <Element type="FieldElement" x_position="9150" y_position="1070" width="990" height="225">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?Station"/>
+        </Element>
+        <Element type="Text" count="1" x_position="7950" y_position="1070" width="1020" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Station]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="9150" y_position="770" width="2100" height="263">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?StaffId"/>
+        </Element>
+        <Element type="Text" count="1" x_position="7950" y_position="770" width="1020" height="240">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Staff]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7950" y_position="470" width="1020" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Date]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9000" y_position="470" width="90" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[:]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9000" y_position="770" width="90" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[:]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9000" y_position="1070" width="105" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[:]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="9150" y_position="470" width="1275" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" value="@uppercase(PrintDate)"/>
+        </Element>
+        <Element type="Box" x2_position="11255" y2_position="305" x_position="100" y_position="110" width="0" height="0">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+              <LineProperties>
+                <LineWidth value="10"/>
+                <EndSection area="PF" sectionIndex="0"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="FieldElement" x_position="9180" y_position="195" width="1200" height="225">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?ReportId"/>
+        </Element>
+        <Element type="Text" count="1" x_position="7955" y_position="200" width="875" height="225">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#ID]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9000" y_position="200" width="90" height="300">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[:]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Picture" x_position="225" y_position="260" width="2670" height="1035">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <PictureProperties>
+            <Reference value="1.png"/>
+          </PictureProperties>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="PageFooter">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <PrintAtBottomOfPage value="true"/>
+        <NewPageAfter value="true"/>
+        <KeepTogether value="true"/>
+      </AreaProperties>
+      <Section type="PageFooter" width="11520" height="690">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="9750" y_position="0" width="1245" height="210">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="SpecialVarField" value="PageNOfM"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="ReportAreaPair">
+    <Area type="ReportHeader">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <NewPageBefore value="true"/>
+      </AreaProperties>
+      <Section type="ReportHeader" width="11520" height="0">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="ReportFooter">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <NewPageAfter value="true"/>
+      </AreaProperties>
+      <Section type="ReportFooter" width="11520" height="0">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="GroupAreaPair" id="1">
+    <AreaPairProperties>
+      <KeepGroupTogether value="1"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.CONNUM"/>
+      <Reference name="group name" type="GroupNameField" id="1"/>
+    </AreaPairProperties>
+    <Area type="GroupHeader">
+      <Section type="GroupHeader" width="11520" height="1740">
+        <Element type="Text" count="1" x_position="300" y_position="150" width="1200" height="308">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+            <CanGrow value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="3"/>
+              <KeepTogether value="true"/>
+              <CanGrow value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Container]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="1650" y_position="150" width="1508" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.CONNUM"/>
+        </Element>
+        <Element type="Text" count="1" x_position="3150" y_position="150" width="815" height="255">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+            <CanGrow value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="3"/>
+              <KeepTogether value="true"/>
+              <CanGrow value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Bags]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4800" y_position="150" width="1535" height="255">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="3"/>
+              <KeepTogether value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Weight]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="265" y_position="583" width="1175" height="255">
+          <CommonProperties>
+            <Suppress value="true"/>
+            <KeepTogether value="true"/>
+            <PropertyFormula propertyType="suppress">
+              <Name value="suppress"/>
+              <BasicSyntax value="1002"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[IF   {DUMMY_VW_MAILSTATUSDETAILS.FLTNUM}   = "-1" THEN FORMULA = TRUE ELSE FORMULA = FALSE]]></TextData>
+            </PropertyFormula>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Suppress value="true"/>
+              <HorizontalAlign value="3"/>
+              <KeepTogether value="true"/>
+              <PropertyFormula propertyType="suppress">
+                <Name value="suppress"/>
+                <BasicSyntax value="1001"/>
+                <NullBehavior value="0"/>
+                <TextData><![CDATA[IF   {DUMMY_VW_MAILSTATUSDETAILS.FLTNUM}   = "-1" THEN FORMULA = TRUE ELSE FORMULA = FALSE]]></TextData>
+              </PropertyFormula>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Flight]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="1650" y_position="585" width="1290" height="240">
+          <CommonProperties>
+            <Suppress value="true"/>
+            <HorizontalAlign value="1"/>
+            <PropertyFormula propertyType="suppress">
+              <Name value="suppress"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[IF   {DUMMY_VW_MAILSTATUSDETAILS.FLTNUM}   = "-1" THEN
+TRUE
+ ELSE
+FALSE]]></TextData>
+            </PropertyFormula>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.FLTNUM"/>
+        </Element>
+        <Element type="Text" count="1" x_position="2942" y_position="583" width="975" height="250">
+          <CommonProperties>
+            <Suppress value="true"/>
+            <KeepTogether value="true"/>
+            <PropertyFormula propertyType="suppress">
+              <Name value="suppress"/>
+              <BasicSyntax value="1002"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[IF     {DUMMY_VW_MAILSTATUSDETAILS.FLTNUM}  = "-1" THEN FORMULA = TRUE ELSE FORMULA = FALSE]]></TextData>
+            </PropertyFormula>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Suppress value="true"/>
+              <HorizontalAlign value="3"/>
+              <KeepTogether value="true"/>
+              <PropertyFormula propertyType="suppress">
+                <Name value="suppress"/>
+                <BasicSyntax value="1001"/>
+                <NullBehavior value="0"/>
+                <TextData><![CDATA[IF     {DUMMY_VW_MAILSTATUSDETAILS.FLTNUM}  = "-1" THEN FORMULA = TRUE ELSE FORMULA = FALSE]]></TextData>
+              </PropertyFormula>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Route]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="4005" y_position="583" width="1500" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.FLTROU"/>
+        </Element>
+        <Element type="Text" count="1" x_position="5575" y_position="583" width="815" height="255">
+          <CommonProperties>
+            <Suppress value="true"/>
+            <KeepTogether value="true"/>
+            <CanGrow value="true"/>
+            <PropertyFormula propertyType="suppress">
+              <Name value="suppress"/>
+              <BasicSyntax value="1002"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[IF   {DUMMY_VW_MAILSTATUSDETAILS.FLTNUM}   = "-1" THEN FORMULA = TRUE ELSE FORMULA = FALSE]]></TextData>
+            </PropertyFormula>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Suppress value="true"/>
+              <HorizontalAlign value="3"/>
+              <KeepTogether value="true"/>
+              <CanGrow value="true"/>
+              <PropertyFormula propertyType="suppress">
+                <Name value="suppress"/>
+                <BasicSyntax value="1001"/>
+                <NullBehavior value="0"/>
+                <TextData><![CDATA[IF   {DUMMY_VW_MAILSTATUSDETAILS.FLTNUM}   = "-1" THEN FORMULA = TRUE ELSE FORMULA = FALSE]]></TextData>
+              </PropertyFormula>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#STD]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="6600" y_position="585" width="1508" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.STD"/>
+        </Element>
+        <Element type="Text" count="1" x_position="8250" y_position="570" width="1298" height="255">
+          <CommonProperties>
+            <Suppress value="true"/>
+            <KeepTogether value="true"/>
+            <CanGrow value="true"/>
+            <PropertyFormula propertyType="suppress">
+              <Name value="suppress"/>
+              <BasicSyntax value="1002"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[IF   {DUMMY_VW_MAILSTATUSDETAILS.FLTNUM}   = "-1" THEN FORMULA = TRUE ELSE FORMULA = FALSE]]></TextData>
+            </PropertyFormula>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Suppress value="true"/>
+              <HorizontalAlign value="3"/>
+              <KeepTogether value="true"/>
+              <CanGrow value="true"/>
+              <PropertyFormula propertyType="suppress">
+                <Name value="suppress"/>
+                <BasicSyntax value="1001"/>
+                <NullBehavior value="0"/>
+                <TextData><![CDATA[IF   {DUMMY_VW_MAILSTATUSDETAILS.FLTNUM}   = "-1" THEN FORMULA = TRUE ELSE FORMULA = FALSE]]></TextData>
+              </PropertyFormula>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#FlightStatus]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Box" x2_position="11105" y2_position="1710" x_position="180" y_position="1045" width="0" height="0">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <BoxProperties>
+            <BackgroundColor value="12632256"/>
+            <CloseBorderOnPageBreak value="true"/>
+              <LineProperties>
+                <LineWidth value="10"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="300" y_position="1200" width="945" height="450">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#OOE]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="1350" y_position="1200" width="1110" height="435">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#DOE]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="2550" y_position="1200" width="1065" height="450">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Category]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3750" y_position="1200" width="990" height="540">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Subclass]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4800" y_position="1200" width="765" height="540">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Year]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5700" y_position="1200" width="990" height="540">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#DSN]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6900" y_position="1200" width="1005" height="540">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#RSN]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8100" y_position="1200" width="780" height="395">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#HNI]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9150" y_position="1200" width="710" height="375">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#RI]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="10050" y_position="1185" width="1055" height="390">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Weight]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="2520" y_position="1035" width="0" height="0" x2_position="2520" y2_position="60">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="4785" y_position="1050" width="0" height="0" x2_position="4785" y2_position="75">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="1305" y_position="1050" width="0" height="0" x2_position="1305" y2_position="60">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="5655" y_position="1035" width="0" height="0" x2_position="5655" y2_position="75">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="6765" y_position="1035" width="0" height="0" x2_position="6765" y2_position="75">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="7965" y_position="1035" width="0" height="0" x2_position="7965" y2_position="75">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="3705" y_position="1035" width="0" height="0" x2_position="3705" y2_position="75">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Box" x2_position="11105" y2_position="975" x_position="180" y_position="80" width="0" height="0">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+              <LineProperties>
+                <LineWidth value="10"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="Line" x_position="180" y_position="1680" width="0" height="0" x2_position="180" y2_position="60">
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="9921" y_position="1050" width="0" height="0" x2_position="9921" y2_position="62">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="9015" y_position="1035" width="0" height="0" x2_position="9015" y2_position="60">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="FieldElement" x_position="4050" y_position="150" width="585" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <NDecimalPlaces value="0"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="SummaryField" value="#bags"/>
+        </Element>
+        <Element type="FieldElement" x_position="6600" y_position="150" width="1200" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="SummaryField" value="#totalWeight"/>
+        </Element>
+        <Element type="Text" count="1" x_position="7800" y_position="135" width="705" height="250">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="3"/>
+              <KeepTogether value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#POL]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="240" y_position="553" width="1200" height="255">
+          <CommonProperties>
+            <Suppress value="true"/>
+            <KeepTogether value="true"/>
+            <CanGrow value="true"/>
+            <PropertyFormula propertyType="suppress">
+              <Name value="suppress"/>
+              <BasicSyntax value="1002"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[IF     {DUMMY_VW_MAILSTATUSDETAILS.FLTNUM}  = "-1" THEN FORMULA = FALSE ELSE FORMULA = TRUE]]></TextData>
+            </PropertyFormula>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Suppress value="true"/>
+              <HorizontalAlign value="1"/>
+              <KeepTogether value="true"/>
+              <CanGrow value="true"/>
+              <PropertyFormula propertyType="suppress">
+                <Name value="suppress"/>
+                <BasicSyntax value="1001"/>
+                <NullBehavior value="0"/>
+                <TextData><![CDATA[IF     {DUMMY_VW_MAILSTATUSDETAILS.FLTNUM}  = "-1" THEN FORMULA = FALSE ELSE FORMULA = TRUE]]></TextData>
+              </PropertyFormula>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#Carrier]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="9615" y_position="555" width="1200" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" value="@Status"/>
+        </Element>
+        <Element type="Line" x_position="11100" y_position="1050" width="0" height="0" x2_position="11100" y2_position="79">
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="FieldElement" x_position="8595" y_position="135" width="555" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.POL"/>
+        </Element>
+        <Element type="FieldElement" x_position="10080" y_position="135" width="450" height="270">
+          <CommonProperties>
+            <HorizontalAlign value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.POU"/>
+        </Element>
+        <Element type="Text" count="1" x_position="9270" y_position="135" width="705" height="250">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="3"/>
+              <KeepTogether value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[04MTK014#POU]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="GroupFooter">
+      <Section type="GroupFooter" width="11520" height="80">
+        <Element type="Line" x_position="181" y_position="65" width="0" height="0" x2_position="11117" y2_position="65">
+          <LineProperties>
+            <LineWidth value="10"/>
+          </LineProperties>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="DetailArea">
+    <Area type="Detail">
+      <Section type="Detail" width="11520" height="300">
+        <SectionProperties>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="5700" y_position="0" width="720" height="225">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.DSN"/>
+        </Element>
+        <Element type="FieldElement" x_position="285" y_position="38" width="923" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.OOE"/>
+        </Element>
+        <Element type="FieldElement" x_position="1380" y_position="37" width="945" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.DOE"/>
+        </Element>
+        <Element type="FieldElement" x_position="2625" y_position="22" width="1050" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.MALCTGCOD"/>
+        </Element>
+        <Element type="FieldElement" x_position="3795" y_position="22" width="930" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.MALSUBCLS"/>
+        </Element>
+        <Element type="FieldElement" x_position="4905" y_position="22" width="540" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.YER"/>
+        </Element>
+        <Element type="FieldElement" x_position="6825" y_position="22" width="1020" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.RSN"/>
+        </Element>
+        <Element type="FieldElement" x_position="8040" y_position="22" width="900" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.HNI"/>
+        </Element>
+        <Element type="FieldElement" x_position="9120" y_position="37" width="810" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MAILSTATUSDETAILS.RI"/>
+        </Element>
+        <Element type="FieldElement" x_position="10200" y_position="15" width="755" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@intWeight"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+</inet:Report>

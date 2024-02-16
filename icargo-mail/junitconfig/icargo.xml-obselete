@@ -1,0 +1,1197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configuration of the iCargo enterprise platform -->
+<icargo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xsd\icargo.xsd" xmlns="http://www.ibsplc.com/icargo">
+
+	<!-- This is configuration for command mapping for individual subsystems -->
+	<command-configuration>
+
+		<command-mappings product="refresh" subproduct="default">
+			<descriptor-file-name>client/refresh-command.mappings.xml</descriptor-file-name>
+		</command-mappings> 
+
+          <!-- LUV Command Mappings -->
+		<command-mappings product="luv" subproduct="default">
+			<descriptor-file-name>client/luv-command.mappings.xml</descriptor-file-name>
+		</command-mappings> 
+		
+		   <!-- Money opr Command Mappings -->
+		<command-mappings product="money" subproduct="default">
+			<descriptor-file-name>client/moneyoperations-command.mappings.xml</descriptor-file-name>
+		</command-mappings> 
+		
+		
+		<command-mappings product="framework" subproduct="lock">
+			<descriptor-file-name>client/lock-command.mappings.xml</descriptor-file-name>
+		</command-mappings> 
+
+		<command-mappings product="chart" subproduct="default">
+						<descriptor-file-name>client/chart-command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+            	<command-mappings product="admin" subproduct="accesscontrol">
+            		<descriptor-file-name>client/admin/accesscontrol/command.mappings.xml</descriptor-file-name>
+       		</command-mappings>
+        	<command-mappings product="admin" subproduct="user">
+            		<descriptor-file-name>client/admin/user/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="admin" subproduct="hierarchy">
+            		<descriptor-file-name>client/admin/hierarchy/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+	        <command-mappings product="admin" subproduct="monitoring">
+            		<descriptor-file-name>client/admin/monitoring/command.mappings.xml</descriptor-file-name>
+       		</command-mappings>          
+            <command-mappings product="admin" subproduct="report">
+            		<descriptor-file-name>client/admin/report/command.mappings.xml</descriptor-file-name>
+       		</command-mappings> 
+             <command-mappings product="admin" subproduct="purging">
+            		<descriptor-file-name>client/admin/purging/command.mappings.xml</descriptor-file-name>
+       		</command-mappings>
+       		<command-mappings product="admin" subproduct="defaults">
+			<descriptor-file-name>client/admin/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>	
+	        <command-mappings product="stockcontrol" subproduct="defaults">
+	             	<descriptor-file-name>client/stockcontrol/defaults/command.mappings.xml</descriptor-file-name>
+	        </command-mappings>
+
+	        <command-mappings product="products" subproduct="defaults">
+	 		<descriptor-file-name>client/products/defaults/command.mappings.xml</descriptor-file-name>
+	        </command-mappings>
+		<!--command-mappings product="jto.operations" subproduct="shipment">
+            		<descriptor-file-name>client/jto/operations/shipment/command.mappings.xml</descriptor-file-name>
+       		</command-mappings>
+       		<command-mappings product="jto.operations" subproduct="flthandling">
+            		<descriptor-file-name>client/jto/operations/flthandling/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+       		<command-mappings product="jto.operations" subproduct="flthandling.loadplan">
+            		<descriptor-file-name>client/jto/operations/flthandling/loadplan/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+       		<command-mappings product="jto.operations" subproduct="dochandling">
+	            		<descriptor-file-name>client/jto/operations/dochandling/command.mappings.xml</descriptor-file-name>	
+	        </command-mappings -->   
+        	<command-mappings product="operations" subproduct="shipment">
+            		<descriptor-file-name>client/operations/shipment/command.mappings.xml</descriptor-file-name>
+       		</command-mappings>
+       		<command-mappings product="operations" subproduct="flthandling">
+            		<descriptor-file-name>client/operations/flthandling/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+       		<command-mappings product="operations" subproduct="flthandling.loadplan">
+            		<descriptor-file-name>client/operations/flthandling/loadplan/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+       		<command-mappings product="operations" subproduct="dochandling">
+	            		<descriptor-file-name>client/operations/dochandling/command.mappings.xml</descriptor-file-name>	
+	        </command-mappings>        	
+
+		<command-mappings product="tariff" subproduct="freight">
+	        	<descriptor-file-name>client/tariff/freight/command.mappings.xml</descriptor-file-name>
+       		</command-mappings>
+        	<command-mappings product="tariff" subproduct="others">
+        		<descriptor-file-name>client/tariff/others/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+		<!-- Added by A-4421 for ICRD-7208 Starts-->
+			<command-mappings product="tariff" subproduct="tax">
+        		<descriptor-file-name>client/tariff/tax/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+		<!-- Added by A-4421 for ICRD-7208 Ends-->
+        	<!-- Capacity Entry Starts -->
+
+		<command-mappings product="capacity" subproduct="allotment">
+			<descriptor-file-name>client/capacity/allotment/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="capacity" subproduct="booking">
+			<descriptor-file-name>client/capacity/booking/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="capacity" subproduct="monitoring">
+			<descriptor-file-name>client/capacity/monitoring/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="capacity" subproduct="routing">
+			<descriptor-file-name>client/capacity/routing/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="capacity" subproduct="mailbidding">
+			<descriptor-file-name>client/capacity/mailbidding/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<!-- Capacity Entry Ends -->
+
+		<command-mappings product="flight" subproduct="schedule">
+			<descriptor-file-name>client/flight/schedule/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="flight" subproduct="operation">
+			<descriptor-file-name>client/flight/operation/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<!-- command-mappings product="jto.flight" subproduct="schedule">
+			<descriptor-file-name>client/jto/flight/schedule/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="jto.flight" subproduct="operation">
+			<descriptor-file-name>client/jto/flight/operation/command.mappings.xml</descriptor-file-name>
+		</command-mappings -->
+        	<command-mappings product="msgbroker" subproduct="config">
+            		<descriptor-file-name>client/msgbroker/config/command.mappings.xml</descriptor-file-name>
+       		</command-mappings>
+        	<command-mappings product="msgbroker" subproduct="message">
+            		<descriptor-file-name>client/msgbroker/message/command.mappings.xml</descriptor-file-name>
+       		</command-mappings>
+
+       		<!-- START Command Mapping for Shared subsystem -->
+
+		<command-mappings product="shared" subproduct="aircraft">
+            		<descriptor-file-name>client/shared/aircraft/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+		<command-mappings product="shared" subproduct="airline">
+         		<descriptor-file-name>client/shared/airline/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="airportpair">
+		         <descriptor-file-name>client/shared/airportpair/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="delaycode">
+			 <descriptor-file-name>client/shared/delaycode/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="accessory">
+			 <descriptor-file-name>client/shared/accessory/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="area.airport">
+	   		<descriptor-file-name>client/shared/area/airport/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="area.country">
+	   		<descriptor-file-name>client/shared/area/country/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="area.region">
+	   		<descriptor-file-name>client/shared/area/region/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="area.region.regionmaster">
+			<descriptor-file-name>client/shared/area/region/regionmaster/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="area.station">
+	   		<descriptor-file-name>client/shared/area/station/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="area.city">
+			<descriptor-file-name>client/shared/area/city/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+		   <command-mappings product="shared" subproduct="area.zipcode">
+			<descriptor-file-name>client/shared/area/zipcode/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+			 <command-mappings product="shared" subproduct="area.controloffice">
+			<descriptor-file-name>client/shared/area/controloffice/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="category">
+	   		<descriptor-file-name>client/shared/category/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="commodity">
+	   		<descriptor-file-name>client/shared/commodity/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="currency">
+	   		<descriptor-file-name>client/shared/currency/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="service">
+			<descriptor-file-name>client/shared/service/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="damagecodes">
+			<descriptor-file-name>client/shared/damagecodes/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="embargo">
+	   		<descriptor-file-name>client/shared/embargo/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="scc">
+	   		<descriptor-file-name>client/shared/scc/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+	        	<command-mappings product="shared" subproduct="uld">
+	   		<descriptor-file-name>client/shared/uld/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+		<command-mappings product="shared" subproduct="dgr">
+			<descriptor-file-name>client/shared/dgr/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="citypair">
+			<descriptor-file-name>client/shared/citypair/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="document">
+			<descriptor-file-name>client/shared/document/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="commodity.commoditymaster">
+			<descriptor-file-name>client/shared/commodity/commoditymaster/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="milestone">
+			<descriptor-file-name>client/shared/milestone/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="customer">
+			<descriptor-file-name>client/shared/customer/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="equipment">
+			<descriptor-file-name>client/shared/equipment/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<command-mappings product="shared" subproduct="defaults.onetime">
+			<descriptor-file-name>client/shared/defaults/onetime/command.mappings.xml</descriptor-file-name>
+		</command-mappings>        
+        	<command-mappings product="shared" subproduct="defaults">
+			<descriptor-file-name>client/shared/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>        
+		
+		<command-mappings product="shared" subproduct="message">
+			<descriptor-file-name>client/shared/message/command.mappings.xml</descriptor-file-name>
+		</command-mappings>	
+		<command-mappings product="shared" subproduct="agent">
+			<descriptor-file-name>client/shared/agent/command.mappings.xml</descriptor-file-name>
+		</command-mappings>		
+		<command-mappings product="shared" subproduct="audit">
+			<descriptor-file-name>client/shared/audit/command.mappings.xml</descriptor-file-name>
+		</command-mappings>	
+		<command-mappings product="shared" subproduct="billingperiod">
+			<descriptor-file-name>client/shared/billingperiod/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="shared" subproduct="billingsite">
+			<descriptor-file-name>client/shared/billingsite/command.mappings.xml</descriptor-file-name>
+		</command-mappings>		
+		<command-mappings product="shared" subproduct="trade">
+			<descriptor-file-name>client/shared/trade/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="shared" subproduct="hozeiarea">
+			<descriptor-file-name>client/shared/hozeiarea/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		
+		 <command-mappings product="shared" subproduct="flightpairing">
+			<descriptor-file-name>client/shared/flightpairing/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="shared" subproduct="cargoplanning">
+			<descriptor-file-name>client/shared/cargoplanning/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="shared" subproduct="generalmastergrouping">
+			<descriptor-file-name>client/shared/generalmastergrouping/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		   <command-mappings product="shared" subproduct="defaults.systemparameter">
+			<descriptor-file-name>client/shared/defaults/systemparameter/command.mappings.xml</descriptor-file-name>
+		</command-mappings>  
+		   <command-mappings product="shared" subproduct="defaults.module">
+			<descriptor-file-name>client/shared/defaults/module/command.mappings.xml</descriptor-file-name>
+		</command-mappings>  
+		
+		<command-mappings product="shared" subproduct="defaults.daterange">
+			<descriptor-file-name>client/shared/defaults/daterange/command.mappings.xml</descriptor-file-name>
+		</command-mappings>  
+        <command-mappings product="shared" subproduct="signature">
+	   		<descriptor-file-name>client/shared/signature/command.mappings.xml</descriptor-file-name>
+        </command-mappings>
+		
+		<!-- END Command mappings for shared product -->
+
+        	<command-mappings product="revenue" subproduct="longtermplanning">
+            		<descriptor-file-name>client/revenue/longtermplanning/command.mappings.xml</descriptor-file-name>
+       		</command-mappings>
+        	<command-mappings product="revenue" subproduct="planning">
+            		<descriptor-file-name>client/revenue/planning/command.mappings.xml</descriptor-file-name>
+       		</command-mappings>
+
+        	<command-mappings product="workflow" subproduct="defaults">
+            		<descriptor-file-name>client/workflow/defaults/command.mappings.xml</descriptor-file-name>
+       		</command-mappings>
+
+       		<!-- START Command Mapping for Tracking subsystem -->
+       		<command-mappings product="tracking" subproduct="defaults">
+					<descriptor-file-name>client/tracking/defaults/command.mappings.xml</descriptor-file-name>
+        	</command-mappings>
+        	<!-- End Command Mapping for Tracking subsystem -->
+			<command-mappings product="report" subproduct="default">
+				<descriptor-file-name>client/command.mappings.xml</descriptor-file-name>
+			</command-mappings> 
+			
+			
+			  
+			
+		<!-- Customer Management -->
+		<command-mappings product="customermanagement" subproduct="defaults">
+			<descriptor-file-name>client/customermanagement/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="cashiering" subproduct="defaults">
+			<descriptor-file-name>client/cashiering/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<!-- command-mappings product="jto.cashiering" subproduct="defaults">
+			<descriptor-file-name>client/jto/cashiering/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="jto.accounting" subproduct="invoicing">
+			<descriptor-file-name>client/jto/accounting/invoicing/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="jto.accounting" subproduct="agentcredit">
+			<descriptor-file-name>client/jto/accounting/agentcredit/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="jto.accounting" subproduct="airlinebilling">
+			<descriptor-file-name>client/jto/accounting/airlinebilling/command.mappings.xml</descriptor-file-name>
+		</command-mappings -->
+		<command-mappings product="accounting" subproduct="invoicing">
+			<descriptor-file-name>client/accounting/invoicing/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		
+		<command-mappings product="accounting" subproduct="agentcredit">
+			<descriptor-file-name>client/accounting/agentcredit/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="accounting" subproduct="airlinebilling">
+			<descriptor-file-name>client/accounting/airlinebilling/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="sales" subproduct="defaults">
+			<descriptor-file-name>client/sales/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		
+		<command-mappings product="claims" subproduct="defaults">
+			<descriptor-file-name>client/claims/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		
+		<command-mappings product="tracing" subproduct="defaults">
+			<descriptor-file-name>client/tracing/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		
+		<command-mappings product="mailtracking" subproduct="defaults">
+			<descriptor-file-name>client/mailtracking/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		
+		<command-mappings product="warehouse" subproduct="defaults">
+			<descriptor-file-name>client/warehouse/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		
+		<command-mappings product="cap" subproduct="defaults">
+			<descriptor-file-name>client/cap/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="uld" subproduct="defaults">
+			<descriptor-file-name>client/uld/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="help" subproduct="default">
+			<descriptor-file-name>client/help-command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="courier" subproduct="defaults">
+			<descriptor-file-name>client/courier/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="slam" subproduct="defaults">
+			<descriptor-file-name>client/slam/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		
+		<command-mappings product="cra" subproduct="defaults">
+			<descriptor-file-name>client/cra/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<!-- added by A-3788 for CRQ: HA106 on 25-Aug-2009 starts -->
+		<command-mappings product="cra" subproduct="defaults.interfaces">
+			<descriptor-file-name>client/cra/defaults/interfaces/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<!-- added by A-3788 for CRQ: HA106 on 25-Aug-2009 ends -->
+		<command-mappings product="cra" subproduct="defaults.masters">
+			<descriptor-file-name>client/cra/defaults/masters/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="cra" subproduct="agentbilling.cass">
+			<descriptor-file-name>client/cra/agentbilling/cass/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="cra" subproduct="agentbilling.noncass">
+			<descriptor-file-name>client/cra/agentbilling/noncass/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="cra" subproduct="agentbilling.defaults">
+			<descriptor-file-name>client/cra/agentbilling/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="cra" subproduct="flown">
+			<descriptor-file-name>client/cra/flown/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="cra" subproduct="salesreport">
+			<descriptor-file-name>client/cra/salesreport/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="cra" subproduct="accounting">
+			<descriptor-file-name>client/cra/accounting/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="cra" subproduct="proration.defaults">
+			<descriptor-file-name>client/cra/proration/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="cra" subproduct="proration.interfaces">
+			<descriptor-file-name>client/cra/proration/interfaces/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="cra" subproduct="airlinebilling.defaults">
+			<descriptor-file-name>client/cra/airlinebilling/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="cra" subproduct="airlinebilling.inward">
+				<descriptor-file-name>client/cra/airlinebilling/inward/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="cra" subproduct="airlinebilling.outward">
+				<descriptor-file-name>client/cra/airlinebilling/outward/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="cra" subproduct="sisbilling.defaults">
+			<descriptor-file-name>client/cra/sisbilling/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="cra" subproduct="sisbilling.inward">
+				<descriptor-file-name>client/cra/sisbilling/inward/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="cra" subproduct="sisbilling.outward">
+				<descriptor-file-name>client/cra/sisbilling/outward/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="gharevenue" subproduct="ghaplanning">
+			<descriptor-file-name>client/gharevenue/ghaplanning/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		
+        	<command-mappings product="mailtracking" subproduct="mra.gpabilling">
+			<descriptor-file-name>client/mailtracking/mra/gpabilling/command.mappings.xml</descriptor-file-name>
+		</command-mappings>        		
+        	<command-mappings product="mailtracking" subproduct="mra.defaults">
+			<descriptor-file-name>client/mailtracking/mra/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>        		
+        	<command-mappings product="mailtracking" subproduct="mra.airlinebilling.defaults">
+			<descriptor-file-name>client/mailtracking/mra/airlinebilling/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>     
+        	<command-mappings product="mailtracking" subproduct="mra.airlinebilling.inward">
+			<descriptor-file-name>client/mailtracking/mra/airlinebilling/inward/command.mappings.xml</descriptor-file-name>
+		</command-mappings>  
+
+        	<command-mappings product="mailtracking" subproduct="mra.airlinebilling.outward">
+			<descriptor-file-name>client/mailtracking/mra/airlinebilling/outward/command.mappings.xml</descriptor-file-name>
+		</command-mappings>  		
+		
+		
+        	<command-mappings product="mailtracking" subproduct="mra.flown">
+			<descriptor-file-name>client/mailtracking/mra/flown/command.mappings.xml</descriptor-file-name>
+		</command-mappings>        
+
+        	<command-mappings product="mailtracking" subproduct="mra.gpareporting">
+			<descriptor-file-name>client/mailtracking/mra/gpareporting/command.mappings.xml</descriptor-file-name>
+		</command-mappings>  
+		<command-mappings product="mailtracking" subproduct="domesticmra">
+					<descriptor-file-name>client/mailtracking/domesticmra/command.mappings.xml</descriptor-file-name>
+		</command-mappings> 				
+		<!--Entries for CRM -->
+				
+		<command-mappings product="crm" subproduct="historicalperformance">
+			<descriptor-file-name>client/crm/historicalperformance/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="crm" subproduct="tariffimpactanalysis">
+			<descriptor-file-name>client/crm/tariffimpactanalysis/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="crm" subproduct="revenueplan">
+			<descriptor-file-name>client/crm/revenueplan/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="crm" subproduct="demandforecasting">
+			<descriptor-file-name>client/crm/demandforecasting/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="crm" subproduct="defaults">
+			<descriptor-file-name>client/crm/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="crm" subproduct="monitoring">
+			<descriptor-file-name>client/crm/monitoring/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="crm" subproduct="flightoptimization">
+			<descriptor-file-name>client/crm/flightoptimization/command.mappings.xml</descriptor-file-name>			
+		</command-mappings>
+
+		<command-mappings product="crm" subproduct="scheduleallotment">
+			<descriptor-file-name>client/crm/scheduleallotment/command.mappings.xml</descriptor-file-name>			
+		</command-mappings>
+		
+		<command-mappings product="crm" subproduct="capacityforecasting">
+			<descriptor-file-name>client/crm/capacityforecasting/command.mappings.xml</descriptor-file-name>			
+		</command-mappings>
+
+		<command-mappings product="crm" subproduct="bookingevaluation">
+			<descriptor-file-name>client/crm/bookingevaluation/command.mappings.xml</descriptor-file-name>			
+		</command-mappings>
+
+
+		<!--Entries for CRM -->
+		
+		<!--Entries for Customs -->
+
+		<command-mappings product="customs" subproduct="defaults">
+			 <descriptor-file-name>client/customs/defaults/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="customs" subproduct="defaults.naccs">
+			<descriptor-file-name>client/customs/defaults/naccs/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="customs" subproduct="message">
+			<descriptor-file-name>client/customs/message/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+
+		<command-mappings product="customs" subproduct="message.ams">
+			<descriptor-file-name>client/customs/message/ams/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="customs" subproduct="message.ics">
+			<descriptor-file-name>client/customs/message/ics/command.mappings.xml</descriptor-file-name>
+		</command-mappings>		
+		<command-mappings product="customs" subproduct="message.naccs">
+			<descriptor-file-name>client/customs/message/naccs/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<!--command-mappings product="customs" subproduct="message.naccs.forwarder">
+			<descriptor-file-name>client/customs/message/naccs/forwarder/command.mappings.xml</descriptor-file-name>
+		</command-mappings-->		
+		
+		<!--Entries for Customs Ends-->
+		
+		<!-- Domestic mail starts -->
+		<command-mappings product="domesticmail" subproduct="mailoperations">
+			<descriptor-file-name>client/domesticmail/mailoperations/command.mappings.xml</descriptor-file-name>
+		</command-mappings>	
+		<!-- Domestic mail ends -->
+		<command-mappings product="cdmp" subproduct="cdmpmasters">
+			<descriptor-file-name>client/cdmp/cdmpmasters/command.mappings.xml</descriptor-file-name>
+		</command-mappings>	
+		<command-mappings product="cdmp" subproduct="routemap">
+			<descriptor-file-name>client/cdmp/routemap/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		
+		<command-mappings product="jobscheduler" subproduct="job">
+			<descriptor-file-name>client/jobscheduler/job/command.mappings.xml</descriptor-file-name>
+		</command-mappings>
+		<command-mappings product="jobscheduler" subproduct="schedule">
+			<descriptor-file-name>client/jobscheduler/schedule/command.mappings.xml</descriptor-file-name>
+		</command-mappings>		
+		
+    	</command-configuration>
+
+	<!-- This is configuration for session mapping for individual subsystems -->
+
+	<session-configuration>
+
+		<session-mappings product="admin" subproduct="accesscontrol" >
+			<descriptor-file-name>client/admin/accesscontrol/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="admin" subproduct="user" >
+			<descriptor-file-name>client/admin/user/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="admin" subproduct="hierarchy" >
+			<descriptor-file-name>client/admin/hierarchy/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="admin" subproduct="monitoring" >
+			<descriptor-file-name>client/admin/monitoring/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+							 
+        <session-mappings product="admin" subproduct="report" >
+			<descriptor-file-name>client/admin/report/session.mappings.xml</descriptor-file-name>
+		</session-mappings>	 
+        <session-mappings product="admin" subproduct="purging" >
+			<descriptor-file-name>client/admin/purging/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="admin" subproduct="defaults" >
+			<descriptor-file-name>client/admin/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>		
+		
+		<session-mappings product="msgbroker" subproduct="message" >
+			<descriptor-file-name>client/msgbroker/message/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="msgbroker" subproduct="config" >
+			<descriptor-file-name>client/msgbroker/config/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="capacity" subproduct="allotment" >
+			<descriptor-file-name>client/capacity/allotment/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="capacity" subproduct="booking" >
+			<descriptor-file-name>client/capacity/booking/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="capacity" subproduct="booking.profile" >
+			<descriptor-file-name>client/capacity/booking/profile/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="capacity" subproduct="booking.permanent" >
+			<descriptor-file-name>client/capacity/booking/permanent/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="capacity" subproduct="monitoring" >
+			<descriptor-file-name>client/capacity/monitoring/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="capacity" subproduct="routing" >
+			<descriptor-file-name>client/capacity/routing/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="capacity" subproduct="mailbidding" >
+			<descriptor-file-name>client/capacity/mailbidding/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="capacity" subproduct="booking.lhpoc" >
+			<descriptor-file-name>client/capacity/booking/lhpoc/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="tariff" subproduct="freight" >
+			<descriptor-file-name>client/tariff/freight/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="tariff" subproduct="others" >
+			<descriptor-file-name>client/tariff/others/session.mappings.xml</descriptor-file-name>
+		</session-mappings>	  
+<!-- Added by A-4421 for ICRD-7208 Starts-->
+		<session-mappings product="tariff" subproduct="tax" >
+			<descriptor-file-name>client/tariff/tax/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+<!-- Added by A-4421 for ICRD-7208 Ends-->
+		<!-- session-mappings product="jto.operations" subproduct="shipment" >
+			<descriptor-file-name>client/jto/operations/shipment/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="jto.operations" subproduct="flthandling" >
+			<descriptor-file-name>client/jto/operations/flthandling/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="jto.operations" subproduct="dochandling" >
+			<descriptor-file-name>client/jto/operations/dochandling/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="jto.flight" subproduct="schedule" >
+			<descriptor-file-name>client/jto/flight/schedule/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="jto.flight" subproduct="operation" >
+			<descriptor-file-name>client/jto/flight/operation/session.mappings.xml</descriptor-file-name>
+		</session-mappings -->
+		<session-mappings product="operations" subproduct="shipment" >
+			<descriptor-file-name>client/operations/shipment/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="operations" subproduct="flthandling" >
+			<descriptor-file-name>client/operations/flthandling/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="operations" subproduct="dochandling" >
+			<descriptor-file-name>client/operations/dochandling/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="flight" subproduct="schedule" >
+			<descriptor-file-name>client/flight/schedule/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="flight" subproduct="operation" >
+			<descriptor-file-name>client/flight/operation/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="revenue" subproduct="longtermplanning" >
+			<descriptor-file-name>client/revenue/longtermplanning/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="revenue" subproduct="planning" >
+			<descriptor-file-name>client/revenue/planning/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="products" subproduct="defaults" >
+			<descriptor-file-name>client/products/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="stockcontrol" subproduct="defaults" >
+			<descriptor-file-name>client/stockcontrol/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="shared" subproduct="embargo" >
+			<descriptor-file-name>client/shared/embargo/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="airportpair" >
+			<descriptor-file-name>client/shared/airportpair/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="delaycode" >
+			<descriptor-file-name>client/shared/delaycode/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="accessory" >
+			<descriptor-file-name>client/shared/accessory/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="customer" >
+			<descriptor-file-name>client/shared/customer/session.mappings.xml</descriptor-file-name>
+		</session-mappings>		
+		<session-mappings product="shared" subproduct="service" >
+			<descriptor-file-name>client/shared/service/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="scc" >
+			<descriptor-file-name>client/shared/scc/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="document" >
+			<descriptor-file-name>client/shared/document/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="citypair" >
+			<descriptor-file-name>client/shared/citypair/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="uld" >
+			<descriptor-file-name>client/shared/uld/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="currency" >
+			<descriptor-file-name>client/shared/currency/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="area.airport" >
+			<descriptor-file-name>client/shared/area/airport/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="area.country" >
+			<descriptor-file-name>client/shared/area/country/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="area.station" >
+			<descriptor-file-name>client/shared/area/station/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="area.city" >
+			<descriptor-file-name>client/shared/area/city/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="area.region.regionmaster" >
+			<descriptor-file-name>client/shared/area/region/regionmaster/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="area.zipcode" >
+			<descriptor-file-name>client/shared/area/zipcode/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+			<session-mappings product="shared" subproduct="area.controloffice" >
+			<descriptor-file-name>client/shared/area/controloffice/session.mappings.xml</descriptor-file-name>
+	  	    </session-mappings>
+		
+		<session-mappings product="shared" subproduct="commodity.commoditymaster" >
+			<descriptor-file-name>client/shared/commodity/commoditymaster/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="aircraft" >
+			<descriptor-file-name>client/shared/aircraft/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="commodity" >
+			<descriptor-file-name>client/shared/commodity/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="dgr" >
+			<descriptor-file-name>client/shared/dgr/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="damagecodes" >
+				<descriptor-file-name>client/shared/damagecodes/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="equipment" >
+			<descriptor-file-name>client/shared/equipment/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="defaults" >
+			<descriptor-file-name>client/shared/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="message" >
+				<descriptor-file-name>client/shared/message/session.mappings.xml</descriptor-file-name>
+		</session-mappings>		
+		<session-mappings product="shared" subproduct="agent" >
+			<descriptor-file-name>client/shared/agent/session.mappings.xml</descriptor-file-name>
+		</session-mappings>		
+		<session-mappings product="shared" subproduct="milestone">
+			<descriptor-file-name>client/shared/milestone/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="airline" >
+			<descriptor-file-name>client/shared/airline/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="defaults.onetime" >
+			<descriptor-file-name>client/shared/defaults/onetime/session.mappings.xml</descriptor-file-name>
+		</session-mappings>		
+ 		<session-mappings product="shared" subproduct="audit">
+ 			<descriptor-file-name>client/shared/audit/session.mappings.xml</descriptor-file-name>
+ 		</session-mappings>   		
+ 		<session-mappings product="shared" subproduct="trade" >
+			<descriptor-file-name>client/shared/trade/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="flightpairing" >
+			<descriptor-file-name>client/shared/flightpairing/session.mappings.xml</descriptor-file-name>
+		</session-mappings> 
+		<session-mappings product="shared" subproduct="cargoplanning" >
+			<descriptor-file-name>client/shared/cargoplanning/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="generalmastergrouping" >
+			<descriptor-file-name>client/shared/generalmastergrouping/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="area.region" >
+			<descriptor-file-name>client/shared/area/region/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="defaults.systemparameter" >
+			<descriptor-file-name>client/shared/defaults/systemparameter/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		
+		<session-mappings product="shared" subproduct="defaults.daterange" >
+			<descriptor-file-name>client/shared/defaults/daterange/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="shared" subproduct="hozeiarea" >
+			<descriptor-file-name>client/shared/hozeiarea/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="workflow" subproduct="defaults" >
+			<descriptor-file-name>client/workflow/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="tracking" subproduct="defaults" >
+			<descriptor-file-name>client/tracking/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<!-- Customer Management -->
+		<session-mappings product="customermanagement" subproduct="defaults" >
+			<descriptor-file-name>client/customermanagement/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="category" >
+			<descriptor-file-name>client/shared/category/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+                <session-mappings product="shared" subproduct="billingperiod" >
+			<descriptor-file-name>client/shared/billingperiod/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="shared" subproduct="billingsite" >
+			<descriptor-file-name>client/shared/billingsite/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<!-- session-mappings product="jto.cashiering" subproduct="defaults" >
+			<descriptor-file-name>client/jto/cashiering/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="jto.accounting" subproduct="invoicing" >
+			<descriptor-file-name>client/jto/accounting/invoicing/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="jto.accounting" subproduct="agentcredit" >
+			<descriptor-file-name>client/jto/accounting/agentcredit/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="jto.accounting" subproduct="airlinebilling" >
+			<descriptor-file-name>client/jto/accounting/airlinebilling/session.mappings.xml</descriptor-file-name>
+		</session-mappings -->
+		<session-mappings product="cashiering" subproduct="defaults" >
+			<descriptor-file-name>client/cashiering/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="accounting" subproduct="invoicing" >
+			<descriptor-file-name>client/accounting/invoicing/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="accounting" subproduct="agentcredit" >
+			<descriptor-file-name>client/accounting/agentcredit/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="accounting" subproduct="airlinebilling" >
+			<descriptor-file-name>client/accounting/airlinebilling/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="claims" subproduct="defaults" >
+			<descriptor-file-name>client/claims/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="cap" subproduct="defaults" >
+			<descriptor-file-name>client/cap/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="sales" subproduct="defaults" >
+			<descriptor-file-name>client/sales/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="mailtracking" subproduct="defaults" >
+			<descriptor-file-name>client/mailtracking/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="warehouse" subproduct="defaults" >
+			<descriptor-file-name>client/warehouse/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="tracing" subproduct="defaults" >
+			<descriptor-file-name>client/tracing/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="uld" subproduct="defaults" >
+			<descriptor-file-name>client/uld/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="courier" subproduct="defaults" >
+			<descriptor-file-name>client/courier/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="slam" subproduct="defaults" >
+			<descriptor-file-name>client/slam/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="cra" subproduct="defaults" >
+			<descriptor-file-name>client/cra/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<!-- added by A-3788 for CRQ: HA106 on 25-Aug-2009 starts -->
+		<session-mappings product="cra" subproduct="defaults.interfaces" >
+			<descriptor-file-name>client/cra/defaults/interfaces/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<!-- added by A-3788 for CRQ: HA106 on 25-Aug-2009 ends -->
+		<session-mappings product="cra" subproduct="defaults.masters" >
+			<descriptor-file-name>client/cra/defaults/masters/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="cra" subproduct="agentbilling.cass" >
+			<descriptor-file-name>client/cra/agentbilling/cass/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="cra" subproduct="agentbilling.noncass" >
+			<descriptor-file-name>client/cra/agentbilling/noncass/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="cra" subproduct="agentbilling.defaults" >
+			<descriptor-file-name>client/cra/agentbilling/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="cra" subproduct="flown" >
+			<descriptor-file-name>client/cra/flown/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="cra" subproduct="salesreport" >
+			<descriptor-file-name>client/cra/salesreport/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="cra" subproduct="proration.defaults" >
+			<descriptor-file-name>client/cra/proration/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="cra" subproduct="proration.interfaces" >
+			<descriptor-file-name>client/cra/proration/interfaces/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="cra" subproduct="airlinebilling.defaults" >
+			<descriptor-file-name>client/cra/airlinebilling/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="cra" subproduct="airlinebilling.inward" >
+			<descriptor-file-name>client/cra/airlinebilling/inward/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="cra" subproduct="airlinebilling.outward" >
+			<descriptor-file-name>client/cra/airlinebilling/outward/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="cra" subproduct="sisbilling.defaults" >
+			<descriptor-file-name>client/cra/sisbilling/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="cra" subproduct="sisbilling.inward" >
+			<descriptor-file-name>client/cra/sisbilling/inward/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="cra" subproduct="sisbilling.outward" >
+			<descriptor-file-name>client/cra/sisbilling/outward/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="cra" subproduct="accounting" >
+			<descriptor-file-name>client/cra/accounting/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="gharevenue" subproduct="ghaplanning">
+			<descriptor-file-name>client/gharevenue/ghaplanning/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="mailtracking" subproduct="mra.gpabilling" >
+			<descriptor-file-name>client/mailtracking/mra/gpabilling/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="mailtracking" subproduct="mra.defaults" >
+			<descriptor-file-name>client/mailtracking/mra/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="mailtracking" subproduct="mra.airlinebilling.defaults" >
+			<descriptor-file-name>client/mailtracking/mra/airlinebilling/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>				
+		<session-mappings product="mailtracking" subproduct="mra.airlinebilling.inward" >
+			<descriptor-file-name>client/mailtracking/mra/airlinebilling/inward/session.mappings.xml</descriptor-file-name>
+		</session-mappings>	
+		<!--Added by A-4704 for ICRD 1126 -->
+		<session-mappings product="mailtracking" subproduct="mra.airlinebilling.outward" >
+			<descriptor-file-name>client/mailtracking/mra/airlinebilling/outward/session.mappings.xml</descriptor-file-name>
+		</session-mappings>		
+		<!--Added by A-4704 for ICRD 1126-->
+		
+		<session-mappings product="mailtracking" subproduct="mra.flown" >
+			<descriptor-file-name>client/mailtracking/mra/flown/session.mappings.xml</descriptor-file-name>
+		</session-mappings>		
+		<session-mappings product="mailtracking" subproduct="mra.gpareporting" >
+			<descriptor-file-name>client/mailtracking/mra/gpareporting/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<!--Entries for CRM -->
+		
+		<session-mappings product="crm" subproduct="historicalperformance">
+			<descriptor-file-name>client/crm/historicalperformance/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="crm" subproduct="tariffimpactanalysis">
+			<descriptor-file-name>client/crm/tariffimpactanalysis/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="crm" subproduct="revenueplan">
+			<descriptor-file-name>client/crm/revenueplan/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="crm" subproduct="demandforecasting">
+			<descriptor-file-name>client/crm/demandforecasting/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="crm" subproduct="defaults" >
+			<descriptor-file-name>client/crm/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="crm" subproduct="monitoring" >
+			<descriptor-file-name>client/crm/monitoring/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="crm" subproduct="flightoptimization" >
+			<descriptor-file-name>client/crm/flightoptimization/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="crm" subproduct="scheduleallotment" >
+			<descriptor-file-name>client/crm/scheduleallotment/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="crm" subproduct="bookingevaluation" >
+			<descriptor-file-name>client/crm/bookingevaluation/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<!--Entries for CRM -->
+		<!--Entries for Customs-->
+		
+		<session-mappings product="customs" subproduct="defaults" >
+					<descriptor-file-name>client/customs/defaults/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="customs" subproduct="defaults.naccs" >
+			<descriptor-file-name>client/customs/defaults/naccs/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="customs" subproduct="message" >
+			<descriptor-file-name>client/customs/message/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+
+		<session-mappings product="customs" subproduct="message.ams" >
+			<descriptor-file-name>client/customs/message/ams/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="customs" subproduct="message.ics" >
+			<descriptor-file-name>client/customs/message/ics/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="customs" subproduct="message.naccs" >
+			<descriptor-file-name>client/customs/message/naccs/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<!--session-mappings product="customs" subproduct="message.naccs.forwarder" >
+			<descriptor-file-name>client/customs/message/naccs/forwarder/session.mappings.xml</descriptor-file-name>
+		</session-mappings-->		
+
+		<!--Entries for Customs-->
+		
+		<!--Entries for Domestic Mail starts-->
+		
+		<session-mappings product="domesticmail" subproduct="mailoperations" >
+			<descriptor-file-name>client/domesticmail/mailoperations/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<!--Entries for Domestic Mail ends-->
+		<session-mappings product="cdmp" subproduct="cdmpmasters" >
+			<descriptor-file-name>client/cdmp/cdmpmasters/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="cdmp" subproduct="routemap" >
+			<descriptor-file-name>client/cdmp/routemap/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		
+		<session-mappings product="jobscheduler" subproduct="job">
+			<descriptor-file-name>client/jobscheduler/job/session.mappings.xml</descriptor-file-name>
+		</session-mappings>
+		<session-mappings product="jobscheduler" subproduct="schedule">
+			<descriptor-file-name>client/jobscheduler/schedule/session.mappings.xml</descriptor-file-name>
+		</session-mappings>			
+		
+
+	</session-configuration>
+
+	<report-configuration>
+		<report-mappings product="capacity">
+			<descriptor-file-name>client/capacity/normal-report-config.xml</descriptor-file-name>
+		</report-mappings>
+		<report-mappings product="msgbroker">
+			<descriptor-file-name>client/msgbroker/normal-report-config.xml</descriptor-file-name>
+		</report-mappings>
+		<report-mappings product="tariff">
+			<descriptor-file-name>client/tariff/normal-report-config.xml</descriptor-file-name>
+		</report-mappings>
+		<report-mappings product="operations">
+			<descriptor-file-name>client/operations/normal-report-config.xml</descriptor-file-name>
+		</report-mappings>
+		<!-- report-mappings product="jto.operations">
+			<descriptor-file-name>client/jto/operations/normal-report-config.xml</descriptor-file-name>
+		</report-mappings -->
+		<report-mappings product="revenue">
+			<descriptor-file-name>client/revenue/normal-report-config.xml</descriptor-file-name>
+		</report-mappings>
+		<report-mappings product="flight">
+			<descriptor-file-name>client/flight/normal-report-config.xml</descriptor-file-name>
+		</report-mappings>		
+		<report-mappings product="products">
+			<descriptor-file-name>client/products/normal-report-config.xml</descriptor-file-name>
+		</report-mappings>
+		<report-mappings product="tracking">
+			<descriptor-file-name>client/tracking/normal-report-config.xml</descriptor-file-name>
+		</report-mappings>	   
+	   	<report-mappings product="uld">	   	
+	   		<descriptor-file-name>client/uld/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>
+		<report-mappings product="claims">	   	
+			<descriptor-file-name>client/claims/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>
+		<report-mappings product="sales">	   	
+			<descriptor-file-name>client/sales/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>
+		
+		<report-mappings product="cashiering">	   	
+			<descriptor-file-name>client/cashiering/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>
+		
+		<report-mappings product="accounting">	   	
+			<descriptor-file-name>client/accounting/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>
+		<!-- report-mappings product="jto.cashiering">	   	
+			<descriptor-file-name>client/jto/cashiering/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>
+		
+		<report-mappings product="jto.accounting">	   	
+			<descriptor-file-name>client/jto/accounting/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings -->
+		
+		<report-mappings product="tracing">	   	
+					<descriptor-file-name>client/tracing/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>
+		
+		<report-mappings product="warehouse">	   	
+					<descriptor-file-name>client/warehouse/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>
+		<report-mappings product="mailtracking">	   	
+			<descriptor-file-name>client/mailtracking/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>
+		<report-mappings product="cap">	   	
+			<descriptor-file-name>client/cap/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>
+		
+		<report-mappings product="stockcontrol">	   	
+				<descriptor-file-name>client/stockcontrol/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>
+		
+		<report-mappings product="shared">	   	
+				<descriptor-file-name>client/shared/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>		
+		<report-mappings product="cra">	   	
+			<descriptor-file-name>client/cra/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>
+		<report-mappings product="customermanagement">
+			<descriptor-file-name>client/customermanagement/normal-report-config.xml</descriptor-file-name>
+		</report-mappings>
+		<report-mappings product="crm">	   	
+				<descriptor-file-name>client/crm/normal-report-config.xml</descriptor-file-name>	   	
+		</report-mappings>	
+		<report-mappings product="admin">
+			<descriptor-file-name>client/admin/normal-report-config.xml</descriptor-file-name>
+		</report-mappings>
+		<report-mappings product="customs">
+			<descriptor-file-name>client/customs/normal-report-config.xml</descriptor-file-name>
+		</report-mappings>
+
+			
+	</report-configuration>
+	
+	<!-- for chart configurations -->
+	<chart-configuration>
+		<chart-global-configuration>
+			<descriptor-file-name>chart/chart-global-config.xml</descriptor-file-name>
+		</chart-global-configuration>
+		
+		<chart-mappings product="crm" subproduct="historicalperformance">
+			<descriptor-file-name>chart/crm/historicalperformance/chart.mappings.xml</descriptor-file-name>
+		</chart-mappings>
+
+		<chart-mappings product="crm" subproduct="demandforecasting">
+				<descriptor-file-name>chart/crm/demandforecasting/chart.mappings.xml</descriptor-file-name>
+		</chart-mappings>
+
+		<chart-mappings product="crm" subproduct="revenueplan">
+			<descriptor-file-name>chart/crm/revenueplan/chart.mappings.xml</descriptor-file-name>
+		</chart-mappings>
+
+		<chart-mappings product="crm" subproduct="monitoring">
+				<descriptor-file-name>chart/crm/monitoring/chart.mappings.xml</descriptor-file-name>
+		</chart-mappings>
+		
+		<!-- chart-mappings product="module1" subproduct="submodule1">
+			<descriptor-file-name>chart/module1/submodule1/chart.mappings.xml</descriptor-file-name>
+		</chart-mappings -->
+		<chart-mappings product="operations" subproduct="flthandling.loadplan">
+			<descriptor-file-name>chart/operations/flthandling/chart.mappings.xml</descriptor-file-name>
+		</chart-mappings>
+		<chart-mappings product="capacity" subproduct="monitoring">
+			<descriptor-file-name>chart/capacity/monitoring/chart.mappings.xml</descriptor-file-name>
+		</chart-mappings>
+	</chart-configuration>
+
+	<!-- Details of all products configured in the platform -->
+	<!-- A platform configuration should have at least one product and each product should have at least one subproduct -->
+
+</icargo>
+ 

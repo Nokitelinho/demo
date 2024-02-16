@@ -1,0 +1,58 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+	<html>
+	<head>
+ 		<jsp:include page="/jsp/includes/app/appheader.jsp" />
+		<title>Consignment Security Declaration</title>
+		<script>
+			var fromScreen = '<%=request.getParameter("fromScreen")%>'
+			var conDocNo = '<%=request.getParameter("conDocNo")%>';
+			var paCode = '<%=request.getParameter("paCode")%>';
+			var pageURL = '<%=request.getParameter("pageURL")%>';
+			var screenAction = "mail.operations.ux.consignmentsecuritydeclaration.defaultscreenload.do";
+
+			function getScreenConfig() {
+				var newobj = window.__extends({}, screenCfg, {
+					__rehydrate: false,
+					fromScreen: fromScreen,
+                    screenAction: screenAction
+				});
+				console.log('newObj', newobj);
+				return newobj
+			}
+		</script>
+        <common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+	</head>
+
+	<body>
+		<!-- The DIV container for redering results from react -->
+        <div id="container" class="main-container"></div>
+		<jsp:include page="/jsp/includes/app/appfooter.jsp" />
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" /> 
+        {{/each}}
+		<jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+		<%@include file="/jsp/includes/reports/printFrame.jsp"%>
+
+		<script>
+			if (fromScreen === 'mail.operations.ux.consignment') {
+                console.log('here111');
+                appBridge.renderApp(function () {
+                    console.log('here121');
+                    //console.log(consignmentFilter);
+                    appBridge.dispatchAction({
+                        type: 'SECURITY_FILTER',
+                        data: { 'conDocNo': conDocNo ,'paCode':paCode ,  'fromScreen': fromScreen, 'pageURL': pageURL}
+                    })
+                });
+            }
+            else {
+			appBridge.renderApp();
+			}
+		</script>
+
+	</body>
+
+	</html>

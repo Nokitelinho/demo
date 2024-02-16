@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
+	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	
+	<input name="companyCode" required="true" />	
+	<input name="regenerateFlag" required="true" />	
+	<input name="fileName" required="true" />	
+	<input name="fromDate" required="true" />	
+	<input name="toDate" required="true" />	
+	
+	<action-state id="generateMailBillingInterfaceFile">
+		<evaluate expression="kEMRADefaultsController.generateMailBillingInterfaceFile(companyCode,regenerateFlag,fileName,fromDate,toDate)"
+		result="flowScope.fileNameReturned" />
+			<transition to="KE_end" />		
+		<!--<transition to="generateMailBillingInterfaceFile_Flow" />		 -->  
+	</action-state>
+	
+	<!--<action-state id="generateMailBillingInterfaceFile_Flow">
+		<evaluate expression="mRADefaultscontroller.generateMailBillingInterfaceFile(fileNameReturned)" 
+		result="flowScope.fileNameReturned" />
+		<transition to="KE_end" />		   
+	</action-state>-->
+	
+	<end-state id="KE_end">
+		<output name="fileNameReturned" />
+	</end-state>
+</flow>	

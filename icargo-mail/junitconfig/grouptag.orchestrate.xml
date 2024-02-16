@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grp:Group companyCode="IBS" xmlns:grp="http://www.ibsplc.com/icargo/business/orchestrate" >
+	<grp:system-level enabled="true"/>
+	
+	<grp:Subgroup id="CLOUD_RESTRICTION" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler" canSkip="true">
+			<grp:properties>
+				<grp:property key="airlinecodes" value="LH,AV"/>
+			</grp:properties>
+	</grp:Subgroup>
+
+	<grp:Subgroup id="INDIGO_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="6E"/>
+		</grp:properties>
+	</grp:Subgroup>
+	
+	<grp:Subgroup id="CONTROL_OFFICE" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="LH"/>
+		</grp:properties>
+	</grp:Subgroup>
+
+	<grp:Subgroup id="ALLOTMENT_ADDITIONAL_PARAMS" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="LH"/>
+		</grp:properties>
+	</grp:Subgroup>
+	
+	<grp:Subgroup id="LUFTHANSA_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="LH"/>
+		</grp:properties>
+	</grp:Subgroup>
+		
+	<grp:Subgroup id="IRREGULARITY_CAPTURE" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="LH"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!-- Added by A-5291 for ICRD-33359 -->
+	<grp:Subgroup id="JTO_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="ICT,TT,NH"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!-- Added by A-5291 for ICRD-33359 ends-->
+	
+	<!-- Added by A-5223 for ICRD-32569 starts-->
+	<grp:Subgroup id="VERSION_NUM_EXPMFTRPT" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="LH"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!-- Added by A-5223 for ICRD-32569 ends-->
+	
+	<!-- Added by A-5117 for ICRD-36065  starts-->
+	<grp:Subgroup id="AWB_PRINT_TERMS_AND_CONDITIONS" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="LH"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!-- Added by A-5117 for ICRD-36065  ends-->
+	
+	<!-- Added by A-5117 for CRQ ICRD-27273  starts-->
+	<grp:Subgroup id="AES_NUMBER_IN_EXPORTMANIFEST" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="LH"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<grp:Subgroup id="PREADVICE_IN_EXPORTMANIFEST" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="LH"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!-- Added by A-5117 for CRQ ICRD-27273 ends-->
+	<!-- Added by A-5135 for CRQ ICRD-25036 starts-->
+	<grp:Subgroup id="LOADPLAN" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler"> 
+		<grp:properties> 
+			<grp:property key="companycodes" value="LH"/> 
+		</grp:properties> 
+	</grp:Subgroup>
+	<!-- Added by A-5135 for CRQ ICRD-25036 ends-->
+	<!-- Added by A-5237 for CRQ ICRD-21203  starts-->
+	<grp:Subgroup id="MIP_ERROR_CODES" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="LH"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!-- Added by A-5237 for CRQ ICRD-21203  ends-->
+	<grp:Subgroup id="DOCUMENT_REFERENCE" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="IBS"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<grp:Subgroup id="COMPLIANCE" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="LH"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!-- Added by A-5497 for CRQ ICRD-79635  ends-->
+	<grp:Subgroup id="DISPLAY_STAFF_ID" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler"> 
+		<grp:properties>
+			<grp:property key="disallowedcompanycodes" value="LH"/> 
+		</grp:properties>
+	</grp:Subgroup>
+	<!--Added by A-5165 for iCRD-35135-->
+	<grp:Subgroup id="CUSTOMER_OTHERS" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler"> 
+		<grp:properties> 
+			<grp:property key="companycodes" value="6E,TK"/> 
+		</grp:properties> 
+	</grp:Subgroup> 
+	<!--Added by A-5165 for iCRD-35135 ends-->
+	<!--Added by A-5526 for iCRD-40353-->
+	<grp:Subgroup id="TURKISH_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="TK"/>
+		</grp:properties>
+	</grp:Subgroup>
+   <!-- Added by A-5526 for ICRD-40353 ends-->
+   <!-- Added by A-5525 for ICRD-54609 -->
+   	<grp:Subgroup id="SHIPMENT_DESC_CCA_RPT" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="TK"/>
+		</grp:properties>
+	</grp:Subgroup>
+   <!-- Added by A-5525 for ICRD-54609 ends-->
+   <!-- Added by A-6371 for ICRD-83340 ends-->
+<grp:Subgroup id="SINGAPORE_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="SQ"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!--Added by A-5500 for ICRD-85927 starts-->
+	<grp:Subgroup id="RESTRICT_MONTREAL_TERMS_CONDN_INT_SHP" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value=""/>
+		</grp:properties>
+	</grp:Subgroup>
+	<grp:Subgroup id="RESTRICT_MONTREAL_TERMS_CONDN_DOM_SHP" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="PG,VA"/>
+		</grp:properties>
+	</grp:Subgroup>
+   <grp:Subgroup id="TERMS_CONDN_CUSTOM_TMPL_ONE_DOM_SHP" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="PG"/>
+		</grp:properties>
+	</grp:Subgroup>
+   <!--Added by A-5500 for ICRD-85927 ends-->   
+   <grp:Subgroup id="VA_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="VA"/>
+		</grp:properties>
+	</grp:Subgroup>   
+   <!--Added by A-6311 for ICRD-93055 starts-->
+   <grp:Subgroup id="TERMS_CONDN_CUSTOM_TMPL_TWO_INT_SHP " handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="PG,VA"/>
+		</grp:properties>
+	</grp:Subgroup>
+   <grp:Subgroup id="RESTRICT_MONTREAL_TERMS_CONDN_INT_SHP" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="PG"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!--Added by A-6311 for ICRD-93055 ends-->
+   <!-- Added by A-3415 for ANA Domestic Booking ICRD-87719 -->
+	<grp:Subgroup id="ANA_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="NH"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!-- Added by A-3415 for ANA Domestic Booking ICRD-87719 ends-->
+	<!-- Added by J-1116 for ANA Domestic Booking ICRD-86810 Starts-->
+	<grp:Subgroup id="RESTRICT_ANA" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="disallowedcompanycodes" value="NH"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!-- Added by J-1116 for ANA Domestic Booking ICRD-86810 ends-->
+	
+	<grp:Subgroup id="RESTRICT_PASSWORD_SQ" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="disallowedcompanycodes" value="SQ"/>
+		</grp:properties>
+	</grp:Subgroup>
+	
+	
+	
+	<grp:Subgroup id="RESTRICT_LH" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="disallowedcompanycodes" value="LH"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!--Added by A-6226 for ICRD-128514 starts here-->
+	<grp:Subgroup id="VIRGINAUSTRALIA_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="VA"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<!--Added by A-6226 for ICRD-128514 ends here-->
+<!--Added by A-5807 for CR ICRD-110829-->
+	<grp:Subgroup id="BOOKING_BASED_NOTOC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="NH"/>
+		</grp:properties>
+	</grp:Subgroup>
+<grp:Subgroup id="NAS_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="NAS"/>
+		</grp:properties>
+	</grp:Subgroup>
+<grp:Subgroup id="BOOKING_AWB_TEMPLATE" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="IBS"/>
+		</grp:properties>
+	</grp:Subgroup>
+	<grp:Subgroup id="TIACT_JTO_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="TAT"/>
+		</grp:properties>
+	</grp:Subgroup>
+	
+	<grp:Subgroup id="DIMSAPP_INTEGRATION" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="IBS"/>
+		</grp:properties>
+	</grp:Subgroup>	
+	<grp:Subgroup id="TAP_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="TP"/>
+		</grp:properties>
+	</grp:Subgroup>	
+	<grp:Subgroup id="S7_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="companycodes" value="S7"/>
+		</grp:properties>
+	</grp:Subgroup>	
+	<grp:Subgroup id="RESTRICT_S7" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="disallowedcompanycodes" value="S7"/>
+		</grp:properties>
+	</grp:Subgroup>	   
+
+<!-- Currently DNAE is only configured under the below group-tag. Ideally all the available child company codes under DNATA parent company should be configured-->
+	<grp:Subgroup id="DNATA_ALL_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+	  <grp:properties>
+		<grp:property key="companycodes" value="DNATA"/>
+	  </grp:properties>
+	</grp:Subgroup>
+	<!--Added by A-8403 for IASCB-1178 ends-->
+	<grp:Subgroup id="RESTRICT_DNATA_SPECIFIC" handler="com.ibsplc.icargo.business.shared.defaults.orchestration.handler.DefaultOrchestrationHandler">
+		<grp:properties>
+			<grp:property key="disallowedcompanycodes" value="DNATA"/>
+		</grp:properties>
+	</grp:Subgroup>
+</grp:Group>

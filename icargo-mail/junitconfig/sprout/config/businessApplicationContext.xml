@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> 
+ 
+	<aop:config>
+		<aop:pointcut id="intercept"
+			expression="@annotation(com.ibsplc.xibase.server.framework.interceptor.Advice) 
+			or @annotation(com.ibsplc.xibase.server.framework.interceptor.Advices)"/>
+			
+		<aop:pointcut id="preprocess"
+			expression="@annotation(com.ibsplc.icargo.framework.util.interceptor.annotation.Preprocess)"/>
+			
+		<aop:pointcut id="eventGenerator"
+			expression="@annotation(com.ibsplc.icargo.framework.event.annotations.Raise)"/>				
+		<aop:pointcut id="eventPointcut"
+			expression="execution(* com.ibsplc.icargo.framework.event.*.*(..))"/>
+			
+			
+		<aop:advisor advice-ref="defaultAdvice" pointcut-ref="intercept" />
+		<aop:advisor advice-ref="defaultPreprocessingInterceptor" pointcut-ref="preprocess" />
+        <aop:advisor advice-ref="eventInterceptor" pointcut-ref="eventGenerator" />
+		<aop:advisor advice-ref="eventLoggingInterceptor" pointcut-ref="eventGenerator" />
+		<aop:advisor advice-ref="loggingInterceptor" pointcut-ref="eventPointcut" />
+		<aop:advisor advice-ref="errorHandlingInterceptor" pointcut-ref="eventPointcut" />		
+	</aop:config>
+	
+	<aop:aspectj-autoproxy expose-proxy="true"/>
+	
+	<bean id="defaultAdvice" class="com.ibsplc.xibase.server.framework.interceptor.DefaultAdvice"/>		
+	<bean id="defaultPreprocessingInterceptor" class="com.ibsplc.icargo.framework.util.interceptor.DefaultPreprocessingInterceptor"/>	
+	<bean id="eventInterceptor" class="com.ibsplc.icargo.framework.event.interceptor.EventInterceptor"/>
+	<bean id="eventBus" class="com.ibsplc.icargo.framework.event.EventBus"/>
+
+	<!-- EventBus Interceptor chain elements -->
+	<bean id="eventLoggingInterceptor" class="com.ibsplc.icargo.framework.event.interceptor.LoggingInterceptor"/>		
+	<bean id="errorHandlingInterceptor" class="com.ibsplc.icargo.framework.event.interceptor.ErrorHandlingInterceptor"/>		
+	<!-- End EventBus Interceptor chain elements -->	
+	<context:component-scan base-package="com.ibsplc.icargo.business" >
+			<context:include-filter type="assignable" expression="com.ibsplc.icargo.framework.evaluator.Evaluator"/>
+	</context:component-scan> 
+	<context:component-scan base-package="com.ibsplc.icargo.framework.feature" /> 
+	
+</beans>

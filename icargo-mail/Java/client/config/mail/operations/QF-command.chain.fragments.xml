@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<command-mappings xmlns="http://www.ibsplc.com/icargo/command/mappings" product="mail" subproduct="operations">
+
+		  <screen name="Uldtag" id="mail.operations.ux.uldtag">
+		  	<action name="mail.operations.ux.printuldtag" >
+			<command class="com.ibsplc.icargo.presentation.web.command.xaddons.qf.mail.operations.ux.uldtag.QFExternalAPIPrintULDCommand" order="1" />
+		</action>
+		</screen>
+		<screen name="PrintMailTag" id="mailtracking.defaults.printmailtag">
+		<action name="mailtracking.defaults.printmailtag.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.xaddons.qf.mail.operations.ux.mailtag.ExternalPrintUpdateCommand" order="2"/>
+		</action>
+		<action name="mailtracking.defaults.printmailtag.print" >
+			<command class="com.ibsplc.icargo.presentation.web.command.xaddons.qf.mail.operations.ux.mailtag.PrintCommand" order="1"/>
+		</action>
+		</screen>
+		<screen name="MaintainConsignment" id="mail.operations.ux.consignment">
+		<action name="mail.operations.ux.consignment.printmailtag" >
+			<command class="com.ibsplc.icargo.presentation.web.command.xaddons.qf.mail.operations.ux.mailtag.PrintMailtagCommand" order="1"/>
+		</action>
+			
+	</screen>
+	<screen name="MailTagExternalPrintGateway" id="mailtracking.defaults.externalmailtagprint">
+		<action name="mailtracking.defaults.printmailtag.externalprinttag">	
+			<command class="com.ibsplc.icargo.presentation.web.command.xaddons.qf.mail.operations.ux.mailtag.MailTagExternalPrintCommand" order="1"/>
+	  </action>
+	</screen>
+</command-mappings>

@@ -1,0 +1,1230 @@
+<?xml version="1.0"?>
+<!--The file contains mapping information for request URI and to its corresponding handler
+and  screen. There will be entries for each request URI which need to be mapped.
+This file is used to build request mapping objects.-->
+
+<request-mappings>
+
+    <url-mapping url="shared">
+	   	
+   	<submodule-mapping submodule="flightpairing">
+    		<request-service-name>SHARED_FLIGHTPAIRING</request-service-name>
+    		<request-action actionName="saveFlightPairs" methodName="saveFlightPairs" parameterTypes="java.util.ArrayList" permissionCheck="false"/>
+    		<request-action actionName="listFlightPairs" methodName="listFlightPairs" parameterTypes="com.ibsplc.icargo.business.shared.flightpairing.vo.FlightPairingVO" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	</submodule-mapping>
+    	<submodule-mapping submodule="airline">
+	    <request-service-name>SHARED_AIRLINE</request-service-name>
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="validateAlphaCode" methodName="validateAlphaCode" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateAlphaCodes" methodName="validateAlphaCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateNumericCode" methodName="validateNumericCode" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<!-- Added by A-5132 as part of ICRD-21165 starts -->
+		<request-action actionName="validateNumericCodesWithDate" methodName="validateNumericCodesWithDate" parameterTypes="java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.GMTDate" permissionCheck="false"/>
+		<!-- Added by A-5132 as part of ICRD-21165 ends -->
+		<request-action actionName="validateAlphaCodeWithDate" methodName="validateAlphaCodeWithDate" parameterTypes="java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.GMTDate" permissionCheck="false"/>
+		<request-action actionName="isAirportCertificationValid" methodName="isAirportCertificationValid" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int" permissionCheck="false"/>
+		<request-action actionName="findAirlineLov" methodName="findAirlineLov" parameterTypes="com.ibsplc.icargo.business.shared.airline.vo.AirlineLovFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findAirline" methodName="findAirline" parameterTypes="java.lang.String,int" permissionCheck="false"/>
+		<request-action actionName="saveAirline" methodName="saveAirline" parameterTypes="com.ibsplc.icargo.business.shared.airline.vo.AirlineVO" permissionCheck="false"/>
+		<request-action actionName="findAutoBlockedAirlines" methodName="findAutoBlockedAirlines" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+	    <request-action actionName="setAutoBlock" methodName="setAutoBlock" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="checkForAutoBlock" methodName="checkForAutoBlock" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false"/>
+		<request-action actionName="findAirlineParametersByCode" methodName="findAirlineParametersByCode" parameterTypes="java.lang.String,int,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAirlineLovforHHT" methodName="findAirlineLovforHHT" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAirlines" methodName="findAirlines" parameterTypes="com.ibsplc.icargo.business.shared.airline.vo.AirlineFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findAirlineDetails" methodName="findAirlineDetails" parameterTypes="java.lang.String,int" permissionCheck="false"/>
+		<request-action actionName="findAllAirlineParameters" methodName="findAllAirlineParameters" parameterTypes="java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAllPartnerAirlines" methodName="findAllPartnerAirlines" parameterTypes="java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findDetailsForAirlines" methodName="findDetailsForAirlines" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateAirline" methodName="validateAirline" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="validateNumericCodes" methodName="validateNumericCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findOwnAirlines" methodName="findOwnAirlines" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="findHandledCarriers" methodName="findHandledCarriers" parameterTypes="com.ibsplc.icargo.business.shared.airline.vo.AirlineFilterVO" permissionCheck="false" />	
+        <request-action actionName="listAirlineAirportCity" methodName="listAirlineAirportCity" parameterTypes="com.ibsplc.icargo.business.shared.airline.vo.AirlineAirportCityFilterVO,int" permissionCheck="false" />
+	 	<request-action actionName="saveAirlineAirportCity" methodName="saveAirlineAirportCity" parameterTypes="java.util.Collection" permissionCheck="false" /> 
+	   <request-action actionName="findAirlineGroups" methodName="findAirlineGroups" parameterTypes="java.lang.String" permissionCheck="false" />
+	   <request-action actionName="getCityAirport" methodName="getCityAirport" parameterTypes="com.ibsplc.icargo.business.shared.airline.vo.AirlineAirportCityFilterVO" permissionCheck="false" />
+<!--<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />-->
+		<request-action actionName="saveAirlineAirportParameters" methodName="saveAirlineAirportParameters" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAirlineAirportParameters" methodName="findAirlineAirportParameters" parameterTypes="com.ibsplc.icargo.business.shared.airline.vo.AirlineAirportParameterFilterVO" permissionCheck="false" /> 
+		<request-action actionName="displayCRAAirlineDetails" methodName="displayCRAAirlineDetails" parameterTypes="com.ibsplc.icargo.business.cra.defaults.vo.CRAAirlineFilterVO" permissionCheck="false" />
+		<request-action actionName="saveCRAAirline" methodName="saveCRAAirline" parameterTypes="com.ibsplc.icargo.business.cra.defaults.vo.CRAAirlineVO" permissionCheck="false" />
+		<request-action actionName="validateInvoicesForCRAAirlineMaster" methodName="validateInvoicesForCRAAirlineMaster" parameterTypes="com.ibsplc.icargo.business.cra.defaults.vo.CRAAirlineVO" permissionCheck="false" />
+		<request-action actionName="validateBillingAirlineDetails" methodName="validateBillingAirlineDetails" parameterTypes="com.ibsplc.icargo.business.cra.defaults.vo.CRAAirlineFilterVO" permissionCheck="false"/>
+	    <request-action actionName="findAirlineId" methodName="findAirlineId" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateULDTypeCodes" methodName="validateULDTypeCodes" parameterTypes="java.lang.String, java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateOwnerCode" methodName="validateOwnerCode" parameterTypes="java.lang.String, java.lang.String, java.lang.String" permissionCheck="false"/>
+		<!--Added by A-5791 for ICRD-114443 -->
+		<request-action actionName="findAirlineChildDetails" methodName="findAirlineChildDetails" parameterTypes="java.lang.String, java.lang.String" permissionCheck="false" />
+		<!--Added by A-5525 for ICRD-162716 starts-->
+		<request-action actionName="findAllAirlineDetails" methodName="findAllAirlineDetails" parameterTypes="com.ibsplc.icargo.business.shared.airline.vo.AirlineFilterVO" permissionCheck="false" />
+		<!--Added by A-5525 for ICRD-162716 ends-->
+		
+		<request-action actionName="findAllPartnerAirlineDetails" methodName="findAllPartnerAirlineDetails" parameterTypes="java.lang.String" permissionCheck="false" />
+	
+	</submodule-mapping>
+
+	<submodule-mapping submodule="aircrafttype">
+		<request-service-name>SHARED_AIRCRAFTTYPE</request-service-name>
+		<request-action actionName="doLoadabilityCheck" methodName="doLoadabilityCheck" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="findAircraftTypeCapacity" methodName="findAircraftTypeCapacity" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAircraftTypeLov" methodName="findAircraftTypeLov" parameterTypes="com.ibsplc.icargo.business.shared.aircraft.vo.AircraftTypeLovFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findCapacitiesforAircraftTypes" methodName="findCapacitiesforAircraftTypes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findDefaultUldConfig" methodName="findDefaultUldConfig" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+	    <request-action actionName="findUldConfig" methodName="findUldConfig" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAvailableUldConfig" methodName="findAvailableUldConfig" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateAircraftTypeCodes" methodName="validateAircraftTypeCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAircraftDetails" methodName="findAircraftDetails" parameterTypes="com.ibsplc.icargo.business.shared.aircraft.vo.AircraftFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findAircraftMasterDetails" methodName="findAircraftMasterDetails" parameterTypes="com.ibsplc.icargo.business.shared.aircraft.vo.AircraftFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveAircraftMasterDetails" methodName="saveAircraftMasterDetails" parameterTypes="com.ibsplc.icargo.business.shared.aircraft.vo.AircraftMasterVO" permissionCheck="false"/>
+		<request-action actionName="modifyAircraftTypeStatus" methodName="modifyAircraftTypeStatus" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAircraftTypeDetails" methodName="findAircraftTypeDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAvailableUldConfigForEquipment" methodName="findAvailableUldConfigForEquipment" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAircraftCommitmentCapacity" methodName="findAircraftCommitmentCapacity" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false"/>
+		<request-action actionName="saveAircraftCommitmentCapacity" methodName="saveAircraftCommitmentCapacity" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<!-- Added for ICRD-22432 starts-->
+		<request-action actionName="isAircraftTypeConfigInUse" methodName="isAircraftTypeConfigInUse" parameterTypes="java.lang.String,java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<!-- Added for ICRD-22432 ends-->
+		
+		<!-- Added for ICRD-67032 by A-5163 starts -->
+		<request-action actionName="findAircraftMasterHistoryVersions" methodName="findAircraftMasterHistoryVersions" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<!-- Added for ICRD-67032 by A-5163 ends -->
+		
+		<!-- Added as part of ICRD-27656 starts -->
+		<request-action actionName="findAircraftULDConfigurationDetails" methodName="findAircraftULDConfigurationDetails" parameterTypes="com.ibsplc.icargo.business.shared.aircraft.vo.AircraftTypeValidationVO" permissionCheck="false"/>
+		<!--Added by A-5497 for ICRD-52882 --> 
+		<request-action actionName="findAircraftExceptions" methodName="findAircraftExceptions" parameterTypes="com.ibsplc.icargo.business.shared.aircraft.vo.ExceptionFilterVO" permissionCheck="false"/>
+		<!--Added by A-5497 for ICRD-52882 Ends--> 
+		<!-- Added as part of ICRD-27656 ends -->
+<!--<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />-->
+	    <request-action actionName="findAircraftExceptionPeriods" methodName="findAircraftExceptionPeriods" parameterTypes="com.ibsplc.icargo.business.shared.aircraft.vo.ExceptionFilterVO" permissionCheck="false"/>
+		<request-action actionName="processPayLoad" methodName="processPayLoad" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false"/>
+		<request-action actionName="findAircraftLoadingDetails" methodName="findAircraftLoadingDetails" parameterTypes="com.ibsplc.icargo.business.shared.aircraft.vo.AircraftFilterVO" permissionCheck="false"/>
+		<request-action actionName="isLoadabilityChartEmpty" methodName="isLoadabilityChartEmpty" parameterTypes="java.lang.String,java.util.Collection,java.lang.String,boolean" permissionCheck="false"/>
+		<request-action actionName="saveAircraftStowageLossConfiguration" methodName="saveAircraftStowageLossConfiguration" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAircraftStowageLossConfiguration" methodName="findAircraftStowageLossConfiguration" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAircraftExceptionDetails" methodName="findAircraftExceptionDetails" parameterTypes="com.ibsplc.icargo.business.shared.aircraft.vo.ExceptionFilterVO" permissionCheck="false"/>
+		<request-action actionName="findSystemParameterByCodes" methodName="findSystemParameterByCodes" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="saveAircraftULDTypeMappings" methodName="saveAircraftULDTypeMappings" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="saveAircraftMaxPositionMappings" methodName="saveAircraftMaxPositionMappings" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findAircraftAdditionalLoadingDetails" methodName="findAircraftAdditionalLoadingDetails" parameterTypes="com.ibsplc.icargo.business.shared.aircraft.vo.AircraftFilterVO" permissionCheck="false"/>
+	</submodule-mapping>
+
+	<submodule-mapping submodule="airport">
+		<request-service-name>SHARED_AIRPORT</request-service-name>
+<!--		&lt;request-action actionName=&quot;validateAirportCode&quot; methodName=&quot;validateAirportCode&quot; parameterTypes=&quot;java.lang.String,java.lang.String&quot; permissionCheck=&quot;false&quot; /&gt;
+		&lt;request-action actionName=&quot;validateAirportCodes&quot; methodName=&quot;validateAirportCodes&quot; parameterTypes=&quot;java.lang.String,java.util.Collection&quot; permissionCheck=&quot;false&quot; /&gt;
+		&lt;request-action actionName=&quot;findAirportLov&quot; methodName=&quot;findAirportLov&quot; parameterTypes=&quot;com.ibsplc.icargo.business.shared.airport.vo.AirportLovFilterVO,int&quot; permissionCheck=&quot;false&quot; /&gt;
+		&lt;request-action actionName=&quot;findAutoBlockedAirports&quot; methodName=&quot;findAutoBlockedAirports&quot; parameterTypes=&quot;java.lang.String,java.lang.String&quot; permissionCheck=&quot;false&quot; /&gt;
+		&lt;request-action actionName=&quot;setAutoBlock&quot; methodName=&quot;setAutoBlock&quot; parameterTypes=&quot;java.lang.String,java.util.Collection&quot; permissionCheck=&quot;false&quot; /&gt;
+	    &lt;request-action actionName=&quot;checkForAutoBlock&quot; methodName=&quot;checkForAutoBlock&quot; parameterTypes=&quot;java.lang.String,java.lang.String,java.lang.String,java.lang.String&quot; permissionCheck=&quot;false&quot; /&gt;-->
+	<!-- added by kiran starts -->
+<!--  	 &lt;request-action actionName=&quot;listAirportMasterDetails&quot; methodName=&quot;listAirportMasterDetails&quot; parameterTypes=&quot;com.ibsplc.icargo.business.shared.airport.vo.AirportListFilterVO&quot; permissionCheck=&quot;false&quot; /&gt;
+     &lt;request-action actionName=&quot;saveAirportMasterDetails&quot; methodName=&quot;saveAirportMasterDetails&quot; parameterTypes=&quot;com.ibsplc.icargo.business.shared.airport.vo.AirportVO&quot; permissionCheck=&quot;false&quot; /&gt;
+	 &lt;request-action actionName=&quot;listAirports&quot; methodName=&quot;listAirports&quot; parameterTypes=&quot;com.ibsplc.icargo.business.shared.airport.vo.AirportListFilterVO&quot; permissionCheck=&quot;false&quot; /&gt;
+	 &lt;request-action actionName=&quot;changeStatus&quot; methodName=&quot;changeStatus&quot; parameterTypes=&quot;java.util.Collection&quot; permissionCheck=&quot;false&quot; /&gt; -->
+	<!-- added by kiran ends -->
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	</submodule-mapping>
+		
+	<submodule-mapping submodule="area">
+		<request-service-name>SHARED_AREA</request-service-name>
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="updateRegionPriority" methodName="updateRegionPriority" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="updateAirportPriority" methodName="updateAirportPriority" parameterTypes="java.util.Collection,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAirportForPriority" methodName="findAirportForPriority" parameterTypes="com.ibsplc.icargo.business.shared.area.region.vo.RegionFilterVO" permissionCheck="false"/>
+		<request-action actionName="findRegionForPriority" methodName="findRegionForPriority" parameterTypes="com.ibsplc.icargo.business.shared.area.region.vo.RegionFilterVO" permissionCheck="false"/>
+		<!-- Added by A-5117 for ICRD-26788 STARTS ->>>      -->
+		<request-action actionName="findAllParametersForAirline" methodName="findAllParametersForAirline" parameterTypes="java.lang.String" permissionCheck="false"/>
+		<!-- Added by A-5117 for ICRD-26788 ENDS ->>>      -->
+		<request-action actionName="updateCityMaster" methodName="updateCityMaster" parameterTypes="" permissionCheck="false"/>
+		<request-action actionName="findAddonAreaCodes" methodName="findAddonAreaCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		
+		<request-action actionName="validateLevel" methodName="validateLevel" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findCountryLov" methodName="findCountryLov" parameterTypes="com.ibsplc.icargo.business.shared.area.country.vo.CountryLovFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findRegionLov" methodName="findRegionLov" parameterTypes="com.ibsplc.icargo.business.shared.area.region.vo.RegionLovFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findStationLov" methodName="findStationLov" parameterTypes="com.ibsplc.icargo.business.shared.area.station.vo.StationLovFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findCityLov" methodName="findCityLov" parameterTypes="com.ibsplc.icargo.business.shared.area.city.vo.CityLovFilterVO,int" permissionCheck="false"/>
+<!--  &lt;request-action actionName=&quot;getParentType&quot; methodName=&quot;getParentType&quot; parameterTypes=&quot;java.lang.String,java.lang.String,java.lang.String&quot; permissionCheck=&quot;false&quot; /&gt;
+	    &lt;request-action actionName=&quot;countryForStation&quot; methodName=&quot;countryForStation&quot; parameterTypes=&quot;java.lang.String,java.lang.String&quot; permissionCheck=&quot;false&quot; /&gt; -->
+	    <request-action actionName="validateStationCodes" methodName="validateStationCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	    <request-action actionName="validateCountryCodes" methodName="validateCountryCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	    <request-action actionName="validateCityCodes" methodName="validateCityCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	    <request-action actionName="findCityDetails" methodName="findCityDetails" parameterTypes="com.ibsplc.icargo.business.shared.area.city.vo.CityFilterVO,int" permissionCheck="false"/>
+    	<request-action actionName="saveCityDetails" methodName="saveCityDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+    	<request-action actionName="validateZipCodes" methodName="validateZipCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+
+<!--  &lt;request-action actionName=&quot;findStationProfileDtls&quot; methodName=&quot;findStationProfileDtls&quot; parameterTypes=&quot;com.ibsplc.icargo.business.shared.area.stationprofile.vo.StationProfileFilterVO&quot; permissionCheck=&quot;false&quot; /&gt;
+	    &lt;request-action actionName=&quot;findStationProfileDtlsPage&quot; methodName=&quot;findStationProfileDtlsPage&quot; parameterTypes=&quot;com.ibsplc.icargo.business.shared.area.stationprofile.vo.StationProfileFilterVO&quot; permissionCheck=&quot;false&quot; /&gt;
+		&lt;request-action actionName=&quot;findStationProfile&quot; methodName=&quot;findStationProfile&quot; parameterTypes=&quot;java.lang.String,java.lang.String&quot; permissionCheck=&quot;false&quot; /&gt;
+		&lt;request-action actionName=&quot;saveStationProfile&quot; methodName=&quot;saveStationProfile&quot; parameterTypes=&quot;java.util.Collection&quot; permissionCheck=&quot;false&quot; /&gt; -->
+		<request-action actionName="findRegion" methodName="findRegion" parameterTypes="com.ibsplc.icargo.business.shared.area.region.vo.RegionFilterVO" permissionCheck="false"/>
+		<request-action actionName="findRegionPages" methodName="findRegionPages" parameterTypes="com.ibsplc.icargo.business.shared.area.region.vo.RegionFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveRegion" methodName="saveRegion" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateRegionCodes" methodName="validateRegionCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+<!--  &lt;request-action actionName=&quot;activateStationProfile&quot; methodName=&quot;activateStationProfile&quot; parameterTypes=&quot;java.util.Collection&quot; permissionCheck=&quot;false&quot; /&gt;
+		&lt;request-action actionName=&quot;findStationProfleLov&quot; methodName=&quot;findStationProfleLov&quot; parameterTypes=&quot;java.lang.String,java.lang.String,java.lang.String,int&quot; permissionCheck=&quot;false&quot; /&gt; -->
+		<request-action actionName="audit" methodName="audit" parameterTypes="com.ibsplc.xibase.server.framework.audit.vo.AuditVO" permissionCheck="false"/>
+<!--  &lt;request-action actionName=&quot;findStationProfileRestrictions&quot; methodName=&quot;findStationProfileRestrictions&quot; parameterTypes=&quot;java.lang.String,java.util.Collection&quot; permissionCheck=&quot;false&quot; /&gt;
+		&lt;request-action actionName=&quot;isCurrencyCfgdForStn&quot; methodName=&quot;isCurrencyCfgdForStn&quot; parameterTypes=&quot;java.lang.String,java.lang.String&quot; permissionCheck=&quot;false&quot; /&gt;
+	    &lt;request-action actionName=&quot;findOwnAirport&quot; methodName=&quot;findOwnAirport&quot; parameterTypes=&quot;java.lang.String,java.lang.String&quot; permissionCheck=&quot;false&quot; /&gt;
+	    &lt;request-action actionName=&quot;saveOwnAirports&quot; methodName=&quot;saveOwnAirports&quot; parameterTypes=&quot;java.util.Collection&quot; permissionCheck=&quot;false&quot; /&gt;
+	&lt;request-action actionName=&quot;findOwnAirports&quot; methodName=&quot;findOwnAirports&quot; parameterTypes=&quot;java.util.Collection&quot; permissionCheck=&quot;false&quot; /&gt;-->
+<!--  &lt;request-action actionName=&quot;findAlternateAirports&quot; methodName=&quot;findAlternateAirports&quot; parameterTypes=&quot;com.ibsplc.icargo.business.shared.area.stationprofile.vo.OwnAirportVO&quot; permissionCheck=&quot;false&quot; /&gt;
+	    &lt;request-action actionName=&quot;findAlternateAirportsPage&quot; methodName=&quot;findAlternateAirportsPage&quot; parameterTypes=&quot;com.ibsplc.icargo.business.shared.area.stationprofile.vo.OwnAirportVO&quot; permissionCheck=&quot;false&quot; /&gt; -->
+	    <request-action actionName="findCountryCodeDetails" methodName="findCountryCodeDetails" parameterTypes="com.ibsplc.icargo.business.shared.area.country.vo.CountryLovFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveCountryCodeDetails" methodName="saveCountryCodeDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="listStationMasterDetails" methodName="listStationMasterDetails" parameterTypes="com.ibsplc.icargo.business.shared.area.station.vo.StationLovFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveStationMasterDetails" methodName="saveStationMasterDetails" parameterTypes="com.ibsplc.icargo.business.shared.area.station.vo.StationVO" permissionCheck="false"/>
+		<request-action actionName="findproportionalareacodes" methodName="findproportionalareacodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+		
+		
+		<request-action actionName="findIataCodeLov" methodName="findIataCodeLov" parameterTypes="com.ibsplc.icargo.business.shared.area.region.vo.IataCodeLovFilterVO,int" permissionCheck="false" />
+
+		<!--Added by Prathibha for AirportMaster-->
+		<request-action actionName="findAirportLovforHHT" methodName="findAirportLovforHHT" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAirportLov" methodName="findAirportLov" parameterTypes="com.ibsplc.icargo.business.shared.area.airport.vo.AirportLovFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findAirportTemperatureConfigurations" methodName="findAirportTemperatureConfigurations" parameterTypes="com.ibsplc.icargo.business.shared.area.airport.vo.AirportLovFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findAirportTemperatureFacilities" methodName="findAirportTemperatureFacilities" parameterTypes="com.ibsplc.icargo.business.shared.area.airport.vo.AirportTemperatureConfigurationVO" permissionCheck="false"/>
+		
+		<request-action actionName="findAirportLovForRegion" methodName="findAirportLovForRegion" parameterTypes="com.ibsplc.icargo.business.shared.area.airport.vo.AirportLovFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="validateAirportCode" methodName="validateAirportCode" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateAirportCodes" methodName="validateAirportCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAirports" methodName="findAirports" parameterTypes="com.ibsplc.icargo.business.shared.area.airport.vo.AirportFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="saveAirportDetails" methodName="saveAirportDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+<!--  &lt;request-action actionName=&quot;findAirportParameters&quot; methodName=&quot;findAirportParameters&quot; parameterTypes=&quot;java.lang.String,java.util.Collection&quot; permissionCheck=&quot;false&quot; /&gt; -->
+		<request-action actionName="findOwnAirports" methodName="findOwnAirports" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAirportDetails" methodName="findAirportDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAirportRestrictions" methodName="findAirportRestrictions" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAirportParametersByCode" methodName="findAirportParametersByCode" parameterTypes="java.lang.String,java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAllParameters" methodName="findAllParameters" parameterTypes="java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAirportParameters" methodName="findAirportParameters" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findOnlinePoints" methodName="findOnlinePoints" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findUpliftAirports" methodName="findUpliftAirports" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAirportLocationDetails" methodName="findAirportLocationDetails" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAirportsForCountry" methodName="findAirportsForCountry" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateAirportCodeAdminForPortal" methodName="validateAirportCodeAdminForPortal" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="findAirportCodesforCity" methodName="findAirportCodesforCity" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+
+		<!--Added by Prathibha for StationMaster-->
+		<request-action actionName="defaultCurrencyForStation" methodName="defaultCurrencyForStation" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateStation" methodName="validateStation" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findStationParametersByCode" methodName="findStationParametersByCode" parameterTypes="java.lang.String,java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findIfCurrencyCfgdForStn" methodName="findIfCurrencyCfgdForStn" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findStations" methodName="findStations" parameterTypes="com.ibsplc.icargo.business.shared.area.station.vo.StationFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findStationDetails" methodName="findStationDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAllParametersForStation" methodName="findAllParametersForStation" parameterTypes="java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findECRAirports" methodName="findECRAirports" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findNonMechanisedStaions" methodName="findNonMechanisedStaions" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<!-- Added by A-1951 @NRT on 31JAN08 for interface messaging -->
+		<request-action actionName="validateAirportCodesForCity" methodName="validateAirportCodesForCity" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="saveZipCodeVOS" methodName="saveZipCodeVOS" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="listZipCodeDetails" methodName="listZipCodeDetails" parameterTypes="com.ibsplc.icargo.business.shared.area.zipcode.vo.ZipCodeFilterVO" permissionCheck="false"/>
+		<request-action actionName="findZipCodeDetails" methodName="findZipCodeDetails" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateZipCodeforCountry" methodName="validateZipCodeforCountry" parameterTypes="com.ibsplc.icargo.business.shared.area.zipcode.vo.ZipCodeFilterVO" permissionCheck="false"/>
+		<request-action actionName="findAirportParametersforAirports" methodName="findAirportParametersforAirports" parameterTypes="java.lang.String,java.util.Collection,java.util.Collection" permissionCheck="false" />
+
+	  <!-- Added by Srinivasarao N for CR ID:ICRD-11337 -->
+		<request-action actionName="saveStationControlOfficeDetails" methodName="saveStationControlOfficeDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+	    <request-action actionName="findStationControlOfficeDetails" methodName="findStationControlOfficeDetails" parameterTypes="com.ibsplc.icargo.business.shared.area.controloffice.vo.StationControlOfficeFilterVO" permissionCheck="false"/>
+	    <request-action actionName="findStationControlOffice" methodName="findStationControlOffice" parameterTypes="com.ibsplc.icargo.business.shared.area.controloffice.vo.StationControlOfficeFilterVO" permissionCheck="false"/>
+	    <request-action actionName="findRegionForCountry" methodName="findRegionForCountry" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+	    <!-- Added by A-5353 N for ICRD-63902 -->
+	    <request-action actionName="isStationControlOfficeConfigurationExists" methodName="isStationControlOfficeConfigurationExists" parameterTypes="com.ibsplc.icargo.business.shared.area.controloffice.vo.StationControlOfficeFilterVO" permissionCheck="false"/>
+		
+		<!--Added by A-2882 For used airport details-->
+		<request-action actionName="findUsedAirportDetails" methodName="findUsedAirportDetails" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+		 
+
+
+		<request-action actionName="validateCodesForAirportAndCity" methodName="validateCodesForAirportAndCity" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+<!--<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />-->
+<!--Added by A-4777 for ICRD-11337 starts-->
+ <request-action actionName="validateStationControlOfficeDetails" methodName="validateStationControlOfficeDetails" parameterTypes="com.ibsplc.icargo.business.shared.area.controloffice.vo.StationControlOfficeFilterVO" permissionCheck="false"/>
+ <!--Added by A-4777 for ICRD-11337 ends-->
+<!--Added by A-5197 for ICRD-33217 starts-->
+ <request-action actionName="findStationLevelConfigurations" methodName="findStationLevelConfigurations" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+<!--Added by A-5197 for ICRD-33217 starts-->
+<request-action actionName="findhigherlevelconfigurations" methodName="findhigherlevelconfigurations" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false"/>  
+ 	<!-- Added for ICRD-60879 by A-5163 starts -->	
+	<request-action actionName="findAirportCalendarDetails" methodName="findAirportCalendarDetails" parameterTypes = 
+								"com.ibsplc.icargo.business.shared.area.airport.vo.AirportCalendarSetupFilterVO" permissionCheck="false"/>
+	<request-action actionName="findAirportGroupCode" methodName="findAirportGroupCode" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+	<request-action actionName="saveAirportCalendarDetails" methodName="saveAirportCalendarDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+	<request-action actionName="validateProductName" methodName="validateProductName" parameterTypes="java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate,com.ibsplc.icargo.framework.util.time.LocalDate"  permissionCheck="false" />
+	<!-- Added for ICRD-60879 by A-5163 ends -->
+     <request-action actionName="findAirportForParameter" methodName="findAirportForParameter" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+	 <!--Added by A-6240 as part of ICRD-109551-->
+	<request-action actionName="getAirportDetails" methodName="getAirportDetails" parameterTypes="com.ibsplc.icargo.business.shared.area.airport.vo.AirportFilterVO" permissionCheck="false"/>
+ 
+	<request-action actionName="findAirportMasters" methodName="findAirportMasters" parameterTypes="com.ibsplc.icargo.business.shared.area.airport.vo.AirportFilterVO" permissionCheck="false"/>
+	<request-action actionName="saveAirportCoolFacilityConfigurations" methodName="saveAirportCoolFacilityConfigurations" parameterTypes="java.util.Collection" permissionCheck="false"/>
+	<request-action actionName="findAiportBasedOnGeoCoordinates" methodName="findAiportBasedOnGeoCoordinates" parameterTypes="java.lang.String,double,double" permissionCheck="false"/>
+	<request-action actionName="findAWBReuseRestrictionDetails" methodName="findAWBReuseRestrictionDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+	<request-action actionName="findFacilityDetails" methodName="findFacilityDetails" parameterTypes="com.ibsplc.icargo.business.shared.area.facility.vo.FacilityFilterVO" permissionCheck="false"/>
+	<request-action actionName="activateFacility" methodName="activateFacility" parameterTypes="com.ibsplc.icargo.business.shared.area.facility.vo.FacilityFilterVO" permissionCheck="false"/>
+	<request-action actionName="saveFacilityDetails" methodName="saveFacilityDetails" parameterTypes="com.ibsplc.icargo.business.shared.area.facility.vo.FacilityVO" permissionCheck="false"/>
+	<request-action actionName="deActivateFacility" methodName="deActivateFacility" parameterTypes="com.ibsplc.icargo.business.shared.area.facility.vo.FacilityFilterVO" permissionCheck="false"/>
+	<request-action actionName="listFacilityCodeLOV" methodName="listFacilityCodeLOV" parameterTypes="com.ibsplc.icargo.business.shared.area.facility.vo.FacilityLovFilterVO" permissionCheck="false"/>
+	<request-action actionName="validateSccCodes" methodName="validateSccCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	<!--Added by A-7740 as part of ICRD-236001-->
+	<request-action actionName="findAirportFacilities" methodName="findAirportFacilities" parameterTypes="com.ibsplc.icargo.business.shared.area.facility.vo.FacilityFilterVO" permissionCheck="false"/>
+	
+	<request-action actionName="validateAWBOrgDestRoutingAirports" methodName="validateAWBOrgDestRoutingAirports" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	
+	</submodule-mapping>
+		
+	<submodule-mapping submodule="defaults">
+		<request-service-name>SHARED_DEFAULTS</request-service-name>
+		<request-action actionName="findGeneralRestrictionDetails" methodName="findGeneralRestrictionDetails" parameterTypes=
+		"com.ibsplc.icargo.business.shared.defaults.generalrestriction.vo.RestrictionFilterVO" permissionCheck="false" />
+		<request-action actionName="findGeneralRules" methodName="findGeneralRules" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalrule.vo.GeneralRuleVO" permissionCheck="false"/>
+		<request-action actionName="findGeneralRestrictionsForWS" methodName="findGeneralRestrictionsForWS" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalrestriction.vo.RestrictionFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveSubscriptionDetails" methodName="saveSubscriptionDetails" parameterTypes="com.ibsplc.icargo.framework.refresh.vo.MessageSubscriptionVO" permissionCheck="false"/>
+		<request-action actionName="findSubscriptionBySelectors" methodName="findSubscriptionBySelectors" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAllSystemParameters" methodName="findAllSystemParameters" parameterTypes="int" permissionCheck="false"/>
+		<request-action actionName="saveSystemParameterDetails" methodName="saveSystemParameterDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.systemparameter.vo.SystemParameterVO" permissionCheck="false"/>
+		<request-action actionName="findSystemParameterByCodes" methodName="findSystemParameterByCodes" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findOneTimeValues" methodName="findOneTimeValues" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findSystemUnitValue" methodName="findSystemUnitValue" parameterTypes="java.lang.String,java.lang.String,java.lang.String,double" permissionCheck="false"/>
+		
+	        <request-action actionName="findConvertedUnitValue" methodName="findConvertedUnitValue" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String,double" permissionCheck="false"/>
+	     
+	        <request-action actionName="findOneTimeLov" methodName="findOneTimeLov" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int" permissionCheck="false"/>
+		<request-action actionName="findAllTimeZoneDetails" methodName="findAllTimeZoneDetails" parameterTypes="java.lang.String,int" permissionCheck="false"/>
+		<request-action actionName="saveTimeZoneDetails" methodName="saveTimeZoneDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="burstTimeZoneDetails" methodName="burstTimeZoneDetails" parameterTypes="java.lang.String" permissionCheck="false"/>
+		<request-action actionName="retriveOneTimes" methodName="retriveOneTimes" parameterTypes="com.ibsplc.icargo.business.shared.defaults.onetime.vo.ModuleMappingFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveOneTimes" methodName="saveOneTimes" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findModuleMappings" methodName="findModuleMappings" parameterTypes="java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findUnitRoundingDetails" methodName="findUnitRoundingDetails" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>	
+		<request-action actionName="saveSystemParameters" methodName="saveSystemParameters" parameterTypes="java.util.Collection" permissionCheck="false"/>	
+		<request-action actionName="retriveSystemParameters" methodName="retriveSystemParameters" parameterTypes="com.ibsplc.icargo.business.shared.defaults.onetime.vo.ModuleMappingFilterVO" permissionCheck="false"/>	
+		<request-action actionName="findModuleMappingsForSyspar" methodName="findModuleMappingsForSyspar" parameterTypes="java.lang.String" permissionCheck="false"/>	
+		<request-action actionName="findTimeZoneLov" methodName="findTimeZoneLov" parameterTypes="com.ibsplc.icargo.business.shared.defaults.timezone.vo.TimeZoneLovFilterVO,int" permissionCheck="false"/>	
+		<request-action actionName="findModuleLov" methodName="findModuleLov" parameterTypes="com.ibsplc.icargo.business.shared.defaults.module.vo.ModuleLovFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findUnitRoundingForStationUnit" methodName="findUnitRoundingForStationUnit" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAllUnitRoundingForUnitType" methodName="findAllUnitRoundingForUnitType" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>		
+		<request-action actionName="findUnitConversionAndRoundingDetails" methodName="findUnitConversionAndRoundingDetails" parameterTypes="com.ibsplc.icargo.framework.util.unit.vo.UnitRoundingVO" permissionCheck="false"/>	
+		<request-action actionName="validateModuleCodes" methodName="validateModuleCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="listTimeZoneDetails" methodName="listTimeZoneDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findTimeZoneMapping" methodName="findTimeZoneMapping" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="validateTimeZoneCodes" methodName="validateTimeZoneCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAllTimeZoneMappings" methodName="findAllTimeZoneMappings" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int" permissionCheck="false"/>
+		<request-action actionName="saveTimeZoneMappings" methodName="saveTimeZoneMappings" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateTimeZoneCode" methodName="validateTimeZoneCode" parameterTypes="java.lang.String" permissionCheck="false"/>	
+		<request-action actionName="updateEmailTrailer" methodName="updateEmailTrailer" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />				
+		<request-action actionName="timeZoneClearCache" methodName="timeZoneClearCache" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="findUnitConversionRate" methodName="findUnitConversionRate" parameterTypes="com.ibsplc.icargo.business.shared.defaults.unit.vo.UnitConversionVO" permissionCheck="false" />
+		<request-action actionName="populateAccessoryLov" methodName="populateAccessoryLov" parameterTypes="com.ibsplc.icargo.business.shared.accessory.vo.AccessoryFilterLovVO,int" permissionCheck="false" />
+		<request-action actionName="findDateRange" methodName="findDateRange" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="findDateRangeMapping" methodName="findDateRangeMapping" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+		<request-action actionName="findUnitConversionDetails" methodName="findUnitConversionDetails" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="findDateRangeDetails" methodName="findDateRangeDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.daterange.vo.DateRangeFilterVO" permissionCheck="false" />
+		<request-action actionName="saveDateRangeDetails" methodName="saveDateRangeDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findShipmentRankDetails" methodName="findShipmentRankDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.shipmentrank.vo.ShipmentRankFilterVO" permissionCheck="false" />
+		<request-action actionName="saveShipmentRank" methodName="saveShipmentRank" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findReportTemplateDetails" methodName="findReportTemplateDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findDetailsForReport" methodName="findDetailsForReport" parameterTypes="com.ibsplc.icargo.business.admin.report.vo.ReportTemplateVO" permissionCheck="false"/>
+		<request-action actionName="saveGeneralRestrictions" methodName="saveGeneralRestrictions" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findGenericMastersSetup" methodName="findGenericMastersSetup" parameterTypes="java.lang.String" permissionCheck="false" />
+			<request-action actionName="findGeneralRestrictions" methodName="findGeneralRestrictions" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalrestriction.vo.RestrictionFilterVO,int" permissionCheck="false" />
+		<!-- Added by A-5169 for progress bar starts  --> 
+		<request-action actionName="findProgressDetails" methodName="findProgressDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.vo.ProgressFilterVO" permissionCheck="false" />
+		<!-- Added by A-5169 for progress bar ends  --> 
+		<!-- Added by A-5227 as part of ICRD-20430 starts -->
+		<request-action actionName="findRankForShipment" methodName="findRankForShipment" parameterTypes="com.ibsplc.icargo.business.shared.defaults.shipmentrank.vo.ShipmentRankFilterVO" permissionCheck="false" />
+		<!-- Added by A-5227 as part of ICRD-20430 ends --> 
+		<request-action actionName="findAllMasterIrregularityDetails" methodName="findAllMasterIrregularityDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.vo.IrregularityVO" permissionCheck="false" />
+		<!-- Added by A-5237 as part of ICRD-51203  --> 
+		<request-action actionName="findIrregularityMasterDetails" methodName="findIrregularityMasterDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.vo.IrregularityVO" permissionCheck="false" />
+		<request-action actionName="saveGeneralParameterValues" methodName="saveGeneralParameterValues" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="saveIrregularityMasterDetails" methodName="saveIrregularityMasterDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findGeneralParameterValues" methodName="findGeneralParameterValues" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<!-- Added by A-5220 for ICRD-32548 starts --> 
+		<request-action actionName="findDimensionConfiguration" methodName="findDimensionConfiguration" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="saveDimensionConfiguration" methodName="saveDimensionConfiguration" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="validateProductName" methodName="validateProductName" parameterTypes="java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate,com.ibsplc.icargo.framework.util.time.LocalDate" permissionCheck="false"/>
+		<request-action actionName="findProductDetails" methodName="findProductDetails" parameterTypes="java.lang.String, java.lang.String" permissionCheck="false" />
+		<request-action actionName="findDimensionConfigurationDetails" methodName="findDimensionConfiguration" parameterTypes="java.lang.String" permissionCheck="false" />
+		<!-- Added by A-5220 for ICRD-32548 ends --> 
+        <request-action actionName="calculateFormulaValue" methodName="calculateFormulaValue" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<!-- added by a-5133 as part of CR ICRD-38114 starts-->
+		<request-action actionName="saveFormulaDetails" methodName="saveFormulaDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findFormulaDetails" methodName="findFormulaDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.formulaconfiguration.vo.FormulaConfigurationVO" permissionCheck="false" />
+		<!-- added by a-5133 as part of CR ICRD-38114 ends-->
+		<request-action actionName="findGeneralConfigurationDetails" methodName="findGeneralConfigurationDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalconfig.vo.GeneralConfigurationFilterVO" permissionCheck="false" />
+		
+		<request-action actionName="findGeneralConfigurationDetailsPage" methodName="findGeneralConfigurationDetailsPage"   parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalconfig.vo.GeneralConfigurationFilterVO" permissionCheck="false" />
+		<request-action actionName="saveGeneralConfigurationDetails" methodName="saveGeneralConfigurationDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		
+		<request-action actionName="findSystemUnitRoundingValue" methodName="findSystemUnitRoundingValue" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="getScriptForCode" methodName="getScriptForCode" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="publishGeneralRestrictionsExt" methodName="publishGeneralRestrictionsExt" parameterTypes="java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findDensityFactor" methodName="findDensityFactor" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<!-- added by a-5135 as part of CR ICRD-62297 starts-->
+		<request-action actionName="refreshGeneralConfigurationDetails" methodName="refreshGeneralConfigurationDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<!-- added by a-5135 as part of CR ICRD-62297 ends-->
+		<!-- Added by A-5639  -->
+		<request-action actionName="findRestrictionAuditDetails" methodName="findRestrictionAuditDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalrestriction.vo.GeneralRestrictionAuditFilterVO" permissionCheck="false"/>
+		<!-- -Added for ICRD-59029 by A-5901 -->	
+	    <request-action actionName="findCRAParameterDetails" methodName="findCRAParameterDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+        <request-action actionName="loadKeyValuesForDynamicSearch" methodName="loadKeyValuesForDynamicSearch" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<!-- Added by E-1186 for CRQ_ICRD-162629 -->
+		<request-action actionName="findGeneralParameterConfigurationDetails" methodName="findGeneralParameterConfigurationDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalparameters.vo.GeneralParameterConfigurationVO" permissionCheck="false"/>
+<!-- Added by E-1190 for CRQ_ICRD-129586 -->
+		<request-action actionName="findGeneralParameterConfiguration" methodName="findGeneralParameterConfiguration" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalparameters.vo.GeneralParameterConfigurationVO" permissionCheck="false"/>
+		<request-action actionName="findGeneralParameterConfigurations" methodName="findGeneralParameterConfigurations" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="saveGeneralParameterConfiguration" methodName="saveGeneralParameterConfiguration" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findFlightRestrictions" methodName="findFlightRestrictions" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findGeneralRestrictionsForAircraft" methodName="findGeneralRestrictionsForAircraft" parameterTypes="java.util.Map" permissionCheck="false" />
+		<request-action actionName="checkForGeneralRestrictions" methodName="checkForGeneralRestrictions" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalrestriction.vo.RestrictionFilterVO" permissionCheck="false" />
+        <request-action actionName="findRestrictionYieldDetails" methodName="findRestrictionYieldDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<!-- Added by A-5153 for CRQ_ICRD-60629 -->
+		<request-action actionName="findUploadFileList" methodName="findUploadFileList" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+		<request-action actionName="exportFileUploadError" methodName="exportFileUploadError" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+		<request-action actionName="updateProcessStatus" methodName="updateProcessStatus" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+		<request-action actionName="processUploadedFile" methodName="processUploadedFile" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+		<request-action actionName="uploadFile" methodName="uploadFile" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadVO" permissionCheck="false" />
+		<request-action actionName="findFileTypes" methodName="findFileTypes" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="findAndNotifyExpiredMasterConfigurations" methodName="findAndNotifyExpiredMasterConfigurations" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="saveULDOdlnCodes" methodName="saveULDOdlnCodes" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findOdlnCodeLov" methodName="findOdlnCodeLov" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+		
+		<!--Added as part of ICRD-227008 starts -->
+		<request-action actionName="findAndProcessFiles" methodName="findAndProcessFiles" parameterTypes="java.lang.String" permissionCheck="false" />
+		<!--Added as part of ICRD-227008 ends -->
+		<!-- Added by J-1104 for ICRD-108668 -->
+		<request-action actionName="saveULDCategories" methodName="saveULDCategories" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<!-- Added by A-2569 for ICRD-108688 : START -->
+		<request-action actionName="validateULDCategoryTypes" methodName="validateULDCategoryTypes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>	
+		<!-- Added by A-2569 for ICRD-108688 : END -->
+		<!-- Added by A-2569 for ICRD-108668 : START -->
+		<request-action actionName="findULDCategoryLov" methodName="findULDCategoryLov" parameterTypes="com.ibsplc.icargo.business.shared.defaults.uldcategory.vo.ULDCategoryLovVO,int" permissionCheck="false"/>	
+		<!-- Added by A-2569 for ICRD-108668 : END -->	
+        <!-- Added by J-1104 for ICRD-113835 -->
+		<request-action actionName="findPayloadCapacities" methodName="findPayloadCapacities" parameterTypes="com.ibsplc.icargo.business.shared.defaults.payloadcapacity.vo.PayloadCapacityVO" permissionCheck="false"/>
+		<request-action actionName="findPayloadCapacity" methodName="findPayloadCapacity" parameterTypes="com.ibsplc.icargo.business.shared.defaults.payloadcapacity.vo.PayloadCapacityVO" permissionCheck="false"/>
+		<request-action actionName="savePayloadCapacity" methodName="savePayloadCapacity" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<!-- Added by A-2569 for ICRD-110400 : START -->
+		<request-action actionName="findFlightAndAircraftSCCLimitForFlight" methodName="findFlightAndAircraftSCCLimitForFlight" parameterTypes="java.lang.String,java.util.Map" permissionCheck="false"/>	
+		<!-- Added by A-2569 for ICRD-110400 : END -->
+		<request-action actionName="generateFile" methodName="generateFile" parameterTypes="com.ibsplc.icargo.business.shared.defaults.filegenerate.vo.FileGenerateConfigVO" permissionCheck="false"/>	
+		<request-action actionName="findFilesGenerated" methodName="findFilesGenerated" parameterTypes="com.ibsplc.icargo.business.shared.defaults.filegenerate.vo.FileGenerateVO" permissionCheck="false"/>	
+		<request-action actionName="findFileGenerateConfigurations" methodName="findFileGenerateConfigurations" parameterTypes="java.lang.String" permissionCheck="false"/>	
+		<request-action actionName="updateFileGenerateLog" methodName="updateFileGenerateLog" parameterTypes="com.ibsplc.icargo.business.flight.schedule.vo.FlightScheduleFilterVO" permissionCheck="false"/>	
+		<request-action actionName="populateFileGenerateLog" methodName="populateFileGenerateLog" parameterTypes="com.ibsplc.icargo.business.shared.defaults.filegenerate.vo.FileGenerateVO" permissionCheck="false"/>	
+		<request-action actionName="getFileTypes" methodName="getFileTypes" parameterTypes="" permissionCheck="false"/>	
+		<request-action actionName="doGenerate" methodName="doGenerate" parameterTypes="com.ibsplc.icargo.business.shared.defaults.filegenerate.vo.FileGenerateVO" permissionCheck="false"/>	
+		<request-action actionName="getRawData" methodName="getRawData" parameterTypes="com.ibsplc.icargo.business.shared.defaults.filegenerate.vo.FileGenerateVO" permissionCheck="false"/>	
+		<request-action actionName="getFileData" methodName="getFileData" parameterTypes="com.ibsplc.icargo.business.shared.defaults.filegenerate.vo.FileGenerateVO" permissionCheck="false" />
+	   
+	        <request-action actionName="findAllValidations" methodName="findAllValidations" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+			<request-action actionName="findValidationProfiles" methodName="findValidationProfiles" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		    <request-action actionName="saveValidationConfig" methodName="saveValidationConfig" parameterTypes="com.ibsplc.icargo.business.shared.defaults.validationconfig.vo.ValidationConfigVO" permissionCheck="false"/>
+	
+	
+		<request-action actionName="findDeviceMasterDetails" methodName="findDeviceMasterDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.vo.ExternalDeviceDetailFilterVO" permissionCheck="false" />
+		<request-action actionName="saveExternalDeviceMaster" methodName="saveExternalDeviceMaster" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<!-- Added by A-5165 for ICRD-162716 -->
+		<request-action actionName="findUnitConversionsForUnitTypes" methodName="findUnitConversionsForUnitTypes" parameterTypes="java.lang.String,java.util.List,com.ibsplc.icargo.framework.util.time.LocalDate" permissionCheck="false"/>
+
+		<request-action actionName="checkGeneralConfiguration" methodName="checkGeneralConfiguration" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalconfig.vo.GeneralConfigurationFilterVO" permissionCheck="false" />	
+		<!--Added by A-7655 for ICRD-213494 -->
+		<request-action actionName="saveToleranceMasterDetails" methodName="saveToleranceMasterDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findRestrictedEntityProperties" methodName="findRestrictedEntityProperties" parameterTypes="com.ibsplc.icargo.business.shared.defaults.vo.EntityRestrictionFilterVO" permissionCheck="false" />	
+<request-action actionName="findIrregularityDetails" methodName="findIrregularityDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.vo.IrregularityFilterVO" permissionCheck="false"/>
+<request-action actionName="findProductRestrictions" methodName="findProductRestrictions" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findControlStationForFlight" methodName="findControlStationForFlight" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalrestriction.vo.RestrictionMasterVO" permissionCheck="false"/>
+	<request-action actionName="findQueueReasons" methodName="findQueueReasons" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalrestriction.vo.RestrictionFilterVO" permissionCheck="false"/>
+	 	<request-action actionName="listGeneralMasterGroup" methodName="listGeneralMasterGroup" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO" permissionCheck="false"/>
+	<request-action actionName="findGeneralRestrictionsForPortal" methodName="findGeneralRestrictionsForPortal" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalrestriction.vo.RestrictionFilterVO" permissionCheck="false"/>
+	   <request-action actionName="saveWorkflowApproverHierarchy" methodName="saveWorkflowApproverHierarchy" parameterTypes="java.util.Collection" permissionCheck="false" />
+	   <request-action actionName="findWorkflowApproverHierarchyMappings" methodName="findWorkflowApproverHierarchyMappings" parameterTypes="com.ibsplc.icargo.business.shared.defaults.approverhierarchy.vo.WorkFlowApproverHierarchyFilterVO" permissionCheck="false" />
+
+			
+	<request-action actionName="populateMeasureValues" methodName="populateMeasureValues" parameterTypes="com.ibsplc.icargo.framework.util.unit.vo.MeasureUnitVO" permissionCheck="false"/>
+	<request-action actionName="addMeasureValues" methodName="addMeasureValues" parameterTypes="com.ibsplc.icargo.framework.util.unit.Measure,com.ibsplc.icargo.framework.util.unit.Measure" permissionCheck="false"/>
+	<request-action actionName="subtractMeasureValues" methodName="subtractMeasureValues" parameterTypes="com.ibsplc.icargo.framework.util.unit.Measure,com.ibsplc.icargo.framework.util.unit.Measure" permissionCheck="false"/>
+	<request-action actionName="multiplyMeasureValues" methodName="multiplyMeasureValues" parameterTypes="com.ibsplc.icargo.framework.util.unit.Measure,com.ibsplc.icargo.framework.util.unit.Measure" permissionCheck="false"/>
+	<request-action actionName="calculateMeasureDisplayValue" methodName="calculateMeasureDisplayValue" parameterTypes="com.ibsplc.icargo.framework.util.unit.Measure" permissionCheck="false"/>
+	<request-action actionName="computeVolumetricWeight" methodName="computeVolumetricWeight" parameterTypes="com.ibsplc.icargo.business.shared.defaults.unit.vo.SharedUnitWeightCalculationVO" permissionCheck="false"/>
+	<request-action actionName="getRoundedChargeableWeight" methodName="getRoundedChargeableWeight" parameterTypes="com.ibsplc.icargo.business.shared.defaults.unit.vo.SharedUnitWeightCalculationVO" permissionCheck="false"/>
+	<request-action actionName="executeGenericJob" methodName="executeGenericJob" parameterTypes="com.ibsplc.icargo.business.shared.defaults.vo.SQLExecutionVO" permissionCheck="false"/>
+	<!--Added by A-8237 for ICRD-232606 start-->
+	<request-action actionName="findGeneralParameterConfigurationByPage" methodName="findGeneralParameterConfigurationByPage" parameterTypes="com.ibsplc.icargo.business.shared.defaults.generalparameters.vo.GeneralParameterConfigurationVO" permissionCheck="false"/>
+	<!--Added by A-8237 for ICRD-232606 end-->
+	<request-action actionName="saveConnectionTimeMaster" methodName="saveConnectionTimeMaster" parameterTypes="java.util.Collection" permissionCheck="false" />
+	<request-action actionName="saveTemperatureConfiguration" methodName="saveTemperatureConfiguration" parameterTypes="java.util.Collection" permissionCheck="false" />
+	<request-action actionName="findDimensionUnit" methodName="findDimensionUnit" parameterTypes="java.lang.String" permissionCheck="false"/>
+	<request-action actionName="saveFlightSelectionRuleConfig" methodName="saveFlightSelectionRuleConfig" parameterTypes="java.util.Collection" permissionCheck="false" />
+	<request-action actionName="fetchFlightSelectionRuleConfigs" methodName="fetchFlightSelectionRuleConfigs" parameterTypes="com.ibsplc.icargo.business.shared.defaults.flightrule.vo.FlightSelectionRuleFilterVO" permissionCheck="false" />
+	<request-action actionName="getVolumeUnitCode" methodName="getVolumeUnitCode" parameterTypes="java.lang.String" permissionCheck="false" />
+	//Added for icrd-ICRD-263285
+	<request-action actionName="findSharedOneTimeLov" methodName="findSharedOneTimeLov" parameterTypes="com.ibsplc.icargo.business.shared.defaults.onetime.vo.ModuleMappingFilterVO,int" permissionCheck="false" />
+	</submodule-mapping>
+	    
+	<submodule-mapping submodule="commodity">
+	        <request-service-name>SHARED_COMMODITY</request-service-name>
+			<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+	        <request-action actionName="findCommodityLov" methodName="findCommodityLov" parameterTypes="com.ibsplc.icargo.business.shared.commodity.vo.CommodityLovFilterVO,int" permissionCheck="false"/>
+	        <request-action actionName="validateCommodityCodes" methodName="validateCommodityCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	        <request-action actionName="getAllCommodities" methodName="getAllCommodities" parameterTypes="com.ibsplc.icargo.business.shared.commodity.vo.CommodityFilterVO" permissionCheck="false"/>
+	        <request-action actionName="getAllCommoditiesForMaster" methodName="getAllCommoditiesForMaster" parameterTypes="com.ibsplc.icargo.business.shared.commodity.vo.CommodityFilterVO" permissionCheck="false"/>
+	        <request-action actionName="findCommodity" methodName="findCommodity" parameterTypes="java.lang.String,java.util.Collection,java.lang.String,java.lang.String,int" permissionCheck="false"/>
+	        <request-action actionName="findCommodityDetails" methodName="findCommodityDetails" parameterTypes="java.lang.String,com.ibsplc.icargo.business.shared.commodity.vo.CommodityFilterVO" permissionCheck="false"/>
+   	        <request-action actionName="findCommodityDetailsForMaster" methodName="findCommodityDetailsForMaster" parameterTypes="java.lang.String,com.ibsplc.icargo.business.shared.commodity.vo.CommodityFilterVO,int" permissionCheck="false"/>
+            <request-action actionName="saveCommodityDetails" methodName="saveCommodityDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+            <request-action actionName="audit" methodName="audit" parameterTypes="com.ibsplc.xibase.server.framework.audit.vo.AuditVO" permissionCheck="false"/>
+             <request-action actionName="saveIATACommodity" methodName="saveIATACommodity" parameterTypes="java.util.Collection" permissionCheck="false"/>
+             <request-action actionName="findIATACommodity" methodName="findIATACommodity" parameterTypes="java.lang.String,int" permissionCheck="false"/>
+         <!-- Changed Parameter Types (String,int,int) to (String,String,int) for Bug 108352 by Vivek.Perla on 03mar2011  -->    
+		 <request-action actionName="findIATACommodityPages" methodName="findIATACommodityPages" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false"/>
+             <request-action actionName="validateCommoditiesForCRM" methodName="validateCommoditiesForCRM" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+              <!--added for IncompatibleCommodity by Shemeer T-1824 for the bug 107763 Starts on 28/5/11--> 
+	      <request-action actionName="saveIncompatibleCommodity" methodName="saveIncompatibleCommodity" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findIncompatibleCommodity" methodName="findIncompatibleCommodity" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false" />
+	    <request-action actionName="findCommodityIncompatibilities" methodName="findCommodityIncompatibilities" parameterTypes="java.lang.String,java.util.Collection,java.util.Collection,java.lang.String" permissionCheck="false"/>
+	      <!--end by T-1824--> 
+		<request-action actionName="findCommodityTags" methodName="findCommodityTags" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+	    <request-action actionName="saveCommodityTags" methodName="saveCommodityTags" parameterTypes="java.util.Collection" permissionCheck="false"/>
+	       
+              
+
+<!--<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />-->
+    </submodule-mapping>
+	   
+    <submodule-mapping submodule="category">
+		<request-service-name>SHARED_CATEGORY</request-service-name>
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="findCategoryLov" methodName="findCategoryLov" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int" permissionCheck="false"/>
+	    <request-action actionName="validateCategoryCodes" methodName="validateCategoryCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	    <request-action actionName="saveCategory" methodName="saveCategory" parameterTypes="com.ibsplc.icargo.business.shared.category.vo.CategoryVo" permissionCheck="false"/>
+	    <request-action actionName="findProductLovForCategory" methodName="findProductLovForCategory" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductLovFilterVO,int" permissionCheck="false"/>
+	    <request-action actionName="findCategories" methodName="findCategories" parameterTypes="com.ibsplc.icargo.business.shared.category.vo.CategoryFilterVO" permissionCheck="false"/>
+	    <request-action actionName="findCategoriesInPages" methodName="findCategoriesInPages" parameterTypes="com.ibsplc.icargo.business.shared.category.vo.CategoryFilterVO" permissionCheck="false"/>
+	    <request-action actionName="modifyCategoryStatus" methodName="modifyCategoryStatus" parameterTypes="java.util.Collection" permissionCheck="false"/>
+	    <request-action actionName="validateCommodityCode" methodName="validateCommodityCode" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+   	    <request-action actionName="findCategoryDetails" methodName="findCategoryDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	</submodule-mapping>
+		
+	<submodule-mapping submodule="citypair">
+		<request-service-name>SHARED_CITYPAIR</request-service-name>
+		<request-action actionName="findCityPair" methodName="findCityPair" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="saveCityPairDetails" methodName="saveCityPairDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+        <request-action actionName="findCityPairDetails" methodName="findCityPairDetails" parameterTypes="com.ibsplc.icargo.business.shared.citypair.vo.CityPairFilterVO,int" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+    </submodule-mapping>
+		
+	<submodule-mapping submodule="currency">
+		<request-service-name>SHARED_CURRENCY</request-service-name>
+		<request-action actionName="findExchangeRateParameters" methodName="findExchangeRateParameters" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.ExchangeRateFilterVO" permissionCheck="false" />
+		<request-action actionName="saveExchangeRateParameters" methodName="saveExchangeRateParameters" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="saveCurrencyDetails" methodName="saveCurrencyDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="saveCurrencyExchangeRates" methodName="saveCurrencyExchangeRates" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		
+		<!--request-action actionName="saveCurrencyExchangeRatesForWebService" methodName="saveCurrencyExchangeRatesForWebService" parameterTypes="java.util.Collection" permissionCheck="false"/-->
+	    <request-action actionName="findAllCurrencyCodes" methodName="findAllCurrencyCodes" parameterTypes="java.lang.String" permissionCheck="false"/>
+	    <request-action actionName="findCurrencyExchangeRates" methodName="findCurrencyExchangeRates" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.CurrencyExchangeFilterVO" permissionCheck="false"/>
+	    <request-action actionName="findCurrency" methodName="findCurrency" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+        <request-action actionName="findCurrencyName" methodName="findCurrencyName" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+	    <request-action actionName="findCurrencyConvertedRates" methodName="findCurrencyConvertedRates" parameterTypes="java.lang.String,java.lang.String,java.lang.String,double,int" permissionCheck="false"/>
+		<request-action actionName="findCurrencyConversionRate" methodName="findCurrencyConversionRate" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findCurrencyLov" methodName="findCurrencyLov" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int" permissionCheck="false"/>
+		<request-action actionName="validateCurrency" methodName="validateCurrency" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findCurrencies" methodName="findCurrencies" parameterTypes="java.lang.String,java.lang.String,java.lang.String, int" permissionCheck="false"/>
+		<request-action actionName="validateCurrencyCodes" methodName="validateCurrencyCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findConversionRateforId" methodName="findConversionRateforId" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int" permissionCheck="false"/>
+		<request-action actionName="roundOffCurrencyAmount" methodName="roundOffCurrencyAmount" parameterTypes="java.lang.String,java.util.Map" permissionCheck="false"/>
+		<request-action actionName="findApplicableExchangeRate" methodName="findApplicableExchangeRate" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.CurrencyExchangeFilterVO" permissionCheck="false"/>
+		<request-action actionName="getMoney" methodName="getMoney" parameterTypes="java.lang.String" permissionCheck="false"/>
+		<request-action actionName="audit" methodName="audit" parameterTypes="com.ibsplc.xibase.server.framework.audit.vo.AuditVO" permissionCheck="false"/>
+
+                <request-action actionName="findExchangeRate" methodName="findExchangeRate" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.CurrencyConvertorVO" permissionCheck="false"/>
+                <request-action actionName="convertCurrency" methodName="convertCurrency" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findConversionRateForExchangeRateParameters" methodName="findConversionRateForExchangeRateParameters" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.CurrencyConvertorVO" permissionCheck="false"/>
+		<request-action actionName="findConversionRate" methodName="findConversionRate" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.CurrencyConvertorVO" permissionCheck="false"/>
+        	<request-action actionName="findConversionRateforTact" methodName="findConversionRateforTact" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int" permissionCheck="false" />
+        <request-action actionName="findCurrencyDenominationDetails" methodName="findCurrencyDenominationDetails" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.DenominationFilterVO" permissionCheck="false" />
+		 <request-action actionName="saveCurrencyDenominationDetails" methodName="saveCurrencyDenominationDetails" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.DenominationDetailsVO" permissionCheck="false" />
+        <request-action actionName="findDenominationDetails" methodName="findDenominationDetails" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false"/>
+		<!-- Added by a-5220 for ICRD-46437 starts-->
+		<request-action actionName="requestExchangeRates" methodName="requestExchangeRates" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.ExchangeRateJobScheduleVO" permissionCheck="false"/>
+		<!-- Added by a-5220 for ICRD-46437 ends-->
+<!--<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />-->
+		<request-action actionName="updateCurrencyMaster" methodName="updateCurrencyMaster" parameterTypes="java.lang.String" permissionCheck="false"/>
+<request-action actionName="listExchangeRateParameters" methodName="listExchangeRateParameters" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.ExchangeRateFilterVO" permissionCheck="false" />
+<request-action actionName="getAllCurrencyExchangeRates" methodName="getAllCurrencyExchangeRates" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.CurrencyExchangeFilterVO" permissionCheck="false" />
+		<!--Added by A-7555 for ICRD-189680 -->
+		<request-action actionName="calculateVariance" methodName="calculateVariance" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.CurrencyExchangeFilterVO" permissionCheck="false" />
+		<request-action actionName="calculateVariancefromJob" methodName="calculateVariancefromJob" parameterTypes="com.ibsplc.icargo.business.shared.currency.vo.CurrencyExchangeFilterVO" permissionCheck="false" />
+		<request-action actionName="findProcessesForSchedule" methodName="findProcessesForSchedule" parameterTypes="java.lang.String, java.lang.String" permissionCheck="false" />
+	</submodule-mapping>
+		
+	<submodule-mapping submodule="document">
+		<request-service-name>SHARED_DOCUMENT</request-service-name>
+		<request-action actionName="findAllDocuments" methodName="findAllDocuments" parameterTypes="java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateRange" methodName="validateRange" parameterTypes="com.ibsplc.icargo.business.shared.document.vo.DocumentVO" permissionCheck="false"/>
+		<request-action actionName="mergeRanges" methodName="mergeRanges" parameterTypes="com.ibsplc.icargo.business.shared.document.vo.DocumentVO" permissionCheck="false"/>
+		<request-action actionName="difference" methodName="difference" parameterTypes="com.ibsplc.icargo.business.shared.document.vo.DocumentVO" permissionCheck="false"/>
+		<request-action actionName="splitRanges" methodName="splitRanges" parameterTypes="java.util.Collection,java.util.Collection" permissionCheck="false"/>
+        <request-action actionName="saveDocument" methodName="saveDocument" parameterTypes="java.util.Collection" permissionCheck="false"/>
+        <request-action actionName="findDocumentDetails" methodName="findDocumentDetails" parameterTypes="com.ibsplc.icargo.business.shared.document.vo.DocumentFilterVO" permissionCheck="false"/>
+        <request-action actionName="findDocumentDetailsPage" methodName="findDocumentDetailsPage" parameterTypes="com.ibsplc.icargo.business.shared.document.vo.DocumentFilterVO" permissionCheck="false"/>
+        <request-action actionName="findDocumentLov" methodName="findDocumentLov" parameterTypes="com.ibsplc.icargo.business.shared.document.vo.DocumentFilterVO,int" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+        </submodule-mapping>
+		
+	<submodule-mapping submodule="dgr">
+		<request-service-name>SHARED_DGR</request-service-name>
+		<!--Added for ICRD-110684 by A-5117 starts -->
+		<request-action actionName="saveDGRThresholdDetails" methodName="saveDGRThresholdDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="fetchDGThresholdDetails" methodName="fetchDGThresholdDetails" parameterTypes="com.ibsplc.icargo.business.shared.dgr.vo.DGRThresholdFilterVO" permissionCheck="false"/>
+		<!--Added for ICRD-110684 by A-5117 ends -->
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="validateUNID" methodName="validateUNID" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateUNIDDetails" methodName="validateUNIDDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateDgrDetails" methodName="validateDgrDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="saveUNIDDetails" methodName="saveUNIDDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findUNIDDetails" methodName="findUNIDDetails" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<!--Modified by A-5495 for ICRD-57455, Starts-->
+		<request-action actionName="findUNIDDetailsInPages" methodName="findUNIDDetailsInPages" parameterTypes="com.ibsplc.icargo.business.shared.dgr.vo.DGRUNIDFilterVO,int" permissionCheck="false"/>
+		<!--Modified by A-5495 for ICRD-57455, Ends-->
+		<request-action actionName="audit" methodName="audit" parameterTypes="com.ibsplc.xibase.server.framework.audit.vo.AuditVO" permissionCheck="false"/>
+		<request-action actionName="findDGRDetails" methodName="findDGRDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findUNIDCheckList" methodName="findUNIDCheckList" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="saveUNIDCheckList" methodName="saveUNIDCheckList" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findCheckListDetails" methodName="findCheckListDetails" parameterTypes="com.ibsplc.icargo.business.shared.dgr.vo.CheckListFilterVO" permissionCheck="false"/>
+		<request-action actionName="uploadDgrData" methodName="uploadDgrData" parameterTypes="[B" permissionCheck="false"/>
+		<request-action actionName="findProperShippingNameDetails" methodName="findProperShippingNameDetails" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false"/>
+		<request-action actionName="findUNIDExistsForShipmentClass" methodName="findUNIDExistsForShipmentClass" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+<!--<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />-->
+ <!--added by A-4781 for icrd-10537 starts--> 
+		<request-action actionName="validateDGRNuclides" methodName="validateDGRNuclides" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="validateUNIDs" methodName="validateUNIDs" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+		<!--added by A-4781 for icrd-10537 ends--> 
+			<!--added icrd-145125 by A-6843 starts--> 
+			<request-action actionName="saveDGRUSGFlightMaster" methodName="saveDGRUSGFlightMaster" parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<!--added icrd-145125 by A-6843 ends--> 
+		<!--Added by A-7426 as part of ICRD-239351 starts -->
+		<request-action actionName="saveDGRIncompatibilityMaster" methodName="saveDGRIncompatibilityMaster" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateDGRIncompatibilities" methodName="validateDGRIncompatibilities" parameterTypes="java.util.Collection,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<!--Added by A-7426 as part of ICRD-239351 ends -->
+	</submodule-mapping>
+		
+	<submodule-mapping submodule="scc">
+		<request-service-name>SHARED_SCC</request-service-name>
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="validateSCCCode" methodName="validateSCCCode" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateSCCCodes" methodName="validateSCCCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findSCCLov" methodName="findSCCLov" parameterTypes="com.ibsplc.icargo.business.shared.scc.vo.SCCLovFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findSCC" methodName="findSCC" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+    	<request-action actionName="saveSCC" methodName="saveSCC" parameterTypes="java.util.Collection" permissionCheck="false"/>
+    	<request-action actionName="findIncompatibleSCC" methodName="findIncompatibleSCC" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false"/>
+    	<request-action actionName="saveIncompatibleSCC" methodName="saveIncompatibleSCC" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findShipmentIncompatibility" methodName="findShipmentIncompatibility" parameterTypes="java.lang.String,java.util.Collection,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAutoBlockedSCC" methodName="findAutoBlockedSCC" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+        <request-action actionName="setAutoBlock" methodName="setAutoBlock" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+        <request-action actionName="checkForAutoBlock" methodName="checkForAutoBlock" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+        <request-action actionName="audit" methodName="audit" parameterTypes="com.ibsplc.xibase.server.framework.audit.vo.AuditVO" permissionCheck="false"/>
+	    <request-action actionName="findIncompatibilities" methodName="findIncompatibilities" parameterTypes="com.ibsplc.icargo.business.shared.scc.vo.IncompatibleSCCFilterVO" permissionCheck="false"/>
+	    <request-action actionName="findSCCPage" methodName="findSCCPage" parameterTypes="java.lang.String, java.lang.String, int" permissionCheck="false"/>
+	    <request-action actionName="findIncompatibleShipmentsInFlight" methodName="findIncompatibleShipmentsInFlight" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findUldLevelIncompatibilities" methodName="findUldLevelIncompatibilities" parameterTypes="java.lang.String,java.util.Collection,java.lang.String" permissionCheck="false"/>
+	    <request-action actionName="validateSPLCodeAdminForPortal" methodName="validateSPLCodeAdminForPortal" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+	    <request-action actionName="reorderSccPriority" methodName="reorderSccPriority" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findSCCs" methodName="findSCCs" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />	
+		
+		<request-action actionName="findHandlingCodeDetails" methodName="findHandlingCodeDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="findSCCsForGroupManifest" methodName="findSCCsForGroupManifest" parameterTypes="java.lang.String" permissionCheck="false" />	
+<!--<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />-->
+
+<request-action actionName="findIncompatibleShipmentSccs" methodName="findIncompatibleShipmentSccs" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+<request-action actionName="findIncompatibilitiesCheck" methodName="findIncompatibilities" parameterTypes="java.lang.String,java.util.Collection,java.util.Collection,java.lang.String" permissionCheck="false"/>
+	<request-action actionName="findSCCAutoSetupRule" methodName="findSCCAutoSetupRule" parameterTypes="com.ibsplc.icargo.business.shared.scc.sccsuggestion.vo.SCCSuggesstionFilterVO" permissionCheck="false"/>
+	<request-action actionName="validateAutoSetupSCCFilter" methodName="validateAutoSetupSCCFilter" parameterTypes="com.ibsplc.icargo.business.shared.scc.sccsuggestion.vo.SCCSuggesstionFilterVO" permissionCheck="false"/>
+	<request-action actionName="saveAutoSetupSCC" methodName="saveAutoSetupSCC" parameterTypes="java.util.Collection" permissionCheck="false"/>
+	<request-action actionName="suggestSCCs" methodName="suggestSCCs" parameterTypes="com.ibsplc.icargo.business.shared.scc.sccsuggestion.vo.SCCSuggestionVO" permissionCheck="false"/>
+	<request-action actionName="retrieveDGSCCs" methodName="retrieveDGSCCs" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	<request-action actionName="findShipmentLevelIncompatibilities" methodName="findIncompatibilities" parameterTypes="java.util.Collection" permissionCheck="false"/>
+	<request-action actionName="findSCCRequest" methodName="findSCCs" parameterTypes="com.ibsplc.icargo.business.shared.scc.vo.SCCLovFilterVO" permissionCheck="false"/>
+	
+	<request-action actionName="findSCCDetails" methodName="findSCCDetails" parameterTypes="com.ibsplc.icargo.business.shared.scc.vo.SCCLovFilterVO" permissionCheck="false" />	
+	<request-action actionName="validIATASccCodes" methodName="validIATASccCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	<request-action actionName="findSCCsMaster" methodName="findSCCsMaster" parameterTypes="com.ibsplc.icargo.business.shared.scc.vo.SCCLovFilterVO" permissionCheck="false"/>
+	<request-action actionName="checkForBuildUp" methodName="checkForBuildUp" parameterTypes="com.ibsplc.icargo.business.operations.shipment.cto.clearance.vo.AutoBlockVO" permissionCheck="false"/>
+	</submodule-mapping>
+
+	 <submodule-mapping submodule="service">
+		<request-service-name>SHARED_SERVICE</request-service-name>
+	        <request-action actionName="validateServiceCode" methodName="validateServiceCode" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+	        <request-action actionName="findServiceCodes" methodName="findServiceCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	        <request-action actionName="findAllServices" methodName="findAllServices" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	        <request-action actionName="findServices" methodName="findServices" parameterTypes="com.ibsplc.icargo.business.shared.service.vo.ListServiceFilterVO" permissionCheck="false"/>
+	        <request-action actionName="findServiceMaster" methodName="findServiceMaster" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findServiceLov" methodName="findServiceLov" parameterTypes="com.ibsplc.icargo.business.shared.service.vo.ServiceFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findServiceMilestones" methodName="findServiceMilestones" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="saveService" methodName="saveService" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="saveServiceMaster" methodName="saveServiceMaster" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateServiceParameter" methodName="validateServiceParameter" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateServiceCodes" methodName="validateServiceCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="audit" methodName="audit" parameterTypes="com.ibsplc.xibase.server.framework.audit.vo.AuditVO" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+
+<!--Added by A-6991 for ICRD-143720 -->
+ <request-action actionName="saveAddonsServiceCodeTemplate" methodName="saveAddonsServiceCodeTemplate" parameterTypes="java.util.Collection" permissionCheck="false"/>
+ 
+ <request-action actionName="findAddonsServiceCodes" methodName="findAddonsServiceCodes" parameterTypes="com.ibsplc.icargo.business.shared.service.vo.ServiceFilterVO" permissionCheck="false"/>
+</submodule-mapping>
+	    
+        <submodule-mapping submodule="uld"> 
+		<request-service-name>SHARED_ULD</request-service-name>
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="findULDTypeLov" methodName="findULDTypeLov" parameterTypes="com.ibsplc.icargo.business.shared.uld.vo.ULDTypeLovFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="validateULDTypeCodes" methodName="validateULDTypeCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateULD" methodName="validateULD" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateULDs" methodName="validateULDs" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findULDTypeDetails" methodName="findULDTypeDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findULDTypes" methodName="findULDTypes" parameterTypes="com.ibsplc.icargo.business.shared.uld.vo.ULDTypeFilterVO" permissionCheck="false"/>
+		<request-action actionName="findULDTypesInPages" methodName="findULDTypesInPages" parameterTypes="com.ibsplc.icargo.business.shared.uld.vo.ULDTypeFilterVO" permissionCheck="false"/>
+         <request-action actionName="saveULDTypeDetails" methodName="saveULDTypeDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+	    <request-action actionName="findULDPosforType" methodName="findULDPosforType" parameterTypes="java.lang.String,java.util.Collection,java.lang.String" permissionCheck="false"/>
+	    <request-action actionName="findULDGroupDetails" methodName="findULDGroupDetails" parameterTypes="com.ibsplc.icargo.business.shared.uld.vo.ULDGroupFilterVO" permissionCheck="false"/>
+	    <request-action actionName="findULDGroupDetailsInPages" methodName="findULDGroupDetailsInPages" parameterTypes="com.ibsplc.icargo.business.shared.uld.vo.ULDGroupFilterVO" permissionCheck="false"/>
+	  	<request-action actionName="saveULDGroupDetails" methodName="saveULDGroupDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateULDGroupCodes" methodName="validateULDGroupCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findULDGroupLov" methodName="findULDGroupLov" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int,boolean" permissionCheck="false"/>
+		<request-action actionName="findULDGroupLovUx" methodName="findULDGroupLovUx" parameterTypes="com.ibsplc.icargo.business.shared.uld.vo.ULDGroupLovFilterVO" permissionCheck="false"/>
+		<request-action actionName="findULDPosition" methodName="findULDPosition" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findULDPositionForAirCraft" methodName="findULDPositionForAirCraft" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="audit" methodName="audit" parameterTypes="com.ibsplc.xibase.server.framework.audit.vo.AuditVO" permissionCheck="false"/>
+		<request-action actionName="findUldTypeForAircraft" methodName="findUldTypeForAircraft" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findUldPostionsForAircraft" methodName="findUldPostionsForAircraft" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+			<request-action actionName="validateULDForAircraft" methodName="validateULDForAircraft" parameterTypes="com.ibsplc.icargo.business.shared.uld.vo.ULDValidationFilterVO" permissionCheck="false"/>
+		<request-action actionName="validateULDTypeOrGroup" methodName="validateULDTypeOrGroup" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findUldGroupForAircraft" methodName="findUldGroupForAircraft" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateAircraftCompatability" methodName="validateAircraftCompatability" parameterTypes="java.lang.String,java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findULDTypeCodes" methodName="findULDTypeCodes" parameterTypes="com.ibsplc.icargo.business.shared.uld.vo.ULDTypeLovFilterVO" permissionCheck="false" />
+		<request-action actionName="validateAircraftCompatabilityForULDGroups" methodName="validateAircraftCompatabilityForULDGroups" parameterTypes="java.lang.String,java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateULDOwnerCodes" methodName="validateULDOwnerCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+		<request-action actionName="validateULDNumberForAirline" methodName="validateULDNumberForAirline" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+         <request-action actionName="validateContoursForUlDs" methodName="validateContoursForUlDs" parameterTypes="java.util.Collection,java.util.Collection" permissionCheck="false" />
+			<!-- Added by A-7534 for ICRD-240046 -->
+		<request-action actionName="fetchContourForULDType" methodName="validateAndFetchContourForULDType" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<!-- Added by A-5165 for ICRD-30981 -->
+		<request-action actionName="validateAndFetchContourForULDType" methodName="validateAndFetchContourForULDType" parameterTypes="java.util.Collection,java.util.Collection" permissionCheck="false" /><!--<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />-->
+		<!-- Added by A-5165 for ICRD-30981 ends -->
+		<!-- Added by A-5165 for ICRD-30981 -->
+		<request-action actionName="updateUldTypeStatus" methodName="updateUldTypeStatus" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="updateUldGroupStatus" methodName="updateUldGroupStatus" parameterTypes="java.util.Collection" permissionCheck="false" />
+		
+		<request-action actionName="saveULDTypePriorityValues" methodName="saveULDTypePriorityValues" parameterTypes="java.util.Collection" permissionCheck="false" />
+		
+		<request-action actionName="findULDTypePriorityValues" methodName="findULDTypePriorityValues" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+		
+		<!-- Added by A-5165 for ICRD-30981 -->
+		
+		<!-- Added for ICRD-79853 by A-5500 starts-->
+		<request-action actionName="findAllApplicableContoursForUldType" methodName="findAllApplicableContoursForUldType" parameterTypes="java.lang.String,java.util.Collection,java.lang.String" permissionCheck="false" />
+		<!-- Added for ICRD-79853 by A-5500 ends-->
+		<request-action actionName="findULDContourDetails" methodName="findULDContourDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+	</submodule-mapping> 
+		
+	<submodule-mapping submodule="milestone"> 
+		<request-service-name>SHARED_MILESTONE</request-service-name>
+		<request-action actionName="validateAirlineCode" methodName="validateAirlineCode" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findMilestoneLov" methodName="findMilestoneLov" parameterTypes="com.ibsplc.icargo.business.shared.milestone.vo.MilestoneFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findMilestones" methodName="findMilestones" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findMilestoneDetails" methodName="findMilestoneDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findMilestoneCollection" methodName="findMilestoneCollection" parameterTypes="com.ibsplc.icargo.business.shared.milestone.vo.MilestoneFilterVO" permissionCheck="false"/>
+		<request-action actionName="findMilestonesForBookingTransportationPlan" methodName="findMilestonesForBookingTransportationPlan" parameterTypes="java.lang.String,java.util.HashMap" permissionCheck="false"/>
+		<request-action actionName="findMilestoneDtlsforStn" methodName="findMilestoneDtlsforStn" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateMilestoneCodes" methodName="validateMilestoneCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findMilestoneMasterDetails" methodName="findMilestoneMasterDetails" parameterTypes="com.ibsplc.icargo.business.shared.milestone.vo.MilestoneFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveMilestoneMasterDetails" methodName="saveMilestoneMasterDetails" parameterTypes="com.ibsplc.icargo.business.shared.milestone.vo.MilestoneVO" permissionCheck="false"/>
+		<request-action actionName="findDefaultMilestones" methodName="findDefaultMilestones" parameterTypes="java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findMilestoneDetailsForStations" methodName="findMilestoneDetailsForStations" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	</submodule-mapping>
+		
+	<submodule-mapping submodule="embargo">
+	     <request-service-name>SHARED_EMBARGO</request-service-name>
+	     <request-action actionName="saveEmbargoDetails" methodName="saveEmbargoDetails" parameterTypes="com.ibsplc.icargo.business.shared.embargo.vo.EmbargoVO" permissionCheck="false"/>
+	     <request-action actionName="cancelEmbargo" methodName="cancelEmbargo" parameterTypes="com.ibsplc.icargo.business.shared.embargo.vo.EmbargoDetailsVO" permissionCheck="false"/>
+	     <request-action actionName="findEmbargoDetails" methodName="findEmbargoDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+	     <request-action actionName="findEmbargos" methodName="findEmbargos" parameterTypes="com.ibsplc.icargo.business.shared.embargo.vo.EmbargoFilterVO,int" permissionCheck="false"/>
+	     <request-action actionName="findGlobalParameterCodes" methodName="findGlobalParameterCodes" parameterTypes="java.lang.String" permissionCheck="false"/>
+	     <request-action actionName="checkForEmbargo" methodName="checkForEmbargo" parameterTypes="com.ibsplc.icargo.business.shared.embargo.vo.ShipmentDetailsVO" permissionCheck="false"/>
+	     <request-action actionName="checkForEmbargoForBooking" methodName="checkForEmbargoForBooking" parameterTypes="java.util.Collection" permissionCheck="false" />
+		 <request-action actionName="alertEmbargoExpiry" methodName="alertEmbargoExpiry" parameterTypes="com.ibsplc.icargo.business.shared.embargo.vo.EmbargoJobSchedulerVO" permissionCheck="false" />
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+	<request-action actionName="findRuleDetails" methodName="findRuleDetails" parameterTypes="com.ibsplc.icargo.business.rules.defaults.vo.RuleFilterVO" 
+		permissionCheck="false" />
+		<request-action actionName="publishEmbargoDetailsJob" methodName="publishEmbargoDetailsJob" parameterTypes="com.ibsplc.icargo.business.shared.embargo.vo.EmbargoJobSchedulerVO" permissionCheck="false"/>
+		<request-action actionName="validateProduct" methodName="validateProduct" parameterTypes="java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate,com.ibsplc.icargo.framework.util.time.LocalDate" permissionCheck="false"/>
+		<request-action actionName="checkDuplicateEmbargo" methodName="checkDuplicateEmbargo" parameterTypes="com.ibsplc.icargo.business.shared.embargo.vo.EmbargoFilterVO" permissionCheck="false"/>
+	</submodule-mapping>
+		
+	<submodule-mapping submodule="equipment">
+	    <request-service-name>SHARED_EQUIPMENT</request-service-name>
+		<request-action actionName="findEquipmentTypeDetails" methodName="findEquipmentTypeDetails" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	   	<request-action actionName="findEquipmentDetails" methodName="findEquipmentDetails" parameterTypes="com.ibsplc.icargo.business.shared.equipment.vo.EquipmentFilterVO,int" permissionCheck="false"/>
+		<request-action actionName="findEquipmentDtlsforMaintain" methodName="findEquipmentDtlsforMaintain" parameterTypes="com.ibsplc.icargo.business.shared.equipment.vo.EquipmentFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveEquipmentDetails" methodName="saveEquipmentDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="activateEquipmentDetails" methodName="activateEquipmentDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findDefaultUldConfigForEquipment" methodName="findDefaultUldConfigForEquipment" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+        <request-action actionName="findEquipmentLov" methodName="findEquipmentLov" parameterTypes="com.ibsplc.icargo.business.shared.equipment.vo.EquipmentLovFilterVO,int" permissionCheck="false" />
+	    <request-action actionName="validateEquipment" methodName="validateEquipment" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+		<!--Added by A-5497 for ICRD-52882 --> 
+		<request-action actionName="findEquipmentExceptions" methodName="findEquipmentExceptions" parameterTypes="com.ibsplc.icargo.business.shared.equipment.vo.ExceptionFilterVO" permissionCheck="false"/>
+		<!--Added by A-5497 for ICRD-52882 Ends-->
+		<request-action actionName="validateEquipmentAndAircraft" methodName="validateEquipmentAndAircraft" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAssignedEquipmentDetails" methodName="findAssignedEquipmentDetails" parameterTypes="com.ibsplc.icargo.business.shared.equipment.vo.EquipmentFilterVO" permissionCheck="false"/>
+		<request-action actionName="findEquipmentExceptionsPeriods" methodName="findEquipmentExceptionsPeriods" parameterTypes="com.ibsplc.icargo.business.shared.equipment.vo.ExceptionFilterVO" permissionCheck="false"/>
+		<request-action actionName="findEquipmentAdditionalLoadingDetails" methodName="findEquipmentAdditionalLoadingDetails" parameterTypes="com.ibsplc.icargo.business.shared.equipment.vo.EquipmentFilterVO" permissionCheck="false"/>
+	</submodule-mapping>
+
+	<submodule-mapping submodule="customer">
+ 		<request-service-name>SHARED_CUSTOMER</request-service-name>
+ 		<!-- Added by A-4113 for ICRD-19023 starts-->
+ 		<request-action actionName="replenishCustomerCreditLimit" methodName="replenishCustomerCreditLimit" parameterTypes="java.util.Collection" permissionCheck="false" />
+ 		<!-- Added by A-4113 for ICRD-19023 Ends-->
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+ 		<request-action actionName="findCustomerLov" methodName="findCustomerLov" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+ 		<request-action actionName="validateCustomers" methodName="validateCustomers" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+ 		<request-action actionName="validateCustomer" methodName="validateCustomer" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false"/>
+ 		<request-action actionName="validateGlobalCustomers" methodName="validateGlobalCustomers" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+ 		<request-action actionName="findGlobalCustomerLov" methodName="findGlobalCustomerLov" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int" permissionCheck="false" />
+ 		<request-action actionName="findAgentAirline" methodName="findAgentAirline" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+ 		<request-action actionName="saveCustomer" methodName="saveCustomer" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerVO" permissionCheck="false" />
+ 		<request-action actionName="listCustomer" methodName="listCustomer" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+		<request-action actionName="findMiscellaneousCustomerDetails" methodName="findMiscellaneousCustomerDetails" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+		<request-action actionName="listCustomers" methodName="listCustomers" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerListFilterVO" permissionCheck="false" />
+		<request-action actionName="validateCreditLimitForCustomer" methodName="validateCreditLimitForCustomer" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerCreditFilterVO" permissionCheck="false" />
+		<!-- Added by A-5173 for ICRD - 3761 Ends-->
+ 		<request-action actionName="listCustomerDetails" methodName="listCustomerDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerListFilterVO" permissionCheck="false" />
+ 		<request-action actionName="addCustomerPoints" methodName="addCustomerPoints" parameterTypes="java.lang.String,java.lang.String,double" permissionCheck="false" />
+ 		<request-action actionName="saveTempCustomer" methodName="saveTempCustomer" parameterTypes="java.util.Collection" permissionCheck="false" />
+ 		<request-action actionName="listTempCustomer" methodName="listTempCustomer" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+ 		<request-action actionName="listTempCustomerDetails" methodName="listTempCustomerDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.ListTempCustomerVO" permissionCheck="false" />
+ 		<request-action actionName="customerContactsLov" methodName="customerContactsLov" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+ 		<request-action actionName="saveCustomerContactPoints" methodName="saveCustomerContactPoints" parameterTypes="java.util.Collection" permissionCheck="false" />
+ 		<request-action actionName="listCustomerContactPoints" methodName="listCustomerContactPoints" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		
+		<request-action actionName="findAllBillingCodes" methodName="findAllBillingCodes" parameterTypes="java.lang.String" permissionCheck="false" />
+ 		<request-action actionName="addGroupPoints" methodName="addGroupPoints" parameterTypes="java.lang.String,java.lang.String,double" permissionCheck="false" />
+ 		<request-action actionName="changeStatusOfCustomers" methodName="changeStatusOfCustomers" parameterTypes="java.util.Collection" permissionCheck="false" />
+ 		<request-action actionName="globelCustomerLov" methodName="globelCustomerLov" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+ 		<request-action actionName="clearCustomerPoints" methodName="clearCustomerPoints" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+ 		<request-action actionName="deleteCustomers" methodName="deleteCustomers" parameterTypes="java.util.Collection" permissionCheck="false" />
+	 	<!--  added by kiran -->
+	 	<request-action actionName="findCustomerGroups" methodName="findCustomerGroups" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int,int" permissionCheck="false" />
+	 	<request-action actionName="listCustomerGroup" methodName="listCustomerGroup" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerGroupFilterVO" permissionCheck="false" />
+	 	<request-action actionName="listCustomerGroupDetails" methodName="listCustomerGroupDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+	 	<request-action actionName="saveCustomerGroupDetails" methodName="saveCustomerGroupDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+	 	<request-action actionName="deleteCustomerGroups" methodName="deleteCustomerGroups" parameterTypes="java.util.Collection" permissionCheck="false" />
+	 	<!--  added by kiran -->
+		<!--  added by a-3278 for TIACT492-1 -->
+		<request-action actionName="listCustomersWithPOA" methodName="listCustomersWithPOA" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerListFilterVO" permissionCheck="false" />
+	 	<request-action actionName="compareCustomerCompanyCode" methodName="compareCustomerCompanyCode" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<!--  added by a-3278 for TIACT492-1 ends -->
+		
+		<request-action actionName="audit" methodName="audit" parameterTypes="com.ibsplc.xibase.server.framework.audit.vo.AuditVO" permissionCheck="false" />
+		<!--  added by Deepu -->
+		<request-action actionName="listCustomerDetailsForReport" methodName="listCustomerDetailsForReport" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerListFilterVO" permissionCheck="false" />
+		<!--  added by Deepu -->
+		<!--  added by a-3278 for bug 87758 -->
+		<request-action actionName="listCustomersWithNaccsInvCode" methodName="listCustomersWithNaccsInvCode" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerListFilterVO" permissionCheck="false" />
+		<!-- for bug 87758 ends-->
+		
+		<!--  added by a-3608 for bug 92913 -->
+		<request-action actionName="listCustomersForForwarder" methodName="listCustomersForForwarder" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerListFilterVO" permissionCheck="false" />
+		<!-- for bug 92913 ends-->
+        <request-action actionName="customerEnquiryDetails" methodName="customerEnquiryDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false"/>
+        <request-action actionName="validateAccountNumbers" methodName="validateAccountNumbers" parameterTypes="java.util.Collection" permissionCheck="false"/>
+        <request-action actionName="validateDuplicateCustomerMapping" methodName="validateDuplicateCustomerMapping" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false"/>
+<!--<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />-->
+		<!-- ICRD-18206 A-4789 15 Oct 2012 Changes starts here -->
+		<request-action actionName="saveCustomerDetails" methodName="saveCustomerDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="saveCustomerCertificateDetails" methodName="saveCustomerCertificateDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="updateCustomerStatus" methodName="updateCustomerStatus" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="getCustomerDetails" methodName="getCustomerDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<!-- ICRD-18206 A-4789 15 Oct 2012 Changes ends here -->
+		
+		<request-action actionName="validateDuplicateTSANumbers" methodName="validateDuplicateTSANumbers" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerVO" permissionCheck="false" />
+	<!-- Added by A-5519 for ICRD-43672-->
+	<request-action actionName="findCustomerCreditDetails" methodName="findCustomerCreditDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerCreditFilterVO" permissionCheck="false" />
+	<request-action actionName="saveCustomerCreditDetails" methodName="saveCustomerCreditDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerCreditVO" permissionCheck="false" />
+	<request-action actionName="findCustomerCreditLovDetails" methodName="findCustomerCreditLovDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerCreditLovVO" permissionCheck="false" />
+	<request-action actionName="findCustomerDetails" methodName="findCustomerDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+	<request-action actionName="findCustomerCreditDetailsForCustomers" methodName="findCustomerCreditDetailsForCustomers" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+	<!-- Added by A-5519 for ICRD-43672 Ends-->	  
+<request-action actionName="validateCustomerDetails" methodName="validateCustomerDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+	<!-- Added for ICRD-67442 by A-5163 starts -->
+	<request-action actionName="findCustomerDetailsHistoryVersions" methodName="findCustomerDetailsHistoryVersions" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+	<request-action actionName="loadCustomerDetailsHistory" methodName="loadCustomerDetailsHistory" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false"/>
+	<!-- Added for ICRD-67442 by A-5163 ends -->
+	<!-- Added for ICRD-92975 by A-3461 starts -->
+ 	<request-action actionName="saveCoolCustomerDetails" methodName="saveCoolCustomerDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+ 	<request-action actionName="listCoolCustomers" methodName="listCoolCustomers" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+	<!-- Added for ICRD-92975 by A-3461 ends -->
+	<request-action actionName="findCertificateTypes" methodName="findCertificateTypes" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false"/>
+		<!-- ICRD-55831 A-4562 28 Mar 2014  Changes Starts here -->
+		<request-action actionName="findCustomerDetailsForPayment" methodName="findCustomerDetailsForPayment" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO,com.ibsplc.icargo.framework.util.time.LocalDate" permissionCheck="false" />
+		<!-- ICRD-55831 A-4562 28 Mar 2014 Changes ends here -->
+		<!-- A-5273	Added for ICRD-52066 Start -->	
+		<request-action actionName="findCustomerCreditLimit" methodName="findCustomerCreditLimit" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerCreditFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveCustomerCreditLimitMaintenance" methodName="saveCustomerCreditLimitMaintenance" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<!-- A-5273	Added for ICRD-52066 end -->
+		<!-- A-4449	Added for ICRD-258949 start -->
+			<request-action actionName="findCustomerTinNumber" methodName="findCustomerTinNumber" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+			<!-- A-4449	Added for ICRD-258949 end -->
+		<!-- Added for ICRD-58628 by A-5163 starts -->
+		<request-action actionName="findScreeningFacilityDetails" methodName="findScreeningFacilityDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.ScreeningFacilityFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveScreeningFacilityDetails" methodName="saveScreeningFacilityDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="checkForDuplicateScreeningDetails" methodName="checkForDuplicateScreeningDetails" parameterTypes="java.lang.String,java.util.Collection,java.util.Collection" permissionCheck="false"/>
+		<!-- Added for ICRD-58628 by A-5163 ends -->
+		<request-action actionName="triggerGuaranteeExpiryAlertNotification" methodName="triggerGuaranteeExpiryAlertNotification" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerCreditReferenceVO" permissionCheck="false"/>
+		<request-action actionName="fetchCustomerDetailsForTaxRegistrationNumber" methodName="fetchCustomerDetailsForTaxRegistrationNumber" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+		<request-action actionName="getAllCustomers" methodName="getAllCustomers" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+ 		<!-- A-5273  Added for ICRD-59741 starts -->
+		<request-action actionName="processTSAUploadDetails" methodName="processTSAUploadDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false"/>
+		<!-- A-5273  Added for ICRD-59741 End -->
+		<request-action actionName="findApplicableCreditCustomers" methodName="findApplicableCreditCustomers" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<!-- A-5525 Added for ICRD-137187-->	
+		<request-action actionName="findCustomerDetailsForFWB" methodName="findCustomerDetailsForFWB" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false"/>
+		<request-action actionName="findMiscellaneousCustomerDetailsFromLAV" methodName="findMiscellaneousCustomerDetailsFromLAV" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findCustomer" methodName="findCustomer" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<!-- A-5525 Added for ICRD-137187 ends-->
+		<request-action actionName="getAllCustomerDetails" methodName="getAllCustomerDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+		<!-- Added by A-6800 for ICRD-165313:starts -->
+		<request-action actionName="validateCreditCustomer" methodName="validateCreditCustomer" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerCreditFilterVO" permissionCheck="false"/>
+		<!-- Added by A-6800 for ICRD-165313:ends -->
+		<request-action actionName="deletePreviousRADetails" methodName="deletePreviousRADetails" parameterTypes="com.ibsplc.icargo.business.msgbroker.message.vo.rakc.RAKCMessageVO" permissionCheck="false"/>
+		<request-action actionName="saveCurrentRADetails" methodName="saveCurrentRADetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.ScreeningFacilityVO" permissionCheck="false"/>
+		<request-action actionName="generateReport" methodName="generateReport" parameterTypes="java.lang.String,java.lang.String,java.util.Map" permissionCheck="false"/>
+		<!--Added By A-7978 for ICRD-235959-->
+		<request-action actionName="findCustomerPreferences" methodName="findCustomerPreferences" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerPreferenceVO" permissionCheck="false"/>
+		<request-action actionName="findSalesRepLov" methodName="findSalesRepLov" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.SalesRepFilterVO" permissionCheck="false"/><!--Added by A-7930-->
+		<request-action actionName="validateCustomerName" methodName="validateCustomerName" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false"/>
+	</submodule-mapping>
+
+
+ 	<submodule-mapping submodule="message">
+	   	<request-service-name>SHARED_MESSAGE</request-service-name>
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="saveMessageConfigDetails" methodName="saveMessageConfigDetails" parameterTypes="com.ibsplc.icargo.business.shared.message.vo.MessageConfigMasterVO" permissionCheck="false"/>
+        <request-action actionName="findMessageConfigurations" methodName="findMessageConfigurations" parameterTypes="com.ibsplc.icargo.business.shared.message.vo.MessageConfigMasterVO" permissionCheck="false"/>
+        <!-- Added for ICRD-268298 -->
+		<request-action actionName="findMessageConfiguration" methodName="findMessageConfigurations" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<!-- Added for ICRD-268298 -->
+        <request-action actionName="findAllEncodingConfiguration" methodName="findAllEncodingConfiguration" parameterTypes="" permissionCheck="false"/>
+        <request-action actionName="listMessageConfigurations" methodName="listMessageConfigurations" parameterTypes="com.ibsplc.icargo.business.shared.message.vo.MessageConfigMasterVO" permissionCheck="false"/>
+        <request-action actionName="findInterfaceSystem" methodName="findInterfaceSystem" parameterTypes="java.lang.String" permissionCheck="false"/>
+        <request-action actionName="clearSharedConfigCache" methodName="clearSharedConfigCache" parameterTypes="" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	<!-- Added for ICRD-266434 by A-7927 -->
+	<request-action actionName="saveUpdatedMessageConfigDetails" methodName="saveUpdatedMessageConfigDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+	</submodule-mapping>
+
+
+	<submodule-mapping submodule="audit">
+	     <request-service-name>SHARED_AUDIT</request-service-name>
+	  	 <request-action actionName="findFilters" methodName="findFilters" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+	  	 <request-action actionName="findAuditDetails" methodName="findAuditDetails" parameterTypes="com.ibsplc.icargo.business.shared.audit.vo.AuditFiltersVO" permissionCheck="false" />
+		 <request-action actionName="getAllAuditMasters" methodName="getAllAuditMasters" parameterTypes="java.lang.String" permissionCheck="false" />
+		 <request-action actionName="findAuditActionType" methodName="findAuditActionType" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		 <request-action actionName="getCMNAuditEntities" methodName="findCMNAuditEntityTables" parameterTypes="java.lang.String" permissionCheck="false" />
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+		<!--a-5223 starts-->
+		 <request-action actionName="findAuditHistoryDetails" methodName="findAuditHistoryDetails" parameterTypes="com.ibsplc.icargo.business.shared.audit.vo.SharedAuditHistoryFilterVO" permissionCheck="false"/>
+        <!--ends-->
+	</submodule-mapping>
+
+	<submodule-mapping submodule="damagecodes">
+	     <request-service-name>SHARED_DAMAGECODES</request-service-name>
+	         <request-action actionName="saveDamageCodes" methodName="saveDamageCodes" parameterTypes="java.util.Collection" permissionCheck="false" />
+	         <request-action actionName="findDamageCodes" methodName="findDamageCodes" parameterTypes="com.ibsplc.icargo.business.shared.damagecodes.vo.DamageCodesFilterVO, int" permissionCheck="false" />
+	         <request-action actionName="findDamageCodesCTOLov" methodName="findDamageCodesCTOLov" parameterTypes="com.ibsplc.icargo.business.shared.damagecodes.vo.DamageCodesCTOLovFilterVO,int" permissionCheck="false" />	         
+	         <request-action actionName="listDamageCodes" methodName="listDamageCodes" parameterTypes="com.ibsplc.icargo.business.shared.damagecodes.vo.DamageCodesFilterVO" permissionCheck="false" />
+	         <request-action actionName="validateDamageCodes" methodName="validateDamageCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />	         	         
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	             <request-action actionName="findPriorities" methodName="findPriorities" parameterTypes="java.lang.String" permissionCheck="false" />
+			 <request-action actionName="validateNumericDamageCodes" methodName="validateNumericDamageCodes" parameterTypes="java.lang.String,java.util.List" permissionCheck="false" />	 
+			  <request-action actionName="findDamageCodeDetails" methodName="findDamageCodeDetails" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />			
+	         <request-action actionName="findDamageLOVDetailsForHHT" methodName="findDamageLOVDetailsForHHT" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int,int,int" permissionCheck="false" />	         
+
+	</submodule-mapping>
+
+
+	<submodule-mapping submodule="agent">
+	   	<request-service-name>SHARED_AGENT</request-service-name>
+		<request-action actionName="saveAgentDetails" methodName="saveAgentDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="listAgentDetails" methodName="listAgentDetails" parameterTypes="com.ibsplc.icargo.business.shared.agent.vo.AgentFilterVO" permissionCheck="false"/>
+		<request-action actionName="listAllAgentDetails" methodName="listAllAgentDetails" parameterTypes="com.ibsplc.icargo.business.shared.agent.vo.AgentFilterVO" permissionCheck="false"/>
+		<request-action actionName="populateAgentLov" methodName="populateAgentLov" parameterTypes="com.ibsplc.icargo.business.shared.agent.vo.AgentFilterVO" permissionCheck="false"/>
+		<request-action actionName="populateCustomerAgentLov" methodName="populateCustomerAgentLov" parameterTypes="com.ibsplc.icargo.business.shared.agent.vo.AgentFilterVO" permissionCheck="false"/>
+		<request-action actionName="findAgentDetails" methodName="findAgentDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateAgents" methodName="validateAgents" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAgentForIATA" methodName="findAgentForIATA" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findIataAgentDetails" methodName="findIataAgentDetails" parameterTypes="com.ibsplc.icargo.business.shared.agent.vo.AgentFilterVO" permissionCheck="false"/>
+		<request-action actionName="validateAgentsWithDate" methodName="validateAgentsWithDate" parameterTypes="java.lang.String,java.util.Collection,com.ibsplc.icargo.framework.util.time.LocalDate" permissionCheck="false" />
+		<request-action actionName="findAgentByCardNumber" methodName="findAgentByCardNumber" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="findAgentMilestoneDetails" methodName="findAgentMilestoneDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="findHoldingCompanyLov" methodName="findHoldingCompanyLov" parameterTypes="com.ibsplc.icargo.business.shared.agent.vo.HoldingCompanyFilterVO" permissionCheck="false" />
+		
+		<request-action actionName="findAgentForLoggedUser" methodName="findAgentForLoggedUser" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findCardHolderDetails" methodName="findCardHolderDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findAgentCardDetails" methodName="findAgentCardDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="saveAgentCardDetails" methodName="saveAgentCardDetails" parameterTypes="com.ibsplc.icargo.business.shared.agent.vo.AgentVO" permissionCheck="false" />
+		<request-action actionName="validateAgent" methodName="validateAgent" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="findAgentCodesForIATA" methodName="findAgentCodesForIATA" parameterTypes="com.ibsplc.icargo.business.shared.agent.vo.AgentFilterVO" permissionCheck="false" />
+		<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+		<request-action actionName="validateAgentDetails" methodName="validateAgentDetails" parameterTypes="com.ibsplc.icargo.business.shared.agent.vo.AgentFilterVO" permissionCheck="false"/>
+		<request-action actionName="findBusinessPartnerDetails" methodName="findBusinessPartnerDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<!--Added for Soco-->
+		<request-action actionName="findCityCodeForAgent" methodName="findCityCodeForAgent" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findProducts" methodName="findProducts" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductFilterVO" permissionCheck="false"/>
+	</submodule-mapping>
+	    
+    <submodule-mapping submodule="billingperiod">
+	   	<request-service-name>SHARED_BILLINGPERIOD</request-service-name>
+		<request-action actionName="findBillingPeriodLov" methodName="findBillingPeriodLov" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="validateBillingPeriodCode" methodName="validateBillingPeriodCode" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="listBillingPeriodDetails" methodName="listBillingPeriodDetails" parameterTypes="com.ibsplc.icargo.business.shared.billingperiod.vo.BillingPeriodFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveBillingPeriodDetails" methodName="saveBillingPeriodDetails" parameterTypes="com.ibsplc.icargo.business.shared.billingperiod.vo.BillingPeriodVO" permissionCheck="false"/>
+		<request-action actionName="validateReportingPeriod" methodName="validateReportingPeriod" parameterTypes="com.ibsplc.icargo.business.shared.billingperiod.vo.BillingPeriodFilterVO" permissionCheck="false"/>
+		<request-action actionName="findBillingPeriodForGHA" methodName="findBillingPeriodForGHA" parameterTypes="com.ibsplc.icargo.business.shared.billingperiod.vo.BillingPeriodFilterVO" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	</submodule-mapping>
+		
+
+	 <submodule-mapping submodule="trade">
+		<request-service-name>SHARED_TRADE</request-service-name>
+		<request-action actionName="listTradeCostDetailsMethod" methodName="listTradeCostDetails" parameterTypes="int,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="saveTradeCostDetailsMethod" methodName="saveTradeCostDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+    	<request-action actionName="listFlightTradeDetailsMethod" methodName="listFlightTradeDetails" parameterTypes="com.ibsplc.icargo.business.shared.trade.vo.FlightTradeVO" permissionCheck="false"/>
+		<request-action actionName="saveFlightTradeDetailsMethod" methodName="saveFlightTradeDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+    	<request-action actionName="listTradeSegments" methodName="listTradeSegments" parameterTypes="com.ibsplc.icargo.business.shared.trade.vo.SegmentTradeVO" permissionCheck="false"/>
+    	<request-action actionName="saveTradeSegments" methodName="saveTradeSegments" parameterTypes="java.util.Collection" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+    	</submodule-mapping>
+<!--Modified by A-4562 for ICRD-32410 starts-->
+	    
+    <submodule-mapping submodule="generalmastergrouping">
+	 	<request-service-name>SHARED_GENERALMASTERGROUPING</request-service-name>
+		<!-- Added by A-5956 for ICRD-107368 starts-->
+		<request-action actionName="findParameterGrouping" methodName="findParameterGrouping" parameterTypes="java.lang.String,java.util.HashMap,java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate" permissionCheck="false" />
+		<!-- Added by A-5956 for ICRD-107368 starts-->
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+	 	<request-action actionName="listGeneralMasterGroup" methodName="listGeneralMasterGroup" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO" permissionCheck="false"/>
+	 	<request-action actionName="saveGeneralMasterGroup" methodName="saveGeneralMasterGroup" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupVO" permissionCheck="false"/>
+	 	<request-action actionName="deleteGeneralMasterGroup" methodName="deleteGeneralMasterGroup" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO" permissionCheck="false"/>
+		<request-action actionName="findGroupsByType" methodName="findGroupsByType" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO" permissionCheck="false"/>
+        <request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+        <request-action actionName="validateGroupEntity" methodName="validateGroupEntity" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO,java.util.Collection" permissionCheck="false" />
+   		<request-action actionName="findGroupNamesofGroupEntity" methodName="findGroupNamesofGroupEntity" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO" permissionCheck="false"/>
+		<request-action actionName="validateGroupNames" methodName="validateGroupNames" parameterTypes="java.lang.String,java.util.Collection,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findGroupDetailsForGroupNames" methodName="findGroupDetailsForGroupNames" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findGroupsDetails" methodName="findGroupsDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateZoneCodes" methodName="validateZoneCodes" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findGroupElementsByName" methodName="findGroupElementsByName" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO" permissionCheck="false"/>
+		<!--added by A-5639 for ICRD-61395 starts-->
+		<request-action actionName="findGroupNamesforElements" methodName="findGroupNamesforElements" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO" permissionCheck="false"/>
+		<!--added by A-5639 for ICRD-61395 Ends-->
+  		<!--added by A-5237 for ICRD-46885 starts -->
+  		<request-action actionName="findAirportsForGroups" methodName="findAirportsForGroups" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO" permissionCheck="false"/>
+		<request-action actionName="findStationsForGroups" methodName="findStationsForGroups" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO" permissionCheck="false"/>
+		<!--added by A-5237 for ICRD-46885 Ends -->
+		<request-action actionName="findEntitiesForGroups" methodName="findEntitiesForGroups" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO" permissionCheck="false"/>
+		<request-action actionName="findGroupNamesOfEntity" methodName="findGroupNamesOfEntity" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO" permissionCheck="false"/>
+		<request-action actionName="findGroupsByTypeLOV" methodName="findGroupsByTypeLOV" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO,int" permissionCheck="false"/>
+        
+   </submodule-mapping>
+<!--Modified by A-4562 for ICRD-32410 Ends-->
+	    
+    <submodule-mapping submodule="cargoplanning">
+		<request-service-name>SHARED_CARGOPLANNING</request-service-name>
+		<request-action actionName="findCargoPlanUserDetails" methodName="findCargoPlanUserDetails" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+  		<request-action actionName="saveCargoPlan" methodName="saveCargoPlan" parameterTypes="com.ibsplc.icargo.business.shared.cargoplanning.vo.CargoPlanHistoryVO,java.util.Collection" permissionCheck="false"/>
+  		<request-action actionName="saveFlightDataPlan" methodName="saveFlightDataPlan" parameterTypes="com.ibsplc.icargo.business.shared.cargoplanning.vo.CargoPlanHistoryVO,java.util.Collection" permissionCheck="false"/>
+  		<request-action actionName="saveCVCImportPlan" methodName="saveCVCImportPlan" parameterTypes="com.ibsplc.icargo.business.shared.cargoplanning.vo.CargoPlanHistoryVO,java.util.Collection" permissionCheck="false"/>
+  		<request-action actionName="saveCVCExportPlan" methodName="saveCVCExportPlan" parameterTypes="com.ibsplc.icargo.business.shared.cargoplanning.vo.CargoPlanHistoryVO,java.util.Collection" permissionCheck="false"/>
+  		<request-action actionName="saveOVCActualPlan" methodName="saveOVCActualPlan" parameterTypes="com.ibsplc.icargo.business.shared.cargoplanning.vo.CargoPlanHistoryVO,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="saveOVCBudgetedPlan" methodName="saveOVCBudgetedPlan" parameterTypes="com.ibsplc.icargo.business.shared.cargoplanning.vo.CargoPlanHistoryVO,java.util.Collection" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+  	</submodule-mapping>
+  	
+	<submodule-mapping submodule="signature">
+		<request-service-name>SHARED_SIGNATURE</request-service-name>
+		<request-action actionName="saveSignature" methodname="saveSignature" parameterTypes="com.ibsplc.icargo.business.shared.signature.vo.CaptureSignatureVO" permissionCheck="false"/>
+		<request-action actionName="findSignature" methodName="findSignature" parameterTypes="java.lang.String,java.lang.Integer" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+  	</submodule-mapping>
+			
+  	<submodule-mapping submodule="emailnotification">
+		<request-service-name>SHARED_EMAILNOTIFICATION</request-service-name>
+		<request-action actionName="saveAgentEmailNotificationtDetails" methodName="saveAgentEmailNotificationtDetails" parameterTypes="java.util.ArrayList" permissionCheck="false" />
+		<request-action actionName="listAgentEmailNotification" methodName="listAgentEmailNotification" parameterTypes="com.ibsplc.icargo.business.shared.emailnotification.vo.AgentEmailNotificationVO" permissionCheck="false" />
+		<request-action actionName="findAgentEmailNotfication" methodName="findAgentEmailNotfication" parameterTypes="com.ibsplc.icargo.business.shared.emailnotification.vo.AgentEmailNotificationVO" permissionCheck="false" />
+		<request-action actionName="saveSegmentEmailNotificationtDetails" methodName="saveSegmentEmailNotificationtDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="listSegmentEmailNotificationtDetails" methodName="listSegmentEmailNotificationDetails" parameterTypes="com.ibsplc.icargo.business.shared.emailnotification.vo.SegmentEmailNotificationVO" permissionCheck="false" />
+		<request-action actionName="findSegmentEmailNotficationForAirpo rt" methodName="findSegmentEmailNotficationForAirport" parameterTypes="com.ibsplc.icargo.business.shared.emailnotification.vo.SegmentEmailNotificationVO" permissionCheck="false" />
+	    	
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+    </submodule-mapping>
+
+	<submodule-mapping submodule="forwarder">
+				<request-service-name>SHARED_FORWARDER</request-service-name>
+				<request-action actionName="saveForwarderAreaDetails" methodName="saveForwarderAreaDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+				<request-action actionName="findForwarderAreaDetails" methodName="findForwarderAreaDetails" parameterTypes="com.ibsplc.icargo.business.shared.forwarder.vo.ForwarderAreaFilterVO,int" permissionCheck="false" />
+				<request-action actionName="findForwarderArea" methodName="findForwarderArea" parameterTypes="com.ibsplc.icargo.business.shared.forwarder.vo.ForwarderAreaFilterVO" permissionCheck="false" />
+
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	</submodule-mapping>
+
+	<submodule-mapping submodule="billingsite">
+		<!-- added by A-2909 Starts for Billing Site Masters-->
+		<request-service-name>SHARED_BILLINGSITE</request-service-name>
+		<request-action actionName="displayBillingSiteDetails" methodName="displayBillingSiteDetails" parameterTypes="com.ibsplc.icargo.business.shared.billingsite.vo.BillingSiteFilterVO" permissionCheck="false" />
+		<request-action actionName="saveBillingSiteDetails" methodName="saveBillingSiteDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="listParameterLov" methodName="listParameterLov" parameterTypes="com.ibsplc.icargo.business.shared.billingsite.vo.BillingSiteLOVFilterVO" permissionCheck="false" />
+		<request-action actionName="validateBillingSiteHierarchy" methodName="validateBillingSiteHierarchy" parameterTypes="com.ibsplc.icargo.business.cra.defaults.vo.BillSiteHierarchyFilterVO" permissionCheck="false" />
+		<request-action actionName="findBillingPeriodForGHA" methodName="findBillingPeriodForGHA" parameterTypes="com.ibsplc.icargo.business.shared.billingperiod.vo.BillingPeriodFilterVO" permissionCheck="false"/>
+		<!-- added by A-2909 Ends for Billing Site Masters-->
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+	</submodule-mapping>
+		
+		
+	 <submodule-mapping submodule="priority">
+	 	<request-service-name>SHARED_PRIORITY</request-service-name>
+	 	<request-action actionName="findSccProdutPriorityDetails" methodName="findSccProdutPriorityDetails" parameterTypes="com.ibsplc.icargo.business.shared.priority.vo.SccProductPriorityFilterVO,int" permissionCheck="false" />
+	 	<request-action actionName="saveSccProductPriority" methodName="saveSccProductPriority" parameterTypes="java.util.Collection" permissionCheck="false" />
+	   	<request-action actionName="validateProducts" methodName="validateProducts" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findSccProductRemarks" methodName="findSccProductRemarks" parameterTypes="java.util.Collection" permissionCheck="false" /> 
+	 	<request-action actionName="validateProduct" methodName="validateProduct" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+	    <request-action actionName="findPriorities" methodName="findPriorities" parameterTypes="java.lang.String" permissionCheck="false" />
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	 </submodule-mapping>
+		
+	 <submodule-mapping submodule="hozeiarea">
+	 	<request-service-name>SHARED_HOZEIAREA</request-service-name>
+	 	<request-action actionName="listHozeiAreaDetails" methodName="listHozeiAreaDetails" parameterTypes="com.ibsplc.icargo.business.shared.hozeiarea.vo.HozeiAreaFilterVO,int" permissionCheck="false" />
+	 	<request-action actionName="saveHozeiAreaDetails" methodName="saveHozeiAreaDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findHozeiAreaLov" methodName="findHozeiAreaLov" parameterTypes="com.ibsplc.icargo.business.shared.hozeiarea.vo.HozeiAreaFilterVO,int" permissionCheck="false" />
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	 </submodule-mapping>	
+
+	 <submodule-mapping submodule="accessory">
+		<request-service-name>SHARED_ACCESSORY</request-service-name>
+		<request-action actionName="saveAccessory" methodName="saveAccessory" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="listAccessory" methodName="listAccessory" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false" />
+		<request-action actionName="findAccessoryDetails" methodName="findAccessoryDetails" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+		<request-action actionName="fetchForwarderAcccessoryMasterDetails" methodName="fetchForwarderAcccessoryMasterDetails" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="populateAccessoryLov" methodName="populateAccessoryLov" parameterTypes="com.ibsplc.icargo.business.shared.accessory.vo.AccessoryFilterLovVO,int" permissionCheck="false" />	
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+	<request-action actionName="findAccessoryDetail" methodName="findAccessoryDetails" parameterTypes="com.ibsplc.icargo.business.shared.accessory.vo.AccessoryFilterLovVO" permissionCheck="false" />
+	 </submodule-mapping>
+	 
+	 <submodule-mapping submodule="airportpair">
+		 <request-service-name>SHARED_AIRPORTPAIR</request-service-name>
+		 <request-action actionName="findAirportPair" methodName="findAirportPair" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+		 <request-action actionName="saveAirportPairDetails" methodName="saveAirportPairDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		 <request-action actionName="findAirportPairDetails" methodName="findAirportPairDetails" parameterTypes="com.ibsplc.icargo.business.shared.airportpair.vo.AirportPairFilterVO,int" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+    	</submodule-mapping>
+		<submodule-mapping submodule="delaycode">
+    		<request-service-name>SHARED_DELAYCODE</request-service-name>
+    		<request-action actionName="saveDelayCodeDetails" methodName="saveDelayCodeDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="findDelayCodeDetails" methodName="findDelayCodeDetails" parameterTypes="com.ibsplc.icargo.business.shared.delaycode.vo.DelayCodeFilterVO" permissionCheck="false"/>
+			<request-action actionName="findDelayCodeLovDetails" methodName="findDelayCodeLovDetails" parameterTypes="com.ibsplc.icargo.business.shared.delaycode.vo.DelayCodeLovFilterVO,int" permissionCheck="false"/>
+			<request-action actionName="validateDelayCodes" methodName="validateDelayCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	</submodule-mapping>
+	<submodule-mapping submodule="checksheet">
+    	<request-service-name>SHARED_CHECKSHEET</request-service-name>
+		<!-- -Added for ICRD-22805 -->
+		
+		<request-action actionName="validateCheckSheetsForTxn" methodName="validateCheckSheetsForTxn" parameterTypes="java.util.HashMap,java.lang.String" permissionCheck="false"/> 
+    	<request-action actionName="saveCheckSheetConfig" methodName="saveCheckSheetConfig" parameterTypes="com.ibsplc.icargo.business.shared.checksheet.config.vo.CheckSheetConfigVO" permissionCheck="false"/> 
+        <request-action actionName="findTemplates" methodName="findTemplates" parameterTypes="com.ibsplc.icargo.business.shared.checksheet.template.vo.TemplateFilterVO" permissionCheck="false" />
+        <request-action actionName="listCheckSheetConfig" methodName="listCheckSheetConfig" parameterTypes="com.ibsplc.icargo.business.shared.checksheet.config.vo.CheckSheetConfigFilterVO" permissionCheck="false"/>
+		<request-action actionName="updateCheckSheetConfigStatus" methodName="updateCheckSheetConfigStatus" parameterTypes="java.util.Collection,boolean" permissionCheck="false"/>	 
+		<!-- -Request mapping for MaintainTemplate starts -->
+    	<request-action actionName="saveTemplate" methodName="saveTemplate" parameterTypes="com.ibsplc.icargo.business.shared.checksheet.template.vo.TemplateVO" permissionCheck="false"/>
+    	<request-action actionName="findTemplateDetails" methodName="findTemplateDetails" parameterTypes="com.ibsplc.icargo.business.shared.checksheet.template.vo.TemplateFilterVO" permissionCheck="false"/>
+    	<!-- -Request mapping for MaintainTemplate ends -->
+		<request-action actionName="validateParameterGroups" methodName="validateParameterGroups" parameterTypes="java.lang.String,java.lang.String,java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="printCheckSheet" methodName="printCheckSheet" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false"/>
+		<request-action actionName="findApplicableCheckSheets" methodName="findApplicableCheckSheets" parameterTypes="com.ibsplc.icargo.business.shared.checksheet.vo.CheckSheetFilterVO" permissionCheck="false"/>
+		
+		<!-- -Added for ICRD-32317 by A-5197 starts -->
+		<request-action actionName="validateCheckSheetforAWB" methodName="validateCheckSheetforAWB" parameterTypes="com.ibsplc.icargo.business.shared.checksheet.vo.CheckSheetVO" permissionCheck="false"/>
+		<request-action actionName="retrieveCheckSheetValidationMapping" methodName="retrieveCheckSheetValidationMapping" parameterTypes="com.ibsplc.icargo.business.shared.checksheet.vo.CheckSheetValidationVO" permissionCheck="false"/>
+		<request-action actionName="findCheckSheetsForTransactions" methodName="findCheckSheetsForTransactions" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<!-- -Added for ICRD-32317 by A-5197 ends-->
+				<!-- Added for ICRD-59029 by A-5901 -->
+		
+	<request-action actionName="findCRAParameterDetails" methodName="findCRAParameterDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+	<!--Added by A-6770 for ICRD-148180 Starts-->
+			<request-action actionName="findBookingQueueReasonCodeForLOV" methodName="findBookingQueueReasonCodeForLOV" parameterTypes="com.ibsplc.icargo.business.capacity.booking.queuerule.vo.BookingQueueRuleFilterVO,int" permissionCheck="false"/>
+			<!--Added by A-6770 for ICRD-148180 Ends-->	
+		<request-action actionName="findCheckSheetConfigurations" methodName="findCheckSheetConfigurations" parameterTypes="com.ibsplc.icargo.business.businessframework.checksheet.defaults.vo.ShipmentCheckSheetFilterVO" permissionCheck="false" />
+     	<request-action actionName="saveChecksheetConfigurations" methodName="saveChecksheetConfigurations" parameterTypes="com.ibsplc.icargo.business.businessframework.checksheet.defaults.vo.ShipmentCheckSheetVO" permissionCheck="false" />
+		<request-action actionName="validateShipmentDetails" methodName="validateShipmentDetails" parameterTypes="com.ibsplc.icargo.business.operations.shipment.vo.ShipmentFilterVO" permissionCheck="false" />
+	</submodule-mapping>
+	<submodule-mapping submodule="efreight">
+    		<request-service-name>SHARED_EFREIGHT</request-service-name>
+			<!--Added By A-6344 for ICRD-69870 -->
+			<request-action actionName="validateEfreightConfiguration" methodName="validateEfreightConfiguration" parameterTypes="com.ibsplc.icargo.business.shared.efreight.vo.EFreightConfiguratonValidationVO" permissionCheck="false"/>
+			<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+    		<request-action actionName="findEFreightLocations" methodName="findEFreightLocations" parameterTypes="com.ibsplc.icargo.business.shared.efreight.vo.EFreightLocationFilterVO" permissionCheck="false"/>
+			<request-action actionName="saveEFreightLocations" methodName="saveEFreightLocations" parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="findEFreightAgreementDetails" methodName="findEFreightAgreementDetails" parameterTypes="com.ibsplc.icargo.business.shared.efreight.vo.SharedEFreightAgreementFilterVO" permissionCheck="false"/>
+			<request-action actionName="saveEFreightAgreementDetails" methodName="saveEFreightAgreementDetails" parameterTypes="com.ibsplc.icargo.business.shared.efreight.vo.SharedEFreightAgreementMasterVO" permissionCheck="false"/>
+			<request-action actionName="validateForEFreightAgreement" methodName="validateForEFreightAgreement" parameterTypes="com.ibsplc.icargo.business.shared.efreight.vo.SharedEFreightAgreementFilterVO" permissionCheck="false"/>
+			<request-action actionName="updateEFreightAgreementStatus" methodName="updateEFreightAgreementStatus" parameterTypes="com.ibsplc.icargo.business.shared.efreight.vo.SharedEFreightAgreementMasterVO" permissionCheck="false"/>
+			<request-action actionName="expireEFreightAgreements" methodName="expireEFreightAgreements" parameterTypes="java.lang.String" permissionCheck="false"/>
+			<request-action actionName="searchEFreightAgreementsForDuplicate" methodName="searchEFreightAgreementsForDuplicate" parameterTypes="com.ibsplc.icargo.business.shared.efreight.vo.SharedEFreightAgreementFilterVO" permissionCheck="false"/>
+	        <request-action actionName="validateProductNames" methodName="validateProductNames" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="findAllEFreightLocations" methodName="findAllEFreightLocations" parameterTypes="com.ibsplc.icargo.business.shared.efreight.vo.EFreightLocationFilterVO" permissionCheck="false"/>
+			<request-action actionName="printActivationNoticeReport" methodName="printActivationNoticeReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="listCustomer" methodName="listCustomer" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+
+			<request-action actionName="listEfreightAgreementDetails" methodName="listEfreightAgreementDetails" parameterTypes="com.ibsplc.icargo.business.shared.efreight.vo.SharedEFreightAgreementFilterVO" permissionCheck="false"/>
+	</submodule-mapping>
+	<submodule-mapping submodule="capacitycontrol">
+    		<request-service-name>SHARED_CAPACITYCONTROL</request-service-name>
+			<request-action actionName="findPrereservedCapacities" methodName="findPrereservedCapacities" parameterTypes="com.ibsplc.icargo.business.shared.capacitycontrol.prereservedcapacity.vo.PrereservedCapacityVO" permissionCheck="false"/>
+			<request-action actionName="findPrereservedCapacity" methodName="findPrereservedCapacity" parameterTypes="com.ibsplc.icargo.business.shared.capacitycontrol.prereservedcapacity.vo.PrereservedCapacityVO" permissionCheck="false"/>
+			<request-action actionName="savePrereservedCapacity" methodName="savePrereservedCapacity" parameterTypes="java.util.Collection" permissionCheck="false"/>
+	</submodule-mapping>
+	<submodule-mapping submodule="yieldband">
+		<request-service-name>SHARED_YIELDBAND</request-service-name>
+    	<request-action actionName="findYieldBandClassConfigurations" methodName="findYieldBandClassConfigurations" parameterTypes="com.ibsplc.icargo.business.shared.yieldband.yieldbandclassconfiguration.vo.YieldBandClassVO" permissionCheck="false"/>
+		<request-action actionName="findYieldBandClassConfiguration" methodName="findYieldBandClassConfiguration" parameterTypes="com.ibsplc.icargo.business.shared.yieldband.yieldbandclassconfiguration.vo.YieldBandClassVO" permissionCheck="false"/>
+		<request-action actionName="saveYieldBandClassConfiguration" methodName="saveYieldBandClassConfiguration" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findAddOnCharges" methodName="findAddOnCharges" parameterTypes="com.ibsplc.icargo.business.shared.yieldband.addoncharge.vo.AddOnChargeVO" permissionCheck="false"/>
+		<request-action actionName="findAddOnCharge" methodName="findAddOnCharge" parameterTypes="com.ibsplc.icargo.business.shared.yieldband.addoncharge.vo.AddOnChargeVO" permissionCheck="false"/>
+		<request-action actionName="saveAddOnCharge" methodName="saveAddOnCharge" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findDemandDetails" methodName="findDemandDetails" parameterTypes="com.ibsplc.icargo.business.shared.yieldband.demand.vo.DemandVO" permissionCheck="false"/>
+		<request-action actionName="saveYieldDemand" methodName="saveYieldDemand" parameterTypes="com.ibsplc.icargo.business.shared.yieldband.demand.vo.DemandVO" permissionCheck="false"/>
+		<request-action actionName="findDemandLov" methodName="findDemandLov" parameterTypes="com.ibsplc.icargo.business.shared.yieldband.demand.vo.DemandVO,int" permissionCheck="false"/>
+	</submodule-mapping>
+	<submodule-mapping submodule="iot">
+    		<request-service-name>SHARED_IOT</request-service-name>
+    		<request-action actionName="saveRTTDeviceDetails" methodName="saveRTTDeviceDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+    		<request-action actionName="findRTTDeviceDetails" methodName="findRTTDeviceDetails" parameterTypes="com.ibsplc.icargo.business.shared.iot.rtt.vo.RealTimeTrackingDeviceFilterVO" permissionCheck="false"/>
+	</submodule-mapping>
+    </url-mapping>
+
+</request-mappings>
+

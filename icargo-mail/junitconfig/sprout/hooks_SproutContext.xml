@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:isf="http://www.ibsplc.com/schema/IBSServiceFlow" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xsi:schemaLocation="
+           	http://www.springframework.org/schema/beans
+           		http://www.springframework.org/schema/beans/spring-beans.xsd
+           	http://www.ibsplc.com/schema/IBSServiceFlow
+           		http://www.ibsplc.com/schema/IBSServiceFlow/IBSServiceFlow.xsd  
+          	http://www.springframework.org/schema/oxm
+				http://www.springframework.org/schema/oxm/spring-oxm.xsd">
+
+	<bean id="hookRegistryBuilder"
+		class="com.ibsplc.sprout.multitenant.hook.registry.RegistryBuilder">
+		<property name="loader">
+			<oxm:jaxb2-marshaller id="hookConfigUnmarshaller"
+				context-path="com.ibsplc.sprout.multitenant.hook.config.jaxb" />
+		</property>
+	</bean>
+	<!--
+	<bean id="invocationInterceptor"
+		class="com.ibsplc.sprout.multitenant.hook.InvocationInterceptor">
+		<property name="hooksLocations" value="classpath*:config/**/hook-config*.xml" />
+	</bean>
+
+	<bean id="mtdiInterceptor"
+		class="com.ibsplc.sprout.multitenant.inject.MtdiInterceptor">
+		<property name="mtdiConfigs">
+			<bean
+				class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+				<property name="locations"
+					value="classpath*:config/**/mtdi-config*.properties" />
+				<property name="ignoreResourceNotFound" value="true" />
+			</bean>
+		</property>
+	</bean> -->
+	
+	
+	<bean id="invocationInterceptor"
+		class="com.ibsplc.sprout.multitenant.hook.InvocationInterceptor">
+		<property name="hooksLocations" value="file:${service.properties}/sprout/**/hook-config*.xml" />
+	</bean>
+<!--
+	<bean id="mtdiInterceptor"
+		class="com.ibsplc.sprout.multitenant.inject.MtdiInterceptor">
+		<property name="mtdiConfigs">
+			<bean
+				class="com.ibsplc.icargo.framework.floworchestration.context.CompanyCodeAwareApplicationContext">
+				<property name="locations">
+				<list>	
+					<value>file:${service.properties}/sprout/**/mtdi-config*.properties</value>
+				</list>
+				</property>
+			
+			</bean>
+		</property>
+	</bean>
+-->
+</beans>

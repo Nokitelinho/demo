@@ -1,0 +1,66 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+<html>
+    <head>
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+        <title>HBA Marking</title>
+        <script>
+            var fromScreen = '<%=request.getParameter("fromScreen")%>'
+            var screenAction = "xaddons.mail.operations.hbamarking.defaultscreenload.do";
+            var isPopup = '<%=request.getParameter("isPopup")%>';
+            var uldReferenceNumber='<%=request.getParameter("uldReferenceNumber")%>';
+            var flightNumber='<%=request.getParameter("flightNumber")%>';
+            var flightSequenceNumber='<%=request.getParameter("flightSequenceNumber")%>';
+            var legSerialNumber='<%=request.getParameter("legSerialNumber")%>';
+            var carrierId='<%=request.getParameter("carrierId")%>';
+            var carrierCode='<%=request.getParameter("carrierCode")%>';
+            var assignedPort='<%=request.getParameter("assignedPort")%>';
+            var containerNumber='<%=request.getParameter("containerNumber")%>';
+            var type='<%=request.getParameter("type")%>';
+            function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {
+                    fromScreen: fromScreen,
+                    screenAction: screenAction,
+                    isPopup: isPopup
+
+                });
+                console.log('newObj', newobj);
+                return newobj
+            }
+
+        </script>
+        <common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+    </head>
+
+    <body>
+        <!-- The DIV container for redering results from react -->
+        <div id="container" class="main-container"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" /> 
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" />
+        {{/each}}
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+        <script>
+            
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'CONTAINER_DETAILS_UPDATE',
+                           data: {
+                            'uldReferenceNumber': uldReferenceNumber,
+                            'flightNumber': flightNumber,
+                            'flightSequenceNumber': flightSequenceNumber,
+                            'legSerialNumber': legSerialNumber,
+                            'carrierId': carrierId,
+                            'carrierCode': carrierCode,
+                            'assignedPort': assignedPort,
+                            'containerNumber': containerNumber,
+                            'type': type
+                        }
+                    })
+                });
+            
+        </script>
+    </body>
+</html>

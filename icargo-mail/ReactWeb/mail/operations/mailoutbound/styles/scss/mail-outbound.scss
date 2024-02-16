@@ -1,0 +1,331 @@
+body {
+    display: flex;
+    height: 0;
+    overflow: hidden;
+}
+.main-container {
+    display: flex;
+    flex-direction: column;
+	height: 100%;
+}
+.section-panel {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 1rem 0;    
+    .card {
+        flex-grow: 1;
+    }
+}
+.footer-panel {
+    position: static;
+    margin: 0 -1rem;
+    width: auto;
+}
+//common styles
+.flex-grow-0 {
+    flex-grow: 0
+}
+
+.flex-grow-1 {
+    flex-grow: 1
+}
+.flex-only {
+    display: flex;
+}
+.for-border-set {
+    .border-set-0{
+        border: none !important;
+    }
+}
+.line-15 {
+    line-height: 1.5;
+}
+.pointer {
+    cursor: pointer;
+}
+.slide-toggle {
+    position: absolute;
+    left: -22px;
+    top: 9px;
+}
+
+.table-header__icons .ico-updown-dark.ico-updown-dark-down {
+    display: none
+}
+
+.flight-mulit-panel-close {
+    position: absolute;
+    right: -17px;
+    top: 13px;
+}
+
+.cardit-lying-box {
+    display: flex;
+    flex-direction: column;
+}
+
+//.cardit-lying-box .card-header {
+//    padding: 3px;
+//}
+
+.cardit-lying-box,
+.mail-outbound-flight-details-list-small,
+.mail-outbound-container-details-list-small,
+.mail-outbound-mailbag-details-list-small {
+    nav {
+        margin: auto;
+        .pagination .page-item .page-link {
+            height: 28px;
+            padding: 6px 10px;
+        }
+    }
+}
+
+.cardit-lying-box,
+.mail-outbound-flight-details-list-small,
+.mail-outbound-container-details-list-small,
+.mail-outbound-mailbag-details-list-small {
+    .table-header__pagination {
+        padding: 0 6px;
+        .paginator__wrap.paginator__wrap--nano {
+            justify-content: flex-end;
+            min-width: auto;
+        }
+    }
+}
+
+.mail-outbound-flight-details-list,
+.mail-outbound-flight-details-list-small,
+.mail-outbound-carrier-details-list-small,
+.mail-outbound-container-details-list-small,
+.mail-outbound-mailbag-details-list-small {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.mail-outbound-container-details-list-small,
+.mail-outbound-mailbag-details-list-small {
+    .btn {
+        height: 28px;
+        padding: 2px 8px;
+    }
+}
+
+.container-assign-btn {
+    height: auto !important;
+    font-size: 12px;
+    padding: 0 6px !important;
+}
+
+
+.mail-outbound-flight-details-list {
+    .paginator__wrap {
+        min-width: unset;
+        max-width: unset;
+        width: auto;
+    }
+}
+
+//tables
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn {
+    padding: 0 0 0 0.5rem;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn {
+    white-space: normal;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__row.table-row{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:first-child,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn:first-child {
+    padding-left: $xs;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:last-child,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn:last-child {
+    padding-right: $xs;
+}
+
+.mail-outbound-flight-details-list .ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:first-child,
+.mail-outbound-flight-details-list .ReactVirtualized__Table .ReactVirtualized__Table__rowColumn:first-child {
+    padding-left: 1rem;
+}
+
+.mail-outbound-flight-details-list .ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:last-child,
+.mail-outbound-flight-details-list .ReactVirtualized__Table .ReactVirtualized__Table__rowColumn:last-child {
+    padding-right: 1rem;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Grid__innerScrollContainer .ReactVirtualized__Table__row.table-row:last-child {
+    border-bottom: 1px solid #ddd;
+}
+
+.ReactVirtualized__Table .form-check-input {
+    margin: 0;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn .dropdown{
+    text-align: right;
+}
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn .dropdown .dropdown-toggle{
+    border: 0;
+    padding: 0 4px !important;
+}
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn .dropdown .dropdown-toggle:focus{
+    box-shadow: none;
+}
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn .dropdown .dropdown-toggle i{
+    margin: 0;
+}
+
+
+.tab {
+    border-bottom: 1px solid #ddd;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .btn-group {
+        .btnbar {
+            font-size: 16px;
+            font-weight: normal;
+            padding: 1rem;
+            line-height: 1;
+        }
+    }
+    &.tab-sm {
+        .btn-group {
+            .btnbar {
+                font-size: 12px;
+                padding: 13px 12px;
+            }
+        }
+    }
+    &.tab-icon {
+        border: 0;
+        .btn-group {
+            .btnbar {
+                padding: 12px;
+                min-width: auto;
+                i {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+.text-light-grey {
+    color: #aaa;
+}
+.text-red{
+    color: rgb(238, 31, 31);
+}
+
+.card-header,
+.tab {
+    //    .card-header {
+    //        padding: 0;
+    //        border: 0;
+    //    }
+    //    .btn {
+    //        font-size: 12px;
+    //        padding: 0 8px;
+    //    }
+    .icon {
+        vertical-align: middle;
+    }
+}
+
+.popover-body .btn {
+    font-size: 14px;
+    padding: 0 0.625rem;
+    height: 2rem;
+}
+
+.handsontable {
+    .htCore {
+        tr {
+            &:first-child {
+                th {
+                    border-top: 0;
+                    padding: $xs;
+                    text-align: left;
+                    background: #f2f8ff;
+                    font-weight: bold;
+                    height: auto !important;
+                    line-height: 1;
+                    color: #666;
+                    &:first-child {
+                        border-left: 0;
+                    }
+                    &:last-child {
+                        border-right: 0;
+                    }
+                    .relative {
+                        padding: 0;
+                    }
+                }
+            }
+            td {
+                padding: $xs;
+                line-height: 1;
+                color: #333;
+                height: auto;
+                &:first-child {
+                    border-left: 0;
+                }
+                &:last-child {
+                    border-right: 0;
+                }
+            }
+           /* &:last-child {
+                td {
+                    border-bottom: 0;
+                }
+            }*/
+        }
+    }
+}
+.width24{
+    width: 24px;
+}
+.width16{
+    width: 16px;
+}
+.btn-secondary:focus{
+    box-shadow: none !important; // button shadow temp fix
+}
+.modal_990px{
+	max-width:990px;
+	.modal-body{
+		max-height: 448px;
+		overflow-y: auto;
+	}
+}
+
+#addmailbagstable-headerholder > .reset_header_icons{
+  width: auto !important;
+  .card-header{
+    border: 0;
+  }
+}
+
+// temp fix 
+.notify-border-left.blue:before {
+    background: #0077cc; }
+    .modal_550px{
+        max-width:550px;  
+    }
+    
+    .dropdown-menu{
+        max-height: 56vh !important;
+        overflow-y: auto !important;
+    }

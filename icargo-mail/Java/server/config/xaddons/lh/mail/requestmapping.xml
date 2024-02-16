@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--The file contains mapping information for request URI and to its corresponding handler
+and  screen. There will be entries for each request URI which need to be mapped.
+This file is used to build request mapping objects.-->
+<request-mappings>
+	<url-mapping url="lhmail">
+    	<submodule-mapping submodule="operations">
+        	<request-service-name>LHMAIL_OPERATIONS</request-service-name>
+			
+		
+		<!-- A-203168 Added for IASCB-159271 -->
+		 <request-action actionName="markHba" methodName="markHba" parameterTypes="com.ibsplc.icargo.business.xaddons.lh.mail.operations.vo.HbaMarkingVO" permissionCheck="false" />
+	     <request-action actionName="findHbaDetails" methodName="findHbaDetails" parameterTypes="com.ibsplc.icargo.business.xaddons.lh.mail.operations.vo.HbaMarkingVO" permissionCheck="false" />
+	</submodule-mapping>
+
+
+
+    </url-mapping>
+  </request-mappings>

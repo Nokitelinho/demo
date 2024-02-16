@@ -1,0 +1,50 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+<html>
+    <head>
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+        <title>Cardit Enquiry</title>
+        <script>
+            var fromScreen = '<%=request.getParameter("fromScreen")%>'
+            var screenAction = "mail.operations.ux.outboundscreenload.do";
+            function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {
+                    __rehydrate: fromScreen === 'OFFLOAD' ? true : false,
+                     fromScreen: fromScreen,
+                     screenAction: screenAction,
+                });
+                console.log('newObj', newobj);
+                return newobj
+            }
+        </script>
+        <common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+    </head>
+
+    <body>
+        <!-- The DIV container for redering results from react -->
+        <div id="container" class="main-container"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" /> 
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" /> 
+        {{/each}}
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+        <%@include file="/jsp/includes/reports/printFrame.jsp"%>
+        <script>
+            if (fromScreen === 'OFFLOAD') {
+                console.log('back from OFFLOAD screen');
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'SHOW_MAILBAG_PAGE_FROM_OFFLOAD',
+                        data: { fromScreen: fromScreen }
+                    })
+                });
+            }
+            else {
+                console.log('inside the non-required one');
+            appBridge.renderApp();
+            }
+        </script>
+    </body>
+</html>

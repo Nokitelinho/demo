@@ -1,0 +1,43 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+<html>
+    <head>
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+        <title>Mailbag Security Details</title>
+        <script>
+            var fromScreen = '<%=request.getParameter("fromScreen")%>'
+            var screenAction = "mail.operations.ux.mailbagsecuritydetails.defaultscreenload.do";
+            var isPopup = '<%=request.getParameter("isPopup")%>';
+
+             function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {
+                    __rehydrate: fromScreen === 'CONSIGNMENT' ? true : false,
+                    fromScreen: fromScreen,
+                    screenAction: screenAction,
+                    isPopup: isPopup
+
+                });
+                console.log('newObj', newobj);
+                return newobj
+            }
+
+        </script>
+        <common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+    </head>
+
+    <body>
+        <!-- The DIV container for redering results from react -->
+        <div id="container" class="main-container"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" /> 
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" />
+        {{/each}}
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+		<%@include file="/jsp/includes/reports/printFrame.jsp"%>
+        <script>
+                appBridge.renderApp();
+        </script>
+    </body>
+</html>

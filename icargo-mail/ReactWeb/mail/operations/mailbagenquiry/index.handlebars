@@ -1,0 +1,115 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+<html>
+    <head>
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+        <title>Mailbag Enquiry</title>
+        <script>
+            var fromScreen = '<%=request.getParameter("fromScreen")%>'
+            var isPopup = '<%=request.getParameter("isPopup")%>'; //Added by A-7929 as part of ICRD-334270
+            //Updated by A-8672 for ICRD-269973
+            var containerNumber = '<%=request.getParameter("containerNumber")%>';
+            var carrierCode = '<%=request.getParameter("carrierCode")%>';
+            var flightNumber = '<%=request.getParameter("flightNumber")%>';
+            var flightDate = '<%=request.getParameter("flightDate")%>';
+            var airport = '<%=request.getParameter("airport")%>';
+            var fromDate = '<%=request.getParameter("fromDate")%>';
+            var toDate = '<%=request.getParameter("toDate")%>';
+            var mailBagId = '<%=request.getParameter("mailBagId")%>';
+			var containerAssignedOn = '<%=request.getParameter("containerAssignedOn")%>';
+			var assignedPort = '<%=request.getParameter("assignedPort")%>';
+            var screenAction = "mail.operations.ux.mailbagenquiry.defaultscreenload.do";
+            var valildationforimporthandling = '<%=request.getParameter("valildationforimporthandling")%>';
+            function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {
+                    __rehydrate: fromScreen === 'OFFLOAD' ? true : false,
+                    fromScreen: fromScreen,
+                    screenAction: screenAction,
+                    isPopup: isPopup
+                });
+                console.log('newObj', newobj);
+                return newobj
+            }
+        </script>
+        <common:include type="css" src="/css/app/app.css" /> 
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+    </head>
+
+    <body>
+        <!-- The DIV container for redering results from react -->
+        <div id="container" class="main-container"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" /> 
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" /> 
+        {{/each}}
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+
+        <script>
+            //Updated by A-8672 for ICRD-269973
+            if (fromScreen === 'mail.operations.ux.containerenquiry') {
+                console.log('inside the required one');
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'SHOW_MAILBAG_PAGE_WITH_FILTER',
+                        data: {
+                            containerNumber: containerNumber, carrierCode: carrierCode, flightNumber: flightNumber,
+                            flightDate: flightDate, airport: airport, fromDate: fromDate, toDate: toDate,
+							 containerAssignedOn:containerAssignedOn,assignedPort:assignedPort,
+                        }
+                    })
+                });
+            }
+            if (fromScreen === 'OFFLOAD') {
+                console.log('back from OFFLOAD screen');
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'SHOW_MAILBAG_PAGE_FROM_OFFLOAD',
+                        data: { fromScreen: fromScreen }
+                    })
+                });
+            }
+            //Added by A-8164 for mailinbound 
+            if (fromScreen === 'MailInbound') {
+                console.log('inside the required one');
+                appBridge.renderApp(function () {
+                    let mailbags = mailBagId ? mailBagId.split('-') : [];
+                    let mailbagsToBeSaved = [];
+                    if (mailbags.length > 0) {
+                        for (var i = 0; i < mailbags.length; i++) {
+                            if (mailbags[i].trim().length > 0) {
+                                mailbagsToBeSaved.push(mailbags[i]);
+                            }
+                        }
+						/*mailbags.forEach(element => {
+							if(element.trim().length>0){
+								mailbagsToBeSaved.push(element);
+							}
+						});*/
+                    }
+                    appBridge.dispatchAction({
+                        type: 'FILTER_FRM_INBOUND',
+                        data: {
+                            containerNumber: containerNumber, carrierCode: carrierCode, flightNumber: flightNumber,
+                            flightDate: flightDate, airport: airport, fromDate: fromDate, toDate: toDate,
+                            mailBagId: mailbagsToBeSaved,valildationforimporthandling:valildationforimporthandling
+                        }
+                    })
+                });
+            }
+            else if (fromScreen === 'MailOutbound') {
+                appBridge.renderApp(function () {
+                    appBridge.dispatchAction({
+                        type: 'FILTER_FRM_OUTBOUND',
+                        data: { containerNumber: containerNumber, carrierCode: carrierCode, flightNumber: flightNumber,
+                            flightDate: flightDate, airport: airport, fromDate: fromDate, toDate: toDate }
+                    })
+                });
+            }
+            else {
+                console.log('inside the non-required one');
+                appBridge.renderApp();
+            }
+        </script>
+    </body>
+</html>

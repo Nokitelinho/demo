@@ -1,0 +1,1200 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN "
+	"http://struts.apache.org/dtds/struts-config_1_2.dtd " >
+
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="ListCN51Form" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.ListCN51Form"  />
+		<form-bean name="GPABillingEntriesForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.GPABillingEntriesForm"  />
+		<form-bean name="SurchargeBillingDetailsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.SurchargeBillingDetailsForm"  />
+		<form-bean name="ListCN51CN66Form" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.ListCN51CN66Form"  />
+		<form-bean name="GPAInvoiceLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.InvoiceLovForm" />
+		<!-- Added by kiran -->
+		<form-bean name="GenerateGPABillingInvoiceForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.GenerateGPABillingInvoiceForm"  />
+		<form-bean name="GPABillingReportsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.GPABillingReportsForm"  />
+		<form-bean name="InvoiceSettlementForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.InvoiceSettlementForm"  />
+		<form-bean name="InvoiceSettlementMailbagForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.ux.InvoiceSettlementMailbagForm"  />
+		<form-bean name="InvoiceLovFormUX" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.ux.InvoiceLovForm" />
+
+		<!-- Added by A-3434 for CR AirNZ162-->
+		<form-bean name="ListGPABillingInvoiceForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.ListGPABillingInvoiceForm"  />
+		<!-- added by by A-3434 for CR AirNZ163-->
+		<form-bean name="GPABillingInvoiceEnquiryForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.GPABillingInvoiceEnquiryForm"/>
+		<form-bean name="ProformaInvoiceDiffReportForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.ProformaMailInvoiceDiffReportForm"/>
+		<!--added by a-4823-->
+		<form-bean name="POMailSummaryForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.POMailSummaryForm"  />
+		<!--added by a-4823-->
+		<form-bean name="FileNameLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.gpabilling.ux.FileNameLovForm"  />
+	</form-beans>
+	<global-forwards>
+		   <forward name="error_fwd" path="/jsp/icargo_logon.jsp" />
+		   <forward name="normal-report-viewer" path="/jsp/includes/reports/NormalReportViewer.jsp"/>
+		   <forward name="normal-report-printer" path="/jsp/includes/reports/NormalReportPrinter.jsp"/>
+		   <forward name="special-report-printer" path="/jsp/includes/reports/SpecialReportPrinter.jsp"/>
+		   <forward name="normal-report-error-jsp" path="/jsp/includes/reports/NormalReportErrorHandler.jsp"/>
+	</global-forwards>
+	<action-mappings>
+
+		<!-- Added by A-3434 for CR AirNZ162-->
+
+		<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.onScreenLoad"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+		</action>
+		<!-- added By by A-3434 for CR AirNZ163-->
+		<action path="/mailtracking.mra.gpabilling.invoiceenquirypopulategpaname"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingInvoiceEnquiryForm"
+			scope="request"
+			validate="false">
+			<forward name="populate_success" path="/jsp/mail/mra/gpabilling/GPABillingInvoiceEnquiry_Ajax.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.gpabilling.gpabillinginvoiceenquiry"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingInvoiceEnquiryForm"
+			scope="request"
+			validate="false">
+			<forward name="screen_success" path="/jsp/mail/mra/gpabilling/GPABillingInvoiceEnquiry.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.invoiceenquiry.list"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingInvoiceEnquiryForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/gpabilling/GPABillingInvoiceEnquiry.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/gpabilling/GPABillingInvoiceEnquiry.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.invoiceenquiry.clear"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingInvoiceEnquiryForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/gpabilling/GPABillingInvoiceEnquiry.jsp" />
+
+		</action>
+
+		<!-- added By by A-3447 for CR AirNZ162-->
+
+		<action path="/mailtracking.mra.gpabilling.invoiceenquiry.close"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingInvoiceEnquiryForm"
+			scope="request"
+			validate="false">
+		<forward name="close_success" path="/mailtracking.mra.gpabilling.listgpabillingInvoice.list.do" />
+		<forward name="close_gpa_inv" path="/home.jsp" />
+		<forward name="close_settle_success" path="/mailtracking.mra.gpabilling.invoicesettlement.list.do?displayPage=1&amp;frmPopUp=from_invoicedetail" />
+		</action>
+
+
+		<!-- added By by A-3434 for CR AirNZ162-->
+		<action path="/mailtracking.mra.gpabilling.inward.invoiceenquiry.print"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingInvoiceEnquiryForm"
+			scope="request"
+			validate="false">
+
+		</action>
+		<action path="/mailtracking.mra.gpabilling.invoiceenquiry.finalizeInvoice"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingInvoiceEnquiryForm"
+			scope="request"
+			validate="false">
+			<forward name="finalize_failure" path="/jsp/mail/mra/gpabilling/GPABillingInvoiceEnquiry.jsp" />
+			<forward name="load_eInvoice" path="/jsp/mail/mra/gpabilling/GPABillingInvoiceEnquiry.jsp" />
+			<forward name="finalize_success" path="/mailtracking.mra.gpabilling.invoiceenquiry.list.do?invoiceFinalizedStatus=FINALIZED" />
+
+		</action>
+		<action path="/mailtracking.mra.gpabilling.invoiceenquiry.navigate"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingInvoiceEnquiryForm"
+			scope="request"
+			validate="false">
+			<forward name="tomaintaincca" path="/mailtracking.mra.defaults.maintaincca.listccadetails.do?fromScreen=gpabillinginvoiceenquiry"/>
+
+		</action>
+
+		<!-- A-2554 -->
+		<action path="/mailtracking.mra.gpabilling.generateLoadInvoice"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="GPABillingInvoiceEnquiryForm"
+					scope="request"
+					validate="false">
+				<forward name="einvoicescreenload_success" path="/jsp/mail/mra/gpabilling/EInvoice.jsp"/>
+			</action>
+		<action path="/mailtracking.mra.gpabilling.sendandfinalizeInvoice"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="GPABillingInvoiceEnquiryForm"
+					scope="request"
+					validate="false">
+				<forward name="einvoicescreenload_success" path="/jsp/mail/mra/gpabilling/EInvoice.jsp"/>
+
+
+		</action>
+		<action path="/mailtracking.mra.gpabilling.changebillingstatus"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingInvoiceEnquiryForm"
+			scope="request"
+			validate="false">
+			<forward name="screen_success" path="/jsp/mail/mra/gpabilling/ChangeBillingStatus.jsp" />
+			<forward name="screen_failure" path="/jsp/mail/mra/gpabilling/GPABillingInvoiceEnquiry.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.changestatus.save"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingInvoiceEnquiryForm"
+			scope="request"
+			validate="false">
+			<forward name="save_success" path="/jsp/mail/mra/gpabilling/ChangeBillingStatus.jsp" />
+			<forward name="save_failure" path="/jsp/mail/mra/gpabilling/ChangeBillingStatus.jsp" />
+		</action>
+
+		<!-- Added by A-3447 for CR : AirNZ162 starts -->
+		<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.finalizeInvoice"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+			<forward name="finalize_failed" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+			<forward name="finalize_success" path="/mailtracking.mra.gpabilling.listgpabillingInvoice.list.do?invoiceFinalizedStatus=FINALIZED" />
+
+		</action>
+		<!-- Added by A-6991 for CR :ICRD-211662 starts -->
+		<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.withdrawInvoice"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+			<forward name="withdraw_failed" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+			<forward name="withdraw_success" path="/mailtracking.mra.gpabilling.listgpabillingInvoice.list.do" />
+
+		</action>
+       <!-- Added by A-6991 for CR :ICRD-211662 starts -->
+
+
+
+		<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.invoicedetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+		<forward name="finalize_failed" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+		<forward name="invoicedetail_success" path="/mailtracking.mra.gpabilling.invoiceenquiry.list.do" />
+		</action>
+
+
+
+
+		<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.viewcn66"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+		<forward name="view_success" path="/mailtracking.mra.gpabilling.onlistcn51cn66.do?invokingScreen=listinvoice"/>
+		<forward name="view_failure" path="/jsp/mail/mra/gpabilling/ListCN51s.jsp" />
+		</action>
+
+
+
+	<action path="/mra.gpabilling.listgpabillingInvoice.listaccdetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+		<forward name="list_acc_success" path="/cra.accounting.listaccountingentrieslist.do?invokingScreen=listgpainvoice" />
+	</action>
+	<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.outstandingreceivables"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+		<forward name="success" path="/cra.agentbilling.defaults.reminderlist.list.do" />
+	</action>
+	<!--Added by A-4809 for ICRD-42160 Starts-->
+	<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.sendemailinvoice"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+		<forward name="send_success" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+		<forward name="send_failure" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+	</action>
+	<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.printall"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+			<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+			<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+			<forward name="print_failure" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+		</action>
+	<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.printallinvoicedetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+	</action>
+	
+	<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.printallSQ"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+			<forward name="print_failure" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+	</action>
+	<!--Added by A-4809 for ICRD-42160 Ends-->
+
+
+		<!-- Added by Deepthi for CR list GPA Billing Invoice starts-->
+		<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.print"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+			<forward name="print_failure" path="/jsp/mail/mra/gpabilling/ListCN51s.jsp" />
+		</action>
+
+		<!-- Added by A-3447 for CR AirNZ162 ends-->
+		<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.list"
+
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+
+		</action>
+		<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.clear"
+
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+			<forward name="clear_failure" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+
+		</action>
+
+		<!-- Added by A-3434 for Bug 27395-->
+
+		<action path="/mra.gpabilling.listgpabillingInvoice.listaccdetails"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListGPABillingInvoiceForm"
+					scope="request"
+					validate="false">
+					<forward name="list_acc_success" path="/cra.accounting.listaccountingentrieslist.do?invokingScreen=listgpainvoice" />
+		</action>
+
+		<!-- added for List CN51s by Shivjith starts -->
+		<action path="/mail.mra.gpabilling.listgpabillinginvoice.downloadpassfile"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+			<forward name="download_success" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+			<forward name="download_failure" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.listcn51s.onScreenLoad"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="screen_success" path="/jsp/mail/mra/gpabilling/ListCN51s.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.listcn51s.onList"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/gpabilling/ListCN51s.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51s.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.listcn51s.onPrintALL"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51Form"
+			scope="request"
+			validate="false">
+		</action>				
+		<action path="/mailtracking.mra.gpabilling.listcn51s.onClear"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/gpabilling/ListCN51s.jsp" />
+			<forward name="clear_failure" path="/jsp/mail/mra/gpabilling/ListCN51s.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.listcn51s.onView"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="view_success" path="/mailtracking.mra.gpabilling.onlistcn51cn66.do?invokingScreen=listCN51"/>
+			<forward name="view_failure" path="/jsp/mail/mra/gpabilling/ListCN51s.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.listcn51s.onClose"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+		</action>
+
+		<!-- added for List CN51s by Shivjith ends -->
+
+		<action path="/mailtracking.mra.gpabilling.billingentries.onScreenLoad"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingEntriesForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ListGPABillingEntries.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.changestatuspopup"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingEntriesForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ChangeStatus.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.listbillingentries"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingEntriesForm"
+			scope="request"
+			validate="false">
+			<forward name="details_success" path="/jsp/mail/mra/gpabilling/ListGPABillingEntries.jsp" />
+			<forward name="details_failure" path="/jsp/mail/mra/gpabilling/ListGPABillingEntries.jsp" />
+		</action>
+		
+		<action path="/mailtracking.mra.gpabilling.listbillingsurcharge"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingEntriesForm"
+			scope="request"
+			validate="false">
+			<forward name="success" path="/mailtracking.mra.gpabilling.surcharge.do" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.surcharge"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="SurchargeBillingDetailsForm"
+			scope="request"
+			validate="false">
+			<forward name="success" path="/jsp/mail/mra/gpabilling/SurChargeDetailBillingEntryPopup.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.clearbillingentries"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingEntriesForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ListGPABillingEntries.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.changestatusok"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingEntriesForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ChangeStatus.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.screenreload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingEntriesForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ListGPABillingEntries.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.savebillingentries"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingEntriesForm"
+			scope="request"
+			validate="false">
+			<forward name="save_success" path="/jsp/mail/mra/gpabilling/ListGPABillingEntries.jsp" />
+			<forward name="save_failure" path="/jsp/mail/mra/gpabilling/ListGPABillingEntries.jsp" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.rerate"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingEntriesForm"
+			scope="request"
+			validate="false">
+			<forward name="rerate_success" path="/mailtracking.mra.gpabilling.listbillingentries.do" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.routing"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingEntriesForm"
+			scope="request"
+			validate="false">
+			<forward name="routing_success" path="/mailtracking.mra.defaults.despatchrouting.listdsnpopup.do?fromScreen=listgpabillingentries" />
+		</action>
+		<action path="/mailtracking.mra.gpabilling.voidaction"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingEntriesForm"
+			scope="request"
+			validate="false">
+			<forward name="confirm_void" path="/jsp/mail/mra/gpabilling/ListGPABillingEntries.jsp" />
+			<forward name="void_success" path="/mailtracking.mra.gpabilling.listbillingentries.do?navigationMode=FILTER" />
+		</action>
+
+		                                <!-- Added as part of ICRD-294621 -->
+		<action path="/mailtracking.mra.gpabilling.automca"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="GPABillingEntriesForm"
+			scope="request"
+			validate="false">
+			<forward name="navigate_screenload_success" path="/mailtracking.mra.defaults.maintaincca.screenload.do?fromScreen=listbillingentries" />
+			<forward name="navigate_screenload_failure" path="/jsp/mail/mra/gpabilling/ListGPABillingEntries.jsp" />	
+		</action>
+		
+		
+		<action
+			name="GPABillingEntriesForm"
+			path="/mailtracking.mra.gpabilling.billingentries.close"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+		</action>
+
+		<action
+			name="ListCN51CN66Form"
+			path="/mailtracking.mra.gpabilling.onscreenloadlistcn51cn66"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+		</action>
+		<action
+			name="ListCN51CN66Form"
+			path="/mailtracking.mra.gpabilling.onlistcn51cn66"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+		</action>
+		<action
+			name="ListCN51CN66Form"
+			path="/mailtracking.mra.gpabilling.cn51cn66surcharge"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="success" path="/mailtracking.mra.gpabilling.surcharge.do" />
+			
+		</action>
+		<!-- Added by A-6991 for CR ICRD-211662 starts-->	
+		<action
+			name="ListCN51CN66Form"
+			path="/mailtracking.mra.gpabilling.cn51cn66withdrawmail"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="withdraw_success" path="/mailtracking.mra.gpabilling.onlistcn51cn66.do" />
+			<forward name="withdraw_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+		</action>
+		<action
+			name="ListCN51CN66Form"
+			path="/mailtracking.mra.gpabilling.cn51cn66finalizeinvoice"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="invoicefinalizaion_success" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+			<forward name="invoicefinalizaion_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+		</action>
+		<!-- Added by A-6991 for CR ICRD-211662 ends-->
+		<action
+			name="ListCN51CN66Form"
+			path="/mailtracking.mra.gpabilling.onClearcn51cn66"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+		</action>
+		<action
+			name="ListCN51CN66Form"
+			path="/mailtracking.mra.gpabilling.onClosecn51cn66"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+			<forward name="closecn51_success" path="/mailtracking.mra.gpabilling.listcn51s.onScreenLoad.do?fromScreen=cn51cn66" />
+			<!-- Added by A-3447 for CR AirNZ162 starts-->
+			<forward name="closeinv_success" path="/mailtracking.mra.gpabilling.listgpabillingInvoice.list.do" />
+			<!-- Added by A-3447 for CR AirNZ162 ends-->
+			<forward name="close_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+			
+			<forward name="closetocra_success" path="/cra.accounting.postingdetails.list.do" />
+			<forward name="Invoice_Print" path="/cra.defaults.tk.invoiceprint.listinvoiceprint.do?screenMode=ReList" />
+
+		</action>
+		<action
+			name="ListCN51CN66Form"
+			path="/mailtracking.mra.gpabilling.onCN66TabListcn51cn66"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="listdetails_success" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+			<forward name="listdetails_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+		</action>
+		<action
+			name="ListCN51CN66Form"
+			path="/mailtracking.mra.gpabilling.onCN66TabClearcn51cn66"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+		</action>
+		<action
+			name="ListCN51CN66Form"
+			path="/mailtracking.mra.gpabilling.onSavecn51cn66"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		<forward name="savedetails_success" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+		</action>
+		<action path="/mtk.mra.gpabilling.generatecn66repPrint"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	     </action>
+	     <action path="/mailtracking.mra.gpabilling.generatecn51report"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	    </action>
+		 <!--Added by A-7794 as part of ICRD-234354 starts-->
+		<action path="/mail.mra.gpabilling.generatekecn51report"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	    </action>
+		<action path="/mail.mra.gpabilling.generatekecn66report"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	    </action>
+		<!--Added by A-7794 as part of ICRD-234354  ends-->
+		 <!--6e specific reports-->
+		 <action path="/mailtracking.mra.gpabilling.generatecn516ereport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	    </action>
+		 <action path="/mtk.mra.gpabilling.generatecn666erepPrint"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	     </action>
+		 <!--6e specific reports-->
+	    <action path="/mailtracking.mra.gpabilling.generateinvoicereport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	   </action>
+	   <action path="/mailtracking.mra.gpabilling.listcn51cn66.viewaccount"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+			<forward name="view_success" path="/cra.accounting.listaccountingentrieslist.do?invokingScreen=listCN51CN66"/>
+	    </action>
+		<!-- Added for InvoiceLov starts -->
+		<action
+			name="GPAInvoiceLovForm"
+			path="/showInvoiceLOV"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/InvoiceLOV.jsp"/>
+		</action>
+		<action
+			name="GPAInvoiceLovForm"
+			path="/clearInvoiceLOV"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/gpabilling/InvoiceLOV.jsp"/>
+		</action>
+		<action
+			name="InvoiceLovFormUX"
+			path="/showNewInvoiceLOV"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ux/InvoiceLOV.jsp"/>
+		</action>
+		<action
+			name="InvoiceLovFormUX"
+			path="/clearInvoiceLOV"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/gpabilling/ux/InvoiceLOV.jsp"/>
+		</action>
+		<!-- Added for InvoiceLov ends -->
+
+
+		<!-- Added for generateInvoice starts -->
+
+			<action
+				name="GenerateGPABillingInvoiceForm"
+				path="/mailtracking.mra.gpabilling.generateinvoice.onScreenLoad"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="screen_success" path="/jsp/mail/mra/gpabilling/GenerateInvoice.jsp"/>
+			</action>
+
+			<action
+				name="GenerateGPABillingInvoiceForm"
+				path="/mailtracking.mra.gpabilling.generateinvoice.onGenInv"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="generate_success" path="/jsp/mail/mra/gpabilling/GenerateInvoice.jsp"/>
+				<forward name="generate_failure" path="/jsp/mail/mra/gpabilling/GenerateInvoice.jsp"/>
+			</action>
+			<!--Added by A-4809 for ICRD-42160 Turkish specific Starts -->
+			<!--<action
+				name="GenerateGPABillingInvoiceForm"
+				path="/mailtracking.mra.gpabilling.generateinvoice"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="generate_success" path="/jsp/mail/mra/gpabilling/GenerateInvoice.jsp"/>
+				<forward name="generate_failure" path="/jsp/mail/mra/gpabilling/GenerateInvoice.jsp"/>
+			</action>-->
+			<!--Added by A-4809 for ICRD-42160 Ends -->
+			<action
+				name="GenerateGPABillingInvoiceForm"
+				path="/mailtracking.mra.gpabilling.generateinvoice.onClose"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="close_success" path="/home.jsp" />
+			</action>
+			<action
+				name="GenerateGPABillingInvoiceForm"
+				path="/mailtracking.mra.gpabilling.generateinvoice.findBillingPeriod"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="action_success" path="/jsp/mail/mra/gpabilling/BillingPeriod.jsp"/>
+				<forward name="action_failure" path="/jsp/mail/mra/gpabilling/BillingPeriod.jsp"/>
+			</action>
+
+		<!-- Added for generateInvoice ends -->
+		<!-- Added for gpabillingreports starts -->
+		<action
+				name="GPABillingReportsForm"
+				path="/mailtracking.mra.gpabilling.reports.screenload"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/GPABillingReports.jsp"/>
+		</action>
+		<action path="/mailtracking.defaults.gpa.list"
+			name="GPABillingReportsForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="findgpa_Success" path="/jsp/mail/mra/gpabilling/GPABillingReports_Ajax.jsp"/>
+		</action>
+		<action path="/mailtracking.mra.gpabilling.reports.printblgsmyperiodwise"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="GPABillingReportsForm"
+				scope="request"
+				validate="false">
+
+		</action>
+		<action path="/mailtracking.mra.gpabilling.reports.printblgsmygpawise"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="GPABillingReportsForm"
+				scope="request"
+				validate="false">
+
+		</action>
+		<action path="/mailtracking.mra.gpabilling.reports.printcn51periodwise"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="GPABillingReportsForm"
+				scope="request"
+				validate="false">
+
+		</action>
+		<action path="/mailtracking.mra.gpabilling.reports.printcn51gpawise"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="GPABillingReportsForm"
+				scope="request"
+				validate="false">
+
+	       </action>
+	       <action path="/mailtracking.mra.gpabilling.reports.printcn66periodwise"
+	       			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	       			name="GPABillingReportsForm"
+	       			scope="request"
+	       			validate="false">
+
+	      </action>
+	      <action path="/mailtracking.mra.gpabilling.reports.printcn66gpawise"
+	       			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	       			name="GPABillingReportsForm"
+	       			scope="request"
+	       			validate="false">
+
+	     </action>
+	     <action path="/mailtracking.mra.gpabilling.reports.printgpabillablereport"
+	     			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	     			name="GPABillingReportsForm"
+	     			scope="request"
+	     			validate="false">
+
+	      </action>
+		<!-- Added for gpabillingreports ends -->
+		 <!--  mappings for invoice settlement starts -->
+		   <action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.onScreenLoad"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/InvoiceSettlement.jsp"/>
+			</action>
+			 <action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.list"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/InvoiceSettlement.jsp"/>
+					<forward name="screenload_failure" path="/jsp/mail/mra/gpabilling/InvoiceSettlement.jsp"/>
+			</action>
+			<action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.history"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/InvoiceSettlement.jsp"/>
+			</action>
+			<action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.print"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+
+			</action>
+			<!-- Modified by A-5116 for ICRD-17510   -->
+			<action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.save"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="screenload_success" path="/mailtracking.mra.gpabilling.invoicesettlement.clear.do"/>
+					<forward name="screenload_failure" path="/jsp/mail/mra/gpabilling/InvoiceSettlement.jsp"/>
+			</action>
+			<action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.clear"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/InvoiceSettlement.jsp"/>
+			</action>
+			<action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.reload"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="reload_success" path="/jsp/mail/mra/gpabilling/InvoiceSettlement.jsp"/>
+			</action>
+			<action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.close"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="close_success" path="/home.jsp"/>
+			</action>
+			<!--added for ICRD-7316 starts-->
+			<action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.availablepopup"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/AvailableSettlementPopUp.jsp"/>
+			</action>
+			<action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.ok"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/AvailableSettlementPopUp.jsp"/>
+			</action>
+			<action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.create"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/AvailableSettlementPopUp.jsp"/>
+			</action>
+			<action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.populategpaname"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="populate_success" path="/jsp/mail/mra/gpabilling/InvoiceSettlement_Ajax.jsp"/>
+			</action>
+			<action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.printsettlement"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="normal-report-error-jsp" path="/jsp/includes/reports/NormalReportErrorHandler.jsp"/>
+			</action>
+			<action
+					name="InvoiceSettlementForm"
+					path="/mailtracking.mra.gpabilling.invoicesettlement.listinvoice"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">					
+					<forward name="screenload_success" path="/mailtracking.mra.gpabilling.invoiceenquiry.list.do" />
+			</action>	
+			<action path="/mailtracking.mra.gpabilling.invoicesettlement.listaccdetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementForm"
+			scope="request"
+			validate="false">
+			<forward name="list_acc_success" path="/cra.accounting.listaccountingentrieslist.do?invokingScreen=settlementcapture" />
+			<forward name="screenload_failure" path="/jsp/mail/mra/gpabilling/InvoiceSettlement.jsp" />
+			</action>
+			<!--added for ICRD-7316 ends-->
+	    <!--  mappings for invoice settlement ends -->
+
+	    <!--  Proforma Invoice Difference Report starts -->
+	    	    	<action path="/mailtracking.mra.gpabilling.reports.proformainvoicescreenload"
+	    	    		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	    	    		name="ProformaInvoiceDiffReportForm"
+	    	    		scope="request"
+	    	    		validate="false">
+	    	    		<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ProformaInvoiceDiffReport.jsp"/>
+	    	    		<forward name="screenload_failure" path="/jsp/mail/mra/gpabilling/ProformaInvoiceDiffReport.jsp"/>
+	    	    	</action>
+	    	    	<action path="/mailtracking.mra.gpabilling.printproformainvoicediffreport"
+	    	    		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	    	    		  name="ProformaInvoiceDiffReportForm"
+	    	    		  scope="request"
+	    	    		  validate="false">
+	    	    	</action>
+	    	    	<action path="/mailtracking.mra.gpabilling.closeproformainvoicediffreport"
+	    	    		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	    	    		  name="ProformaInvoiceDiffReportForm"
+	    	    		  scope="request"
+	    	    		  validate="false">
+	    	    		<forward name="close_success" path="/home.jsp" />
+	    	    	</action>
+	    <!--  Proforma Invoice Difference Report ends -->
+	<!--added for POMailSummary starts-->
+	<action path="/mailtracking.mra.gpabilling.pomailsummary.screenload"
+	    	    type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	    	    name="POMailSummaryForm"
+	    	    scope="request"
+	    	    validate="false">
+	    	    <forward name="screenload_success" path="/jsp/mail/mra/gpabilling/POMailSummary.jsp"/>
+	    	    <forward name="screenload_failure" path="/jsp/mail/mra/gpabilling/POMailSummary.jsp"/>
+	 </action>
+	 <action path="/mailtracking.mra.gpabilling.pomailsummary.clear"
+	    	    type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	    	    name="POMailSummaryForm"
+	    	    scope="request"
+	    	    validate="false">
+	    	    <forward name="clear_success" path="/jsp/mail/mra/gpabilling/POMailSummary.jsp"/>
+	 </action>
+	 <action path="/mailtracking.mra.gpabilling.pomailsummary.print"
+	    	    type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	    	    name="POMailSummaryForm"
+	    	    scope="request"
+	    	    validate="false">
+	    	   <forward name="normal-report-error-jsp" path="/jsp/includes/reports/NormalReportErrorHandler.jsp"/>
+			    <forward name="print-failure" path="/jsp/mail/mra/gpabilling/POMailSummary.jsp"/>
+	 </action>
+	<!--added for POMailSummary ends-->
+	<action path="/mtk.mra.gpabilling.generatecn51tkrepPrint"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	</action>
+	<action path="/mtk.mra.gpabilling.generatecnInvoicetkrPrint"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	</action>
+	<action path="/mtk.mra.gpabilling.generatecnGPAInvoicestkrPrint"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	</action>
+<!--ADDED FOR SQ_SPECIFIC-->
+<action path="/mtk.mra.gpabilling.generatecnInvoicesqPrint"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	</action>
+<action path="/mtk.mra.gpabilling.generatecn51sqrepPrint"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	</action>
+
+<action path="/mtk.mra.gpabilling.generatecnGPAInvoicesqPrint"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCN51CN66Form"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListCN51CN66.jsp" />
+	</action>
+	<action path="/mailtracking.mra.gpabilling.listgpabillingInvoicesq.print"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+	</action>
+	<action path="/mailtracking.mra.gpabilling.listgpabillingInvoice.printallSQ"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListGPABillingInvoiceForm"
+			scope="request"
+			validate="false">
+		<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+		<forward name="normal-report-print-jsp" path="/NormalReportPrinter.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ListGPABillingInvoice.jsp" />
+	</action>
+<!--END ADDED FOR SQ_SPECIFIC-->
+
+	<!--ADDED BY A-7531-->
+
+	<action path="/mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementMailbagForm"
+			scope="request"
+			validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ux/InvoiceSettlementMailbagLevel.jsp" />
+				<forward name="screenload_failure" path="/jsp/mail/mra/gpabilling/ux/InvoiceSettlementMailbagLevel.jsp" />
+
+
+	</action>
+
+	<action path="/mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.clear"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementMailbagForm"
+			scope="request"
+			validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/gpabilling/ux/InvoiceSettlementMailbagLevel.jsp" />
+
+
+	</action>
+
+	<action path="/mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.list"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementMailbagForm"
+			scope="request"
+			validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/gpabilling/ux/InvoiceSettlementMailbagLevel.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ux/InvoiceSettlementMailbagLevel.jsp" />
+
+	</action>
+	<action path="/mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.openPopup"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementMailbagForm"
+			scope="request"
+			validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/gpabilling/ux/AvailableSettlementMailbagPopup.jsp" />
+				<forward name="screenload_failure" path="/jsp/mail/mra/gpabilling/ux/AvailableSettlementMailbagPopup.jsp" />
+
+	</action>
+	<action path="/mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.create"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementMailbagForm"
+			scope="request"
+			validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ux/AvailableSettlementMailbagPopup.jsp" />
+
+	</action>
+	<action path="/mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.ok"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementMailbagForm"
+			scope="request"
+			validate="false">
+				<forward name="ok_success" path="/jsp/mail/mra/gpabilling/ux/AvailableSettlementMailbagPopup.jsp" />
+	</action>
+
+	<action path="/mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.viewhistory"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementMailbagForm"
+			scope="request"
+			validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ux/ViewHistoyPopup.jsp" />
+	</action>
+
+		<action path="/mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.search"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementMailbagForm"
+			scope="request"
+			validate="false">
+				<forward name="search_success" path="/jsp/mail/mra/gpabilling/ux/InvoiceSettlementMailbagLevel.jsp" />
+	</action>
+	<action path="/mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.close"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementMailbagForm"
+			scope="request"
+			validate="false">
+				<forward name="close_success" path="/home.jsp"  />
+	</action>
+	<!--added by a-7871 for ICRD-235799-->
+		<action path="/mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.save"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementMailbagForm"
+			scope="request"
+			validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/gpabilling/ux/InvoiceSettlementMailbagLevel.jsp" />
+				<forward name="screenload_failure" path="/jsp/mail/mra/gpabilling/ux/InvoiceSettlementMailbagLevel.jsp" />	<!--Added by A-8399 as part of ICRD-302177-->
+	</action>
+	<!-- 8331 -->
+	<action path="/mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.remarksSave"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementMailbagForm"
+			scope="request"
+			validate="false">
+				<forward name="remarks_success" path="/jsp/mail/mra/gpabilling/ux/ViewHistoyPopup.jsp"  />
+	</action>
+
+<action path="/mailtracking.mra.gpabilling.ux.invoicesettlementmailbaglevel.listaccdetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="InvoiceSettlementMailbagForm"
+			scope="request"
+			validate="false">
+			<forward name="list_acc_success" path="/cra.accounting.listaccountingentrieslist.do?invokingScreen=mailbagsettlementcapture" />
+			<forward name="screenload_failure" path="/jsp/mail/mra/gpabilling/ux/InvoiceSettlementMailbagLevel.jsp" />
+			</action>
+		   <action path="/mail.mra.gpabilling.ux.gpabillingenquiry.defaultscreenload" 
+		        name="DefaultSPAForm"
+				scope="request" 				
+				type="com.ibsplc.icargo.framework.struts.action.DefaultSPARenderAction"  
+				validate="false">
+			<forward name="_default_render_success" path="/app/mail/mra/gpabillingenquiry/index.jsp"/>
+          </action>	
+		  <action path="/mail.mra.gpabilling.ux.generatepassbillingfile.defaultscreenload"
+		        name="DefaultSPAForm"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.DefaultSPARenderAction"
+				validate="false">
+			<forward name="_default_render_success" path="/app/mail/mra/generatepassbillingfile/index.jsp"/>
+		</action>
+		<action path="/mail.mra.gpabilling.ux.filenamelov.list"
+			name="FileNameLovForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/gpabilling/ux/FileNameLOV.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/gpabilling/ux/FileNameLOV.jsp" />
+		</action>
+		<action path="/mail.mra.gpabilling.ux.filenamelov.clear"
+			name="FileNameLovForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clearFileNameLov_Success" path="/jsp/mail/mra/gpabilling/ux/FileNameLOV.jsp" />
+		</action>
+
+	</action-mappings>
+
+	<!--<plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+		<set-property property="configFileName"	value="/WEB-INF/errortags/cra/salesreport/errortags.xml" />
+	</plug-in>-->
+
+	<message-resources  key="invoicelov"  parameter="resources.mail.mra.gpabilling.InvoiceLOV" null="false"/>
+	<message-resources  key="listcn51resources"  parameter="resources.mail.mra.gpabilling.ListCN51" null="false"/>
+	<message-resources  key="gpabillingentries"  parameter="resources.mail.mra.gpabilling.ListGPABillingEntries" null="false"/>
+	<message-resources key="listcn51cn66" parameter="resources.mail.mra.gpabilling.ListCN51CN66" null="false"/>
+	<message-resources key="geninvresources" parameter="resources.mail.mra.gpabilling.GenerateInvoice" null="false"/>
+	<message-resources key="gpabillingreports" parameter="resources.mail.mra.gpabilling.GPABillingReports" null="false"/>
+	<message-resources key="invoicesettlement" parameter="resources.mail.mra.gpabilling.InvoiceSettlement" null="false"/>
+	<message-resources key="listgpabillinginvoiceresources" parameter="resources.mail.mra.gpabilling.ListGPABillingInvoice" null="false"/>
+	<message-resources key="gpabillinginvoiceenquiry"  parameter="resources.mail.mra.gpabilling.GPABillingInvoiceEnquiry" null="false"/>
+	<message-resources key="proformaInvoiceDiffReport" parameter="resources.mail.mra.gpabilling.ProformaInvoiceDiffReport" null="false"/>
+	<message-resources key="poMailSummaryResources" parameter="resources.mail.mra.gpabilling.POMailSummary" null="false"/>
+	<message-resources key="surchargebillingdetailsresources" parameter="resources.mail.mra.gpabilling.SurchargeBillingDetails_en_US" null="false"/>
+	<message-resources key="invoicesettlementMailbagLevel" parameter="resources.mail.mra.gpabilling.ux.InvoiceSettlementMailbag_en_US" null="false"/>
+	<message-resources key="invoicelovux" parameter="resources.mail.mra.gpabilling.ux.InvoiceLOV_en_US" null="false"/>
+	<message-resources key="gpabillingEnquiryResourceBundle" parameter="resources.mail.mra.gpabilling.GPABillingEnquiry" null="false"/>
+	<message-resources key="generatepassbillingfileResourceBundle" parameter="resources.mail.mra.gpabilling.GeneratePASSBillingFile" null="false"/>
+	<message-resources key="filenamelovResources" parameter="resources.mail.mra.gpabilling.ux.FileNameLOV" null="false"/>
+	 <plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+				<set-property property="configFileName" value="/WEB-INF/errortags/mail/mra/gpabilling/errortags.xml"/>
+	 </plug-in>
+</struts-config>

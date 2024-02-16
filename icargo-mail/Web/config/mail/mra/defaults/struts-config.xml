@@ -1,0 +1,3242 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN "
+	"http://struts.apache.org/dtds/struts-config_1_2.dtd " >
+
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="ListUPURateCardForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.ListUPURateCardForm"  />
+		<form-bean name="ListUPURateLineForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.ListUPURateLineForm"  />
+		<form-bean name="MaintainUPURateCardForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MaintainUPURateCardForm"  />
+		<form-bean name="RateCardLOVForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.RateCardLOVForm"  />
+		<form-bean name="CopyRateForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.CopyRateForm"  />
+		<form-bean name="ListBillingMatrixForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.ListBillingMatrixForm"  />
+		<form-bean name="BillingMatrixLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.BillingMatrixLovForm"  />
+		<form-bean name="MailProrationForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MailProrationForm" />
+		<form-bean name="BillingLineForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.BillingLineForm"  />
+		<form-bean name="BillingMatrixForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.BillingMatrixForm" />
+		<form-bean name="ViewBillingLineForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.ViewBillingLineForm"  />
+		<form-bean name="CopyBlgLineForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.CopyBlgLineForm"  />
+		<form-bean name="MaintainMraProrateFactorsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MaintainMraProrateFactorsForm"  />
+		<form-bean name="ContractLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.ContractLovForm" />
+		<form-bean name="SLALovForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.SLALovForm" />
+		<form-bean name="VersionNumberLOVForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.VersionNumberLOVForm"  />
+		<form-bean name="MaintainMailContractsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MaintainMailContractsForm"  />
+		<form-bean name="ListMailContractsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.ListMailContractsForm"  />
+		<form-bean name="MaintainMailSLAForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MaintainMailSLAForm"  />
+		<form-bean name="MRADespatchLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.DespatchLovForm"  />
+	    <form-bean name="MRAProcessManagerForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MRAProcessManagerForm"  />
+	    <form-bean name="InvoicEnquiryForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.InvoicEnquiryForm"  />
+		<form-bean name="InvoicEnquiryDetailsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.InvoicEnquiryDetailsForm"  />
+		<form-bean name="InvoicClaimsEnquiryForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.InvoicClaimsEnquiryForm"  />
+		<form-bean name="MaintainDOTRateForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MaintainDOTRateForm"  />
+		<form-bean name="InvoicKeyLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.InvoicKeyLovForm"  />
+		<form-bean name="DespatchEnquiryForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.DespatchEnquiryForm"  />
+		<form-bean name="DSNPopUpForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.DSNPopUpForm"  />
+		<form-bean name="ListRateAuditForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.ListRateAuditForm" scope="request" />
+		<form-bean name="RateAuditDetailsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.RateAuditDetailsForm"  />
+	<!-- added for MaintainCCA by Muralee starts -->
+		<form-bean name="mraMaintainCCAForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MRAMaintainCCAForm"  />
+	<!-- added for MaintainCCA by Muralee Ends -->
+	<!--added by A-4823 for MCA Lov starts-->
+	<form-bean name="MCALovForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MCALovForm"  />
+	<form-bean name="DSNLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.DSNLovForm"  />
+	<!--added by A-4823 for MCA Lov ends-->
+	<!-- added for ListCCA by Deepthi starts -->
+		<form-bean name="ListCCAForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.ListCCAForm"  />
+   <!-- added for ListCCA by Deepthi Ends -->
+   <!-- added for View Flight Sector Revenue by Deepthi starts -->
+		<form-bean name="ViewMailFlightSectorRevenueForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.ViewMailFlightSectorRevenueForm"  />
+   		<form-bean name="MRAViewProrationForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MRAViewProrationForm" />
+
+   	<!--added by A-3229 for Manual Proration starts-->
+   	<form-bean name="ManualProrationForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.ManualProrationForm" scope="request" />
+   	<form-bean name="DespatchRoutingForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.DespatchRoutingForm"  />
+   	<!--added by A-3229 ends-->
+		<form-bean name="UnaccountedDispatchesForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.UnaccountedDispatchesForm"  />
+	<!--added by  A-3229 for ProrationLog starts-->
+		<form-bean name="MRAProrationLogForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MRAProrationLogForm"  />
+		<!--added by A-3229 ends-->
+		<form-bean name="ListMailProrationExceptionsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.ListMailProrationExceptionsForm"  />
+		<!-- added for DocumentstatisticsReport by Deepthi Starts-->
+   		<form-bean name="MailDocumentStatisticsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MailDocumentStatisticsForm" />
+		<!--added by A-3229-->
+		<form-bean name="MRAIrregularityForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MRAIrregularityForm"  />
+		<!-- added for ChangeStatusPopup by A-3434 Starts-->
+		<form-bean name="ChangeBillingStatusPopupForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.ChangeBillingStatusPopupForm" />
+
+		<form-bean name="FuelSurchargeForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.FuelSurchargeForm" />
+
+		<form-bean name="MailExceptionsReportForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MailExceptionsReportForm" />
+		<!-- added  by A-5166 for ICRD-17262 Starts-->
+		<form-bean name="MRARoutingCarrierForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.MRARoutingCarrierForm"  />
+		<!-- added  by A-5166 for ICRD-17262 Ends-->
+		<form-bean name="BillingSiteMasterForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.BillingSiteMasterForm"  />
+		<form-bean name="BillingSiteLOV" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.BillingSiteLOVForm" />
+		<form-bean name="BillingmatrixAuditForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.defaults.BillingmatrixAuditForm" />
+	</form-beans>
+    <global-forwards>
+		<forward name="normal-report-error-jsp"
+			path="/jsp/includes/reports/NormalReportErrorHandler.jsp"/>
+	</global-forwards>
+	<action-mappings>
+		<action path="/mailtracking.mra.defaults.billingmatrix.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="BillingmatrixAuditForm"
+			scope="request"
+			validate="false">
+			<forward name="screen_success" path="/jsp/mail/mra/defaults/BillingmatrixAudit.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.billingmatrix.list"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="BillingmatrixAuditForm"
+			scope="request"
+			validate="false">
+			<forward name="success" path="/jsp/shared/audit/AuditEnquiryTable.jsp" />
+		</action>
+		<!-- added for List UPU Rate Card starts -->
+
+		<action path="/mailtracking.mra.defaults.listupuratecard.onScreenLoad"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListUPURateCardForm"
+			scope="request"
+			validate="false">
+			<forward name="screen_success" path="/jsp/mail/mra/defaults/ListUPURateCard.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listupuratecard.onList"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListUPURateCardForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/defaults/ListUPURateCard.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/ListUPURateCard.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listupuratecard.onClear"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListUPURateCardForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/defaults/ListUPURateCard.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listupuratecard.onChangeStatus"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListUPURateCardForm"
+			scope="request"
+			validate="false">
+			<forward name="chgstatus_success" path="/jsp/mail/mra/defaults/ListUPURateCard.jsp" />
+			<forward name="chgstatus_failure" path="/jsp/mail/mra/defaults/ListUPURateCard.jsp" />
+		</action>
+		<!--Added by A-5166 for ICRD-17262 Starts-->
+		<action path="/mailtracking.mra.defaults.listupuratecard.onCopy"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListUPURateCardForm"
+			scope="request"
+			validate="false">
+			<forward name="copy_success" path="/jsp/mail/mra/defaults/CopyUPURateCard.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.copyupuratecard.onOk"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListUPURateCardForm"
+			scope="request"
+			validate="false">
+			<forward name="ok_success" path="/jsp/mail/mra/defaults/CopyUPURateCard.jsp" />
+			<forward name="ok_failure" path="/jsp/mail/mra/defaults/CopyUPURateCard.jsp" />
+		</action>
+
+		<!--Added by A-5166 for ICRD-17262 Ends-->
+		<action path="/mailtracking.mra.defaults.listupuratecard.onView"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListUPURateCardForm"
+			scope="request"
+			validate="false">
+			<forward name="view_success" path="/mailtracking.mra.defaults.listviewupurate.do?invokingScreen=listupuratecard"/>
+			<forward name="view_failure" path="/jsp/mail/mra/defaults/ListUPURateCard.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listupuratecard.onClose"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListUPURateCardForm"
+			scope="request"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listupuratecard.onChangeStatusOk"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MaintainUPURateCardForm"
+			scope="request"
+			validate="false">
+			<forward name="statusok_success" path="/mailtracking.mra.defaults.listupuratecard.onScreenLoad.do?viewStatus=changestatus" />
+			<forward name="statusok_failure" path="/mailtracking.mra.defaults.listupuratecard.onScreenLoad.do?viewStatus=changestatus" />
+		</action>
+
+		<!-- added for List UPU Rate Card ends -->
+
+		<!-- Added By Sandeep for ViewUPURate Starts -->
+				<action
+					name="ListUPURateLineForm"
+					path="/mailtracking.mra.defaults.onScreenLoadViewUPURate"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+				</action>
+				<action
+						name="ListUPURateLineForm"
+						path="/mailtracking.mra.defaults.listviewupurate"
+						scope="request"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+						<forward name="list_failure" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+				</action>
+				<action path="/mailtracking.mra.defaults.viewupurate.onChangeStatus"
+									type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+									name="ListUPURateLineForm"
+									scope="request"
+									validate="false">
+									<forward name="chgstatus_success" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+									<forward name="chgstatus_failure" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+				</action>
+				<action path="/mailtracking.mra.defaults.viewupurate.onChangeStatusOk"
+									type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+									name="MaintainUPURateCardForm"
+									scope="request"
+									validate="false">
+									<forward name="statusok_success" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+									<forward name="statusok_failure" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+				</action>
+				<action path="/mailtracking.mra.defaults.viewupurate.onClear"
+									type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+									name="ListUPURateLineForm"
+									scope="request"
+									validate="false">
+									<forward name="clear_success" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+				</action>
+				<action path="/mailtracking.mra.defaults.viewupurate.onClose"
+									type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+									name="ListUPURateLineForm"
+									scope="request"
+									validate="false">
+									<forward name="close_success" path="/home.jsp" />
+									<forward name="closeratecard" path="/mailtracking.mra.defaults.listupuratecard.onScreenLoad.do?viewStatus=viewrateline"/>
+									<forward name="close_failure" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+				</action>
+				<action path="/mailtracking.mra.defaults.copyrateviewupurate"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="ListUPURateLineForm"
+						scope="request"
+						validate="false">
+						<forward name="open_copyrate" path="/mailtracking.mra.defaults.screenloadcopyrate.do" />
+
+				</action>
+				<action path="/mailtracking.mra.defaults.openmaintainupuratescreen"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="ListUPURateLineForm"
+						scope="request"
+						validate="false">
+						<forward name="open_maintainupurate" path="/mailtracking.mra.defaults.maintainupuratecard.screenload.do?pageFlag=fromOtherPages" />
+
+				</action>
+				<action path="/mailtracking.mra.defaults.viewupurate.cancel"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListUPURateLineForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+				</action>
+				<action path="/mailtracking.mra.defaults.viewupurate.inactivate"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListUPURateLineForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+				</action>
+				<action path="/mailtracking.mra.defaults.viewupurate.activate"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListUPURateLineForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+					<forward name="details_failure" path="/jsp/mail/mra/defaults/ViewUPURate.jsp" />
+				</action>
+
+	<!-- Added By Sandeep for ViewUPURate Ends -->
+
+<!--Added By Indu for MaintainRateCard Starts-->
+
+	<!--Added  for MaintainRateCard ScreenLoad -->
+
+	<action path="/mailtracking.mra.defaults.maintainupuratecard.screenload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MaintainUPURateCardForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+	</action>
+
+	<!--Added  for MaintainRateCard List -->
+	 <action path="/mailtracking.mra.defaults.maintainupuratecard.activate"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			        name="MaintainUPURateCardForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+				<forward name="details_failure" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.maintainupuratecard.inactivate"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="MaintainUPURateCardForm"
+						scope="request"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+
+	       </action>
+	       <action path="/mailtracking.mra.defaults.maintainupuratecard.cancel"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="MaintainUPURateCardForm"
+						scope="request"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+
+       </action>
+
+	<action path="/mailtracking.mra.defaults.maintainupuratecard.list"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="MaintainUPURateCardForm"
+						scope="request"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+						<forward name="details_failure" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+       </action>
+
+       <!--Added  for MaintainRateCard Copy RateLine -->
+
+              <action path="/mailtracking.mra.defaults.maintainupuratecard.copyrateline"
+              						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+              						name="MaintainUPURateCardForm"
+              						scope="request"
+              						validate="false">
+              						<forward name="open_copyrate" path="/mailtracking.mra.defaults.screenloadcopyrate.do" />
+       </action>
+
+       <!--Added  for MaintainRateCard Save -->
+
+       <action path="/mailtracking.mra.defaults.maintainupuratecard.save"
+       							type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+       							name="MaintainUPURateCardForm"
+       							scope="request"
+       							validate="false">
+       							<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+       							<forward name="details_failure" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+	</action>
+
+	 <!--Added  for AddRateLinePopUp -->
+
+	 <action path="/mailtracking.mra.defaults.maintainupuratecard.addratelinepopup"
+	 							type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	 							name="MaintainUPURateCardForm"
+	 							scope="request"
+	 							validate="false">
+	 							<forward name="screenload_success" path="/jsp/mail/mra/defaults/AddRateLine.jsp" />
+								<forward name="screenload_failure" path="/jsp/mail/mra/defaults/AddRateLine.jsp" />
+	</action>
+
+	 <!--Added  for adding a row to AddRateLinePopUp -->
+
+	 <action path="/mailtracking.mra.defaults.maintainupuratecard.addratelinerow"
+	 			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	 			name="MaintainUPURateCardForm"
+	 			scope="request"
+	 			validate="false">
+	 			<forward name="screenload_success" path="/jsp/mail/mra/defaults/AddRateLine.jsp" />
+	 			<forward name="screenload_failure" path="/jsp/mail/mra/defaults/AddRateLine.jsp" />
+	</action>
+
+	<!--Added  for deleting a row of AddRateLinePopUp -->
+
+	<action path="/mailtracking.mra.defaults.maintainupuratecard.deleteratelinerow"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="MaintainUPURateCardForm"
+						scope="request"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/defaults/AddRateLine.jsp" />
+	</action>
+
+	<!--Added  for change status ok command -->
+
+	<action path="/mailtracking.mra.defaults.maintainupuratecard.changestatusok"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainUPURateCardForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+	</action>
+
+	<!--Added  for AddRateLine ok command -->
+
+	<action path="/mailtracking.mra.defaults.maintainupuratecard.addratelineok"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MaintainUPURateCardForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/defaults/AddRateLine.jsp" />
+			<forward name="screenload_failure" path="/jsp/mail/mra/defaults/AddRateLine.jsp" />
+	</action>
+
+	<!--Added  for ScreenReload command -->
+
+	<action path="/mailtracking.mra.defaults.maintainupuratecard.screenreload"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainUPURateCardForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+	</action>
+
+	<!--Added  for Navigation command -->
+
+	<action path="/mailtracking.mra.defaults.maintainupuratecard.listratelines"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MaintainUPURateCardForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+	</action>
+
+	<!--Added  for Deleting ratelines from Main Screen  -->
+
+	<action path="/mailtracking.mra.defaults.maintainupuratecard.deleteratelines"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MaintainUPURateCardForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+	</action>
+
+	<!--Added  for Clearing Main Screen  -->
+
+	<action path="/mailtracking.mra.defaults.maintainupuratecard.clearmaintainscreen"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="MaintainUPURateCardForm"
+						scope="request"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainUPURateCard.jsp" />
+	</action>
+
+	<action path="/mailtracking.mra.defaults.maintainupuratecard.close"
+								type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+								name="MaintainUPURateCardForm"
+								scope="request"
+								validate="false">
+								<forward name="close_success" path="/home.jsp" />
+	</action>
+
+	<!-- Added By Indu for ChangeStatusPOPUp ScreenLoad starts -->
+
+	<action path="/mailtracking.mra.defaults.maintainupuratecard.changestatuspopup"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainUPURateCardForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/ChangeStatus.jsp" />
+        </action>
+
+        <!-- Added By Indu for ChangeStatusPOPUp ScreenLoad ends -->
+
+
+
+ <!--Added By Indu for MaintainRateCard Ends-->
+
+
+
+        <!-- Added for RateCardLov starts -->
+	<action
+		name="RateCardLOVForm"
+		path="/showRateCardLOV"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/RateCardLOV.jsp" />
+	</action>
+	<action
+		name="RateCardLOVForm"
+		path="/clearRateCardLOVDetails"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="clear_success" path="/jsp/mail/mra/defaults/RateCardLOV.jsp" />
+		</action>
+        <!-- Added for RateCardLov ends -->
+         <!--Added By prem for Copy Rate Popup starts-->
+
+         <action
+	 		name="CopyRateForm"
+	 		path="/mailtracking.mra.defaults.screenloadcopyrate"
+	 		scope="request"
+	 		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+	 		validate="false">
+	 		<forward name="screenload_success" path="/jsp/mail/mra/defaults/CopyRate.jsp" />
+		</action>
+	 <action
+			name="CopyRateForm"
+			path="/mailtracking.mra.defaults.listcopyrate"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/CopyRate.jsp" />
+			<forward name="list_success" path="/jsp/mail/mra/defaults/CopyRate.jsp" />
+		</action>
+	<action
+			name="CopyRateForm"
+			path="/mailtracking.mra.defaults.clearcopyrate"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/defaults/CopyRate.jsp" />
+
+		</action>
+	<action
+			name="CopyRateForm"
+			path="/mailtracking.mra.defaults.okcopyrate"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="ok_failure" path="/jsp/mail/mra/defaults/CopyRate.jsp" />
+			<forward name="ok_success" path="/jsp/mail/mra/defaults/CopyRate.jsp" />
+
+		</action>
+        <!--Added By prem for Copy Rate Popup ends-->
+
+		 <!-- Added for ListBillingMatrix by prem-->
+	        <action path="/mailtracking.mra.defaults.listbillingmatrixscreenload"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListBillingMatrixForm"
+					scope="request"
+					validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/defaults/ListBillingMatrix.jsp" />
+		</action>
+		 <action path="/mailtracking.mra.defaults.listbillingmatrixlist"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListBillingMatrixForm"
+				scope="request"
+				validate="false">
+		<forward name="list_success" path="/jsp/mail/mra/defaults/ListBillingMatrix.jsp" />
+		<forward name="list_failure" path="/jsp/mail/mra/defaults/ListBillingMatrix.jsp" />
+		</action>
+		 <action path="/mailtracking.mra.defaults.listbillingmatrixclear"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListBillingMatrixForm"
+				scope="request"
+				validate="false">
+		<forward name="clear_success" path="/jsp/mail/mra/defaults/ListBillingMatrix.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listbillingmatrix.viewbillingline"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListBillingMatrixForm"
+				scope="request"
+				validate="false">
+		        <forward name="open_viewbillingline" path="/mailtracking.mra.defaults.viewbillingline.list.do?fromPage=fromotherpage" />
+		 </action>
+		<action path="/mailtracking.mra.defaults.listbillingmatrixclose"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListBillingMatrixForm"
+				scope="request"
+				validate="false">
+		              <forward name="close_success" path="/home.jsp" />
+		</action>
+		 <action path="/mailtracking.mra.defaults.listbillingmatrix.changestatuspopupclick"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListBillingMatrixForm"
+				scope="request"
+				validate="false">
+		        <forward name="popup_success" path="/jsp/mail/mra/defaults/ListBillingMtxChgStatus.jsp" />
+		 </action>
+		 <action path="/mailtracking.mra.defaults.maintainbillingmatrix.savechangestatus"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListBillingMatrixForm"
+				scope="request"
+				validate="false">
+		        <forward name="popup_success" path="/jsp/mail/mra/defaults/ListBillingMtxChgStatus.jsp" />
+				<forward name="popup_error" path="/jsp/mail/mra/defaults/ListBillingMtxChgStatus.jsp" />
+		 </action>
+		<action path="/mailtracking.mra.defaults.listbillingmatrix.populategpaname"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListBillingMatrixForm"
+				scope="request"
+				validate="false">
+				<forward name="populate_success" path="/jsp/mail/mra/defaults/ListBillingMatrix_Ajax.jsp" />
+		</action>
+		 <!-- Added for BillingMatrixLOV starts-->
+		 <action path="/showBillingMatrixLOV"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="BillingMatrixLovForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/BillingMatrixLOV.jsp" />
+		</action>
+		<action path="/clearBillingMatrixLOV"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="BillingMatrixLovForm"
+				scope="request"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/defaults/BillingMatrixLOV.jsp" />
+		</action>
+		  <!-- Added for BillingMatrixLOV ends-->
+
+
+		   <!-- Added for Mail Proration starts-->
+
+		   <action path="/mailtracking.mra.defaults.mailproration.screenload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MailProrationForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/MailProration.jsp" />
+		   </action>
+
+
+		   <action path="/mailtracking.mra.defaults.mailproration.list"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MailProrationForm"
+				scope="request"
+				validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/defaults/MailProration.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/defaults/MailProration.jsp" />
+		   </action>
+
+
+		   <action path="/mailtracking.mra.defaults.mailproration.clear"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MailProrationForm"
+				scope="request"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/defaults/MailProration.jsp" />
+		   </action>
+
+
+		   <action path="/mailtracking.mra.defaults.mailproration.close"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MailProrationForm"
+				scope="request"
+				validate="false">
+				<forward name="close_success" path="/home.jsp"/>
+				<forward name="close_toairline" path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.list.do" />
+			</action>
+
+			<action path="/mailtracking.mra.defaults.mailproration.checkformoredsn"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MailProrationForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/MailProration.jsp" />
+				<forward name="list_screen" path="/mailtracking.mra.defaults.mailproration.alternatelist.do" />
+		   </action>
+		   <action path="/mailtracking.mra.defaults.mailproration.alternatelist"
+		   				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		   				name="MailProrationForm"
+		   				scope="request"
+		   				validate="false">
+		   		<forward name="list_success" path="/jsp/mail/mra/defaults/MailProration.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/defaults/MailProration.jsp" />
+		   </action>
+
+		   <!-- Added for AirNZCR 165 by A-3434 -->
+
+		   <action path="/mailtracking.mra.defaults.mailproration.listforinterlinebilling"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MailProrationForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success" path="/jsp/mail/mra/defaults/MailProration.jsp" />
+					<forward name="list_failure" path="/jsp/mail/mra/defaults/MailProration.jsp" />
+		   </action>
+
+
+		<!-- Added for Mail Proration ends-->
+
+		  <!-- Added by Randeep For MaintainBillingMatrix Screen starts -->
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.screenload"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.list"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="list_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="list_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.save"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="save_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="save_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="duplicate_exists" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		</action>
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.formatview"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.validate"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="validate_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="validate_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+
+	</action>
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.add"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+
+		<forward name="add_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.delete"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="delete_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.clear"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="clear_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+	</action>
+
+	<!--Added for 76551 starts-->
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.surchargedetails"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="open_surcharge" path="/jsp/mail/mra/defaults/SurChargeDetailPopup.jsp" />
+	</action>
+	<!--Added for 76551 end-->
+
+	<!--Added by Indu starts-->
+		<action path="/mailtracking.mra.defaults.maintainbillingmatrix.copybillingline"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="BillingMatrixForm"
+			scope="request"
+			validate="false">
+			<forward name="open_copyblgline" path="/mailtracking.mra.defaults.screenloadcopybillingline.do" />
+		</action>
+
+		<action path="/mailtracking.mra.defaults.openmaintainblgmatrixscreen"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="BillingMatrixForm"
+			scope="request"
+			validate="false">
+			<forward name="open_copyblgline" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+			<forward name="fmt_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+
+		</action>
+       <!--Added by Indu ends-->
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.close"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="parent_load" path="/mailtracking.mra.defaults.viewbillingline.list.do?fromPage=fromotherpage" />
+		<forward name="close_success" path="/home.jsp" />
+
+	</action>
+	<action path="/mailtracking.mra.defaults.maintainbillingline.screenload"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="add_success" path="/jsp/mail/mra/defaults/MaintainBillingLine.jsp" />
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainBillingLine.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.maintainbillingline.add"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="screen_failure" path="/jsp/mail/mra/defaults/MaintainBillingLine.jsp" />
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainBillingLine.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.maintainbillingline.updaterate"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainBillingLine_SurChgWgtBrk_Ajax.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.activate"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="duplicate_exists" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+	</action>
+
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.inactivate"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+	</action>
+
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.cancel"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+	</action>
+
+		  <!-- Added by Randeep ends -->
+	<!-- **************Added by Randeep For ViewBillingLine Screen starts************** -->
+	<action path="/mailtracking.mra.defaults.viewbillingline.screenload"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ViewBillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="screen_failure" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.viewbillingline.list"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ViewBillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="list_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="list_failure" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+
+	</action>
+	<action path="/mailtracking.mra.defaults.viewbillingline.clear"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ViewBillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="clear_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.viewbillingline.close"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ViewBillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="close_success" path="/home.jsp" />
+		<forward name="load_parent" path="/mailtracking.mra.defaults.listbillingmatrixlist.do?fromPage=other" />
+
+	</action>
+
+	<action path="/mailtracking.mra.defaults.viewbillingline.activate"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ViewBillingLineForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+			<forward name="duplicate_exists" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+			<forward name="fmt_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+			<forward name="fmt_failure" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+			<forward name="list_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.viewbillingline.inactivate"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ViewBillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="list_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="list_failure" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.viewbillingline.cancel"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ViewBillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="fmt_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="fmt_failure" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="list_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="list_failure" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+	</action>
+	<!-- ***************Added by Randeep For ViewBillingLine Screen ends***************** -->
+	<!--  Added  by A-2398 for change status screens of BillingMatrix and Billing Line -->
+	<action path="/mailtracking.mra.defaults.listbillingmatrix.refresh"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListBillingMatrixForm"
+			scope="request"
+			validate="false">
+	<forward name="refresh_success" path="/jsp/mail/mra/defaults/ListBillingMatrix.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.viewbillingline.save"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ViewBillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_failure" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+	</action>
+	<!--Added for 76551 starts-->
+	<action path="/mailtracking.mra.defaults.viewbillingline.surchargedetails"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ViewBillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="open_surcharge" path="/jsp/mail/mra/defaults/SurChargeDetailBlgLinePopup.jsp" />
+	</action>
+	<!--Added for 76551 ends-->
+	<action path="/mailtracking.mra.defaults.listbillingmatrix.changestatusok"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ListBillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="changestatus_success" path="/jsp/mail/mra/defaults/ListBillingMtxChgStatus.jsp" />
+		<forward name="changestatus_failure" path="/jsp/mail/mra/defaults/ListBillingMtxChgStatus.jsp" />
+
+	</action>
+	<action path="/mailtracking.mra.defaults.listbillingmatrix.changestatuspopup"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListBillingMatrixForm"
+			scope="request"
+			validate="false">
+			<forward name="popup_success" path="/jsp/mail/mra/defaults/ListBillingMtxChgStatus.jsp" />
+        </action>
+        <action path="/mailtracking.mra.defaults.maintainbillingmatrix.changestatusok"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="changestatus_success" path="/jsp/mail/mra/defaults/MaintainBlgMtxChgStatus.jsp" />
+		<forward name="changestatus_failure" path="/jsp/mail/mra/defaults/MaintainBlgMtxChgStatus.jsp" />
+
+	</action>
+	<action path="/mailtracking.mra.defaults.maintainbillingmatrix.changestatuspopup"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="BillingMatrixForm"
+			scope="request"
+			validate="false">
+			<forward name="popup_success" path="/jsp/mail/mra/defaults/MaintainBlgMtxChgStatus.jsp" />
+        </action>
+        <action path="/mailtracking.mra.defaults.maintainbillingmatrix.refresh"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="BillingMatrixForm"
+			scope="request"
+			validate="false">
+	<forward name="refresh_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+	<forward name="fmt_success" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+	<forward name="fmt_failure" path="/jsp/mail/mra/defaults/MaintainBillingMatrix.jsp" />
+
+	</action>
+	<action path="/mailtracking.mra.defaults.viewbillingline.changestatusok"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ViewBillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="changestatus_success" path="/jsp/mail/mra/defaults/ViewBlgLineChgStatus.jsp" />
+		<forward name="changestatus_failure" path="/jsp/mail/mra/defaults/ViewBlgLineChgStatus.jsp" />
+
+	</action>
+	<action path="/mailtracking.mra.defaults.viewbillingline.changestatuspopup"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ViewBillingLineForm"
+		scope="request"
+		validate="false">
+		<forward name="popup_success" path="/jsp/mail/mra/defaults/ViewBlgLineChgStatus.jsp" />
+        </action>
+        <action path="/mailtracking.mra.defaults.viewbillingline.refresh"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ViewBillingLineForm"
+		scope="request"
+		validate="false">
+	<forward name="refresh_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+	<forward name="fmt_success" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+	<forward name="fmt_failure" path="/jsp/mail/mra/defaults/ViewBillingLine.jsp" />
+
+	</action>
+
+	<!--Added by Indu for copyblgline-->
+	<action path="/mailtracking.mra.defaults.viewbillingline.copybillingline"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ViewBillingLineForm"
+		scope="request"
+		validate="false">
+	<forward name="open_copyblgline" path="/mailtracking.mra.defaults.screenloadcopybillingline.do"/>
+	</action>
+	<!--Added by Indu for copy billing line ends-->
+
+	<action path="/mailtracking.mra.defaults.listbillingmatrix.save"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListBillingMatrixForm"
+			scope="request"
+			validate="false">
+	<forward name="screenload_success" path="/jsp/mail/mra/defaults/ListBillingMatrix.jsp" />
+	<forward name="save_failure" path="/jsp/mail/mra/defaults/ListBillingMatrix.jsp" />
+	<forward name="save_success" path="/jsp/mail/mra/defaults/ListBillingMatrix.jsp" />
+
+	</action>
+	<!--  Added by A-2398 ends-->
+
+	<!-- MaintainProrate Factors Starts -->
+	<action path="/mailtracking.mra.defaults.maintainproratefactors.screenload"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainMraProrateFactorsForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainProrateFactors.jsp" />
+	</action>
+
+	<action path="/mailtracking.mra.defaults.maintainproratefacotrs.clear"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainMraProrateFactorsForm"
+		scope="request"
+		validate="false">
+		<forward name="clear_success" path="/jsp/mail/mra/defaults/MaintainProrateFactors.jsp" />
+	</action>
+
+	<action
+		name="MaintainMraProrateFactorsForm"
+		path="/mailtracking.mra.defaults.maintainproratefacotrs.list"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="list_success" path="/jsp/mail/mra/defaults/MaintainProrateFactors.jsp" />
+		<forward name="list_failure" path="/jsp/mail/mra/defaults/MaintainProrateFactors.jsp" />
+
+	</action>
+
+	<action
+		name="MaintainMraProrateFactorsForm"
+		path="/mailtracking.mra.defaults.maintainproratefacotrs.add"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="add_success" path="/jsp/mail/mra/defaults/MaintainProrateFactors_AjxTable.jsp" />
+		<forward name="add_failure" path="/jsp/mail/mra/defaults/MaintainProrateFactors_AjxTable.jsp" />
+
+	</action>
+
+	<action
+		name="MaintainMraProrateFactorsForm"
+		path="/mailtracking.mra.defaults.maintainproratefacotrs.delete"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="delete_success" path="/jsp/mail/mra/defaults/MaintainProrateFactors_AjxTable.jsp" />
+	</action>
+
+
+	<action
+		name="MaintainMraProrateFactorsForm"
+		path="/mailtracking.mra.defaults.maintainproratefacotrs.save"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="save_success" path="/mailtracking.mra.defaults.maintainproratefacotrs.clear.do" />
+		<forward name="save_failure" path="/jsp/mail/mra/defaults/MaintainProrateFactors.jsp" />
+	</action>
+
+	<action
+		name="MaintainMraProrateFactorsForm"
+		path="/mailtracking.mra.defaults.maintainproratefacotrs.populate"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="populate_success" path="/jsp/mail/mra/defaults/MaintainProrateFactors_AjxCityName.jsp" />
+	</action>
+
+	<action path="/mailtracking.mra.defaults.maintainproratefacotrs.close"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainMraProrateFactorsForm"
+		scope="request"
+		validate="false"
+	forward ="/home.jsp" />
+	<action
+		name="MaintainMraProrateFactorsForm"
+		path="/mailtracking.mra.defaults.maintainproratefacotrs.activate"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="activate_success" path="/jsp/mail/mra/defaults/MaintainProrateFactors.jsp" />
+		<forward name="activate_failure" path="/jsp/mail/mra/defaults/MaintainProrateFactors.jsp" />
+
+	</action>
+	<action
+		name="MaintainMraProrateFactorsForm"
+		path="/mailtracking.mra.defaults.maintainproratefacotrs.inactivate"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="inactivate_success" path="/jsp/mail/mra/defaults/MaintainProrateFactors.jsp" />
+
+	</action>
+	<action
+		name="MaintainMraProrateFactorsForm"
+		path="/mailtracking.mra.defaults.maintainproratefacotrs.cancel"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="cancel_success" path="/jsp/mail/mra/defaults/MaintainProrateFactors.jsp" />
+	</action>
+	<!-- MaintainProrate Factors Ends -->
+
+	<!--Added for copybillingline by Indu starts-->
+
+		 <action path="/mailtracking.mra.defaults.screenloadcopybillingline"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CopyBlgLineForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/defaults/CopyBillingLine.jsp" />
+		</action>
+
+		 <action
+			name="CopyBlgLineForm"
+			path="/mailtracking.mra.defaults.listcopybillingline"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/CopyBillingLine.jsp" />
+			<forward name="list_success" path="/jsp/mail/mra/defaults/CopyBillingLine.jsp" />
+			</action>
+		<action
+			name="CopyBlgLineForm"
+			path="/mailtracking.mra.defaults.clearcopybillingline"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/defaults/CopyBillingLine.jsp" />
+
+			</action>
+		<action
+			name="CopyBlgLineForm"
+			path="/mailtracking.mra.defaults.okcopybillingline"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="ok_failure" path="/jsp/mail/mra/defaults/CopyBillingLine.jsp" />
+			<forward name="ok_success" path="/jsp/mail/mra/defaults/CopyBillingLine.jsp" />
+
+		</action>
+
+        <!--Added for copy blgline by Indu ends-->
+
+        	<!-- Added by shivjith for Contract Lov Starts -->
+
+        	<action
+			name="ContractLovForm"
+			path="/showMailContractDetailsLov"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/defaults/ContractLov.jsp" />
+		</action>
+
+		<action
+			name="ContractLovForm"
+			path="/mailtracking.mra.defaults.contractlov.onClear"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/defaults/ContractLov.jsp" />
+		</action>
+
+		<!-- Added by shivjith for Contract Lov ends -->
+
+		<!-- Added by shivjith for SLA Lov Starts -->
+
+		<action
+			name="SLALovForm"
+			path="/showSLADetailsLov"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/defaults/SLALov.jsp" />
+		</action>
+
+		<action
+			name="SLALovForm"
+			path="/mailtracking.mra.defaults.slalov.onClear"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/defaults/SLALov.jsp" />
+		</action>
+
+        	<!-- Added by shivjith for SLA Lov ends -->
+
+        	<!-- Added by Saravanan for Version Number LOV starts -->
+			<action
+				name="VersionNumberLOVForm"
+				path="/mailtracking.mra.defaults.screenloadversionnumberlov"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/VersionNumberLOV.jsp" />
+			</action>
+			<action
+				name="VersionNumberLOVForm"
+				path="/mailtracking.mra.defaults.clearversionnumberlov"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/defaults/VersionNumberLOV.jsp" />
+			</action>
+        	<!-- Added by Saravanan for Version Number LOV ends -->
+<!-- Added for maintainmailcontracts starts -->
+		<action path="/mailtracking.mra.defaults.maintainmailcontracts.screenload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MaintainMailContractsForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainMailContracts.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.maintainmailcontracts.list"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MaintainMailContractsForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainMailContracts.jsp" />
+				<forward name="screenload_failure" path="/jsp/mail/mra/defaults/MaintainMailContracts.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.maintainmailcontracts.add"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MaintainMailContractsForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainMailContracts_Ajax.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.maintainmailcontracts.delete"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MaintainMailContractsForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainMailContracts_Ajax.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.maintainmailcontracts.save"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="MaintainMailContractsForm"
+						scope="request"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainMailContracts.jsp" />
+						<forward name="screenload_failure" path="/jsp/mail/mra/defaults/MaintainMailContracts.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.maintainmailcontracts.clear"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="MaintainMailContractsForm"
+						scope="request"
+						validate="false">
+						<forward name="clear_success" path="/jsp/mail/mra/defaults/MaintainMailContracts.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.maintainmailcontracts.activate"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainMailContractsForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/mailtracking.mra.defaults.maintainmailcontracts.list.do" />
+					<forward name="screenload_failure" path="/jsp/mail/mra/defaults/MaintainMailContracts.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.maintainmailcontracts.cancel"
+							type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+							name="MaintainMailContractsForm"
+							scope="request"
+							validate="false">
+							<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainMailContracts.jsp" />
+							<forward name="screenload_failure" path="/jsp/mail/mra/defaults/MaintainMailContracts.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.maintainmailcontracts.close"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MaintainMailContractsForm"
+				scope="request"
+				validate="false">
+				<forward name="close_success" path="/home.jsp" />
+
+		</action>
+
+<!-- Added for maintainmailcontracts ends -->
+
+ <!--Added for ListMailContracts by Sreekanth starts-->
+
+			<action
+				name="ListMailContractsForm"
+				path="/mailtracking.mra.defaults.listmailcontracts.onScreenload"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/ListMailContracts.jsp" />
+			</action>
+			<action
+				name="ListMailContractsForm"
+				path="/mailtracking.mra.defaults.listmailcontracts.onList"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/defaults/ListMailContracts.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/defaults/ListMailContracts.jsp" />
+			</action>
+			<action
+				name="ListMailContractsForm"
+				path="/mailtracking.mra.defaults.listmailcontracts.onClose"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="close_success" path="/home.jsp" />
+			</action>
+			 <action
+				name="ListMailContractsForm"
+				path="/mailtracking.mra.defaults.listmailcontracts.onClear"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/defaults/ListMailContracts.jsp" />
+			</action>
+			 <action
+				name="ListMailContractsForm"
+				path="/mailtracking.mra.defaults.listmailcontracts.onCancel"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="cancel_success" path="/mailtracking.mra.defaults.listmailcontracts.onList.do" />
+				<forward name="cancel_failure" path="/jsp/mail/mra/defaults/ListMailContracts.jsp" />
+			</action>
+        <!--Added for ListMailContracts by Sreekanth Ends-->
+
+
+
+	 <!--Added By Sanjay for Maintain Mail SLA Template starts-->
+
+		  <action
+				name="MaintainMailSLAForm"
+				path="/mailtracking.mra.defaults.maintainmailsla.screenloadmailsla"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainMailSLA.jsp" />
+		</action>
+
+		 <action
+				name="MaintainMailSLAForm"
+				path="/mailtracking.mra.defaults.maintainmailsla.listmailsla"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/defaults/MaintainMailSLA.jsp" />
+		</action>
+		 <action
+				name="MaintainMailSLAForm"
+				path="/mailtracking.mra.defaults.maintainmailsla.clearmailsla"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/defaults/MaintainMailSLA.jsp" />
+
+			</action>
+		<action
+				name="MaintainMailSLAForm"
+				path="/mailtracking.mra.defaults.maintainmailsla.copymailsla"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="copy_success" path="/jsp/mail/mra/defaults/MaintainMailSLA.jsp" />
+
+			</action>
+		<action
+				name="MaintainMailSLAForm"
+				path="/mailtracking.mra.defaults.maintainmailsla.savemailsla"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="save_success" path="/jsp/mail/mra/defaults/MaintainMailSLA.jsp" />
+
+		</action>
+		<action
+				name="MaintainMailSLAForm"
+				path="/mailtracking.mra.defaults.maintainmailsla.closemailsla"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="closemonitorsla_success" path="/mailtracking.defaults.monitormailsla.list.do?closeFlag=fromMaintainSLA" />
+				<forward name="close_success" path="/home.jsp" />
+
+		</action>
+
+		<action
+				name="MaintainMailSLAForm"
+				path="/mailtracking.mra.defaults.maintainmailsla.addmailsladetail"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="add_success" path="/jsp/mail/mra/defaults/MaintainMailSLA_AjxTable.jsp" />
+
+		</action>
+		<action
+				name="MaintainMailSLAForm"
+				path="/mailtracking.mra.defaults.maintainmailsla.deletemailsladetail"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="delete_success" path="/jsp/mail/mra/defaults/MaintainMailSLA_AjxTable.jsp" />
+
+		</action>
+
+
+
+		<action
+				name="MaintainMailSLAForm"
+				path="/mailtracking.mra.defaults.maintainmailsla.screenloadcopysla"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="action_success" path="/jsp/mail/mra/defaults/CopyMailSLA.jsp" />
+
+		</action>
+
+		<action
+				name="MaintainMailSLAForm"
+				path="/mailtracking.mra.defaults.maintainmailsla.clearcopysla"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="action_success" path="/jsp/mail/mra/defaults/CopyMailSLA.jsp" />
+
+		</action>
+		<action
+				name="MaintainMailSLAForm"
+				path="/mailtracking.mra.defaults.maintainmailsla.okcopysla"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="action_success" path="/jsp/mail/mra/defaults/CopyMailSLA.jsp" />
+
+		</action>
+		<action
+				name="MaintainMailSLAForm"
+				path="/mailtracking.mra.defaults.maintainmailsla.refreshmailsla"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="action_success" path="/jsp/mail/mra/defaults/MaintainMailSLA.jsp" />
+
+		</action>
+
+        <!--Added By Sanjay for Maintain Mail SLA Template  ends-->
+<!-- Added for DespatchLOV starts -->
+
+ 			<action
+						name="MRADespatchLovForm"
+						path="/showDespatchLov"
+						scope="request"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/defaults/DespatchLov.jsp" />
+
+			</action>
+ 			<action
+						name="MRADespatchLovForm"
+						path="/clearDespatchLov"
+						scope="request"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						validate="false">
+						<forward name="clear_success" path="/jsp/mail/mra/defaults/DespatchLov.jsp" />
+
+			</action>
+
+
+<!-- Added for DespatchLOV ends -->
+
+                     <!-- Added for process manager -->
+
+		    		     		 	 	       <action path="/mailtracking.mra.defaults.processmanager.onScreenLoad"
+		    		     		 				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		    		     		 				name="MRAProcessManagerForm"
+		    		     		 				scope="request"
+		    		     		 				validate="false">
+		    		     		 				<forward name="screenload_success" path="/jsp/mail/mra/defaults/ProcessManager.jsp" />
+		    		     		 			</action>
+		    		     		 			<action path="/mailtracking.mra.defaults.processmanager.excecute"
+		    		     		 				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		    		     		 				name="MRAProcessManagerForm"
+		    		     		 				scope="request"
+		    		     		 				validate="false">
+		    		     		 				<forward name="action_success" path="/jsp/mail/mra/defaults/ProcessManager.jsp" />
+		    		     		 				<forward name="action_failure" path="/jsp/mail/mra/defaults/ProcessManager.jsp" />
+		    		     		 			</action>
+		    		     		 			<action path="/mailtracking.mra.defaults.processmanager.closecommand"
+		    		     		 				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		    		     		 				name="MRAProcessManagerForm"
+		    		     		 				scope="request"
+		    		     		 				validate="false">
+		    		     		 				<forward name="close_success" path="/home.jsp" />
+		    		     		 			</action>
+											
+											<action path="/mailtracking.mra.defaults.processmanager.finalizepass"
+		    		     		 				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		    		     		 				name="MRAProcessManagerForm"
+		    		     		 				scope="request"
+		    		     		 				validate="false">
+		    		     		 				<forward name="action_success" path="/jsp/mail/mra/defaults/ProcessManagerFinPASS_ajax.jsp" />
+		    		     		 				<forward name="action_failure" path="/jsp/mail/mra/defaults/ProcessManagerFinPASS_ajax.jsp" />
+		    		     		 			</action>
+											
+		    	<!-- Added for process manager Ends-->
+
+		    	<!-- added for InvoicEnquiry Screen by Sandeep -->
+				          <action path="/mailtracking.mra.defaults.invoicEnquiry.onScreenLoad"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="InvoicEnquiryForm"
+						scope="request"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/defaults/InvoicEnquiry.jsp" />
+					</action>
+					<action path="/mailtracking.mra.defaults.invoicEnquiry.onList"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="InvoicEnquiryForm"
+						scope="request"
+						validate="false">
+						<forward name="list_success" path="/jsp/mail/mra/defaults/InvoicEnquiry.jsp" />
+						<forward name="list_failure" path="/jsp/mail/mra/defaults/InvoicEnquiry.jsp" />
+					</action>
+					<action path="/mailtracking.mra.defaults.invoicenquiry.onClear"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="InvoicEnquiryForm"
+						scope="request"
+						validate="false">
+						<forward name="clear_success" path="/jsp/mail/mra/defaults/InvoicEnquiry.jsp" />
+					</action>
+					<action path="/mailtracking.mra.defaults.invoicenquiry.showDetails"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="InvoicEnquiryForm"
+						scope="request"
+						validate="false">
+						<forward name="view_success" path="/jsp/mail/mra/defaults/InvoicEnquiryDetails.jsp" />
+						<forward name="view_failure" path="/jsp/mail/mra/defaults/InvoicEnquiry.jsp" />
+					</action>
+					<action path="/mailtracking.mra.defaults.invoicenquiry.onClose"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="InvoicEnquiryForm"
+						scope="request"
+						validate="false">
+						<forward name="close_success" path="/home.jsp" />
+					</action>
+					<action path="/mailtracking.mra.invoicEnquiryDetails.onScreenload"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="InvoicEnquiryDetailsForm"
+						scope="request"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/defaults/InvoicEnquiryDetails.jsp" />
+					</action>
+					<action path="/mailtracking.mra.defaults.onCloseInvoicEnquiryDetails"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="InvoicEnquiryDetailsForm"
+						scope="request"
+						validate="false">
+						<forward name="close_success" path="/jsp/mail/mra/defaults/InvoicEnquiry.jsp" />
+					</action>
+					<!-- Added by Sandeep for InvoicClaimsEnquiry starts-->
+
+					<action path="/mailtracking.mra.defaults.invoicClaimsEnquiry.onScreenLoad"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="InvoicClaimsEnquiryForm"
+						scope="request"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/defaults/InvoicClaimsEnquiry.jsp" />
+					</action>
+					<action path="/mailtracking.mra.defaults.invoicClaimsEnquiry.onList"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="InvoicClaimsEnquiryForm"
+						scope="request"
+						validate="false">
+						<forward name="list_success" path="/jsp/mail/mra/defaults/InvoicClaimsEnquiry.jsp"/>
+					        <forward name="list_failure" path="/jsp/mail/mra/defaults/InvoicClaimsEnquiry.jsp"/>
+					</action>
+					<action path="/mailtracking.mra.defaults.invoicClaimsEnquiry.onClear"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="InvoicClaimsEnquiryForm"
+						scope="request"
+						validate="false">
+						<forward name="clear_success" path="/jsp/mail/mra/defaults/InvoicClaimsEnquiry.jsp" />
+					</action>
+					<action path="/mailtracking.mra.defaults.invoicClaimsEnquiry.onClose"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="InvoicClaimsEnquiryForm"
+						scope="request"
+						validate="false">
+						<forward name="close_success" path="/home.jsp" />
+					</action>
+
+		<!-- Added by Sandeep for InvoicClaimsEnquiry ends-->
+
+		<!-- Added for DOT Rate starts -->
+
+		<action path="/mailtracking.mra.defaults.maintaindotrate.screenload"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainDOTRateForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainDOTRate.jsp" />
+				</action>
+		<action path="/mailtracking.mra.defaults.maintaindotrate.list"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainDOTRateForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainDOTRate.jsp" />
+					<forward name="screenload_failure" path="/jsp/mail/mra/defaults/MaintainDOTRate.jsp" />
+				</action>
+			<action path="/mailtracking.mra.defaults.maintaindotrate.save"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainDOTRateForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainDOTRate.jsp" />
+					<forward name="screenload_failure" path="/jsp/mail/mra/defaults/MaintainDOTRate.jsp" />
+				</action>
+				<action path="/mailtracking.mra.defaults.maintaindotrate.clear"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainDOTRateForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainDOTRate.jsp" />
+
+				</action>
+				<action path="/mailtracking.mra.defaults.maintaindotrate.close"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainDOTRateForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/home.jsp" />
+		</action>
+		<!-- Added for DOT Rate ends -->
+		<!-- Added for InvoicKeyLov starts -->
+		<action path="/showInvoicKeyLOV"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="InvoicKeyLovForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/InvoicKeyLOV.jsp" />
+		</action>
+	<action path="/clearInvoicKeyLOV"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						name="InvoicKeyLovForm"
+						scope="request"
+						validate="false">
+						<forward name="clear_success" path="/jsp/mail/mra/defaults/InvoicKeyLOV.jsp" />
+	</action>
+		<!-- Added for InvoicKeyLov ends -->
+	<!-- added for Despatch Enquiry by indu starts -->
+
+			<action path="/mailtracking.mra.defaults.despatchenquiry.interlinebilling"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="DespatchEnquiryForm"
+					scope="request"
+					validate="false">
+					<forward name="command_success" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+					<forward name="command_failure" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+
+				</action>
+
+
+
+			<action path="/mailtracking.mra.defaults.despatchenquiry.screenload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchEnquiryForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+
+			</action>
+			<action path="/mailtracking.mra.defaults.despatchenquiry.list"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchEnquiryForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+				<forward name="gpa_blg_details" path="/mailtracking.mra.defaults.despatchenquiry.gpablgdetails.do" />
+				<forward name="interline_billing" path="/mailtracking.mra.defaults.despatchenquiry.interlinebilling.do" />
+				<forward name="flown_details" path="/mailtracking.mra.defaults.despatchenquiry.flowndetails.do" />
+				<forward name="outstanding_balance" path="/mailtracking.mra.defaults.despatchenquiry.outstandingbalances.do" />
+				<forward name="accounting_sucess" path="/mailtracking.mra.defaults.despatchenquiry.accountingdetails.do" />
+			</action>
+			<action path="/mailtracking.mra.defaults.despatchenquiry.gpablgdetails"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchEnquiryForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+
+			</action>
+			<action path="/mailtracking.mra.defaults.despatchenquiry.clear"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchEnquiryForm"
+				scope="request"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+
+			</action>
+
+			<action path="/mailtracking.mra.defaults.despatchenquiry.close"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchEnquiryForm"
+				scope="request"
+				validate="false">
+				<forward name="close_success" path="/home.jsp" />
+				<forward name="gpainvoiceenquiry" path="/mailtracking.mra.gpabilling.invoiceenquiry.list.do" />
+				<forward name="closedispatchenquiry_success" path="/mailtracking.mra.defaults.unaccounteddispatches.listload.do" />
+				<forward name="closeprorationexception_success" path="/mra.defaults.proration.listprorationexceptionslist.do" />
+			</action>
+			<action path="/mailtracking.mra.defaults.despatchenquiry.viewprorate"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchEnquiryForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/mailtracking.mra.defaults.viewproration.listproration.do?fromScreen=fromDespatchEnquiry" />
+			</action>
+	<!-- added for Despatch Enquiry by indu ends -->
+
+	<!--added by A-3434 for Despatch Enquiry-->
+			<action path="/mailtracking.mra.defaults.despatchenquiry.outstandingbalances"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchEnquiryForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+
+			</action>
+	<!--added by A-3229 for flown details -->
+			<action path="/mailtracking.mra.defaults.despatchenquiry.flowndetails"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchEnquiryForm"
+				scope="request"
+				validate="false">
+				<forward name="listflown_success" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+				<forward name="listflown_failure" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+			</action>
+
+			<action path="/mailtracking.mra.defaults.despatchenquiry.uspsdetails"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchEnquiryForm"
+				scope="request"
+				validate="false">
+				<forward name="listusps_success" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+				<forward name="listusps_failure" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+
+			</action>
+			<!--added by A-3229 for accounting details -->
+			<action path="/mailtracking.mra.defaults.despatchenquiry.accountingdetails"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchEnquiryForm"
+				scope="request"
+				validate="false">
+				<forward name="listaccounting_success" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+				<forward name="listaccouting_failure" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+			</action>
+	<!-- added for Despatch Lov by indu starts -->
+	<action
+			name="DSNPopUpForm"
+			path="/mailtracking.mra.defaults.despatchenquiry.popup"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/defaults/DSNPopUp.jsp" />
+
+	</action>
+	<action
+			name="DSNPopUpForm"
+			path="/mailtracking.mra.defaults.dsnpopup.list"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/defaults/DSNPopUp.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/DSNPopUp.jsp" />
+
+
+	</action>
+	<action
+			name="DSNPopUpForm"
+			path="/mailtracking.mra.defaults.dsnpopup.ok"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/defaults/DSNPopUp.jsp" />
+			<forward name="ok_failure" path="/jsp/mail/mra/defaults/DSNPopUp.jsp" />
+
+	</action>
+	<action
+			name="DSNPopUpForm"
+			path="/mailtracking.mra.defaults.dsnpopup.clear"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/defaults/DSNPopUp.jsp" />
+
+	</action>
+	<!-- added for Despatch Lov by indu ends -->
+		<action path="/mailtracking.mra.defaults.listrateauditscreenload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListRateAuditForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/ListRateAudit.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listrateaudit.listrateauditdetails"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListRateAuditForm"
+				scope="request"
+				validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/defaults/ListRateAudit.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/defaults/ListRateAudit.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listrateaudit.clearrateauditdetails"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListRateAuditForm"
+				scope="request"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/defaults/ListRateAudit.jsp" />
+				<forward name="clear_failure" path="/jsp/mail/mra/defaults/ListRateAudit.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listrateaudit.closerateauditdetails"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListRateAuditForm"
+				scope="request"
+				validate="false">
+				<forward name="close_success" path="/home.jsp" />
+				<forward name="close_failure" path="/jsp/mail/mra/defaults/ListRateAudit.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listrateaudit.changerateauditstatus"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListRateAuditForm"
+				scope="request"
+				validate="false">
+				<forward name="rateaudit_success" path="/mailtracking.mra.defaults.listrateaudit.listrateauditdetails.do" />
+		</action>
+
+		<action path="/mailtracking.mra.defaults.listrateaudit.viewproration"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListRateAuditForm"
+			scope="request"
+			validate="false">
+			<forward name="navigate_success" path="/mra.defaults.proration.listprorationexceptionslist.do" />
+		</action>
+
+		<action path="/mailtracking.mra.defaults.listrateaudit.print"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListRateAuditForm"
+			scope="request"
+			validate="false">
+
+		</action>
+
+		<!-- added for Rate Audit Details by indu starts -->
+			<action path="/mailtracking.mra.defaults.rateauditdetails.screenload"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="RateAuditDetailsForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/RateAuditDetails.jsp" />
+
+			</action>
+			<action path="/mailtracking.mra.defaults.listrateauditdetails.list"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="RateAuditDetailsForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success" path="/jsp/mail/mra/defaults/RateAuditDetails.jsp" />
+					<forward name="list_failure" path="/jsp/mail/mra/defaults/RateAuditDetails.jsp" />
+
+			</action>
+			<action path="/mailtracking.mra.defaults.listrateauditdetails.listdsndetail"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="RateAuditDetailsForm"
+					scope="request"
+					validate="false">
+					<forward name="show_no_popup" path="/mailtracking.mra.defaults.listrateauditdetails.list.do" />
+					<forward name="list_success" path="/jsp/mail/mra/defaults/RateAuditDetails.jsp" />
+					<forward name="list_failure" path="/jsp/mail/mra/defaults/RateAuditDetails.jsp" />
+
+			</action>
+			<action path="/mailtracking.mra.defaults.listrateauditdetails.clear"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="RateAuditDetailsForm"
+					scope="request"
+					validate="false">
+					<forward name="clear_success" path="/jsp/mail/mra/defaults/RateAuditDetails.jsp" />
+
+			</action>
+			<action path="/mailtracking.mra.defaults.listrateauditdetails.rateaudit"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="RateAuditDetailsForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/RateAuditDetails.jsp" />
+
+			</action>
+			<action path="/mailtracking.mra.defaults.listrateauditdetails.close"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="RateAuditDetailsForm"
+					scope="request"
+					validate="false">
+					<forward name="close_success" path="/home.jsp" />
+					<forward name="listrateaudit" path="/mailtracking.mra.defaults.listrateaudit.listrateauditdetails.do" />
+
+			</action>
+
+		  <action path="/mailtracking.mra.defaults.listrateauditdetails.validate"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="RateAuditDetailsForm"
+				scope="request"
+				validate="false">
+				<forward name="computetotal_validate_success" path="/mailtracking.mra.defaults.listrateauditdetails.computetotal.do" />
+  				<forward name="save_validate_success" path="/mailtracking.mra.defaults.listrateauditdetails.save.do" />
+   				<forward name="rtaud_validate_success" path="/mailtracking.mra.defaults.listrateauditdetails.rateaudit.do" />
+   				<forward name="validate_failure" path="/jsp/mail/mra/defaults/RateAuditDetails.jsp" />
+			</action>
+
+		   <action path="/mailtracking.mra.defaults.listrateauditdetails.computetotal"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="RateAuditDetailsForm"
+				scope="request"
+				validate="false">
+				<forward name="computetotal_success" path="/jsp/mail/mra/defaults/RateAuditDetails.jsp" />
+			    <forward name="computetotal_failure" path="/jsp/mail/mra/defaults/RateAuditDetails.jsp" />
+			</action>
+		    <action path="/mailtracking.mra.defaults.listrateauditdetails.save"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="RateAuditDetailsForm"
+				scope="request"
+				validate="false">
+				<forward name="save_success" path="/mailtracking.mra.defaults.listrateauditdetails.clear.do" />
+   				<forward name="save_failure" path="/jsp/mail/mra/defaults/RateAuditDetails.jsp" />
+			</action>
+
+		   <action path="/mailtracking.mra.defaults.maintaincca.cca"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="RateAuditDetailsForm"
+				scope="request"
+				validate="false">
+			   	<forward name="cca_success" path="/mailtracking.mra.defaults.maintaincca.listccadetails.do?fromScreen=RateAuditDetails" />
+   				<forward name="cca_failure" path="/jsp/mail/mra/defaults/RateAuditDetails.jsp" />
+			</action>
+			<action path="/mailtracking.mra.defaults.listrateauditdetails.viewprorate"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="RateAuditDetailsForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/mailtracking.mra.defaults.viewproration.listproration.do?fromScreen=fromRateAuditDetails" />
+
+			</action>
+
+			<!-- added for Rate Audit Details by indu ends -->
+
+
+
+	<!-- added for MAINTAINCCA by Muralee  starts -->
+
+
+	<action path="/mailtracking.mra.defaults.maintaincca.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="mraMaintainCCAForm"
+			scope="request"
+			validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+	</action>
+
+
+	<action path="/mailtracking.mra.defaults.maintaincca.updateccadetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="mraMaintainCCAForm"
+			scope="request"
+			validate="false">
+		<forward name="update_success" path="/mailtracking.mra.defaults.maintaincca.listccadetails.do" />
+		<forward name="dsn_popup_success" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+		<forward name="update_failure" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+	</action>
+
+
+
+
+			<action path="/mailtracking.mra.defaults.maintaincca.populate" type="com.ibsplc.icargo.framework.struts.action.GenericAction" name="mraMaintainCCAForm" scope="request" validate="false">
+				<forward name="populate_success" path="/jsp/mail/mra/defaults/MaintainCCANetAmount_Ajax.jsp"/>
+
+		</action>
+
+	<action path="/mailtracking.mra.defaults.maintaincca.listccadetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="mraMaintainCCAForm"
+			scope="request"
+			validate="false">
+		<forward name="list_success" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+		<forward name="list_failure" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+	</action>
+
+
+
+	<!-- added for Printing CCA details  by Muralee  starts -->
+
+	<action	path="/mra.defaults.maintaincca.printccadetails"
+			name="mraMaintainCCAForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+	</action>
+
+	<!-- added for Printing CCA details  by Muralee  Ends -->
+
+
+
+
+	<action path="/mailtracking.mra.defaults.maintaincca.listccadetailsforOK"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="mraMaintainCCAForm"
+				scope="request"
+				validate="false">
+		<forward name="list_success" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+		<forward name="list_failure" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+	</action>
+
+
+	<action path="/mailtracking.mra.defaults.maintaincca.saveccadetails"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="mraMaintainCCAForm"
+		scope="request"
+		validate="false">
+	<forward name="save_success"  path="/mailtracking.mra.defaults.maintaincca.clearscreen.do"/>
+	<forward name="save_failure" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+</action>
+
+	<action path="/mailtracking.mra.defaults.maintaincca.deleteccadetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="mraMaintainCCAForm"
+			scope="request"
+			validate="false">
+		<forward name="delete_success" path="/mailtracking.mra.defaults.maintaincca.clearscreen.do"/>
+		<forward name="delete_failure" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+	</action>
+
+
+	<action path="/mailtracking.mra.defaults.maintaincca.clearscreen"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="mraMaintainCCAForm"
+		scope="request"
+		validate="false">
+	<forward name="clear_success" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+	<forward name="clear_failure" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+    </action>
+
+	<action path="/mailtracking.mra.defaults.maintaincca.autorate"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="mraMaintainCCAForm"
+		scope="request"
+		validate="false">
+	<forward name="autorate_success" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+	<forward name="autorate_failure" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+    </action>
+
+	<action path="/mailtracking.mra.defaults.maintaincca.populategpaname"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="mraMaintainCCAForm"
+		scope="request"
+		validate="false">
+	<forward name="populate_success" path="/jsp/mail/mra/defaults/MaintainCCA_Ajax.jsp" />
+	<forward name="populate_failure" path="/jsp/mail/mra/defaults/MaintainCCA_Ajax.jsp" />
+    </action>
+
+	<action path="/mailtracking.mra.defaults.maintaincca.rejectcca"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="mraMaintainCCAForm"
+			scope="request"
+			validate="false">
+		<forward name="reject_success" path="/mailtracking.mra.defaults.maintaincca.saveccadetails.do"/>
+	</action>
+
+	<action path="/mailtracking.mra.defaults.maintaincca.accept"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="mraMaintainCCAForm"
+			scope="request"
+			validate="false">
+		<forward name="accept_success" path="/mailtracking.mra.defaults.maintaincca.clearscreen.do" />
+		<forward name="accept_failure" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+	</action>
+
+	<action path="/mailtracking.mra.defaults.showccas.screenload"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="mraMaintainCCAForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/CCADetailsLov.jsp" />
+	</action>
+
+
+	<action path="/mailtracking.mra.defaults.maintaincca.selectccaOK"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="mraMaintainCCAForm"
+		scope="request"
+		validate="false">
+	<forward name="ok_success" path="/jsp/mail/mra/defaults/CCADetailsLov.jsp"/>
+	<forward name="ok_failure" path="/jsp/mail/mra/defaults/CCADetailsLov.jsp"/>
+	</action>
+
+
+	<action path="/mailtracking.mra.defaults.maintaincca.listprofomacca"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="mraMaintainCCAForm"
+		scope="request"
+		validate="false">
+	    <forward name="list_success" path="/mailtracking.mra.defaults.maintaincca.updateccadetails.do"/>
+	    <forward name="list_failure" path="/mailtracking.mra.defaults.maintaincca.screenload.do"/>
+	</action>
+
+	<!-- added for LISTCCA by Deepthi  starts -->
+
+		<action path="/mailtracking.mra.defaults.listcca.detailccainfo"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="mraMaintainCCAForm"
+			scope="request"
+			validate="false">
+					<forward name="detail_success" path="/jsp/mail/mra/defaults/MaintainCCA.jsp"/>
+		<forward name="list_failure" path="/jsp/mail/mra/defaults/MaintainCCA.jsp"/>
+		</action>
+
+		<action path="/mailtracking.mra.defaults.maintaincca.closescreen"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="mraMaintainCCAForm"
+			scope="request"
+			validate="false">
+		<forward name="close_success" path="/mailtracking.mra.defaults.listcca.list.do"/>
+		<forward name="close_torateauditdetails" path="/mailtracking.mra.defaults.listrateauditdetails.list.do"/>
+		<forward name="close_maintaincca" path="/home.jsp"/>
+		<forward name="gpainvoiceenquiry" path="/mailtracking.mra.gpabilling.invoiceenquiry.list.do" />
+		<forward name="cn51cn66return" path="/mailtracking.mra.gpabilling.onlistcn51cn66.do?invokingScreen=fromMCA" />
+		<forward name="close_correctionadvice_screen_success" path="/mailtracking.mra.gpabilling.listbillingentries.do?navigationMode=FROMMCA" />
+		<forward name="navigate_billingentriesux_success" path="/mail.mra.gpabilling.ux.gpabillingenquiry.defaultscreenload.do?fromScreen=AUTOMCA" />
+		<!--added as part of IASCB-2377-->
+		<forward name="close_to_messageinbox" path="/workflow.defaults.messageinbox.listmessageinbox.do" />
+
+		</action>
+
+		<!-- Added for ICRD-76551 starts -->
+		<action path="/mailtracking.mra.defaults.maintaincca.surchargedetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="mraMaintainCCAForm"
+			scope="request"
+			validate="false">
+		<forward name="success" path="/jsp/mail/mra/defaults/SurChargeCCADetailPopup.jsp" />
+		<forward name="failure" path="/jsp/mail/mra/defaults/SurChargeCCADetailPopup.jsp" />
+		</action>
+		<!-- Added for ICRD-76551 ends -->
+
+		<action path="/mailtracking.mra.defaults.listcca.print"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCCAForm"
+			scope="request"
+			validate="false">
+			<forward name="print_failure" path="/jsp/mail/mra/defaults/ListCCA.jsp" />
+		</action>
+
+		<!-- added for LISTCCA by Deepthi ends -->
+
+
+	<!-- added for MAINTAINCCA by Muralee ends -->
+	<!--added by A-4823 starts-->
+	<action path="/mailtracking.mra.defaults.mcalov.screenload"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MCALovForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/MCALov.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.mcalov.list"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MCALovForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/MCALov.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.mcalov.clear"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MCALovForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/MCALov.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.dsnlov.screenload"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="DSNLovForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/DSNLov.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.dsnlov.list"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="DSNLovForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/DSNLov.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.dsnlov.clear"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="DSNLovForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/DSNLov.jsp" />
+	</action>
+	<!--added by A-4823 ends-->
+	<!-- added for List CCA by Deepthi starts -->
+		<action path="/mailtracking.mra.defaults.listcca.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCCAForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/defaults/ListCCA.jsp" />
+
+		</action>
+		<action path="/mailtracking.mra.defaults.listcca.clear"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCCAForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/defaults/ListCCA.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listcca.list"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCCAForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/defaults/ListCCA.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listcca.listccadetail"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCCAForm"
+			scope="request"
+			validate="false">
+			<forward name="detail_success" path="/mailtracking.mra.defaults.maintaincca.listccadetails.do" />
+		</action>
+		<action path="/mailtracking.mra.defaults.listcca.populategpaname"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCCAForm"
+			scope="request"
+			validate="false">
+			<forward name="populate_success" path="/jsp/mail/mra/defaults/ListCCA_Ajax.jsp" />
+			<forward name="populate_failure" path="/jsp/mail/mra/defaults/ListCCA_Ajax.jsp" />
+		</action>
+	<!-- added for List CCA by Deepthi ends -->
+	<!--Added by A-7540 starts-->
+	<action path="/mailtracking.mra.defaults.listcca.accept"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCCAForm"
+			scope="request"
+			validate="false">
+		<forward name="accept_success" path="/mailtracking.mra.defaults.listcca.list.do" /><!-- Modified for IASCB-2373-->
+		<forward name="accept_failure" path="/jsp/mail/mra/defaults/ListCCA.jsp" />
+	</action>
+
+		<action path="/mailtracking.mra.defaults.listcca.delete"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCCAForm"
+			scope="request"
+			validate="false">
+		<forward name="delete_success" path="/jsp/mail/mra/defaults/ListCCA.jsp"/>
+		<forward name="delete_failure" path="/jsp/mail/mra/defaults/ListCCA.jsp" />
+	</action>
+
+	<action path="/mailtracking.mra.defaults.listcca.reject"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCCAForm"
+			scope="request"
+			validate="false">
+		<forward name="reject_success" path="/jsp/mail/mra/defaults/ListCCA.jsp"/>
+		<forward name="reject_failure" path="/jsp/mail/mra/defaults/ListCCA.jsp"/>
+	</action>
+	<!--Added by A-7540 ends-->
+	<!-- added for viewflightsectorrevenue by Deepthi starts -->
+			<action path="/mailtracking.mra.defaults.viewflightsectorrevenue.screenload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ViewMailFlightSectorRevenueForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/ViewFlightSectorRevenue.jsp" />
+
+			</action>
+			<action path="/mailtracking.mra.defaults.viewflightsectorrevenue.list"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ViewMailFlightSectorRevenueForm"
+				scope="request"
+				validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/defaults/ViewFlightSectorRevenue.jsp" />
+				<forward name="action_success" path="/jsp/mail/mra/defaults/ViewFlightSectorRevenue.jsp" />
+				<forward name="action_failure" path="/jsp/mail/mra/defaults/ViewFlightSectorRevenue.jsp" />
+			</action>
+			<action path="/mailtracking.mra.defaults.viewflightsectorrevenue.revenuedtls"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ViewMailFlightSectorRevenueForm"
+				scope="request"
+				validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/defaults/ViewFlightSectorRevenue.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/defaults/ViewFlightSectorRevenue.jsp" />
+			</action>
+
+			<action path="/mailtracking.mra.defaults.viewflightsectorrevenue.clear"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ViewMailFlightSectorRevenueForm"
+				scope="request"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/defaults/ViewFlightSectorRevenue.jsp" />
+
+			</action>
+			<action path="/mailtracking.mra.defaults.sectorrevenue.viewaccountingentry"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ViewMailFlightSectorRevenueForm"
+				scope="request"
+				validate="false">
+				<forward name="view_success" path="/cra.accounting.listaccountingentrieslist.do" />
+			</action>
+			<action path="/mailtracking.mra.defaults.sectorrevenue.close"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ViewMailFlightSectorRevenueForm"
+				scope="request"
+				validate="false">
+				<forward name="close_PostingDetails" path="/cra.accounting.postingdetails.list.do"/>
+				<forward name="close_success" path="/home.jsp"/>
+			</action>
+
+	<!-- added for ViewFlightSectorRevenue by Deepthi ends -->
+    <!-- added for Document Statistics by Deepthi starts -->
+			<action path="/mailtracking.mra.defaults.documentstatisticsreport.screenload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MailDocumentStatisticsForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/DocumentStatisticsReport.jsp" />
+			</action>
+			<action path="/mailtracking.mra.defaults.documentstatisticsreport.clear"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MailDocumentStatisticsForm"
+				scope="request"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/defaults/DocumentStatisticsReport.jsp" />
+			</action>
+			<action path="/mailtracking.mra.defaults.documentstatisticsreport.print"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MailDocumentStatisticsForm"
+				scope="request"
+				validate="false">
+
+			</action>
+
+	<!-- ViewProration by Tito starts -->
+
+
+		<action path="/mailtracking.mra.defaults.viewprorationscreenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAViewProrationForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/defaults/ViewProration.jsp"/>
+		</action>
+
+
+		<action path="/mailtracking.mra.defaults.viewproration.listproration"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAViewProrationForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/defaults/ViewProration.jsp"/>
+			<forward name="validation_failure" path="/jsp/mail/mra/defaults/ViewProration.jsp"/>
+			<forward name="no_data_found" path="/jsp/mail/mra/defaults/ViewProration.jsp"/>
+             <forward name="list_failure" path="/jsp/mail/mra/defaults/ViewProration.jsp"/>   
+		</action>
+
+
+		<action path="/mailtracking.mra.defaults.clearviewproration"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAViewProrationForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/defaults/ViewProration.jsp"/>
+		</action>
+		<action path="/mailtracking.mra.defaults.viewproration.listdsndetail"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAViewProrationForm"
+			scope="request"
+			validate="false">
+			<forward name="show_no_popup" path="/mailtracking.mra.defaults.viewproration.listproration.do" />
+			<forward name="list_success" path="/jsp/mail/mra/defaults/ViewProration.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/ViewProration.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.defaults.closeviewproration"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAViewProrationForm"
+			scope="request"
+			validate="false">
+			<forward name="close_success" path="/home.jsp"/>
+			<forward name="close_torateauditdetails" path="/mailtracking.mra.defaults.listrateauditdetails.list.do"/>
+			<forward name="close_interlinebilling" path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.list.do"/>
+			<forward name="close_logsuccess" path="/mailtracking.mra.defaults.viewproration.reloadload.do" />
+			<forward name="close_despatchsuccess" path="/mailtracking.mra.defaults.despatchenquiry.list.do" />
+			<forward name="close_crapostingdetails" path="/cra.accounting.postingdetails.list.do" />
+		</action>
+
+		<action path="/mailtracking.mra.defaults.tomanualProration"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAViewProrationForm"
+			scope="request"
+			validate="false">
+			<forward name="manual_proration_success" path="/mailtracking.mra.defaults.manualproration.listscreen.do?fromScreen=viewproration"/>
+		</action>
+
+
+
+
+	<!-- ViewProration by Tito ends -->
+
+	<!--Added for 76551 starts-->
+	<action path="/mailtracking.mra.defaults.viewproration.surchargedetails"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MRAViewProrationForm"
+		scope="request"
+		validate="false">
+		<forward name="open_surcharge" path="/jsp/mail/mra/defaults/SurChargeProrationPopup.jsp" />
+	</action>
+	<!--Added for 76551 end-->
+
+	<!--Added by A-3229 starts-->
+
+<!--Added by A-7371 for ICRD-234334 starts-->
+             <action path="/mailtracking.mra.defaults.viewproration.awmproratedetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAViewProrationForm"
+			scope="request"
+			validate="false">
+			<forward name="open_awmcharge" path="/jsp/mail/mra/defaults/AWMProrationPopUp.jsp" />
+			</action>
+<!--Added by A-7371 for ICRD-234334 ends-->
+
+		<action path="/mailtracking.mra.defaults.manualproration.screenLoad"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ManualProrationForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/ManualProration.jsp" />
+			</action>
+			<action path="/mailtracking.mra.defaults.manualproration.closescreen"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ManualProrationForm"
+				scope="request"
+				validate="false">
+				<forward name="close_success" path="/home.jsp" />
+				<forward name="close_to_view_proration" path="/mailtracking.mra.defaults.viewproration.listproration.do?fromScreen=ManualProration" />
+				<forward name="closeprorationexception_success" path="/mra.defaults.proration.listprorationexceptionslist.do?fromScreen=fromlistproexceptions" />
+			</action>
+			<action path="/mailtracking.mra.defaults.manualproration.clearscreen"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ManualProrationForm"
+				scope="request"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/defaults/ManualProration.jsp" />
+			</action>
+			<action path="/mailtracking.mra.defaults.manualproration.listscreen"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ManualProrationForm"
+				scope="request"
+				validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/defaults/ManualProration.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/defaults/ManualProration.jsp" />
+			</action>
+			<action path="/mailtracking.mra.defaults.manualproration.savescreen"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ManualProrationForm"
+				scope="request"
+				validate="false">
+				<forward name="save_success" path="/jsp/mail/mra/defaults/ManualProration.jsp" />
+				<forward name="save_failure" path="/jsp/mail/mra/defaults/ManualProration.jsp" />
+			</action>
+		   <action path="/mailtracking.mra.defaults.manualproration.update"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ManualProrationForm"
+				scope="request"
+				validate="false">
+			    <forward name="update_success_to_save" path="/mailtracking.mra.defaults.manualproration.savescreen.do" />
+			    <forward name="update_success_to_prorate" path="/mailtracking.mra.defaults.manualproration.prorate.do" />
+				<forward name="update_failure" path="/jsp/mail/mra/defaults/ManualProration.jsp" />
+			</action>
+			<!--Commented by A-5945 for ICRD-83194-->
+			<!--<action path="/mailtracking.mra.defaults.manualproration.reloadcommand"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ManualProrationForm"
+				scope="request"
+				validate="false">
+				<forward name="reload_sucess" path="/jsp/mail/mra/defaults/ManualProration_Table.jsp" />
+				<forward name="reload_failure" path="/jsp/mail/mra/defaults/ManualProration.jsp" />
+			</action>-->
+		   <action path="/mailtracking.mra.defaults.manualproration.prorate"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ManualProrationForm"
+				scope="request"
+				validate="false">
+				<forward name="prorate_success" path="/jsp/mail/mra/defaults/ManualProration.jsp" />
+				<forward name="prorate_failure" path="/jsp/mail/mra/defaults/ManualProration.jsp" />
+			</action>
+
+	<!--For Despatch Routing-->
+
+			<action path="/mailtracking.mra.defaults.despatchrouting.screenLoad"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchRoutingForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/DespatchRouting.jsp" />
+			</action>
+
+			<action path="/mailtracking.mra.defaults.despatchrouting.validatebsa"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchRoutingForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/DespatchRoutingValidationAjax.jsp" />
+			</action>
+
+
+
+
+			<action path="/mailtracking.mra.defaults.despatchrouting.closescreen"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchRoutingForm"
+				scope="request"
+				validate="false">
+				<forward name="close_success" path="/home.jsp" />
+				<forward name="closeprorationexception_success" path="/mra.defaults.proration.listprorationexceptionslist.do?fromScreen=fromlistproexceptions"/>
+                <forward name="close_despatchrouting_screen_success" path="/mailtracking.mra.gpabilling.listbillingentries.do?navigationMode=FILTER"/>
+				<forward name="close_listgpabilling_success" path="/mail.mra.gpabilling.ux.gpabillingenquiry.defaultscreenload.do?fromScreen=ROUTING"/>				
+			</action>
+			<action path="/mailtracking.mra.defaults.despatchrouting.clearscreen"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchRoutingForm"
+				scope="request"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/defaults/DespatchRouting.jsp" />
+			</action>
+			<action path="/mailtracking.mra.defaults.despatchrouting.listscreen"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchRoutingForm"
+				scope="request"
+				validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/defaults/DespatchRouting.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/defaults/DespatchRouting.jsp" />
+			</action>
+
+			<action path="/mailtracking.mra.defaults.despatchrouting.savescreen"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchRoutingForm"
+				scope="request"
+				validate="false">
+				<forward name="save_success" path="/jsp/mail/mra/defaults/DespatchRouting.jsp" />
+				<forward name="save_failure" path="/jsp/mail/mra/defaults/DespatchRouting.jsp" />
+			</action>
+			<action path="/mailtracking.mra.defaults.despatchrouting.addrow"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchRoutingForm"
+				scope="request"
+				validate="false">
+				<forward name="adddetails_success" path="/jsp/mail/mra/defaults/DespatchRouting.jsp" />
+				<forward name="adddetails_failure" path="/jsp/mail/mra/defaults/DespatchRouting.jsp" />
+			</action>
+			<action path="/mailtracking.mra.defaults.despatchrouting.deleterow"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="DespatchRoutingForm"
+				scope="request"
+				validate="false">
+				<forward name="deletedetails_success" path="/jsp/mail/mra/defaults/DespatchRouting.jsp" />
+				<forward name="deletedetails_failure" path="/jsp/mail/mra/defaults/DespatchRouting.jsp" />
+			</action>
+
+
+	<!--Added by A-3229 ends-->
+
+		<!-- Added for UnaccountedDispatches starts -->
+		<action path="/mailtracking.mra.defaults.unaccounteddispatches.onScreenLoad"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UnaccountedDispatchesForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/defaults/UnaccountedDispatches.jsp" />
+		</action>
+
+
+		<action path="/mailtracking.mra.defaults.unaccounteddispatches.clearsearch"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UnaccountedDispatchesForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/defaults/UnaccountedDispatches.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.defaults.unaccounteddispatches.listload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UnaccountedDispatchesForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/defaults/UnaccountedDispatches.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/UnaccountedDispatches.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.unaccounteddispatches.validate"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UnaccountedDispatchesForm"
+			scope="request"
+			validate="false">
+			<forward name="normal-report-preview-jsp" path="/NormalReportViewer.jsp"/>
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/UnaccountedDispatches.jsp"/>
+		</action>
+		<action path="/mailtracking.mra.defaults.unaccounteddispatches.viewDispatchesEnquiry"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="DespatchEnquiryForm"
+			scope="request"
+			validate="false">
+			<forward name="success" path="/mailtracking.mra.defaults.despatchenquiry.list.do?fromScreen=fromunnaccounteddispatches" />
+			<forward name="failure" path="/jsp/mail/mra/defaults/UnaccountedDispatches.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.unaccounteddispatches.account"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UnaccountedDispatchesForm"
+			scope="request"
+			validate="false">
+			<forward name="accounting_success" path="/jsp/mail/mra/defaults/UnaccountedDispatches.jsp" />
+			<forward name="accounting_failure" path="/jsp/mail/mra/defaults/UnaccountedDispatches.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.defaults.unaccounteddispatches.viewmanualaccounting"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UnaccountedDispatchesForm"
+			scope="request"
+			validate="false">
+			<forward name="success" path="/cra.accounting.listmanualaccountingentry.do?fromScreen=fromunnaccounteddispatches" />
+
+		</action>
+
+			<!--For AirNZ CR 882 added by A-3229-->
+
+		<action path="/mailtracking.mra.defaults.prorationlog.screenload"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MRAProrationLogForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/ProrationLog.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.prorationlog.listscreen"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MRAProrationLogForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success" path="/jsp/mail/mra/defaults/ProrationLog.jsp" />
+					<forward name="list_failure" path="/jsp/mail/mra/defaults/ProrationLog.jsp" />
+		</action>
+
+			<action path="/mailtracking.mra.defaults.prorationlog.closescreen"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MRAProrationLogForm"
+					scope="request"
+					validate="false">
+					<forward name="close_success" path="/home.jsp" />
+		</action>
+
+			<action path="/mailtracking.mra.defaults.prorationlog.clearscreen"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MRAProrationLogForm"
+					scope="request"
+					validate="false">
+					<forward name="clear_success" path="/jsp/mail/mra/defaults/ProrationLog.jsp" />
+		</action>
+
+			<action path="/mailtracking.mra.defaults.prorationlog.viewproration"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MRAProrationLogForm"
+					scope="request"
+					validate="false">
+					<forward name="viewproration_success" path="/mailtracking.mra.defaults.viewproration.listproration.do?fromScreen=PRORATIONLOG" />
+					<forward name="viewproration_failure" path="/jsp/mail/mra/defaults/ProrationLog.jsp"/>
+			</action>
+
+				<action path="/mailtracking.mra.defaults.viewproration.reloadload"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MRAProrationLogForm"
+					scope="request"
+					validate="false">
+					<forward name="reload_success"  path="/jsp/mail/mra/defaults/ProrationLog.jsp" />
+			</action>
+
+
+<!--for AirNZ882 ends-->
+<!-- List Proration Exception starts -->
+
+		<action
+				name="ListMailProrationExceptionsForm"
+				path="/mra.defaults.proration.screenloadlistprorationexception"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/ListProrationExceptions.jsp" />
+		</action>
+
+		<action
+				name="ListMailProrationExceptionsForm"
+				path="/mra.defaults.proration.listprorationexceptionslist"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/defaults/ListProrationExceptions.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/defaults/ListProrationExceptions.jsp" />
+		</action>
+
+
+		<action
+				name="ListMailProrationExceptionsForm"
+				path="/mra.defaults.proration.listprorationexceptionssave"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="save_success" path="/jsp/mail/mra/defaults/ListProrationExceptions.jsp" />
+		</action>
+
+
+
+		<action
+				name="ListMailProrationExceptionsForm"
+				path="/mra.defaults.proration.listprorationexceptionsprint"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+		</action>
+
+
+		<action
+				name="ListMailProrationExceptionsForm"
+				path="/mra.defaults.proration.listprorationexceptionsclose"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="close_success" path="/home.jsp" />
+				<forward name="viewflight_close" path="/mailtracking.mra.defaults.viewflightsectorrevenue.list.do" />
+				<forward name="listrateaudit_close" path="/mailtracking.mra.defaults.listrateaudit.listrateauditdetails.do" />
+
+
+		</action>
+
+		<action
+				name="ListMailProrationExceptionsForm"
+				path="/mra.defaults.proration.listprorationexceptionsprorate"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="Prorate_Success" path="/mra.defaults.proration.listprorationexceptionslist.do" />
+				<forward name="Prorate_Failure" path="/jsp/mail/mra/defaults/ListProrationExceptions.jsp" />
+
+		</action>
+
+		<action
+				name="ListMailProrationExceptionsForm"
+				path="/mra.defaults.proration.listprorationexceptionsvoid"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="confirm_void" path="/jsp/mail/mra/defaults/ListProrationExceptions.jsp" />
+				<forward name="void_success" path="/mra.defaults.proration.listprorationexceptionslist.do?paginationMode=LIST" />
+		</action>
+		<action
+				name="ListMailProrationExceptionsForm"
+				path="/mra.defaults.proration.clearlistexceptions"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/defaults/ListProrationExceptions.jsp" />
+
+
+		</action>
+		<action
+				name="ListMailProrationExceptionsForm"
+				path="/mra.defaults.proration.listprorationexceptionsnavigate"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="todispatchenquiry" path="/mailtracking.mra.defaults.despatchenquiry.list.do?fromScreen=fromlistproexceptions" />
+				<forward name="todespatchrouting" path="/mailtracking.mra.defaults.despatchrouting.listscreen.do?fromScreen=fromlistproexceptions" />
+				<forward name="tomanualproration" path="/mailtracking.mra.defaults.manualproration.listscreen.do?fromScreen=fromlistproexceptions" />
+
+
+
+		</action>
+
+
+		<action
+				name="ViewMailFlightSectorRevenueForm"
+				path="/mailtracking.mra.defaults.sectorrevenue.viewexceptions"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="exceptions_success" path="/mra.defaults.proration.listprorationexceptionslist.do?invokingScreen=viewflightsectorrevenue" />
+				<forward name="exceptions_failure" path="/jsp/mail/mra/defaults/ViewFlightSectorRevenue.jsp" />
+		</action>
+
+
+	<!-- List Proration Exception ends -->
+
+
+	<!--added by A-3229 for AirNZ CR 683 starts-->
+		<action path="/mailtracking.mra.defaults.irregularity.screenLoad"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MRAIrregularityForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/Irregularity.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.defaults.irregularity.closescreen"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MRAIrregularityForm"
+					scope="request"
+					validate="false">
+					<forward name="close_success" path="/home.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.irregularity.listscreen"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MRAIrregularityForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success" path="/jsp/mail/mra/defaults/Irregularity.jsp" />
+					<forward name="list_failure" path="/jsp/mail/mra/defaults/Irregularity.jsp" />
+		</action>
+
+			<action path="/mailtracking.mra.defaults.irregularity.clearscreen"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MRAIrregularityForm"
+					scope="request"
+					validate="false">
+					<forward name="clear_success" path="/jsp/mail/mra/defaults/Irregularity.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.irregularity.printscreen"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MRAIrregularityForm"
+					scope="request"
+					validate="false">
+
+		</action>
+			<!--added by A-3229 for AirNZ CR 683 ends-->
+
+		<!-- added By A-3434 for ChangeStatusPopup starts -->
+
+		<action path="/mailtracking.mra.defaults.changestatuspopup"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ChangeBillingStatusPopupForm"
+				scope="request"
+				validate="false">
+				<forward name="screen_success" path="/jsp/mail/mra/defaults/ChangeBillingStatus.jsp" />
+				<forward name="screen_failure" path="/jsp/mail/mra/defaults/ChangeBillingStatus.jsp"/>
+
+		</action>
+		<action
+			name="ChangeBillingStatusPopupForm"
+			path="/mailtracking.mra.defaults.changestatussave"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		<forward name="save_success" path="/jsp/mail/mra/defaults/ChangeBillingStatus.jsp"/>
+		<forward name="save_failure" path="/jsp/mail/mra/defaults/ChangeBillingStatus.jsp"/>
+
+		</action>
+
+		<!-- added By A-3434 for ChangeStatusPopup ends -->
+
+		<action path="/mailtracking.mra.defaults.prorationlog.listdsndetail"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAProrationLogForm"
+			scope="request"
+			validate="false">
+			<forward name="show_no_popup" path="/mailtracking.mra.defaults.prorationlog.listscreen.do" />
+			<forward name="list_success" path="/jsp/mail/mra/defaults/ProrationLog.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/ProrationLog.jsp" />
+
+		</action>
+
+		<action path="/mailtracking.mra.defaults.despatchenquiry.listdsnpopup"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="DespatchEnquiryForm"
+			scope="request"
+			validate="false">
+			<forward name="show_no_popup" path="/mailtracking.mra.defaults.despatchenquiry.list.do" />
+			<forward name="list_success" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/DespatchEnquiry.jsp" />
+
+		</action>
+
+		<action path="/mailtracking.mra.defaults.despatchrouting.listdsnpopup"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="DespatchRoutingForm"
+			scope="request"
+			validate="false">
+			<forward name="show_no_popup" path="/mailtracking.mra.defaults.despatchrouting.listscreen.do" />
+			<forward name="list_success" path="/jsp/mail/mra/defaults/DespatchRouting.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/DespatchRouting.jsp" />
+
+		</action>
+
+		<action path="/mailtracking.mra.defaults.manualproration.listdsndetail"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ManualProrationForm"
+			scope="request"
+			validate="false">
+			<forward name="show_no_popup" path="/mailtracking.mra.defaults.manualproration.listscreen.do" />
+			<forward name="list_success" path="/jsp/mail/mra/defaults/ManualProration.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/ManualProration.jsp" />
+
+		</action>
+
+		<action path="/mailtracking.mra.defaults.maintaincca.listdsndetail"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="mraMaintainCCAForm"
+			scope="request"
+			validate="false">
+			<forward name="show_no_popup" path="/mailtracking.mra.defaults.maintaincca.listccadetailsforOK.do" />
+			<forward name="list_success" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/defaults/MaintainCCA.jsp" />
+
+		</action>
+
+		<action path="/mailtracking.mra.defaults.fuelsurcharge.onScreenLoad"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="FuelSurchargeForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/FuelSurcharge.jsp" />
+				</action>
+				<action path="/mailtracking.mra.defaults.fuelsurcharge.onClear"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="FuelSurchargeForm"
+					scope="request"
+					validate="false">
+					<forward name="clear_success" path="/jsp/mail/mra/defaults/FuelSurcharge.jsp" />
+				</action>
+				<action path="/mailtracking.mra.defaults.fuelsurcharge.onList"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="FuelSurchargeForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success" path="/jsp/mail/mra/defaults/FuelSurcharge.jsp" />
+					<forward name="list_failure" path="/jsp/mail/mra/defaults/FuelSurcharge.jsp" />
+				</action>
+				<action path="/mailtracking.mra.defaults.fuelsurcharge.onClose"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="FuelSurchargeForm"
+					scope="request"
+					validate="false">
+					<forward name="close_success" path="/home.jsp" />
+				</action>
+				<action path="/mailtracking.mra.defaults.fuelsurcharge.onSave"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="FuelSurchargeForm"
+					scope="request"
+					validate="false">
+					<forward name="save_success" path="/jsp/mail/mra/defaults/FuelSurcharge.jsp" />
+					<forward name="save_failure" path="/jsp/mail/mra/defaults/FuelSurcharge.jsp" />
+				</action>
+				<action
+					name="FuelSurchargeForm"
+					path="/mailtracking.mra.defaults.fuelsurcharge.ajaxScreenLoad"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+				<forward name="populate_success" path="/jsp/mail/mra/defaults/FuelSurcharge_Ajax.jsp" />
+				<forward name="populate_failure" path="/jsp/mail/mra/defaults/FuelSurcharge_Ajax.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.defaults.mailexceptionreports.screenload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MailExceptionsReportForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/defaults/MailExceptionReports.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.mailexceptionreports.generatereport"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MailExceptionsReportForm"
+				scope="request"
+				validate="false">
+				<forward name="generate_success" path="/mailtracking.mra.defaults.mailexceptionreports.downloadfile.do" />
+				<forward name="generate_failure" path="/jsp/mail/mra/defaults/MailExceptionReports.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.mailexceptionreports.downloadfile"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MailExceptionsReportForm"
+				scope="request"
+				validate="false">
+				<forward name="download_failure" path="/jsp/mail/mra/defaults/MailExceptionReports.jsp" />
+		</action>
+
+
+		<!--Added By A-5166 for ICRD-17262 Starts-->
+ 	<action path="/mailtracking.mra.defaults.despatchroutingcarrierconfig.screenLoad"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MRARoutingCarrierForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/DispatchRoutingCarrierConfig.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.despatchroutingcarrierconfig.listcarrierdetails"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MRARoutingCarrierForm"
+		scope="request"
+		validate="false">
+		<forward name="list_success" path="/jsp/mail/mra/defaults/DispatchRoutingCarrierConfig.jsp" />
+		<forward name="list_failure" path="/jsp/mail/mra/defaults/DispatchRoutingCarrierConfig.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.despatchroutingcarrierdetails.savescreen"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MRARoutingCarrierForm"
+		scope="request"
+		validate="false">
+		<forward name="save_success" path="/jsp/mail/mra/defaults/DispatchRoutingCarrierConfig.jsp" />
+		<forward name="save_failure" path="/jsp/mail/mra/defaults/DispatchRoutingCarrierConfig.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.despatchroutingcarrierdetails.addrow"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRARoutingCarrierForm"
+			scope="request"
+			validate="false">
+			<forward name="adddetails_success" path="/jsp/mail/mra/defaults/DispatchRoutingCarrierConfig.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.despatchroutingcarrierdetails.deleterow"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRARoutingCarrierForm"
+			scope="request"
+			validate="false">
+			<forward name="deletedetails_success" path="/jsp/mail/mra/defaults/DispatchRoutingCarrierConfig.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.despatchroutingcarrierconfig.clearscreen"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRARoutingCarrierForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/defaults/DispatchRoutingCarrierConfig.jsp" />
+	</action>
+	<action path="/mailtracking.mra.defaults.despatchroutingcarrierconfig.closescreen"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRARoutingCarrierForm"
+			scope="request"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+	</action>
+
+	<action path="/mra.defaults.billingsitemaster"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="BillingSiteMasterForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/BillingSiteMaster.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.billingsitemaster.listcommand"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="BillingSiteMasterForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/BillingSiteMaster.jsp" />
+					<forward name="screenload_fail" path="/jsp/mail/mra/defaults/BillingSiteMaster.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.billingsitemaster.saveCommand"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="BillingSiteMasterForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/BillingSiteMaster.jsp" />
+		</action>
+		<action path="/mailtracking.mra.defaults.billingsitemaster.clearCommand"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="BillingSiteMasterForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/defaults/BillingSiteMaster.jsp" />
+		</action>
+		<action
+			name="BillingSiteMasterForm"
+			path="/mailtracking.mra.defaults.billingsitemaster.closeCommand"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="close_success" path="/home.jsp"/>
+		</action>
+		<action path="/mailtracking.mra.defaults.billingsitemaster.showBillingSiteLOVDetails"
+			scope="request"
+			name="BillingSiteLOV"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/defaults/BillingSiteLOV.jsp" />
+		</action>
+		<action
+			name="BillingSiteLOV"
+			path="/mailtracking.mra.defaults.billingsitemaster.clearbillingsitelov"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/defaults/BillingSiteLOV.jsp" />
+		</action>
+ <!--Added By A-5166 for ICRD-17262 Ends-->
+				<!--Added as part of IASCB-2377 starts-->
+        <action path="/mail.mra.updatemcaworkflow"
+		  name="mraMaintainCCAForm"
+		  scope="request"
+		  validate="false"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		 <forward name="workflow_success" path="/mailtracking.mra.defaults.maintaincca.updateccadetails.do?fromScreen=messageinbox" />
+	    </action>
+		<!--Added as part of IASCB-2377 ends-->
+		
+		 <action path="/mail.mra.defaults.ux.modifyroute.defaultscreenload"
+						name="DefaultSPAForm"
+						scope="request"
+						type="com.ibsplc.icargo.framework.struts.action.DefaultSPARenderAction"
+						validate="false">
+						<forward name="_default_render_success" path="/app/mail/mra/modifyroute/index.jsp"/>
+		</action>   
+		<!--Added as part of IASCB-61667 ends-->
+		 <action path="/mail.mra.ux.mailbillingschedulemaster.screenload"
+						name="DefaultSPAForm"
+						scope="request"
+						type="com.ibsplc.icargo.framework.struts.action.DefaultSPARenderAction"
+						validate="false">
+						<forward name="_default_render_success" path="/app/mail/mra/billingschedulemaster/index.jsp"/>
+		</action>
+		 <action path="/mail.mra.defaults.ux.attachfile.defaultscreenload"
+						name="DefaultSPAForm"
+						scope="request"
+						type="com.ibsplc.icargo.framework.struts.action.DefaultSPARenderAction"
+						validate="false">
+						<forward name="_default_render_success" path="/app/mail/mra/attachfile/index.jsp"/>
+		</action> 
+		<action path="/mail.mra.defaults.ux.attachfile.fetchdetailsonexcelupload"
+						name="DefaultSPAForm"
+						scope="request"
+						type="com.ibsplc.icargo.framework.struts.action.DefaultSPARenderAction"
+						validate="false">
+						<forward name="_default_render_success" path="/app/mail/mra/attachfile/index.jsp"/>
+		</action>
+		<action path="/mailtracking.mra.defaults.maintainbillingmatrix.changedate"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/ChangeEndDatePopup.jsp" />
+	    </action>
+    <action path="/mailtracking.mra.defaults.maintainbillingmatrix.savechangeenddate"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="BillingMatrixForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/mail/mra/defaults/ChangeEndDatePopup.jsp" />
+		<forward name="screenload_error" path="/jsp/mail/mra/defaults/ChangeEndDatePopup.jsp" />
+	</action>
+		  
+		
+	</action-mappings>
+
+
+	<message-resources key="modifyRouteResourceBundle" parameter="resources.mail.mra.defaults.ModifyRoute" null="false"/>
+
+
+
+	<message-resources  key="mailexceptionreports"  parameter="resources.mail.mra.defaults.MailExceptionReports" null="false"/>
+	<message-resources  key="fuelSurchargebundle"  parameter="resources.mail.mra.defaults.FuelSurcharge" null="false"/>
+	<message-resources  key="viewbillingline"  parameter="resources.mail.mra.defaults.ViewBillingLine" null="false"/>
+    <message-resources  key="maintainUPURateCard"  parameter="resources.mail.mra.defaults.MaintainUPURateCard" null="false"/>
+	<message-resources  key="listupuratecardresources"  parameter="resources.mail.mra.defaults.ListUPURateCard" null="false"/>
+	<message-resources key="viewupurate" parameter="resources.mail.mra.defaults.ViewUPURate" null="false"/>
+	<message-resources  key="ratecardlov"  parameter="resources.mail.mra.defaults.RateCardLOV" null="false"/>
+	<message-resources  key="copyrateresources"  parameter="resources.mail.mra.defaults.CopyRate" null="false"/>
+	<message-resources key="listbillingmatrix" parameter="resources.mail.mra.defaults.ListBillingMatrix" null="false"/>
+	<message-resources  key="billingmatrixlov"  parameter="resources.mail.mra.defaults.BillingMatrixLOV" null="false"/>
+	<message-resources  key="mailprorationresources"  parameter="resources.mail.mra.defaults.MailProration" null="false"/>
+	<message-resources  key="billingmatrix"  parameter="resources.mail.mra.defaults.MaintainBillingMatrix" null="false"/>
+	<message-resources  key="copyblglineresources"  parameter="resources.mail.mra.defaults.CopyBillingLine" null="false"/>
+	<message-resources  key="billingline"  parameter="resources.mail.mra.defaults.MaintainBillingLine" null="false"/>
+	<message-resources  key="mramaintainproratefactors"  parameter="resources.mail.mra.defaults.MaintainProrateFactors" null="false"/>
+    <message-resources  key="contractlov"  parameter="resources.mail.mra.defaults.ContractLov" null="false"/>
+	<message-resources  key="slalov"  parameter="resources.mail.mra.defaults.SLALov" null="false"/>
+	<message-resources  key="versionnumberlov"  parameter="resources.mail.mra.defaults.VersionNumberLOV" null="false"/>
+	<message-resources  key="maintainmailcontracts"  parameter="resources.mail.mra.defaults.MaintainMailContracts" null="false"/>
+	<message-resources  key="listmailcontractsresources"  parameter="resources.mail.mra.defaults.ListMailContracts" null="false"/>
+	<message-resources key="maintainmailslaresources" parameter="resources.mail.mra.defaults.MaintainMailSLA" null="false"/>
+	<message-resources key="mradespatchlov" parameter="resources.mail.mra.defaults.DespatchLov" null="false"/>
+    <message-resources key="mraprocessmanager" parameter="resources.mail.mra.defaults.ProcessManager" null="false"/>
+    <message-resources key="invoicEnquiry" parameter="resources.mail.mra.defaults.InvoicEnquiry" null="false"/>
+	<message-resources key="invoicEnquiryDetails" parameter="resources.mail.mra.defaults.InvoicEnquiryDetails" null="false"/>
+	<message-resources key="invoicClaimsEnquiry" parameter="resources.mail.mra.defaults.InvoicClaimsEnquiry" null="false"/>
+	<message-resources key="maintaindotrate" parameter="resources.mail.mra.defaults.MaintainDOTRate" null="false"/>
+	<message-resources key="invoickeylov" parameter="resources.mail.mra.defaults.InvoicKeyLOV" null="false"/>
+	<message-resources key="despatchEnquiry" parameter="resources.mail.mra.defaults.DespatchEnquiry" null="false"/>
+	<message-resources key="despatchselectpopup" parameter="resources.mail.mra.defaults.DSNPopUp" null="false"/>
+	<message-resources key="mralistrateaudit" parameter="resources.mail.mra.defaults.ListRateAudit" null="false"/>
+	<message-resources key="rateAuditDetails" parameter="resources.mail.mra.defaults.RateAuditDetails" null="false"/>
+		<!-- added for MAINTAINCCA by Muralee starts -->
+	<message-resources key="maintainCCA" parameter="resources.mail.mra.defaults.MaintainCCA" null="false"/>
+	<message-resources key="mcalov" parameter="resources.mail.mra.defaults.MCALov" null="false"/>
+	<message-resources key="dsnlov" parameter="resources.mail.mra.defaults.DSNLov" null="false"/>
+		<!-- added for MAINTAINCCA by Muralee ends -->
+	<message-resources key="listCCA" parameter="resources.mail.mra.defaults.ListCCA" null="false"/>
+	<message-resources key="viewFlightSectorRevenue" parameter="resources.mail.mra.defaults.ViewFlightSectorRevenue" null="false"/>
+	<message-resources key="manualprorationresources" parameter="resources.mail.mra.defaults.ManualProration" null="false"/>
+	<message-resources key="despatchroutingcarrierconfigresources" parameter="resources.mail.mra.defaults.DispatchRoutingCarrierConfig" null="false"/>
+	<message-resources  key="mailproration"  parameter="resources.mail.mra.defaults.ViewProration" null="false"/>
+	<message-resources key="despatchroutingresources" parameter="resources.mail.mra.defaults.DespatchRouting" null="false"/>
+	<message-resources key="unaccountedDispatches" parameter="resources.mail.mra.defaults.UnaccountedDispatches" null="false"/>
+	<!--added by A-3229-->
+	<message-resources key="mraprorationlogresources" parameter="resources.mail.mra.defaults.ProrationLog" null="false" />
+	<message-resources key="mralistprorationexceptions" parameter="resources.mail.mra.defaults.ListMailProrationExceptions" null="false"/>
+	<message-resources key="documentStatisticsReport" parameter="resources.mail.mra.defaults.DocumentStatisticsReport" null="false"/>
+	<message-resources key="irregularityresources" parameter="resources.mail.mra.defaults.Irregularity" null="false" />
+	<message-resources key="changestatusBundle" parameter="resources.mail.mra.defaults.ChangeBillingStatus" null="false"/>
+	<message-resources key="billingsiteresource" parameter="resources.mail.mra.defaults.BillingSiteResource" null="false"/>
+	<message-resources key="billingsitelovresource" parameter="resources.mail.mra.defaults.BillingSiteLOVResource" null="false"/>
+	<message-resources key="mailbillingScheduleMasterResourceBundle" parameter="resources.mail.mra.defaults.BillingScheduleMaster" null="false"/>
+	
+	
+	
+	
+	
+	
+	<message-resources key="attachFileResourceBundle" parameter="resources.mail.mra.defaults.AttachFile" null="false"/>
+	<plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+		<set-property property="configFileName"	value="/WEB-INF/errortags/mail/mra/defaults/errortags.xml" />
+	</plug-in>
+</struts-config>

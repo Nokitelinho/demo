@@ -1,0 +1,61 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+<html>
+    <head>
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+        <title>Mail Inbound</title>
+        <script>
+            var pageURL='<%=request.getParameter("pageURL")%>'
+            var airportCode='<%=request.getParameter("airportCode")%>'
+            var fromDate='<%=request.getParameter("fromDate")%>'
+            var toDate='<%=request.getParameter("toDate")%>'
+            var flightNumber='<%=request.getParameter("flightNumber")%>'
+            var carrierCode='<%=request.getParameter("carrierCode")%>'
+            var flightDate='<%=request.getParameter("flightDate")%>'
+            var fromScreen = '<%=request.getParameter("fromScreen")%>'
+            var screenAction = "mail.operations.ux.mailinbound.mailinboundscreenload.do";
+
+            function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {
+                    __rehydrate: fromScreen==='MailHistory'? true: false,
+                    fromScreen: fromScreen,
+                    screenAction: screenAction
+                });
+                return newobj
+            }
+        </script>
+        <common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+    </head>
+
+    <body>
+        <div id="container" class="main-container"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" /> 
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" /> 
+        {{/each}}
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+        <%@include file="/jsp/includes/reports/printFrame.jsp"%>
+            {{!-- <script>
+                appBridge.renderApp();
+            </script> --}}
+             <script>
+			if (fromScreen === 'mail.operations.ux.mailtransitoverview') {
+                console.log('here111');
+                appBridge.renderApp(function () {
+                    console.log('here121');
+                    console.log(flightNumber);
+                    appBridge.dispatchAction({
+                        type: 'SECURITY_FILTER',
+                       // data: { 'conDocNo': conDocNo ,'paCode':paCode ,  'fromScreen': fromScreen, 'pageURL': pageURL}
+                       data: { 'airportCode':airportCode, 'fromDate':fromDate,'toDate':toDate,'flightNumber':flightNumber,'carrierCode':carrierCode,'flightDate':flightDate,'fromScreen': fromScreen, 'pageURL': pageURL}//dbt
+                    })
+                });
+            }
+            else {
+			appBridge.renderApp();
+			}
+		</script>
+    </body>
+</html>

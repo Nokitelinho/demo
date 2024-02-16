@@ -1,0 +1,126 @@
+body{
+    display:flex;
+    height:0px;
+}
+#container{
+    display:flex;
+    flex-direction: column;
+}
+.header-panel{
+    display:flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.section-panel{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-top: $md;
+    margin-bottom: $xs2;
+}
+.footer-panel {
+    position: static;
+    margin: 0 -1rem;
+    width: auto;
+}
+.inner-panel{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.sub-panel{
+    flex-grow: 1;
+    display: flex;
+}
+a.info-hex-icon:hover, a.info-hex-icon:active {
+    text-decoration: none;
+}
+
+.active-card-pane {
+  content: '';
+  display: block; }
+  .active-card-pane::after {
+    width: 100%;
+    background: #039BE5;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px; }
+   .custom-tab-pane .table-header__customheader{
+       padding:0!important
+   }
+
+    .nav-tabs {
+    border-color: $border-color;
+    background: $grey100;
+    .nav-item {
+        margin-bottom: 0;
+        position: relative;
+        background: #fff;
+        border: 0;
+        &:focus {
+            outline: none;
+        }
+        &.ui-state-active {
+            .nav-link {
+                color: $textcolor;
+                background: $white;
+                &:after {
+                    height: 2px;
+                    width: 100%;
+                    background: #039BE5;
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+            }
+        }
+    }
+    .nav-link {
+        font-size: 12px;
+        font-weight: bold;
+        color: $tab-disabled-color;
+        padding: $md2 $lg2;
+        border: 0;
+        line-height: 1;
+        border-radius: 0;
+        &:hover:after {
+            height: 2px;
+            width: 100%;
+            background: #039BE5;
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+    }
+}
+
+.nav-tabs-large {
+    .nav-item {
+        &.ui-state-active {
+            .nav-link {
+                &:after {
+                    top: 0;
+                }
+            }
+        }
+    }
+    .nav-link {
+        font-size: 14px;
+        font-weight: normal;
+        padding: $md $xl;
+        height: $xxl;
+        &:hover:after {
+            top: 0;
+        }
+    }
+}
+
+.chart-grid {
+    height: 25vh;
+    width: 100%;
+    margin-bottom: 25px;
+}

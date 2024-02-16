@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<inet:Report xmlns:inet="http://www.inetsoftware.de" major_version="11" minor_version="0" major_xml_version="11" minor_xml_version="1" id="1">
+    <Datasource>
+
+      <DataSourceConfiguration name="ICOBSSSTG">
+        <property name="quotesLowerCase" value="false"/>
+        <property name="password" value="00E75A1F85D8040FFBDCB01C7194313496EB56568FD4091EFBDBA31F7087538CA4"/>
+        <property name="initSQL" value=""/>
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="oracle.jdbc.TcpNoDelay" value="false"/>
+        <property name="url" value="jdbc:oracle:thin:@{host}"/>
+        <property name="supportsOrderBy" value="true"/>
+        <property name="supportsParenthesesForJoin" value="true"/>
+        <property name="catalog" value=""/>
+        <property name="defaultRowPrefetch" value=""/>
+        <property name="identifierQuoteString" value=""/>
+        <property name="supportsSQL92" value="false"/>
+        <property name="supportsWhere" value="true"/>
+        <property name="restrictGetTables" value="false"/>
+        <property name="host" value="192.168.16.196:1522:ICODB32"/>
+        <property name="driverLibrary" value=""/>
+        <property name="oracle.jdbc.J2EE13Compliant" value="false"/>
+        <property name="datasource_schema" value=""/>
+        <property name="processEscapes" value="true"/>
+        <property name="databaseClassName" value=""/>
+        <property name="datasource_catalog" value=""/>
+        <property name="validationQuery" value=""/>
+        <property name="savePassword" value="true"/>
+        <property name="useFetchSizeWithLongColumn" value="false"/>
+        <property name="escapeEverything" value="false"/>
+        <property name="aliasToken" value=""/>
+        <property name="defaultNChar" value="false"/>
+        <property name="user" value="ICOBSSTGDEV4"/>
+      </DataSourceConfiguration>
+      <Tablesource alias="DUMMY_VW_MTKCSGMAL" databaseIdentifier="ICOBSSTGDEV4.DUMMY_VW_MTKCSGMAL">
+
+        <Column name="ULDNUM1" type="11" description="ULDNUM1" />
+        <Column name="CONSELNUM1" type="11" description="CONSELNUM1" />
+      </Tablesource>
+
+    </Datasource>
+
+  <Database>
+  </Database>
+  <FormulaFields>
+  </FormulaFields>
+  <PromptFields>
+  </PromptFields>
+  <SQLFields>
+  </SQLFields>
+  <SummaryFields>
+  </SummaryFields>
+  <SortFields>
+  </SortFields>
+  <UserFunctions>
+  </UserFunctions>
+  <GroupNameFields>
+  </GroupNameFields>
+  <ReportProperties>
+    <PageWidth value="11907"/>
+    <PageHeight value="16839"/>
+    <PageOrientation value="1"/>
+    <PageMarginLeft value="720"/>
+    <PageMarginRight value="720"/>
+    <PageMarginTop value="720"/>
+    <PageMarginBottom value="720"/>
+    <MailingLabelType1 value=""/>
+    <MailingLabelType2 value=""/>
+    <FormatWithMultipleColumns value="false"/>
+    <MailingLabelWidth value="0"/>
+    <MailingLabelHeight value="0"/>
+    <MailingLabelDistanceVertical value="0"/>
+    <MailingLabelDistanceHorizontal value="0"/>
+    <AcrossThenDown value="false"/>
+    <FormatGroupsWithMultipleColumns value="false"/>
+    <Distinct value="false"/>
+    <ShowSuppressedNodes value="true"/>
+    <IgnoreFiltering value="false"/>
+    <IgnoreSorting value="false"/>
+    <ConvertDateTime value="0"/>
+    <SuppressIfNoRows value="false"/>
+    <ConvertNullValuesToDefault value="false"/>
+    <HidePageFooterInsideReportHeader value="false"/>
+    <FormPrint value="false"/>
+    <PrintingEnabled value="true"/>
+    <ClipboardEnabled value="true"/>
+    <ExportEnabled value="true"/>
+    <GroupTreeVisible value="true"/>
+  </ReportProperties>
+  <AreaPair type="ReportAreaPair">
+    <Area type="ReportHeader">
+      <Section type="ReportHeader" width="10467" height="300">
+        <Element type="Text" count="1" x_position="147" y_position="0" width="2100" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[If a container is used]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="ReportFooter">
+      <Section type="ReportFooter" width="10467" height="4">
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="DetailArea">
+    <Area type="Detail">
+      <Section type="Detail" width="10467" height="524">
+        <Element type="Text" count="1" x_position="642" y_position="154" width="1694" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[No of container :]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="2564" y_position="154" width="2163" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.ULDNUM1"/>
+        </Element>
+        <Element type="Text" count="1" x_position="6244" y_position="154" width="1567" height="300">
+          <Element type="Paragraph" count="1">
+            <Element type="TextPart">
+              <TextData><![CDATA[No of seal :]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="7879" y_position="167" width="1892" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_MTKCSGMAL.CONSELNUM1"/>
+        </Element>
+        <Element type="Box" x2_position="10872" y2_position="4" x_position="6" y_position="7" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+          <LineProperties>
+            <EndSection area="RF" sectionIndex="0"/>
+          </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="Line" x_position="6" y_position="504" width="0" height="0" x2_position="10844" y2_position="504">
+            </Element>
+        <Element type="Line" x_position="5361" y_position="2" width="0" height="0" x2_position="5361" y2_position="517">
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+</inet:Report>

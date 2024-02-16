@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+
+	<bean id="mRADefaultscontroller"
+			class="com.ibsplc.icargo.business.mail.mra.defaults.MRADefaultsController">
+	</bean>
+	<bean id="mRADefaultsTKcontroller"
+			class="com.ibsplc.icargo.business.mail.mra.defaults.tk.MRADefaultsTKController">
+	</bean>
+	<bean id="mRAGpaBillingTKcontroller"
+			class="com.ibsplc.icargo.business.mail.mra.gpabilling.tk.GPABillingTKController">
+	</bean>
+	<bean id="mRAGpaBillingcontroller"
+			class="com.ibsplc.icargo.business.mail.mra.gpabilling.GPABillingController">
+	</bean>
+	<bean id="airlineBillingcontroller"
+			class="com.ibsplc.icargo.business.mail.mra.airlinebilling.AirlineBillingController">
+	</bean>
+	<bean id="mailUploadcontroller"
+                        class="com.ibsplc.icargo.business.mail.operations.MailUploadController">
+	</bean>
+	<bean id="SQ-mailUploadcontroller"
+                        class="com.ibsplc.icargo.business.mail.operations.sq.MailUploadController">
+	</bean>
+	<bean id="mAilcontroller"
+                        class="com.ibsplc.icargo.business.mail.operations.MailController">
+	</bean>
+
+	<bean id="fLowncontroller"
+                        class="com.ibsplc.icargo.business.mail.mra.flown.FlownController">
+	</bean>
+	<bean id="reassigncontroller"
+                        class="com.ibsplc.icargo.business.mail.operations.ReassignController">
+	</bean>	
+	
+	<!--<bean id="asianaMailcontroller"
+                        class="com.ibsplc.icargo.business.xaddons.oz.mail.operations.AsianaMailController">
+	</bean>-->
+	<bean id="mail_mra_FILE_GEN_EVENT_MSGBROKER_CHANNEL_Mapper"
+       class="com.ibsplc.icargo.business.qualitymanagement.defaults.adhocalert.handler.MsgBrokerEventMapper">
+	</bean>
+	<bean id="mailUploadControllerAA"
+     class="com.ibsplc.icargo.business.mail.operations.aa.MailUploadController">
+	</bean>
+	<bean id="mail_mra_MRA_INVOICEGENERATE_EVENT_MSGBROKER_CHANNEL_Mapper" class="com.ibsplc.icargo.business.qualitymanagement.defaults.adhocalert.handler.MsgBrokerEventMapper" />
+	<bean id="aaMailController" class="com.ibsplc.icargo.business.mail.operations.aa.AAMailController" />
+	<bean id="gPAReportingController"
+     class="com.ibsplc.icargo.business.mail.mra.gpareporting.GPAReportingController">
+	</bean>
+
+	<bean id="tkMailController"
+		class="com.ibsplc.icargo.business.mail.operations.tk.TKMailController">
+	</bean>
+
+	
+	<bean id="MailbagHistoryMapper"
+		  class="com.ibsplc.icargo.persistence.dao.mail.operations.MailbagHistoryMapper" scope="prototype">
+	</bean>
+	<bean id="MailbagEntity"
+		  class="com.ibsplc.icargo.business.mail.operations.Mailbag" scope="prototype">
+	</bean>
+	<bean id="MailbagHistoryEntity"
+		  class="com.ibsplc.icargo.business.mail.operations.MailbagHistory" scope="prototype">
+	</bean>
+	<bean id="documentController"
+                        class="com.ibsplc.icargo.business.mail.operations.DocumentController">
+	</bean>
+	<bean id="resditController"
+                        class="com.ibsplc.icargo.business.mail.operations.ResditController">
+	</bean>	
+	
+	
+	<bean id="receivableManagementController"
+     class="com.ibsplc.icargo.business.mail.mra.receivablemanagement.ReceivableManagementController">
+	</bean>
+	<bean id="mail_operations_MAIL_ATD_CAPTUERE_NOTIFICATION_EVENT_MSGBROKER_CHANNEL_Mapper"
+       class="com.ibsplc.icargo.business.qualitymanagement.defaults.adhocalert.handler.MsgBrokerEventMapper">
+	</bean>
+	
+	<bean id="mailUploadControllerLH"
+	class="com.ibsplc.icargo.business.mail.operations.lh.LHMailUploadController">
+	</bean>
+	
+	<bean id="mail.operations.serachContainerFilterQueryBuilder"
+	class="com.ibsplc.icargo.persistence.dao.mail.operations.SearchContainerFilterQueryBuilder" scope="prototype">
+	</bean>
+	
+	<bean id="mail_operations_ASSIGNED_TOFLIGHT_EVENT_DwsSyncFromMailChannel_Mapper" class="com.ibsplc.icargo.business.operations.flthandling.event.mapper.DwsSyncFromMailMapper" />
+	<bean id="mail_operations_SAVE_DWS_EVENT_DwsSyncFromMailChannel_Mapper" class="com.ibsplc.icargo.business.operations.flthandling.event.mapper.DwsSyncFromMailMapper" />
+	
+	<bean id="lhmailController"
+	class="com.ibsplc.icargo.business.mail.operations.lh.LHMailController">
+	</bean>
+	
+	
+</beans>
+

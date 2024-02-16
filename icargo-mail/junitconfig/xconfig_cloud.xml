@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configuration of the xiBase enterprise platform -->
+<xconfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xsd\xconfig.xsd" xmlns="http://www.ibsplc.com/xconfig">
+	<application-configuration>
+		<is-self-managed-transactions>false</is-self-managed-transactions>
+		<is-stand-alone>false</is-stand-alone>
+		<is-entities-annotated>true</is-entities-annotated>
+		<is-optimisic-concurrency-self-managed>false</is-optimisic-concurrency-self-managed>
+		<persistence-api>HIBERNATE</persistence-api>
+	</application-configuration>
+<platform companyCode="4ALL" name="iCargo" version="1.0.1" logo="icargologo.jpg">
+
+	<!-- This is configuration of the server on which the application is deployed like ip, port etc -->
+	<server-congfiguration>
+
+		<server-properties>
+		    <descriptor-file-name>serverproperties.xml</descriptor-file-name>
+		</server-properties>
+
+	</server-congfiguration>
+
+
+	<!-- This is configuration for request mapping for individual subsystems -->
+	<request-configuration>
+		<request-mappings product="framework">
+			<descriptor-file-name>framework/requestmapping.xml</descriptor-file-name>
+        	</request-mappings>
+
+               	 <request-mappings product="jobscheduler">
+			<descriptor-file-name>jobscheduler/requestmapping.xml</descriptor-file-name>
+	        </request-mappings>
+
+               	<request-mappings product="admin">
+            		<descriptor-file-name>admin/requestmapping.xml</descriptor-file-name>
+        	</request-mappings>
+
+
+        	<request-mappings product="operations">
+            		<descriptor-file-name>operations/requestmapping.xml</descriptor-file-name>
+        	</request-mappings>
+
+		<request-mappings product="tariff">
+			<descriptor-file-name>tariff/requestmapping.xml</descriptor-file-name>
+		</request-mappings>
+
+
+		<!-- Capacity Entry Starts -->
+
+		<request-mappings product="capacity">
+			<descriptor-file-name>capacity/requestmapping.xml</descriptor-file-name>
+		</request-mappings>
+
+		<!-- Capacity Entry Ends -->
+
+		<request-mappings product="flight">
+			<descriptor-file-name>flight/requestmapping.xml</descriptor-file-name>
+		</request-mappings>
+        	<request-mappings product="msgbroker">
+  	     		<descriptor-file-name>msgbroker/requestmapping.xml</descriptor-file-name>
+        	</request-mappings>
+	        <request-mappings product="shared">
+           		<descriptor-file-name>shared/requestmapping.xml</descriptor-file-name>
+        	</request-mappings>
+
+	      <!-- Customer Management -->
+	      <request-mappings product="customermanagement">
+	      		<descriptor-file-name>customermanagement/requestmapping.xml</descriptor-file-name>
+	       </request-mappings>
+
+		<request-mappings product="cashiering">
+			<descriptor-file-name>cashiering/requestmapping.xml</descriptor-file-name>
+		</request-mappings>
+		<!--request-mappings product="jto.cashiering">
+			<descriptor-file-name>jto/cashiering/requestmapping.xml</descriptor-file-name>
+		</request-mappings -->
+
+		<request-mappings product="accounting">
+			<descriptor-file-name>accounting/requestmapping.xml</descriptor-file-name>
+		</request-mappings>
+
+
+    	</request-configuration>
+
+	<!-- This is the configuration of the various services exposed by the platform -->
+	<service-configuration>
+
+		<jdbc-configuration defaultSource="iCargoDefaultJDBCSource">
+
+			<jdbc-source name="iCargoDefaultJDBCSource">
+				<descriptor-file-name>iCargoDefaultJDBCSource.xml</descriptor-file-name>
+			</jdbc-source>
+			<jdbc-source name="iCargoOLAPJDBCSource">
+				<descriptor-file-name>iCargoOLAPJDBCSource.xml</descriptor-file-name>
+			</jdbc-source>
+		</jdbc-configuration>
+
+		<!--The ejb service configuration for common services like KEY_SERVER-->
+		<ejb-services>
+	        	<descriptor-file-name>ejbservices.xml</descriptor-file-name>
+        	</ejb-services>
+
+
+		<ejb-services product="jobscheduler">
+			<descriptor-file-name>jobscheduler/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<!--The ejb service configuration for the product frontcontroller-->
+
+
+		<ejb-services product="admin">
+			<descriptor-file-name>admin/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="admin" subproduct="accesscontrol">
+			<descriptor-file-name>admin/accesscontrol/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="admin" subproduct="user">
+			<descriptor-file-name>admin/user/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="admin" subproduct="hierarchy">
+			<descriptor-file-name>admin/hierarchy/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="admin" subproduct="report">
+			<descriptor-file-name>admin/report/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="admin" subproduct="monitoring">
+			<descriptor-file-name>admin/monitoring/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="admin" subproduct="purging">
+			<descriptor-file-name>admin/purging/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		
+		<ejb-services product="cashiering" subproduct="qualityassurance">
+			<descriptor-file-name>cashiering/qualityassurance/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="operations">
+		    	<descriptor-file-name>operations/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="operations" subproduct="shipment">
+			<descriptor-file-name>operations/shipment/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="operations" subproduct="flthandling">
+			<descriptor-file-name>operations/flthandling/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="operations" subproduct="dochandling">
+			<descriptor-file-name>operations/dochandling/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="tariff">
+			<descriptor-file-name>tariff/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="tariff" subproduct="freight">
+			<descriptor-file-name>tariff/freight/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="tariff" subproduct="others">
+			<descriptor-file-name>tariff/others/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<!-- Added by A-4421 for ICRD-7208 starts-->
+		<ejb-services product="tariff" subproduct="tax">
+			<descriptor-file-name>tariff/tax/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<!-- Added by A-4421 for ICRD-7208 ends-->
+		<!-- Capacity Entry Starts -->
+
+		<ejb-services product="capacity">
+			<descriptor-file-name>capacity/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="capacity" subproduct="allotment">
+			<descriptor-file-name>capacity/allotment/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="capacity" subproduct="booking">
+			<descriptor-file-name>capacity/booking/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="capacity" subproduct="monitoring">
+			<descriptor-file-name>capacity/monitoring/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="capacity" subproduct="routing">
+			<descriptor-file-name>capacity/routing/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="capacity" subproduct="mailbidding">
+			<descriptor-file-name>capacity/mailbidding/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<!-- Capacity Entry Ends -->
+
+		<ejb-services product="flight">
+			<descriptor-file-name>flight/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="flight" subproduct="schedule">
+			<descriptor-file-name>flight/schedule/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="flight" subproduct="operation">
+			<descriptor-file-name>flight/operation/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="msgbroker">
+			<descriptor-file-name>msgbroker/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="msgbroker" subproduct="config">
+			<descriptor-file-name>msgbroker/config/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="msgbroker" subproduct="message">
+			<descriptor-file-name>msgbroker/message/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<!-- START ejbServices for shared product -->
+
+		<ejb-services product="shared">
+		    <descriptor-file-name>shared/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="aircraft">
+			<descriptor-file-name>shared/aircraft/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="accessory">
+			<descriptor-file-name>shared/accessory/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="airportpair">
+			<descriptor-file-name>shared/airportpair/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="delaycode">
+		<descriptor-file-name>shared/delaycode/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="airline">
+			<descriptor-file-name>shared/airline/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="area">
+			<descriptor-file-name>shared/area/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="category">
+			<descriptor-file-name>shared/category/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="citypair">
+			<descriptor-file-name>shared/citypair/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="commodity">
+			<descriptor-file-name>shared/commodity/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="currency">
+			<descriptor-file-name>shared/currency/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="defaults">
+			<descriptor-file-name>shared/defaults/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="dgr">
+			<descriptor-file-name>shared/dgr/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="damagecodes">
+			<descriptor-file-name>shared/damagecodes/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="document">
+			<descriptor-file-name>shared/document/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="embargo">
+			<descriptor-file-name>shared/embargo/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="equipment">
+			<descriptor-file-name>shared/equipment/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="milestone">
+			<descriptor-file-name>shared/milestone/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="scc">
+			<descriptor-file-name>shared/scc/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="service">
+			<descriptor-file-name>shared/service/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="shared" subproduct="customer">
+			<descriptor-file-name>shared/customer/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="message">
+			<descriptor-file-name>shared/message/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="agent">
+			<descriptor-file-name>shared/agent/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="shared" subproduct="audit">
+			<descriptor-file-name>shared/audit/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="cargoplanning">
+			<descriptor-file-name>shared/cargoplanning/ejbservices.xml</descriptor-file-name>
+		</ejb-services>		
+	
+		<ejb-services product="shared" subproduct="billingperiod">
+			<descriptor-file-name>shared/billingperiod/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		 <ejb-services product="shared" subproduct="billingsite">
+			<descriptor-file-name>shared/billingsite/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="hozeiarea">
+			<descriptor-file-name>shared/hozeiarea/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		 <ejb-services product="shared" subproduct="signature">
+			<descriptor-file-name>shared/signature/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="uld">
+			<descriptor-file-name>shared/uld/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<!-- END ejbServices for shared product -->
+
+
+		<!-- Customer Management -->
+		<ejb-services product="customermanagement">
+			<descriptor-file-name>customermanagement/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="customermanagement" subproduct="defaults">
+			<descriptor-file-name>customermanagement/defaults/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+
+		<ejb-services product="cashiering">
+			<descriptor-file-name>cashiering/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="cashiering" subproduct="defaults">
+			<descriptor-file-name>cashiering/defaults/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="accounting">
+			<descriptor-file-name>accounting/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="accounting" subproduct="agentcredit">
+			<descriptor-file-name>accounting/agentcredit/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="accounting" subproduct="invoicing">
+			<descriptor-file-name>accounting/invoicing/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="accounting" subproduct="airlinebilling">
+			<descriptor-file-name>accounting/airlinebilling/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+		<ejb-services product="shared" subproduct="generalmastergrouping">
+			 <descriptor-file-name>shared/generalmastergrouping/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="trade">
+			<descriptor-file-name>shared/trade/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+		<ejb-services product="shared" subproduct="flightpairing">
+			<descriptor-file-name>shared/flightpairing/ejbservices.xml</descriptor-file-name>
+		</ejb-services>
+
+
+
+	</service-configuration>
+
+	<audit-configuration>
+
+			<!-- START Audit mappings for xibase -->
+
+			<audit-mappings product="jobscheduler" subproduct="job">
+				<descriptor-file-name>jobscheduler/job/audit.mappings.xml</descriptor-file-name>
+			</audit-mappings>
+			<audit-mappings product="jobscheduler" subproduct="schedule">
+				<descriptor-file-name>jobscheduler/schedule/audit.mappings.xml</descriptor-file-name>
+			</audit-mappings>
+
+                	<!-- END Audit mappings for xibase -->
+
+			<audit-mappings>
+            			<descriptor-file-name>audit.mappings.xml</descriptor-file-name>
+            		</audit-mappings>
+
+			<audit-mappings product="msgbroker" subproduct="message">
+				<descriptor-file-name>msgbroker/message/audit.mappings.xml</descriptor-file-name>
+			</audit-mappings>
+
+			<audit-mappings product="capacity" subproduct="routing">
+            			<descriptor-file-name>capacity/routing/audit.mappings.xml</descriptor-file-name>
+            		</audit-mappings>
+
+			<audit-mappings product="capacity" subproduct="allotment">
+            			<descriptor-file-name>capacity/allotment/audit.mappings.xml</descriptor-file-name>
+            		</audit-mappings>
+
+           		<audit-mappings product="capacity" subproduct="booking">
+	       			<descriptor-file-name>capacity/booking/audit.mappings.xml</descriptor-file-name>
+           		</audit-mappings>
+
+           		<audit-mappings product="capacity" subproduct="booking.permanent">
+	    	 		<descriptor-file-name>capacity/booking/permanent/audit.mappings.xml</descriptor-file-name>
+            		</audit-mappings>
+
+            		<audit-mappings product="capacity" subproduct="booking.enquiry">
+	    	  		<descriptor-file-name>capacity/booking/enquiry/audit.mappings.xml</descriptor-file-name>
+            		</audit-mappings>
+
+            		<audit-mappings product="capacity" subproduct="booking.permanent.enquiry">
+	    	  		<descriptor-file-name>capacity/booking/permanent/enquiry/audit.mappings.xml</descriptor-file-name>
+            		</audit-mappings>
+
+            		<audit-mappings product="capacity" subproduct="booking.profile">
+	    	  		<descriptor-file-name>capacity/booking/profile/audit.mappings.xml</descriptor-file-name>
+            		</audit-mappings>
+
+			<audit-mappings product="flight" subproduct="schedule">
+				<descriptor-file-name>flight/schedule/audit.mappings.xml</descriptor-file-name>
+			</audit-mappings>
+			<audit-mappings product="flight" subproduct="operation">
+				<descriptor-file-name>flight/operation/audit.mappings.xml</descriptor-file-name>
+			</audit-mappings>
+
+
+			 <audit-mappings product="shared" subproduct="area.region">
+				<descriptor-file-name>shared/area/region/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+
+			 <audit-mappings product="shared" subproduct="area.city">
+				<descriptor-file-name>shared/area/city/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+			 <audit-mappings product="shared" subproduct="citypair">
+			 	<descriptor-file-name>shared/citypair/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+			  <audit-mappings product="shared" subproduct="dgr">
+				<descriptor-file-name>shared/dgr/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+			 <audit-mappings product="shared" subproduct="service">
+				<descriptor-file-name>shared/service/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+			  <audit-mappings product="shared" subproduct="aircraft">
+				<descriptor-file-name>shared/aircraft/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+			  <audit-mappings product="shared" subproduct="equipment">
+				<descriptor-file-name>shared/equipment/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+
+			  <audit-mappings product="shared" subproduct="scc">
+				<descriptor-file-name>shared/scc/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+			  <audit-mappings product="shared" subproduct="currency">
+				<descriptor-file-name>shared/currency/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+			  <audit-mappings product="shared" subproduct="commodity">
+				<descriptor-file-name>shared/commodity/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+			 <audit-mappings product="shared" subproduct="uld">
+			 	<descriptor-file-name>shared/uld/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+			 
+			 	<audit-mappings product="cashiering" subproduct="qualityassurance">
+				<descriptor-file-name>cashiering/qualityassurance/audit.mappings.xml</descriptor-file-name>
+		  	</audit-mappings>
+			
+
+			 <audit-mappings product="shared" subproduct="document">
+				<descriptor-file-name>shared/document/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+			 <audit-mappings product="shared" subproduct="embargo">
+				<descriptor-file-name>shared/embargo/audit.mappings.xml</descriptor-file-name>
+	       		 </audit-mappings>
+			 <audit-mappings product="operations" subproduct="shipment">
+				<descriptor-file-name>operations/shipment/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+			 <audit-mappings product="operations" subproduct="flthandling">
+				<descriptor-file-name>operations/flthandling/audit.mappings.xml</descriptor-file-name>
+			 </audit-mappings>
+
+			<audit-mappings product="tariff" subproduct="others">
+				<descriptor-file-name>tariff/others/audit.mappings.xml</descriptor-file-name>
+			</audit-mappings>
+			<audit-mappings product="tariff" subproduct="freight">
+				<descriptor-file-name>tariff/freight/audit.mappings.xml</descriptor-file-name>
+			</audit-mappings>
+			<!-- Added by A-4421 for ICRD-7208 starts-->
+			<audit-mappings product="tariff" subproduct="tax">
+				<descriptor-file-name>tariff/tax/audit.mappings.xml</descriptor-file-name>
+			</audit-mappings>
+			<!-- Added by A-4421 for ICRD-7208 ends-->
+
+
+			<audit-mappings product="cashiering" subproduct="defaults">
+				<descriptor-file-name>cashiering/defaults/audit.mappings.xml</descriptor-file-name>
+			</audit-mappings>
+
+			<audit-mappings product="accounting" subproduct="airlinebilling">
+				<descriptor-file-name>accounting/airlinebilling/audit.mappings.xml</descriptor-file-name>
+			</audit-mappings>
+
+			<audit-mappings product="admin" subproduct="user">
+				<descriptor-file-name>admin/user/audit.mappings.xml</descriptor-file-name>
+			</audit-mappings>
+
+
+
+   </audit-configuration>
+
+
+	<!-- This is the persistence-related configuration for the platform -->
+	<persistence-configuration>
+
+		<persistence-mappings product="framework" subproduct="session">
+			<descriptor-file-name>framework/session/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="framework" subproduct="txaudit">
+			<descriptor-file-name>framework/txaudit/persistence.mappings.xml</descriptor-file-name>
+      		</persistence-mappings>
+
+      		<persistence-mappings product="admin" subproduct="accesscontrol">
+            		<descriptor-file-name>admin/accesscontrol/persistence.mappings.xml</descriptor-file-name>
+        	</persistence-mappings>
+      		<persistence-mappings product="admin" subproduct="user">
+            		<descriptor-file-name>admin/user/persistence.mappings.xml</descriptor-file-name>
+        	</persistence-mappings>
+      		<persistence-mappings product="admin" subproduct="hierarchy">
+            		<descriptor-file-name>admin/hierarchy/persistence.mappings.xml</descriptor-file-name>
+        	</persistence-mappings>
+
+		<persistence-mappings product="admin" subproduct="monitoring">
+			<descriptor-file-name>admin/monitoring/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="admin" subproduct="purging">
+					<descriptor-file-name>admin/purging/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+			<persistence-mappings product="admin" subproduct="report">
+				<descriptor-file-name>admin/report/persistence.mappings.xml</descriptor-file-name>
+			</persistence-mappings>
+
+
+      		<persistence-mappings product="operations" subproduct="shipment">
+            		<descriptor-file-name>operations/shipment/persistence.mappings.xml</descriptor-file-name>
+        	</persistence-mappings>
+      		<persistence-mappings product="operations" subproduct="flthandling">
+            		<descriptor-file-name>operations/flthandling/persistence.mappings.xml</descriptor-file-name>
+        	</persistence-mappings>
+      		<persistence-mappings product="operations" subproduct="flthandling.loadplan">
+            		<descriptor-file-name>operations/flthandling/loadplan/persistence.mappings.xml</descriptor-file-name>
+        	</persistence-mappings>
+		<persistence-mappings product="operations" subproduct="dochandling">
+				<descriptor-file-name>operations/dochandling/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		
+		<persistence-mappings product="cashiering" subproduct="qualityassurance">
+			<descriptor-file-name>cashiering/qualityassurance/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="tariff" subproduct="freight">
+			<descriptor-file-name>tariff/freight/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="tariff" subproduct="others">
+			<descriptor-file-name>tariff/others/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<!--Added by A-4421 for ICRD-7208 starts -->
+		<persistence-mappings product="tariff" subproduct="tax">
+			<descriptor-file-name>tariff/tax/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<!--Added by A-4421 for ICRD-7208 ends -->
+		<!-- Capacity Entry Starts -->
+
+		<persistence-mappings product="capacity" subproduct="allotment">
+			<descriptor-file-name>capacity/allotment/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="capacity" subproduct="booking">
+			<descriptor-file-name>capacity/booking/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="capacity" subproduct="booking.profile">
+			<descriptor-file-name>capacity/booking/profile/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="capacity" subproduct="booking.enquiry">
+			<descriptor-file-name>capacity/booking/enquiry/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="capacity" subproduct="booking.permanent">
+			<descriptor-file-name>capacity/booking/permanent/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="capacity" subproduct="booking.permanent.enquiry">
+			<descriptor-file-name>capacity/booking/permanent/enquiry/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="capacity" subproduct="routing">
+			<descriptor-file-name>capacity/routing/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="capacity" subproduct="mailbidding">
+			<descriptor-file-name>capacity/mailbidding/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+
+		<!-- Capacity Entry Ends -->
+
+		<persistence-mappings product="flight" subproduct="schedule">
+			<descriptor-file-name>flight/schedule/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="flight" subproduct="operation">
+			<descriptor-file-name>flight/operation/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+      		<persistence-mappings product="msgbroker" subproduct="config">
+      		      <descriptor-file-name>msgbroker/config/persistence.mappings.xml</descriptor-file-name>
+      		</persistence-mappings>
+      		<persistence-mappings product="msgbroker" subproduct="message">
+      			<descriptor-file-name>msgbroker/message/persistence.mappings.xml</descriptor-file-name>
+      		</persistence-mappings>
+
+      		<!-- START Persistence mappings for shared product -->
+
+		<persistence-mappings product="shared" subproduct="aircraft">
+			<descriptor-file-name>shared/aircraft/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="airline">
+			<descriptor-file-name>shared/airline/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="airportpair">
+			<descriptor-file-name>shared/airportpair/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="area.airport">
+			<descriptor-file-name>shared/area/airport/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="area.country">
+			<descriptor-file-name>shared/area/country/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="area.region">
+			<descriptor-file-name>shared/area/region/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="area.station">
+			<descriptor-file-name>shared/area/station/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="area.city">
+			<descriptor-file-name>shared/area/city/persistence.mappings.xml</descriptor-file-name>
+ 		</persistence-mappings>
+
+ 		<persistence-mappings product="shared" subproduct="area.zipcode">
+			<descriptor-file-name>shared/area/zipcode/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="shared" subproduct="category">
+			<descriptor-file-name>shared/category/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="citypair">
+			<descriptor-file-name>shared/citypair/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="commodity">
+			<descriptor-file-name>shared/commodity/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="currency">
+			<descriptor-file-name>shared/currency/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="defaults">
+			<descriptor-file-name>shared/defaults/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="defaults.onetime">
+			<descriptor-file-name>shared/defaults/onetime/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="defaults.systemparameter">
+			<descriptor-file-name>shared/defaults/systemparameter/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="defaults.module">
+			<descriptor-file-name>shared/defaults/module/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="defaults.unit">
+			<descriptor-file-name>shared/defaults/unit/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="defaults.messagesubscription">
+			<descriptor-file-name>shared/defaults/messagesubscription/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="dgr">
+			<descriptor-file-name>shared/dgr/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="damagecodes">
+			<descriptor-file-name>shared/damagecodes/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="document">
+			<descriptor-file-name>shared/document/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="embargo">
+			<descriptor-file-name>shared/embargo/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="equipment">
+			<descriptor-file-name>shared/equipment/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="milestone">
+			<descriptor-file-name>shared/milestone/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="scc">
+			<descriptor-file-name>shared/scc/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="service">
+			<descriptor-file-name>shared/service/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="shared" subproduct="customer">
+			<descriptor-file-name>shared/customer/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="message">
+			<descriptor-file-name>shared/message/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="agent">
+			<descriptor-file-name>shared/agent/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="audit">
+			<descriptor-file-name>shared/audit/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="billingperiod">
+			<descriptor-file-name>shared/billingperiod/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="billingsite">
+			<descriptor-file-name>shared/billingsite/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="signature">
+			<descriptor-file-name>shared/signature/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="cargoplanning">
+			<descriptor-file-name>shared/cargoplanning/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+        	<!-- END Persistence mappings for shared product -->
+
+
+		 <!-- Cutstomer Management -->
+
+      		<persistence-mappings product="jobscheduler" subproduct="job">
+      		      <descriptor-file-name>jobscheduler/job/persistence.mappings.xml</descriptor-file-name>
+      		</persistence-mappings>
+      		<persistence-mappings product="jobscheduler" subproduct="schedule">
+      		      <descriptor-file-name>jobscheduler/schedule/persistence.mappings.xml</descriptor-file-name>
+      		</persistence-mappings>
+
+		 <persistence-mappings product="customermanagement" subproduct="defaults">
+		 	<descriptor-file-name>customermanagement/defaults/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="cashiering" subproduct="defaults">
+			<descriptor-file-name>cashiering/defaults/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="accounting" subproduct="invoicing">
+			<descriptor-file-name>accounting/invoicing/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+
+		<persistence-mappings product="accounting" subproduct="agentcredit">
+			<descriptor-file-name>accounting/agentcredit/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="accounting" subproduct="airlinebilling">
+			<descriptor-file-name>accounting/airlinebilling/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="shared" subproduct="trade">
+			<descriptor-file-name>shared/trade/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="generalmastergrouping">
+			<descriptor-file-name>shared/generalmastergrouping/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="flightpairing">
+			<descriptor-file-name>shared/flightpairing/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="shared" subproduct="accessory">
+			<descriptor-file-name>shared/accessory/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="delaycode">
+			<descriptor-file-name>shared/delaycode/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+		<persistence-mappings product="shared" subproduct="uld">
+			<descriptor-file-name>shared/uld/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+
+	</persistence-configuration>
+
+	<!-- This is the configuration of all listeners -->
+	<listener-configuration>
+	        <listener
+	            name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge" listening="false"/>
+	</listener-configuration>
+
+        <monitor-configuration>
+       	     <!--<monitor>
+       	     	<descriptor-file-name>monitorproperties.xml</descriptor-file-name>
+       	     </monitor>-->
+       	     <monitor-alarm>
+	     		<descriptor-file-name>alarmConfiguration.xml</descriptor-file-name>
+	     </monitor-alarm>
+        </monitor-configuration>
+
+	<!-- Any extension to the xibase configuration should be configured here -->
+	<extended-configuration>
+
+      		<!-- 
+			  commented by A-2397 as part of removing mbeans configured in icargo.xml 
+			  All the entries defied in this file is moved to icargo-config.xml
+			-->
+      		<!--extension name="com.ibsplc.icargo.framework.management.mbean.impl.configuration.ICargoMBeanImpl">
+            		<descriptor-file-name>icargo.xml</descriptor-file-name>
+        	</extension-->
+
+	</extended-configuration>
+
+</platform>
+
+<platform companyCode="2G" name="iCargo" version="1.0.1" logo="cargoitalia-logo.jpg">
+
+	<!-- This is the configuration of all listeners -->
+	<listener-configuration>
+	        <listener
+	            name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge" listening="false"/>
+	</listener-configuration>
+
+</platform>
+
+<platform companyCode="LH" name="iCargo" version="1.0.1" logo="lh-logo.jpg">
+	<listener-configuration>
+	        <listener name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge" listening="false"/>
+	</listener-configuration>
+</platform>
+
+</xconfig>

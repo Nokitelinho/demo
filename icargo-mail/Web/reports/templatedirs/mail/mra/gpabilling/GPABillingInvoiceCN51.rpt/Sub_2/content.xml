@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<inet:Report xmlns:inet="http://www.inetsoftware.de" major_version="8" minor_version="0" major_xml_version="11" minor_xml_version="1" id="2">
+    <Datasource>
+
+      <DataSourceConfiguration name="AIRNZDB">
+        <property name="supportsOrderBy" value="true"/>
+        <property name="failover" value="false"/>
+        <property name="escapeEverything" value="false"/>
+        <property name="host9" value=""/>
+        <property name="host8" value=""/>
+        <property name="dedicated" value="false"/>
+        <property name="host7" value=""/>
+        <property name="port9" value="1521"/>
+        <property name="host6" value=""/>
+        <property name="port8" value="1521"/>
+        <property name="host5" value=""/>
+        <property name="port7" value="1521"/>
+        <property name="host4" value=""/>
+        <property name="port6" value="1521"/>
+        <property name="host3" value=""/>
+        <property name="port5" value="1521"/>
+        <property name="host2" value=""/>
+        <property name="port4" value="1521"/>
+        <property name="host1" value=""/>
+        <property name="port3" value="1521"/>
+        <property name="port2" value="1521"/>
+        <property name="port1" value="1521"/>
+        <property name="driverClassName" value="com.inet.ora.OraDriver"/>
+        <property name="validationQuery" value=""/>
+        <property name="catalog" value=""/>
+        <property name="quotesLowerCase" value="false"/>
+        <property name="supportsParenthesesForJoin" value="true"/>
+        <property name="host" value="ICA1037"/>
+        <property name="port10" value="1521"/>
+        <property name="savePassword" value="false"/>
+        <property name="queryTimeout" value=""/>
+        <property name="caseSensitive" value="false"/>
+        <property name="sid" value="AIRNZDB"/>
+        <property name="alterSession" value="false"/>
+        <property name="driverLibrary" value=""/>
+        <property name="loginTimeout" value=""/>
+        <property name="opencursors" value="300"/>
+        <property name="logonMode" value="normal"/>
+        <property name="aliasToken" value=""/>
+        <property name="identifierQuoteString" value=""/>
+        <property name="host10" value=""/>
+        <property name="supportsSQL92" value="false"/>
+        <property name="supportsWhere" value="true"/>
+        <property name="service" value=""/>
+        <property name="port" value="1521"/>
+        <property name="loadbalance" value="false"/>
+        <property name="url" value="jdbc:inetora"/>
+        <property name="databaseClassName" value=""/>
+        <property name="user" value="anzdev_db"/>
+      </DataSourceConfiguration>
+      <Tablesource alias="DUMMY_VIEW_MTKGPAC51DTLSUM2" databaseIdentifier="ANZDEV_DB.DUMMY_VIEW_MTKGPAC51DTLSUM2">
+
+        <Column name="SECTOR" type="11" />
+        <Column name="MALSUBCLS" type="11" />
+        <Column name="WEIGHT" type="6" />
+        <Column name="AMOUNT" type="6" />
+        <Column name="MONTHFLAG" type="11" />
+        <Column name="BILFRM" type="11" />
+        <Column name="BILTO" type="11" />
+        <Column name="OVRRND" type="11" />
+      </Tablesource>
+
+    </Datasource>
+
+  <Database>
+  </Database>
+  <FormulaFields>
+    <Field type="FormulaField" valueType="11">
+      <Name value="GROUPFLG"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[{DUMMY_VIEW_MTKGPAC51DTLSUM2.BILFRM} +
+ {DUMMY_VIEW_MTKGPAC51DTLSUM2.BILTO} + {DUMMY_VIEW_MTKGPAC51DTLSUM2.MALSUBCLS} + {DUMMY_VIEW_MTKGPAC51DTLSUM2.MONTHFLAG}]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="secWt"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[{#secWtSum}]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="secAmt"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[{#secAmtSum}]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="11">
+      <Name value="sectorfor"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[{DUMMY_VIEW_MTKGPAC51DTLSUM2.BILFRM} +" - "+ {DUMMY_VIEW_MTKGPAC51DTLSUM2.BILTO}]]></TextData>
+    </Field>
+  </FormulaFields>
+  <PromptFields>
+  </PromptFields>
+  <SQLFields>
+  </SQLFields>
+  <SummaryFields>
+    <Field type="SummaryField" valueType="6">
+      <Name value="secAmtSum"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VIEW_MTKGPAC51DTLSUM2.AMOUNT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumber value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="secWtSum"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VIEW_MTKGPAC51DTLSUM2.WEIGHT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumber value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="grandWt"/>
+      <Reference name="id" type="FormulaField" value="@secWt"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumber value="2"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="grandAmt"/>
+      <Reference name="id" type="FormulaField" value="@secAmt"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumber value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+  </SummaryFields>
+  <SortFields>
+  </SortFields>
+  <UserFunctions>
+  </UserFunctions>
+  <GroupNameFields>
+    <Field type="GroupNameField" valueType="11">
+      <Name value=""/>
+      <GroupNumberType value="0"/>
+      <GroupNumber value="0"/>
+      <Reference name="id" type="FormulaField" value="@GROUPFLG"/>
+    </Field>
+    <Field type="GroupNameField" valueType="11">
+      <Name value=""/>
+      <GroupNumberType value="0"/>
+      <GroupNumber value="1"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VIEW_MTKGPAC51DTLSUM2.MONTHFLAG"/>
+    </Field>
+  </GroupNameFields>
+  <ReportProperties>
+    <PageWidth value="11907"/>
+    <PageHeight value="16839"/>
+    <PageOrientation value="0"/>
+    <PageMarginLeft value="720"/>
+    <PageMarginRight value="720"/>
+    <PageMarginTop value="720"/>
+    <PageMarginBottom value="720"/>
+    <MailingLabelType1 value=""/>
+    <MailingLabelType2 value=""/>
+    <FormatWithMultipleColumns value="false"/>
+    <MailingLabelWidth value="0"/>
+    <MailingLabelHeight value="0"/>
+    <MailingLabelDistanceVertical value="0"/>
+    <MailingLabelDistanceHorizontal value="0"/>
+    <AcrossThenDown value="false"/>
+    <FormatGroupsWithMultipleColumns value="false"/>
+    <Distinct value="false"/>
+    <ShowSuppressedNodes value="true"/>
+    <IgnoreFiltering value="false"/>
+    <IgnoreSorting value="false"/>
+    <ConvertDateTime value="0"/>
+    <SuppressIfNoRows value="false"/>
+    <ConvertNullValuesToDefault value="false"/>
+    <HidePageFooterInsideReportHeader value="false"/>
+    <FormPrint value="false"/>
+    <PrintingEnabled value="true"/>
+    <ClipboardEnabled value="true"/>
+    <ExportEnabled value="true"/>
+    <GroupTreeVisible value="true"/>
+  </ReportProperties>
+  <AreaPair type="ReportAreaPair">
+    <Area type="ReportHeader">
+      <Section type="ReportHeader" width="10467" height="540">
+        <Element type="Box" x2_position="11295" y2_position="540" x_position="0" y_position="0" width="0" height="0">
+          <BoxProperties>
+            <BackgroundColor value="12632256"/>
+            <CloseBorderOnPageBreak value="true"/>
+              <LineProperties>
+                <LineWidth value="10"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="3960" y_position="45" width="2655" height="495">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA013#subclass]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="45" y_position="45" width="3825" height="495">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA013#Sect]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6705" y_position="45" width="1800" height="495">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA013#Weight]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8595" y_position="45" width="2655" height="495">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA013#Amt]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="3915" y_position="0" width="0" height="0" x2_position="3915" y2_position="675">
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="D" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="6660" y_position="0" width="0" height="0" x2_position="6660" y2_position="675">
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="D" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="8550" y_position="0" width="0" height="0" x2_position="8550" y2_position="675">
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="D" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="0" y_position="60" width="0" height="0" x2_position="0" y2_position="450">
+          <LineProperties>
+            <LineWidth value="10"/>
+          </LineProperties>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="ReportFooter">
+      <Section type="ReportFooter" width="10467" height="300">
+        <SectionProperties>
+          <Suppress value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="GroupAreaPair" id="1">
+    <AreaPairProperties>
+      <Reference name="id" type="FormulaField" value="@GROUPFLG"/>
+      <Reference name="group name" type="GroupNameField" id="1"/>
+    </AreaPairProperties>
+    <Area type="GroupHeader">
+      <Section type="GroupHeader" width="10467" height="0">
+        <SectionProperties>
+          <Suppress value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="GroupFooter">
+      <Section type="GroupFooter" width="10467" height="0">
+        <SectionProperties>
+          <Suppress value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="GroupAreaPair" id="2">
+    <AreaPairProperties>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VIEW_MTKGPAC51DTLSUM2.MONTHFLAG"/>
+      <Reference name="group name" type="GroupNameField" id="2"/>
+    </AreaPairProperties>
+    <Area type="GroupHeader">
+      <Section type="GroupHeader" width="10467" height="0">
+        <SectionProperties>
+          <Suppress value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="GroupFooter">
+      <Section type="GroupFooter" width="10467" height="0">
+        <SectionProperties>
+          <Suppress value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="DetailArea">
+    <Area type="Detail">
+      <Section type="Detail" width="10467" height="720">
+        <SectionProperties>
+          <Suppress value="true"/>
+          <KeepTogether value="true"/>
+          <PropertyFormula propertyType="suppress">
+            <Name value="suppress"/>
+            <BasicSyntax value="1001"/>
+            <NullBehavior value="0"/>
+            <TextData><![CDATA[IF  {DUMMY_VIEW_MTKGPAC51DTLSUM2.MONTHFLAG} ="C" THEN TRUE]]></TextData>
+          </PropertyFormula>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="3960" y_position="45" width="2655" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VIEW_MTKGPAC51DTLSUM2.MALSUBCLS"/>
+        </Element>
+        <Element type="FieldElement" x_position="6705" y_position="45" width="1800" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VIEW_MTKGPAC51DTLSUM2.WEIGHT"/>
+        </Element>
+        <Element type="FieldElement" x_position="8595" y_position="45" width="2655" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <NDecimalPlaces value="5"/>
+            <RoundingType value="6"/>
+            <RoundingMode value="4"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+            <PropertyFormula propertyType="n decimal places">
+              <Name value="n decimal places"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VIEW_MTKGPAC51DTLSUM2.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VIEW_MTKGPAC51DTLSUM2.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+            <PropertyFormula propertyType="rounding type">
+              <Name value="rounding type"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VIEW_MTKGPAC51DTLSUM2.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VIEW_MTKGPAC51DTLSUM2.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+          </NumberProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VIEW_MTKGPAC51DTLSUM2.AMOUNT"/>
+        </Element>
+        <Element type="Text" count="1" x_position="3960" y_position="360" width="2655" height="255">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA002#SectorTotal]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="6705" y_position="360" width="1800" height="255">
+          <CommonProperties>
+            <HorizontalAlign value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <NDecimalPlaces value="6"/>
+            <RoundingType value="5"/>
+            <RoundingMode value="4"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="SummaryField" value="#secWtSum"/>
+        </Element>
+        <Element type="FieldElement" x_position="8595" y_position="360" width="2655" height="255">
+          <CommonProperties>
+            <HorizontalAlign value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <NDecimalPlaces value="5"/>
+            <RoundingType value="6"/>
+            <RoundingMode value="4"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+            <PropertyFormula propertyType="n decimal places">
+              <Name value="n decimal places"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VIEW_MTKGPAC51DTLSUM2.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VIEW_MTKGPAC51DTLSUM2.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+            <PropertyFormula propertyType="rounding type">
+              <Name value="rounding type"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VIEW_MTKGPAC51DTLSUM2.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VIEW_MTKGPAC51DTLSUM2.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+          </NumberProperties>
+          <Reference name="field" type="SummaryField" value="#secAmtSum"/>
+        </Element>
+        <Element type="FieldElement" x_position="45" y_position="45" width="3825" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" value="@sectorfor"/>
+        </Element>
+        <Element type="Box" x2_position="11295" y2_position="720" x_position="0" y_position="0" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+              <LineProperties>
+                <LineWidth value="10"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+</inet:Report>

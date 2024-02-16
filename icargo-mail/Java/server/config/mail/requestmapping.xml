@@ -1,0 +1,1149 @@
+<?xml version="1.0"?>
+<!--The file contains mapping information for request URI and to its corresponding handler
+and  screen. There will be entries for each request URI which need to be mapped.
+This file is used to build request mapping objects.-->
+<request-mappings>
+	<url-mapping url="mail">
+    	<submodule-mapping submodule="operations">
+        	<request-service-name>MAIL_OPERATIONS</request-service-name>
+				<request-action actionName="getMailbagDetailsForValidation" methodName="getMailbagDetailsForValidation" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+				<request-action actionName="saveServiceStandardDetails" methodName="saveServiceStandardDetails" parameterTypes="java.util.Collection,java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+				<request-action actionName="listServiceStandardDetails" methodName="listServiceStandardDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailServiceStandardFilterVO,int" permissionCheck="false" neoApiCall="false"/>
+				<request-action actionName="updateGHTformailbags" methodName="updateGHTformailbags" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+				<request-action actionName="flagTransportCompletedResditForMailbags" methodName="flagTransportCompletedResditForMailbags" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall ="false"/>
+		  	 	<request-action actionName="generateMailDiscrepancyReport" methodName="generateMailDiscrepancyReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+               	<request-action actionName="findDestinationAssignedContainers" methodName="findDestinationAssignedContainers" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.DestinationFilterVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="findFlightAssignedContainers" methodName="findFlightAssignedContainers" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="validateFlight" methodName="validateFlight" parameterTypes="com.ibsplc.icargo.business.flight.operation.vo.FlightFilterVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="saveContainers" methodName="saveContainers" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO,java.util.Collection" permissionCheck="false" />
+    		    <request-action actionName="validateContainer" methodName="validateContainer" parameterTypes="java.lang.String,com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="saveMailSubClassCodes" methodName="saveMailSubClassCodes" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="findMailSubClassCodes" methodName="findMailSubClassCodes" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="validateULDsForOperation" methodName="validateULDsForOperation" parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightDetailsVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="saveOfficeOfExchange" methodName="saveOfficeOfExchange" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="findOfficeOfExchange" methodName="findOfficeOfExchange" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="isFlightClosedForMailOperations" methodName="isFlightClosedForMailOperations" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="saveCarditMessages" methodName="saveCarditMessages" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.EDIInterchangeVO" permissionCheck="false" neoApiCall="false"/>
+				<request-action actionName="saveCarditTempMessages" methodName="saveCarditTempMessages" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="saveCDTMessages" methodName="saveCDTMessages" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.EDIInterchangeVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="findContainers" methodName="findContainers" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.SearchContainerFilterVO,int" permissionCheck="false" neoApiCall="false" />
+    		    <request-action actionName="savePACode" methodName="savePACode" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.PostalAdministrationVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="findPACode" methodName="findPACode" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="deleteContainers" methodName="deleteContainers" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="findPALov" methodName="findPALov" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int,int" permissionCheck="false" neoApiCall="false"/>
+				 <request-action actionName="findMailBagSequenceNumberFromMailIdr" methodName="findMailBagSequenceNumberFromMailIdr" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+				<request-action actionName="findMailBoxIdLov" methodName="findMailBoxIdLov" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int,int" permissionCheck="false" neoApiCall="false"/>
+				<request-action actionName="findMailDetailsForMailTag" methodName="findMailDetailsForMailTag" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+				<request-action actionName="findMailbagIdForMailTag" methodName="findMailbagIdForMailTag" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO" permissionCheck="false" />
+                <request-action actionName="saveMailboxIDs" methodName="saveMailboxIDs" parameterTypes=" java.util.Collection" permissionCheck="false" />
+    		    <request-action actionName="findMailSubClassCodeLov" methodName="findMailSubClassCodeLov" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int,int" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="reassignContainers" methodName="reassignContainers" parameterTypes="java.util.Collection, com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false" />
+    		    <request-action actionName="findMailbagHistories" methodName="findMailbagHistories" parameterTypes="java.lang.String,java.lang.String,long" permissionCheck="false" neoApiCall="false" />
+				<request-action actionName="findMailbagNotes" methodName="findMailbagNotes" parameterTypes="java.lang.String" permissionCheck="false" neoApiCall="false" />
+				<request-action actionName="findMailbagHistoriesFromWebScreen" methodName="findMailbagHistoriesFromWebScreen" parameterTypes="java.lang.String,java.lang.String,long" permissionCheck="false"  neoApiCall="false"/>
+    		    <request-action actionName="findMailStatusDetails" methodName="findMailStatusDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagEnquiryFilterVO" permissionCheck="false" />
+    		    <request-action actionName="findMailbags" methodName="findMailbags" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagEnquiryFilterVO,int" permissionCheck="false"  neoApiCall="false"/>
+				<request-action actionName="findMailTransit" methodName="findMailTransit" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailTransitFilterVO,int" permissionCheck="false" />
+    		    <request-action actionName="findFlightAcceptanceDetails" methodName="findFlightAcceptanceDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+    		    <request-action actionName="findOfficeOfExchangeLov" methodName="findOfficeOfExchangeLov" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OfficeOfExchangeVO,int,int" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="findAllWarehouses" methodName="findAllWarehouses" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="findWarehouseTransactionLocations" methodName="findWarehouseTransactionLocations" parameterTypes="com.ibsplc.icargo.business.warehouse.defaults.vo.LocationEnquiryFilterVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="validateLocation" methodName="validateLocation" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="findDestinationAcceptanceDetails" methodName="findDestinationAcceptanceDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+    		    <request-action actionName="reopenFlight" methodName="reopenFlight" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false" />
+    		    <request-action actionName="closeFlight" methodName="closeFlight" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+    		    <request-action actionName="saveAcceptanceDetails" methodName="saveAcceptanceDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailAcceptanceVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="findOffloadDetails" methodName="findOffloadDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OffloadFilterVO" permissionCheck="false" />
+    		    <request-action actionName="validateMailBags" methodName="validateMailBags" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+				<request-action actionName="deleteEmptyContainer" methodName="deleteEmptyContainer" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerDetailsVO" permissionCheck="false" neoApiCall="false"/>
+				
+				<request-action actionName="fetchMailIndicatorForProgress" methodName="fetchMailIndicatorForProgress" parameterTypes="java.util.Collection" permissionCheck="false" />
+
+				<request-action actionName="doLATValidation" methodName="doLATValidation" parameterTypes="java.util.Collection,boolean" permissionCheck="false" neoApiCall="false"/>
+
+    		    <request-action actionName="findPreAdvice" methodName="findPreAdvice" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="offload" methodName="offload" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OffloadVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="validateDSNs" methodName="validateDSNs" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="findDSNs" methodName="findDSNs" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.DSNEnquiryFilterVO,int" permissionCheck="false" />
+				  <request-action actionName="listCarditDsnDetails" methodName="listCarditDsnDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.DSNEnquiryFilterVO" permissionCheck="false" />
+    		    <request-action actionName="findDSNsForNational" methodName="findDSNsForNational" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.DSNEnquiryFilterVO,int" permissionCheck="false" />
+    		    <request-action actionName="reassignMailbags" methodName="reassignMailbags" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" neoApiCall="false" />
+    		    <request-action actionName="findMailbagDamages" methodName="findMailbagDamages" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="saveConsignmentDocument" methodName="saveConsignmentDocument" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentDocumentVO" permissionCheck="false" neoApiCall="false" />
+    		    <request-action actionName="findLocalPAs" methodName="findLocalPAs" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false" />
+    		    <request-action actionName="findConsignmentDocumentDetails" methodName="findConsignmentDocumentDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentFilterVO" permissionCheck="false" neoApiCall="false"/>
+    		    <request-action actionName="reassignDSNs" methodName="reassignDSNs" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" />
+    		    <request-action actionName="returnMailbags" methodName="returnMailbags" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false" />
+    		    <request-action actionName="returnDespatches" methodName="returnDespatches" parameterTypes="java.util.Collection" permissionCheck="false" />
+    		    <request-action actionName="saveDamageDetailsForMailbag" methodName="saveDamageDetailsForMailbag" parameterTypes="java.util.Collection" permissionCheck="false"  neoApiCall="false"/>
+       		    <request-action actionName="saveDamageDetailsForDespatches" methodName="saveDamageDetailsForDespatches" parameterTypes="java.util.Collection" permissionCheck="false" ></request-action>
+       		    <request-action actionName="findDSNDamages" methodName="findDSNDamages" parameterTypes="java.util.Collection" permissionCheck="false" />
+
+       		    <request-action actionName="deleteConsignmentDocumentDetails" methodName="deleteConsignmentDocumentDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentDocumentVO" permissionCheck="false" neoApiCall="false"/>
+       		    <request-action actionName="findUnacceptedULDs" methodName="findUnacceptedULDs" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+       		    <request-action actionName="unassignEmptyULDs" methodName="unassignEmptyULDs" parameterTypes="java.util.Collection" permissionCheck="false"  neoApiCall="false"/>
+				<request-action actionName="findArrivalDetails" methodName="findArrivalDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailArrivalFilterVO" permissionCheck="false" neoApiCall="false"/>
+       		    <request-action actionName="savePartnerCarriers" methodName="savePartnerCarriers" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+       		    <request-action actionName="findAllPartnerCarriers" methodName="findAllPartnerCarriers" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+       		    <request-action actionName="saveCoterminusDetails" methodName="saveCoterminusDetails" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false" />
+				<request-action actionName="saveRdtMasterDetails" methodName="saveRdtMasterDetails" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false" />
+				<request-action actionName="saveRdtMasterDetailsXls" methodName="saveRdtMasterDetailsXls" parameterTypes="java.util.Collection" permissionCheck="false" />
+				<request-action actionName="findAllCoTerminusAirports" methodName="findAllCoTerminusAirports" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.CoTerminusFilterVO" permissionCheck="false" neoApiCall="false"/>
+       		    <request-action actionName="findRdtMasterDetails" methodName="findRdtMasterDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.RdtMasterFilterVO" permissionCheck="false" neoApiCall="false"/>
+       		    <request-action actionName="validateCoterminusairports" methodName="validateCoterminusairports" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate" permissionCheck="false" neoApiCall="false" />
+       		    <request-action actionName="saveArrivalDetails" methodName="saveArrivalDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailArrivalVO" permissionCheck="false" neoApiCall="false"/>
+				<request-action actionName="flagUpliftedResditForMailbags" methodName="flagUpliftedResditForMailbags" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall ="false"/>
+				<request-action actionName="flagMLDForUpliftedMailbags" methodName="flagMLDForUpliftedMailbags" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false" />
+				<request-action actionName="triggerEmailForPureTransferContainers" methodName="triggerEmailForPureTransferContainers" parameterTypes="java.util.Collection" permissionCheck="false" />
+       		    <request-action actionName="validateDocumentInStock" methodName="validateDocumentInStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false" neoApiCall="false" />
+       		    <request-action actionName="findNextDocumentNumber" methodName="findNextDocumentNumber" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false" neoApiCall="false" />
+       		    <request-action actionName="findAWBDetails" methodName="findAWBDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.AWBFilterVO" permissionCheck="false" neoApiCall="false" />
+       		    <request-action actionName="deleteDocumentFromStock" methodName="deleteDocumentFromStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false" neoApiCall="false" />
+       		    <request-action actionName="attachAWBDetails" methodName="attachAWBDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.AWBDetailVO,com.ibsplc.icargo.business.mail.operations.vo.ContainerDetailsVO" permissionCheck="false" neoApiCall="false" />
+       		    <request-action actionName="invokeResditReceiver" methodName="invokeResditReceiver" parameterTypes="java.lang.String" permissionCheck="false" neoApiCall ="false"/>
+       		    <request-action actionName="checkForResditEvents" methodName="checkForResditEvents" parameterTypes="java.lang.String" permissionCheck="false" neoApiCall ="false"/>
+                <request-action actionName="stampACC3IdentifierForPreviousLegMailBags" methodName="stampACC3IdentifierForPreviousLegMailBags" parameterTypes="java.util.Collection" permissionCheck="false" />
+        		
+				<request-action actionName="buildResdit" methodName="buildResdit" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall = "false"/>
+        		<request-action actionName="isFlightClosedForInboundOperations" methodName="isFlightClosedForInboundOperations" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall = "false"/>
+				<request-action actionName="findULDsInAssignedFlight" methodName="findULDsInAssignedFlight" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+        		<request-action actionName="reopenInboundFlight" methodName="reopenInboundFlight" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+        		<request-action actionName="closeInboundFlight" methodName="closeInboundFlight" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+        		<request-action actionName="validateInboundFlight" methodName="validateInboundFlight" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false"/>
+        		<request-action actionName="findDetailsForMailUpload" methodName="findDetailsForMailUpload" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ScannedDetailsVO" permissionCheck="false" />
+        		<request-action actionName="validateScannedMailbagDetails" methodName="validateScannedMailbagDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+        		<request-action actionName="transferContainers" methodName="transferContainers" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+        		 <!--Added by a-7540 as part of ICRD-214354 starts-->
+		         <request-action actionName="generateResditPublishReport" methodName="generateResditPublishReport" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false"/>
+				<!--Added by a-7540 as part of ICRD-214354 ends-->
+				<!--added by A-7371 for ICRD-133987-->
+				<request-action actionName="transferContainersAtExport" methodName="transferContainersAtExport" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+        		<request-action actionName="transferDespatches" methodName="transferDespatches" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" />
+				<request-action actionName="saveScannedOutboundDetails" methodName="saveScannedOutboundDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+				<request-action actionName="returnScannedMailbags" methodName="returnScannedMailbags" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+				<request-action actionName="offloadScannedMailbags" methodName="offloadScannedMailbags" parameterTypes="java.util.Collection" permissionCheck="false" />
+				<request-action actionName="reassignScannedMailbags" methodName="reassignScannedMailbags" parameterTypes="java.util.Collection" permissionCheck="false" />
+				<request-action actionName="saveScannedInboundMails" methodName="saveScannedInboundMails" parameterTypes="java.util.Collection" permissionCheck="false" />
+				<request-action actionName="findContainerAssignment" methodName="findContainerAssignment" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" />
+				<request-action actionName="generateFindMailbagHistoriesReport" methodName="generateFindMailbagHistoriesReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		    	<request-action actionName="generateConsignmentReport" methodName="generateConsignmentReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+				<request-action actionName="findMailbagsInContainer" methodName="findMailbagsInContainer" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+				<request-action actionName="findMailbagsInContainerForManifest" methodName="findMailbagsInContainerForManifest" parameterTypes="java.util.Collection" permissionCheck="false" />
+				<request-action actionName="transferScannedMailbags" methodName="transferScannedMailbags" parameterTypes="java.util.Collection" permissionCheck="false" />
+				<request-action actionName="reassignScannedDespatches" methodName="reassignScannedDespatches" parameterTypes="java.util.Collection" permissionCheck="false" />
+
+				<request-action actionName="saveMailUploadDetailsFromMLD" methodName="saveMailUploadDetailsFromMLD" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+			   	<request-action actionName="findContainerAssignmentForUpload" methodName="findContainerAssignmentForUpload" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" />
+			 	<request-action actionName="saveMailUploadDetails" methodName="saveMailUploadDetails" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+				<request-action actionName="saveMailScannedDetails" methodName="saveMailScannedDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+				<request-action actionName="fetchMailScannedDetails" methodName="fetchMailScannedDetails" parameterTypes="java.lang.String,int" permissionCheck="false" />
+				<request-action actionName="triggerMLDMessages" methodName="triggerMLDMessages" parameterTypes="java.lang.String,int" permissionCheck="false" neoApiCall="false"/>
+
+				<request-action actionName="findRealTimeuploadrequired" methodName="findRealTimeuploadrequired" parameterTypes="java.lang.String" permissionCheck="false" />
+				<request-action actionName="saveMailUploadDetailsFromJob" methodName="saveMailUploadDetailsFromJob" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+				<request-action actionName="saveMailDetailsFromJob" methodName="saveMailDetailsFromJob" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+			 	<request-action actionName="saveAndProcessMailBags" methodName="saveAndProcessMailBags" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ScannedMailDetailsVO" permissionCheck="false" />
+
+				<request-action actionName="saveChangeFlightDetails" methodName="saveChangeFlightDetails" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+				<request-action actionName="generateConsignmentReports" methodName="generateConsignmentReports" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+				<request-action actionName="findFlightListings" methodName="findFlightListings" parameterTypes="com.ibsplc.icargo.business.flight.operation.vo.FlightFilterVO" permissionCheck="false" />
+				<request-action actionName="findActiveAllotments" methodName="findActiveAllotments" parameterTypes="com.ibsplc.icargo.business.flight.operation.vo.FlightSegmentCapacityFilterVO" permissionCheck="false" />
+				<request-action actionName="findMailConsumed" methodName="findMailConsumed" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailTransitFilterVO" permissionCheck="false" />
+			<!-- NCA CR -->
+			<request-action actionName="findInventoryList" methodName="findInventoryList" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false" />
+			<request-action actionName="findInventorySummary" methodName="findInventorySummary" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false" />
+			<request-action actionName="reassignMailbagsForInventory" methodName="reassignMailbagsForInventory" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" />
+			<request-action actionName="moveMailbagsForInventory" methodName="moveMailbagsForInventory" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" />
+			<request-action actionName="autoAttachAWBDetails" methodName="autoAttachAWBDetails" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="deleteMailbagsInInventory" methodName="deleteMailbagsInInventory" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="deleteMailsfromInventory" methodName="deleteMailsfromInventory" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findMailDiscrepancies" methodName="findMailDiscrepancies" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="findMailsInFlight" methodName="findMailsInFlight" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="assignControlDocumentNumber" methodName="assignControlDocumentNumber" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+			<request-action actionName="findCarditDetails" methodName="findCarditDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.CarditEnquiryFilterVO" permissionCheck="false" />
+			<request-action actionName="deliverMailbags" methodName="deliverMailbags" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailArrivalVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findBookingDetailsForMail" methodName="findBookingDetailsForMail" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="findMailAWBDetails" methodName="findMailAWBDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="generateMailManifest" methodName="generateMailManifest" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="findStockHolderForMail" methodName="findStockHolderForMail" parameterTypes="java.lang.String,java.lang.String,java.lang.Boolean" permissionCheck="false" />
+			<request-action actionName="findResditConfigurationForAirline" methodName="findResditConfigurationForAirline" parameterTypes="java.lang.String,int" permissionCheck="false" />
+			<request-action actionName="saveResditConfiguration" methodName="saveResditConfiguration" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ResditConfigurationVO" permissionCheck="false" />
+			<request-action actionName="updateBookingDetailsForMail" methodName="updateBookingDetailsForMail" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.capacity.booking.vo.MailBookingVO" permissionCheck="false"/>
+			<request-action actionName="findPAForOfficeOfExchange" methodName="findPAForOfficeOfExchange" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findAgentCodeForPA" methodName="findAgentCodeForPA" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="detachAWBDetails" methodName="detachAWBDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerDetailsVO" permissionCheck="false" neoApiCall="false" />
+			<request-action actionName="sendResdit" methodName="sendResdit" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.CarditEnquiryVO" permissionCheck="false"/>
+			<request-action actionName="generateControlDocumentReport" methodName="generateControlDocumentReport" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="invokeXXResditController" methodName="invokeXXResditController" parameterTypes="java.lang.String" permissionCheck="false" />
+
+			<request-action actionName="findContainerAssignments" methodName="findContainerAssignments" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="receivePeakMessage" methodName="receivePeakMessage" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.PeakMessageVO" permissionCheck="false" />
+		    <request-action actionName="generateInventoryList" methodName="generateInventoryList" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+
+			<request-action actionName="findConsignmentDetails" methodName="findConsignmentDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.CarditEnquiryFilterVO,int" permissionCheck="false" />
+			<request-action actionName="moveMailbagsInManifest" methodName="moveMailbagsInManifest" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.ContainerVO,com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="createBookingsForMailsInFlight" methodName="createBookingsForMailsInFlight" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="deliverMailBagsFromInventory" methodName="deliverMailBagsFromInventory" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="transferMailBagsFromInventory" methodName="transferMailBagsFromInventory" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" />
+
+			<request-action actionName="findControlDocumentsForPrint" methodName="findControlDocumentsForPrint" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="generateControlDocument" methodName="generateControlDocument" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="generateMailTag" methodName="generateMailTag" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="deliverContainersFromInventory" methodName="deliverContainersFromInventory" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findContainersInFlightForManifest" methodName="findContainersInFlightForManifest" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="validateMailSubClass" methodName="validateMailSubClass" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findDespatchesOnDSN" methodName="findDespatchesOnDSN" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.DSNVO,java.lang.String" permissionCheck="false"/>
+			<!-- Added for Mail Manifest -->
+			<request-action actionName="findDSNMailbags" methodName="findDSNMailbags" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.DSNVO" permissionCheck="false"/>
+			<request-action actionName="saveConsignmentDocumentFromManifest" methodName="saveConsignmentDocumentFromManifest" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="validateOfficeOfExchange" methodName="validateOfficeOfExchange" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+			<!-- Added for MRA -->
+			<request-action actionName="findMailActivityDetails" methodName="findMailActivityDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailActualDetailFilterVO" permissionCheck="false" />
+			<request-action actionName="startMonitorMailSLAWorkflow" methodName="startMonitorMailSLAWorkflow" parameterTypes="java.lang.String,com.ibsplc.icargo.business.mail.operations.vo.MailActivityDetailVO,java.lang.String" permissionCheck="false" />
+
+			<!-- AirNZ CR -->
+			<request-action actionName="validatePACodeForMailBags" methodName="validatePACodeForMailBags" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+			<request-action actionName="generateFindDamageMailReport" methodName="generateFindDamageMailReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="generateMailStatusReport" methodName="generateMailStatusReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="generateMailHandedOverReport" methodName="generateMailHandedOverReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="generateMailHandedOverRT" methodName="generateMailHandedOverRT" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailHandedOverFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="generateTransferManifestReportForMail" methodName="generateTransferManifestReportForMail" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="generateTransferManifestReportForContainer" methodName="generateTransferManifestReportForContainer" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="transferMail" methodName="transferMail" parameterTypes="java.util.Collection,java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.ContainerVO,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+
+			<request-action actionName="onStatustoReadyforDelivery" methodName="onStatustoReadyforDelivery" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailArrivalVO" permissionCheck="false" />
+			<request-action actionName="transferMailAtExport" methodName="transferMailAtExport" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.ContainerVO,java.lang.String" permissionCheck="false" neoApiCall="false" />
+			<request-action actionName="findTransferManifest" methodName="findTransferManifest" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.TransferManifestFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<!--<request-action actionName="findDespatchDetails" methodName="findDespatchDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.DSNEnquiryFilterVO" permissionCheck="false" />-->
+			<request-action actionName="generateTransferManifestReport" methodName="generateTransferManifestReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="generateTransferManifestMailbagLevelReport" methodName="generateTransferManifestMailbagLevelReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<!-- Added By Sreejith -->
+			<!-- For Daily MailStation ANZ282-->
+			 <request-action actionName="generateDailyMailStationReport" methodName="generateDailyMailStationReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<!-- For MailAlert Message ANZ411-->
+			<request-action actionName="closeFlightAcceptance" methodName="closeFlightAcceptance" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO,com.ibsplc.icargo.business.mail.operations.vo.MailAcceptanceVO" permissionCheck="false" neoApiCall="false" />
+			<request-action actionName="closeFlightManifest" methodName="closeFlightManifest" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO,com.ibsplc.icargo.business.mail.operations.vo.MailManifestVO" permissionCheck="false" />
+
+			<!-- END Sreejith-->
+			<!-- Added for Audit -->
+			<request-action actionName="findDSNAuditDetails" methodName="findDSNAuditDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailAuditFilterVO" permissionCheck="false" />
+			<request-action actionName="findCONAuditDetails" methodName="findCONAuditDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailAuditFilterVO" permissionCheck="false" />
+			<request-action actionName="findAssignFlightAuditDetails" methodName="findAssignFlightAuditDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailAuditFilterVO" permissionCheck="false" />
+			<request-action actionName="generateImportManifestReport" methodName="generateImportManifestReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="findCarditMails" methodName="findCarditMails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.CarditEnquiryFilterVO,int" permissionCheck="false" neoApiCall="false"/>
+		    <!-- Added for AirNZ CR 432 -->
+	        <request-action actionName="generateCN46ReportForFlightlevel" methodName="generateCN46ReportForFlightlevel" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+
+			<!-- Added A-8061 for ICRD-233692 starts -->
+			 <request-action actionName="findGrandTotals" methodName="findGrandTotals" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.CarditEnquiryFilterVO" permissionCheck="false" neoApiCall="false" />
+			<!-- Added A-8061 for ICRD-233692 ends -->
+
+
+
+
+
+
+			<request-action actionName="validatePoaDetails" methodName="validatePoaDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.PostalAdministrationDetailsVO" permissionCheck="false" neoApiCall="false"/>
+
+			<!-- Added By A-3434 for AirNZ CR 168 -->
+
+			<request-action actionName="auditDSNsForMRA" methodName="auditDSNsForMRA" parameterTypes="java.util.Collection" permissionCheck="false" />
+
+
+			<!-- Added for AirNZ CR 985 -->
+			<request-action actionName="findCartIds" methodName="findCartIds" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findCityAndAirportForOE" methodName="findCityAndAirportForOE" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findOfficeOfExchangesForAirport" methodName="findOfficeOfExchangesForAirport" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="validateConsignmentDetails" methodName="validateConsignmentDetails" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+
+			<request-action actionName="saveConsignmentForManifestedDSN" methodName="saveConsignmentForManifestedDSN" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentDocumentVO" permissionCheck="false" neoApiCall="false" />
+
+			<request-action actionName="findDetailsForUpload" methodName="findDetailsForUpload" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ScannedMailDetailsVO" permissionCheck="false" />
+			<request-action actionName="initiateULDAcquittance" methodName="initiateULDAcquittance" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="findLatestContainerAssignment" methodName="findLatestContainerAssignment" parameterTypes="java.lang.String" permissionCheck="false" neoApiCall="false"/>
+
+			<request-action actionName="saveScannedOffloadMails" methodName="saveScannedOffloadMails" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="saveScannedDeliverMails" methodName="saveScannedDeliverMails" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findMailbagsInContainerForImportManifest" methodName="findMailbagsInContainerForImportManifest" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false" />
+			<request-action actionName="autoAcquitContainers" methodName="autoAcquitContainers" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+
+			<request-action actionName="saveResiditRestrictions" methodName="saveResiditRestrictions" parameterTypes="java.util.Collection" permissionCheck="false" />
+ 	     	<request-action actionName="findResiditRestrictions" methodName="findResiditRestrictions" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ResiditRestrictonFilterVO" permissionCheck="false" />
+
+		  	<request-action actionName="flagResditsForMissedEvents" methodName="flagResditsForMissedEvents" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+
+			<request-action actionName="updateResditSendStatus" methodName="updateResditSendStatus" parameterTypes="com.ibsplc.icargo.business.msgbroker.message.vo.resdit.ResditMessageVO" permissionCheck="false" neoApiCall="false" />
+
+			<request-action actionName="updateMLDMsgSentTime" methodName="updateMLDMsgSentTime" parameterTypes="com.ibsplc.icargo.business.msgbroker.message.vo.mld.MLDMessageVO" permissionCheck="false" />
+			<request-action actionName="findMailFlightDetails" methodName="findMailFlightDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="acceptMailsForReconciliation" methodName="acceptMailsForReconciliation" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="findMailsForReconciliation" methodName="findMailsForReconciliation" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="finaliseMailsForReconciliation" methodName="finaliseMailsForReconciliation" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="updateOperationalFlightVO" methodName="updateOperationalFlightVO" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+	    		<request-action actionName="closeFlightForReconciliation" methodName="closeFlightForReconciliation" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="reopenFlightForReconcile" methodName="reopenFlight" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="printMailsForReconciliation" methodName="printMailsForReconciliation" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+    		    	<request-action actionName="findDeliverBill" methodName="findDeliverBill" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentFilterVO" permissionCheck="false" />
+			<request-action actionName="generateCN46Report" methodName="generateCN46Report" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="print46Report" methodName="print46Report" parameterTypes="java.util.Collection" permissionCheck="false" />
+
+		<!--Added For Mailbag Reconcilation -->
+		 <request-action actionName="listReconciliationDetails" methodName="listReconciliationDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailReconciliationFilterVO" permissionCheck="false" />
+		 <request-action actionName="generateMailExceptionReport" methodName="generateMailExceptionReport" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailReconciliationFilterVO" permissionCheck="false" />
+		 <request-action actionName="findMessageDetails" methodName="findMessageDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailReconciliationDetailsVO" permissionCheck="false" />
+			 <request-action actionName="reconcileMailbag" methodName="reconcileMailbag" parameterTypes="java.lang.String" permissionCheck="false" />
+		 <!--Added For Mailbag Reconcilation -->
+			 <request-action actionName="generateCarditPreAdviceReport" methodName="generateCarditPreAdviceReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		     <request-action actionName="saveNationalConsignmentDetails" methodName="saveNationalConsignmentDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentDocumentVO" permissionCheck="false" />
+             <request-action actionName="findNationalConsignmentDetails" methodName="findNationalConsignmentDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentFilterVO" permissionCheck="false" />
+
+             <request-action actionName="updateConsignmentDetailsForMailOperations" methodName="updateConsignmentDetailsForMailOperations" parameterTypes="java.lang.Object,java.lang.Object,java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+			 <request-action actionName="findPOMailStatementDetails" methodName="findPOMailStatementDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.DSNEnquiryFilterVO" permissionCheck="false" />
+			 <request-action actionName="saveRemarksFromPOMailStatement" methodName="saveRemarksFromPOMailStatement" parameterTypes="java.util.Collection" permissionCheck="false" />
+			 <request-action actionName="generatePOMailStatement" methodName="generatePOMailStatement" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			 <request-action actionName="generateDSNEnquiryReport" methodName="generateDSNEnquiryReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			 <request-action actionName="generateManifest" methodName="generateManifest" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			 <request-action actionName="generateMailImportManifest" methodName="generateMailImportManifest" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+			<request-action actionName="closeMailExportFlight" methodName="closeMailExportFlight" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="closeMailImportFlight" methodName="closeMailImportFlight" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			<request-action actionName="findAllULDsInAssignedFlight" methodName="findAllULDsInAssignedFlight" parameterTypes="com.ibsplc.icargo.business.flight.operation.vo.FlightValidationVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="updateActualWeightForMailULD" methodName="updateActualWeightForMailULD" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" neoApiCall="false" />
+			<!-- Added by A-5253 as part of ICRD-42702 Start -->
+			<request-action actionName="initiateArrivalForFlights" methodName="initiateArrivalForFlights" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ArriveAndImportMailVO" permissionCheck="false" />
+			<!-- Added by A-5253 as part of ICRD-42702 End -->
+			<!--Added by A-4809 for ICRD-42160 Starts-->
+			<request-action actionName="findAllPACodes" methodName="findAllPACodes" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GenerateInvoiceFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<!--Added by A-4809 for ICRD-42160 Ends-->
+			<!--Added by A-5945  Starts-->
+			<request-action actionName="getTxnParameters" methodName="getTxnParameters" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+			<request-action actionName="resolveTransaction" methodName="resolveTransaction" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+   <request-action actionName="checkEmbargoForMail" methodName="checkEmbargoForMail" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="validateDeletedFlightSegmentsForMailBags" methodName="findMailbagsforFlightSegments"
+			parameterTypes="java.lang.String,int,java.lang.String,long,java.util.Collection,java.lang.String" permissionCheck="false" />
+			<!--Added by A-5945  Ends-->
+				<!-- A-6371 Added for ICRD-83340 Start-->
+		<request-action actionName="findMailOnHandDetails" methodName="findMailOnHandDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.SearchContainerFilterVO,int" permissionCheck="false" />
+		<!-- A-6371 Added for ICRD-83340 End-->
+
+		<!-- A-1885 Added for ICRD-85213 Start-->
+
+			<request-action actionName="closeFlightForMailOperation" methodName="closeFlightForMailOperation" parameterTypes="java.lang.String,int,java.lang.String" permissionCheck="false" />
+		<!-- A-1885 Added for ICRD-85213 End-->
+		<request-action actionName="validateMailFlight" methodName="validateMailFlight" parameterTypes="com.ibsplc.icargo.business.flight.operation.vo.FlightFilterVO" permissionCheck="false" neoApiCall="false"/>
+		<request-action actionName="closeInboundFlightForMailOperation" methodName="closeInboundFlightForMailOperation" parameterTypes="java.lang.String" permissionCheck="false" neoApiCall="false"/>
+		<request-action actionName="closeInboundFlightAfterULDAcquitalForProxy" methodName="closeInboundFlightAfterULDAcquitalForProxy" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+		<request-action actionName="closeInboundFlightAfterULDAcquital" methodName="closeInboundFlightAfterULDAcquital" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+		<request-action actionName="releasingMailsForULDAcquittance" methodName="releasingMailsForULDAcquittance" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailArrivalVO,com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+		<request-action actionName="handleMRDMessage" methodName="handleMRDMessage" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailMRDVO" permissionCheck="false" />
+		<request-action actionName="handleMRDHO22Message" methodName="handleMRDHO22Message" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailMRDVO" permissionCheck="false" neoApiCall="false" />
+		<request-action actionName="undoArriveContainer" methodName="undoArriveContainer" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailArrivalVO" permissionCheck="false" neoApiCall="false"/>
+
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="findAuditTransactionCodes" methodName="findAuditTransactionCodes" parameterTypes="java.util.Collection,boolean,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findMailAuditHistoryDetails" methodName="findMailAuditHistoryDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailAuditHistoryFilterVO" permissionCheck="false"/>
+		<!-- A-5526 Added for ICRD-93584 Start-->
+		  <request-action actionName="saveMLDConfigurations" methodName="saveMLDConfigurations" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+		    <request-action actionName="findMLDCongfigurations" methodName="findMLDCongfigurations" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MLDConfigurationFilterVO" permissionCheck="false" neoApiCall="false"/>
+		  <!-- A-5526 Added for ICRD-93584 End-->
+		  <request-action actionName="saveAllValidMailBags" methodName="saveAllValidMailBags" parameterTypes="java.util.Collection" permissionCheck="false" />
+		  <request-action actionName="createMailScanVOSForErrorStamping" methodName="createMailScanVOSForErrorStamping" parameterTypes="java.util.Collection,java.lang.String,java.lang.StringBuilder,java.lang.String" permissionCheck="false" />
+		  <request-action actionName="performMailOperationForGHA" methodName="performMailOperationForGHA" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+		   <request-action actionName="processMailOperationFromFile" methodName="processMailOperationFromFile" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+		   <request-action actionName="fetchDataForOfflineUpload" methodName="fetchDataForOfflineUpload" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		    <request-action actionName="removeDataFromTempTable" methodName="removeDataFromTempTable" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+		<request-action actionName="findOneTimeDescription" methodName="findOneTimeDescription" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" /> <!-- A-6991 Added for ICRD-208718 -->
+ <request-action actionName="validateFromFile" methodName="validateFromFile" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+		  <request-action actionName="validateFlightsForAirport" methodName="validateFlightsForAirport" parameterTypes="java.util.Collection" permissionCheck="false" />
+		  <request-action actionName="findOfficeOfExchangeForPA" methodName="findOfficeOfExchangeForPA" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="performMailAWBTransactions" methodName="performMailAWBTransactions" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailFlightSummaryVO,java.lang.String" permissionCheck="false" />
+			<request-action actionName="saveMailServiceLevelDtls" methodName="saveMailServiceLevelDtls" parameterTypes="java.util.Collection" permissionCheck="false" /> <!-- A-6986 Added for ICRD-243469 -->
+			<request-action actionName="listPostalCalendarDetails" methodName="listPostalCalendarDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.USPSPostalCalendarFilterVO" permissionCheck="false" neoApiCall="false" />  <!-- A-8164 Added for ICRD-236925 -->
+			<request-action actionName="savePostalCalendar" methodName="savePostalCalendar" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+			 <request-action actionName="generateAV7Report" methodName="generateAV7Report" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<!--added by a-7871 for ICRD-257316-->
+				<request-action actionName="findMailbagcountInContainer" methodName="findMailbagcountInContainer" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" />
+
+		   <!--  Added for ICRD-243401 starts -->
+			 <request-action actionName="findMailHandoverDetails" methodName="findMailHandoverDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailHandoverFilterVO,int" permissionCheck="false" neoApiCall="false"/>
+			 <request-action actionName="saveMailHandoverDetails" methodName="saveMailHandoverDetails" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false" />
+			 <!--  Added for ICRD-243401 ends-->
+			 <!-- Added for ICRD-252821 starts-->
+			<request-action actionName="listContractDetails" methodName="listContractDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.GPAContractFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="saveContractDetails" methodName="saveContractDetails" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false" />
+			<!-- Added for ICRD-252821 ends -->
+			 <!-- Added as part of ICRD-218529 by A-8236 starts-->
+			<request-action actionName="validateMailBagDetails" methodName="validateMailBagDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailUploadVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="flagResditForAcceptanceInTruck" methodName="flagResditForAcceptanceInTruck" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ScannedMailDetailsVO" permissionCheck="false" />
+			<request-action actionName="saveMailUploadDetailsForAndroid" methodName="saveMailUploadDetailsForAndroid" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailUploadVO, java.lang.String" permissionCheck="false" neoApiCall="false"/>
+			<!-- Added as part of ICRD-218529 by A-8236 ends-->
+			<request-action actionName="validateFlightAndContainer" methodName="validateFlightAndContainer" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailUploadVO" permissionCheck="false" neoApiCall="false" /><!--Added by A-8164 for ICRD-315657 -->
+			 <request-action actionName="validateContainerMailWeightCapture" methodName="validateContainerMailWeightCapture" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailUploadVO" permissionCheck="false" />
+			  <request-action actionName="saveActualWeight" methodName="saveActualWeight" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" />
+			 
+   
+   	<!--A-8176-->
+			  <request-action actionName="findOutboundFlightsDetails" methodName="findOutboundFlightsDetails"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO,int"  permissionCheck="false" neoApiCall="false"/>
+		   <request-action actionName="getAcceptedContainers" methodName="getAcceptedContainers"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO,int"  permissionCheck="false" neoApiCall="false"/>
+		   <request-action actionName="getMailbagsinContainer" methodName="getMailbagsinContainer"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerDetailsVO,int"  permissionCheck="false" neoApiCall="false"/>
+		   <request-action actionName="getMailbagsinContainerdsnview" methodName="getMailbagsinContainerdsnview"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerDetailsVO,int"  permissionCheck="false" neoApiCall="false"/>
+		  <request-action actionName="findCarditSummaryView" methodName="findCarditSummaryView"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.CarditEnquiryFilterVO"  permissionCheck="false"/>
+		  <request-action actionName="findGroupedCarditMails" methodName="findGroupedCarditMails"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.CarditEnquiryFilterVO,int"  permissionCheck="false" neoApiCall="false"/>
+		   <request-action actionName="findLyinglistSummaryView" methodName="findLyinglistSummaryView"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagEnquiryFilterVO"  permissionCheck="false" neoApiCall="false"/>
+		  <request-action actionName="findGroupedLyingList" methodName="findGroupedLyingList"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagEnquiryFilterVO,int"  permissionCheck="false" neoApiCall="false"/>
+   <request-action actionName="findOutboundCarrierDetails" methodName="findOutboundCarrierDetails" neoApiCall="false"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO,int"  permissionCheck="false"/>
+		  <request-action actionName="getMailbagsinCarrierContainer" methodName="getMailbagsinCarrierContainer"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerDetailsVO,int"  permissionCheck="false" neoApiCall="false" />
+		  <request-action actionName="getMailbagsinCarrierdsnview" methodName="getMailbagsinCarrierdsnview"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerDetailsVO,int"  permissionCheck="false" neoApiCall="false"/>
+		   <request-action actionName="getDSNsForContainer" methodName="getDSNsForContainer"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerDetailsVO"  permissionCheck="false" neoApiCall="false" />
+		  <request-action actionName="getRoutingInfoforDSN" methodName="getRoutingInfoforDSN"
+		  parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.operations.vo.ContainerDetailsVO" permissionCheck="false" neoApiCall="false" />
+		   <request-action actionName="fetchFlightCapacityDetails" methodName="fetchFlightCapacityDetails"
+		   parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+		      <request-action actionName="fetchFlightVolumeDetails" methodName="fetchFlightVolumeDetails"
+		   parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+		    <request-action actionName="fetchFlightPreAdviceDetails" methodName="fetchFlightPreAdviceDetails"
+		   parameterTypes="java.util.Collection" permissionCheck="false"  neoApiCall="false"/>
+		  <request-action actionName="findULDTypes" methodName="findULDTypes" parameterTypes="com.ibsplc.icargo.business.shared.uld.vo.ULDTypeFilterVO" permissionCheck="false"/>
+ <!-- Added by A-8164 for ICRD-294404 starts-->
+			<request-action actionName="listFlightDetails" methodName="listFlightDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailArrivalVO" permissionCheck="false" neoApiCall="false" />
+			<request-action actionName="reopenInboundFlights" methodName="reopenInboundFlights" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+        	<request-action actionName="closeInboundFlights" methodName="closeInboundFlights" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="populateMailArrivalVOForInbound" methodName="populateMailArrivalVOForInbound" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findArrivedContainersForInbound" methodName="findArrivedContainersForInbound" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailArrivalFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findArrivedMailbagsForInbound" methodName="findArrivedMailbagsForInbound" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailArrivalFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findArrivedDsnsForInbound" methodName="findArrivedDsnsForInbound" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailArrivalFilterVO" permissionCheck="false" />
+			<!-- Added by A-8164 for ICRD-294404 ends-->
+
+  <request-action actionName="findOffLoadDetails" methodName="findOffLoadDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OffloadFilterVO" permissionCheck="false" neoApiCall="false"/>
+  <request-action actionName="populatePCIDetailsforUSPS" methodName="populatePCIDetailsforUSPS"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailInConsignmentVO,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String"  permissionCheck="false"/>
+			<request-action actionName="calculateULDContentId" methodName="calculateULDContentId" parameterTypes="java.util.Collection, com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" />
+			 <!-- Added as part of ICRD-232361 starts-->
+			<request-action actionName="findIncentiveConfigurationDetails" methodName="findIncentiveConfigurationDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.IncentiveConfigurationFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="saveIncentiveConfigurationDetails" methodName="saveIncentiveConfigurationDetails" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+			<!-- Added as part of ICRD-232361 ends-->
+			<!-- Added as part of ICRD-239811 by A-5526 starts-->
+			 <request-action actionName="findRunnerFlights" methodName="findRunnerFlights" parameterTypes="com.ibsplc.icargo.business.warehouse.defaults.ramp.vo.RunnerFlightFilterVO" permissionCheck="false" />
+			  <!-- Added as part of ICRD-239811 by A-5526 ends-->
+			  <request-action actionName="updateGateClearStatus" methodName="updateGateClearStatus" parameterTypes="com.ibsplc.icargo.business.operations.flthandling.vo.OperationalFlightVO,java.lang.String" permissionCheck="false" />
+			  <!--Added by A-7929 as part of ICRD-261437 starts...  -->
+			   <request-action actionName="findMailbagsForTruckFlight" methodName="findMailbagsForTruckFlight" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagEnquiryFilterVO,int" permissionCheck="false" />
+			   <!--Added by A-7929 as part of ICRD-261437 starts...  -->
+
+				  <!--Added for icrd ICRD-236825 starts-->
+			 <request-action actionName="saveRoutingIndexDetails" methodName="saveRoutingIndexDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+			 <request-action actionName="findRoutingIndex" methodName="findRoutingIndex" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.RoutingIndexVO" permissionCheck="false" neoApiCall="false"/>
+		     <request-action actionName="findDsnAndRsnForMailbag" methodName="findDsnAndRsnForMailbag" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO" permissionCheck="false" neoApiCall="false"/>
+		<!--Added for icrd ICRD-236825 ends-->
+           <request-action actionName="listForceMajeureApplicableMails" methodName="listForceMajeureApplicableMails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ForceMajeureRequestFilterVO,int" permissionCheck="false" />
+		   <request-action actionName="saveForceMajeureRequest" methodName="saveForceMajeureRequest" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ForceMajeureRequestFilterVO" permissionCheck="false" />
+		   <request-action actionName="initTxnForForceMajeure" methodName="initTxnForForceMajeure" parameterTypes="com.ibsplc.icargo.business.cra.defaults.vo.InvoiceTransactionLogVO" permissionCheck="false" />
+		   <request-action actionName="listForceMajeureDetails" methodName="listForceMajeureDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ForceMajeureRequestFilterVO,int" permissionCheck="false" />
+		   <request-action actionName="listForceMajeureRequestIds" methodName="listForceMajeureRequestIds" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ForceMajeureRequestFilterVO,int" permissionCheck="false" />
+		   <request-action actionName="deleteForceMajeureRequest" methodName="deleteForceMajeureRequest" parameterTypes="java.util.Collection" permissionCheck="false" />
+		   <request-action actionName="updateForceMajeureRequest" methodName="updateForceMajeureRequest" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ForceMajeureRequestFilterVO" permissionCheck="false" />
+             <!--Added by A-7540 starts-->
+			<request-action actionName="findAllContainersInAssignedFlight" methodName="findAllContainersInAssignedFlight" parameterTypes="com.ibsplc.icargo.business.flight.operation.vo.FlightValidationVO" permissionCheck="false" neoApiCall="false" />
+             <!--Added by A-7540 for icrd-212081-->
+			 <request-action actionName="processResditMails" methodName="processResditMails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		     <request-action actionName="saveContentID" methodName="saveContentID" parameterTypes="java.util.Collection" permissionCheck="false" />
+		     <request-action actionName="updateActualWeightForMailbag" methodName="updateActualWeightForMailbag"
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO"  permissionCheck="false" neoApiCall="false"/>
+
+		 <!-- added by A-8464 for ICRD-243079-->
+		 <request-action actionName="getPerformanceMonitorDetails" methodName="getPerformanceMonitorDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailMonitorFilterVO" permissionCheck="false" />
+		 <request-action actionName="getPerformanceMonitorMailbags" methodName="getPerformanceMonitorMailbags" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailMonitorFilterVO,java.lang.String,int" permissionCheck="false" />
+
+		   <!--Added by A-8438 as part of ICRD-303640 start -->
+			<request-action actionName="findMailbagManifest" methodName="findMailbagManifest"
+			parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false" />
+			<!--Added by A-8438 as part of ICRD-303640 end -->
+			
+			<request-action actionName="findMailAWBManifest" methodName="findMailAWBManifest"
+			parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false"/>
+			
+			<request-action actionName="findDSNMailbagManifest" methodName="findDSNMailbagManifest"
+			parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false"/>
+			
+			<request-action actionName="findDestnCatManifest" methodName="findDestnCatManifest"
+			parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall="false"/>
+			
+			<request-action actionName="findInvoicPeriodDetails" methodName="findInvoicPeriodDetails"
+			parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.USPSPostalCalendarFilterVO" permissionCheck="false"/>
+
+			<!--Added by A-8464 for ICRD-273761-->
+			<request-action actionName="findMailbagDetailsForMailbagEnquiryHHT" methodName="findMailbagDetailsForMailbagEnquiryHHT" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagEnquiryFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findMailbagDetailsForMailInboundHHT" methodName="findMailbagDetailsForMailInboundHHT" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagEnquiryFilterVO" permissionCheck="false" neoApiCall="false"/>
+
+			 <request-action actionName="fetchMailContentIDs" methodName="fetchMailContentIDs" parameterTypes="com.ibsplc.icargo.business.operations.flthandling.cto.vo.DWSMasterVO,java.lang.String,java.lang.String" permissionCheck="false"/>
+		<request-action actionName="findDuplicateMailbag" methodName="findDuplicateMailbag" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false" />
+			<request-action actionName="sendULDAnnounceForFlight" methodName="sendULDAnnounceForFlight" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailManifestVO" permissionCheck="false" />
+			<request-action actionName="updateMailULDDetailsFromMHS" methodName="updateMailULDDetailsFromMHS" parameterTypes="com.ibsplc.icargo.business.warehouse.defaults.operations.vo.StorageUnitCheckinVO" permissionCheck="false" />
+		<request-action actionName="findMailboxId" methodName="findMailboxId" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailboxIdVO" permissionCheck="false" neoApiCall="false"/>
+		<request-action actionName="saveMailboxId" methodName="saveMailboxId" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailboxIdVO" permissionCheck="false"  neoApiCall="false"/>
+		<request-action actionName="updateMailboxId" methodName="updateMailboxId" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailboxIdVO" permissionCheck="false"/>
+
+			
+			<request-action actionName="findMailBillingStatus" methodName="findMailBillingStatus"  
+		  parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO"  permissionCheck="false" neoApiCall="false"/>
+		  
+		<request-action actionName="findProductsByName" methodName="findProductsByName" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false" />
+<request-action actionName="findDeviationMailbags" methodName="findDeviationMailbags" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagEnquiryFilterVO,int" permissionCheck="false" neoApiCall="false" />
+
+		<request-action actionName="buildResditProxy" methodName="buildResditProxy" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall ="false"/>
+		<request-action actionName="getTempCarditMessages" methodName="getTempCarditMessages" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,int" permissionCheck="false" />
+		<request-action actionName="saveCarditMsgs" methodName="saveCarditMsgs" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.EDIInterchangeVO" permissionCheck="false"  />
+
+<request-action actionName="processResditMailsForAllEvents" methodName="processResditMailsForAllEvents" parameterTypes="java.util.Collection" permissionCheck="false" />
+<request-action actionName="validateContainerNumberForDeviatedMailbags" methodName="validateContainerNumberForDeviatedMailbags" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerDetailsVO,long" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="findApprovedForceMajeureDetails" methodName="findApprovedForceMajeureDetails" parameterTypes="java.lang.String,java.lang.String,long" permissionCheck="false" />
+
+  
+  <request-action actionName="getManifestInfo" methodName="getManifestInfo" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO" permissionCheck="false" />    		    
+   <request-action actionName="checkMailInULDExistForNextSeg" methodName="checkMailInULDExistForNextSeg" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" neoApiCall ="false"/>    
+
+  <request-action actionName="saveMailRuleConfiguration" methodName="saveMailRuleConfiguration" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailRuleConfigVO" permissionCheck="false" />
+  <request-action actionName="updateRetainFlagForContainer" methodName="updateRetainFlagForContainer" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" neoApiCall="false"/>
+  <request-action actionName="createAutoAttachAWBJobSchedule" methodName="createAutoAttachAWBJobSchedule" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.AutoAttachAWBJobScheduleVO" permissionCheck="false" />
+  <request-action actionName="findTransferManifestConsignmentDetails" methodName="findTransferManifestConsignmentDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.TransferManifestVO" permissionCheck="false" neoApiCall="false"/>
+  <request-action actionName="findConsignmentScreeningDetails" methodName="findConsignmentScreeningDetails" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+
+  
+  <request-action actionName="findMailbagBillingStatus" methodName="findMailbagBillingStatus" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO" permissionCheck="false" />
+  
+
+  <request-action actionName="saveTransferFromManifest" methodName="saveTransferFromManifest" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.TransferManifestVO" permissionCheck="false" neoApiCall="false"/>
+  <request-action actionName="removeFromInbound" methodName="removeFromInbound" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OffloadVO" permissionCheck="false" />
+
+<request-action actionName="rejectTransferFromManifest" methodName="rejectTransferFromManifest" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.TransferManifestVO" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="findTransferManifestDetailsForTransfer" methodName="findTransferManifestDetailsForTransfer" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false" />
+<request-action actionName="saveConsignmentScreeningDetails" methodName="saveConsignmentScreeningDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentDocumentVO" permissionCheck="false" />
+<request-action actionName="generateConsignmentSecurityReport" methodName="generateConsignmentSecurityReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+<request-action actionName="generateMailSecurityReport" methodName="generateMailSecurityReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+ 
+<request-action actionName="generateConsignmentSummaryReports" methodName="generateConsignmentSummaryReports" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+
+<request-action actionName="findMailEvent" methodName="findMailEvent" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailEventVO" permissionCheck="false" />
+<request-action actionName="saveUploadedForceMajeureData" methodName="saveUploadedForceMajeureData" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+
+<request-action actionName="findAutoPopulateSubtype" methodName="findAutoPopulateSubtype" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false" neoApiCall="false" />
+<request-action actionName="findOfficeOfExchangeForCarditMissingDomMail" methodName="findOfficeOfExchangeForCarditMissingDomMail" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="saveMailUploadDetailsFromMailOnload" methodName="saveMailUploadDetailsFromMailOnload" parameterTypes="java.util.Collection" permissionCheck="false" />		
+<request-action actionName="updateOriginAndDestinationForMailbag" methodName="updateOriginAndDestinationForMailbag" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+
+		
+
+<request-action actionName="findInboundFlightOperationsDetails" methodName="findInboundFlightOperationsDetails" parameterTypes="com.ibsplc.icargo.business.operations.flthandling.cto.vo.ImportOperationsFilterVO,java.util.Collection" permissionCheck="false" />
+<request-action actionName="findOffloadULDDetailsAtAirport" methodName="findOffloadULDDetailsAtAirport" parameterTypes="com.ibsplc.icargo.business.operations.flthandling.vo.OffloadFilterVO" permissionCheck="false" />
+			<request-action actionName="findExportFlightOperationsDetails" methodName="findExportFlightOperationsDetails" parameterTypes="com.ibsplc.icargo.business.operations.flthandling.cto.vo.ImportOperationsFilterVO,java.util.Collection" permissionCheck="false" />
+			<request-action actionName="fetchConsignmentDetailsForUpload" methodName="fetchConsignmentDetailsForUpload" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+			<request-action actionName="saveUploadedConsignmentData" methodName="saveUploadedConsignmentData" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="saveMailbagHistory" methodName="saveMailbagHistory" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="releaseContainers" methodName="releaseContainers" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findMailbagDamageImages" methodName="findMailbagDamageImages" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findContainerJourneyID" methodName="findContainerJourneyID" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="stampResdits" methodName="stampResdits" parameterTypes="java.util.Collection" permissionCheck="false"  neoApiCall ="false"/>
+			<request-action actionName="findArrivalDetailsForReleasingMails" methodName="findArrivalDetailsForReleasingMails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false" neoApiCall ="false"/>
+			<request-action actionName="findMailboxIdFromConfig" methodName="findMailboxIdFromConfig" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO" permissionCheck="false" />
+            <request-action actionName="performErrorStampingForFoundMailWebServices" methodName="performErrorStampingForFoundMailWebServices" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailUploadVO, java.lang.String" permissionCheck="false" />
+             <request-action actionName="getFoundArrivalMailBags" methodName="getFoundArrivalMailBags" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailArrivalVO" permissionCheck="false" neoApiCall ="false" />
+			   <request-action actionName="saveArrivalDetailsOld" methodName="saveArrivalDetailsOld" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailArrivalVO" permissionCheck="false" />
+			<request-action actionName="attachAWBForMail" methodName="attachAWBForMail" parameterTypes="java.util.Collection,java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findNearestAirportOfCity" methodName="findNearestAirportOfCity" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+			<request-action actionName="markUnmarkUldIndicator" methodName="markUnmarkUldIndicator" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerVO"
+            permissionCheck="false" neoApiCall="false" />
+
+<request-action actionName="insertMailbagAndHistory" methodName="insertMailbagAndHistory" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO" permissionCheck="false" />
+<request-action actionName="saveMailUploadDetailsForULDFULIndicator" methodName="saveMailUploadDetailsForULDFULIndicator" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailUploadVO, java.lang.String" permissionCheck="false" />
+<request-action actionName="saveSecurityDetails" methodName="saveSecurityDetails" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="listmailbagSecurityDetails" methodName="listmailbagSecurityDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailScreeningFilterVO" permissionCheck="false" neoApiCall="false" />
+<request-action actionName="editscreeningDetails" methodName="editscreeningDetails" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="deletescreeningDetails" methodName="deletescreeningDetails" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="saveScreeningDetails" methodName="saveScreeningDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ScannedMailDetailsVO" permissionCheck="false" neoApiCall="false" />
+<request-action actionName="saveMailSecurityStatus" methodName="saveMailSecurityStatus" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO" permissionCheck="false" neoApiCall="false" />
+<request-action actionName="saveConsignmentDetailsMaster" methodName="saveConsignmentDetailsMaster" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentDocumentVO" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="findAirportFromMailbag" methodName="findAirportFromMailbag" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="saveFligthLoadPlanForMail" methodName="saveFligthLoadPlanForMail" parameterTypes="java.util.Collection" permissionCheck="false" />   
+<request-action actionName="findLoadPlandetails" methodName="findLoadPlandetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.SearchContainerFilterVO" permissionCheck="false" />
+<request-action actionName="saveSecurityScreeningFromService" methodName="saveSecurityScreeningFromService" parameterTypes="com.ibsplc.icargo.business.msgbroker.message.vo.mailsecurityandscreening.SecurityAndScreeningMessageVO" permissionCheck="false" />
+<request-action actionName="findAirportParameterCode" methodName="findAirportParameterCode" parameterTypes="com.ibsplc.icargo.business.flight.operation.vo.FlightFilterVO,java.util.Collection" permissionCheck="false" neoApiCall="false" />
+<request-action actionName="publishMasterDataForMail" methodName="publishMasterDataForMail" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailMasterDataFilterVO" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="publishMailDetails" methodName="publishMailDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailMasterDataFilterVO" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="findSecurityScreeningValidations" methodName="findSecurityScreeningValidations" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.SecurityScreeningValidationFilterVO" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="doSecurityAndScreeningValidationAtContainerLevel" methodName="doSecurityAndScreeningValidationAtContainerLevel" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO,java.util.Collection" permissionCheck="false" neoApiCall="false" />
+<request-action actionName="updateIntFlgAsNForMailBagsInConatiner" methodName="updateIntFlgAsNForMailBagsInConatiner" parameterTypes="com.ibsplc.icargo.business.xaddons.lh.mail.operations.vo.HbaMarkingVO" permissionCheck="false" />
+<!-- Added By A-10543 for Aimail portlet  starts-->
+<request-action actionName="findDespatchDetails" methodName="findDespatchDetails" parameterTypes="com.ibsplc.icargo.business.xaddons.lh.mail.operations.vo.DespatchDetailsFilterVO" permissionCheck="false" />
+<!-- Added By A-10543 for Aimail portlet  ends -->
+			<request-action actionName="getPlannedRoutingIndexDetails" methodName="getPlannedRoutingIndexDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.RoutingIndexVO" permissionCheck="false" />
+<request-action actionName="generateCN46ConsignmentReport" methodName="generateCN46ConsignmentReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+<request-action actionName="generateCN46ConsignmentSummaryReport" methodName="generateCN46ConsignmentSummaryReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="getExchangeOfficeDetails" methodName="getExchangeOfficeDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+<request-action actionName="generateAutomaticBarrowId" methodName="generateAutomaticBarrowId" parameterTypes="java.lang.String" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="findCN46TransferManifestDetails" methodName="findCN46TransferManifestDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.TransferManifestVO" permissionCheck="false" neoApiCall="false"/>	
+<request-action actionName="doApplicableRegulationFlagValidationForPABuidContainer" methodName="doApplicableRegulationFlagValidationForPABuidContainer" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO,com.ibsplc.icargo.business.mail.operations.vo.SecurityScreeningValidationFilterVO" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="updateActualWeightForMailContainer" methodName="updateActualWeightForMailContainer" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ContainerVO" permissionCheck="false" />
+<request-action actionName="findFlightsForMailInboundAutoAttachAWB" methodName="findFlightsForMailInboundAutoAttachAWB" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailInboundAutoAttachAWBJobScheduleVO" permissionCheck="false" />
+<request-action actionName="saveMailScanDetails" methodName="saveMailScanDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailUploadVO" permissionCheck="false" />
+<request-action actionName="createPAWBForConsignment" methodName="createPAWBForConsignment" parameterTypes="int" permissionCheck="false" />
+<request-action actionName="findMstDocNumForAWBDetails" methodName="findMstDocNumForAWBDetails" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.CarditVO" permissionCheck="false" />
+ <request-action actionName="saveMalRdtMsgAddDtl" methodName="saveMalRdtMsgAddDtl" parameterTypes="java.util.Collection,java.util.Collection,com.ibsplc.icargo.business.msgbroker.message.vo.MessageVO,java.lang.String,java.util.Collection,java.util.Collection" permissionCheck="false" />
+<request-action actionName="saveScreeningDetailsFromHHT" methodName="saveScreeningDetailsFromHHT" parameterTypes="java.util.Collection" permissionCheck="false"/>
+<request-action actionName="generateConsignmentSummaryReportDtls" methodName="generateConsignmentSummaryReportDtls" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentFilterVO" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="generateTransferManifestReportDetails" methodName="generateTransferManifestReportDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="generateConsignmentSecurityReportDtls" methodName="generateConsignmentSecurityReportDtls" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentFilterVO" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="generateMailTagDetails" methodName="generateMailTagDetails" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="generateConsignmentReportDtls" methodName="generateConsignmentReportDtls" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentFilterVO" permissionCheck="false" neoApiCall="false"/>
+<request-action actionName="publishMailOperationDataForRapidSystem" methodName="publishMailOperationDataForRapidSystem" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailOperationDataJobScheduleVO" permissionCheck="false" />
+<request-action actionName="generateCN46ConsignmentReportDtls" methodName="generateCN46ConsignmentReportDtls" neoApiCall="false" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentFilterVO" permissionCheck="false"/>
+<request-action actionName="generateCN46ConsignmentSummaryReportDtls" methodName="generateCN46ConsignmentSummaryReportDtls" neoApiCall="false" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentFilterVO" permissionCheck="false"/>
+<request-action actionName="fetchMailSecurityDetails" methodName="fetchMailSecurityDetails" neoApiCall="false" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailScreeningFilterVO" permissionCheck="false"/>
+<request-action actionName="findRoutingDetails" methodName="findRoutingDetails" neoApiCall="false" 
+parameterTypes="java.lang.String,long"  permissionCheck="false"/>
+ <request-action actionName="generateMailStatusRT" methodName="generateMailStatusRT" neoApiCall="false" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailStatusFilterVO" permissionCheck="false"/>
+  <request-action actionName="generateDailyMailStationRT" methodName="generateDailyMailStationRT" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.DailyMailStationFilterVO" permissionCheck="false" neoApiCall="false"/>
+ <request-action actionName="findDamageMailReport" methodName="findDamageMailReport" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.DamageMailFilterVO" permissionCheck="false" neoApiCall="false" />
+<request-action actionName="findImportManifestDetails" methodName="findImportManifestDetails" neoApiCall="false" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.OperationalFlightVO" permissionCheck="false"/>
+
+</submodule-mapping>
+
+
+
+
+        <submodule-mapping submodule="mra">
+               <request-service-name>MAIL_MRA</request-service-name>
+			   <request-action actionName="updateRouteAndReprorate" methodName="updateRouteAndReprorate" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GPABillingEntriesFilterVO" permissionCheck="false" /> 
+               <request-action actionName="saveHistoryDetails" methodName="saveHistoryDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.CCAdetailsVO" permissionCheck="false" />
+                <request-action actionName="saveFuelSurchargeDetails" methodName="saveFuelSurchargeDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="displayFuelSurchargeDetails" methodName="displayFuelSurchargeDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+               <request-action actionName="generateCN66InvoiceReport" methodName="generateCN66InvoiceReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			   <request-action actionName="initiateProration" methodName="initiateProration" parameterTypes="java.lang.String" permissionCheck="false" />
+			   <request-action actionName="generateInterfaceFile" methodName="generateInterfaceFile" parameterTypes="com.ibsplc.icargo.framework.util.time.LocalDate,java.lang.String" permissionCheck="false" />
+             <request-action actionName="voidMailbags" methodName="voidMailbags" parameterTypes="java.util.Collection" permissionCheck="false" />
+            <request-action actionName="printExceptionInInvoice" methodName="printExceptionInInvoice" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="findAllInvoices" methodName="findAllInvoices" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.CN51SummaryFilterVO" permissionCheck="false" />
+			<request-action actionName="findGPABillingEntries" methodName="findGPABillingEntries" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GPABillingEntriesFilterVO" permissionCheck="false" />
+			<request-action actionName="changeBillingStatus" methodName="changeBillingStatus" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findCN51CN66Details" methodName="findCN51CN66Details" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.CN51CN66FilterVO" permissionCheck="false" />
+			<request-action actionName="saveCN66Observations" methodName="saveCN66Observations" parameterTypes="java.util.Collection" permissionCheck="false" />
+<request-action actionName="saveGpaRebillRemarks" methodName="saveGpaRebillRemarks" parameterTypes="java.util.Collection" permissionCheck="false" />
+<request-action actionName="findReminderListForGpaBilling" methodName="findReminderListForGpaBilling" parameterTypes="com.ibsplc.icargo.business.cra.agentbilling.defaults.vo.ReminderDetailsFilterVO" permissionCheck="false" />
+           	<request-action actionName="findInvoiceLov" methodName="findInvoiceLov" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.InvoiceLovVO" permissionCheck="false" />
+			<request-action actionName="findInvoiceNumber" methodName="findInvoiceNumber" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.InvoiceLovVO" permissionCheck="false" />
+           	<request-action actionName="findAllRateCards" methodName="findAllRateCards" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.RateCardFilterVO" permissionCheck="false" />
+			<request-action actionName="findRateLineDetails" methodName="findRateLineDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.RateLineFilterVO" permissionCheck="false" />
+			<request-action actionName="saveRatelineStatus" methodName="saveRatelineStatus" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findRateCardDetails" methodName="findRateCardDetails" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false" />
+			<request-action actionName="saveRateCard" methodName="saveRateCard" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.RateCardVO" permissionCheck="false" />
+
+			<request-action actionName="changeRateCardStatus" methodName="changeRateCardStatus" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findRateCardLov" methodName="findRateCardLov" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false" />
+            <request-action actionName="displayUPUCalendarDetails" methodName="displayUPUCalendarDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.defaults.vo.UPUCalendarFilterVO" permissionCheck="false" />
+			<request-action actionName="saveUPUCalendarDetails" methodName="saveUPUCalendarDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findCN66Details" methodName="findCN66Details" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.AirlineCN66DetailsFilterVO" permissionCheck="false" />
+			<request-action actionName="findCN66DetailsPrint" methodName="findCN66DetailsPrint" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="saveCN66Details" methodName="saveCN66Details" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="saveMemo" methodName="saveMemo" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findMemoDetails" methodName="findMemoDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.MemoFilterVO" permissionCheck="false" />
+			<request-action actionName="findFlownMailExceptions" methodName="findFlownMailExceptions" parameterTypes="com.ibsplc.icargo.business.mail.mra.flown.vo.FlownMailFilterVO" permissionCheck="false" />
+			<request-action actionName="saveGPAReportingDetails" methodName="saveGPAReportingDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findAirlineExceptionInInvoices" methodName="findAirlineExceptionInInvoices" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.ExceptionInInvoiceFilterVO" permissionCheck="false" />
+			<request-action actionName="findGPAReportingDetails" methodName="findGPAReportingDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.GPAReportingFilterVO" permissionCheck="false" />
+		    <request-action actionName="findCN51Details" methodName="findCN51Details" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.AirlineCN51FilterVO" permissionCheck="false" />
+			<request-action actionName="validateIataClearancePeriod" methodName="validateIataClearancePeriod" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		    <request-action actionName="assignFlownMailExceptions" methodName="assignFlownMailExceptions" parameterTypes="java.util.Collection" permissionCheck="false" />
+            <request-action actionName="displayInvoiceLOV" methodName="displayInvoiceLOV" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.InvoiceLovFilterVO" permissionCheck="false" />
+		    <request-action actionName="displayMemoLOV" methodName="displayMemoLOV" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false" />
+			<request-action actionName="findClaimDetails" methodName="findClaimDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.GPAReportingFilterVO" permissionCheck="false" />
+			<request-action actionName="assignClaims" methodName="assignClaims" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="displayAirlineExceptions" methodName="displayAirlineExceptions" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.AirlineExceptionsFilterVO" permissionCheck="false" />
+			<request-action actionName="saveAirlineExceptions" methodName="saveAirlineExceptions" parameterTypes="java.util.Collection" permissionCheck="false" />
+            <request-action actionName="saveRejectionMemo" methodName="saveRejectionMemo" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.ExceptionInInvoiceVO" permissionCheck="false" />
+			<request-action actionName="deleteRejectionMemo" methodName="deleteRejectionMemo" parameterTypes="java.util.Collection" permissionCheck="false" />
+           	<request-action actionName="acceptAirlineInvoices" methodName="acceptAirlineInvoices" parameterTypes="java.util.Collection" permissionCheck="false" />
+           	<request-action actionName="processGpaReport" methodName="processGpaReport" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.GPAReportingFilterVO" permissionCheck="false" />
+           	<request-action actionName="saveCN51" methodName="saveCN51" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.AirlineCN51SummaryVO" permissionCheck="false" />
+           	<request-action actionName="processFlight" methodName="processFlight" parameterTypes="com.ibsplc.icargo.business.mail.mra.flown.vo.FlownMailFilterVO" permissionCheck="false" />
+
+           	<request-action actionName="findAllBillingMatrix" methodName="findAllBillingMatrix" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingMatrixFilterVO" permissionCheck="false" />
+            <request-action actionName="generateCN66Report" methodName="generateCN66Report" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="generateCN51Report" methodName="generateCN51Report" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="generateInvoiceReport" methodName="generateInvoiceReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="processMail" methodName="processMail" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.AirlineCN66DetailsFilterVO" permissionCheck="false" />
+
+			<request-action actionName="withdrawMailBags" methodName="withdrawMailBags" parameterTypes="java.util.Collection" permissionCheck="false" />
+
+			<request-action actionName="findCN51DetailsReport" methodName="findCN51DetailsReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="findFlownMailExceptionsforprint" methodName="findFlownMailExceptionsforprint" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="findFlownMailExceptionsforprintDetails" methodName="findFlownMailExceptionsforprintDetails" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="saveBillingLineStatus" methodName="saveBillingLineStatus" parameterTypes="java.util.Collection, java.util.Collection" permissionCheck="false" />
+		 	<request-action actionName="findBillingMatrixLov" methodName="findBillingMatrixLov" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false" />
+		 	<request-action actionName="displayProrationDetails" methodName="displayProrationDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.ProrationFilterVO" permissionCheck="false" />
+           	<request-action actionName="findFlownMails" methodName="findFlownMails" parameterTypes="com.ibsplc.icargo.business.mail.mra.flown.vo.FlownMailFilterVO" permissionCheck="false" />
+			<request-action actionName="findFlightDetails" methodName="findFlightDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.flown.vo.FlownMailFilterVO" permissionCheck="false" />
+			<request-action actionName="validateFlight" methodName="validateFlight" parameterTypes="com.ibsplc.icargo.business.flight.operation.vo.FlightFilterVO" permissionCheck="false" />
+			<!--added for ICRD-119247 starts-->
+			<request-action actionName="validateFlightForAirport" methodName="validateFlightForAirport" parameterTypes="com.ibsplc.icargo.business.flight.operation.vo.FlightFilterVO" permissionCheck="false" />
+			<!--added for ICRD-119247 ends-->
+			<request-action actionName="generateOutwardBillingInvoice" methodName="generateOutwardBillingInvoice" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.InvoiceLovFilterVO" permissionCheck="false" />
+
+            <request-action actionName="findBillingMatrixDetails" methodName="findBillingMatrixDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingMatrixFilterVO" permissionCheck="false" />
+			<request-action actionName="findBillingLineDetails" methodName="findBillingLineDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingLineFilterVO" permissionCheck="false" />
+			<request-action actionName="saveBillingMatrix" methodName="saveBillingMatrix" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingMatrixVO" permissionCheck="false" />
+			<request-action actionName="uploadGPAReport" methodName="uploadGPAReport" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.GPAReportMessageVO" permissionCheck="false" />
+            <request-action actionName="listofflightswithstatus" methodName="findListOfFlightsForReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="listofflownmails" methodName="findListOfFlownMailsForReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="printExceptionsReportAssigneeDetails" methodName="printExceptionsReportAssigneeDetails" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="printExceptionsReportAssigneeSummary" methodName="printExceptionsReportAssigneeSummary" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="printExceptionsReportDetails" methodName="printExceptionsReportDetails" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="printExceptionsReportSummary" methodName="printExceptionsReportSummary" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="validateUsers" methodName="validateUsers" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+            <request-action actionName="printExceptionReportDetail" methodName="printExceptionReportDetail" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="printbillingsmyperiodwise" methodName="findBlgSmyPeriodWiseDetailsForPrint" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="printbillingsmygpawise" methodName="findBlgSmyGpaWiseDetailsForPrint" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="printcn51detailsperiodwise" methodName="findCN51DetailsPeriodWiseForPrint" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+           	<request-action actionName="printcn51gpawise" methodName="findCN51DetailsGPAWiseForPrint" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+           	<request-action actionName="findBillingLineValues" methodName="findBillingLineValues" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingLineFilterVO" permissionCheck="false" />
+            <request-action actionName="generateInvoiceByClrPrd" methodName="generateInvoiceByClrPrd" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="generateInvoiceByAirline" methodName="generateInvoiceByAirline" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+            <request-action actionName="printcn66detailsperiodwise" methodName="findCN66DetailsPeriodWiseForPrint" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+           	<request-action actionName="printcn66gpawise" methodName="findCN66DetailsGPAWiseForPrint" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="findCN51s" methodName="findCN51s" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.AirlineCN51FilterVO" permissionCheck="false" />
+			<request-action actionName="printgpabillablereport" methodName="printGPABillableReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="printgpabillablereporttk" methodName="printGPABillableReportTK" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="findInvoicesCollectionByClrPrd" methodName="findInvoicesCollectionByClrPrd" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="findInvoicesCollectionByAirline" methodName="findInvoicesCollectionByAirline" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="findOutwardRejectionMemo" methodName="findOutwardRejectionMemo" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="findProrationFactors" methodName="findProrationFactors" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.ProrationFactorFilterVO" permissionCheck="false" />
+			<request-action actionName="saveProrationFactors" methodName="saveProrationFactors" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="changeProrationFactorStatus" methodName="changeProrationFactorStatus" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.ProrationFactorVO" permissionCheck="false" />
+			<request-action actionName="findSettlementDetails" methodName="findSettlementDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.InvoiceSettlementFilterVO,int" permissionCheck="false" />
+			<request-action actionName="saveSettlementDetails" methodName="saveSettlementDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findUnSettledInvoicesForGPAForSettlementCapture" methodName="findUnSettledInvoicesForGPAForSettlementCapture" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GPASettlementVO" permissionCheck="false" />
+			<!--added for ICRD 7316 starts-->
+			<request-action actionName="findUnSettledInvoicesForGPA" methodName="findUnSettledInvoicesForGPA" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GPASettlementVO" permissionCheck="false" />
+
+			<request-action actionName="printSettlementDetails" methodName="printSettlementDetails" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<!--added for ICRD 7316 ends-->
+			<!--added for ICRD 7334 starts-->
+			<request-action actionName="findPOMailSummaryDetails" methodName="findPOMailSummaryDetails" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<!--added for ICRD 7334 ends-->
+			<!--added for ICRD 7352 starts-->
+			<request-action actionName="findMCALov" methodName="findMCALov" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.CCAdetailsVO,int" permissionCheck="false" />
+			<request-action actionName="findDSNLov" methodName="findDSNLov" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.CCAdetailsVO,int" permissionCheck="false" />
+			<request-action actionName="saveMCAdetails" methodName="saveMCAdetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.CCAdetailsVO" permissionCheck="false" />
+			<request-action actionName="findApprovedMCA" methodName="findApprovedMCA" parameterTypes=" com.ibsplc.icargo.business.mail.mra.defaults.vo.MaintainCCAFilterVO" permissionCheck="false" />
+			<!--added for ICRD 7352 ends-->
+			<!--added for ICRD-7370 starts-->
+			<!--for 6E specific report-->
+			<request-action actionName="generateCN66Report6E" methodName="generateCN66Report6E" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="generateCN51ReportFromCN51Cn66" methodName="generateCN51ReportFromCN51Cn66" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<!--for 6E specific report-->
+			<!--added for ICRD-7370 ends-->
+			<request-action actionName="findSettlementHistory" methodName="findSettlementHistory" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.InvoiceSettlementFilterVO" permissionCheck="false" />
+ 			<request-action actionName="printreconciliationreport" methodName="printReconciliationReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+ 			<request-action actionName="viewMailContract" methodName="viewMailContract" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+ 			<request-action actionName="saveMailContract" methodName="saveMailContract" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.MailContractVO" permissionCheck="false" />
+ 			<request-action actionName="changeMailContractStatus" methodName="changeMailContractStatus" parameterTypes="java.util.Collection" permissionCheck="false" />
+ 			<request-action actionName="displayVersionLov" methodName="displayVersionLov" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+ 			<request-action actionName="displayContractDetails" methodName="displayContractDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.ContractFilterVO" permissionCheck="false" />
+ 			<request-action actionName="displaySLADetails" methodName="displaySLADetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.SLAFilterVO" permissionCheck="false" />
+ 			<request-action actionName="findMailContracts" methodName="findMailContracts" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.MailContractFilterVO" permissionCheck="false" />
+ 			<request-action actionName="saveMailSla" methodName="saveMailSla" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.MailSLAVO" permissionCheck="false"/>
+			<request-action actionName="findMailSla" methodName="findMailSla" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+			<request-action actionName="findPostalAdminDetails" methodName="findPostalAdminDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+			<request-action actionName="validateBillingMatrixCodes" methodName="validateBillingMatrixCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+			<request-action actionName="validateSLACodes" methodName="validateSLACodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findInvoiceDetailsForReport" methodName="findInvoiceDetailsForReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<request-action actionName="finddespatchlov" methodName="findDespatchLov" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String,int" permissionCheck="false" />
+			<request-action actionName="validateReportingPeriod" methodName="validateReportingPeriod" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.ReportingPeriodFilterVO" permissionCheck="false" />
+			<request-action actionName="findRejectionMemo" methodName="findRejectionMemo" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.RejectionMemoFilterVO" permissionCheck="false" />
+
+			<request-action actionName="saveSupportingDocumentDetails" methodName="saveSupportingDocumentDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+
+
+
+			<request-action actionName="removeSupportingDocumentDetails" methodName="removeSupportingDocumentDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+
+
+			<request-action actionName="downloadAttachment" methodName="downloadAttachment" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.SupportingDocumentFilterVO" permissionCheck="false" />
+
+
+
+			<request-action actionName="updateRejectionMemo" methodName="updateRejectionMemo" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.RejectionMemoVO" permissionCheck="false" />
+			<request-action actionName="printrejectionmemo" methodName="printRejectionMemo" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+
+	        	<request-action actionName="importFlownMails" methodName="importFlownMails" parameterTypes="com.ibsplc.icargo.business.flight.operation.vo.FlightValidationVO,java.util.Collection,com.ibsplc.icargo.business.mail.mra.defaults.vo.DocumentBillingDetailsVO,java.lang.String" permissionCheck="false" />
+
+<request-action actionName="importMRAData" methodName="importMRAData" parameterTypes="java.util.Collection" permissionCheck="false" />
+	        	<request-action actionName="activateBillingLines" methodName="activateBillingLines" parameterTypes="java.util.Collection" permissionCheck="false" />
+	        	<request-action actionName="inActivateBillingLines" methodName="inActivateBillingLines" parameterTypes="java.util.Collection" permissionCheck="false" />
+	        	<request-action actionName="cancelBillingLines" methodName="cancelBillingLines" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findDOTRateDetails" methodName="findDOTRateDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.MailDOTRateFilterVO" permissionCheck="false" />
+			<request-action actionName="saveDOTRateDetails" methodName="saveDOTRateDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="inActivateRateLines" methodName="inActivateRateLines" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="activateRateLines" methodName="activateRateLines" parameterTypes="java.util.Collection,boolean" permissionCheck="false" />
+                        <request-action actionName="cancelRateLines" methodName="cancelRateLines" parameterTypes="java.util.Collection" permissionCheck="false" />
+	                <request-action actionName="findInvoicEnquiryDetails" methodName="findInvoicEnquiryDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.InvoicEnquiryFilterVO" permissionCheck="false" />
+	  	        <request-action actionName="findInvoicClaimsEnquiryDetails" methodName="findInvoicClaimsEnquiryDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.MailInvoicClaimsFilterVO" permissionCheck="false" />
+	  	        <request-action actionName="importToReconcile" methodName="importToReconcile" parameterTypes="java.lang.String" permissionCheck="false" />
+	  	        <request-action actionName="reconcileProcess" methodName="reconcileProcess" parameterTypes="java.lang.String" permissionCheck="false" />
+                        <request-action actionName="findArlAuditDetails" methodName="findArlAuditDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.defaults.vo.MRAArlAuditFilterVO" permissionCheck="false" />
+                        <request-action actionName="generateInvoicClaimFile" methodName="generateInvoicClaimFile" parameterTypes="java.lang.String" permissionCheck="false" />
+                        <request-action actionName="findInvoicKeyLov" methodName="findInvoicKeyLov" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int" permissionCheck="false" />
+	         	<request-action actionName="findBillingPeriods" methodName="findBillingPeriods" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GenerateInvoiceFilterVO" permissionCheck="false" />
+			 <!-- Added By A-3447  Cr#162  -->
+   			<request-action actionName="finalizeandSendEInvoice" methodName="finalizeandSendEInvoice" parameterTypes=" java.util.Collection,java.lang.String" permissionCheck="false" />
+   			<request-action actionName="generateEInvoiceMessage" methodName="generateEInvoiceMessage" parameterTypes=" com.ibsplc.icargo.business.mail.mra.gpabilling.vo.CN51SummaryVO" permissionCheck="false" />
+		<!-- Added By A-3447 for Cr#162 -->
+
+			<request-action actionName="findGPABillingDetails" methodName="findGPABillingDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DSNPopUpVO" permissionCheck="false" />
+	        	<request-action actionName="findDsnSelectLov" methodName="findDsnSelectLov" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int" permissionCheck="false" />
+
+	    <!-- Added By A-3434 for CrAirNZ163-->
+			<request-action actionName="findGpaBillingInvoiceEnquiryDetails" methodName="findGpaBillingInvoiceEnquiryDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GpaBillingInvoiceEnquiryFilterVO" permissionCheck="false" />
+			<request-action actionName="saveBillingStatus" methodName="saveBillingStatus" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.CN66DetailsVO" permissionCheck="false" />
+
+			<request-action actionName="findFormOnes" methodName="findFormOnes" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.FormOneFilterVO" permissionCheck="false" />
+			<request-action actionName="findFormTwoDetails" methodName="findFormTwoDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.InterlineFilterVO" permissionCheck="false" />
+
+              <request-action actionName="findRateAuditDetails" methodName="findRateAuditDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.RateAuditFilterVO" permissionCheck="false" />
+
+			  <request-action actionName="findListRateAuditDetails" methodName="findListRateAuditDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.RateAuditFilterVO" permissionCheck="false" />
+			  <request-action actionName="changeRateAuditDsnStatus" methodName="changeRateAuditDsnStatus" parameterTypes="java.util.Collection,java.util.Collection" permissionCheck="false" />
+
+<!-- Added By A-3447 for Cr#172 (Maintain CCA ) Starts -->
+
+ 			<request-action actionName="findCCAdetails" methodName="findCCAdetails" parameterTypes=" com.ibsplc.icargo.business.mail.mra.defaults.vo.MaintainCCAFilterVO" permissionCheck="false" />
+			<request-action actionName="findCCA" methodName="findCCA" parameterTypes=" com.ibsplc.icargo.business.mail.mra.defaults.vo.MaintainCCAFilterVO" permissionCheck="false" />
+
+			<request-action actionName="printCCAReport" methodName="printCCAReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+
+<!-- Added By A-3447 for Cr#172 (Maintain CCA ) Ends -->
+
+
+ <!-- Added By A-3456 for CrAirNZ170-->
+	        <request-action actionName="findFormOneDetails" methodName="findFormOneDetails" parameterTypes=" com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.InterlineFilterVO" permissionCheck="false" />
+<!-- Added By A-3429 for CrAirNZ173-->
+			<request-action actionName="listCCAs" methodName="listCCAs" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.ListCCAFilterVO" permissionCheck="false" />
+			<request-action actionName="listCCAReport" methodName="printCCAsReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+<!-- Added By A-3429 for CrAirNZ182-->
+			<request-action actionName="findSectorDetails" methodName="findSectorDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.FlightSectorRevenueFilterVO" permissionCheck="false" />
+			<request-action actionName="findFlightRevenueForSector" methodName="findFlightRevenueForSector" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.FlightSectorRevenueFilterVO" permissionCheck="false" />
+
+<!-- Added By A-3429 for Document Statistics Report-->
+			<request-action actionName="printDocumentStatisticsReport" methodName="printDocumentStatisticsReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+
+			<request-action actionName="listFormOneDetails" methodName="listFormOneDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.FormOneVO" permissionCheck="false" />
+			<request-action actionName="saveFormOneDetails" methodName="saveFormOneDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.FormOneVO" permissionCheck="false" />
+
+			 <request-action actionName="saveFormThreeDetails" methodName="saveFormThreeDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+			 <request-action actionName="findFormThreeDetails" methodName="findFormThreeDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.InterlineFilterVO" permissionCheck="false" />
+
+	<!-- Added By A-3447 for  CaptureInvoice CrAirNZ166-->
+
+		<request-action actionName="findCaptureInvoiceDetails" methodName="findCaptureInvoiceDetails" parameterTypes=" com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.AirlineCN51FilterVO" permissionCheck="false" />
+		<request-action actionName="updateBillingDetailCommand" methodName="updateBillingDetailCommand" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.AirlineCN51SummaryVO" permissionCheck="false" />
+
+		<request-action actionName="saveRejectionMemos" methodName="saveRejectionMemos" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.RejectionMemoVO" permissionCheck="false" />
+		<request-action actionName="findAllInvoiceFlags" methodName="findAllInvoiceFlags" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.AirlineCN51FilterVO" permissionCheck="false" />
+
+
+	<!-- Added By A-3447 for CaptureInvoice CrAirNZ166-->
+
+
+			<request-action actionName="listProrationDetails" methodName="listProrationDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.ProrationFilterVO" permissionCheck="false" />
+
+<!-- Added By A-3434 for InterlineBillingEntries CrAirNZ165-->
+		<request-action actionName="findInterlineBillingEntries" methodName="findInterlineBillingEntries" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.defaults.vo.AirlineBillingFilterVO" permissionCheck="false" />
+		<request-action actionName="changeStatus" methodName="changeStatus" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="changeReview" methodName="changeReview" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="printgpabillinginvoiceenquiry" methodName="printGPABbillingInvoiceEnquiry" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+
+		 <request-action actionName="findInvoiceListingCurrency" methodName="findInvoiceListingCurrency" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.AirlineCN51FilterVO" permissionCheck="false" />
+
+		  <!-- Added By A-3251 for Rate Audit Details CrAirNZ169-->
+		<request-action actionName="computeTotalForRateAuditDetails" methodName="computeTotalForRateAuditDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.RateAuditVO" permissionCheck="false" />
+		<request-action actionName="populateInitialDataInTempTables" methodName="populateInitialDataInTempTables" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.RateAuditVO" permissionCheck="false" />
+		<request-action actionName="removeRateAuditDetailsFromTemp" methodName="removeRateAuditDetailsFromTemp" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.RateAuditVO" permissionCheck="false" />
+		<request-action actionName="generateProformaInvoiceDiffReport" methodName="generateProformaInvoiceDiffReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<request-action actionName="validateMailSubClass" methodName="validateMailSubClass" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+
+        <request-action actionName="saveRateAuditDetails" methodName="saveRateAuditDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.RateAuditVO" permissionCheck="false"/>
+
+
+<!--Added by A-3229 starts-->
+		<request-action actionName="saveProrationDetails" methodName="saveProrationDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+
+<!--Added by A-3229 ends-->
+<!--Added by A-3229 for CR AirNZ877 starts-->
+
+	<request-action actionName="findDSNRoutingDetails" methodName="findDSNRoutingDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DSNRoutingFilterVO" permissionCheck="false" />
+
+	<request-action actionName="validateBSA" methodName="validateBSA" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DSNRoutingVO" permissionCheck="false" />
+
+	<request-action actionName="saveDSNRoutingDetails" methodName="saveDSNRoutingDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+<!--Added by A-3229 ends-->
+
+		<!--Added by A-2107 starts-->
+		<request-action actionName="listUnaccountedDispatches" methodName="listUnaccountedDispatches" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.UnaccountedDispatchesFilterVO" permissionCheck="false" />
+		<request-action actionName="getTotalOfDispatches" methodName="getTotalOfDispatches" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.UnaccountedDispatchesFilterVO" permissionCheck="false" />
+		<request-action actionName="generateUnaccountedDispachedReport" methodName="generateUnaccountedDispachedReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+
+		<!--Added by A-2554-->
+		<request-action actionName="findInterLineBillingDetails" methodName="findInterLineBillingDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.AirlineBillingDetailVO" permissionCheck="false" />
+		<!--Added by A-3434-->
+		<request-action actionName="gpaInvoiceReport" methodName="printGPAInvoiceCoveringrpt" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<!--Added by Deepthi for list GPA Billing Invoice starts-->
+		<request-action actionName="listGPABillingInvoiceReport" methodName="printGPABillingInvoice" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<!-- Added by A-3229 for AirNZ CR 882-->
+		<request-action actionName="findProrationLogDetails" methodName="findProrationLogDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DSNFilterVO" permissionCheck="false" />
+		<request-action actionName="viewProrationLogDetails" methodName="viewProrationLogDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.ProrationFilterVO" permissionCheck="false" />
+		<request-action actionName="findProrationExceptions" methodName="findProrationExceptions" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.ProrationExceptionsFilterVO" permissionCheck="false" />
+		<request-action actionName="saveProrationExceptions" methodName="saveProrationExceptions" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="printProrationExceptionReport" methodName="printProrationExceptionReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+
+			<!--Added by A-6245 for ICRD-106032-->
+		<request-action actionName="prorateExceptionFlights" methodName="prorateExceptionFlights" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<!--added by A-3229 for flown details in despatch enquiry-->
+		<request-action actionName="findFlownDetails" methodName="findFlownDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DSNPopUpVO" permissionCheck="false" />
+		<!-- Added By Deepthi  for  Rejection MEMO-->
+		<request-action actionName="saveRejectionMemoForDsn" methodName="saveRejectionMemoForDsn" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.RejectionMemoVO" permissionCheck="false" />
+		<request-action actionName="validatePoaDetailsForBilling" methodName="validatePoaDetailsForBilling" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.PostalAdministrationDetailsVO" permissionCheck="false" />
+
+
+		<!--Added by A-3229 for Irregularity -->
+	    <request-action actionName="viewIrregularityDetails" methodName="viewIrregularityDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.MRAIrregularityFilterVO" permissionCheck="false" />
+		<request-action actionName="printIrregularityReport" methodName="printIrregularityReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<!--Added by A-3229 for Irregularity  ends-->
+		<!--added by A-3229 for  despatch enquiry-->
+		<request-action actionName="findAccountingDetails" methodName="findAccountingDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DSNPopUpVO" permissionCheck="false" />
+		<request-action actionName="findUSPSReportingDetails" methodName="findUSPSReportingDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DSNPopUpVO" permissionCheck="false" />
+		<request-action actionName="reProrateDSN" methodName="reProrateDSN" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="raiseActualCCA" methodName="raiseActualCCA" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.RateAuditVO" permissionCheck="false" />
+		<request-action actionName="findformtwoprint" methodName="viewFormTwoPrint" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+
+		<request-action actionName="findOutstandingBalances" methodName="findOutstandingBalances" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.OutstandingBalanceVO" permissionCheck="false" />
+		<request-action actionName="performAccountingForDSNs" methodName="performAccountingForDSNs" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="acceptAirlineDsns" methodName="acceptAirlineDsns" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="findRateAuditDetailsPrint" methodName="findRateAuditDetailsPrint" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<request-action actionName="validateClearancePeriod" methodName="validateClearancePeriod" parameterTypes="com.ibsplc.icargo.business.cra.defaults.masters.vo.IATACalendarFilterVO" permissionCheck="false" />
+
+		<request-action actionName="frmMRAfindPALov" methodName="findPALov" parameterTypes="java.lang.String,java.lang.String,java.lang.String,int,int" permissionCheck="false" />
+		<request-action actionName="frmMRAfindPACode" methodName="findPACode" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="printMailRevenueReport" methodName="printMailRevenueReport" parameterTypes="com.ibsplc.icargo.business.mail.mra.flown.vo.FlownMailFilterVO" permissionCheck="false" />
+
+		<request-action actionName="generateMailExceptionReport" methodName="generateMailExceptionReport" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.MailExceptionReportsFilterVO" permissionCheck="false" />
+
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+
+		<request-action actionName="findRoutingCarrierDetails" methodName="findRoutingCarrierDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.RoutingCarrierFilterVO" permissionCheck="false" />
+		<request-action actionName="saveRoutingCarrierDetails" methodName="saveRoutingCarrierDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<!--Added by A-5166 for ICRD-17262 on 07-Feb-2013 Starts-->
+		<request-action actionName="saveCopyRateCard" methodName="saveCopyRateCard" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.RateCardVO" permissionCheck="false" />
+		<!--Added by A-5166 for ICRD-17262 on 07-Feb-2013 Ends-->
+		<!--Added by A-4809 for ICRD-42160 Starts-->
+		<request-action actionName="generateInvoiceTK" methodName="generateInvoiceTK" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GenerateInvoiceFilterVO" permissionCheck="false" />
+		<request-action actionName="sendEmailInvoice" methodName="sendEmailInvoice" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.CN51CN66VO" permissionCheck="false" />
+		<request-action actionName="generateInvoiceLock" methodName="generateInvoiceLock" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="generateCN51ReportPrint" methodName="generateCN51ReportPrint" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.CN51CN66FilterVO" permissionCheck="false" />
+		<request-action actionName="generateCN66ReportPrint" methodName="generateCN66ReportPrint" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.CN51CN66FilterVO" permissionCheck="false" />
+		<request-action actionName="generateGPABillingInvoiceReportTK" methodName="generateGPABillingInvoiceReportTK" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<!--Added by A-4809 for ICRD-42160 Ends-->
+		<request-action actionName="saveBillingSiteDetails" methodName="saveBillingSiteDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingSiteVO" permissionCheck="false" />
+		<request-action actionName="findBillingSiteDetails" methodName="findBillingSiteDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingSiteFilterVO" permissionCheck="false" />
+		<request-action actionName="listParameterLov" methodName="listParameterLov" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingSiteLOVFilterVO" permissionCheck="false" />
+		<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="generateCN51ReportTK" methodName="generateCN51ReportTK" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<request-action actionName="generateInvoiceReportTK" methodName="generateInvoiceReportTK" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<request-action actionName="generateGPAInvoiceReportTK" methodName="generateGPAInvoiceReportTK" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<request-action actionName="generateGPAInvoiceReport" methodName="generateGPAInvoiceReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<!-- A-5273 Added for ICRD-38227 Start-->
+		
+		
+		<!-- for SQ added by a-10383-->
+		<request-action actionName="generateGPAInvoiceReportSQ" methodName="generateGPAInvoiceReportSQ" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<request-action actionName="generateCN51ReportSQ" methodName="generateCN51ReportSQ" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<request-action actionName="generateInvoiceReportSQ" methodName="generateInvoiceReportSQ" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<request-action actionName="generateCoverPageSQ" methodName="generateCoverPageSQ" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<request-action actionName="generateGPAInvoiceReportPrintAllSQ" methodName="generateGPAInvoiceReportPrintAllSQ" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<!-- for SQ added by a-10383-->
+		
+		
+		<request-action actionName="updateInvoiceReference" methodName="updateInvoiceReference" parameterTypes="com.ibsplc.icargo.business.cra.defaults.vo.tk.AOInvoiceReportDetailsVO" permissionCheck="false" />
+		<!-- A-5273 Added for ICRD-38227 End-->
+		<request-action actionName="processBillingMatrixUploadDetails" methodName="processBillingMatrixUploadDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+		<request-action actionName="sendEmailforPAs" methodName="sendEmailforPAs" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GenerateInvoiceFilterVO" permissionCheck="false" />
+			<request-action actionName="sendEmailforTK" methodName="sendEmailforTK" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GenerateInvoiceFilterVO" permissionCheck="false" />
+				<request-action actionName="sendEmailforAA" methodName="sendEmailforAA" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GenerateInvoiceFilterVO" permissionCheck="false" />
+				<request-action actionName="sendEmailRebillInvoice" methodName="sendEmailRebillInvoice" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.mra.gpabilling.vo.CN51CN66FilterVO,java.util.Collection,java.util.Collection" permissionCheck="false" />
+				<request-action actionName="sendEmailOnRebillInvoiceGeneration" methodName="sendEmailRebillInvoice" parameterTypes="com.ibsplc.icargo.business.cra.agentbilling.defaults.vo.ReminderDetailsFilterVO" permissionCheck="false" />
+		<request-action actionName="validateGpaBillingPeriod" methodName="validateGpaBillingPeriod" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GenerateInvoiceFilterVO" permissionCheck="false" />
+        <request-action actionName="initiateTransactionLogForInvoiceGeneration" methodName="initiateTransactionLogForInvoiceGeneration" parameterTypes="com.ibsplc.icargo.business.cra.defaults.vo.InvoiceTransactionLogVO" permissionCheck="false" />
+        <request-action actionName="importArrivedMailstoMRA" methodName="importArrivedMailstoMRA" parameterTypes="java.lang.String" permissionCheck="false" />
+
+		<request-action actionName="viewSurchargeProrationDetails" methodName="viewSurchargeProrationDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.ProrationFilterVO" permissionCheck="false" />
+		<request-action actionName="viewSurchargeProrationDetailsForMCA" methodName="viewSurchargeProrationDetailsForMCA" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.ProrationFilterVO" permissionCheck="false" />
+		<request-action actionName="getSurchargeCCADetails" methodName="getSurchargeCCADetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.MaintainCCAFilterVO" permissionCheck="false" />
+		<request-action actionName="findSurchargeBillingDetails" methodName="findSurchargeBillingDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.CN51CN66FilterVO" permissionCheck="false" />
+		<request-action actionName="findBillingMatrixAuditDetails" methodName="findBillingMatrixAuditDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingMatrixFilterVO" permissionCheck="false" />
+		<request-action actionName="findSurchargeBillableDetails" methodName="findSurchargeBillableDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.CN51CN66FilterVO" permissionCheck="false" />
+		<request-action actionName="findDespatchDetails" methodName="findDespatchDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DSNPopUpVO" permissionCheck="false" />
+		<!--Added by A-6991 for iCRD-211662 Starts -->
+		<request-action actionName="withdrawMailbags" methodName="withdrawMailbags" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="finalizeProformaInvoice" methodName="finalizeProformaInvoice" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="withdrawInvoice" methodName="withdrawInvoice" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.CN51SummaryVO" permissionCheck="false" />
+		<!--Added by A-6991 for iCRD-211662 Ends -->
+		<!-- A-7531 Added for ICRD-132508 Start-->
+		<request-action actionName="reRateMailbags" methodName="reRateMailbags" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+		<request-action actionName="findRerateBillableMails" methodName="findRerateBillableMails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DocumentBillingDetailsVO,java.lang.String" permissionCheck="false" />
+		<request-action actionName="findRerateInterlineBillableMails" methodName="findRerateInterlineBillableMails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DocumentBillingDetailsVO,java.lang.String" permissionCheck="false" />
+
+		<!-- A-7531 Added for ICRD-132508 End-->
+		<!-- A-7794 Added for ICRD-194277-->
+		<request-action actionName="saveSAPSettlementMail" methodName="saveSAPSettlementMail" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<!--Added for icrd-132487 by a-7531-->
+		<request-action actionName="reProrateExceptionMails" methodName="reProrateExceptionMails" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+		<request-action actionName="findReproarteMails" methodName="findReproarteMails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DocumentBillingDetailsVO" permissionCheck="false" />
+        <!-- A-7371 as part of ICRD-234919-->
+		<request-action actionName="saveMailInvoicAdv" methodName="saveMailInvoicAdv" parameterTypes="com.ibsplc.icargo.business.mailtracking.mra.defaults.vo.MailInvoicMasterVO" permissionCheck="false" />
+
+		<!--Added by A-7794 as part of ICRD-234354-->
+		<request-action actionName="generateCN51ReportKE" methodName="generateCN51ReportKE" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		<request-action actionName="generateCN66ReportKE" methodName="generateCN66ReportKE" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+		   <!-- A-7371 as part of ICRD-234334-->
+		<request-action actionName="viewAWMProrationDetails" methodName="viewAWMProrationDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.ProrationFilterVO" permissionCheck="false" />
+
+		<!-- Added by A-7929 as part of ICRD-245605 -->
+		<request-action actionName="generateMailBillingInterfaceFile" methodName="generateMailBillingInterfaceFile" parameterTypes="java.lang.String,java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate,com.ibsplc.icargo.framework.util.time.LocalDate" permissionCheck="false"/>
+		<!-- Added by A-8061 as part of ICRD-245594 -->
+		<request-action actionName="createJobforFlightRevenueInterface" methodName="createJobforFlightRevenueInterface" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="doInterfaceFlightRevenueDtls" methodName="doInterfaceFlightRevenueDtls" parameterTypes="java.lang.String,int,boolean" permissionCheck="false" />
+		<request-action actionName="generateFile" methodName="generateFile" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.MiscFileFilterVO" permissionCheck="false" />
+		<request-action actionName="generateBSAInterfaceDtls" methodName="generateBSAInterfaceDtls" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="updateMailBSAInterfacedDetails" methodName="updateMailBSAInterfacedDetails" parameterTypes="com.ibsplc.icargo.business.cra.miscbilling.blockspace.flight.utilization.vo.BlockSpaceFlightSegmentVO" permissionCheck="false" />
+		<request-action actionName="saveAutoMCAdetails" methodName="saveAutoMCAdetails" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GPABillingEntriesFilterVO" permissionCheck="false" />
+
+		<request-action actionName="updateTruckCost" methodName="updateTruckCost" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.TruckOrderMailVO" permissionCheck="false" />
+		<!--Added as part of ICRD-265471     -->
+
+        <request-action actionName="finalizeInvoice" methodName="finalizeInvoice" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+		<request-action actionName="getAirlineSummaryDetails" methodName="getAirlineSummaryDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.airlinebilling.vo.AirlineCN51FilterVO" permissionCheck="false" />
+	<!--added by a-7531-->
+ <request-action actionName="findSettledMailbags" methodName="findSettledMailbags" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.InvoiceSettlementFilterVO" permissionCheck="false" />
+		<request-action actionName="findUnsettledMailbags" methodName="findUnsettledMailbags" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.InvoiceSettlementFilterVO" permissionCheck="false" />
+	    <request-action actionName="findMailbagSettlementHistory" methodName="findMailbagSettlementHistory" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.InvoiceSettlementFilterVO" permissionCheck="false" />
+		<!--added by a-7871 -->
+		    <request-action actionName="saveSettlementsAtMailbagLevel" methodName="saveSettlementsAtMailbagLevel" parameterTypes="java.util.Collection" permissionCheck="false" />
+
+		<!--added by a-8464 as part of ICRD-232401 -->
+		<request-action actionName="listInvoicDetails" methodName="listInvoicDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicFilterVO" permissionCheck="false" />
+		<request-action actionName="saveRemarkDetails" methodName="saveRemarkDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicDetailsVO" permissionCheck="false" />
+		<request-action actionName="saveClaimDetails" methodName="saveClaimDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="updateProcessStatus" methodName="updateProcessStatus" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+		<request-action actionName="saveGroupRemarkDetails" methodName="saveGroupRemarkDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicFilterVO,java.lang.String" permissionCheck="false" />
+		<request-action actionName="findInvoicLov" methodName="findInvoicLov" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicFilterVO" permissionCheck="false" />
+
+		<request-action actionName="importConsignmentDataToMra" methodName="importConsignmentDataToMra" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.ConsignmentDocumentVO" permissionCheck="false" />
+		<request-action actionName="importConsignmentDataToMRA" methodName="importConsignmentDataToMRA" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailInConsignmentVO" permissionCheck="false" />
+		<request-action actionName="calculateUSPSIncentive" methodName="calculateUSPSIncentive" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.USPSIncentiveVO" permissionCheck="false" />
+			<request-action actionName="importMailsFromCarditData" methodName="importMailsFromCarditData" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DocumentBillingDetailsVO,java.lang.String" permissionCheck="false" />
+			<request-action actionName="saveMailInvoicDetails" methodName="saveMailInvoicDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findMailbagExistInMRA" methodName="findMailbagExistInMRA" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.DocumentBillingDetailsVO" permissionCheck="false" />
+			<!--added by a-8527 as part of ICRD-232401 -->
+		<request-action actionName="listInvoic" methodName="listInvoic" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicFilterVO,int" permissionCheck="false" />
+		<request-action actionName="updateInvoicReject" methodName="updateInvoicReject" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="updateMailStatus" methodName="updateMailStatus" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+	    <request-action actionName="findMailSubClass" methodName="findMailSubClass" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<!--added by A-7794 as part of ICRD-232299 -->
+		<request-action actionName="forceImportScannedMailbags" methodName="forceImportScannedMailbags" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="generateGpaRebill" methodName="generateGpaRebill" parameterTypes="com.ibsplc.icargo.business.cra.agentbilling.defaults.vo.ReminderDetailsFilterVO" permissionCheck="false" />
+		  <!--added by a-7531 as part of ICRD-235819 -->
+	   <request-action actionName="processSettlementUploadDetails" methodName="processSettlementUploadDetails" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+       <request-action actionName="removeProcessedDataFromTempTable" methodName="removeProcessedDataFromTempTable" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+       <request-action actionName="validateFromFileUpload" methodName="validateFromFileUpload" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+	   <!--added by A-7794 as part of ICRD-232299 -->
+<request-action actionName="processMailDataFromExcel" methodName="processMailDataFromExcel" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+	    <request-action actionName="findMailbagHistories" methodName="findMailbagHistories" parameterTypes="java.lang.String,java.lang.String,long" permissionCheck="false" />
+		 <request-action actionName="findGPARemarkDetails" methodName="findGPARemarkDetails" parameterTypes="com.ibsplc.icargo.business.cra.agentbilling.defaults.vo.ReminderDetailsFilterVO" permissionCheck="false" />
+		<request-action actionName="listGPABillingEntries" methodName="listGPABillingEntries" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GPABillingEntriesFilterVO" permissionCheck="false" />
+		<request-action actionName="listConsignmentDetails" methodName="listConsignmentDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GPABillingEntriesFilterVO" permissionCheck="false" />
+		  <!--ADDED BY a-7531 as part of IASCB-858-->
+	   <request-action actionName="findReasonCodes" methodName="findReasonCodes" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="importResditDataToMRA" methodName="importResditDataToMRA" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailScanDetailVO" permissionCheck="false" />
+			<!--added by A-8527 for ICRD-ICRD-262471 Starts-->
+		<request-action actionName="listClaimDetails" methodName="listClaimDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicFilterVO,int" permissionCheck="false" />
+		<request-action actionName="listGenerateClaimDetails" methodName="listGenerateClaimDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicFilterVO,int" permissionCheck="false" />
+		<request-action actionName="validateFrmToDateRange" methodName="validateFrmToDateRange" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicFilterVO" permissionCheck="false"  />
+		<request-action actionName="validateuspsPacode" methodName="validateuspsPacode" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="processInvoic" methodName="processInvoic" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicVO" permissionCheck="false" />
+		<request-action actionName="reprocessInvoicMails" methodName="reprocessInvoicMails" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="checkForProcessCount" methodName="checkForProcessCount" parameterTypes="java.lang.String,com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicVO" permissionCheck="false" />
+		<request-action actionName="isInitiatedInvoic" methodName="isInitiatedInvoic" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicVO" permissionCheck="false" />
+		<!--Added as part of ICRD-329873-->
+		<request-action actionName="getmcastatus" methodName="getmcastatus" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.CCAdetailsVO" permissionCheck="false" />
+		<request-action actionName="findInvoicAndClaimDetails" methodName="findInvoicAndClaimDetails" parameterTypes="java.lang.String,long" permissionCheck="false" />
+		<request-action actionName="generateClaimAndResdits" methodName="generateClaimAndResdits" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicFilterVO,java.lang.String" permissionCheck="false" />
+		<request-action actionName="generateClaimAndResditsFromJob" methodName="generateClaimAndResditsFromJob" parameterTypes="java.lang.String" permissionCheck="false" />
+        <!--Added by A-7540 starts-->
+		<request-action actionName="getResditInfofromUSPS" methodName="getResditInfofromUSPS" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="generateClaimMessageText" methodName="generateClaimMessageText" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="isClaimGenerated" methodName="isClaimGenerated" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicFilterVO" permissionCheck="false" />
+		<request-action actionName="findCRAParameterDetails" methodName="findCRAParameterDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="calculateUSPSIncentiveAmount" methodName="calculateUSPSIncentiveAmount" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.USPSPostalCalendarVO,com.ibsplc.icargo.business.mail.mra.gpareporting.vo.USPSIncentiveVO" permissionCheck="false" />
+		<request-action actionName="generateSAPInterfaceFile" methodName="generateSAPInterfaceFile" parameterTypes="com.ibsplc.icargo.business.cra.accounting.extinterface.vo.SAPInterfaceFilterVO" permissionCheck="false" />
+		<request-action actionName="sendSAPInterfaceFile" methodName="sendSAPInterfaceFile" parameterTypes="com.ibsplc.icargo.business.cra.accounting.extinterface.vo.SAPInterfaceFilterVO,com.ibsplc.icargo.business.cra.accounting.extinterface.vo.SAPInterfaceFileLogVO" permissionCheck="false" />
+		<request-action actionName="findMRAGLAccountingEntries" methodName="findMRAGLAccountingEntries" parameterTypes="com.ibsplc.icargo.business.cra.accounting.vo.GLInterfaceFilterVO" permissionCheck="false"/>
+		<!--Added as part of IASCB-28086-->
+		<request-action actionName="findProductsByName" methodName="findProductsByName" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		<request-action actionName="generateINVOICProcessingLock" methodName="generateINVOICProcessingLock" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="isMailbagInMRA" methodName="isMailbagInMRA" parameterTypes="java.lang.String,long" permissionCheck="false" />
+		<request-action actionName="findApprovedForceMajeureDetails" methodName="findApprovedForceMajeureDetails" parameterTypes="java.lang.String,java.lang.String,long" permissionCheck="false" />
+		<request-action actionName="recalculateDisincentiveData" methodName="recalculateDisincentiveData" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="asyncProcessSettlementUpload" methodName="asyncProcessSettlementUpload" parameterTypes="com.ibsplc.icargo.business.shared.defaults.fileupload.vo.FileUploadFilterVO" permissionCheck="false" />
+		<request-action actionName="addLockingForSettlementUpload" methodName="addLockingForSettlementUpload" parameterTypes="java.lang.String" permissionCheck="false" />
+
+		<request-action actionName="reImportPABuiltMailbagsToMRA" methodName="reImportPABuiltMailbagsToMRA" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO" permissionCheck="false" />
+		<request-action actionName="findMailbagsForPABuiltUpdate" methodName="findMailbagsForPABuiltUpdate" parameterTypes="com.ibsplc.icargo.business.mail.operations.vo.MailbagVO" permissionCheck="false" />
+		<request-action actionName="checkForRejectionMailbags" methodName="checkForRejectionMailbags" parameterTypes="java.lang.String,com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicVO" permissionCheck="false" />	
+		<request-action actionName="generatePASSFile" methodName="generatePASSFile" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.GeneratePASSFilterVO" permissionCheck="false" />	        
+        <request-action actionName="findBillingType" methodName="findBillingType" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingScheduleFilterVO,int" permissionCheck="false" />
+		<request-action actionName="saveBillingSchedulemaster" methodName="saveBillingSchedulemaster" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingScheduleDetailsVO" permissionCheck="false" />
+		<request-action actionName="validateBillingSchedulemaster" methodName="validateBillingSchedulemaster" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingScheduleDetailsVO" permissionCheck="false" />
+		<request-action actionName="findPASSFileNames" methodName="findPASSFileNames" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpabilling.vo.FileNameLovVO" permissionCheck="false" />
+	    <request-action actionName="generateInvoiceJobScheduler" methodName="generateInvoiceJobScheduler" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="generatePASSFileJobScheduler" methodName="generatePASSFileJobScheduler" parameterTypes="java.lang.String" permissionCheck="false" />
+       	<request-action actionName="listPaymentBatchDetails" methodName="listPaymentBatchDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.receivablemanagement.vo.PaymentBatchFilterVO" permissionCheck="false" />		
+		<request-action actionName="uploadPaymentBatchDetail" methodName="uploadPaymentBatchDetail" parameterTypes="com.ibsplc.icargo.business.mail.mra.receivablemanagement.vo.PaymentBatchFilterVO,com.ibsplc.icargo.business.cra.defaults.vo.InvoiceTransactionLogVO" permissionCheck="false" />
+		<request-action actionName="findSettlementBatches" methodName="findSettlementBatches" parameterTypes="com.ibsplc.icargo.business.mail.mra.receivablemanagement.vo.PaymentBatchFilterVO" permissionCheck="false" />			
+        <request-action actionName="findSettlementBatchDetails" methodName="findSettlementBatchDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.receivablemanagement.vo.MailSettlementBatchFilterVO" permissionCheck="false" />						
+		 <request-action actionName="saveAdvancePaymentDetails" methodName="saveAdvancePaymentDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.receivablemanagement.vo.PaymentBatchDetailsVO" permissionCheck="false" />
+		<request-action actionName="findGPASettlementBatchUploadFileCount" methodName="findGPASettlementBatchUploadFileCount" parameterTypes="com.ibsplc.icargo.business.mail.mra.receivablemanagement.vo.PaymentBatchFilterVO" permissionCheck="false" />
+         <request-action actionName="deletePaymentBatchAttachment" methodName="deletePaymentBatchAttachment" parameterTypes="com.ibsplc.icargo.business.mail.mra.receivablemanagement.vo.PaymentBatchDetailsVO" permissionCheck="false" />
+         <request-action actionName="deletePaymentBatch" methodName="deletePaymentBatch" parameterTypes="com.ibsplc.icargo.business.mail.mra.receivablemanagement.vo.PaymentBatchDetailsVO" permissionCheck="false" />
+		<request-action actionName="mraBatchSettlementWorkerJob" methodName="mraBatchSettlementWorkerJob" parameterTypes="java.lang.String" permissionCheck="false" />
+		<request-action actionName="updateBatchAmount" methodName="updateBatchAmount" parameterTypes="com.ibsplc.icargo.business.mail.mra.receivablemanagement.vo.PaymentBatchDetailsVO" permissionCheck="false" />
+		<request-action actionName="clearBatchDetails" methodName="clearBatchDetails" parameterTypes="com.ibsplc.icargo.business.mail.mra.receivablemanagement.vo.PaymentBatchDetailsVO" permissionCheck="false" />
+		<request-action actionName="processInvoicFileFromJob" methodName="processInvoicFileFromJob" parameterTypes="com.ibsplc.icargo.business.mail.mra.gpareporting.vo.InvoicVO" permissionCheck="false" />
+		<request-action actionName="updateInvoicProcessingStatusFromJob" methodName="updateInvoicProcessingStatusFromJob" parameterTypes="java.lang.String" permissionCheck="false" />
+<request-action actionName="importMailProvisionalRateData" methodName="importMailProvisionalRateData" parameterTypes="java.util.Collection" permissionCheck="false" />
+<request-action actionName="changeEnddate" methodName="changeEnddate" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />
+<request-action actionName="calculateProvisionalRate" methodName="calculateProvisionalRate" parameterTypes="java.lang.Long" permissionCheck="false" />
+<request-action actionName="changeBillingMatrixStatusUpdate" methodName="changeBillingMatrixStatusUpdate" parameterTypes="com.ibsplc.icargo.business.mail.mra.defaults.vo.BillingMatrixFilterVO,java.lang.String" permissionCheck="false" />
+<request-action actionName="autoMCALock" methodName="autoMCALock" parameterTypes="java.lang.String" permissionCheck="false" />
+</submodule-mapping>
+
+    </url-mapping>
+  </request-mappings>

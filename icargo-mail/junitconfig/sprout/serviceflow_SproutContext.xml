@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+	xsi:schemaLocation="
+           	http://www.springframework.org/schema/beans 
+           		http://www.springframework.org/schema/beans/spring-beans.xsd
+           	http://www.springframework.org/schema/webflow-config 
+           		http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.3.xsd">
+
+				
+				
+	<bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/> 
+
+	
+	<!--		Executes flows: the central entry point -->
+	<!--		into the Spring Web Flow system-->
+
+	<webflow:flow-executor id="serviceFlowExecutor" flow-registry="serviceFlowRegistry"/>
+
+	<!-- The registry of executable flow definitions -->
+	<!--<webflow:flow-registry id="serviceFlowRegistry"
+		flow-builder-services="ibsFlowBuilderServices" base-path="classpath*:">
+		<webflow:flow-location-pattern value="com/ibsplc/**/*_Flow.xml" />
+	</webflow:flow-registry>-->
+	
+	 <webflow:flow-registry id="serviceFlowRegistry"
+		flow-builder-services="ibsFlowBuilderServices">
+		<webflow:flow-location-pattern value="file:${service.properties}/sprout/com/ibsplc/**/*_Flow.xml" />
+	</webflow:flow-registry>
+
+	<webflow:flow-builder-services id="ibsFlowBuilderServices"
+		view-factory-creator="viewFactoryCreator" />
+	<bean id="viewFactoryCreator" class="com.ibsplc.sprout.multitenant.flow.view.EmptyViewFactoryCreator" />
+
+</beans>

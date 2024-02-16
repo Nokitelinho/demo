@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<command-mappings xmlns="http://www.ibsplc.com/icargo/command/mappings" product="mail" subproduct="mra">
+
+
+	<!--Added By shivjith for Generate Outward Billing Invoice Starts -->
+
+	<screen name="mailtracking.mra.airlinebilling.outward.generateinvoice" id="mailtracking.mra.airlinebilling.outward.generateinvoice">
+
+		<action name="mailtracking.mra.airlinebilling.outward.generateinvoice.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.generateoutwardbillinginvoice.ScreenloadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.outward.generateinvoice.geninv" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.generateoutwardbillinginvoice.GenerateInvoiceCommand" order="1"/>
+		</action>
+
+	</screen>
+
+	<!--Added By shivjith for Generate Outward billing invoice ends -->
+
+	<!--Added By Shivjith For Outward Billing reports Starts -->
+
+	<screen name="mailtracking.mra.airlinebilling.outward.reports" id="mailtracking.mra.airlinebilling.outward.reports">
+
+		<action name="mailtracking.mra.airlinebilling.outward.reports.onScreenLoad">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.report.ScreenloadCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.airlinebilling.outward.reports.genInvSmyClrPrd">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.report.InvoiceClearancePeriodPrintCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.airlinebilling.outward.reports.genInvSmyArl">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.report.InvoiceByAirlinePrintCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.outward.reports.genOutwardInvoice">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.report.OutwardBillingInvoicePrintCommand" order="1"/>
+		</action>
+
+		<!--added for OutwardReport  by  Karthikeyan starts-->
+
+		<action name="mailtracking.mra.airlinebilling.outward.report.invoicedetailsreportbyclrprd">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.report.InvoiceByClrPrdPrintCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.airlinebilling.outward.report.invoicedetailsreportbyairline">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.report.InvoiceDtlByAirlinePrintCommand" order="1"/>
+		</action>
+
+		<!--added for OutwardReport  by  Karthikeyan ends-->
+
+		<!--Added By Ruby For Outward Rejection Memo Report Starts -->
+
+		<action name="mailtracking.mra.airlinebilling.outward.printoutwardrejectionmemo">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.report.OutwardRejectionMemoPrintCommand" order="1"/>
+		</action>
+
+
+		<!--Added By Ruby For Outward Rejection Memo Report Ends -->
+
+
+
+	</screen>
+
+	<!--Added By Shivjith For Outward Billing reports ends -->
+
+	<!--  Added by A-3434 for ListForm-1 starts -->
+
+	<screen name="mailtracking.mra.airlinebilling.outward.listform1" id="mailtracking.mra.airlinebilling.outward.listform1">
+
+		<action name="mailtracking.mra.airlinebilling.outward.listform1.onScreenLoad">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.listformone.ScreenLoadCommand" order="1"/>
+		</action>
+
+		<action name="mra.airlinebilling.outward.listformones">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.listformone.ListCommand" order="1"/>
+		</action>
+
+		<action name="mra.airlinebilling.outward.clearformones">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.listformone.ClearCommand" order="1"/>
+		</action>
+
+		<action name="mra.airlinebilling.outward.viewformone">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.listformone.ViewCommand" order="1"/>
+		</action>
+
+		<action name="mra.airlinebilling.outward.closeformones">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.listformone.CloseCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.airlinebilling.outward.populateairlinenameinlistformone">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.listformone.PopulateAirlineNoCommand" order="1"/>
+		</action>
+
+
+	</screen>
+
+	<!--  Added by A-3434 for ListForm-1 ends -->
+	<!--Added By A-3434 for view Form2 Starts -->
+
+
+	<screen name="mailtracking.mra.airlinebilling.outward.viewform2" id="mailtracking.mra.airlinebilling.outward.viewform2">
+
+		<action name="mailtracking.mra.airlinebilling.outward.screenloadviewform2" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.viewformtwo.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mra.airlinebilling.outward.displayviewformtwo" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.viewformtwo.DetailsCommand" order="1"/>
+		</action>
+		<action name="mra.airlinebilling.outward.clearviewformtwo" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.viewformtwo.ClearCommand" order="1"/>
+		</action>
+		<action name="mra.airlinebilling.outward.closeviewformtwo" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.viewformtwo.CloseCommand" order="1"/>
+		</action>
+		<action name="mra.airlinebilling.outward.printviewformtwo" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.report.ViewFormTwoPrintCommand" order="1"/>
+		</action>
+
+
+	</screen>
+
+	<!--Added By A-3456  starts-->
+			<screen name="mailtracking.mra.airlinebilling.outward.viewform1" id="mailtracking.mra.airlinebilling.outward.viewform1">
+
+				<action name="mailtracking.mra.airlinebilling.outward.screenloadviewform1" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.viewformone.ScreenLoadCommand" order="1"/>
+				</action>
+				<action name="mailtracking.mra.airlinebilling.outward.viewformone.list" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.viewformone.DetailsCommand" order="1"/>
+				</action>
+				<action name="mailtracking.mra.airlinebilling.outward.viewformone.clear" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.viewformone.ClearCommand" order="1"/>
+				</action>
+				<action name="mailtracking.mra.airlinebilling.outward.ajaxscreenloadviewform1">
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.viewformone.PopulateAirlineNumberCommand" order="1"/>
+				</action>
+				
+	<!--Added By A-3456 ends-->
+
+	<!--Added By A-3434 for listFormOne-->
+
+				<action name="mailtracking.mra.airlinebilling.outward.viewformone.close" >
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.airlinebilling.outward.viewformone.CloseCommand" order="1"/>
+				</action>
+
+		</screen>
+
+
+</command-mappings>

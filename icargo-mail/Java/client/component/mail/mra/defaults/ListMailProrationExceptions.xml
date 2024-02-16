@@ -1,0 +1,604 @@
+<components screenId="mailtracking.mra.defaults.listmailprorationexceptions" xmlns="http://www.ibsplc.com/icargo/components-details">
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_Exception" name="Exp Combo">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CMB_GENCOMBO_BIG</value>
+		</attribute>
+		<attribute>
+		<name>styleclass-id</name>
+		<value>ST_CMB_BIG</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.exceptions.tooltip</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_FltNo" name="flightCode">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_FLIGHT_NUMBER</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+	</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_FltDate" name="fltDate">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.fltDate.tooltip</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+	</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_Origin" name="Origin">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+		<name>lov</name>
+		<value>true</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.origin.tooltip</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_Destination" name="Destn">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+		<name>lov</name>
+		<value>true</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.destn.tooltip</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_DespatchNumber" name="Despatch Number">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.despatchnumber.tooltip</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_Status" name="Status Combo">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.status.tooltip</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_Assignee" name="Assignee">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>details</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.assignee.tooltip</value>
+		</attribute>
+<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_FromDate" name="fromDate">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.fromDate.tooltip</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+	</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_ToDate" name="toDate">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+		<name>important</name>
+		<value>true</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+		<value>true</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.toDate.tooltip</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+</component>
+<component id="CMP_MRA_Proration_ListProrationExceptions_GPACode" name="GPACode">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>formatter-id</name>
+		<value>FRM_RESTRICT_ALPHANUMERIC</value>
+	</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.GPACode.tooltip</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>details</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+	</component>
+<component id="CMP_MRA_Proration_ListProrationExceptions_List" name="List Button">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.list.tootip</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_Clear" name="Clear Button">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.clear.tooltip</value>
+		</attribute>
+</component>
+<component id="CMP_MRA_Proration_ListProrationExceptions_Print" name="Print">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON</value>
+		</attribute>
+
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.print.tooltip</value>
+		</attribute>
+</component>
+<component id="CMP_MRA_Proration_ListProrationExceptions_Enquiry" name="Enquiry">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_LONG</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.enquiry.tooltip</value>
+		</attribute>
+</component>
+<component id="CMP_MRA_Proration_ListProrationExceptions_Routing" name="Routing">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.routing.tooltip</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_MaintainPF" name="Maintain">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_LONG</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.maintianPF.tooltip</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_ManualPro" name="Manual">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_LONG</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.manualPro.tooltip</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_Prorate" name="Prorate">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>detail</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.Prorate.tooltip</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_Save" name="Save">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.save.tooltip</value>
+		</attribute>
+</component>
+
+<component id="CMP_MRA_Proration_ListProrationExceptions_Close" name="Close">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.close.tooltip</value>
+		</attribute>
+</component>
+<component id="CMP_MRA_Proration_ListProrationExceptions_Asignee_Filter" name="Assignee">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>details</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.assignee.tooltip</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+</component>
+<component id="CMP_MRA_Proration_ListProrationExp_AssignedTime" name="assignedTime">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.assignedTime.tooltip</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+</component>
+	<component id="CMP_MRA_Proration_ListProrationExp_OOE" name="Origin OE">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+
+
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mra.proration.listprorationexceptions.tooltip.orgoe</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	</component>
+	<component id="CMP_MRA_Proration_ListProrationExp_DOE" name="Origin OE">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mra.proration.listprorationexceptions.tooltip.destoe</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	</component>
+	<component id="CMP_MRA_Proration_ListProrationExp_category" name="Category">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CMB_GENCOMBO</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mra.proration.listprorationexceptions.tooltip.category</value>
+			</attribute>
+			<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	   </component>
+	<component id="CMP_MRA_Proration_ListProrationExp_YEAR" name="Year">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.tooltip.year</value>
+	</attribute>
+	</component>
+	<component id="CMP_MRA_Proration_ListProrationExp_DSN" name="RSN">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.tooltip.dsn</value>
+	</attribute>
+	</component>
+	 <component id="CMP_MRA_Proration_ListProrationExp_RSN" name="RSN">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.rsn</value>
+	</attribute>
+	</component>
+	 <component id="CMP_MRA_Proration_ListProrationExp_HNI" name="HNI">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.tooltip.hni</value>
+	</attribute>
+	</component>
+	 <component id="CMP_MRA_Proration_ListProrationExp_RI" name="RI">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.tooltip.ri</value>
+	</attribute>
+	</component>
+	<component id="CMP_MRA_Proration_ListProrationExp_SUBCLASS" name="SubClass Filter">
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_VERY_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mra.proration.listprorationexceptions.tooltip.subclass</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	</component>
+	<component id="CMP_MRA_Proration_ListProrationExp_MAILBAGID" name="MailbagId">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_EXTRA_LONG</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mra.proration.listprorationexceptions.tooltip.mailbagId</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>false</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_CAPS</value>
+		</attribute>
+	</component>
+	<component id="CMP_MRA_Proration_ListProrationExceptions_Void" name="Void">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.void.tooltip</value>
+		</attribute>
+	</component>
+	<component id="CMP_MRA_Proration_ListProrationExceptions_ExpStatus" name="Status Combo">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.status.tooltip</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+		</attribute>
+	</component>
+	<component id="CMP_MRA_Proration_ListProrationExp_CSGDOCNUM" name="CsgDocNum">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_EXTRA_LONG</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mra.proration.listprorationexceptions.tooltip.csgdocnum</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>false</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_CAPS</value>
+		</attribute>			
+	</component>
+
+      <component id="CMP_MRA_Proration_ListProrationExceptions_ModifyRoute" name="ModifyRoute">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_LONG</value>
+		</attribute>
+
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.proration.listprorationexceptions.btn.modifyroute.tooltip</value>
+		</attribute>
+      </component>	
+</components>

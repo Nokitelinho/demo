@@ -1,0 +1,1217 @@
+<services>
+	<service id="SubmitEntrySummaryDeclaration"
+		namespace="http://www.hmrc.gov.uk/ics/ens"
+		name="ICS_EntrySummaryDeclaration_Service"
+		url="http://ica1144:8080/ics_interface/webservices/SubmitEntrySummaryDeclaration"
+		class="uk.gov.hmrc.ics.ens.SubmitEntrySummaryDeclarationPortType">
+		<operation id="sendMessage"
+			name="processMessage"
+			params="com.ibsplc.icargo.business.msgbroker.message.types.ics.ie315.CC315A"
+			mapper = "com.ibsplc.icargo.business.msgbroker.message.webservice.mapper.ICSRequestMapper">
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+				<param key="action" value ="UsernameToken" />
+				<param key="passwordType" value ="PasswordText" />
+				<param key="user" value ="ABC12dffsdww12AVCB" />
+				<param key="password" value ="Password" />
+				<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+		 	</interceptor-out>
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.IRMarkBinarySecurityTokenOutInterseptor">
+				<param key="canonicalizeAlgorithm" value ="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments" />
+				<param key="valueType" value ="http://www.hmrc.gov.uk#MarkToken" />
+		 	</interceptor-out>
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.HMRCMarkHeaderOutInterseptor">
+				<param key="vendorName" value ="IBS" />
+				<param key="vendorName_uri" value ="http://ibsplc.com/" />
+				<param key="vendorId" value ="1903" />
+				<param key="vendorProduct" value ="iCargo" />
+				<param key="vendorProduct_version" value ="iCO_4.1.2.3" />
+				<param key="serviceId" value ="1234" />
+				<param key="serviceMessageType" value ="HMRC-ICS-IE315-DIRECT" />
+				<param key="serviceReference" value ="1234-Reference" />
+			</interceptor-out>
+
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="false" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="MSGBROKER_WEBSERVICE" />
+		 	</interceptor-out>
+
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="MSGBROKER_WEBSERVICE" />
+		 	</interceptor-in>
+			<properties>
+				<property name = "attempts" value = "10"/>
+				<property name = "source-appname" value = "iCargo"/>
+			</properties>
+			<faults>
+				<fault type="ServerFault"
+				errorcode="msgbroker.message.webservice.serverfault"/>
+				<fault type="InvalidRequestFault"
+				errorcode="msgbroker.message.webservice.InvalidRequestFault"/>
+			</faults>
+		</operation>
+	</service>
+	
+	<service id="AmendEntrySummaryDeclaration"
+		namespace="http://www.hmrc.gov.uk/ics/ens"
+		name="ICS_AmendEntrySummaryDeclaration_Service"
+		url="http://ica1144:8080/ics_interface/webservices/AmendEntrySummaryDeclaration"
+		class="uk.gov.hmrc.ics.ams.AmendEntrySummaryDeclarationPortType">
+		<operation id="sendMessage"
+			name="processMessage"
+			params="com.ibsplc.icargo.business.msgbroker.message.types.ics.ie313.CC313A"
+			mapper = "com.ibsplc.icargo.business.msgbroker.message.webservice.mapper.ICSRequestMapper">
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+				<param key="action" value ="UsernameToken" />
+				<param key="passwordType" value ="PasswordText" />
+				<param key="user" value ="ABC12dffsdww12AVCB" />
+				<param key="password" value ="Password" />
+				<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+		 	</interceptor-out>
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.IRMarkBinarySecurityTokenOutInterseptor">
+				<param key="canonicalizeAlgorithm" value ="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments" />
+				<param key="valueType" value ="http://www.hmrc.gov.uk#MarkToken" />
+		 	</interceptor-out>
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.HMRCMarkHeaderOutInterseptor">
+				<param key="vendorName" value ="IBS" />
+				<param key="vendorName_uri" value ="http://ibsplc.com/" />
+				<param key="vendorId" value ="1903" />
+				<param key="vendorProduct" value ="iCargo" />
+				<param key="vendorProduct_version" value ="iCO_4.1.2.3" />
+				<param key="serviceId" value ="1234" />
+				<param key="serviceMessageType" value ="HMRC-ICS-IE315-DIRECT" />
+				<param key="serviceReference" value ="1234-Reference" />
+			</interceptor-out>
+
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="false" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="MSGBROKER_WEBSERVICE" />
+		 	</interceptor-out>
+
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="MSGBROKER_WEBSERVICE" />
+		 	</interceptor-in>
+			<properties>
+				<property name = "attempts" value = "10"/>
+				<property name = "source-appname" value = "iCargo"/>
+			</properties>
+			<faults>
+				<fault type="ServerFault"
+				errorcode="msgbroker.message.webservice.serverfault"/>
+				<fault type="InvalidRequestFault"
+				errorcode="msgbroker.message.webservice.InvalidRequestFault"/>
+			</faults>
+		</operation>
+	</service>
+	
+	
+	<service id="SubmitArrivalNotification"
+		namespace="http://www.hmrc.gov.uk/ics/ens"
+		name="ICS_ArrivalNotification_Service"
+		url="http://ica1144:8080/ics_interface/webservices/SubmitArrivalNotification"
+		class="uk.gov.hmrc.ics.san.SubmitArrivalNotificationPortType">
+		<operation id="sendMessage"
+			name="processMessage"
+			params="com.ibsplc.icargo.business.msgbroker.message.types.ics.ie347.UK347A"
+			mapper = "com.ibsplc.icargo.business.msgbroker.message.webservice.mapper.ICSRequestMapper">
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+				<param key="action" value ="UsernameToken" />
+				<param key="passwordType" value ="PasswordText" />
+				<param key="user" value ="ABC12dffsdww12AVCB" />
+				<param key="password" value ="Password" />
+				<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+		 	</interceptor-out>
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.IRMarkBinarySecurityTokenOutInterseptor">
+				<param key="canonicalizeAlgorithm" value ="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments" />
+				<param key="valueType" value ="http://www.hmrc.gov.uk#MarkToken" />
+		 	</interceptor-out>
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.HMRCMarkHeaderOutInterseptor">
+				<param key="vendorName" value ="IBS" />
+				<param key="vendorName_uri" value ="http://ibsplc.com/" />
+				<param key="vendorId" value ="1903" />
+				<param key="vendorProduct" value ="iCargo" />
+				<param key="vendorProduct_version" value ="iCO_4.1.2.3" />
+				<param key="serviceId" value ="1234" />
+				<param key="serviceMessageType" value ="HMRC-ICS-IE315-DIRECT" />
+				<param key="serviceReference" value ="1234-Reference" />
+			</interceptor-out>
+
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="false" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="MSGBROKER_WEBSERVICE" />
+		 	</interceptor-out>
+
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="MSGBROKER_WEBSERVICE" />
+		 	</interceptor-in>
+			<properties>
+				<property name = "attempts" value = "10"/>
+				<property name = "source-appname" value = "iCargo"/>
+			</properties>
+			<faults>
+				<fault type="ServerFault"
+				errorcode="msgbroker.message.webservice.serverfault"/>
+				<fault type="InvalidRequestFault"
+				errorcode="msgbroker.message.webservice.InvalidRequestFault"/>
+			</faults>
+		</operation>
+	</service>
+	
+	<service id="SubmitDiversionRequest"
+		namespace="http://www.hmrc.gov.uk/ics/ens"
+		name="ICS_DiversionRequest_Service"
+		url="http://ica1144:8080/ics_interface/webservices/SubmitDiversionRequest"
+		class="uk.gov.hmrc.ics.sdr.SubmitDiversionRequestPortType">
+		<operation id="sendMessage"
+			name="processMessage"
+			params="com.ibsplc.icargo.business.msgbroker.message.types.ics.ie323.CC323A"
+			mapper = "com.ibsplc.icargo.business.msgbroker.message.webservice.mapper.ICSRequestMapper">
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+				<param key="action" value ="UsernameToken" />
+				<param key="passwordType" value ="PasswordText" />
+				<param key="user" value ="ABC12dffsdww12AVCB" />
+				<param key="password" value ="Password" />
+				<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+		 	</interceptor-out>
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.IRMarkBinarySecurityTokenOutInterseptor">
+				<param key="canonicalizeAlgorithm" value ="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments" />
+				<param key="valueType" value ="http://www.hmrc.gov.uk#MarkToken" />
+		 	</interceptor-out>
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.HMRCMarkHeaderOutInterseptor">
+				<param key="vendorName" value ="IBS" />
+				<param key="vendorName_uri" value ="http://ibsplc.com/" />
+				<param key="vendorId" value ="1903" />
+				<param key="vendorProduct" value ="iCargo" />
+				<param key="vendorProduct_version" value ="iCO_4.1.2.3" />
+				<param key="serviceId" value ="1234" />
+				<param key="serviceMessageType" value ="HMRC-ICS-IE315-DIRECT" />
+				<param key="serviceReference" value ="1234-Reference" />
+			</interceptor-out>
+
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="false" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="MSGBROKER_WEBSERVICE" />
+		 	</interceptor-out>
+
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="MSGBROKER_WEBSERVICE" />
+		 	</interceptor-in>
+			<properties>
+				<property name = "attempts" value = "10"/>
+				<property name = "source-appname" value = "iCargo"/>
+			</properties>
+			<faults>
+				<fault type="ServerFault"
+				errorcode="msgbroker.message.webservice.serverfault"/>
+				<fault type="InvalidRequestFault"
+				errorcode="msgbroker.message.webservice.InvalidRequestFault"/>
+			</faults>
+		</operation>
+	</service>
+	<!-- For LHPOC # ICRD-6378 A-2147 Starts -->
+	<!-- Removed unused Services getShipmentService, storeShipmenService, HouseWayBillService1_0 by A-5198 as part of ICRD-91119 -->
+	
+	<!-- For LHPOC # ICRD-6378 A-2147 Ends -->
+	
+	<!-- Added by A-2871 For Service Recovery Starts -->
+	<service id="ServiceRecovery_1_0-service0"
+		namespace="http://www.ibsplc.com/icargo/services/HandlingMilestoneService/2013/07/16_01"
+		name="HandlingMilestoneService"
+		url="http://localhost:8080/HandlingTimes/webservices/HandlingMilestoneService" 
+		class="com.ibsplc.icargo.services.handlingmilestoneservice._2013._07._16_01.HandlingMilestoneService">
+		<operation id="getHandlingTimes" name="getHandlingTimes" 
+		params="com.ibsplc.icargo.services.types.handlingmilestoneservice._2013._07._16_01.GetHandlingTimesRequestType"
+		mapper = "com.ibsplc.icargo.business.qualitymanagement.defaults.servicerecovery.lh.webservice.mapper.GetHandlingTimesMapper">
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+			</interceptor-out>
+
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+		 	</interceptor-in>
+		</operation>
+		<operation id="getTransportPlan" name="getTransportPlan" 
+		params="com.ibsplc.icargo.services.types.handlingmilestoneservice._2013._07._16_01.GetTransportPlanRequestType"
+		mapper = "com.ibsplc.icargo.business.qualitymanagement.defaults.servicerecovery.lh.webservice.mapper.GetTransportPlanMapper">
+		
+		<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+			</interceptor-out>
+
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+		 	</interceptor-in>
+			
+		</operation>
+		
+	</service>
+	<!-- Added by A-2871 For Service Recovery Ends -->
+	
+	<!-- Added by A-5183 For ICRD-42572 Starts -->		
+	<service id="FlightLoadDetails"
+                                namespace="http://www.ibsplc.com/icargo/services/OperationsFltHandlingExtService/external/2013/08/05_01"
+                                name="FlightLoadDetails"
+								url="jms:jndi:com.ibsplc.icargo.operations.flthandling.external.ws.wab.request?replyToName=com.ibsplc.icargo.operations.flthandling.external.ws.wab.response&amp;jndiInitialContextFactory=weblogic.jndi.WLInitialContextFactory&amp;jndiConnectionFactoryName=NonXAConnectionFactory&amp;jndiURL=t3://localhost:7001" 
+                                class="com.ibsplc.icargo.services.operationsflthandlingextservice.external._2013._08._05_01.OperationsFltHandlingExternalService">
+		<operation id="retrieveLoadDetailsForFlight" name="retrieveLoadDetailsForFlight" 
+		params="com.ibsplc.icargo.business.operations.flthandling.types.external.wab.LoadDetailsForFlightRequestType"
+		mapper = "com.ibsplc.icargo.business.operations.flthandling.wsproxy.dws.FlightFinalisePendingMapper">
+		<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+			</interceptor-out>
+			
+		<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+		 	</interceptor-in>
+		</operation>
+		<operation id="lockAndUpdateLoadDataForULD" name="lockAndUpdateLoadDataForULD" 
+		params="com.ibsplc.icargo.business.operations.flthandling.types.external.wab.UpdateLoadDataForULDRequestType"
+		mapper = "com.ibsplc.icargo.business.operations.flthandling.wsproxy.uldtag.UpdateLoadDataForULDMapper"> 
+		
+		<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+			</interceptor-out>
+			
+		<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+		 	</interceptor-in>
+		</operation>	
+		
+	</service>		
+	<!-- Added by A-5183 For ICRD-42572 Ends -->
+	
+	<!-- Added by A-5265 For ICRD-45096 Starts -->
+	<service id="EvaluationControllerService_1_0_0-service0"
+                        namespace="http://lhsystems.com/wsdl/esb/finance/evaluationcontrollerservice/"
+                        name="EvaluationControllerService"
+                        url="http://ica3114:8088/evaluationControllerServiceSoapBinding?WSDL" 
+                        class="com.ibsplc.icargo.services.operations.shipment.external.evaluationcontrollerservice.EvaluationControllerService">
+                        <operation id="calculateCharges" name="evaluateRateAndPrice" 
+                        params="com.ibsplc.icargo.services.operations.shipment.external.evaluationcontrollerservice.EvaluateRateAndPrice"
+                        mapper = "com.ibsplc.icargo.business.operations.shipment.webservices.lh.mapper.CalculateChargesMapper">
+                                    
+						<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+									<param key="canLog" value ="true" />
+									<param key="prettyOutput" value ="true" />
+									<param key="processMessage" value ="true" />
+									<param key="processFault" value ="false" />
+									<param key="loggerName" value="PORTAL_WEBSERVICE" />
+						</interceptor-out>
+
+						<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+									<param key="canLog" value ="true" />
+									<param key="prettyOutput" value ="true" />
+									<param key="processMessage" value ="true" />
+									<param key="processFault" value ="false" />
+									<param key="loggerName" value="PORTAL_WEBSERVICE" />
+					   </interceptor-in>
+                        </operation>
+                    <operation id="calculateOtherCharges" name="evaluateRateAndPrice" 
+                        params="com.ibsplc.icargo.services.operations.shipment.external.evaluationcontrollerservice.EvaluateRateAndPrice"
+                        mapper = "com.ibsplc.icargo.business.operations.shipment.webservices.lh.mapper.CalculateOtherChargesMapper">
+                        
+                        <interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+									<param key="canLog" value ="true" />
+									<param key="prettyOutput" value ="true" />
+									<param key="processMessage" value ="true" />
+									<param key="processFault" value ="false" />
+									<param key="loggerName" value="PORTAL_WEBSERVICE" />
+						</interceptor-out>
+
+						<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+									<param key="canLog" value ="true" />
+									<param key="prettyOutput" value ="true" />
+									<param key="processMessage" value ="true" />
+									<param key="processFault" value ="false" />
+									<param key="loggerName" value="PORTAL_WEBSERVICE" />
+					   </interceptor-in>
+                        </operation>  
+						<!--  Added by A-5867 for ICRD-145062 starts  -->
+						<operation id="calculateAllCharges" name="evaluateRateAndPrice" 
+							params="com.ibsplc.icargo.services.operations.shipment.external.evaluationcontrollerservice.EvaluateRateAndPrice"
+							mapper = "com.ibsplc.icargo.business.tariff.freight.webservices.lh.mapper.CalculateAllChargesMapper">						
+							<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+										<param key="canLog" value ="true" />
+										<param key="prettyOutput" value ="true" />
+										<param key="processMessage" value ="true" />
+										<param key="processFault" value ="false" />
+										<param key="loggerName" value="PORTAL_WEBSERVICE" />
+							</interceptor-out>
+							<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+										<param key="canLog" value ="true" />
+										<param key="prettyOutput" value ="true" />
+										<param key="processMessage" value ="true" />
+										<param key="processFault" value ="false" />
+										<param key="loggerName" value="PORTAL_WEBSERVICE" />
+						   </interceptor-in>
+						 </operation>
+						<!--  Added by A-5867 for ICRD-145062 end  -->						 
+            </service>
+	<!-- Added by A-5265 For ICRD-45096 Ends -->
+	
+	<!--  Added by A-5827 for ICRD-60981 starts  -->
+	<service id="saveBookingService"
+		namespace="http://www.ibsplc.com/icargo/services/MsgbrokerMessageService/standard/2013/05/v1"
+		name="MsgbrokerMessageService"
+		url="http://ica4008/icargo/webservices/standard/msgbroker/message" 
+		class="com.ibsplc.icargo.services.msgbroker.message.webservices.standard.MsgbrokerMessageService">
+		
+		
+		<operation id="saveBookingDetails" name="routeControlViaICX" 
+		params="com.ibsplc.icargo.business.msgbroker.message.types.standard.ICXRouterRequest"
+		mapper = "com.ibsplc.icargo.business.capacity.booking.wsproxy.mapper.BookingTypeMapper">
+		
+		<interceptor-out class="com.ibsplc.icargo.business.msgbroker.message.icx.HeaderInterceptor">		
+			<param key="tokenIdentifier" value ="ANONYMOUS" />					
+		</interceptor-out>			
+		<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+			<param key="action" value ="UsernameToken" />
+			<param key="passwordType" value ="PasswordText" />
+			<param key="user" value ="ICOADMIN" />
+			<param key="password" value ="weblogic" />
+			<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+		</interceptor-out>
+		
+		<properties>
+			<property name = "attempts" value = "10"/>
+			<property name = "source-appname" value = "iCargo"/>
+		</properties>
+		<faults>
+			<fault type="ServerFault"
+			errorcode="capacity.booking.serverfault"/>
+			</faults>
+		</operation>
+		
+	</service>
+	
+	<service id="LoadplanICXService"
+		namespace="http://www.ibsplc.com/icargo/services/OperationsFlthandlingService/standard/2013/10/11"
+		name="OperationsFltHandlingService"
+		url="http://ica3032/icargo/webservices/standard/operations/flthandling" 
+		class="com.ibsplc.icargo.services.operations.flthandling.webservices.standard.OperationsFltHandlingService">
+	
+		
+		<operation id="saveLoadplanDetails" name="saveLoadPlan" 
+		params="com.ibsplc.icargo.business.operations.flthandling.types.standard.LoadPlanDetailsType"
+		mapper = "com.ibsplc.icargo.business.msgbroker.message.icx.mapper.ICXTypeMapper">
+		
+		<interceptor-out class="com.ibsplc.icargo.business.msgbroker.message.icx.HeaderInterceptor">		
+			<param key="tokenIdentifier" value ="NONANONYMOUS" />
+			<param key="user" value ="ICOADMIN" />
+			<param key="password" value ="weblogic" />
+			<param key="companyCode" value ="IBS" />			
+		</interceptor-out>
+		<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+			<param key="action" value ="UsernameToken" />
+			<param key="passwordType" value ="PasswordText" />
+			<param key="user" value ="ICOADMIN" />
+			<param key="password" value ="weblogic" />
+			<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+		</interceptor-out>
+		
+		<properties>
+			<property name = "attempts" value = "10"/>
+			<property name = "source-appname" value = "iCargo"/>
+		</properties>
+		<faults>
+			<fault type="ServerFault"
+			errorcode="msgbroker.message.serverfault"/>
+			</faults>
+		</operation>
+		
+	</service>
+	
+	<service id="BookingICXService"
+		namespace="http://www.ibsplc.com/icargo/services/CapacityBookingService/2013/06/04_01"
+		name="CapacityBookingService"
+		url="http://ica3032/icargo/webservices/external/capacity/booking" 
+		class="com.ibsplc.icargo.services.capacity.booking.webservices.standard.CapacityBookingService">
+	
+		
+		<operation id="saveBookingDetails" name="saveBookingDetails" 
+		params="com.ibsplc.icargo.business.capacity.booking.types.standard.SaveBookingDetailsRequestType"
+		mapper = "com.ibsplc.icargo.business.msgbroker.message.icx.mapper.ICXTypeMapper">
+		
+		<interceptor-out class="com.ibsplc.icargo.business.msgbroker.message.icx.HeaderInterceptor">		
+			<param key="tokenIdentifier" value ="NONANONYMOUS" />
+			<param key="user" value ="ICOADMIN" />
+			<param key="password" value ="weblogic" />
+			<param key="companyCode" value ="IBS" />			
+		</interceptor-out>
+		<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+			<param key="action" value ="UsernameToken" />
+			<param key="passwordType" value ="PasswordText" />
+			<param key="user" value ="ICOADMIN" />
+			<param key="password" value ="weblogic" />
+			<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+		</interceptor-out>
+		
+		<properties>
+			<property name = "attempts" value = "10"/>
+			<property name = "source-appname" value = "iCargo"/>
+		</properties>
+		<faults>
+			<fault type="ServerFault"
+			errorcode="msgbroker.message.serverfault"/>
+			</faults>
+		</operation>	
+		
+	</service>	
+	
+	
+	<service id="AdminAccessService"
+		namespace="http://www.ibsplc.com/icargo/services/AdminAccessControlService/standard/2012/12/12_01"
+		name="AdminAccessService"
+		url="http://ica3032/icargo/webservices/external/AdminAccessControlServiceEnc" 
+		class="com.ibsplc.icargo.services.admin.accesscontrol.webservices.standard.AdminAccessControlServiceEnc">
+	
+		
+		<operation id="login" name="login" 
+		params="com.ibsplc.icargo.business.admin.accesscontrol.types.standard.LoginRequestType"
+		mapper = "com.ibsplc.icargo.business.msgbroker.message.icx.mapper.AdminAcessTypeMapper">
+			
+		<interceptor-out class="com.ibsplc.icargo.business.msgbroker.message.icx.HeaderInterceptor">		
+			<param key="tokenIdentifier" value ="ANONYMOUS" />					
+		</interceptor-out>
+		<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+			<param key="action" value ="UsernameToken" />
+			<param key="passwordType" value ="PasswordText" />
+			<param key="user" value ="ICOADMIN" />
+			<param key="password" value ="weblogic" />
+			<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+		</interceptor-out>
+		
+		<properties>
+			<property name = "attempts" value = "10"/>
+			<property name = "source-appname" value = "iCargo"/>
+		</properties>
+		<faults>
+			<fault type="ServerFault"
+			errorcode="admin.access.serverfault"/>
+			</faults>
+		</operation>		
+		
+	</service>
+	
+	<service id="saveLoadplanDetails"
+		namespace="http://www.ibsplc.com/icargo/services/MsgbrokerMessageService/standard/2013/05/v1"
+		name="MsgbrokerMessageService"
+		url="http://ica4008/icargo/webservices/standard/msgbroker/message" 
+		class="com.ibsplc.icargo.services.msgbroker.message.webservices.standard.MsgbrokerMessageService">
+		
+		
+		<operation id="saveLoadplanDetails" name="routeControlViaICX" 
+		params="com.ibsplc.icargo.business.msgbroker.message.types.standard.ICXRouterRequest"
+		mapper = "com.ibsplc.icargo.business.operations.flthandling.wsproxy.loadplan.LoadplanTypeMapper">
+		
+		<interceptor-out class="com.ibsplc.icargo.business.msgbroker.message.icx.HeaderInterceptor">		
+			<param key="tokenIdentifier" value ="ANONYMOUS" />					
+		</interceptor-out>			
+		<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+			<param key="action" value ="UsernameToken" />
+			<param key="passwordType" value ="PasswordText" />
+			<param key="user" value ="ICOADMIN" />
+			<param key="password" value ="weblogic" />
+			<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+		</interceptor-out>
+		
+		<properties>
+			<property name = "attempts" value = "10"/>
+			<property name = "source-appname" value = "iCargo"/>
+		</properties>
+		<faults>
+			<fault type="ServerFault"
+			errorcode="operations.flthandling.serverfault"/>
+			</faults>
+		</operation>
+		
+	</service>	
+	<!--  Added by A-5827 for ICRD-60981 ends -->
+	
+	<service id="getEpouchDataDetails"
+				namespace="http://www.ibsplc.com/icargo/services/OperationsShipmentService/standard"
+				name="OperationsShipmentService_01"
+				url="http://localhost:7001/icargo/webservices/external/operations/shipment/standard" 
+				class="com.ibsplc.icargo.services.operations.shipment.webservices.standard.OperationsShipmentService">
+			
+				
+				<operation id="getEpouchDataDetails" name="getEpouchDataDetails" 
+				params="com.ibsplc.icargo.business.operations.shipment.types.standard.EpouchDataRequestType"
+				mapper = "com.ibsplc.icargo.business.msgbroker.message.icx.mapper.ICXEpouchFetchMapper">
+				
+				<interceptor-out class="com.ibsplc.icargo.business.msgbroker.message.icx.HeaderInterceptor">		
+					<param key="tokenIdentifier" value ="NONANONYMOUS" />
+					<param key="user" value ="ICOADMIN" />
+					<param key="password" value ="weblogic" />
+					<param key="companyCode" value ="IBS" />			
+				</interceptor-out>
+				<!-- interceptor-out class="com.ibsplc.icargo.business.msgbroker.message.icx.HeaderInterceptor">		
+						<param key="tokenIdentifier" value ="ANONYMOUS" />					
+				</interceptor-out -->
+				<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+					<param key="action" value ="UsernameToken" />
+					<param key="passwordType" value ="PasswordText" />
+					<param key="user" value ="ICOADMIN" />
+					<param key="password" value ="weblogic" />
+					<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+				</interceptor-out>
+				
+				<properties>
+					<property name = "attempts" value = "10"/>
+					<property name = "source-appname" value = "iCargo"/>
+				</properties>
+				<faults>
+					<fault type="ServerFault"
+					errorcode="msgbroker.message.serverfault"/>
+					</faults>
+				</operation>		
+				
+	</service>
+	
+	<service id="uploadEpouchDataDetails"
+					namespace="http://www.ibsplc.com/icargo/services/OperationsShipmentService/standard"
+					name="OperationsShipmentService"
+					url="http://localhost:7001/icargo/webservices/external/operations/shipment/standard" 
+					class="com.ibsplc.icargo.services.operations.shipment.webservices.standard.OperationsShipmentService">
+				
+					
+					<operation id="uploadEpouchDataDetails" name="uploadEpouchDataDetails" 
+					params="com.ibsplc.icargo.business.operations.shipment.types.standard.EpouchDataResponseType"
+					mapper = "com.ibsplc.icargo.business.msgbroker.message.icx.mapper.ICXEpouchUploadMapper">
+					
+					<interceptor-out class="com.ibsplc.icargo.business.msgbroker.message.icx.HeaderInterceptor">		
+						<param key="tokenIdentifier" value ="NONANONYMOUS" />
+						<param key="user" value ="ICOADMIN" />
+						<param key="password" value ="weblogic" />
+						<param key="companyCode" value ="IBS" />			
+					</interceptor-out>
+					<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+						<param key="action" value ="UsernameToken" />
+						<param key="passwordType" value ="PasswordText" />
+						<param key="user" value ="ICOADMIN" />
+						<param key="password" value ="weblogic" />
+						<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+					</interceptor-out>
+					
+					<properties>
+						<property name = "attempts" value = "10"/>
+						<property name = "source-appname" value = "iCargo"/>
+					</properties>
+					<faults>
+						<fault type="ServerFault"
+						errorcode="msgbroker.message.serverfault"/>
+						</faults>
+					</operation>		
+					
+	</service>
+		
+	<!-- Added by A-5220 for ICRD-46437 starts -->
+				
+	<service id="uploadExchangeRateRequest"
+					namespace="http://thy.com/FI/GL/DistributionOfExchangeRates_0059"
+					name="SOS_ExchangeRatesDistributionTKOtherSystems"
+					url="http://localhost:8088/mockSOS_ExchangeRatesDistributionTKOtherSystemsBinding" 
+					class="com.thy.osb.comis.currency.SOSExchangeRatesDistributionTKOtherSystems">
+
+					<operation id="sendMessage"
+							name="sosExchangeRatesDistributionTKOtherSystems" 
+							params="com.thy.osb.comis.currency.MTExchangeRatesReqToECC"
+							mapper = "com.ibsplc.icargo.business.shared.currency.webservices.tk.TKExchangeRateMapper">
+							
+						<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">		
+							<param key="canLog" value ="true" />
+							<param key="prettyOutput" value ="true" />
+							<param key="processMessage" value ="false" />
+							<param key="processFault" value ="false" />
+							<param key="loggerName" value="PORTAL_WEBSERVICE" />
+						</interceptor-out>
+						<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+							<param key="canLog" value ="true" />
+							<param key="prettyOutput" value ="true" />
+							<param key="processMessage" value ="false" />
+							<param key="processFault" value ="false" />
+							<param key="loggerName" value="PORTAL_WEBSERVICE" />
+						</interceptor-in>
+						<properties>
+							<property name = "attempts" value = "2"/>
+							<property name = "source-appname" value = "iCargo"/>
+						</properties>
+					</operation>		
+	</service>
+	<!-- Added by A-5220 for ICRD-46437 ends -->
+	<service id="ICXBookingService"
+			namespace="http://www.ibsplc.com/icargo/services/MsgbrokerMessageService/standard/2013/05/v1"
+			name="CapacityBookingService"
+			url="http://ica3104:9090/icx/webservices/external/capacity/booking"
+			class="com.ibsplc.icargo.services.capacity.booking.webservices.standard.CapacityBookingService">
+			<operation id="saveBookingDetails" name="saveBookingDetails"
+							params="com.ibsplc.icargo.business.capacity.booking.types.standard.SaveBookingDetailsRequestType"
+							mapper = "com.ibsplc.icargo.business.msgbroker.message.icx.mapper.ICXPassthroughMapper">
+         <interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+            <param key="action" value ="UsernameToken" />
+            <param key="passwordType" value ="PasswordText" />
+            <param key="user" value ="ICOADMIN" />
+            <param key="password" value ="weblogic" />
+            <param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+         </interceptor-out>
+         <properties>
+            <property name = "attempts" value = "10"/>
+            <property name = "source-appname" value = "iCargo"/>
+         </properties>
+         <faults>
+            <fault type="ServerFault" errorcode="capacity.booking.serverfault"/>
+         </faults>
+      </operation>
+   </service> 
+   
+   <service id="ICXFlightService"
+		namespace="http://www.ibsplc.com/icargo/services/FlightCapacityService/standard/2012/12/12_01"
+		name="FlightCapacityService"
+		url="http://ica3104:9090/icx/webservices/external/flight/capacity"
+		class="com.ibsplc.icargo.services.flight.operation.webservices.standard.FlightCapacityService">
+     <operation id="getFlightSegmentCapacityDetails" name="getFlightSegmentCapacityDetails"
+		params="com.ibsplc.icargo.business.flight.operation.types.standard.FlightSegmentCapacityRequest"
+		mapper = "com.ibsplc.icargo.business.msgbroker.message.icx.mapper.ICXPassthroughMapper">
+         <interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+            <param key="action" value ="UsernameToken" />
+            <param key="passwordType" value ="PasswordText" />
+            <param key="user" value ="ICOADMIN" />
+            <param key="password" value ="weblogic" />
+            <param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+         </interceptor-out>
+         <properties>
+            <property name = "attempts" value = "10"/>
+            <property name = "source-appname" value = "iCargo"/>
+         </properties>
+         <faults>
+            <fault type="ServerFault" errorcode="capacity.booking.serverfault"/>
+         </faults>
+      </operation>
+   </service>
+   
+   <!--added by a-5791 for ICRD-68944 -->
+   <service id="Einvoice_1_0-service0"
+		namespace="http://osb.thy.com/comis/einvoice/"
+		name="Service"
+		url="http://ICA3118:8088/mockServiceSoap"
+
+		class="com.thy.osb.comis.einvoice.ServiceSoap">
+		<operation id="sendDocument" name="sendDocument" 
+		params="com.thy.osb.comis.einvoice.ArrayOfInvoice,java.lang.String,java.lang.String"
+		mapper = "com.ibsplc.icargo.business.cra.defaults.tk.einvoice.webservice.mapper.SendInvoiceMapper">
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+			</interceptor-out>
+
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+		 	</interceptor-in>
+		</operation>
+		
+		<!-- Added for by A-5163 starts -->
+		<operation 	id="getUserList" name="getUserList"
+					params="javax.xml.datatype.XMLGregorianCalendar,java.lang.String,java.lang.String,java.lang.String"
+					mapper = "com.ibsplc.icargo.business.cra.defaults.tk.einvoice.webservice.mapper.GetCustomersMapper">
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true"/>
+				<param key="prettyOutput" value ="true"/>
+				<param key="processMessage" value ="true"/>
+				<param key="processFault" value ="false"/>
+				<param key="loggerName" value="PORTAL_WEBSERVICE"/>
+			</interceptor-out>
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true"/>
+				<param key="prettyOutput" value ="true"/>
+				<param key="processMessage" value ="true"/>
+				<param key="processFault" value ="false"/>
+				<param key="loggerName" value="PORTAL_WEBSERVICE"/>
+		 	</interceptor-in>
+		</operation>
+		<!-- Added for by A-5163 ends -->
+		<!--Added by a-5791 For ICRD-78250 starts-->
+		<operation id="getInvoiceStatus" name="getInvoiceStatus" 
+		params="com.thy.osb.comis.einvoice.ArrayOfString,java.lang.String,java.lang.String"
+		mapper = "com.ibsplc.icargo.business.cra.defaults.tk.einvoice.webservice.mapper.GetInvoiceStatusMapper">
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+			</interceptor-out>
+
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+		 	</interceptor-in>
+		</operation>
+		<!--Added by a-5791 For ICRD-78250 ends-->
+		   <!-- Added by A-5956 for ICRD-82472 starts-->
+		<operation id="getInvoiceFile" name="getInvoiceFile" 
+		params="java.lang.String,java.lang.String,java.lang.String,java.lang.String"
+		mapper = "com.ibsplc.icargo.business.cra.defaults.tk.einvoice.webservice.mapper.GetInvoiceFileMapper">
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+			</interceptor-out>
+
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+		 	</interceptor-in>
+		</operation>
+		 
+		<operation id="getInvoiceView" name="getInvoiceView" 
+		params="java.lang.String,boolean,java.lang.String,java.lang.String"
+		mapper = "com.ibsplc.icargo.business.cra.defaults.tk.einvoice.webservice.mapper.GetInvoiceViewMapper">
+			
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+			</interceptor-out>
+
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+				<param key="canLog" value ="true" />
+				<param key="prettyOutput" value ="true" />
+				<param key="processMessage" value ="true" />
+				<param key="processFault" value ="false" />
+				<param key="loggerName" value="PORTAL_WEBSERVICE" />
+		 	</interceptor-in>
+		</operation>
+		
+		<!-- Added by A-5956 for ICRD-82472 ends-->
+	</service>
+
+	<service id="receiptInfoUpdateService"
+					namespace="http://atom.ana"
+					name="ICargoReceiptInfoPortType"
+					url="http://localhost:7001/icargo/webservices/external/capacity/booking/uldbooking/atom" 
+					class="jp.co.ana.atom.ICargoReceiptInfoPortType">
+					<operation id="receiptInfoUpdate"
+							name="receiptInfoUpdate" 
+							params="jp.co.ana.atom.ReceiptInfoUpdate,ana.atom.framework.webservices.CmnSoapHeader"
+							mapper = "com.ibsplc.icargo.business.capacity.booking.wsproxy.mapper.ReceiptInfoUpdateMapper">
+						<interceptor-out class="com.ibsplc.icargo.business.msgbroker.message.icx.HeaderInterceptor">		
+							<param key="tokenIdentifier" value ="ANONYMOUS" />
+							<param key="user" value ="JIGSAW" />
+							<param key="password" value ="weblogic" />
+							<param key="companyCode" value ="NH" />			
+						</interceptor-out>
+						<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+							<param key="canLog" value ="true" />
+							<param key="prettyOutput" value ="true" />
+							<param key="processMessage" value ="true" />
+							<param key="processFault" value ="false" />
+							<param key="loggerName" value="ULDBOOKING_EXTERNAL_WEBSERVICE" />
+						</interceptor-out>
+						<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+							<param key="canLog" value ="true" />
+							<param key="prettyOutput" value ="true" />
+							<param key="processMessage" value ="true" />
+							<param key="processFault" value ="false" />
+							<param key="loggerName" value="ULDBOOKING_EXTERNAL_WEBSERVICE" />
+						</interceptor-in>
+						<properties>
+							<property name = "attempts" value = "5"/>
+							<property name = "source-appname" value = "iCargo"/>
+						</properties>
+					</operation>		
+	</service>
+	
+<service id="dcsfmUpdateCargoFiguresService"
+	namespace="http://xml.amadeus.com"
+	name="DCSFMWebServices"
+	url="http://localhost:7001/jigsaw/webservices/operations/DCSFMUpdateCargoFiguresService" class="com.ibsplc.icargo.services.operations.flthandling.webservices.internal.dcsfm.DCSFMWebServicesPT">
+	<operation id="DCSFM_UpdateCargoFigures" name="dcsfmUpdateCargoFigures" 
+	params="com.ibsplc.icargo.services.operations.flthandling.webservices.internal.dcsfm.FlightLoadDetailsRequestType"
+		mapper = "com.ibsplc.icargo.business.operations.flthandling.wsproxy.dws.UpdateCargoServicesMapper">
+		
+		<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+			<param key="canLog" value ="true" />
+			<param key="prettyOutput" value ="true" />
+			<param key="processMessage" value ="true" />
+			<param key="processFault" value ="false" />
+			<param key="loggerName" value="PORTAL_WEBSERVICE" />
+			<param key="messageType" value ="DWSREQ" />	
+		</interceptor-out>
+
+		<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+			<param key="canLog" value ="true" />
+			<param key="prettyOutput" value ="true" />
+			<param key="processMessage" value ="true" />
+			<param key="processFault" value ="false" />
+			<param key="loggerName" value="PORTAL_WEBSERVICE" />
+			<param key="messageType" value ="DWSRES" />
+		</interceptor-in>
+	</operation>
+</service>
+
+<service id="AwbAgentStockValidation-service"
+	namespace="http://lhsystems.com/xsd/esb/finance/aws_1_0_0/AWBStockService"
+	name="AwbStock"
+	url="http://localhost:8088/mockSOAPService_Binding1"
+	class="com.lhsystems.xsd.esb.AWBStockService.AWBStockService">
+	<operation id="validateAwbStockAgent" name="validateAwbStockAgent" 
+		params="com.lhsystems.xsd.esb.AWBStockService.finance.aws.transferobjects_1_0_0.AwbStockAgentRequest"
+		mapper = "com.ibsplc.icargo.business.operations.shipment.webservices.lh.mapper.stockvalidation.StockValidationMapper">
+					
+		<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="PORTAL_WEBSERVICE" />
+		</interceptor-out>
+
+		<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="PORTAL_WEBSERVICE" />
+	   </interceptor-in>
+	</operation>
+	<operation id="determineAwbStockCustomsRestrictions" name="determineAwbStockCustomsRestrictions" 
+		params="com.lhsystems.xsd.esb.AWBStockService.finance.aws.transferobjects_1_0_0.AwbStockCustomsRestrictionsRequest"
+		mapper = "com.ibsplc.icargo.business.operations.shipment.webservices.lh.mapper.customsrestriction.CustomsRestrictionMapper">
+					
+		<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="PORTAL_WEBSERVICE" />
+		</interceptor-out>
+
+		<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="PORTAL_WEBSERVICE" />
+	   </interceptor-in>
+	</operation>
+</service>
+
+<service id="OperationsFlthandlingExternalService"
+		namespace="http://www.ibsplc.com/icargo/services/OperationsFlthandlingService/standard/2013/10/11"
+		name="OperationsFltHandlingService"
+		url="http://localhost:7003/icargo/webservices/standard/operations/flthandling" 
+		class="com.ibsplc.icargo.services.operations.flthandling.webservices.standard.OperationsFltHandlingService">
+		
+		<operation id="shipmentArrivalRequest" name="shipmentArrivalRequest" 
+		params="com.ibsplc.icargo.business.operations.flthandling.types.standard.ManifestFlightDetailsType"
+		mapper = "com.ibsplc.icargo.business.operations.flthandling.wsproxy.mapper.ShipmentArrivalWSMapper">
+		    <interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+					<param key="action" value ="UsernameToken" />
+					<param key="passwordType" value ="PasswordText" />
+					<param key="user" value ="ICOUSR" />
+					<param key="password" value ="anacargo" />
+					<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+			</interceptor-out>
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="ACROSS_WEBSERVICE" />
+			</interceptor-out>				
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="ACROSS_WEBSERVICE" />
+		 	</interceptor-in>		
+			<properties>
+				<property name = "attempts" value = "5"/>
+				<property name = "source-appname" value = "iCargo"/>
+			</properties>
+		</operation>		
+		<operation id="sendFSU" name="sendFSU" 
+		params="com.ibsplc.icargo.business.operations.flthandling.types.standard.FlightDetailsType"
+		mapper = "com.ibsplc.icargo.business.operations.flthandling.wsproxy.mapper.SendFSUWSMapper">
+		    <interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+					<param key="action" value ="UsernameToken" />
+					<param key="passwordType" value ="PasswordText" />
+					<param key="user" value ="ICOUSR" />
+					<param key="password" value ="anacargo" />
+					<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+			</interceptor-out>
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="ACROSS_WEBSERVICE" />
+			</interceptor-out>			
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="ACROSS_WEBSERVICE" />
+		 	</interceptor-in>		
+		</operation>		
+	</service>
+	<service id="OperationsShipmentService_01"
+		namespace="http://www.ibsplc.com/icargo/services/OperationsShipmentService/standard"
+		name="OperationsShipmentService_01"
+		url="http://localhost:7001/icargo/webservices/external/operations/shipment/standard" 
+		class="com.ibsplc.icargo.services.operations.shipment.webservices.standard.OperationsShipmentService">				
+				
+		<operation id="changeHAWB" name="changeHAWB" 
+		params="com.ibsplc.icargo.business.operations.flthandling.types.internal.ShipmentSelectType"
+		mapper = "com.ibsplc.icargo.business.operations.shipment.wsproxy.mapper.ChangeHAWBWSMapper">
+			<interceptor-out class="com.ibsplc.icargo.business.msgbroker.message.icx.HeaderInterceptor">		
+				<param key="tokenIdentifier" value ="NONANONYMOUS" />
+				<param key="user" value ="ICOUSR" />
+				<param key="password" value ="anacargo" />
+				<param key="companyCode" value ="NH" />			
+			</interceptor-out>		
+		    <interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+					<param key="action" value ="UsernameToken" />
+					<param key="passwordType" value ="PasswordText" />
+					<param key="user" value ="ICOUSR" />
+					<param key="password" value ="anacargo" />
+					<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+			</interceptor-out>
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="ACROSS_WEBSERVICE" />
+			</interceptor-out>			
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="ACROSS_WEBSERVICE" />
+		 	</interceptor-in>		
+		</operation>			
+		<operation id="retrievePAD" name="retrievePAD" 
+		params="com.ibsplc.icargo.business.operations.shipment.types.standard.ShipmentIdentifierDetailsType"
+		mapper = "com.ibsplc.icargo.business.operations.shipment.wsproxy.mapper.RetrievePADWSMapper">
+		   <interceptor-out class="com.ibsplc.icargo.business.msgbroker.message.icx.HeaderInterceptor">		
+				<param key="tokenIdentifier" value ="NONANONYMOUS" />
+				<param key="user" value ="ICOUSR" />
+				<param key="password" value ="anacargo" />
+				<param key="companyCode" value ="NH" />			
+			</interceptor-out>		
+		    <interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+					<param key="action" value ="UsernameToken" />
+					<param key="passwordType" value ="PasswordText" />
+					<param key="user" value ="ICOUSR" />
+					<param key="password" value ="anacargo" />
+					<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+			</interceptor-out>
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="ACROSS_WEBSERVICE" />
+			</interceptor-out>			
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="ACROSS_WEBSERVICE" />
+		 	</interceptor-in>		
+		</operation>			
+	</service>	
+	<service id="ShipmentHistoryService_01"
+		namespace="http://www.ibsplc.com/icargo/services/ShipmentHistoryService/standard/2012/12/12_01"
+		name="http://www.ibsplc.com/icargo/services/ShipmentHistoryService/standard/2012/12/12_01"
+		url="http://localhost:7003/icargo/webservices/external/operations/shipment/shipmenthistory" 
+		class="com.ibsplc.icargo.services.operations.shipment.webservices.standard.ShipmentHistoryService">				
+			
+		<operation id="saveShipmentHistory" name="saveShipmentHistory" 
+		params="com.ibsplc.icargo.business.qualitymanagement.defaults.types.standard.TransportPlanShipmentType"
+		mapper = "com.ibsplc.icargo.business.operations.shipment.wsproxy.mapper.SaveTrackingDetailsWSMapper">
+			<interceptor-out class="com.ibsplc.icargo.business.msgbroker.message.icx.HeaderInterceptor">		
+				<param key="tokenIdentifier" value ="NONANONYMOUS" />
+				<param key="user" value ="ICOUSR" />
+				<param key="password" value ="anacargo" />
+				<param key="companyCode" value ="NH" />			
+			</interceptor-out>		
+		    <interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.security.WSExtUsernameTokenOutgoingInterceptor">
+					<param key="action" value ="UsernameToken" />
+					<param key="passwordType" value ="PasswordText" />
+					<param key="user" value ="ICOUSR" />
+					<param key="password" value ="anacargo" />
+					<param key="passwordCallbackRef" value ="com.ibsplc.icargo.framework.services.jaxws.security.DefaultExtClientCallbackHandler" />
+			</interceptor-out>				
+												
+			<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="ACROSS_WEBSERVICE" />
+			</interceptor-out>			
+			<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="true" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="ACROSS_WEBSERVICE" />
+		 	</interceptor-in>		
+		</operation>			
+	</service>	
+	<service id="RoutingService_1_0_0-service0"
+                        namespace="http://lhsystems.com/xsd/esb/sales_1_0_0/routing/RoutingService"
+                        name="RoutingService"
+                        url="http://localhost:8080/WebServices/routingservice?wsdl" 
+                        class="com.lhsystems.xsd.esb.RoutingService.RoutingService">
+						<operation id="getRoutes" name="getRoutes" 
+							params="com.lhsystems.xsd.esb.RoutingService.sales.routingtransferobjects_1_0_0.RoutingSelectorRequest"
+							mapper = "com.ibsplc.icargo.business.capacity.booking.webservices.lh.mapper.GetRoutesMapper">						
+							<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+										<param key="canLog" value ="true" />
+										<param key="prettyOutput" value ="true" />
+										<param key="processMessage" value ="true" />
+										<param key="processFault" value ="false" />
+										<param key="loggerName" value="PORTAL_WEBSERVICE" />
+							</interceptor-out>
+							<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+										<param key="canLog" value ="true" />
+										<param key="prettyOutput" value ="true" />
+										<param key="processMessage" value ="true" />
+										<param key="processFault" value ="false" />
+										<param key="loggerName" value="PORTAL_WEBSERVICE" />
+						   </interceptor-in>
+						 </operation>					 
+        </service>
+	<service id="FlightSegmentCapacityExtService"
+		namespace="http://lhsystems.com/xsd/esb/sales/capacity_1_0_0/CapacityiCargoAdapter"
+		name="CapacityiCargoAdapter"
+		url="http://localhost:8080/GetFlightSegmentCapacity" 
+		class="com.lhsystems.xsd.esb.FlightCapacityService.CapacityPortType">
+		<operation id="getFlightSegmentCapacity" name="getFlightSegmentCapacity" 
+		params="com.lhsystems.xsd.esb.FlightCapacityService.sales.capacitytransferobjects_1_0_0.GetFlightSegmentCapacityRequest"
+		mapper = "com.ibsplc.icargo.business.flight.operation.wsproxy.mapper.FlightSegmentCapacityMapper">
+		<interceptor-out class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerOutgoingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="false" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="EXT_WEBSERVICE" />
+		</interceptor-out>
+
+		<interceptor-in class="com.ibsplc.icargo.framework.services.jaxws.interceptors.WSMsgbrokerIncomingInterceptor">
+					<param key="canLog" value ="true" />
+					<param key="prettyOutput" value ="true" />
+					<param key="processMessage" value ="false" />
+					<param key="processFault" value ="false" />
+					<param key="loggerName" value="EXT_WEBSERVICE" />
+	   </interceptor-in>	
+		</operation>			
+	</service>
+	<service id="AACSService" namespace="" name="AACSService" type="REST"
+			url="http://ica5314:8080/rest"
+			class="com.ibsplc.icargo.services.xaddons.dnata.operations.flthandling.webservices.external.rest.AACSService">
+			<operation id="invokeAASCWebService" name="invokeAASCWebService"
+				params="com.ibsplc.icargo.services.xaddons.dnata.operations.flthandling.webservices.external.rest.PlannedUldDetails"
+				mapper = "com.ibsplc.icargo.business.xaddons.dnata.operations.flthandling.webservices.mapper.AACSMapper">		
+			</operation>
+	</service>
+</services>

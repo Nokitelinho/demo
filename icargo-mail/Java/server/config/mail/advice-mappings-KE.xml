@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adv:advice-mappings xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:adv="http://www.ibsplc.com/icargo/business/advice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ibsplc.com/icargo/business/advice xibase/java/server/config/framework/xsd/advice-mappings.xsd" product="mail">
+
+
+	<adv:advice name="mail.operations.importMRAData">
+	<adv:action name="importMRAData" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="importMRAData" async="true" />
+	</adv:advice>
+	
+	<adv:advice name="mail.operations.reProrateDSN">
+	<adv:action name="reProrateDSN" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="reProrateDSN" async="true" />
+	</adv:advice>
+	
+	<adv:advice name="mail.operations.prorateExceptionFlights">
+	<adv:action name="prorateExceptionFlights" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="prorateExceptionFlights" async="true" />
+	</adv:advice>
+	
+	<adv:advice name="mail.operations.saveHistoryDetails">
+	<adv:action name="saveHistoryDetails" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="saveHistoryDetails" async="true" />
+	</adv:advice>
+		<adv:advice name="mail.operations.importArrivedMailstoMRA">
+	<adv:action name="importArrivedMailstoMRA" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="importArrivedMailstoMRA" async="true" />
+	</adv:advice>
+
+	<adv:advice name="mail.operations.invokejobForRevInterface">
+	<adv:action name="invokejobForRevInterface" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="saveMCAdetails" async="true" />
+	</adv:advice>
+	
+	<adv:advice name="mail.operations.updateTruckCost">
+	<adv:action name="updateTruckCost" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="updateTruckCost" async="true" />
+	</adv:advice>
+	
+	<adv:advice name="mail.operations.reRateMailbags">
+	<adv:action name="reRateMailbags" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="reRateMailbags" async="true" />
+	</adv:advice>
+	
+	 <adv:advice name="mail.mra.voidMailbags">
+	<adv:action name="voidMailbags" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="voidMailbags" async="true" />
+	</adv:advice>
+	
+	
+</adv:advice-mappings>

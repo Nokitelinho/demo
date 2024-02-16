@@ -1,0 +1,1134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<inet:Report xmlns:inet="http://www.inetsoftware.de" major_version="8" minor_version="0" major_xml_version="16" minor_xml_version="3" id="1">
+    <Datasource>
+
+      <DataSourceConfiguration name="ICOBSDEV1">
+        <property name="databaseClassName" value=""/>
+        <property name="savePassword" value="true"/>
+        <property name="quotesLowerCase" value="false"/>
+        <property name="loadbalance" value="false"/>
+        <property name="port9" value="1521"/>
+        <property name="host10" value=""/>
+        <property name="port8" value="1521"/>
+        <property name="port7" value="1521"/>
+        <property name="url" value="jdbc:inetora"/>
+        <property name="port6" value="1521"/>
+        <property name="port5" value="1521"/>
+        <property name="supportsParenthesesForJoin" value="true"/>
+        <property name="port4" value="1521"/>
+        <property name="port3" value="1521"/>
+        <property name="port2" value="1521"/>
+        <property name="port1" value="1521"/>
+        <property name="port10" value="1521"/>
+        <property name="caseSensitive" value="false"/>
+        <property name="validationQuery" value=""/>
+        <property name="password" value="00334CDE059FA948F8E8323E199273360C3A45970F93A459EFE9215972AD87CA85"/>
+        <property name="supportsWhere" value="true"/>
+        <property name="host9" value=""/>
+        <property name="catalog" value=""/>
+        <property name="host8" value=""/>
+        <property name="host7" value=""/>
+        <property name="host6" value=""/>
+        <property name="host5" value=""/>
+        <property name="host4" value=""/>
+        <property name="host3" value=""/>
+        <property name="service" value=""/>
+        <property name="host2" value=""/>
+        <property name="host1" value=""/>
+        <property name="dedicated" value="false"/>
+        <property name="queryTimeout" value=""/>
+        <property name="logonMode" value="normal"/>
+        <property name="user" value="ICOBSDEV1"/>
+        <property name="driverClassName" value="com.inet.ora.OraDriver"/>
+        <property name="identifierQuoteString" value=""/>
+        <property name="supportsSQL92" value="false"/>
+        <property name="aliasToken" value=""/>
+        <property name="sid" value="ICODB11"/>
+        <property name="failover" value="false"/>
+        <property name="loginTimeout" value=""/>
+        <property name="port" value="1523"/>
+        <property name="opencursors" value="300"/>
+        <property name="supportsOrderBy" value="true"/>
+        <property name="alterSession" value="false"/>
+        <property name="host" value="192.168.9.27"/>
+        <property name="driverLibrary" value=""/>
+        <property name="escapeEverything" value="false"/>
+        <property name="initSQL" value=""/>
+      </DataSourceConfiguration>
+      <Tablesource alias="DUMMY_VW_PRINTCN51RPT" databaseIdentifier="ICOBSDEV1.DUMMY_VW_PRINTCN51RPT">
+
+        <Column name="SECTOR" type="11" />
+        <Column name="CATCOD" type="11" />
+        <Column name="WGT" type="6" />
+        <Column name="MAILRAT" type="6" />
+        <Column name="MAILAMT" type="6" />
+        <Column name="SURAMT" type="6" />
+        <Column name="GROSSAMT" type="6" />
+        <Column name="TAX" type="6" />
+        <Column name="AMT" type="6" />
+        <Column name="MALSUBCLS" type="11" />
+        <Column name="MONTHFLAG" type="11" />
+        <Column name="BILFRM" type="11" />
+        <Column name="BILTO" type="11" />
+        <Column name="AMTLC" type="6" />
+        <Column name="AMTCP" type="6" />
+        <Column name="STLCUR" type="11" />
+        <Column name="OVRRND" type="11" />
+        <Column name="UNITCOD" type="11" />
+      </Tablesource>
+
+    </Datasource>
+
+  <Database>
+  </Database>
+  <FormulaFields>
+    <Field type="FormulaField" valueType="11">
+      <Name value="printDate"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[UpperCase ( {?PrintDate} )]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="11">
+      <Name value="SECTOR"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[{DUMMY_VW_PRINTCN51RPT.SECTOR}]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="11">
+      <Name value="CATCOD"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[{DUMMY_VW_PRINTCN51RPT.CATCOD}]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="11">
+      <Name value="MALSUBCLS"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[{DUMMY_VW_PRINTCN51RPT.MALSUBCLS}]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="WGT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[{DUMMY_VW_PRINTCN51RPT.WGT}]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="AMT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+Round(ToNumber({DUMMY_VW_PRINTCN51RPT.AMT}), ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND}))
+else
+ToNumber({DUMMY_VW_PRINTCN51RPT.AMT})]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="AMTLC"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+Round(ToNumber({DUMMY_VW_PRINTCN51RPT.AMTLC}), ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND}))
+else
+ToNumber({DUMMY_VW_PRINTCN51RPT.AMTLC})
+]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="11">
+      <Name value="XDR"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA["XDR"]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="AMTCP"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+Round(ToNumber({DUMMY_VW_PRINTCN51RPT.AMTCP}), ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND}))
+else
+ToNumber({DUMMY_VW_PRINTCN51RPT.AMTCP})
+]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="MAILRAT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[ToNumber({DUMMY_VW_PRINTCN51RPT.MAILRAT})
+]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="MAILAMT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+Round(ToNumber({DUMMY_VW_PRINTCN51RPT.MAILAMT}), ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND}))
+else
+ToNumber({DUMMY_VW_PRINTCN51RPT.MAILAMT})
+]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="SURAMT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+Round(ToNumber({DUMMY_VW_PRINTCN51RPT.SURAMT}), ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND}))
+else
+ToNumber({DUMMY_VW_PRINTCN51RPT.SURAMT})
+]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="GROSSAMT"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+Round(ToNumber({DUMMY_VW_PRINTCN51RPT.GROSSAMT}), ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND}))
+else
+ToNumber({DUMMY_VW_PRINTCN51RPT.GROSSAMT})]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="TAX"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+Round(ToNumber({DUMMY_VW_PRINTCN51RPT.TAX}), ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND}))
+else
+ToNumber({DUMMY_VW_PRINTCN51RPT.TAX})
+]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="STLAMTLC"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if( {DUMMY_VW_PRINTCN51RPT.MALSUBCLS} ='LC') then  {DUMMY_VW_PRINTCN51RPT.AMT}else 0]]></TextData>
+    </Field>
+    <Field type="FormulaField" valueType="6">
+      <Name value="STLAMTCP"/>
+      <FormulaType value="0"/>
+      <BasicSyntax value="1001"/>
+      <TextData><![CDATA[if( {DUMMY_VW_PRINTCN51RPT.MALSUBCLS} ='CP') then  {DUMMY_VW_PRINTCN51RPT.AMT}else 0]]></TextData>
+    </Field>
+  </FormulaFields>
+  <PromptFields>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="ReportId"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="StaffId"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="Station"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="PrintDate"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="PrintTime"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="invoiceNumber"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;kklkl&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="gpaCode"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="airlineCode"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+  </PromptFields>
+  <SQLFields>
+  </SQLFields>
+  <SummaryFields>
+    <Field type="SummaryField" valueType="6">
+      <Name value="wgtsum"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_PRINTCN51RPT.WGT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="amttot"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_PRINTCN51RPT.AMT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="sumLC"/>
+      <Reference name="id" type="FormulaField" value="@STLAMTLC"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="sumCP"/>
+      <Reference name="id" type="FormulaField" value="@STLAMTCP"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+    </Field>
+  </SummaryFields>
+  <SortFields>
+  </SortFields>
+  <UserFunctions>
+  </UserFunctions>
+  <GroupNameFields>
+    <Field type="GroupNameField" valueType="11">
+      <Name value=""/>
+      <GroupNumberType value="0"/>
+      <GroupNumber value="0"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_PRINTCN51RPT.MONTHFLAG"/>
+    </Field>
+  </GroupNameFields>
+  <ReportProperties>
+    <PageWidth value="12240"/>
+    <PageHeight value="15840"/>
+    <PageOrientation value="1"/>
+    <PageMarginLeft value="28"/>
+    <PageMarginRight value="28"/>
+    <PageMarginTop value="28"/>
+    <PageMarginBottom value="28"/>
+    <MailingLabelType1 value="User-Defined Label"/>
+    <MailingLabelType2 value=""/>
+    <FormatWithMultipleColumns value="false"/>
+    <MailingLabelWidth value="0"/>
+    <MailingLabelHeight value="0"/>
+    <MailingLabelDistanceVertical value="0"/>
+    <MailingLabelDistanceHorizontal value="0"/>
+    <AcrossThenDown value="false"/>
+    <FormatGroupsWithMultipleColumns value="false"/>
+    <Distinct value="false"/>
+    <ShowSuppressedNodes value="true"/>
+    <IgnoreFiltering value="false"/>
+    <IgnoreSorting value="false"/>
+    <ConvertDateTime value="2"/>
+    <SuppressIfNoRows value="false"/>
+    <ConvertNullValuesToDefault value="false"/>
+    <HidePageFooterInsideReportHeader value="true"/>
+    <FormPrint value="false"/>
+    <PrintingEnabled value="true"/>
+    <ClipboardEnabled value="true"/>
+    <ExportEnabled value="true"/>
+    <GroupTreeVisible value="true"/>
+  </ReportProperties>
+  <AreaPair type="ReportAreaPair">
+    <Area type="ReportHeader">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <NewPageBefore value="true"/>
+      </AreaProperties>
+      <Section type="ReportHeader" width="12184" height="1320">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <Suppress value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+      </Section>
+      <Section type="ReportHeader" width="12184" height="2700">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+        <Element type="Text" count="2" x_position="2850" y_position="0" width="5850" height="750">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="280"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[]]></TextData>
+            </Element>
+          </Element>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="280"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA002#tittle]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7068" y_position="1200" width="2344" height="450">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="3"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA013#blgFrmArl]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3970" y_position="1200" width="1395" height="450">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+            <CanGrow value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="3"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA013#gpacodcn51]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="150" y_position="2072" width="4500" height="450">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA002#Details]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="5597" y_position="1200" width="1500" height="438">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_PRINTCN51RPT.STLCUR"/>
+        </Element>
+        <Element type="FieldElement" x_position="9706" y_position="1200" width="1533" height="455">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_PRINTCN51RPT.BILFRM"/>
+        </Element>
+        <Element type="FieldElement" x_position="2498" y_position="1200" width="1500" height="438">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_PRINTCN51RPT.BILTO"/>
+        </Element>
+        <Element type="Text" count="1" x_position="450" y_position="1200" width="1935" height="450">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="3"/>
+              <KeepTogether value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA013#invnumcn51]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Box" x2_position="11348" y2_position="0" x_position="0" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <CloseBorderOnPageBreak value="false"/>
+          </CommonProperties>
+          <BoxProperties>
+              <LineProperties>
+                <LineWidth value="10"/>
+                <ExpandToBottomOfPageWhenPrinting value="true"/>
+                <EndSection area="RF" sectionIndex="0"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="ReportFooter">
+      <AreaProperties>
+        <DrillDown value="true"/>
+        <NewPageAfter value="true"/>
+      </AreaProperties>
+      <Section type="ReportFooter" width="12184" height="0">
+        <SectionProperties>
+          <DrillDown value="true"/>
+          <KeepTogether value="true"/>
+        </SectionProperties>
+      </Section>
+      <Section type="ReportFooter" width="12184" height="0">
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="GroupAreaPair" id="1">
+    <AreaPairProperties>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_PRINTCN51RPT.MONTHFLAG"/>
+      <Reference name="group name" type="GroupNameField" id="1"/>
+    </AreaPairProperties>
+    <Area type="GroupHeader">
+      <Section type="GroupHeader" width="12184" height="823">
+        <Element type="Line" x_position="5675" y_position="390" width="0" height="0" x2_position="5675" y2_position="0">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="4586" y_position="0" width="0" height="0" x2_position="4586" y2_position="0">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="3313" y_position="0" width="0" height="0" x2_position="3313" y2_position="0">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="2300" y_position="0" width="0" height="0" x2_position="2300" y2_position="0">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="1224" y_position="0" width="0" height="0" x2_position="1224" y2_position="0">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="7016" y_position="0" width="0" height="0" x2_position="7016" y2_position="0">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="8058" y_position="0" width="0" height="0" x2_position="8058" y2_position="8">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="9301" y_position="11" width="0" height="0" x2_position="9301" y2_position="0">
+          <LineProperties>
+            <LineWidth value="10"/>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="9937" y_position="2" width="0" height="0" x2_position="9937" y2_position="0">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Box" x2_position="11350" y2_position="0" x_position="0" y_position="818" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+              <LineProperties>
+                <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="Box" x2_position="11337" y2_position="823" x_position="0" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <BoxProperties>
+            <BackgroundColor value="12632256"/>
+            <CloseBorderOnPageBreak value="true"/>
+              <LineProperties>
+                <LineWidth value="10"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="60" y_position="135" width="1093" height="510">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA013#Sect]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="1282" y_position="135" width="1003" height="550">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA013#subclass]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="2360" y_position="150" width="921" height="468">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA013#Cat]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3372" y_position="135" width="1050" height="450">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA013#Weight]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="4601" y_position="382" width="0" height="0" x2_position="7016" y2_position="382">
+        </Element>
+        <Element type="Text" count="1" x_position="4751" y_position="495" width="825" height="227">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Rate]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5009" y_position="58" width="1433" height="227">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Mail Charge]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="5833" y_position="495" width="944" height="227">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Amount]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7050" y_position="135" width="995" height="360">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Surcharge]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8256" y_position="135" width="769" height="499">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Gross Amount]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9373" y_position="135" width="436" height="315">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[Tax]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="10026" y_position="121" width="1002" height="480">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA013#Amt]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="GroupFooter">
+      <Section type="GroupFooter" width="12184" height="957">
+        <SectionProperties>
+          <NewPageAfter value="true"/>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="3027" y_position="150" width="1800" height="360">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <RoundingMode value="4"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+          </NumberProperties>
+          <Reference name="field" type="SummaryField" value="#wgtsum"/>
+        </Element>
+        <Element type="FieldElement" x_position="9727" y_position="150" width="1608" height="360">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+            <FontSize value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <NDecimalPlaces value="5"/>
+            <RoundingType value="6"/>
+            <RoundingMode value="4"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+            <PropertyFormula propertyType="n decimal places">
+              <Name value="n decimal places"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+            <PropertyFormula propertyType="rounding type">
+              <Name value="rounding type"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+          </NumberProperties>
+          <Reference name="field" type="SummaryField" value="#amttot"/>
+        </Element>
+        <Element type="Text" count="1" x_position="600" y_position="165" width="2442" height="360">
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="200"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPTMRA002#SubTotal]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="DetailArea">
+    <Area type="Detail">
+      <Section type="Detail" width="12184" height="830">
+        <Element type="FieldElement" x_position="1291" y_position="136" width="861" height="291">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+            <CanGrow value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" value="@CATCOD"/>
+        </Element>
+        <Element type="FieldElement" x_position="2363" y_position="136" width="912" height="336">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" value="@MALSUBCLS"/>
+        </Element>
+        <Element type="FieldElement" x_position="3352" y_position="136" width="900" height="279">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+          </FontProperties>
+          <NumberProperties>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@WGT"/>
+        </Element>
+        <Element type="FieldElement" x_position="9997" y_position="136" width="1190" height="279">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <NDecimalPlaces value="5"/>
+            <RoundingType value="6"/>
+            <RoundingMode value="4"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+            <PropertyFormula propertyType="n decimal places">
+              <Name value="n decimal places"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+            <PropertyFormula propertyType="rounding type">
+              <Name value="rounding type"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@AMT"/>
+        </Element>
+        <Element type="FieldElement" x_position="36" y_position="136" width="1166" height="279">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="FormulaField" value="@SECTOR"/>
+        </Element>
+        <Element type="FieldElement" x_position="4605" y_position="136" width="1050" height="330">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <NDecimalPlaces value="5"/>
+            <RoundingType value="6"/>
+            <RoundingMode value="4"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+            <PropertyFormula propertyType="n decimal places">
+              <Name value="n decimal places"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> '5'
+then
+4
+else
+5]]></TextData>
+            </PropertyFormula>
+            <PropertyFormula propertyType="rounding type">
+              <Name value="rounding type"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> '5'
+then
+4
+else
+5]]></TextData>
+            </PropertyFormula>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@MAILRAT"/>
+        </Element>
+        <Element type="FieldElement" x_position="5728" y_position="136" width="1274" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <NDecimalPlaces value="5"/>
+            <RoundingType value="6"/>
+            <RoundingMode value="4"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+            <PropertyFormula propertyType="n decimal places">
+              <Name value="n decimal places"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+            <PropertyFormula propertyType="rounding type">
+              <Name value="rounding type"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@MAILAMT"/>
+        </Element>
+        <Element type="FieldElement" x_position="7042" y_position="136" width="1005" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <NDecimalPlaces value="5"/>
+            <RoundingMode value="4"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+            <PropertyFormula propertyType="n decimal places">
+              <Name value="n decimal places"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+            <PropertyFormula propertyType="rounding type">
+              <Name value="rounding type"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@SURAMT"/>
+        </Element>
+        <Element type="FieldElement" x_position="8112" y_position="136" width="1184" height="285">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <NDecimalPlaces value="5"/>
+            <RoundingType value="6"/>
+            <RoundingMode value="4"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+            <PropertyFormula propertyType="n decimal places">
+              <Name value="n decimal places"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+            <PropertyFormula propertyType="rounding type">
+              <Name value="rounding type"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@GROSSAMT"/>
+        </Element>
+        <Element type="FieldElement" x_position="9326" y_position="136" width="600" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+          </FontProperties>
+          <NumberProperties>
+            <SystemDefaultNumberType value="2"/>
+            <NDecimalPlaces value="5"/>
+            <RoundingType value="6"/>
+            <RoundingMode value="4"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="$"/>
+            <PropertyFormula propertyType="n decimal places">
+              <Name value="n decimal places"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+            <PropertyFormula propertyType="rounding type">
+              <Name value="rounding type"/>
+              <BasicSyntax value="1001"/>
+              <NullBehavior value="0"/>
+              <TextData><![CDATA[if({DUMMY_VW_PRINTCN51RPT.OVRRND}) <> 'N'
+then
+ToNumber({DUMMY_VW_PRINTCN51RPT.OVRRND})
+else
+2]]></TextData>
+            </PropertyFormula>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" value="@TAX"/>
+        </Element>
+        <Element type="FieldElement" x_position="4177" y_position="136" width="438" height="213">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontName value="Arial"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_PRINTCN51RPT.UNITCOD"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+</inet:Report>

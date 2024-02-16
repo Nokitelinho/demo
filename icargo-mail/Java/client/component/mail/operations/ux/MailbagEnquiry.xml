@@ -1,0 +1,691 @@
+<?xml version="1.0"?>
+<components screenId="mail.operations.ux.mailbagenquiry" xmlns="http://www.ibsplc.com/icargo/components-details">
+
+ <component id="CMP_Mail_Operations_MailBagEnquiry_originOE" name="OriginOE">
+		<attribute>
+				<name>lov</name>
+				<value>true</value>
+		</attribute>
+		
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.originoe</value>
+		</attribute>
+		
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_destnOE" name="DestnOE">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.destinationoe</value>
+		</attribute>
+		
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_Sc" name="Sc">
+		
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.sc</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_Year" name="Year">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.year</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_Dsn" name="Dsn">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.dsn</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_Rsn" name="Rsn">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.rsn</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_INTEGER</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_currentStatus" name="CurrentStatus">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value>
+		</attribute>		
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.currentStatus</value>
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_category" name="Category">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.category</value>
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_port" name="Port">
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+		
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_STATIONCODE_FOR_LIST</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.port</value>
+		</attribute>
+		<attribute>
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_FromDate" name="FromDate">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.fromdate</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_ToDate" name="ToDate">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.todate</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_Userid" name="Userid">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.userid</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_ContNo" name="Userid">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.contnumber</value>
+		</attribute>
+		<attribute>
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_FltNo" name="FlightNo">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_FLIGHT_NUMBER</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.flightNumber</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_FlightDate" name="FlightDate">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.flightdate</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailbagEnquiry_List" name="Component List">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.list</value>
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_btClear" name="Component Clear">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.clear</value>
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_btClose" name="Component Close">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.close</value>
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_btViewDamage" name="Component DamagedMail">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.viewdamage</value>
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_btViewHistory" name="Component ViewHistory">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.viewhistory</value>
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_btViewCardit" name="Component ViewCardit">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.viewcardit</value>
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_btOffloadMail" name="Component OffloadMail">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.offloadmail</value>
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_btReassignMail" name="Component ReassignMail">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.reassignmail</value>
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_ContType" name="Container Type">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CMB_GENCOMBO_VERY_SMALL</value>
+		</attribute>		
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_btReturnMail" name="Component ReturnMail">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.returnmail</value>
+		</attribute>
+	   </component>
+
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_btTransferMail" name="Component TransferMail">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_BUTTON_MEDIUM</value>
+	   		</attribute>
+	   		<attribute>
+	   			<name>tooltip</name>
+	   			<value>mail.operations.ux.mailbagenquiry.tooltip.transfermail</value>
+	   		</attribute>
+	   </component>
+	   
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_btDeleteMail" name="Component DeleteMail">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_BUTTON_MEDIUM</value>
+	   		</attribute>
+	   		<attribute>
+	   			<name>tooltip</name>
+	   			<value>mail.operations.ux.mailbagenquiry.tooltip.deletemail</value>
+	   		</attribute>
+	   </component>
+
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_CARDITTYPE" name="Facility Type">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_CMB_GENCOMBO</value>
+	   		</attribute>
+
+	   		<attribute>
+	   			<name>styleclass-id</name>
+	   			<value>ST_CMB_MEDIUM</value>
+	   		</attribute>
+			<attribute> 
+				<name>tooltip</name>
+				<value>mail.operations.ux.mailbagenquiry.tooltip.carditStatus</value>
+			</attribute>
+			<attribute> 
+			   <name>type</name> 
+			   <value>filter</value> 
+			</attribute>
+	   </component>
+	     <component id="CMP_Mail_Operations_MailBagEnquiry_servicelevel" name="Service level">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_CMB_GENCOMBO</value>
+	   		</attribute>
+
+	   		<attribute>
+	   			<name>styleclass-id</name>
+	   			<value>ST_CMB_MEDIUM</value>
+	   		</attribute>
+	   		<attribute> 
+				<name>tooltip</name>
+				<value>mail.operations.ux.mailbagenquiry.tooltip.servicelevel</value>
+			</attribute>
+			<attribute> 
+			   <name>type</name> 
+			   <value>filter</value> 
+			</attribute>
+	   </component>
+	    <component id="CMP_Mail_Operations_MailBagEnquiry_ontimedelivery" name="On time Delivery">
+	   		<attribute>
+	   			<name>businesstype-id</name>
+	   			<value>BT_CMB_GENCOMBO</value>
+	   		</attribute>
+
+	   		<attribute>
+	   			<name>styleclass-id</name>
+	   			<value>ST_CMB_MEDIUM</value>
+	   		</attribute>
+	   		<attribute> 
+				<name>tooltip</name>
+				<value>mail.operations.ux.mailbagenquiry.tooltip.ontimedelivery</value>
+			</attribute>
+			<attribute> 
+			   <name>type</name> 
+			   <value>filter</value> 
+			</attribute>
+	   </component>
+	   
+	   
+	    
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_FromCarrier" name="From Carrier">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>Carrier Code</value>
+			</attribute>
+		</component>
+		<component id="CMP_Mail_Operations_MailBagEnquiry_transit" name="Transit">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CHECKBOX</value>
+			</attribute>		
+			<attribute> 
+				<name>tooltip</name>
+				<value>mailtracking.defaults.mailbagenquiry.lbl.transit</value>
+			</attribute>
+			<attribute> 
+			  <name>type</name> 
+			   <value>filter</value> 
+			</attribute>
+		</component>
+		<component id="CMP_Mail_Operations_MailBagEnquiry_damaged" name="Damage">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CHECKBOX</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mail.operations.ux.mailbagenquiry.tooltip.damaged</value>
+			</attribute>
+			<attribute> 
+			  <name>type</name> 
+			   <value>filter</value> 
+			</attribute>
+		</component>
+		   <component id="CMP_Mail_Operations_MailBagEnquiry_ConsigmentNumber" name="ConsigmentNumber">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.lbl.consigmentnumber</value>
+		</attribute>
+		<attribute>
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_UPUCode" name="UPUCode">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.upucode</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHANUMERIC</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>
+		<component id="CMP_Mail_Operations_MailBagEnquiry_MailbagId" name="MailbagId">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_EXTRA_LONG</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>mail.operations.ux.mailbagenquiry.lbl.mailbagid</value>
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>false</value>
+			</attribute>
+			
+			<attribute>
+				<name>styleclass-id</name>
+				<value>ST_TXT_CAPS</value>
+			</attribute>			
+		</component>	   
+	 
+<component id="CMP_Mail_Operations_CarditEnquiry_ReqDlvDate" name="ReqDlvDate">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.lbl.ReqDlvDate</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>		
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_ReqDlvTime" name="ReqDlvTime">
+		
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_SMALL</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.ReqDlvTime</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>			
+		</component>
+	   
+		<component id="CMP_Mail_Operations_MailBagEnquiry_UpliftAirport" name="Uplift Airport">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>Dep Port</value>
+			</attribute>
+		</component>
+		<component id="CMP_Mail_Operations_MailBagEnquiry_Offload" name="Offload Mailbag">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_Mail_Operations_MailBagEnquiry_Reassign" name="Reassign Mailbag">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_Mail_Operations_MailBagEnquiry_Return" name="Return Mailbag">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_Mail_Operations_MailBagEnquiry_View_Damage" name="View Damage">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_Mail_Operations_MailBagEnquiry_View_History" name="View History">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_Mail_Operations_MailBagEnquiry_Deliver" name="Deliver Mail">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_Mail_Operations_MailBagEnquiry_Transfer" name="Transfer Mail">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+	<component id="CMP_Mail_Operations_MailBagEnquiry_mailorigin" name="Arrival Port">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHA</value>
+		</attribute>
+	
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.mailorigin</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>  
+	</component>
+	<component id="CMP_Mail_Operations_MailBagEnquiry_maildestination" name="Arrival Port">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_SMALL</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_RESTRICT_ALPHA</value>
+		</attribute>
+	
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.maildestination</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>  
+	</component>
+	<component id="CMP_Mail_Operations_MailBagEnquiry_TSW" name="ReqDlvDate">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CALENDAR</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.lbl.tsw</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>
+	   </component>		
+	   <component id="CMP_Mail_Operations_MailBagEnquiry_TSWTime" name="ReqDlvTime">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_SMALL</value>
+			</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>mail.operations.ux.mailbagenquiry.tooltip.TSWTime</value>
+		</attribute>
+		<attribute> 
+          <name>type</name> 
+           <value>filter</value> 
+		</attribute>			
+		</component>
+			<component id="CMP_MAIL_OPERATIONS_MAILBAGENQUIRY_MODIFY_ORIGIN_DEST" name="Modify Org Destination">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_LONG</value>
+		</attribute>
+	</component>
+</components>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<QRY:Definitions xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries" module="xibase.jobscheduler.job">
+
+
+<QRY:Definition>
+<QRY:Id>1</QRY:Id>
+<QRY:Source Name="framework.session.getSessionDetails" Type="NATIVE">
+<![CDATA[
+	SELECT 	A.CMPCOD, A.JOBNAM,
+		A.JOBTYP, A.EXEALLRST,
+		A.CNCRNC,A.JOBPTY,A.JOBPTYSTY
+	FROM	XBSJOBDES A
+	WHERE 	A.JOBNAM = ? AND A.CMPCOD = ?
+]]>
+</QRY:Source>
+</QRY:Definition>
+
+</QRY:Definitions>

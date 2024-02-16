@@ -1,0 +1,1496 @@
+<?xml version="1.0"?>
+<command-mappings xmlns="http://www.ibsplc.com/icargo/command/mappings" product="mail" subproduct="mra">
+	<screen name="BillingmatrixAudit" id="mailtracking.mra.defaults.billingmatrixaudit">
+		<action name="mailtracking.mra.defaults.billingmatrix.screenload">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.audit.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.billingmatrix.list">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.audit.ListCommand" order="1"/>
+		</action>
+	</screen>
+	<screen name="ListUPURateCard" id="mailtracking.mra.defaults.listupuratecard">
+
+		<action name="mailtracking.mra.defaults.listupuratecard.onScreenLoad">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listratecard.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listupuratecard.onList">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listratecard.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listupuratecard.onClear">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listratecard.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listupuratecard.onChangeStatus">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listratecard.ChangeStatusCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listupuratecard.onCopy">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listratecard.CopyRateCardCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listupuratecard.onView">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listratecard.ViewRateCardCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listupuratecard.onClose">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listratecard.CloseCommand" order="1"/>
+		</action>
+		<!--Added by A-5166 for ICRD-17262 Starts-->
+		<action name="mailtracking.mra.defaults.copyupuratecard.onOk">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listratecard.OkCommand" order="1"/>
+		</action>
+
+		<!--Added by A-5166 for ICRD-17262 Ends-->
+		<action name="mailtracking.mra.defaults.listupuratecard.onChangeStatusOk">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listratecard.ChageStatusOKCommand" order="1"/>
+		</action>
+	</screen>
+	<!--  Added by Sandeep for ViewUPURate begins -->
+
+	<screen name="mailtracking.mra.defaults.viewupurate" id="mailtracking.mra.defaults.viewupurate">
+		<action name="mailtracking.mra.defaults.onScreenLoadViewUPURate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listviewupurate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewupurate.onChangeStatus">
+		  <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.ChangeStatusCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.viewupurate.onClear">
+		    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewupurate.onChangeStatusOk">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.ChageStatusOKCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewupurate.onClose">
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.CloseCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.copyrateviewupurate">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.CopyRateCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.openmaintainupuratescreen">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.OpenMaintainUPURateCommand" order="1"/>
+		</action>
+		 <action name="mailtracking.mra.defaults.viewupurate.activate">
+		 	<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.ActivateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.ListCommand" order="2"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewupurate.inactivate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.InactivateCommand" order="1"/>
+		   <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.ListCommand" order="2"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewupurate.cancel">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.CancelCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateline.ListCommand" order="2"/>
+		</action>
+
+
+	</screen>
+
+
+	
+	<screen name="ModifyRoute" id="mail.mra.defaults.ux.modifyroute">
+			<action name="mail.mra.defaults.ux.modifyroute.screenload" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.ux.modifyroute.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mail.mra.defaults.ux.modifyroute.execute" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.ux.modifyroute.ExecuteCommand" order="1"/>
+			</action>
+			  
+	</screen>
+	
+	
+	
+	
+	<!--Added by Indu for MaintainUPURateCard begins-->
+
+	<screen name="MaintainUPURateCardForm" id="mailtracking.mra.defaults.upuratecard.maintainupuratecard">
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.screenload">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.ScreenLoadCommand" order="1"/>
+	</action>
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.changestatuspopup">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.ChageStatusCommand" order="1"/>
+	</action>
+	 <action name="mailtracking.mra.defaults.maintainupuratecard.copyrateline">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.CopyRateCommand" order="1"/>
+	</action>
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.addratelinepopup">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.AddRateLineCommand" order="1"/>
+	</action>
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.changestatusok">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.ChageStatusOKCommand" order="1"/>
+	</action>
+
+	 <action name="mailtracking.mra.defaults.maintainupuratecard.addratelineok">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.AddRateLineOKCommand" order="1"/>
+	</action>
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.screenreload">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.ScreenReloadCommand" order="1"/>
+	</action>
+
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.addratelinerow">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.AddRateLinePopCommand" order="1"/>
+	</action>
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.deleteratelinerow">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.DeleteRateLinePopCommand" order="1"/>
+	</action>
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.list">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.ListCommand" order="1"/>
+	</action>
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.save">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.SaveCommand" order="1"/>
+	</action>
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.listratelines">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.NavigationCommand" order="1"/>
+	</action>
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.deleteratelines">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.DeleteRateLineCommand" order="1"/>
+	</action>
+
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.close">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.CloseCommand" order="1"/>
+	</action>
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.clearmaintainscreen">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.ClearCommand" order="1"/>
+	</action>
+
+	<action name="mailtracking.mra.defaults.maintainupuratecard.activate">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.ActivateCommand" order="1"/>
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.ListCommand" order="2"/>
+	</action>
+	<action name="mailtracking.mra.defaults.maintainupuratecard.inactivate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.InactivateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.ListCommand" order="2"/>
+	</action>
+	<action name="mailtracking.mra.defaults.maintainupuratecard.cancel">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.CancelCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.ListCommand" order="2"/>
+	</action>
+
+	</screen>
+	<!--Added by Indu for MaintainUPURateCard ends-->
+	<!--Added For RateCardLov starts -->
+	<screen name="RateCardLOV" id="mailtracking.mra.defaults.ratecardlov">
+
+			<action name="showRateCardLOV">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.RateCardLOVListCommand" order="1"/>
+			</action>
+			<action name="clearRateCardLOVDetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainratecard.RateCardLovClearCommand" order="1"/>
+			</action>
+	</screen>
+	<!--Added For RateCardLov ends -->
+	<!--Added By prem For Copy Rate popup Starts -->
+	<screen name="CopyRate" id="mailtracking.mra.defaults.copyrate">
+
+		<action name="mailtracking.mra.defaults.screenloadcopyrate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.copyrate.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listcopyrate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.copyrate.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.clearcopyrate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.copyrate.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.okcopyrate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.copyrate.OKCommand" order="1"/>
+		</action>
+
+
+	</screen>
+	<!--Added By prem For Copy Rate ends -->
+
+	<!--Added By prem For ListBillingMatrix Starts -->
+		<screen name="listbillingmatrix" id="mailtracking.mra.defaults.listbillingmatrix">
+
+			<action name="mailtracking.mra.defaults.listbillingmatrixscreenload">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listbillingmatrixlist">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.ListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listbillingmatrixclear">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listbillingmatrixclose">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.CloseCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listbillingmatrix.changestatusok">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.ChangeStatusCommand" order="1"/>
+
+			</action>
+			<action name="mailtracking.mra.defaults.listbillingmatrix.refresh">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.RefreshScreenCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listbillingmatrix.changestatuspopup">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.ScreenLoadChgStatusCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listbillingmatrix.changestatuspopupclick">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.ChgStatusCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintainbillingmatrix.savechangestatus">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.ScreenSaveChgStatusCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listbillingmatrix.save">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.SaveCommand" order="1"/>
+				<!-- &lt;command class=&quot;com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.ScreenLoadCommand&quot; order=&quot;2&quot;/&gt; -->
+			</action>
+			<action name="mailtracking.mra.defaults.listbillingmatrix.viewbillingline">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.ViewBillingLineCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listbillingmatrix.populategpaname">
+							<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listbillingmatrix.PopulateGpaNameCommand" order="1"/>
+			</action>
+
+
+	</screen>
+	<!--Added By prem For ListBillingMatrix ends -->
+	<screen name="mailtracking.mra.defaults.billingmatrixlov" id="mailtracking.mra.defaults.billingmatrixlov">
+
+			<action name="showBillingMatrixLOV">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.BillingMatrixLovListCommand" order="1"/>
+			</action>
+			<action name="clearBillingMatrixLOV">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.BillingMatrixLovClearCommand" order="1"/>
+			</action>
+	</screen>
+
+      <screen name="mailtracking.mra.defaults.viewproration" id="mailtracking.mra.defaults.viewproration">
+
+		 	<!--Added by tito For ViewProration Screen starts-->
+
+				<action name="mailtracking.mra.defaults.viewprorationscreenload">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewproration.ViewProrationScreenLoadCommand" order="1"/>
+				</action>
+
+				<action name="mailtracking.mra.defaults.viewproration.listproration">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewproration.ListProrationCommand" order="1"/>
+				</action>
+
+				<action name="mailtracking.mra.defaults.clearviewproration">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewproration.ClearProrationCommand" order="1"/>
+				</action>
+
+				<action name="mailtracking.mra.defaults.viewproration.listdsndetail">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewproration.ListDSNDetailCommand" order="1"/>
+				</action>
+
+				<action name="mailtracking.mra.defaults.closeviewproration">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewproration.CloseProrationCommand" order="1"/>
+				</action>
+
+		 	   <action name="mailtracking.mra.defaults.tomanualProration">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewproration.ManualProrationCommand" order="1"/>
+				</action>
+
+
+				<!--Added by Tito For  ViewProration Screen ends-->
+
+				<!--Added for 76551 starts-->
+				<action name="mailtracking.mra.defaults.viewproration.surchargedetails">
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewproration.ViewSurchargeProrationCommand" order="1"/>
+				</action>
+				<!--Added for 76551 end-->
+
+               <!--Added by A-7371 for ICRD-234334 starts-->
+                 <action name="mailtracking.mra.defaults.viewproration.awmproratedetails">
+	              <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewproration.ViewAWMProrationCommand" order="1"/>
+                 </action>
+     </screen>
+
+	<!--Added by Ruby For Mail Proration Screen starts-->
+
+	<screen name="mailtracking.mra.defaults.mailproration" id="mailtracking.mra.defaults.mailproration">
+
+			<action name="mailtracking.mra.defaults.mailproration.screenload">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailproration.ScreenloadCommand" order="1"/>
+			</action>
+
+			<action name="mailtracking.mra.defaults.mailproration.list">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailproration.UpdateSessionCommand" order="1"/>
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailproration.MandatoryChecksCommand" order="2"/>
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailproration.ListCommand" order="3"/>
+			</action>
+			<action name="mailtracking.mra.defaults.mailproration.alternatelist">
+
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailproration.MandatoryChecksCommand" order="1"/>
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailproration.ListCommand" order="2"/>
+			</action>
+			<action name="mailtracking.mra.defaults.mailproration.clear">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailproration.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.mailproration.checkformoredsn">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailproration.MultipleDsnCommand" order="1"/>
+			</action>
+
+			<!--Added by A-3434 For  AirNZ CR 165-->
+
+			<action name="mailtracking.mra.defaults.mailproration.listforinterlinebilling">
+
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailproration.ListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.mailproration.close">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailproration.CloseCommand" order="1"/>
+			</action>
+
+	</screen>
+	<!--Added by Ruby For Mail Proration Screen ends-->
+<!-- Added by Randeep For MaintainBillingMatrix Screen starts -->
+	<screen name="MaintainBillingmatrix" id="mailtracking.mra.defaults.maintainbillingmatrix">
+
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.screenload">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ScreenLoadCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.FmtBillingLinesCommand" order="2"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.list">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ListCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.BlgLineListCommand" order="2"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.FmtBillingLinesCommand" order="3"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintainbillingline.screenload">
+
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.BlgLineScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.validate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ValidateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.FmtBillingLinesCommand" order="2"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintainbillingline.add">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.UpdateBillingLineCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.AddBillingLineCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintainbillingline.updaterate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.UpdateBillingLineCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.save">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.SaveCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.FmtBillingLinesCommand" order="2"/>
+
+		</action>
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.delete">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.DeleteCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.FmtBillingLinesCommand" order="2"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.clear">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ClearCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ScreenLoadCommand" order="2"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.FmtBillingLinesCommand" order="3"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.close">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.CloseCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.formatview">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.FmtBillingLinesCommand" order="1"/>
+		</action>
+				<action name="mailtracking.mra.defaults.maintainbillingmatrix.changestatusok">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ChangeStatusCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.refresh">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.RefreshScreenCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.FmtBillingLinesCommand" order="2"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.changestatuspopup">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ScreenLoadChgStatusCommand" order="1"/>
+		</action>
+		<!--Added by Indu for copyblgline starts-->
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.copybillingline">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.CopyBillingLineCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.openmaintainblgmatrixscreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.OpenBillingMatrixCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.FmtBillingLinesCommand" order="2"/>
+		</action>
+		<!--Added by Indu for copyblgline ends-->
+
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.activate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ActivateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ListCommand" order="2"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.BlgLineListCommand" order="3"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.FmtBillingLinesCommand" order="4"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.inactivate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.InactivateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ListCommand" order="2"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.BlgLineListCommand" order="3"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.FmtBillingLinesCommand" order="4"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.cancel">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.CancelCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ListCommand" order="2"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.BlgLineListCommand" order="3"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.FmtBillingLinesCommand" order="4"/>
+		</action>
+
+		<!--Added for 76551 starts-->
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.surchargedetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ViewSurchargeDetailsCommand" order="1"/>
+		</action>
+		<!--Added for 76551 end-->
+		
+		<action name="mailtracking.mra.defaults.maintainbillingmatrix.changedate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.ChangeEndDateCommand" order="1"/>
+		</action>
+        <action name="mailtracking.mra.defaults.maintainbillingmatrix.savechangeenddate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainbillingmatrix.SaveChangeEndDateCommand" order="1"/>
+		</action>
+	</screen>
+	<!--Added by Indu for copyblglinepopup starts-->
+	<screen name="mailtracking.mra.defaults.copyblgline" id="mailtracking.mra.defaults.copyblgline">
+
+			<action name="mailtracking.mra.defaults.screenloadcopybillingline">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.copybillingline.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listcopybillingline">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.copybillingline.ListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.clearcopybillingline">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.copybillingline.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.okcopybillingline">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.copybillingline.OKCommand" order="1"/>
+			</action>
+
+	</screen>
+	<!--Added by Indu for copyblglinepopup ends-->
+
+	<!-- **********Added by Randeep For ViewBillingLine  Screen starts********* -->
+
+	<screen name="ViewBillingLine" id="mailtracking.mra.defaults.viewbillingline">
+
+		<action name="mailtracking.mra.defaults.viewbillingline.screenload">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewbillingline.clear">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewbillingline.close">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.CloseCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewbillingline.list">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.ListCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.FmtBillingLinesCommand" order="2"/>
+		</action>
+				<action name="mailtracking.mra.defaults.viewbillingline.changestatusok">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.ChangeStatusCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewbillingline.refresh">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.RefreshScreenCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.FmtBillingLinesCommand" order="2"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewbillingline.save">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.SaveCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.ScreenLoadCommand" order="2"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewbillingline.changestatuspopup">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.ScreenLoadChgStatusCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewbillingline.copybillingline">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.CopyBillingLineCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewbillingline.activate">
+		   <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.ActivateCommand" order="1"/>
+		   <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.FmtBillingLinesCommand" order="2"/>
+		   <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.ListCommand" order="3"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewbillingline.inactivate">
+		    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.InactivateCommand" order="1"/>
+		    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.FmtBillingLinesCommand" order="2"/>
+		    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.ListCommand" order="3"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewbillingline.cancel">
+		   <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.CancelCommand" order="1"/>
+		   <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.FmtBillingLinesCommand" order="2"/>
+		   <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.ListCommand" order="3"/>
+		</action>
+		<!--Added for 76551 starts-->
+		<action name="mailtracking.mra.defaults.viewbillingline.surchargedetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewbillingline.ViewSurchargeDetailsCommand" order="1"/>
+		</action>
+		<!--Added for 76551 ends-->
+	</screen>
+
+<!-- *************Added by Randeep For ViewBillingLine Screen ends************ -->
+
+<!-- Maintain Prorate Factors Starts -->
+	<screen name="mailtracking.mra.defaults.maintainproratefactors" id="mailtracking.mra.defaults.maintainproratefactors">
+
+		<action name="mailtracking.mra.defaults.maintainproratefactors.screenload">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainproratefactors.ScreenloadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintainproratefacotrs.list">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainproratefactors.ListCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintainproratefacotrs.clear">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainproratefactors.ClearCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintainproratefacotrs.delete">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainproratefactors.DeleteCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintainproratefacotrs.add">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainproratefactors.UpdateSessionCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainproratefactors.AddCommand" order="2"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintainproratefacotrs.populate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainproratefactors.PopulateCityNameCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintainproratefacotrs.save">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainproratefactors.UpdateSessionCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainproratefactors.SaveCommand" order="2"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintainproratefacotrs.activate">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainproratefactors.ActivateFactorCommand" order="1"/>
+
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintainproratefacotrs.inactivate">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainproratefactors.InactivateFactorCommand" order="1"/>
+
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintainproratefacotrs.cancel">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainproratefactors.CancelFactorCommand" order="1"/>
+
+  		</action>
+	</screen>
+<!-- Maintain Prorate Factors Ends -->
+
+	<!-- Added by shivjith for Contract Lov Starts -->
+
+	<screen name="mailtracking.mra.defaults.contractlov" id="mailtracking.mra.defaults.contractlov">
+
+		<action name="showMailContractDetailsLov">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.contractlov.ListCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.contractlov.onClear">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.contractlov.ClearCommand" order="1"/>
+		</action>
+
+	</screen>
+
+	<!-- Added by shivjith for Contract Lov ends -->
+
+	<!-- Added by shivjith for SLA Lov Starts -->
+
+	<screen name="mailtracking.mra.defaults.slalov" id="mailtracking.mra.defaults.slalov">
+
+		<action name="showSLADetailsLov">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.slalov.ListCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.slalov.onClear">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.slalov.ClearCommand" order="1"/>
+		</action>
+
+	</screen>
+
+	<!-- Added by shivjith for SLA Lov ends -->
+
+	<!-- Added by Saravanan for Version Number LOV tarts -->
+		<screen name="mailtracking.mra.defaults.versionnumberlov" id="mailtracking.mra.defaults.versionnumberlov">
+			<action name="mailtracking.mra.defaults.screenloadversionnumberlov">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.versionnumberlov.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.clearversionnumberlov">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.versionnumberlov.ClearCommand" order="1"/>
+			</action>
+		</screen>
+	<!-- Added by Saravanan for Version Number LOV ends -->
+	<!-- Added for MaintainMailContracts starts -->
+		<screen name="mailtracking.mra.defaults.maintainmailcontracts" id="mailtracking.mra.defaults.maintainmailcontracts">
+
+				<action name="mailtracking.mra.defaults.maintainmailcontracts.screenload">
+					<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailcontracts.ScreenLoadCommand" order="1"/>
+				</action>
+				<action name="mailtracking.mra.defaults.maintainmailcontracts.list">
+									<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailcontracts.ListCommand" order="1"/>
+				</action>
+				<action name="mailtracking.mra.defaults.maintainmailcontracts.add">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailcontracts.UpdateCommand" order="1"/>
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailcontracts.AddCommand" order="2"/>
+				</action>
+				<action name="mailtracking.mra.defaults.maintainmailcontracts.delete">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailcontracts.UpdateCommand" order="1"/>
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailcontracts.DeleteCommand" order="2"/>
+				</action>
+				<action name="mailtracking.mra.defaults.maintainmailcontracts.save">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailcontracts.UpdateCommand" order="1"/>
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailcontracts.SaveCommand" order="2"/>
+				</action>
+				<action name="mailtracking.mra.defaults.maintainmailcontracts.clear">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailcontracts.ClearCommand" order="1"/>
+
+				</action>
+				<action name="mailtracking.mra.defaults.maintainmailcontracts.activate">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailcontracts.ActivateCommand" order="1"/>
+
+				</action>
+				<action name="mailtracking.mra.defaults.maintainmailcontracts.cancel">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailcontracts.CancelCommand" order="1"/>
+
+				</action>
+				<action name="mailtracking.mra.defaults.maintainmailcontracts.close">
+						<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailcontracts.CloseCommand" order="1"/>
+
+				</action>
+	</screen>
+	<!-- Added for MaintainMailContracts ends -->
+
+	<!-- ListMailContracts Starts -->
+		<screen name="mailtracking.mra.defaults.listmailcontracts" id="mailtracking.mra.defaults.listmailcontracts">
+			<action name="mailtracking.mra.defaults.listmailcontracts.onScreenload">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listmailcontracts.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listmailcontracts.onList">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listmailcontracts.ListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listmailcontracts.onClose">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listmailcontracts.CloseCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listmailcontracts.onClear">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listmailcontracts.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listmailcontracts.onCancel">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listmailcontracts.CancelCommand" order="1"/>
+			</action>
+		</screen>
+<!-- ListMailContracts Ends -->
+
+
+<!--Added By Sanjay for Maintain Mail SLA Template starts-->
+		<screen name="MaintainMailSLA" id="mailtracking.mra.defaults.maintainmailsla">
+
+			<action name="mailtracking.mra.defaults.maintainmailsla.screenloadmailsla">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailsla.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintainmailsla.listmailsla">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailsla.ListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintainmailsla.clearmailsla">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailsla.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintainmailsla.copymailsla">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailsla.CopyCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintainmailsla.savemailsla">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailsla.SaveCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintainmailsla.closemailsla">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailsla.CloseCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintainmailsla.addmailsladetail">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailsla.AddCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintainmailsla.deletemailsladetail">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailsla.DeleteCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintainmailsla.screenloadcopysla">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailsla.ScreenLoadCopySLACommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintainmailsla.clearcopysla">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailsla.ClearCopySLACommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintainmailsla.okcopysla">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailsla.OkCopySLACommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintainmailsla.refreshmailsla">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintainmailsla.RefreshCommand" order="1"/>
+			</action>
+
+
+		</screen>
+<!--Added By Sanjay for Maintain Mail SLA Template ends-->
+
+<!-- Added for DespatchLOV starts  -->
+
+		<screen name="mailtracking.mra.defaults.mradespatchlov" id="mailtracking.mra.defaults.mradespatchlov">
+
+			<action name="showDespatchLov">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailproration.DespatchLovListCommand" order="1"/>
+			</action>
+			<action name="clearDespatchLov">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailproration.DespatchLovClearCommand" order="1"/>
+			</action>
+		</screen>
+<!-- Added for DespatchLOV starts  -->
+<!-- Added for processManager starts  -->
+
+	<screen name="mailtracking.mra.defaults.processmanager" id="mailtracking.mra.defaults.processmanager">
+
+		<action name="mailtracking.mra.defaults.processmanager.onScreenLoad">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.processmanager.ScreenloadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.processmanager.excecute">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.processmanager.ProcessCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.processmanager.closecommand">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.processmanager.CloseCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.processmanager.finalizepass">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.processmanager.FinalizePASS" order="1"/>
+		</action>
+
+	</screen>
+<!-- Added for processManager starts  -->
+<!--Added by Sandeep for InvoicEnquiry Starts -->
+	<screen name="mailtracking.mra.defaults.invoicenquiry" id="mailtracking.mra.defaults.invoicenquiry">
+	        <action name="mailtracking.mra.defaults.invoicEnquiry.onScreenLoad">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoicenquiry.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.invoicEnquiry.onList">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoicenquiry.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.invoicenquiry.onClear">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoicenquiry.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.invoicenquiry.showDetails">
+		        <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoicenquiry.InvoicDetailsCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.invoicenquiry.onClose">
+		       <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoicenquiry.CloseCommand" order="1"/>
+		</action>
+	</screen>
+	<screen name="mailtracking.mra.defaults.invoicenquirydetails" id="mailtracking.mra.defaults.invoicenquirydetails">
+		        <action name="mailtracking.mra.invoicEnquiryDetails.onScreenload">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoicenquirydetails.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.onCloseInvoicEnquiryDetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoicenquirydetails.CloseCommand" order="1"/>
+			</action>
+	</screen>
+	<!--Added by Sandeep for InvoicEnquiry Ends -->
+
+	<!-- Added by Sandeep for InvoicClaimEnquiry Starts-->
+	<screen name="mailtracking.mra.defaults.invoicclaimsenquiry" id="mailtracking.mra.defaults.invoicclaimsenquiry">
+		        <action name="mailtracking.mra.defaults.invoicClaimsEnquiry.onScreenLoad">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoicclaimsenquiry.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.invoicClaimsEnquiry.onList">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoicclaimsenquiry.ListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.invoicClaimsEnquiry.onClear">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoicclaimsenquiry.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.invoicClaimsEnquiry.onClose">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoicclaimsenquiry.CloseCommand" order="1"/>
+			</action>
+	</screen>
+	<!-- Added by Sandeep for InvoicClaimEnquiry ends-->
+
+	<!-- Added for DOT Rate starts -->
+	<screen name="mailtracking.mra.defaults.maintaindotrate" id="mailtracking.mra.defaults.maintaindotrate">
+
+			<action name="mailtracking.mra.defaults.maintaindotrate.screenload">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaindotrate.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintaindotrate.list">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaindotrate.ListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintaindotrate.save">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaindotrate.SaveCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintaindotrate.clear">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaindotrate.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.maintaindotrate.close">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaindotrate.CloseCommand" order="1"/>
+			</action>
+	</screen>
+
+	<!-- Added for DOT Rate ends -->
+<!-- Added for InvoicKeyLov starts -->
+<screen name="InvoicKeyLOV" id="mailtracking.mra.defaults.invoickeylov">
+
+			<action name="showInvoicKeyLOV">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoickeylov.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="clearInvoicKeyLOV">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.invoickeylov.ClearCommand" order="1"/>
+			</action>
+	</screen>
+<!-- Added for InvoicKeyLov ends -->
+<!--  Added by Deepthi for ListCCA begins -->
+<screen name="mailtracking.mra.defaults.listcca" id="mailtracking.mra.defaults.listcca">
+
+			<action name="mailtracking.mra.defaults.listcca.screenload">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listcca.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listcca.clear">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listcca.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listcca.list">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listcca.ListCommand" order="1"/>
+			</action>
+	        <action name="mailtracking.mra.defaults.listcca.print">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listcca.report.PrintCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listcca.listccadetail">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listcca.ListCCADetailsCommand" order="1"/>
+			</action>
+	        <action name="mailtracking.mra.defaults.listcca.populategpaname">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listcca.PopulateGPANameCommand" order="1"/>
+			</action>
+			<!--Added by A-7540-->
+			 <action name="mailtracking.mra.defaults.listcca.accept">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listcca.AcceptMCACommand" order="1"/>
+			</action>
+			 <action name="mailtracking.mra.defaults.listcca.delete">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listcca.DeleteMCACommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listcca.reject">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listcca.RejectMCACommand" order="1"/>
+			</action>
+
+</screen>
+
+<!--  Added by Deepthi for ListCCA ends -->
+<!--  Added by Deepthi for ViewFlightSectorRevenue begins -->
+<screen name="mailtracking.mra.defaults.viewflightsectorrevenue" id="mailtracking.mra.defaults.viewflightsectorrevenue">
+
+			<action name="mailtracking.mra.defaults.viewflightsectorrevenue.screenload">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewflightsectorrevenue.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.viewflightsectorrevenue.list">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewflightsectorrevenue.MandatoryCheckCommand" order="1"/>
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewflightsectorrevenue.ValidateFlightCommand" order="2"/>
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewflightsectorrevenue.ListCommand" order="3"/>
+			</action>
+			<action name="mailtracking.mra.defaults.viewflightsectorrevenue.revenuedtls">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewflightsectorrevenue.MandatoryCheckCommand" order="1"/>
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewflightsectorrevenue.ValidateFlightCommand" order="2"/>
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewflightsectorrevenue.ListRevDetailsCommand" order="3"/>
+			</action>
+			<action name="mailtracking.mra.defaults.viewflightsectorrevenue.clear">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewflightsectorrevenue.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.sectorrevenue.viewaccountingentry">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewflightsectorrevenue.ViewAccountCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.sectorrevenue.viewexceptions">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewflightsectorrevenue.ViewExceptionsCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.sectorrevenue.close">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.viewflightsectorrevenue.CloseCommand" order="1"/>
+			</action>
+</screen>
+<!-- added for ViewFlightSectorRevenue by Deepthi ends -->
+
+<!--  Added by Deepthi for Document Statistics Report  begins -->
+
+<screen name="mailtracking.mra.defaults.documentstatisticsreport" id="mailtracking.mra.defaults.documentstatisticsreport">
+
+			<action name="mailtracking.mra.defaults.documentstatisticsreport.screenload" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.documentstatisticsreport.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.documentstatisticsreport.clear" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.documentstatisticsreport.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.documentstatisticsreport.print" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.documentstatisticsreport.report.PrintCommand" order="1"/>
+			</action>
+</screen>
+<!--  Added by Deepthi for Document Statistics Report  ends -->
+<!--  Added by Indu for Despatch Enquiry begins -->
+<screen name="mailtracking.mra.defaults.despatchenquiry" id="mailtracking.mra.defaults.despatchenquiry">
+
+			<action name="mailtracking.mra.defaults.despatchenquiry.listdsnpopup">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.ListDSNDetailCommand" order="1"/>
+			</action>
+
+			<action name="mailtracking.mra.defaults.despatchenquiry.screenload">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.despatchenquiry.list">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.ListCommand" order="1"/>
+
+			</action>
+			<action name="mailtracking.mra.defaults.despatchenquiry.gpablgdetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.GPABlgDtlsCommand" order="1"/>
+			</action>
+
+            <action name="mailtracking.mra.defaults.despatchenquiry.interlinebilling" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.InterLineBillingCommand" order="1"/>
+			</action>
+
+
+			<action name="mailtracking.mra.defaults.despatchenquiry.clear">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.despatchenquiry.close">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.CloseCommand" order="1"/>
+			</action>
+			<!--added by A-3229 for flown details-->
+			<action name="mailtracking.mra.defaults.despatchenquiry.flowndetails" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.FlownDetailsCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.despatchenquiry.viewprorate">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.ViewProrationCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.despatchenquiry.accountingdetails" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.AccountingDtlsCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.despatchenquiry.uspsdetails">
+			    <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.USPSReportingCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.despatchenquiry.outstandingbalances">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.OutstandingBalanceCommand" order="1"/>
+			</action>
+</screen>
+<!--  Added by Indu for Despatch Enquiry ends -->
+<!--  Added by Indu for Dsn select lov begins -->
+<screen name="mailtracking.mra.defaults.dsnselectpopup" id="mailtracking.mra.defaults.dsnselectpopup">
+
+		<action name="mailtracking.mra.defaults.despatchenquiry.popup">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.dsnpopup.DSNPopUpScreenLoadCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.dsnpopup.DSNPopUpListCommand" order="2"/>
+		</action>
+		<action name="mailtracking.mra.defaults.dsnpopup.list">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.dsnpopup.DSNPopUpListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.dsnpopup.ok">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.dsnpopup.DSNokCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.dsnpopup.clear">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.dsnpopup.DSNPopUpClearCommand" order="1"/>
+		</action>
+</screen>
+
+<!--  Added by Indu for Dsn select lov Enquiry ends -->
+<!--  Added by Indu for Rate Audit Details begins -->
+<screen name="mailtracking.mra.defaults.rateauditdetails" id="mailtracking.mra.defaults.rateauditdetails">
+
+		<action name="mailtracking.mra.defaults.rateauditdetails.screenload">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.rateauditdetails.RateAuditDetailsScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listrateauditdetails.list">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.rateauditdetails.ListRateAuditDetailsCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listrateauditdetails.listdsndetail">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.rateauditdetails.ListDSNDetailCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listrateauditdetails.rateaudit">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.rateauditdetails.RateAuditCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listrateauditdetails.clear">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.rateauditdetails.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listrateauditdetails.close">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.rateauditdetails.CloseCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listrateauditdetails.validate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.rateauditdetails.ValidateCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listrateauditdetails.computetotal">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.rateauditdetails.ComputeTotalCommand" order="1"/>
+		</action>
+	    <action name="mailtracking.mra.defaults.listrateauditdetails.save">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.rateauditdetails.SaveRateAuditCommand" order="1"/>
+		</action>
+	  	<action name="mailtracking.mra.defaults.maintaincca.cca">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.rateauditdetails.CCACommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.listrateauditdetails.viewprorate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.rateauditdetails.ViewProrationCommand" order="1"/>
+		</action>
+
+
+</screen>
+<!--  Added by Indu for Rate Audit Details ends -->
+<screen name="ListRateAudit" id="mailtracking.mra.defaults.listrateaudit">
+
+			<action name="mailtracking.mra.defaults.listrateauditscreenload">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateaudit.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listrateaudit.listrateauditdetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateaudit.ListCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listrateaudit.clearrateauditdetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateaudit.ClearCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listrateaudit.closerateauditdetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateaudit.CloseCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listrateaudit.changerateauditstatus">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateaudit.ChangeRateAuditStatusCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listrateaudit.viewproration">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateaudit.ViewProrationCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.listrateaudit.print">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listrateaudit.report.PrintCommand" order="1"/>
+			</action>
+
+</screen>
+
+<!-- Added by Muralee for MaintainCCA begins -->
+
+<screen name="mailtracking.mra.defaults.maintaincca" id="mailtracking.mra.defaults.maintaincca">
+
+
+		<action name="mailtracking.mra.defaults.maintaincca.screenload">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.ScreenLoadCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintaincca.populate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.PopulateNetValueAjaxCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintaincca.updateccadetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.UpdateMaintainCCACommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintaincca.listccadetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.ListCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintaincca.saveccadetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.SaveCCACommand" order="1"/>
+		</action>
+
+  	   <action name="mailtracking.mra.defaults.maintaincca.deleteccadetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.DeleteCCACommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.showccas.screenload">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.ScreenLoadCCAPopupCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintaincca.selectccaOK">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.OkCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintaincca.listccadetailsforOK">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.ListCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.maintaincca.clearscreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.ClearCommand" order="1"/>
+		</action>
+	    <action name="mailtracking.mra.defaults.maintaincca.autorate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.AutoRateCommand" order="1"/>
+		</action>
+	   <action name="mailtracking.mra.defaults.maintaincca.populategpaname">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.PopulateGPANameCommand" order="1"/>
+		</action>
+	   <action name="mailtracking.mra.defaults.maintaincca.rejectcca">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.RejectCCACommand" order="1"/>
+		</action>
+	    <action name="mailtracking.mra.defaults.maintaincca.accept">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.AcceptCCACommand" order="1"/>
+		</action>
+	<!--  Added by Muralee for Printing CCA Details  starts -->
+	<action name="mra.defaults.maintaincca.printccadetails">
+		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.report.PrintCCACommand" order="1"/>
+	</action>
+
+	<!--  Added by Muralee for Printing CCA Ends   -->
+
+<!--  Added by deepthi for listCCA starts -->
+		<action name="mailtracking.mra.defaults.listcca.detailccainfo">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.DetailListCCACommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintaincca.closescreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.CloseCommand" order="1"/>
+		</action>
+
+<!--  Added by deepthi for listCCA ends -->
+
+		<action name="mailtracking.mra.defaults.maintaincca.listdsndetail">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.ListDSNDetailCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintaincca.listprofomacca">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.ListProfomaCCAWorkflow" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.maintaincca.surchargedetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.SurchargeCCADetailsCommand" order="1"/>
+		</action>
+		<!--Added as part of IASCB-2377 starts-->
+		 <action name="mail.mra.updatemcaworkflow">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.UpdateMCAWorkflowCommand" order="1" />
+		</action>
+		<!--Added as part of IASCB-2377 ends-->
+</screen>
+
+<!--  Added by Muralee  for MaintainCCA ends -->
+	<!--added by A-4823 for mca lov starts-->
+		<screen name="mailtracking.mra.defaults.mcalov" id="mailtracking.mra.defaults.mcalov">
+			<action name="mailtracking.mra.defaults.mcalov.screenload">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.FindMCALovCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.mcalov.list">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.FindMCALovCommand" order="1"/>
+			</action>
+				<action name="mailtracking.mra.defaults.mcalov.clear">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.ClearMCACommand" order="1"/>
+			</action>
+		</screen>
+		<!--added by A-4823 for mca lov ends-->
+		<!--added by A-4823 for dsn lov starts-->
+		<screen name="mailtracking.mra.defaults.dsnlov" id="mailtracking.mra.defaults.dsnlov">
+			<action name="mailtracking.mra.defaults.dsnlov.screenload">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.FindDSNCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.dsnlov.list">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.FindDSNCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.dsnlov.clear">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.maintaincca.ClearDSNCommand" order="1"/>
+			</action>
+		</screen>
+		<!--added by A-4823 ends-->
+
+<!--Added by A-3229 for Manual proration starts-->
+
+<screen name="mailtracking.mra.defaults.manualproration" id="mailtracking.mra.defaults.manualproration">
+
+
+		<action name="mailtracking.mra.defaults.manualproration.screenLoad">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.manualproration.ScreenLoadCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.manualproration.closescreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.manualproration.CloseCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.manualproration.clearscreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.manualproration.ClearCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.manualproration.listscreen">
+		     <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.manualproration.ListCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.manualproration.savescreen">
+			 <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.manualproration.SaveCommand" order="1"/>
+		</action>
+
+	    <action name="mailtracking.mra.defaults.manualproration.update">
+			 <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.manualproration.UpdateCommand" order="1"/>
+		</action>
+		<!--Commented by A-5945 for ICRD-83194-->
+		<!-- <action name="mailtracking.mra.defaults.manualproration.reloadcommand">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.manualproration.ReloadCommand" order="1"/>
+		</action> -->
+	    <action name="mailtracking.mra.defaults.manualproration.prorate">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.manualproration.ProrateCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.manualproration.listdsndetail">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.manualproration.ListDSNDetailCommand" order="1"/>
+		</action>
+</screen>
+
+
+<screen name="mailtracking.mra.defaults.despatchrouting" id="mailtracking.mra.defaults.despatchrouting">
+
+		<action name="mailtracking.mra.defaults.despatchrouting.screenLoad">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchrouting.ScreenloadCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.despatchrouting.validatebsa">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchrouting.ValidateBSACommand" order="1"/>
+		</action>
+
+
+		<action name="mailtracking.mra.defaults.despatchrouting.listscreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchrouting.ListCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.despatchrouting.savescreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchrouting.SaveCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.despatchrouting.closescreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchrouting.CloseCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.despatchrouting.clearscreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchrouting.ClearCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.despatchrouting.listdsnpopup">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchrouting.ListDSNDetailCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.despatchrouting.addrow">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchrouting.AddCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.despatchrouting.deleterow">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchrouting.DeleteCommand" order="1"/>
+		</action>
+
+
+
+</screen>
+
+<!--Added by A-3229 ends-->
+ <!-- Added for UnaccountedDispatches starts -->
+		<screen name="mailtracking.mra.defaults.unaccounteddispatches" id="mailtracking.mra.defaults.unaccounteddispatches">
+			<action name="mailtracking.mra.defaults.unaccounteddispatches.onScreenLoad">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.unaccounteddispatches.ScreenloadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.unaccounteddispatches.clearsearch">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.unaccounteddispatches.ClearUnaccountedDispatchesCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.unaccounteddispatches.listload">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.unaccounteddispatches.ListUnaccountedDispatchesCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.unaccounteddispatches.onReportScreenLoad">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.unaccounteddispatches.ScreenloadCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.unaccounteddispatches.validate">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.unaccounteddispatches.report.GenerateReportCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.unaccounteddispatches.viewDispatchesEnquiry">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.despatchenquiry.UpdateSessionFromDispatchesCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.unaccounteddispatches.account">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.unaccounteddispatches.PerformAccountingDSNCommand" order="1"/>
+			</action>
+			<action name="mailtracking.mra.defaults.unaccounteddispatches.viewmanualaccounting">
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.unaccounteddispatches.ViewManualCommand" order="1"/>
+			</action>
+		</screen>
+	<!-- Added for UnaccountedDispatches ends -->
+
+<!--Added by A-3229  for AirNZCR 882 starts-->
+
+	<screen name="mailtracking.mra.defaults.prorationlog"  id="mailtracking.mra.defaults.prorationlog">
+
+		<action name="mailtracking.mra.defaults.prorationlog.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.prorationlog.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.prorationlog.closescreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.prorationlog.CloseCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.prorationlog.listscreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.prorationlog.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.prorationlog.clearscreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.prorationlog.ClearCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.prorationlog.viewproration" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.prorationlog.ViewProrationCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.viewproration.reloadload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.prorationlog.ReloadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.prorationlog.listdsndetail" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.prorationlog.ListDSNDetailCommand" order="1"/>
+		</action>
+	</screen>
+
+<!--Added by A-3229  for AirNZCR 882 ends-->
+<!-- Proration Exceptions screen starts -->
+
+	<screen name="mailtracking.mra.defaults.listmailprorationexceptions" id="mailtracking.mra.defaults.listmailprorationexceptions">
+		<action name="mra.defaults.proration.screenloadlistprorationexception" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listprorationexceptions.ScreenloadCommand" order="1"/>
+		</action>
+
+		<action name="mra.defaults.proration.listprorationexceptionslist" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listprorationexceptions.ListCommand" order="1"/>
+		</action>
+
+		<action name="mra.defaults.proration.clearlistexceptions" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listprorationexceptions.ClearCommand" order="1"/>
+		</action>
+
+		<action name="mra.defaults.proration.listprorationexceptionssave" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listprorationexceptions.SaveCommand" order="1"/>
+		</action>
+
+		<action name="mra.defaults.proration.listprorationexceptionsvoid" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listprorationexceptions.VoidMailbagsCommand" order="1"/>
+		</action>
+		<action name="mra.defaults.proration.listprorationexceptionsprint" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listprorationexceptions.report.PrintCommand" order="1"/>
+		</action>
+
+		<action name="mra.defaults.proration.listprorationexceptionsclose" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listprorationexceptions.CloseCommand" order="1"/>
+		</action>
+
+		<action name="mra.defaults.proration.listprorationexceptionsprorate" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listprorationexceptions.ProrateCommand" order="1"/>
+
+
+		</action>
+		<action name="mra.defaults.proration.listprorationexceptionsnavigate" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.listprorationexceptions.NavigateCommand" order="1"/>
+
+
+		</action>
+
+	</screen>
+
+	<!-- Proration Exceptions screen ends-->
+
+	<!--Added by A-3229 for Irregularity starts-->
+	<screen name="mailtracking.mra.defaults.irregularity" id="mailtracking.mra.defaults.irregularity">
+		<action name="mailtracking.mra.defaults.irregularity.screenLoad" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.irregularity.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.irregularity.closescreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.irregularity.CloseCommand" order="1"/>
+		</action>
+
+		<action name="mailtracking.mra.defaults.irregularity.listscreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.irregularity.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.irregularity.clearscreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.irregularity.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.irregularity.printscreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.irregularity.PrintCommand" order="1"/>
+		</action>
+
+	<!--Added by A-3229 for Irregularity ends-->
+
+	</screen>
+
+	<!-- added By A-3434 for ChangeStatusPopup starts -->
+
+	<screen name="mailtracking.mra.defaults.changestatus" id="mailtracking.mra.defaults.changestatus">
+		<action name="mailtracking.mra.defaults.changestatuspopup" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.changebillingstatus.ScreenloadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.changestatussave" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.changebillingstatus.SaveCommand" order="1"/>
+		</action>
+	</screen>
+
+	<!-- added By A-3434 for ChangeStatusPopup ends -->
+	<!-- added By A-2391 for FuelSurcharge starts -->
+
+	<screen name="mailtracking.mra.defaults.fuelsurcharge" id="mailtracking.mra.defaults.fuelsurcharge">
+		<action name="mailtracking.mra.defaults.fuelsurcharge.onScreenLoad" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.fuelsurcharge.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.fuelsurcharge.onClear" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.fuelsurcharge.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.fuelsurcharge.onList" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.fuelsurcharge.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.fuelsurcharge.onClose" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.fuelsurcharge.CloseCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.fuelsurcharge.onSave" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.fuelsurcharge.SaveCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.fuelsurcharge.ajaxScreenLoad" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.fuelsurcharge.PopulateGpaNameCommand" order="1"/>
+		</action>
+
+	</screen>
+
+	<screen name="MailExceptionReports" id="mailtracking.mra.defaults.mailexceptionreports">
+		<action name="mailtracking.mra.defaults.mailexceptionreports.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailexceptionreports.ScreenloadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.mailexceptionreports.generatereport" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailexceptionreports.GenerateCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.mailexceptionreports.downloadfile" >
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.mailexceptionreports.DownloadCommand" order="1"/>
+		</action>
+   </screen>
+
+   <!-- added By A-5166 for Dispatch Routing Carrier Config Starts -->
+	<screen name="MRARoutingCarrierForm" id="mailtracking.mra.defaults.dispatchroutingcarrierconfig">
+		<action name="mailtracking.mra.defaults.despatchroutingcarrierconfig.screenLoad">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.dispatchroutingcarrierconfig.ScreenloadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.despatchroutingcarrierconfig.listcarrierdetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.dispatchroutingcarrierconfig.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.despatchroutingcarrierdetails.savescreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.dispatchroutingcarrierconfig.SaveCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.despatchroutingcarrierdetails.addrow">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.dispatchroutingcarrierconfig.AddCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.despatchroutingcarrierdetails.deleterow">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.dispatchroutingcarrierconfig.DeleteCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.despatchroutingcarrierconfig.clearscreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.dispatchroutingcarrierconfig.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.despatchroutingcarrierconfig.closescreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.dispatchroutingcarrierconfig.CloseCommand" order="1"/>
+		</action>
+	</screen>
+	<!-- added By A-5166 for Dispatch Routing Carrier Config Ends -->
+
+	<screen name="BillingSiteForm" id="mailtracking.mra.defaults.billingsitemaster">
+		<action name="mra.defaults.billingsitemaster">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.billingsite.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.billingsitemaster.listcommand">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.billingsite.ListCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.billingsitemaster.saveCommand">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.billingsite.SaveCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.billingsitemaster.clearCommand">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.billingsite.ClearCommand" order="1"/>
+		</action>
+		<action name="mailtracking.mra.defaults.billingsitemaster.closeCommand">
+			<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.billingsite.CloseCommand" order="1"/>
+		</action>
+	</screen>
+	<screen name="BillingSiteLOVScreen" id="mailtracking.mra.defaults.billingsitelov">
+     	<action name="mailtracking.mra.defaults.billingsitemaster.showBillingSiteLOVDetails" >
+     		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.billingsite.ListLOVCommand" order="1"/>
+     	</action>
+     	<action name="mailtracking.mra.defaults.billingsitemaster.clearbillingsitelov" >
+     		<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.billingsite.ClearLOV" order="1"/>
+     	</action>
+	</screen>
+<screen name="BillingScheduleMasterScreen" id="mail.mra.defaults.ux.billingScheduleMaster">
+	<action name="mail.mra.defaults.ux.billingScheduleMaster.defaultscreenload">
+                <command class="com.ibsplc.icargo.framework.web.command.screenload.DefaultScreenLoadCommand" order="1"/>
+        </action>
+        <action name="mail.mra.defaults.ux.billingScheduleMaster.screenload" >
+                <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.ux.billingScheduleMaster.ScreenLoadCommand" order="1"/>
+        </action>
+		<action name="mail.mra.defaults.ux.billingScheduleMaster.list" >
+                <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.ux.billingScheduleMaster.ListCommand" order="1"/>
+        </action>
+		<action name="mail.mra.defaults.ux.billingScheduleMaster.save" >
+                <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.ux.billingScheduleMaster.SaveCommand" order="1"/>
+        </action>
+		<action name="mail.mra.defaults.ux.billingScheduleMaster.validate" >
+                <command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.ux.billingScheduleMaster.ValidateCommand" order="1"/>
+        </action>
+	</screen>
+	<screen name="AttachFile" id="mail.mra.defaults.ux.attachfile">
+		<action name="mail.mra.defaults.ux.attachfile.defaultscreenload">
+				<command class="com.ibsplc.icargo.framework.web.command.screenload.DefaultScreenLoadCommand" order="1"/>
+		</action>
+		<action name="mail.mra.defaults.ux.attachfile.fetchdetailsonscreenload" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.ux.attachfile.ScreenLoadCommand" order="1"/>
+	    </action>
+		<action name="mail.mra.defaults.ux.attachfile.fetchdetailsonexcelupload" >
+				<command class="com.ibsplc.icargo.presentation.web.command.mail.mra.defaults.ux.attachfile.UploadExcelCommand" order="1"/>
+	    </action>
+	 </screen>	
+</command-mappings>

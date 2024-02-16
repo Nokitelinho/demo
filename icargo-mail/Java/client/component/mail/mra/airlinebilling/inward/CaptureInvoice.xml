@@ -1,0 +1,275 @@
+<?xml version="1.0"?>
+<components screenId="mailtracking.mra.airlinebilling.inward.captureinvoice" xmlns="http://www.ibsplc.com/icargo/components-details">
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_CLEARANCEPERIOD" name="Clearance Period">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.clearanceperiod</value>
+	</attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	
+	 <attribute>
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+</component>
+
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_AIRLINECODE" name="Airline Code">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.airlinecode</value>
+	</attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	
+	 <attribute>
+			<name>lov</name>
+			 <value>true</value>
+	</attribute>
+</component>
+
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_INVDATE" name="Invoice Date">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.invdate</value>
+	</attribute>
+	</component>
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_INVNUMBER" name="Invoice Number">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.invno</value>
+	</attribute>
+
+</component>
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_AIRLINENO" name="Airline Number">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+	</attribute>
+
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.airlineno</value>
+	</attribute>
+	<attribute>
+		<name>lov</name>
+		<value>true</value>
+	</attribute>
+	
+</component>
+
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_LISTINGCURRENCY" name="Listing Currency">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_TXT_SMALL</value>
+		</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.listingcurrency</value>
+	</attribute>
+	<attribute>
+		<name>type</name>
+	<value>detail</value>
+	</attribute>
+	<attribute>
+		<name>mandatory</name>
+		<value>true</value>
+	</attribute>
+</component>
+
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_NETAMOUNT" name="Net Amount">
+
+
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_MONEY_ENTRY</value>
+	</attribute>
+
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.netamount</value>
+		</attribute>
+		<attribute>
+				<name>type</name>
+				<value>detail</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_EXCHANGERATE" name="Exchange Rate">
+		<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+			<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.exchangerate</value>
+		</attribute>
+
+		<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_AMOUNTINUSD" name="Amount In USD">
+		<attribute>
+				<name>businesstype-id</name>
+				<value>BT_MONEY_ENTRY</value>
+		</attribute>
+<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.amountinusd</value>
+		</attribute>
+</component>
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_INVRECEIPTDATE" name="Invoice Receipt Date">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_CALENDAR</value>
+	</attribute>
+	<attribute>
+<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.invreceiptdate</value>
+	</attribute>
+	</component>
+	<component id="CMP_MRA_AIRLINEBILLING_INWARD_TOTALWEIGHT" name="Total Weight">
+		<attribute>
+		<name>businesstype-id</name>
+		<value>BT_DEFAULT_WEIGHT_ENTRY</value>
+		</attribute>
+		<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.totalweight</value>
+		</attribute>
+		<attribute>
+		<name>type</name>
+		<value>detail</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_LIST" name="List">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.list</value>
+	</attribute>
+	</component>
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_CLEAR" name="Clear">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.clear</value>
+	</attribute>
+	</component>
+
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_REJECTINVOICE" name="Reject Invoice">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_MEDIUM</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.rejectinvoice</value>
+	</attribute>
+	<attribute>
+	<name>type</name>
+	<value>detail</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_DELETE" name="Delete">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.delete</value>
+	</attribute>
+	<attribute>
+			<name>type</name>
+			<value>detail</value>
+	</attribute>
+</component>
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_CLOSE" name="close">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.close</value>
+	</attribute>
+	</component>
+<component id="CMP_MRA_AIRLINEBILLING_INWARD_SAVE" name="save">
+	<attribute>
+		<name>businesstype-id</name>
+		<value>BT_BUTTON_VERY_SMALL</value>
+	</attribute>
+	<attribute>
+		<name>tooltip</name>
+		<value>mra.inwardbilling.captureinvoice.tooltip.save</value>
+	</attribute>
+	<attribute>
+			<name>type</name>
+			<value>detail</value>
+	</attribute>
+	</component>
+
+</components>

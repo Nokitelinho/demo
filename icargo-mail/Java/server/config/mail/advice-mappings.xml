@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adv:advice-mappings xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:adv="http://www.ibsplc.com/icargo/business/advice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ibsplc.com/icargo/business/advice xibase/java/server/config/framework/xsd/advice-mappings.xsd" product="mail">
+
+
+
+
+		<adv:advice name="mail.operations.auditMailBagDeleteion">
+		<adv:action name="auditMailBagDeletion" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="auditMailBagDeletion" async="true" enabled="true"/>
+    </adv:advice>
+	<adv:advice name="mail.mra.saveBillingSiteDetails">
+		<adv:action name="saveBillingSiteDetails" type="AUDIT"
+			builder="com.ibsplc.icargo.business.mail.mra.defaults.builder.BillingSiteAuditBuilder"
+            method="auditBillingSiteDetails" async="true"/>
+    </adv:advice>
+	<adv:advice name="mail.operations.flagResditsForAcceptance">
+		<adv:action name="flagResditsForAcceptance" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagResditsForAcceptance" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagMLDForMailAcceptance">
+		<adv:action name="flagMLDForMailAcceptance" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagMLDForMailAcceptance" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagResditsForFlightDeparture">
+		<adv:action name="flagResditsForFlightDeparture" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagResditsForFlightDeparture" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagMLDForMailOperations">
+		<adv:action name="flagMLDForMailOperations" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagMLDForMailOperations" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagResditsForTransportCompleted">
+		<adv:action name="flagResditsForTransportCompleted" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagResditsForTransportCompleted" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagPendingResditForUlds">
+		<adv:action name="flagPendingResditForUlds" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagPendingResditForUlds" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagResditForMailbags">
+		<adv:action name="flagResditForMailbags" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagResditForMailbags" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagResditsForInventoryDelivery">
+		<adv:action name="flagResditsForInventoryDelivery" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagResditsForInventoryDelivery" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagReturnedResditForULDs">
+		<adv:action name="flagReturnedResditForULDs" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagReturnedResditForULDs" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagResditsForULDAcceptance">
+		<adv:action name="flagResditsForULDAcceptance" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagResditsForULDAcceptance" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagResditsForArrival">
+		<adv:action name="flagResditsForArrival" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagResditsForArrival" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagResditsForContainerTransfer">
+		<adv:action name="flagResditsForContainerTransfer" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagResditsForContainerTransfer" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagResditsForMailbagTransfer">
+		<adv:action name="flagResditsForMailbagTransfer" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagResditsForMailbagTransfer" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagResditForMailbagsFromReassign">
+		<adv:action name="flagResditForMailbagsFromReassign" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagResditForMailbagsFromReassign" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagResditsForMailbagReassign">
+		<adv:action name="flagResditsForMailbagReassign" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagResditsForMailbagReassign" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagResditForContainerReassign">
+		<adv:action name="flagResditForContainerReassign" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagResditForContainerReassign" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagMLDForMailReassignOperations">
+		<adv:action name="flagMLDForMailReassignOperations" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagMLDForMailReassignOperations" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagMLDForContainerReassign">
+		<adv:action name="flagMLDForContainerReassign" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagMLDForContainerReassign" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagMLDForUpliftedMailbags">
+		<adv:action name="flagMLDForUpliftedMailbags" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagMLDForUpliftedMailbags" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagMLDForContainerTransfer">
+		<adv:action name="flagMLDForContainerTransfer" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagMLDForContainerTransfer" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagMLDForMailbagTransfer">
+		<adv:action name="flagMLDForMailbagTransfer" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagMLDForMailbagTransfer" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.updateResditEventTimes">
+		<adv:action name="updateResditEventTimes" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="updateResditEventTimes" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.insertOrUpdateHistoryDetailsForAcceptance">
+		<adv:action name="insertOrUpdateHistoryDetailsForAcceptance" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="insertOrUpdateHistoryDetailsForAcceptance" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.insertOrUpdateAuditDetailsForAcceptance">
+		<adv:action name="insertOrUpdateAuditDetailsForAcceptance" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="insertOrUpdateAuditDetailsForAcceptance" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagHistoryDetailsForMailbagsFromReassign">
+		<adv:action name="flagHistoryDetailsForMailbagsFromReassign" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryDetailsForMailbagsFromReassign" async="true" />
+    </adv:advice>
+		<adv:advice name="mail.operations.flagAuditDetailsForMailbagsFromReassign">
+		<adv:action name="flagAuditDetailsForMailbagsFromReassign" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagAuditDetailsForMailbagsFromReassign" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagHistoryForContainerReassignment">
+		<adv:action name="flagHistoryForContainerReassignment" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryForContainerReassignment" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagMailbagHistoryForArrival">
+		<adv:action name="flagMailbagHistoryForArrival" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagMailbagHistoryForArrival" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagMailbagAuditForArrival">
+		<adv:action name="flagMailbagAuditForArrival" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagMailbagAuditForArrival" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagMailbagHistoryForDelivery">
+		<adv:action name="flagMailbagHistoryForDelivery" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagMailbagHistoryForDelivery" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagMailbagAuditForDelivery">
+		<adv:action name="flagMailbagAuditForDelivery" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagMailbagAuditForDelivery" async="true" />
+    </adv:advice>
+    <adv:advice name="mail.operations.flagAuditForMailOperartions">
+		<adv:action name="flagAuditForMailOperartions" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagAuditForMailOperartions" async="true" />
+    </adv:advice>
+		<adv:advice name="mail.operations.flagHistoryForReturnedMailbags">
+		<adv:action name="flagHistoryForReturnedMailbags" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryForReturnedMailbags" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagAuditForReturnedMailbags">
+		<adv:action name="flagAuditForReturnedMailbags" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagAuditForReturnedMailbags" async="true" />
+    </adv:advice>
+<adv:advice name="mail.operations.flagHistoryForDamagedMailbags">
+		<adv:action name="flagHistoryForDamagedMailbags" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryForDamagedMailbags" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagAuditForDamagedMailbags">
+		<adv:action name="flagAuditForDamagedMailbags" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagAuditForDamagedMailbags" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagHistoryForTransfer">
+		<adv:action name="flagHistoryForTransfer" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryForTransfer" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagAuditForTransfer">
+		<adv:action name="flagAuditForTransfer" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagAuditForTransfer" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagHistoryForContainerTransfer">
+		<adv:action name="flagHistoryForContainerTransfer" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryForContainerTransfer" async="true" />
+    </adv:advice>
+	<!-- added by A-7371 for ICRD-133987 starts-->
+	<adv:advice name="mail.operations.flagHistoryForContainerTransferAtExport">
+		<adv:action name="flagHistoryForContainerTransferAtExport" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryForContainerTransferAtExport" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagHistoryForMailTransferAtExport">
+		<adv:action name="flagHistoryForMailTransferAtExport" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryForMailTransferAtExport" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagAuditForMailTransferAtExport">
+		<adv:action name="flagAuditForMailTransferAtExport" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagAuditForMailTransferAtExport" async="true" />
+    </adv:advice>
+		<!-- added by A-7371 for ICRD-133987 ends-->
+	<adv:advice name="mail.operations.insertOrUpdateHistoryDetailsForCardit">
+		<adv:action name="insertOrUpdateHistoryDetailsForCardit" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="insertOrUpdateHistoryDetailsForCardit" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.insertOrUpdateAuditDetailsForCardit">
+		<adv:action name="insertOrUpdateAuditDetailsForCardit" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="insertOrUpdateAuditDetailsForCardit" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.auditCarditCancellation">
+		<adv:action name="auditCarditCancellation" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="auditCarditCancellation" async="true" enabled="true"/>
+    </adv:advice>
+	<adv:advice name="mail.operations.insertHistoryDetailsForExcelUpload">
+		<adv:action name="insertHistoryDetailsForExcelUpload" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="insertHistoryDetailsForExcelUpload" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.mra.changeMailbagStatus">
+		<adv:action name="changeStatus" type="AUDIT" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAAuditBuilder" method="auditChangeStatus" async="true" enabled="true"/>
+    </adv:advice>
+	<adv:advice name="mail.mra.saveRateLineDetails">
+		<adv:action name="saveRateLineDetails" type="AUDIT" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAAuditBuilder" method="saveRateLineDetails" async="true" enabled="true"/>
+    </adv:advice>
+	<adv:advice name="mail.mra.updateRateLineDetails">
+		<adv:action name="updateRateLineDetails" type="AUDIT" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAAuditBuilder" method="updateRateLineDetails" async="true" enabled="true"/>
+    </adv:advice>
+	<adv:advice name="mail.mra.saveMCADetails">
+		<adv:action name="saveMCADetails" type="AUDIT" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAAuditBuilder" method="auditMCADetails" async="true" enabled="true"/>
+    </adv:advice>
+	<adv:advice name="mail.operations.importMailToMRA">
+		<adv:action name="importMailsToMRA" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="importMailsToMRA" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.auditMailBagUpdate">
+		<adv:action name="auditMailBagUpdate" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="auditMailbagUpdate" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.auditContainer">
+		<adv:action name="auditContainer" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="auditContainer" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagHistoryForMailAwbAttachment">
+		<adv:action name="flagHistoryForMailAwbAttachment" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryForMailAwbAttachment" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.mra.saveBillingMatrix">
+		<adv:action name="saveBillingMatrix" type="AUDIT" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAAuditBuilder" method="auditBillingMatrix" async="true"/>
+    </adv:advice>
+
+	<adv:advice name="mail.operations.flagMLDForMailbagReturn">
+		<adv:action name="flagMLDForMailbagReturn" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagMLDForMailbagReturn" async="true" />
+    </adv:advice>
+
+	<adv:advice name="mail.mra.saveAutoMCAdetails">
+		<adv:action name="saveAutoMCAdetails" type="AUDIT" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAAuditBuilder" method="auditAutoMCADetails" async="true"/>
+		<!-- Added for IASCB-2373 starts  -->
+		 <adv:action name="saveMCAWorkflow" type="WORKFLOW" builder="com.ibsplc.icargo.business.mail.mra.builder.MCAWorkflowBuilder" method="initiateMCAWorkflow" async="true" />
+		<!-- Added for IASCB-2373 ends  -->
+    </adv:advice>
+	<!--Added as part of ICRD-239771 -->
+	<adv:advice name="mail.operations.saveArrivalDetails">
+		<adv:action name="sendCustomsMessage" type="MESSAGE" builder="com.ibsplc.icargo.business.mail.operations.builder.CustomsMessageBuilder" method="sendCustomsMessages" async="true" enabled="true" />
+    </adv:advice>
+	<adv:advice name="mail.mra.saveClaimDetails">
+		<adv:action name="saveClaimDetails" type="AUDIT" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAAuditBuilder" method="saveClaimDetails" async="true"/>
+    </adv:advice>
+	<adv:advice name="mail.mra.updateMailStatus">
+		<adv:action name="updateMailStatus" type="AUDIT" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAAuditBuilder" method="updateMailStatus" async="true"/>
+    </adv:advice>
+	<!-- Added for IASCB-2373 starts -->
+	<adv:advice name="mail.operations.saveHistoryDetails">
+		<adv:action name="startMCAWorkflow" type="WORKFLOW" builder="com.ibsplc.icargo.business.mail.mra.builder.MCAWorkflowBuilder"
+		method="startMCAWorkflow" async="false" enabled="true" />
+	</adv:advice>
+
+	<!-- Added for IASCB-2373 ends -->
+
+
+	<adv:advice name="mail.mra.checkAutoProcessing">
+		<adv:action name="checkAutoProcessing" type="WORKFLOW" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAGPAReportingBuilder"
+		method="checkAutoProcessing" async="true" enabled="true" />
+	</adv:advice>
+
+	<adv:advice name="mail.operations.auditInvoiceStatusMailbaglevel">
+		<adv:action name="auditInvoiceStatusMailbaglevel" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="auditInvoiceStatusMailbaglevel" async="true" enabled="true"/>
+    </adv:advice>
+	<adv:advice name="mail.operations.flagHistoryforFlightDeparture">
+		<adv:action name="flagHistoryforFlightDeparture" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryforFlightDeparture" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagAuditforFlightDeparture">
+		<adv:action name="flagAuditforFlightDeparture" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagAuditforFlightDeparture" async="true" />
+    </adv:advice>
+
+	<adv:advice name="mail.operations.flagHistoryforFlightArrival">
+		<adv:action name="flagHistoryforFlightArrival" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryforFlightArrival" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagAuditforFlightArrival">
+		<adv:action name="flagAuditforFlightArrival" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagAuditforFlightArrival" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagHistoryforReadyForDelivery">
+		<adv:action name="flagHistoryforReadyForDelivery" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryforReadyForDelivery" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagAuditforReadyForDelivery">
+		<adv:action name="flagAuditforReadyForDelivery" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagAuditforReadyForDelivery" async="true" />
+    </adv:advice>
+    <adv:advice name="mail.operations.savePostalCalendar">
+		<adv:action name="savePostalCalendar" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="auditPostalCalendar" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagMailbagAuditForResdit">
+		<adv:action name="flagMailbagAuditForResdit" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagMailbagAuditForResdit" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagAuditForContainerTransfer">
+		<adv:action name="flagAuditForContainerTransfer" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagAuditForContainerTransfer" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagAuditForContainerReassignment">
+		<adv:action name="flagAuditForContainerReassignment" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagAuditForContainerReassignment" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagAuditForContainerTransferAtExport">
+		<adv:action name="flagAuditForContainerTransferAtExport" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagAuditForContainerTransferAtExport" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.mra.auditRateCardDetails">
+		<adv:action name="auditRateCardDetails" type="AUDIT" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAAuditBuilder" method="auditRateCardDetails" async="true" />
+    </adv:advice>	
+<adv:advice name="mail.operations.flagHistoryforTransferRejection">
+		<adv:action name="flagHistoryforTransferRejection" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryforTransferRejection" async="true" />
+    </adv:advice>
+	
+	<adv:advice name="mail.operations.flagHistoryforTransferInitiation">
+		<adv:action name="flagHistoryforTransferInitiation" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.HistoryBuilder" method="flagHistoryforTransferInitiation" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagContainerAuditForDeletion">
+		<adv:action name="flagContainerAuditForDeletion" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagContainerAuditForDeletion" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagContainerAuditForUnassignment">
+		<adv:action name="flagContainerAuditForUnassignment" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagContainerAuditForUnassignment" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagContainerAuditForArrival">
+		<adv:action name="flagContainerAuditForArrival" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagContainerAuditForArrival" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagContainerAuditForAcquital">
+		<adv:action name="flagContainerAuditForAcquital" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagContainerAuditForAcquital" async="true" />
+    </adv:advice>
+	<adv:advice name="mail.operations.flagContainerAuditForRetaining">
+		<adv:action name="flagContainerAuditForRetaining" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MailBagAuditBuilder" method="flagContainerAuditForRetaining" async="true" />
+    </adv:advice>
+	
+	<adv:advice name="mail.mra.triggerAccountingAtBatchLevel">
+		<adv:action name="triggerAccountingAtBatchLevel" type="WORKFLOW" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAGPAReportingBuilder"
+		method="triggerAccountingAtBatchLevel" async="true" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="mail.mra.triggerReverseAccountingAtBatchLevel">
+		<adv:action name="triggerReverseAccountingAtBatchLevel" type="WORKFLOW" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAGPAReportingBuilder"
+		method="triggerReverseAccountingAtBatchLevel" async="true" enabled="true" />
+	</adv:advice>
+		<adv:advice name="mail.mra.auditBatchSettlement">
+		<adv:action name="auditBatchSettlement" type="AUDIT" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAAuditBuilder" 
+		method="auditBatchSettlement" async="true" enabled="true"/>
+	</adv:advice>
+	<adv:advice name="mail.operations.flagMLDForMailOperationsInULD">
+		<adv:action name="flagMLDForMailOperationsInULD" type="AUDIT" builder="com.ibsplc.icargo.business.mail.operations.builder.MessageBuilder" method="flagMLDForMailOperationsInULD" async="true" />
+    </adv:advice>
+    <adv:advice name="mail.mra.changeEnddate">
+		<adv:action name="changeEnddate" type="AUDIT" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAAuditBuilder" method="changeEnddate" async="true" enabled="true"/>
+    </adv:advice>
+     <adv:advice name="mail.mra.changeBillingMatrixStatusUpdate">
+		<adv:action name="changeBillingMatrixStatusUpdate" type="AUDIT" builder="com.ibsplc.icargo.business.mail.mra.builder.MRAAuditBuilder" method="changeBillingMatrixStatusUpdate" async="true" enabled="true"/>
+    </adv:advice>
+</adv:advice-mappings>

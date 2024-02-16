@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN "
+	"http://struts.apache.org/dtds/struts-config_1_2.dtd " >
+
+
+<struts-config>
+
+	<action-mappings>
+
+	
+		   <action path="/mail.mra.receivablemanagement.ux.advancepayment.defaultscreenload" 
+		        name="DefaultSPAForm"
+				scope="request" 				
+				type="com.ibsplc.icargo.framework.struts.action.DefaultSPARenderAction"  
+				validate="false">
+			<forward name="_default_render_success" path="/app/mail/mra/advancepayment/index.jsp"/>
+          </action>	
+		  
+		   <action path="/mail.mra.ux.listsettlementbatch.defaultscreenload"
+		        name="DefaultSPAForm"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.DefaultSPARenderAction"
+				validate="false">
+			<forward name="_default_render_success" path="/app/mail/mra/listsettlementbatch/index.jsp"/>	
+         </action>			  
+
+	</action-mappings>
+
+
+	<message-resources key="advancePaymentResourceBundle" parameter="resources.mail.mra.receivablemanagement.AdvancePayment" null="false"/>
+	<message-resources key="listSettlementBatchResourceBundle" parameter="resources.mail.mra.receivablemangement.ListSettlementBatch" null="false"/>
+	
+	
+	 <plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+				<set-property property="configFileName" value="/WEB-INF/errortags/mail/mra/receivablemanagement/errortags.xml"/>
+	 </plug-in>
+</struts-config>

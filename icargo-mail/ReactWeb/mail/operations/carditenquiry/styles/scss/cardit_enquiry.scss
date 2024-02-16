@@ -1,0 +1,103 @@
+body {
+    display: flex;
+    height: 0;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-panel {}
+
+.section-panel {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 1rem 0;
+    .card {
+        flex-grow: 1;
+    }
+}
+
+.footer-panel {
+    position: static;
+    margin: 0 -1rem;
+    width: auto;
+}
+
+.cardit-details-list {
+    .paginator__wrap {
+        min-width: unset;
+        max-width: unset;
+        width: auto;
+    }
+}
+
+//common styles
+.flex-grow-0 {
+    flex-grow: 0
+}
+
+.flex-grow-1 {
+    flex-grow: 1
+}
+
+.text-light-grey {
+    color: #aaa;
+}
+
+.form-control-data {
+    color: #333;
+}
+
+//tables
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn {
+    padding: 0 0 0 0.5rem;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:first-child,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn:first-child {
+    padding-left: 1rem;
+}
+
+.ReactVirtualized__Table .ReactVirtualized__Table__headerColumn:last-child,
+.ReactVirtualized__Table .ReactVirtualized__Table__rowColumn:last-child {
+    padding-right: 1rem;
+}
+
+.ReactVirtualized__Table .form-check-input {
+    margin: 0;
+}
+
+.ReactVirtualized__Table__row .ReactVirtualized__Table__row {
+    background: #f5f5f5;
+    border-top: 1px solid #eee;
+    padding: 4px 0;
+}
+
+//layout - header extra data
+.header-extra-data-panel {
+    padding: $sm;
+    line-height: 1;
+    min-width: 200px;
+    .header-extra-data-detail {
+        margin-bottom: $sm;
+        .form-control-label {
+            display: inline-block;
+            margin: 0 $xs 0 0;
+        }
+        .form-control-data {
+            display: inline-block
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+.button_popup{
+    float: right;
+    padding-right: 30px;
+    padding-bottom: 35px;
+}

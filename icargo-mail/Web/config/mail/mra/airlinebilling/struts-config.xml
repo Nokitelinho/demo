@@ -1,0 +1,1752 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN "
+	"http://struts.apache.org/dtds/struts-config_1_2.dtd " >
+
+
+<struts-config>
+
+	<form-beans>
+
+		<form-bean name="CaptureCN66Form" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.CaptureCN66Form"  />
+		<form-bean name="CN66DetailsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.CN66DetailsForm"  />
+		<form-bean name="CaptureCN51Form" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.CaptureCN51Form"  />
+		<form-bean name="UploadCN51CN66Form" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.UploadCN51CN66Form"  />
+		<form-bean name="UPUCalendarForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.UPUCalendarForm"  />
+		<form-bean name="CaptureRejectionMemoForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.CaptureRejectionMemoForm"  />
+		<form-bean name="AssignExceptionsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.inward.AssignExceptionsForm"  />
+		<form-bean name="ListOfRejectionMemosForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.inward.ListOfRejectionMemosForm" />
+		<form-bean name="MRAGenerateOutwardBillingInvoiceForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.outward.GenerateOutwardBillingInvoiceForm"  />
+		<form-bean name="AirlineExceptionsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.inward.AirlineExceptionsForm"  />
+		<form-bean name="AirlineClearancePeriodLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.ClearancePeriodLovForm"  />
+		<form-bean name="InvoiceExceptionsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.inward.InvoiceExceptionsForm"  />
+		<form-bean name="InvLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.InvoiceLOVForm"  />
+		<form-bean name="MemoLOVForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.MemoLOVForm"  />
+		<form-bean name="MRAInwardBillingReportForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.inward.report.InwardBillingReportForm"  />
+		<form-bean name="OutwardBillingReportForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.outward.report.OutwardBillingReportForm" />
+		<form-bean name="ListCN51ScreenForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.ListCN51ScreenForm"/>
+		<form-bean name="MRARejectionMemoForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.inward.RejectionMemoForm"/>
+		<form-bean name="MRAAirlineAuditForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.MRAAirlineAuditForm"/>
+		<form-bean name="ListMailFormOneForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.outward.ListMailFormOneForm"/>
+		<form-bean name="ViewMailFormTwoForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.outward.ViewMailFormTwoForm"/>
+		<form-bean name="CaptureMailFormOneForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.inward.CaptureMailFormOneForm"/>
+		<form-bean name="ViewForm1Form" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.outward.ViewMailFormOneForm"/>
+		<form-bean name="CaptureMailFormThreeForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.inward.CaptureMailFormThreeForm"/>
+		<!-- added A-3447 for capture invoice -->
+		<form-bean name="CaptureMailInvoiceForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.inward.CaptureMailInvoiceForm"/>
+		<!-- added by A-3447 for capture invoice -->
+		<form-bean name="ListInterlineBillingEntriesForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.defaults.ListInterlineBillingEntriesForm"/>
+
+		<form-bean name="MRASisSupportingDocumentDetailsForm" type="com.ibsplc.icargo.presentation.web.struts.form.mail.mra.airlinebilling.inward.MRASisSupportingDocumentDetailsForm"  />
+
+	</form-beans>
+
+	<global-forwards>
+		   <forward name="error_fwd" path="/jsp/icargo_logon.jsp" />
+		   <forward name="normal-report-viewer" path="/jsp/includes/reports/NormalReportViewer.jsp"/>
+		   <forward name="normal-report-printer" path="/jsp/includes/reports/NormalReportPrinter.jsp"/>
+		   <forward name="special-report-printer" path="/jsp/includes/reports/SpecialReportPrinter.jsp"/>
+		   <forward name="normal-report-error-jsp" path="/jsp/includes/reports/NormalReportErrorHandler.jsp"/>
+	</global-forwards>
+
+
+	<action-mappings>
+
+
+		<!-- added for Capture CN 66 starts -->
+			<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.onScreenLoad"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN66.jsp" />
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.print"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN66.jsp"  />
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.printInv"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN66.jsp"  />
+		</action>
+		<action
+			name="CN66DetailsForm"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.CN66Details"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp" />
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.listcn66"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN66.jsp" />
+			<forward name="screenload_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN66.jsp" />
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.savecn66Details"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN66.jsp" />
+			<forward name="screenload_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN66.jsp" />
+		</action>
+		<action
+			name="CN66DetailsForm"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.addCN66Details"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp" />
+
+		</action>
+
+		<action
+			name="CN66DetailsForm"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.modifyCN66Details"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp" />
+
+		</action>
+		<action
+			name="CN66DetailsForm"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.nextCN66"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp" />
+			<forward name="screenload_failure" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp" />
+		</action>
+		<action
+			name="CN66DetailsForm"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.deleteCN66"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp" />
+
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.clear"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN66.jsp" />
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.close"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN66.jsp" />
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.deletecn66Details"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN66.jsp" />
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.reloadcn66Details"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN66.jsp" />
+		</action>
+		<action
+			name="CN66DetailsForm"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.okcn66"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp" />
+			<forward name="screenload_failure" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp" />
+		</action>
+		<action
+			name="CN66DetailsForm"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.addCN66"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp" />
+
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.wdclose"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+			<forward name="cn51screen_success" path="/mailtracking.mra.airlinebilling.defaults.capturecn51.list.do?screenFlag=cn66" />
+			<forward name="viewcn51_screen" path="/mailtracking.mra.airlinebilling.defaults.listCN51s.listCN51.do?closeFrmCN66Flag=Y" />
+			<forward name="tocra_screen" path="/cra.accounting.postingdetails.list.do?fromScreenStatus=fromCraPostingDetails"/>
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.cn51enquiry"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/mailtracking.mra.airlinebilling.defaults.capturecn51.list.do?screenFlag=cn66" />
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.assignexception"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionslist.do?fromScreenFlag=cn66screenclose" />
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.processmail"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/mailtracking.mra.airlinebilling.defaults.captureCN66.listcn66.do" />
+		</action>
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.listacc"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/cra.accounting.listaccountingentrieslist.do?invokingScreen=capturecn66" />
+		</action>
+
+		<action
+			name="CaptureCN66Form"
+			path="/mailtracking.mra.airlinebilling.defaults.captureCN66.withdrawmail"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="action_success" path="/mailtracking.mra.airlinebilling.defaults.captureCN66.listcn66.do" />
+			<forward name="action_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN66.jsp" />
+
+		</action>
+
+
+
+		<!-- added for Capture CN 66 ends -->
+
+		<!-- added by A-3434 for AirNZ 164 -->
+
+		<action
+				name="CN66DetailsForm"
+				path="/mailtracking.mra.airlinebilling.capturecn66.showdsnpopup"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="action_success" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp"/>
+		</action>
+		<action
+				name="CN66DetailsForm"
+				path="/mailtracking.mra.airlinebilling.capturecn66.dsnpopupok"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="action_success" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp"/>
+		</action>
+		<action
+				name="CN66DetailsForm"
+				path="/mailtracking.mra.airlinebilling.defaults.captureCN66.cn66details.add"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="action_success" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp"/>
+		</action>
+		<action
+				name="CN66DetailsForm"
+				path="/mailtracking.mra.airlinebilling.defaults.captureCN66.cn66details.delete"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="action_success" path="/jsp/mail/mra/airlinebilling/defaults/CN66Details.jsp"/>
+		</action>
+
+		<!-- added for Capture CN 51 starts -->
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturecn51.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51.jsp" />
+		</action>
+
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturecn51.list"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturecn51.clear"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturecn51.add"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="add_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51_AjxTable.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturecn51.delete"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="delete_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51_AjxTable.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturecn51.save"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="save_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51.jsp" />
+			<forward name="save_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturecn51.cn66enquiry"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="update_success" path="/mailtracking.mra.airlinebilling.defaults.captureCN66.listcn66.do?fromScreenStatus=cn51screen" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturecn51.print"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureCN51Form"
+			scope="request"
+			validate="false">
+		</action>
+
+		<action
+			name="CaptureCN51Form"
+			path="/mailtracking.mra.airlinebilling.defaults.capturecn51.close"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="closefromcn66_success" path="/mailtracking.mra.airlinebilling.defaults.captureCN66.listcn66.do?fromScreenStatus=cn51screen" />
+			<forward name="close_success" path="/home.jsp" />
+			<forward name="closefromviewcn51_success" path="/mailtracking.mra.airlinebilling.defaults.listCN51s.listCN51.do?closeFrmCN51Flag=Y" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturecn51.refresh"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureCN51Form"
+			scope="request"
+			validate="false">
+			<forward name="refresh_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51.jsp" />
+			<forward name="refresh_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51.jsp" />
+		</action>
+		<!-- added for Capture CN 51 ends -->
+
+		<!--added for Capture CN 51 Details(POP UP) Starts-->
+		<action
+			name="CaptureCN51Form"
+			path="/mailtracking.mra.airlinebilling.defaults.capturecn51.screenloadcn51details"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51Details.jsp"/>
+			<forward name="screenload_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51Details.jsp"/>
+		</action>
+		<action
+			name="CaptureCN51Form"
+			path="/mailtracking.mra.airlinebilling.defaults.capturecn51.okcn51details"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="ok_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51Details.jsp"/>
+			<forward name="ok_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51Details.jsp"/>
+		</action>
+		<action
+			name="CaptureCN51Form"
+			path="/mailtracking.mra.airlinebilling.defaults.capturecn51.addnewcn51details"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="addnew_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51Details.jsp"/>
+			<forward name="addnew_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51Details.jsp"/>
+		</action>
+		<action
+			name="CaptureCN51Form"
+			path="/mailtracking.mra.airlinebilling.defaults.capturecn51.closecn51details"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="close_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51Details.jsp"/>
+			<forward name="close_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51Details.jsp"/>
+		</action>
+		<action
+			name="CaptureCN51Form"
+			path="/mailtracking.mra.airlinebilling.defaults.capturecn51.selectnextcn51details"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="select_next_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51Details.jsp"/>
+			<forward name="select_next_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureCN51Details.jsp"/>
+		</action>
+
+		<!--added for Capture CN 51 Details ends-->
+
+
+		<!--added for UPUcalender by shivjith Starts-->
+
+		<action
+			name="UPUCalendarForm"
+			path="/mailtracking.mra.airlinebilling.defaults.onscreenloadUPUCalendar"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/UPUCalendar.jsp" />
+			<forward name="screenload_failure" path="/jsp/mail/mra/airlinebilling/defaults/UPUCalendar.jsp" />
+		</action>
+		<action
+			name="UPUCalendarForm"
+			path="/mailtracking.mra.airlinebilling.defaults.onlistUPUCalendar"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/airlinebilling/defaults/UPUCalendar.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/airlinebilling/defaults/UPUCalendar.jsp" />
+		</action>
+		<action
+			name="UPUCalendarForm"
+			path="/mailtracking.mra.airlinebilling.defaults.onsaveUPUCalendar"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="OnSave_success" path="/jsp/mail/mra/airlinebilling/defaults/UPUCalendar.jsp" />
+			<forward name="OnSave_failure" path="/jsp/mail/mra/airlinebilling/defaults/UPUCalendar.jsp" />
+		</action>
+
+		<action
+			name="UPUCalendarForm"
+			path="/mailtracking.mra.airlinebilling.defaults.onaddUPUCalendar"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="adddetails_success" path="/jsp/mail/mra/airlinebilling/defaults/UPUCalendar_Ajax.jsp" />
+			<forward name="adddetails_failure" path="/jsp/mail/mra/airlinebilling/defaults/UPUCalendar_Ajax.jsp" />
+		</action>
+		<action
+			name="UPUCalendarForm"
+			path="/mailtracking.mra.airlinebilling.defaults.ondeleteUPUCalendar"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="deletedetails_success" path="/jsp/mail/mra/airlinebilling/defaults/UPUCalendar_Ajax.jsp" />
+			<forward name="deletedetails_failure" path="/jsp/mail/mra/airlinebilling/defaults/UPUCalendar_Ajax.jsp" />
+		</action>
+		<action
+			name="UPUCalendarForm"
+			path="/mailtracking.mra.airlinebilling.defaults.onclearUPUCalendar"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/defaults/UPUCalendar.jsp" />
+		</action>
+		<action
+			name="UPUCalendarForm"
+			path="/mailtracking.mra.airlinebilling.defaults.oncloseUPUCalendar"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="closedetails_success" path="/home.jsp" />
+		</action>
+
+		<!--added for UPUcalender by shivjith ends-->
+
+
+
+		<!-- added for Capture Rejection Memo starts -->
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturerejectionmemo.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureRejectionMemoForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureRejectionMemo.jsp" />
+		</action>
+
+
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturerejectionmemo.list"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureRejectionMemoForm"
+			scope="request"
+			validate="false">
+			<forward name="display_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureRejectionMemo.jsp" />
+			<forward name="display_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureRejectionMemo.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturerejectionmemo.clear"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureRejectionMemoForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureRejectionMemo.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturerejectionmemo.add"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureRejectionMemoForm"
+			scope="request"
+			validate="false">
+			<forward name="add_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureRejectionMemo_AjxTable.jsp" />
+			<forward name="add_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureRejectionMemo_AjxTable.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturerejectionmemo.delete"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureRejectionMemoForm"
+			scope="request"
+			validate="false">
+			<forward name="delete_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureRejectionMemo_AjxTable.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturerejectionmemo.save"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureRejectionMemoForm"
+			scope="request"
+			validate="false">
+			<forward name="save_success" path="/jsp/mail/mra/airlinebilling/defaults/CaptureRejectionMemo.jsp" />
+			<forward name="save_failure" path="/jsp/mail/mra/airlinebilling/defaults/CaptureRejectionMemo.jsp" />
+		</action>
+
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.capturerejectionmemo.close"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CaptureRejectionMemoForm"
+			scope="request"
+			validate="false"
+			forward ="/home.jsp"/>
+
+
+
+		<!-- added for Capture Rejection Memo ends -->
+
+
+
+
+		<action path="/mra.airlinebilling.inward.assignexceptions.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AssignExceptionsForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/AssignExceptions.jsp" />
+		</action>
+
+
+		<action path="/mra.airlinebilling.inward.listofrejectionmemos.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="IssueRejectionMemoForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/ListOfRejectionMemos.jsp" />
+		</action>
+
+
+
+		<!-- action path="/mra.airlinebilling.inward.listofrejectionmemos.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListOfRejectionMemosForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/ListOfRejectionMemos.jsp" />
+		</action-->
+
+
+
+		<!--added for Generate Outward Billing Invoice by shivjith Starts-->
+
+		<action path="/mailtracking.mra.airlinebilling.outward.generateinvoice.screenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAGenerateOutwardBillingInvoiceForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/outward/GenerateOutwardBillingInvoice.jsp" />
+		</action>
+		<action path="/mailtracking.mra.airlinebilling.outward.generateinvoice.geninv"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAGenerateOutwardBillingInvoiceForm"
+			scope="request"
+			validate="false">
+			<forward name="generate_success" path="/jsp/mail/mra/airlinebilling/outward/GenerateOutwardBillingInvoice.jsp" />
+			<forward name="generate_failure" path="/jsp/mail/mra/airlinebilling/outward/GenerateOutwardBillingInvoice.jsp" />
+		</action>
+
+		<!--added for Generate Outward Billing Invoice by shivjith ends-->
+
+		<!--added for Airline Exceptions by shivjith Starts-->
+
+		<action
+			name="AirlineExceptionsForm"
+			path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.onScreenLoad"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/AirlineExceptions.jsp" />
+			<forward name="screenload_failure" path="/jsp/mail/mra/airlinebilling/inward/AirlineExceptions.jsp" />
+		</action>
+		<action
+			name="AirlineExceptionsForm"
+			path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.onList"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/airlinebilling/inward/AirlineExceptions.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/airlinebilling/inward/AirlineExceptions.jsp" />
+		</action>
+		<action
+			name="AirlineExceptionsForm"
+			path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.onClear"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/inward/AirlineExceptions.jsp" />
+		</action>
+		<action
+			name="AirlineExceptionsForm"
+			path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.onSave"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="save_success" path="/jsp/mail/mra/airlinebilling/inward/AirlineExceptions.jsp" />
+			<forward name="save_failure" path="/jsp/mail/mra/airlinebilling/inward/AirlineExceptions.jsp" />
+		</action>
+		<action
+			name="AirlineExceptionsForm"
+			path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.onClose"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="close_success" path="/home.jsp"/>
+			<forward name="close_InvoiceException" path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionslist.do"/>
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.printexceptiondtl"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AirlineExceptionsForm"
+			scope="request"
+			validate="false">
+		</action>
+
+		<!--added for Airline Exceptions by Deepthi Starts-->
+		<action
+			name="AirlineExceptionsForm"
+			path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.issuerejectionmemo"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="issuerejection_success" path="/mailtracking.mra.airlinebilling.inward.rejectionmemo.onScreenLoad.do?invokingScreen=airlineexceptions"/>
+			<forward name="issuerejection_failure" path="/jsp/mail/mra/airlinebilling/inward/AirlineExceptions.jsp" />
+		</action>
+
+		<action
+			name="AirlineExceptionsForm"
+			path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.accept"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="accept_success" path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.onList.do?fromScreenFlag=afteraccept"/>
+			<forward name="accept_failure" path="/jsp/mail/mra/airlinebilling/inward/AirlineExceptions.jsp" />
+		</action>
+
+		<action
+			name="AirlineExceptionsForm"
+			path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.remarkspopup"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="acceptpopup_success" path="/jsp/mail/mra/airlinebilling/inward/AcceptDSN.jsp"/>
+			<forward name="acceptpopup_failure" path="/jsp/mail/mra/airlinebilling/inward/AirlineExceptions.jsp" />
+		</action>
+
+		<action
+			name="AirlineExceptionsForm"
+			path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.remarksok"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="acceptpopupok_success" path="/jsp/mail/mra/airlinebilling/inward/AcceptDSN.jsp"/>
+		</action>
+
+
+		<!--added for Airline Exceptions by Deepthi ends-->
+
+		<!--added for Airline Exceptions by shivjith ends-->
+
+		<!--added for Clearanceperiod Lov by shivjith starts -->
+
+		<action
+			name="AirlineClearancePeriodLovForm"
+			path="/showUPUClearancePeriods"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/ClearancePeriodLOV.jsp" />
+		</action>
+		<action
+			name="AirlineClearancePeriodLovForm"
+			path="/mailtracking.mra.airlinebilling.defaults.onlistClearancePeriodLOV"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/airlinebilling/defaults/ClearancePeriodLOV.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/airlinebilling/defaults/ClearancePeriodLOV.jsp" />
+		</action>
+		<action
+			name="AirlineClearancePeriodLovForm"
+			path="/mailtracking.mra.airlinebilling.defaults.onclearClearancePeriodLOV"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/defaults/ClearancePeriodLOV.jsp" />
+		</action>
+
+		<!--added for Clearanceperiod Lov by shivjith ends -->
+
+		<!--added for InvoiceExceptions by  Sreekenth Starts-->
+				<action path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionsscreenload"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="InvoiceExceptionsForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/InvoiceExceptions.jsp" />
+				</action>
+				<action path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionslist"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="InvoiceExceptionsForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success" path="/jsp/mail/mra/airlinebilling/inward/InvoiceExceptions.jsp" />
+					<forward name="list_failure" path="/jsp/mail/mra/airlinebilling/inward/InvoiceExceptions.jsp" />
+				</action>
+				<action path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionsclear"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="InvoiceExceptionsForm"
+					scope="request"
+					validate="false">
+					<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/inward/InvoiceExceptions.jsp" />
+				</action>
+				<action path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionsdelete"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="InvoiceExceptionsForm"
+					scope="request"
+					validate="false">
+					<forward name="delete_success" path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionslist.do" />
+					<forward name="delete_failure" path="/jsp/mail/mra/airlinebilling/inward/InvoiceExceptions.jsp" />
+				</action>
+				<action path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionsaccept"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="InvoiceExceptionsForm"
+					scope="request"
+					validate="false">
+					<forward name="accept_success" path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionslist.do" />
+					<forward name="accept_failure" path="/jsp/mail/mra/airlinebilling/inward/InvoiceExceptions.jsp" />
+				</action>
+				<action path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionsissuerm"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="InvoiceExceptionsForm"
+					scope="request"
+					validate="false">
+					<forward name="issuerejection_success" path="/mailtracking.mra.airlinebilling.inward.rejectionmemo.list.do" />
+					<forward name="issuerejection_failure" path="/jsp/mail/mra/airlinebilling/inward/InvoiceExceptions.jsp" />
+				</action>
+				<action path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionsclose"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="InvoiceExceptionsForm"
+					scope="request"
+					validate="false">
+					<forward name="close_success" path="/home.jsp" />
+				</action>
+				<action path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionsviewexcdetails"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="InvoiceExceptionsForm"
+					scope="request"
+					validate="false">
+					<forward name="exceptiondetail_success" path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.onScreenLoad.do?closeStatusFlag=toInvoiceException" />
+				</action>
+				<!--added for AcceptInvoicePopUp by  Indu starts-->
+				 <action path="/mailtracking.mra.airlinebilling.inward.remarkspopup"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="InvoiceExceptionsForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/AcceptInvoice.jsp" />
+					<forward name="accept_failure" path="/jsp/mail/mra/airlinebilling/inward/InvoiceExceptions.jsp" />
+				</action>
+
+				<action path="/mailtracking.mra.airlinebilling.inward.remarksok"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="InvoiceExceptionsForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/AcceptInvoice.jsp" />
+
+				</action>
+				<!--added for AcceptInvoicePopUp by  Indu ends-->
+		<!--added for InvoiceExceptions by  Sreekenth ends-->
+
+		<!--added for InvoiceExceptions print by  Sarath starts-->
+
+			<action path="/mailtracking.mra.airlinebilling.inward.printrejections"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="InvoiceExceptionsForm"
+				scope="request"
+				validate="false">
+
+			</action>
+			<action path="/mailtracking.mra.airlinebilling.inward.printexceptionininvoice"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="InvoiceExceptionsForm"
+				scope="request"
+				validate="false">
+
+			</action>
+		<!--added for InvoiceExceptions print by  Sarath ends-->
+
+
+		<!--added for InvoiceLov by Dhanya Starts-->
+
+					<action
+						name="InvLovForm"
+						path="/mra.airlinebilling.defaults.showInvoiceLov"
+						scope="request"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/InvoiceLov.jsp" />
+					</action>
+					<action
+						name="InvLovForm"
+						path="/mra.airlinebilling.defaults.clearInvoiceLov"
+						scope="request"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						validate="false">
+						<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/defaults/InvoiceLov.jsp" />
+					</action>
+
+		<!--added for InvoiceLov by Dhanya ends-->
+
+		<!--added for MemoLov by Dhanya Starts-->
+
+					<action
+						name="MemoLOVForm"
+						path="/mra.airlinebilling.defaults.showMemoLov"
+						scope="request"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						validate="false">
+						<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/MemoLov.jsp" />
+					</action>
+					<action
+						name="MemoLOVForm"
+						path="/mra.airlinebilling.defaults.clearMemoLov"
+						scope="request"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						validate="false">
+						<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/defaults/MemoLov.jsp" />
+					</action>
+
+		<!--added for MemoLov by Dhanya ends-->
+
+		<!--added for Inward Biling Reports by shivjith Starts-->
+
+		<action
+			name="MRAInwardBillingReportForm"
+			path="/mailtracking.mra.airlinebilling.inward.reports.onScreenLoad"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/InwardBillingReport.jsp" />
+			<forward name="screenload_failure" path="/jsp/mail/mra/airlinebilling/inward/InwardBillingReport.jsp" />
+		</action>
+
+		<action
+			name="MRAInwardBillingReportForm"
+			path="/mailtracking.mra.airlinebilling.inward.reports.genInvSmyClrPrd"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<action
+			name="MRAInwardBillingReportForm"
+			path="/mailtracking.mra.airlinebilling.inward.reports.genInvSmyArl"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<!--added for Inward Biling Reports by shivjith ends-->
+
+
+		<!--added for InwardReport  by  Karthikeyan starts-->
+
+		<action path="/mailtracking.mra.airlinebilling.inward.report.invoicedtlrptbyclrprint"
+			name="MRAInwardBillingReportForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		<forward name="print_failure" path="/jsp/mail/mra/airlinebilling/inward/InwardBillingReport.jsp" />
+		</action>
+
+
+		<action path="/mailtracking.mra.airlinebilling.inward.report.invoicedetailsreportbyairline"
+			name="MRAInwardBillingReportForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		<forward name="print_failure" path="/jsp/mail/mra/airlinebilling/inward/InwardBillingReport.jsp" />
+		</action>
+
+		<!--added for InwardReport  by  Karthikeyan ends-->
+
+
+
+
+		<!--added for Outward Biling Reports by shivjith Starts-->
+
+		<action
+			name="OutwardBillingReportForm"
+			path="/mailtracking.mra.airlinebilling.outward.reports.onScreenLoad"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/outward/OutwardBillingReport.jsp" />
+			<forward name="screenload_failure" path="/jsp/mail/mra/airlinebilling/outward/OutwardBillingReport.jsp" />
+		</action>
+
+		<action
+			name="OutwardBillingReportForm"
+			path="/mailtracking.mra.airlinebilling.outward.reports.genInvSmyClrPrd"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<action
+			name="OutwardBillingReportForm"
+			path="/mailtracking.mra.airlinebilling.outward.reports.genInvSmyArl"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<action
+			name="OutwardBillingReportForm"
+			 path="/mailtracking.mra.airlinebilling.outward.reports.genOutwardInvoice"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+
+		<!--added for Outward Biling Reports by shivjith ends -->
+
+		<!--added for OutwardReport  by  Karthikeyan starts-->
+
+		<action path="/mailtracking.mra.airlinebilling.outward.report.invoicedetailsreportbyclrprd"
+			name="OutwardBillingReportForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		<forward name="print_failure" path="/jsp/mail/mra/airlinebilling/outward/OutwardBillingReport.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.outward.report.invoicedetailsreportbyairline"
+			name="OutwardBillingReportForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="print_failure" path="/jsp/mail/mra/airlinebilling/outward/OutwardBillingReport.jsp" />
+		</action>
+		<action
+			name="OutwardBillingReportForm"
+			path="/mailtracking.mra.airlinebilling.outward.reports.genOutwardInvoice"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<!--added for OutwardReport  by  Karthikeyan ends-->
+
+
+		<!-- Added for View CN51s Screen by Kiran -->
+
+			<action path="/mailtracking.mra.airlinebilling.defaults.listCN51s.screenload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListCN51ScreenForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/ListCN51s.jsp" />
+			</action>
+
+			<action path="/mailtracking.mra.airlinebilling.defaults.listCN51s.listCN51"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListCN51ScreenForm"
+				scope="request"
+				validate="false">
+				<forward name="listCN51_success" path="/jsp/mail/mra/airlinebilling/defaults/ListCN51s.jsp" />
+				<forward name="listCN51_failed" path="/jsp/mail/mra/airlinebilling/defaults/ListCN51s.jsp" />
+			</action>
+       <!-- as part of ICRD-265471 -->
+	   <action path="/mailtracking.mra.airlinebilling.defaults.listCN51s.finalizeInvoice"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListCN51ScreenForm"
+				scope="request"
+				validate="false">
+				<forward name="finalize_success" path="/jsp/mail/mra/airlinebilling/defaults/ListCN51s.jsp" />
+				<forward name="finalize_failure" path="/jsp/mail/mra/airlinebilling/defaults/ListCN51s.jsp" />
+			</action>
+
+			<action path="/mailtracking.mra.airlinebilling.defaults.listCN51s.clearCN51"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListCN51ScreenForm"
+				scope="request"
+				validate="false">
+				<forward name="clearCN51_success" path="/jsp/mail/mra/airlinebilling/defaults/ListCN51s.jsp" />
+			</action>
+
+			<action path="/mailtracking.mra.airlinebilling.defaults.listCN51s.viewCN51Details"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListCN51ScreenForm"
+				scope="request"
+				validate="false">
+				<forward name="view_success" path="/mailtracking.mra.airlinebilling.defaults.capturecn51.list.do?screenFlag=viewcn51" />
+				<forward name="view_failure" path="/jsp/mail/mra/airlinebilling/defaults/ListCN51s.jsp" />
+			</action>
+
+			<action path="/mailtracking.mra.airlinebilling.defaults.listCN51s.viewCN66Details"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListCN51ScreenForm"
+				scope="request"
+				validate="false">
+				<forward name="view_success" path="/mailtracking.mra.airlinebilling.defaults.captureCN66.listcn66.do?fromScreenStatus=cn51screen" />
+				<forward name="view_failure" path="/jsp/mail/mra/airlinebilling/defaults/ListCN51s.jsp" />
+			</action>
+
+			<action path="/mailtracking.mra.airlinebilling.defaults.listCN51s.closeCN51"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListCN51ScreenForm"
+				scope="request"
+				validate="false">
+				<forward name="close_success" path="/home.jsp" />
+			</action>
+			<action path="/mailtracking.mra.airlinebilling.defaults.listCN51s.viewAccDetails"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListCN51ScreenForm"
+				scope="request"
+				validate="false">
+				<forward name="view_success" path="/cra.accounting.listaccountingentrieslist.do" />
+			</action>
+
+		<!-- Added for View CN51s Screen by Kiran -->
+
+
+		<!--Added for Outward Rejection Memo Reports by Ruby starts -->
+
+		<action
+			name="OutwardBillingReportForm"
+			path="/mailtracking.mra.airlinebilling.outward.printoutwardrejectionmemo"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+
+		<!--Added for Outward Rejection Memo Reports by Ruby ends -->
+		 <!-- Added for UploadCN51CN66-->
+        <action path="/mra.defaults.uploadcn51cn66.screenload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="UploadCN51CN66Form"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/UploadCN51CN66.jsp" />
+		</action>
+		<!--Added for Issue Rejection Memo -->
+		<action path="/mailtracking.mra.airlinebilling.inward.rejectionmemo.onScreenLoad"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MRARejectionMemoForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/RejectionMemo.jsp" />
+		</action>
+		<action path="/mailtracking.mra.airlinebilling.inward.rejectionmemo.list"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MRARejectionMemoForm"
+				scope="request"
+				validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/airlinebilling/inward/RejectionMemo.jsp" />
+				<forward name="failure_success" path="/jsp/mail/mra/airlinebilling/inward/RejectionMemo.jsp" />
+		</action>
+		<action path="/mailtracking.mra.airlinebilling.inward.rejectionmemo.save"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MRARejectionMemoForm"
+				scope="request"
+				validate="false">
+				<forward name="save_success" path="/jsp/mail/mra/airlinebilling/inward/RejectionMemo.jsp" />
+				<forward name="failure_save" path="/jsp/mail/mra/airlinebilling/inward/RejectionMemo.jsp" />
+				<forward name="invoiceexp_sucess" path="/mailtracking.mra.airlinebilling.inward.invoiceexceptionslist.do" />
+		</action>
+		<action path="/mailtracking.mra.airlinebilling.inward.rejectionmemo.clear"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRARejectionMemoForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/inward/RejectionMemo.jsp" />
+
+		</action>
+		<action path="/mailtracking.mra.airlinebilling.inward.rejectionmemo.close"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MRARejectionMemoForm"
+				scope="request"
+				validate="false">
+				<forward name="close_success" path="/home.jsp" />
+				<forward name="close_capture_inv" path="/mailtracking.mra.airlinebilling.inward.captureinvoice.list.do" />
+				<forward name="close_form1_success" path="/mra.airlinebilling.inward.captureformone.list.do" />
+				<forward name="close_exceptiondetails" path="/mailtracking.mra.airlinebilling.inward.airlineexceptions.onList.do?fromScreenFlag=RejectionMemo" />
+		</action>
+		<action path="/mailtracking.mra.airlinebilling.inward.rejectionmemo.print"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MRARejectionMemoForm"
+				scope="request"
+				validate="false">
+		</action>
+		<action path="/mailtracking.mra.airlinebilling.inward.rejectionmemo.calculateacceptedamt"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MRARejectionMemoForm"
+				scope="request"
+				validate="false">
+				<forward name="calculate_success" path="/jsp/mail/mra/airlinebilling/inward/RejectionMemo_Ajax.jsp" />
+				<forward name="calculate_failure" path="/jsp/mail/mra/airlinebilling/inward/RejectionMemo_Ajax.jsp"  />
+		</action>
+
+
+			<action
+				name="MRASisSupportingDocumentDetailsForm"
+				path="/mail.mra.airlinebilling.inward.loadsupportingdocspopup"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/SupportingDocumentsAttachment.jsp" />
+			</action>
+
+			<action
+				name="MRASisSupportingDocumentDetailsForm"
+				path="/mail.mra.airlinebilling.inward.attachfile"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="attach_success" path="/jsp/mail/mra/airlinebilling/inward/SupportingDocumentsAttachment.jsp" />
+				<forward name="attach_failure" path="/jsp/mail/mra/airlinebilling/inward/SupportingDocumentsAttachment.jsp" />
+			</action>
+
+
+			<action path="/mail.mra.airlinebilling.inward.refreshrejectionmemoattachment"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MRASisSupportingDocumentDetailsForm"
+			  scope="request"
+			  validate="false">
+			  <forward name="refresh_success" path="/jsp/mail/mra/airlinebilling/inward/RejectionMemo_AjxAttachments.jsp" />
+			</action>
+
+
+				<action path="/mail.mra.airlinebilling.inward.downloadcommand"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MRARejectionMemoForm"
+			  scope="request"
+			  validate="false">
+			  <forward name="download_failure" path="/jsp/mail/mra/airlinebilling/inward/RejectionMemo.jsp" />
+			</action>
+
+
+			<action path="/mail.mra.airlinebilling.inward.deleteattachmentcommand"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MRARejectionMemoForm"
+			  scope="request"
+			  validate="false">
+			  <forward name="deleteattachment_success" path="/jsp/mail/mra/airlinebilling/inward/RejectionMemo_AjxAttachments.jsp" />
+			</action>
+
+
+		<!--Added by Indu for airline Audit starts-->
+		<action path="/mailtracking.mra.airlinebilling.defaults.airlineauditscreenload"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAAirlineAuditForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/AirlineAudit.jsp" />
+		</action>
+
+		<action path="/mailtracking.mra.airlinebilling.defaults.airlineauditlist"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MRAAirlineAuditForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/shared/audit/AuditEnquiryTable.jsp" />
+			<forward name="list_failure" path="/jsp/shared/audit/AuditEnquiryTable.jsp" />
+		</action>
+		<!--Added by Indu for airline Audit ends -->
+
+		<!-- Added by A-3434 For List Form-1 Starts -->
+		<action
+			name="ListMailFormOneForm"
+			path="/mailtracking.mra.airlinebilling.outward.listform1.onScreenLoad"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/outward/ListFormOne.jsp" />
+		</action>
+
+		<action
+			name="ListMailFormOneForm"
+			path="/mra.airlinebilling.outward.listformones"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/airlinebilling/outward/ListFormOne.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/airlinebilling/outward/ListFormOne.jsp" />
+		</action>
+
+
+
+		<action
+			name="ListMailFormOneForm"
+			path="/mra.airlinebilling.outward.clearformones"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/outward/ListFormOne.jsp" />
+		</action>
+
+		<action
+			name="ListMailFormOneForm"
+			path="/mra.airlinebilling.outward.viewformone"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="details_success" path="/mailtracking.mra.airlinebilling.outward.viewformone.list.do?closeStatus=fromListFormOne" />
+		</action>
+		<action
+			name="ListMailFormOneForm"
+			path="/mra.airlinebilling.outward.closeformones"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+		</action>
+		<action
+			name="ListMailFormOneForm"
+			path="/mailtracking.mra.airlinebilling.outward.populateairlinenameinlistformone"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="populate_success" path="/jsp/mail/mra/airlinebilling/outward/ListFormOne_Ajax.jsp" />
+			<forward name="populate_failed" path="/jsp/mail/mra/airlinebilling/outward/ListFormOne_Ajax.jsp" />
+		</action>
+
+	<!-- Added by A-3434 For List Form-1 ENDS -->
+	<!-- Added by A-3456 for viewform1 starts -->
+			<action
+					name="ViewForm1Form"
+					path="/mailtracking.mra.airlinebilling.outward.screenloadviewform1"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/outward/ViewFormOne.jsp" />
+			</action>
+			<action
+					name="ViewForm1Form"
+					path="/mailtracking.mra.airlinebilling.outward.viewformone.list"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/airlinebilling/outward/ViewFormOne.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/airlinebilling/outward/ViewFormOne.jsp" />
+			</action>
+			<action
+					name="ViewForm1Form"
+					path="/mailtracking.mra.airlinebilling.outward.viewformone.clear"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/outward/ViewFormOne.jsp" />
+
+			</action>
+
+
+			<action
+					name="ViewForm1Form"
+					path="/mailtracking.mra.airlinebilling.outward.ajaxscreenloadviewform1"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+				<forward name="populate_success" path="/jsp/mail/mra/airlinebilling/outward/ViewFormOne_Ajax.jsp" />
+				<forward name="populate_failed" path="/jsp/mail/mra/airlinebilling/outward/ViewFormOne_Ajax.jsp" />
+			</action>
+
+
+
+			<!-- Added by A-3456 forviewform1 ends -->
+
+			<!-- Added by A-3434 for listform1  -->
+			<action
+					name="ViewForm1Form"
+					path="/mailtracking.mra.airlinebilling.outward.viewformone.close"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					<forward name="close_success" path="/home.jsp" />
+					<forward name="close_tolistformone" path="/mra.airlinebilling.outward.listformones.do" />
+
+
+			</action>
+
+
+	<!-- added by A-3434 for view form2 starts-->
+
+			<action
+				name="ViewMailFormTwoForm"
+				path="/mailtracking.mra.airlinebilling.outward.screenloadviewform2"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/outward/ViewFormTwo.jsp" />
+			</action>
+			<action
+				name="ViewMailFormTwoForm"
+				path="/mra.airlinebilling.outward.displayviewformtwo"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/airlinebilling/outward/ViewFormTwo.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/airlinebilling/outward/ViewFormTwo.jsp" />
+			</action>
+			<action
+				name="ViewMailFormTwoForm"
+				path="/mra.airlinebilling.outward.clearviewformtwo"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/outward/ViewFormTwo.jsp" />
+
+			</action>
+			<action
+				name="ViewMailFormTwoForm"
+				path="/mra.airlinebilling.outward.closeviewformtwo"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="close_success" path="/home.jsp" />
+
+			</action>
+			<!-- added by Deepthi for view form2 print starts-->
+			<action
+				name="ViewMailFormTwoForm"
+				path="/mra.airlinebilling.outward.printviewformtwo"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="print_failure" path="/jsp/mail/mra/airlinebilling/outward/ViewFormTwo.jsp" />
+
+			</action>
+
+
+	 <!-- added by A-3434 for view form2 ends-->
+	 <!-- added by A-2391 for CaptureFormOne starts-->
+
+	 <action
+			name="CaptureMailFormOneForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureformone.onScreenLoad"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormOne.jsp" />
+		</action>
+		<action
+			name="CaptureMailFormOneForm"
+			path="/mra.airlinebilling.inward.captureformone.list"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormOne.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormOne.jsp" />
+	</action>
+	<action
+			name="CaptureMailFormOneForm"
+			path="/mra.airlinebilling.inward.captureformone.clear"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormOne.jsp" />
+
+	</action>
+	<action
+			name="CaptureMailFormOneForm"
+			path="/mra.airlinebilling.inward.captureformone.close"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+
+	</action>
+	<action
+			name="CaptureMailFormOneForm"
+			path="/mra.airlinebilling.inward.captureformone.save"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="save_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormOne.jsp" />
+			<forward name="save_failure" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormOne.jsp" />
+	</action>
+
+			<action
+				name="CaptureMailFormOneForm"
+				path="/mra.airlinebilling.inward.captureformone.navigatebutton"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="capture_inv_success" path="/mailtracking.mra.airlinebilling.inward.captureinvoice.list.do?invokingScreen=captureformone" />
+				<forward name="capture_form_three_success" path="/mailtracking.mra.airlinebilling.inward.captureFormThree.list.do?invokingScreen=captureformone" />
+				<forward name="list_acc_success" path="/cra.accounting.listaccountingentrieslist.do?invokingScreen=captureformone" />
+				<forward name="reject_success"  path="/mailtracking.mra.airlinebilling.inward.rejectionmemo.onScreenLoad.do?invokingScreen=captureformone"/>
+				<forward name="reject_falied" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormOne.jsp" />
+
+
+			</action>
+		<action
+			name="CaptureMailFormOneForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureformone.ajaxonScreenLoad"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		<forward name="populate_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormOne_Ajax.jsp" />
+		<forward name="populate_failed" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormOne_Ajax.jsp" />
+
+
+		</action>
+
+
+
+	<!-- added by A-2391 for CaptureFormOne ends-->
+	<action
+			name="CaptureMailFormThreeForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureFormThree.onScreenLoad"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormThree.jsp" />
+	</action>
+	<action
+			name="CaptureMailFormThreeForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureFormThree.list"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormThree.jsp" />
+			<forward name="list_failure" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormThree.jsp" />
+	</action>
+	<action
+			name="CaptureMailFormThreeForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureFormThree.clear"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormThree.jsp" />
+	</action>
+
+	<action
+			name="CaptureMailFormThreeForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureFormThree.save"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="save_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormThree.jsp" />
+			<forward name="save_failure" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormThree.jsp" />
+	</action>
+	<action
+			name="CaptureMailFormThreeForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureFormThree.close"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+			<forward name="close_form1_success" path="/mra.airlinebilling.inward.captureformone.list.do" />
+</action>
+
+
+	<action
+			name="CaptureMailFormThreeForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureFormThree.ajaxOnScreenLoad"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="populate_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormThree_Ajax.jsp" />
+			<forward name="populate_failed" path="/jsp/mail/mra/airlinebilling/inward/CaptureFormThree_Ajax.jsp" />
+	</action>
+
+
+
+
+
+	<!-- added for by A-3447 capture invoice starts -->
+
+
+		<action
+				name="CaptureMailInvoiceForm"
+				path="/mailtracking.mra.airlinebilling.inward.captureinvoice.onScreenLoad"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureInvoice.jsp" />
+		</action>
+
+		<action
+			name="CaptureMailInvoiceForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureinvoice.list"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		<forward name="list_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureInvoice.jsp" />
+		<forward name="list_failure" path="/jsp/mail/mra/airlinebilling/inward/CaptureInvoice.jsp" />
+		</action>
+
+		<action
+			name="CaptureMailInvoiceForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureinvoice.update"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="save_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureInvoice.jsp" />
+			<forward name="save_failure" path="/jsp/mail/mra/airlinebilling/inward/CaptureInvoice.jsp" />
+		</action>
+
+		<action
+			name="CaptureMailInvoiceForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureinvoice.close"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		<forward name="close_home_success" path="/home.jsp" />
+		<forward name="close_form1_success" path="/mra.airlinebilling.inward.captureformone.list.do" />
+
+		</action>
+
+		<action
+			name="CaptureMailInvoiceForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureinvoice.rejectinvoice"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		<forward name="reject_success"  path="/mailtracking.mra.airlinebilling.inward.rejectionmemo.onScreenLoad.do?invokingScreen=captureinvoice"/>
+		</action>
+
+		<action
+			name="CaptureMailInvoiceForm"
+			path="/mailtracking.mra.airlinebilling.inward.captureinvoice.clear"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureInvoice.jsp" />
+		</action>
+
+	<action
+		name="CaptureMailInvoiceForm"
+		path="/mailtracking.mra.airlinebilling.inward.captureinvoice.ajaxScreenLoad"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+	<forward name="populate_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureInvoice_Ajax.jsp" />
+	<forward name="populate_failed" path="/jsp/mail/mra/airlinebilling/inward/CaptureInvoice_Ajax.jsp" />
+	</action>
+
+	<action
+
+		name="CaptureMailInvoiceForm"
+		path="/mailtracking.mra.airlinebilling.inward.captureinvoice.ajaxScreenLoadforamtinusd"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+	<forward name="populate_success" path="/jsp/mail/mra/airlinebilling/inward/CaptureInvoiceForAmtUsd_Ajax.jsp" />
+	<forward name="populate_failed" path="/jsp/mail/mra/airlinebilling/inward/CaptureInvoiceForAmtUsd_Ajax.jsp" />
+
+	</action>
+
+	<!-- added for by A-3447 capture invoice ends -->
+	<!-- Added by A-3434 For ListInterlineBillingEntries Starts -->
+
+		<action
+				name="ListInterlineBillingEntriesForm"
+				path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.onScreenLoad"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/mail/mra/airlinebilling/defaults/ListInterlineBillingEntries.jsp" />
+
+		</action>
+		<action
+				name="ListInterlineBillingEntriesForm"
+				path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.list"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="list_success" path="/jsp/mail/mra/airlinebilling/defaults/ListInterlineBillingEntries.jsp" />
+				<forward name="list_failure" path="/jsp/mail/mra/airlinebilling/defaults/ListInterlineBillingEntries.jsp" />
+
+		</action>
+		<action
+				name="ListInterlineBillingEntriesForm"
+				path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.clear"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="clear_success" path="/jsp/mail/mra/airlinebilling/defaults/ListInterlineBillingEntries.jsp" />
+
+		</action>
+		<action
+				name="ListInterlineBillingEntriesForm"
+				path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.reviewed"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="save_success" path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.list.do"/>
+				<forward name="save_failure" path="/jsp/mail/mra/airlinebilling/defaults/ListInterlineBillingEntries.jsp"/>
+
+		</action>
+		<action
+				name="ListInterlineBillingEntriesForm"
+            path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.void"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			scope="request"
+			validate="false">
+			<forward name="confirm_void" path="/jsp/mail/mra/airlinebilling/defaults/ListInterlineBillingEntries.jsp" />
+			<forward name="void_success" path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.list.do?paginationMode=LIST" />
+		</action>
+		<action
+				name="ListInterlineBillingEntriesForm"
+            path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.rerate"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			scope="request"
+			validate="false">
+			<forward name="rerate_success" path="/jsp/mail/mra/airlinebilling/defaults/ListInterlineBillingEntries.jsp" />
+		</action>
+		<action
+				name="ListInterlineBillingEntriesForm"
+				path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.close"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="close_success" path="/home.jsp"/>
+
+		</action>
+		<action
+				name="ListInterlineBillingEntriesForm"
+				path="/mailtracking.mra.airlinebilling.defaults.changestatuspopup"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="screen_success" path="/jsp/mail/mra/airlinebilling/defaults/ChangeBillingStatus.jsp"/>
+				<forward name="screen_failure" path="/jsp/mail/mra/airlinebilling/defaults/ChangeBillingStatus.jsp"/>
+
+		</action>
+		<action
+				name="ListInterlineBillingEntriesForm"
+				path="/mailtracking.mra.airlinebilling.defaults.changestatussave"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="save_success" path="/jsp/mail/mra/airlinebilling/defaults/ChangeBillingStatus.jsp"/>
+				<forward name="save_failure" path="/jsp/mail/mra/airlinebilling/defaults/ChangeBillingStatus.jsp"/>
+
+		</action>
+		<action
+				name="ListInterlineBillingEntriesForm"
+				path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.navigatetocn38"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="navigate_success" path="/mailtracking.defaults.consignment.listconsignment.do"/>
+
+		</action>
+		<action
+				name="ListInterlineBillingEntriesForm"
+				path="/mailtracking.mra.airlinebilling.defaults.listinterlinebillingentries.viewprorate"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				<forward name="viewprorate_success" path="/mailtracking.mra.defaults.viewproration.listproration.do?fromScreen=interlinebilling"/>
+
+
+		</action>
+
+
+	</action-mappings>
+
+	
+	<message-resources  key="capturecn66"  parameter="resources.mail.mra.airlinebilling.defaults.CaptureCN66" null="false"/>
+	<message-resources  key="cn66details"  parameter="resources.mail.mra.airlinebilling.defaults.CN66Details" null="false"/>
+	<message-resources  key="capturecn51resources"  parameter="resources.mail.mra.airlinebilling.defaults.CaptureCN51" null="false"/>
+	<message-resources key="uploadcn51cn66" parameter="resources.mail.mra.airlinebilling.defaults.UploadCN51CN66" null="false"/>
+    <message-resources key="UPUCalendarResources" parameter="resources.mail.mra.airlinebilling.defaults.UPUCalendar" null="false"/>
+	<message-resources  key="capturerejectionmemoresources"  parameter="resources.mail.mra.airlinebilling.defaults.CaptureRejectionMemo" null="false"/>
+	<message-resources  key="airlineExceptions"  parameter="resources.mail.mra.airlinebilling.inward.AirlineExceptions" null="false"/>
+	<message-resources  key="listofrejectionmemos"  parameter="resources.mail.mra.airlinebilling.inward.ListOfRejectionMemos" null="false"/>
+	<message-resources key="generateoutwardbillinginvoice" parameter="resources.mail.mra.airlinebilling.outward.GenerateOutwardBillingInvoice" null="false"/>
+	<message-resources key="MRAARlBlgClearanceperiodLOVResource" parameter="resources.mail.mra.airlinebilling.defaults.ClearancePeriodLOV" null="false"/>
+	<message-resources  key="invoiceexceptionsresources"  parameter="resources.mail.mra.airlinebilling.inward.InvoiceExceptions" null="false"/>
+	<message-resources key="MRAArlBlgInvoiceLovResource" parameter="resources.mail.mra.airlinebilling.defaults.InvoiceLov" null="false"/>
+	<message-resources key="MemoLovResource" parameter="resources.mail.mra.airlinebilling.defaults.MemoLov" null="false"/>
+	<message-resources key="inwardreport" parameter="resources.mail.mra.airlinebilling.inward.InwardBillingReport" null="false"/>
+	<message-resources key="outwardreport" parameter="resources.mail.mra.airlinebilling.outward.OutwardBillingReport" null="false"/>
+	<message-resources key="listCN51ScreenBundle" parameter="resources.mail.mra.airlinebilling.defaults.ListCN51s" null="false"/>
+	<message-resources key="rejectionmemobundle" parameter="resources.mail.mra.airlinebilling.inward.RejectionMemo" null="false"/>
+    <message-resources key="airlineAuditResources" parameter="resources.mail.mra.airlinebilling.defaults.AirlineAudit" null="false"/>
+    <message-resources key="listForm1bundle" parameter="resources.mail.mra.airlinebilling.outward.ListFormOne" null="false"/>
+    <message-resources key="viewForm1" parameter="resources.mail.mra.airlinebilling.outward.ViewFormOne" null="false"/>
+    <message-resources key="viewForm2" parameter="resources.mail.mra.airlinebilling.outward.ViewFormTwo" null="false"/>
+    <message-resources key="captureFormOnebundle" parameter="resources.mail.mra.airlinebilling.inward.CaptureFormOne" null="false"/>
+    <message-resources key="captureForm3bundle" parameter="resources.mail.mra.airlinebilling.inward.CaptureFormThree" null="false"/>
+	<!-- added for capture invoice A-3447 -->
+	<message-resources key="captureInvoicebundle" parameter="resources.mail.mra.airlinebilling.inward.CaptureInvoice" null="false"/>
+	<message-resources key="listinterlinebillingentriesBundle" parameter="resources.mail.mra.airlinebilling.defaults.ListInterlineBillingEntries" null="false"/>
+	<!-- added for capture invoice A-3447 -->
+	<plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+		<set-property property="configFileName" value="/WEB-INF/errortags/mail/mra/airlinebilling/errortags.xml"/>
+	</plug-in>
+</struts-config>
