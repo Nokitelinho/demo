@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-81232_MSM32441.yml
+  - changeSet:
+      id: 32441_1
+      author: a-10552
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: MALMSTAUD_SEQ
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE MALMSTAUD_SEQ INCREMENT BY 1 START WITH 1 MAXVALUE 9999999999999 MINVALUE 1;
+             commit;

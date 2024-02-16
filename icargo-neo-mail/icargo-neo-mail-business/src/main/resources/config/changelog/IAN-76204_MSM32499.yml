@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-76204_MSM32499.yml
+  - changeSet:
+       id: 32499_0
+       author: a-10647
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+             sequenceExists:
+               sequenceName: MALCSGMST_SEQ
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE SEQUENCE MALCSGMST_SEQ
+              START WITH 1
+              INCREMENT BY 1
+              MINVALUE 1
+              MAXVALUE 9223372036854775807
+              CACHE 20;
+  - changeSet:
+      id: 32499_1
+      author: a-10647
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: MALCSGRTG_SEQ
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE MALCSGRTG_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 20;

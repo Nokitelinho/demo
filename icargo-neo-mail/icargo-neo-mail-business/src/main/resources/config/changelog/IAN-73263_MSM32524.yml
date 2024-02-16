@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-73263_MSM32524.yml
+  - changeSet:
+       id: 32524
+       author: 203345
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+             sequenceExists:
+               sequenceName: MALOPSFLTAUD_SEQ
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE SEQUENCE MALOPSFLTAUD_SEQ
+                START WITH 1
+                INCREMENT BY 1
+                MINVALUE 1
+                MAXVALUE 9223372036854775807;

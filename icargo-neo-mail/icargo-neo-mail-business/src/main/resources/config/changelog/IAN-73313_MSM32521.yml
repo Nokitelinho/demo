@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-73313_MSM32521.yml
+  - changeSet:
+       id: 32521
+       author: a-10552
+       preConditions:
+         - onFail: MARK_RAN
+         - tableExists:
+              tableName: MALARPULDDTL
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: ALTER TABLE  MALARPULDDTL ADD COLUMN IF NOT EXISTS lstupdtim timestamp(3) NULL;  
+              ALTER TABLE MALARPULDDTL ADD COLUMN IF NOT EXISTS lstupdusr varchar(50) NULL;

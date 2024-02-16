@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-73241_MSM32526.yml
+  - changeSet:
+       id: 32526
+       author: 203168
+       preConditions:
+         - onFail: MARK_RAN
+         - tableExists:
+            tableName: MALFLTSEG
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: ALTER TABLE MALFLTSEG ADD COLUMN IF NOT EXISTS LSTUPDUSR VARCHAR(50) NULL;
+              COMMENT ON COLUMN MALFLTSEG.LSTUPDUSR IS '<COLUMNACCOUNT>BASE</COLUMNACCOUNT>
+              < COLUMNNAME > LSTUPDUSR < / COLUMNNAME >< COLUMNDESCRIPTION > LAST UPDATED USER < / COLUMNDESCRIPTION > ';
+              ALTER TABLE MALFLTSEG ADD COLUMN IF NOT EXISTS LSTUPDTIM TIMESTAMP(3) NULL;
+              COMMENT ON COLUMN MALFLTSEG.LSTUPDTIM IS '<COLUMNACCOUNT>BASE</COLUMNACCOUNT>
+              < COLUMNNAME > LSTUPDTIM < / COLUMNNAME >< COLUMNDESCRIPTION > LAST UPDATED TIME < / COLUMNDESCRIPTION > ';

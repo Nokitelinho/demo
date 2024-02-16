@@ -1,0 +1,115 @@
+server:
+  port: 6090
+  servlet:
+    context-path: /mailmasters
+neo:
+  component-scan:
+    basePackages: "com.ibsplc.neoicargo.mailmasters,com.ibsplc.neoicargo.masters"
+  security:
+    system:
+      authtype: ebl
+      ebl:
+        grant_type: password
+        password: weblogic
+        username: ICOADMIN
+    tokenService:
+      tokenValidityHours: 10
+  logging:
+    appenders: console # comma separated list of appenders to be added, supported values are console,tcp,udp
+    root-level: INFO       # root logger level
+    udp:
+      host: 10.250.3.92    # the hostname of the logstash server
+      port: 3000           # udp port
+      
+  jaxrs:
+    client:
+      serviceBindings:
+        - name: neo-masters-business
+          address: >-
+            http://k8s-k8snginx-k8snginx-6eb453cc8e-96c04f4af40467c9.elb.ap-south-1.amazonaws.com/masters
+          basePath: /private
+        - name: auth-service
+          address: >-
+            http://k8s-k8snginx-k8snginx-6eb453cc8e-96c04f4af40467c9.elb.ap-south-1.amazonaws.com/auth
+          basePath: /private
+                  
+EBL_URL: 'http://10.250.3.67:9052/bookings/v1/'
+EBL_URL_NBRIDGE: 'http://k8s-nginxalp-icargong-ed546127d1-89f64463d339106d.elb.ap-south-1.amazonaws.com/ebl-nbridge/v1/'
+EBL_LOGIN_URL: 'http://10.250.3.67:9050/v1/auth/token'
+
+debug: true
+logging:
+  level:
+    liquibase: INFO
+spring:
+  profiles:
+    active: dev
+  cloud:
+    service-registry:
+      auto-registration:
+        enabled: false
+    stream:
+
+  application:
+    name: "icargo-neo-mail-masters-business"
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      naming:
+        implicit-strategy: >-
+          org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/config/db.changelog-master.yaml
+  datasource:
+    password: ico_bs_41010_usr
+    platform: postgres
+    url: 'jdbc:postgresql://10.246.12.13:5432/ico_bs_41010'
+    username: ico_bs_41010_usr
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      leakDetectionThreshold: 10000
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+      minimumIdle: 1
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: sa
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+icargo:
+  persistence:
+    mail.masters:
+        queryXml: classpath:/config/mail-masters-query.xml
+        daoClass: com.ibsplc.neoicargo.mailmasters.dao.MailMastersSqlDAO
+           
+  companyCode: IBS
+  dummyauth: false
+  http:
+    host: 10.246.12.41
+    port: 8280
+    contextPath: icargo
+    webserviceRoot: webservices
+    eblWebContextPath: icargo-ebl
+  webservice:
+    auth:
+      username: SYSADMIN
+      password: weblogic
+      anonymousSessionId: >-
+        aWNTZXNzaW9uSWQ6SFhQZnVnJTJCUU1INWRwUFV4OWJ6dVZDdkNtbzAlMkZXRzBVOGdsbFNLN2F6YzhhTXhaUVNmYWhabFZ2TXUyaEZhRkZNTm8yOUJIZ3lUbmUlMEQlMEFhenVVRXk2MHBRJTNEJTNE
+  jndi:
+    providerURL: null
+    user: null
+    password: null

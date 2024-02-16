@@ -1,0 +1,72 @@
+package com.ibsplc.neoicargo.mail.model;
+
+import java.util.ArrayList;
+import com.ibsplc.icargo.framework.util.time.LocalDate;
+import com.ibsplc.xibase.server.framework.vo.AbstractVO;
+import lombok.Getter;
+import lombok.Setter;
+import com.ibsplc.neoicargo.common.modal.BaseModel;
+
+@Setter
+@Getter
+public class MailbagEnquiryFilterModel extends BaseModel {
+	private String ooe;
+	private String doe;
+	private String mailCategoryCode;
+	private String mailSubclass;
+	private String year;
+	private String despatchSerialNumber;
+	private String receptacleSerialNumber;
+	private String currentStatus;
+	private String scanPort;
+	private LocalDate scanFromDate;
+	private LocalDate scanToDate;
+	private String damageFlag;
+	private String scanUser;
+	private String containerNumber;
+	private String carrierCode;
+	private String flightNumber;
+	private LocalDate flightDate;
+	private int carrierId;
+	private String companyCode;
+	private String fromCarrier;
+	private String carditPresent;
+	private boolean isInventory;
+	private String destinationCity;
+	private String transitFlag;
+	private String fromFlightNumber;
+	private int totalRecords;
+	private int pageNumber;
+	private String fromScreen;
+	private String consigmentNumber;
+	private String upuCode;
+	private String fromExportList;
+	private String mailbagId;
+	private LocalDate reqDeliveryTime;
+	private String origin;
+	private String awbNumber;
+	private String fromDate;
+	private String toDate;
+	private String lyingList;
+	private String filterType;
+	private int defaultPageSize;
+	private String pacode;
+	private String upliftAirport;
+	private String uldNumber;
+	private String originAirportCode;
+	private String destinationAirportCode;
+	private int flightCarrierIdr;
+	private int pageSize;
+	private String serviceLevel;
+	private String onTimeDelivery;
+	private ArrayList<String> mailBagsToList;
+	private LocalDate transportServWindow;
+	private LocalDate consignmentDate;
+	private String transferFromCarrier;
+	private String shipmentPrefix;
+	private String masterDocumentNumber;
+	private int flightSequenceNumber;
+	private String operationFlag;
+	private String triggerPoint;
+	private boolean ignoreWarnings;
+}

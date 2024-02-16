@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-73313_MSM32519.yml
+  - changeSet:
+       id: 32519
+       author: a-10552
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: MALOPSFLTCONAUD
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE MALOPSFLTCONAUD (
+              cmpcod varchar(6) NOT NULL,
+              audseq int NOT NULL,
+              actn varchar(200),
+              adtnam varchar(200),
+              adtver jsonb,
+             chggrpdet jsonb,
+             chggrps varchar(2000),
+             stn varchar(4),
+             trgpnt varchar(200),
+             txnactn varchar(200),
+             txntim timestamp,
+             txntimstn varchar(200),
+             txnzontim varchar(200),
+             txntimutc timestamp,
+             usr varchar(200),
+             addinf varchar(200),
+             usrrol varchar(200),
+             connum varchar(200),
+             CONSTRAINT malopsfltconaud_pk PRIMARY KEY (audseq,cmpcod)
+             );
+            comment on table MALOPSFLTCONAUD is 'table to keep the audit details while updating container details';
+            comment on column MALOPSFLTCONAUD.cmpcod is 'company code';
+            comment on column MALOPSFLTCONAUD.audseq is 'key generated using the sequence MALOPSFLTCONAUD_SEQ';
+            comment on column MALOPSFLTCONAUD.actn is 'action';
+            comment on column MALOPSFLTCONAUD.adtnam is 'audit name';
+            comment on column MALOPSFLTCONAUD.adtver is 'audit version';
+            comment on column MALOPSFLTCONAUD.chggrpdet is 'change group details';
+            comment on column MALOPSFLTCONAUD.chggrps is 'change groups';
+            comment on column MALOPSFLTCONAUD.stn is 'station';
+            comment on column MALOPSFLTCONAUD.trgpnt is 'trigger point';
+            comment on column MALOPSFLTCONAUD.txnactn is 'transaction action';
+            comment on column MALOPSFLTCONAUD.txntim is 'transaction time';
+            comment on column MALOPSFLTCONAUD.txntimstn is 'station transaction time';
+            comment on column MALOPSFLTCONAUD.txnzontim is 'transaction zone time';
+            comment on column MALOPSFLTCONAUD.txntimutc is 'transaction time in utc';
+            comment on column MALOPSFLTCONAUD.usr is 'user';
+            comment on column MALOPSFLTCONAUD.addinf is 'additional information';
+            comment on column MALOPSFLTCONAUD.usrrol is 'user role group';
+            comment on column MALOPSFLTCONAUD.connum is 'container number';

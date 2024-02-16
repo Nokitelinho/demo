@@ -1,0 +1,76 @@
+package com.ibsplc.neoicargo.mail.model;
+
+import java.util.Collection;
+import java.util.HashMap;
+import com.ibsplc.icargo.business.reco.defaults.vo.EmbargoDetailsVO;
+import com.ibsplc.icargo.framework.util.time.LocalDate;
+import com.ibsplc.icargo.framework.util.unit.Measure;
+import com.ibsplc.xibase.server.framework.vo.AbstractVO;
+import lombok.Getter;
+import lombok.Setter;
+import com.ibsplc.neoicargo.common.modal.BaseModel;
+
+@Setter
+@Getter
+public class MailAcceptanceModel extends BaseModel {
+	private String companyCode;
+	private String pol;
+	private int carrierId;
+	private String flightNumber;
+	private int legSerialNumber;
+	private long flightSequenceNumber;
+	private LocalDate flightDate;
+	private boolean isInventory;
+	private boolean isInventoryForArrival;
+	private Collection<ContainerDetailsModel> containerDetails;
+	private String flightStatus;
+	private String ownAirlineCode;
+	private int ownAirlineId;
+	private String flightCarrierCode;
+	private String destination;
+	private String strFlightDate;
+	private String acceptedUser;
+	private boolean isScanned;
+	private boolean isPreassignNeeded;
+	private String duplicateMailOverride;
+	private String transactionCode;
+	private String mailSource;
+	private boolean isConsignmentGenerationNotNeeded;
+	private HashMap<String, Collection<String>> polPouMap;
+	private boolean mailModifyflag;
+	private String isFromTruck;
+	private String flightRoute;
+	private String flightOperationalStatus;
+	private String flightOrigin;
+	private String flightDestination;
+	private String flightType;
+	private String aircraftType;
+	private String flightDateDesc;
+	private String carrierCode;
+	private int totalContainerCount;
+	private Measure totalContainerWeight;
+	private String departureGate;
+	private String mailDataSource;
+	private PreAdviceModel preadvice;
+	private String DCSinfo;
+	private String DCSregectionReason;
+	private String paBuiltFlag;
+	private boolean fromDeviationList;
+	private LocalDate flightDepartureDate;
+	private LocalDate GHTtime;
+	private boolean assignedToFlight;
+	private String messageVersion;
+	private boolean fromCarditList;
+	private boolean fromOutboundScreen;
+	private boolean transferOnModify;
+	private boolean isFoundTransfer;
+	private boolean modifyAfterExportOpr;
+	private String popupAction;
+	private Collection<EmbargoDetailsVO> embargoDetails;
+	private boolean mailbagPresent;
+	private String showWarning;
+	private LocalDate std;
+	private String operationFlag;
+	private String triggerPoint;
+	private boolean ignoreWarnings;
+}

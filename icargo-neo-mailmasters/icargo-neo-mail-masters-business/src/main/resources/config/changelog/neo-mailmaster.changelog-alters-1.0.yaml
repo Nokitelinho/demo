@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+       id: 1688713995003-34
+       author: a-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - tableExists:
+              tableName: malcdtmsgtmp
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: alter table
+                malcdtmsgtmp
+              add
+                column if not exists lstupdusr varchar(255);
+              comment on column "malcdtmsgtmp"."lstupdusr" is '<columnaccount>base</columnaccount>
+              < columnname > lstupdusr < / columnname >
+              < columndescription > last updated user < / columndescription > ';
+  - changeSet:
+       id: 1688713995003-35
+       author: a-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - tableExists:
+              tableName: malmldcfg
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: alter table
+                malmldcfg
+              add
+                column if not exists lstupdtim timestamp(3) null;
+              comment on column "malmldcfg"."lstupdtim" is '<columnaccount>base</columnaccount>
+              < columnname > lstupdtim < / columnname >
+              < columndescription > last updated time < / columndescription > ';
+  - changeSet:
+       id: 1688713995003-36
+       author: a-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - tableExists:
+              tableName: malmldcfg
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: alter table
+                malmldcfg
+              add
+                column if not exists lstupdusr varchar(50) null;
+              comment on column "malmldcfg"."lstupdusr" is '<columnaccount>base</columnaccount>
+              < columnname > lstupdusr < / columnname >
+              < columndescription > last updated user < / columndescription > ';

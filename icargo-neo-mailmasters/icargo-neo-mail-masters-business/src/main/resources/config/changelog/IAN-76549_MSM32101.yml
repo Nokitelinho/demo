@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-76549_MSM32101.yml
+  - changeSet:
+       id: 32101
+       author: A-4809
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: malmstaud
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: create table malmstaud (
+                 cmpcod varchar(6) NOT NULL,
+                 audseq int4 NOT NULL,
+                 actn varchar(200),
+                 adtnam varchar(200),
+                 adtver jsonb,
+                 chggrpdet jsonb,
+                 chggrps varchar(2000),
+                 stn varchar(4),
+                 trgpnt varchar(200),
+                 txnactn varchar(200),
+                 txntim timestamp,
+                 txntimstn varchar(200),
+                 txnzontim varchar(200),
+                 txntimutc timestamp,
+                 usr varchar(200),
+                 addinf varchar(200),
+                 usrrol varchar(200),
+                 audent  varchar(200),
+                 constraint malmstaud_pk primary key (audseq,cmpcod)
+                 );
+                comment on table malmstaud is 'table to keep the audit details while updating master screen';
+                comment on column malmstaud.cmpcod is 'company code';
+                comment on column malmstaud.audseq is 'key generated using the sequence malmstaud_seq';
+                comment on column malmstaud.actn is 'action';
+                comment on column malmstaud.adtnam is 'audit name';
+                comment on column malmstaud.adtver is 'audit version';
+                comment on column malmstaud.chggrpdet is 'change group details';
+                comment on column malmstaud.chggrps is 'change groups';
+                comment on column malmstaud.stn is 'station';
+                comment on column malmstaud.trgpnt is 'trigger point';
+                comment on column malmstaud.txnactn is 'transaction action';
+                comment on column malmstaud.txntim is 'transaction time';
+                comment on column malmstaud.txntimstn is 'station transaction time';
+                comment on column malmstaud.txnzontim is 'transaction zone time';
+                comment on column malmstaud.txntimutc is 'transaction time in utc';
+                comment on column malmstaud.usr is 'user';
+                comment on column malmstaud.addinf is 'additional information';
+                comment on column malmstaud.usrrol is 'user role group';
+                comment on column malmstaud.audent is 'audited entity';

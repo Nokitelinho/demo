@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-77702_MSM32511.yml
+  - changeSet:
+       id: 32511
+       author: 203168
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            sequenceExists:              
+              sequenceName: MALFLTCONRTG_SEQ
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE SEQUENCE MALFLTCONRTG_SEQ
+              START WITH 1
+              INCREMENT BY 1
+              MINVALUE 1
+              MAXVALUE 9223372036854775807;
+              commit;

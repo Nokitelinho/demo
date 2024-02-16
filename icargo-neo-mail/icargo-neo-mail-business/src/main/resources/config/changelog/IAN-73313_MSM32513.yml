@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-73313_MSM32513.yml
+  - changeSet:
+       id: 32513
+       author: a-10552
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+             sequenceExists:
+               sequenceName: MALOFLDTL_SEQ
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE SEQUENCE MALOFLDTL_SEQ INCREMENT BY 1 START WITH 1 MAXVALUE 9999999999999 MINVALUE 1;
+              Commit;

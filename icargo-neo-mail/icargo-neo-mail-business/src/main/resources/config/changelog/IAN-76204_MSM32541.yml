@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-76204_MSM32541.yml
+  - changeSet:
+       id: 32541
+       author: a-10647
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+             sequenceExists:
+               sequenceName: MALRDT_SEQ
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE SEQUENCE MALRDT_SEQ
+              START WITH 1
+              INCREMENT BY 1
+              MINVALUE 1
+              MAXVALUE 9223372036854775807
+              CACHE 20;

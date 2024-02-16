@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-76204_MSM32503.yml
+  - changeSet:
+       id: 32503
+       author: a-10647
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: malcsgrtg
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: ALTER TABLE MALCSGRTG
+              ADD COLUMN IF NOT EXISTS LSTUPDTIM  TIMESTAMP,
+              ADD COLUMN IF NOT EXISTS LSTUPDUSR VARCHAR(50);
+              COMMENT ON COLUMN MALCSGRTG.LSTUPDTIM
+              IS
+              '<ColumnAccount>BASE</ColumnAccount>
+              <ColumnName>LSTUPDTIM</ColumnName>
+              <ColumnDescription>LAST UPDATED TIME  </ColumnDescription>
+              <ColumnPossibleValues></ColumnPossibleValues>
+              <ColumnUnitofData></ColumnUnitofData>
+              <ColumnDataSource></ColumnDataSource>
+              <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+              <ColumnDataClassification>Normal</ColumnDataClassification>
+              <ColumnFormula></ColumnFormula>
+              <ColumnStatus>Valid</ColumnStatus>
+              <DataMigrationRequired>N</DataMigrationRequired>
+              <DataExtractionRequired>N</DataExtractionRequired>
+              <DataWarehouseRequired>N</DataWarehouseRequired>';
+              COMMENT ON COLUMN MALCSGMST.LSTUPDUSR
+              IS
+              '<ColumnAccount>BASE</ColumnAccount>
+              <ColumnName>LSTUPDUSR</ColumnName>
+              <ColumnDescription>LAST UPDATED USER </ColumnDescription>
+              <ColumnPossibleValues></ColumnPossibleValues>
+              <ColumnUnitofData></ColumnUnitofData>
+              <ColumnDataSource></ColumnDataSource>
+              <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+              <ColumnDataClassification>Normal</ColumnDataClassification>
+              <ColumnFormula></ColumnFormula>
+              <ColumnStatus>Valid</ColumnStatus>
+              <DataMigrationRequired>N</DataMigrationRequired>
+              <DataExtractionRequired>N</DataExtractionRequired>
+              <DataWarehouseRequired>N</DataWarehouseRequired>';

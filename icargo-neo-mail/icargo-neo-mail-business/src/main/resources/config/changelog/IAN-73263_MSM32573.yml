@@ -1,0 +1,341 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-73263_MSM32573.yml
+  - changeSet:
+       id: 32573
+       author: 203345
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: MALOPSFLTAUD
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE MALOPSFLTAUD (
+               cmpcod varchar(6) NOT NULL,
+               audseq int NOT NULL,
+               actn varchar(200),
+               adtnam varchar(200),
+               adtver jsonb,
+               chggrpdet jsonb,
+               chggrps varchar(2000),
+               stn varchar(4),
+               trgpnt varchar(200),
+               txnactn varchar(200),
+               txntim timestamp,
+               txntimstn varchar(200),
+               txnzontim varchar(200),
+               txntimutc timestamp,
+               usr varchar(200),
+               addinf varchar(200),
+               usrrol varchar(200),
+               fltcaridr numeric(5),
+               fltnum varchar(5),
+               fltseqnum numeric(10),
+               legsernum numeric(10),
+               CONSTRAINT malopsfltaud_pk PRIMARY KEY (audseq,cmpcod)
+                 );
+                comment on table  MALOPSFLTAUD is 'table to keep the audit details while opening and closing flights ';
+     
+                comment on column MALOPSFLTAUD.cmpcod      
+                IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>cmpcod</ColumnName>
+                <ColumnDescription>companyCode </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.audseq is 'key generated using the sequence MALOPSFLTAUD_SEQ';
+                comment on column MALOPSFLTAUD.actn 
+                IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>actn</ColumnName>
+                <ColumnDescription>action </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.adtnam 
+                 IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>adtnam</ColumnName>
+                <ColumnDescription>audit name </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.adtver 
+                 IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>adtver</ColumnName>
+                <ColumnDescription>audit version </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.chggrpdet 
+                  IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>chggrpdet</ColumnName>
+                <ColumnDescription>change group details </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.chggrps 
+                  IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>chggrps</ColumnName>
+                <ColumnDescription>change groups </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.stn
+                   IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>stn</ColumnName>
+                <ColumnDescription>station </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.trgpnt 
+                IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>trgpnt</ColumnName>
+                <ColumnDescription>trigger point </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.txnactn 
+                IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>txnactn</ColumnName>
+                <ColumnDescription>transaction action </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.txntim 
+                   IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>txntim</ColumnName>
+                <ColumnDescription>transaction time </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.txntimstn 
+                  IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>txntimstn</ColumnName>
+                <ColumnDescription>station transaction time </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.txnzontim 
+                  IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>txnzontim</ColumnName>
+                <ColumnDescription>transaction zone time </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.txntimutc 
+                   IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>txntimutc</ColumnName>
+                <ColumnDescription>transaction time in utc </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.usr 
+                IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>usr</ColumnName>
+                <ColumnDescription>user </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.addinf 
+                IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>addinf</ColumnName>
+                <ColumnDescription>additional information </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.usrrol 
+                IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>usrrol</ColumnName>
+                <ColumnDescription>user role group </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.fltcaridr 
+                  IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>fltcaridr</ColumnName>
+                <ColumnDescription>carrierId</ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.fltnum 
+                  IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>fltnum</ColumnName>
+                <ColumnDescription>flightNumber</ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.fltseqnum 
+                IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>fltseqnum</ColumnName>
+                <ColumnDescription>flightSequenceNumber</ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';
+                comment on column MALOPSFLTAUD.legsernum 
+                   IS
+                '<ColumnAccount>BASE</ColumnAccount>
+                <ColumnName>legsernum</ColumnName>
+                <ColumnDescription>legSerialNumber </ColumnDescription>
+                <ColumnPossibleValues></ColumnPossibleValues>
+                <ColumnUnitofData></ColumnUnitofData>
+                <ColumnDataSource></ColumnDataSource>
+                <ColumnReferentialIntegrity></ColumnReferentialIntegrity>
+                <ColumnDataClassification>Normal</ColumnDataClassification>
+                <ColumnFormula></ColumnFormula>
+                <ColumnStatus>Valid</ColumnStatus>
+                <DataMigrationRequired>N</DataMigrationRequired>
+                <DataExtractionRequired>N</DataExtractionRequired>
+                <DataWarehouseRequired>N</DataWarehouseRequired>';

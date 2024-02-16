@@ -1,0 +1,71 @@
+package com.ibsplc.neoicargo.mail.model;
+
+import com.ibsplc.icargo.framework.util.time.LocalDate;
+import com.ibsplc.icargo.framework.util.unit.Measure;
+import com.ibsplc.xibase.server.framework.vo.AbstractVO;
+import lombok.Getter;
+import lombok.Setter;
+import com.ibsplc.neoicargo.common.modal.BaseModel;
+
+@Setter
+@Getter
+public class MailInConsignmentModel extends BaseModel {
+	private int statedBags;
+	private Measure statedWeight;
+	private String uldNumber;
+	private String mailId;
+	private String mailCategoryCode;
+	private String mailSubclass;
+	private String receptacleSerialNumber;
+	private String registeredOrInsuredIndicator;
+	private String highestNumberedReceptacle;
+	private String companyCode;
+	private String consignmentNumber;
+	private String paCode;
+	private int consignmentSequenceNumber;
+	private String dsn;
+	private String originExchangeOffice;
+	private String destinationExchangeOffice;
+	private String mailClass;
+	private int year;
+	private long mailSequenceNumber;
+	private double declaredValue;
+	private LocalDate consignmentDate;
+	private String airportCode;
+	private int carrierId;
+	private Measure volume;
+	private int totalLetterBags;
+	private int totalParcelBags;
+	private Measure totalLetterWeight;
+	private String paBuiltFlag;
+	private Measure totalParcelWeight;
+	private LocalDate reqDeliveryTime;
+	private String displayUnit;
+	private String mailOrigin;
+	private String mailDestination;
+	private String mailSource;
+	private String contractIDNumber;
+	private LocalDate transWindowEndTime;
+	private String mailServiceLevel;
+	private String operation;
+	private String mailbagJrnIdr;
+	private String mailSubClassGroup;
+	private String sealNumber;
+	private Measure totalEmsWeight;
+	private int totalEmsBags;
+	private Measure totalSVWeight;
+	private int totalSVbags;
+	private String shipmentPrefix;
+	private String masterDocumentNumber;
+	private String mailStatus;
+	private int mailDuplicateNumber;
+	private int sequenceNumberOfMailbag;
+	private int mailBagDocumentOwnerIdr;
+	private String keyCondition;
+	private boolean isAwbAttached;
+	private String currencyCode;
+	private String operationFlag;
+	private Measure strWeight;
+	private String triggerPoint;
+	private boolean ignoreWarnings;
+}

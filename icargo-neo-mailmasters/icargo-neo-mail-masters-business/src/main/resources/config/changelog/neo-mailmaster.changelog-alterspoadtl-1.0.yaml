@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+       id: 1688713995003-37
+       author: a-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - tableExists:
+              tableName: malpoadtl
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: alter table
+                malpoadtl
+              add
+                column if not exists lstupdtim timestamp(3) null;
+              comment on column "malpoadtl"."lstupdtim" is '<columnaccount>base</columnaccount>
+              < columnname > lstupdtim < / columnname >
+              < columndescription > last updated time < / columndescription > ';
+  - changeSet:
+       id: 1688713995003-38
+       author: a-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - tableExists:
+              tableName: malpoadtl
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: alter table
+                malpoadtl
+              add
+                column if not exists lstupdusr varchar(50) null;
+              comment on column "malpoadtl"."lstupdusr" is '<columnaccount>base</columnaccount>
+              < columnname > lstupdusr < / columnname >
+              < columndescription > last updated user < / columndescription > ';

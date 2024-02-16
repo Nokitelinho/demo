@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - logicalFilePath: ../changelog/IAN-73246_MSM32510.yml
+  - changeSet:
+       id: 32510
+       author: 203168
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            sequenceExists:
+              sequenceName: MALHIS_SEQ
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE SEQUENCE MALHIS_SEQ
+              INCREMENT BY 1
+              MINVALUE 1
+              MAXVALUE 999999999999
+              START WITH 1;
+              commit;

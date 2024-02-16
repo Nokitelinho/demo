@@ -1,0 +1,1349 @@
+databaseChangeLog:
+  - changeSet:
+       id: 1688713995003-1
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malprtcar"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malprtcar" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "arpcod" VARCHAR(4) NOT NULL,
+                "owncarcod" VARCHAR(3) NOT NULL,
+                "prtcarcod" VARCHAR(3) NOT NULL,
+                "prtcaridr" numeric(5) NOT NULL,
+                "prtcarnam" VARCHAR(100),
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                "mldtfdreq" VARCHAR(1) DEFAULT 'N' NOT NULL,
+                CONSTRAINT "malprtcar_pk" PRIMARY KEY ("cmpcod", "arpcod", "owncarcod", "prtcarcod")
+              );
+              COMMENT ON COLUMN "malprtcar"."mldtfdreq" IS 'Decide whether MLD TFD Triggering Required or Not';
+  - changeSet:
+       id: 1688713995003-2
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malcalmst"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malcalmst" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "gpacod" VARCHAR(6) NOT NULL,
+                "caltyp" VARCHAR(1) NOT NULL,
+                "sernum" numeric(5) NOT NULL,
+                "calprd" VARCHAR(10),
+                "prdfrm" TIMESTAMP WITHOUT TIME ZONE,
+                "prdtoo" TIMESTAMP WITHOUT TIME ZONE,
+                "cgrsubdat" TIMESTAMP WITHOUT TIME ZONE,
+                "cgrdelcutoffdat" TIMESTAMP WITHOUT TIME ZONE,
+                "cutoffwekfir" TIMESTAMP WITHOUT TIME ZONE,
+                "cutoffweksec" TIMESTAMP WITHOUT TIME ZONE,
+                "cutoffwekthr" TIMESTAMP WITHOUT TIME ZONE,
+                "cutoffwekfou" TIMESTAMP WITHOUT TIME ZONE,
+                "cutoffwekfiv" TIMESTAMP WITHOUT TIME ZONE,
+                "payeftdat" TIMESTAMP WITHOUT TIME ZONE,
+                "inccaldat" TIMESTAMP WITHOUT TIME ZONE,
+                "inceftdat" TIMESTAMP WITHOUT TIME ZONE,
+                "incrcvdat" TIMESTAMP WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                "clmgendat" TIMESTAMP WITHOUT TIME ZONE,
+                CONSTRAINT "malcalmst_pk" PRIMARY KEY ("cmpcod", "gpacod", "caltyp", "sernum")
+              );
+  - changeSet:
+       id: 1688713995003-3
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malctsarp"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malctsarp" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "sernum" numeric(10) NOT NULL,
+                "gpacod" VARCHAR(5) NOT NULL,
+                "arpcod" VARCHAR(50),
+                "rsdmod" VARCHAR(3),
+                "trkflg" VARCHAR(1),
+                "lstupdusr" VARCHAR(50) NOT NULL,
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE NOT NULL,
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                "vldfrmdat" date,
+                "vldtoodat" date,
+                CONSTRAINT "malctsarp_pk" PRIMARY KEY ("cmpcod", "sernum", "gpacod")
+              );
+              COMMENT ON COLUMN "malctsarp"."vldfrmdat" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > VLDFRMDAT < / ColumnName >
+              < ColumnDescription >
+              From
+                Date < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > N < / DataMigrationRequired >
+              < DataExtractionRequired > Y < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malctsarp"."vldtoodat" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > VLDTOODAT < / ColumnName >
+              < ColumnDescription > To Date < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > N < / DataMigrationRequired >
+              < DataExtractionRequired > Y < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+  - changeSet:
+       id: 1688713995003-4
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malevt"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malevt" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "malctg" VARCHAR(3) NOT NULL,
+                "malsubcls" VARCHAR(3) NOT NULL,
+                "rcvflg" VARCHAR(1),
+                "asgflg" VARCHAR(1),
+                "pndflg" VARCHAR(1),
+                "rtnflg" VARCHAR(1),
+                "hndovrflg" VARCHAR(1),
+                "uplflg" VARCHAR(1),
+                "dlvflg" VARCHAR(1),
+                "lodflg" VARCHAR(1),
+                "hndovrrcvflg" VARCHAR(1),
+                "hndovronlflg" VARCHAR(1),
+                "trtcplflg" VARCHAR(1),
+                "rdydlvflg" VARCHAR(1),
+                "arrflg" VARCHAR(1),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                "malboxidr" VARCHAR(35) NOT NULL,
+                "lstflg" VARCHAR(2) DEFAULT 'N',
+                "fndflg" VARCHAR(2) DEFAULT 'N'
+              );
+              COMMENT ON COLUMN "malevt"."lstflg" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > LSTFLG < / ColumnName >
+              < ColumnDescription > indicator to trigger resdit
+              from
+                the system
+                when a mailbag is lost during scanning < / ColumnDescription >
+              < ColumnPossibleValues > Y,
+              N < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malevt"."fndflg" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > FNDFLG < / ColumnName >
+              < ColumnDescription > indicator to trigger resdit
+              from
+                the system
+                when a mailbag is found during scanning < / ColumnDescription >
+              < ColumnPossibleValues > Y,
+              N < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+  - changeSet:
+       id: 1688713995003-5
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malexgofcmst"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malexgofcmst" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "exgofccod" VARCHAR(6) NOT NULL,
+                "actflg" VARCHAR(1) DEFAULT 'A' NOT NULL,
+                "ctycod" VARCHAR(4) NOT NULL,
+                "exgcoddes" VARCHAR(500),
+                "cntcod" VARCHAR(3) NOT NULL,
+                "ofccod" VARCHAR(1) NOT NULL,
+                "poacod" VARCHAR(5),
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "arpcod" VARCHAR(4),
+                "malboxidr" VARCHAR(40),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL
+              );
+  - changeSet:
+       id: 1688713995003-6
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malgpactr"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malgpactr" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "orgarp" VARCHAR(3),
+                "dstarp" VARCHAR(3),
+                "gpacod" VARCHAR(5) NOT NULL,
+                "ctridr" VARCHAR(20),
+                "vldfrm" TIMESTAMP WITHOUT TIME ZONE,
+                "vdltoo" TIMESTAMP WITHOUT TIME ZONE,
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                "sernum" numeric(10) NOT NULL,
+                "regcod" VARCHAR(5),
+                "amotflg" VARCHAR(1) DEFAULT 'N',
+                CONSTRAINT "malgpactr_pk" PRIMARY KEY ("cmpcod", "gpacod", "sernum")
+              );
+              COMMENT ON COLUMN "malgpactr"."regcod" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > REGCOD < / ColumnName >
+              < ColumnDescription > Region Code < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus
+              > < DataMigrationRequired > N < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malgpactr"."amotflg" IS '<ColumnAccount>BASE</ColumnAccount><ColumnName>AMOTFLG</ColumnName><ColumnDescription>Flag to identify USPS Domestic Contract-AMOT</ColumnDescription><ColumnPossibleValues>Y,N</ColumnPossibleValues><ColumnUnitofData>N</ColumnUnitofData><ColumnDataSource></ColumnDataSource><ColumnReferentialIntegrity></ColumnReferentialIntegrity><ColumnDataClassification>Normal</ColumnDataClassification><ColumnFormula></ColumnFormula><ColumnStatus>Valid</ColumnStatus><DataMigrationRequired>N</DataMigrationRequired><DataExtractionRequired>N</DataExtractionRequired><DataWarehouseRequired>N</DataWarehouseRequired>';
+  - changeSet:
+       id: 1688713995003-7
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malhndtim"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malhndtim" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "sernum" numeric(5) NOT NULL,
+                "gpacod" VARCHAR(5),
+                "arpcod" VARCHAR(3),
+                "exgofc" VARCHAR(6),
+                "malcls" VARCHAR(1),
+                "malsubcls" VARCHAR(2),
+                "hndtim" VARCHAR(5),
+                "lstupdtim" TIMESTAMP WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                "vldfrmdat" date,
+                "vldtoodat" date
+              );
+              COMMENT ON COLUMN "malhndtim"."cmpcod" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > CMPCOD < / ColumnName >
+              < ColumnDescription > Company Code < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus
+              > < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malhndtim"."sernum" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > SERNUM < / ColumnName >
+              < ColumnDescription > Serial Number < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus
+              > < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malhndtim"."gpacod" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > GPACOD < / ColumnName >
+              < ColumnDescription > PA Code < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus
+              > < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malhndtim"."arpcod" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > ARPCOD < / ColumnName >
+              < ColumnDescription > Airport Code < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus
+              > < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malhndtim"."exgofc" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > EXGOFC < / ColumnName >
+              < ColumnDescription > Exchange Office < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus
+              > < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malhndtim"."malcls" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > MALCLS < / ColumnName >
+              < ColumnDescription > Mail Class < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus
+              > < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malhndtim"."malsubcls" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > MALSUBCLS < / ColumnName >
+              < ColumnDescription > Mail Sub Class < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus
+              > < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malhndtim"."hndtim" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > HNDTIM < / ColumnName >
+              < ColumnDescription > Handover Time < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus
+              > < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malhndtim"."lstupdtim" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > LSTUPDTIM < / ColumnName >
+              < ColumnDescription > Last
+              Update
+                Time < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus
+              > < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malhndtim"."lstupdusr" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > LSTUPDUSR < / ColumnName >
+              < ColumnDescription > Last
+              Update
+                User < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus
+              > < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malhndtim"."tagidx" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > TAGIDX < / ColumnName >
+              < ColumnDescription > Tag Id < / ColumnDescription >
+              < ColumnPossibleValues > 1,
+              0 < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus
+              > < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malhndtim"."vldfrmdat" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > VLDFRMDAT < / ColumnName >
+              < ColumnDescription >
+              From
+                Date < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > N < / DataMigrationRequired >
+              < DataExtractionRequired > Y < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malhndtim"."vldtoodat" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > VLDTOODAT < / ColumnName >
+              < ColumnDescription > To Date < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > N < / DataMigrationRequired >
+              < DataExtractionRequired > Y < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+  - changeSet:
+       id: 1688713995003-8
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malmalbox"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malmalbox" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "malboxidr" VARCHAR(50) NOT NULL,
+                "malboxdes" VARCHAR(100),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                "upucod" VARCHAR(10),
+                "msgenbflg" VARCHAR(1),
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "rdtsndprd" numeric(6) DEFAULT 0,
+                "rdtvernum" VARCHAR(7),
+                "msgevtloc" VARCHAR(1),
+                "prtrdt" VARCHAR(1),
+                "ptyidx" VARCHAR(10),
+                "malboxowr" VARCHAR(50),
+                "malboxsta" VARCHAR(10),
+                "malboxowrtyp" VARCHAR(5),
+                "rmk" VARCHAR(4000),
+                CONSTRAINT "malmalbox_pk" PRIMARY KEY ("cmpcod", "malboxidr")
+              );
+              COMMENT ON COLUMN "malmalbox"."cmpcod" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > CMPCOD < / ColumnName >
+              < ColumnDescription > Company Code.The company code that uniquely identifies the company for which the application is hosted < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."malboxidr" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > MALBOXIDR < / ColumnName >
+              < ColumnDescription > MailBoxId,
+              the mail box identifier < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."malboxdes" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > MALBOXDES < / ColumnName >
+              < ColumnDescription > the description of the mail box identifier < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."tagidx" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > TAGIDX < / ColumnName >
+              < ColumnDescription > This column will be used as workaround for the tag setting feature of CDC in its low cost replacement.The value 1 indicate that the records are tagged
+              and will not transferred to the target in a CDC environment < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."upucod" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > UPUCOD < / ColumnName >
+              < ColumnDescription > This is the Unique code for each PA provided by UPU < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."msgenbflg" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > MSGENBFLG < / ColumnName >
+              < ColumnDescription > Flag to know if Messaging enabled
+              or disabled.Possible
+              Values
+                are Y - Enabled,
+                N - Disabled,
+                P - Partial < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."lstupdtim" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > LSTUPDTIM < / ColumnName >
+              < ColumnDescription > The date
+              and time at which record was last updated < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."lstupdusr" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > LSTUPDUSR < / ColumnName >
+              < ColumnDescription > Last
+              Update
+                User.The application user code who performed the operation on the record < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."rdtsndprd" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > RDTSNDPRD < / ColumnName >
+              < ColumnDescription > Resdit sending period in minutes.This is to restrict resdit transaction if the sending time exceeds this period < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."rdtvernum" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > RDTVERNUM < / ColumnName >
+              < ColumnDescription > Message Version Number of Resdit < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."msgevtloc" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > MSGEVTLOC < / ColumnName >
+              < ColumnDescription > Flag to Know if Message Event Location Needed.Possible
+              values
+                Y - Yes,
+                N - No < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."prtrdt" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > PRTRDT < / ColumnName >
+              < ColumnDescription > Flag to list all mailbags in resdit < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."ptyidx" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > PTYIDX < / ColumnName >
+              < ColumnDescription > Party index < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."malboxowr" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > MALBOXOWR < / ColumnName >
+              < ColumnDescription > Owner of the Mailbox ID,
+              Possible
+              values
+                - PA,
+                AR < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."malboxsta" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > MALBOXSTA < / ColumnName >
+              < ColumnDescription > Indicates whether the mailbox is active
+              or not,
+              Possible
+              values
+                are ACTIVE for Active mailbox
+                and INACTIVE for Inactive mailbox < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > Y < / DataMigrationRequired >
+              < DataExtractionRequired > N < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malmalbox"."malboxowrtyp" IS '<ColumnAccount>BASE</ColumnAccount><ColumnName>MALBOXOWRTYP</ColumnName><ColumnDescription>Owner of the Mailbox ID, Possible values-PA , AR</ColumnDescription><ColumnPossibleValues></ColumnPossibleValues><ColumnUnitofData></ColumnUnitofData><ColumnDataSource></ColumnDataSource><ColumnReferentialIntegrity></ColumnReferentialIntegrity><ColumnDataClassification>Regulatory</ColumnDataClassification><ColumnFormula></ColumnFormula><ColumnStatus>Valid</ColumnStatus><DataMigrationRequired>N</DataMigrationRequired><DataExtractionRequired>N</DataExtractionRequired><DataWarehouseRequired>N</DataWarehouseRequired>';
+              COMMENT ON COLUMN "malmalbox"."rmk" IS '<ColumnAccount>BASE</ColumnAccount><ColumnName>RMK</ColumnName><ColumnDescription>Remarks for the Mailbox ID</ColumnDescription><ColumnPossibleValues></ColumnPossibleValues><ColumnUnitofData></ColumnUnitofData><ColumnDataSource></ColumnDataSource><ColumnReferentialIntegrity></ColumnReferentialIntegrity><ColumnDataClassification>Regulatory</ColumnDataClassification><ColumnFormula></ColumnFormula><ColumnStatus>Valid</ColumnStatus><DataMigrationRequired>N</DataMigrationRequired><DataExtractionRequired>N</DataExtractionRequired><DataWarehouseRequired>N</DataWarehouseRequired>';
+  - changeSet:
+       id: 1688713995003-9
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malmrainccfgdtl"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malmrainccfgdtl" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "inssernum" numeric(10) NOT NULL,
+                "seqnum" numeric(10) NOT NULL,
+                "partyp" VARCHAR(1),
+                "parcod" VARCHAR(10),
+                "parval" VARCHAR(25),
+                "excflg" VARCHAR(1),
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                CONSTRAINT "malmrainccfgdtl_pk" PRIMARY KEY ("cmpcod", "inssernum", "seqnum")
+              );
+  - changeSet:
+       id: 1688713995003-10
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malmrainccfgmst"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malmrainccfgmst" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "inssernum" numeric(10) DEFAULT 0 NOT NULL,
+                "poacod" VARCHAR(5),
+                "incflg" VARCHAR(1),
+                "srvrsplanflg" VARCHAR(6),
+                "incper" numeric(16, 4) DEFAULT 0 NOT NULL,
+                "vldfrmdat" TIMESTAMP WITHOUT TIME ZONE,
+                "vldtoodat" TIMESTAMP WITHOUT TIME ZONE,
+                "parexp" VARCHAR(300),
+                "disparexp" VARCHAR(300),
+                "bssexp" VARCHAR(300),
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                CONSTRAINT "malmrainccfgmst_pk" PRIMARY KEY ("cmpcod", "inssernum")
+              );
+  - changeSet:
+       id: 1688713995003-11
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malmsgcfg"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malmsgcfg" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "malboxid" VARCHAR(5) NOT NULL,
+                "msgcfgseqnum" numeric(16) NOT NULL,
+                "cfgsta" VARCHAR(10),
+                "vldfrmdat" TIMESTAMP WITHOUT TIME ZONE,
+                "vldtoodat" TIMESTAMP WITHOUT TIME ZONE,
+                "tagidx" numeric(1) DEFAULT 0,
+                CONSTRAINT "malmsgcfg_pk" PRIMARY KEY ("cmpcod", "msgcfgseqnum")
+              );
+              COMMENT ON COLUMN "malmsgcfg"."tagidx" IS '<ColumnAccount>BASE</ColumnAccount><ColumnName>TAGIDX</ColumnName><ColumnDescription>This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment</ColumnDescription><ColumnPossibleValues></ColumnPossibleValues><ColumnUnitofData></ColumnUnitofData><ColumnDataSource></ColumnDataSource><ColumnReferentialIntegrity></ColumnReferentialIntegrity><ColumnDataClassification>Normal</ColumnDataClassification><ColumnFormula></ColumnFormula><ColumnStatus>Valid</ColumnStatus><DataMigrationRequired>N</DataMigrationRequired><DataExtractionRequired>N</DataExtractionRequired><DataWarehouseRequired>N</DataWarehouseRequired>';
+  - changeSet:
+       id: 1688713995003-12
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malmsgcfgpar"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malmsgcfgpar" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "msgcfgseqnum" numeric(16) NOT NULL,
+                "parcod" VARCHAR(9) NOT NULL,
+                "parval" VARCHAR(6),
+                "tagidx" numeric(1) DEFAULT 0,
+                CONSTRAINT "malmsgcfgpar_pk" PRIMARY KEY ("cmpcod", "msgcfgseqnum", "parcod")
+              );
+              COMMENT ON COLUMN "malmsgcfgpar"."tagidx" IS '<ColumnAccount>BASE</ColumnAccount><ColumnName>TAGIDX</ColumnName><ColumnDescription>This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment</ColumnDescription><ColumnPossibleValues></ColumnPossibleValues><ColumnUnitofData></ColumnUnitofData><ColumnDataSource></ColumnDataSource><ColumnReferentialIntegrity></ColumnReferentialIntegrity><ColumnDataClassification>Normal</ColumnDataClassification><ColumnFormula></ColumnFormula><ColumnStatus>Valid</ColumnStatus><DataMigrationRequired>N</DataMigrationRequired><DataExtractionRequired>N</DataExtractionRequired><DataWarehouseRequired>N</DataWarehouseRequired>';
+  - changeSet:
+       id: 1688713995003-13
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malpoadtl"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malpoadtl" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "poacod" VARCHAR(5) NOT NULL,
+                "parcod" VARCHAR(15) NOT NULL,
+                "sernum" VARCHAR(5) NOT NULL,
+                "blgsrc" VARCHAR(5),
+                "blgfrq" VARCHAR(20),
+                "stlcur" VARCHAR(15),
+                "vldfrm" TIMESTAMP WITHOUT TIME ZONE,
+                "vldtoo" TIMESTAMP WITHOUT TIME ZONE,
+                "parval" VARCHAR(40),
+                "dtlrmk" VARCHAR(500),
+                "partyp" VARCHAR(3),
+                "ptyidr" VARCHAR(10),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                CONSTRAINT "malpoadtl_pk" PRIMARY KEY ("cmpcod", "poacod", "parcod", "sernum")
+              );
+  - changeSet:
+       id: 1688713995003-14
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malpoamst"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malpoamst" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "poacod" VARCHAR(5) NOT NULL,
+                "poanam" VARCHAR(100) NOT NULL,
+                "poaadr" VARCHAR(1000),
+                "cntcod" VARCHAR(3) NOT NULL,
+                "msgenbflg" VARCHAR(1) NOT NULL,
+                "msgevtloc" VARCHAR(1) NOT NULL,
+                "prtrdt" VARCHAR(1) NOT NULL,
+                "bastyp" VARCHAR(1) NOT NULL,
+                "stlcurcod" VARCHAR(3),
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "conpsn" VARCHAR(50),
+                "ctynam" VARCHAR(25),
+                "stanam" VARCHAR(25),
+                "mobnum" VARCHAR(25),
+                "poscod" VARCHAR(10),
+                "phnone" VARCHAR(25),
+                "phntwo" VARCHAR(25),
+                "fax" VARCHAR(25),
+                "emladr" VARCHAR(200),
+                "cntnam" VARCHAR(25),
+                "rmk" VARCHAR(500),
+                "dbtinvcod" VARCHAR(5),
+                "actflg" VARCHAR(8) NOT NULL,
+                "accnum" VARCHAR(15),
+                "rdtvernum" VARCHAR(7),
+                "vatnum" VARCHAR(20),
+                "blgsrc" VARCHAR(5),
+                "blgfrq" VARCHAR(20),
+                "m39enbflg" VARCHAR(1) NOT NULL,
+                "autemlreq" VARCHAR(1) DEFAULT 'N' NOT NULL,
+                "dueday" numeric(3),
+                "gibflg" VARCHAR(1) NOT NULL,
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                "proinvreq" VARCHAR(1) DEFAULT 'N' NOT NULL,
+                "rdtsndprd" numeric(6) DEFAULT 0 NOT NULL,
+                "latvallvl" VARCHAR(1) DEFAULT 'N' NOT NULL,
+                "dupmalprd" numeric(5) DEFAULT 0 NOT NULL,
+                "secemladrone" VARCHAR(200),
+                "secemladrtwo" VARCHAR(200),
+                "stllvl" VARCHAR(1),
+                "stltolper" numeric(16, 4) DEFAULT 0 NOT NULL,
+                "stltolval" numeric(20, 8) DEFAULT 0 NOT NULL,
+                "stltolmaxval" numeric(20, 8) DEFAULT 0 NOT NULL,
+                CONSTRAINT "malpoamst_pk" PRIMARY KEY ("cmpcod", "poacod")
+              );
+              COMMENT ON COLUMN "malpoamst"."stllvl" IS 'Settlement Level of PA.Possible values Invoice level(I),Mailbag level(M)';
+              COMMENT ON COLUMN "malpoamst"."stltolper" IS 'Settlement Total Percentage';
+              COMMENT ON COLUMN "malpoamst"."stltolval" IS 'Settlement Total Value';
+              COMMENT ON COLUMN "malpoamst"."stltolmaxval" IS 'Settlement Total Maximum Value';
+  - changeSet:
+       id: 1688713995003-15
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malrdtreqdlvtim"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malrdtreqdlvtim" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "sernum" numeric(10) DEFAULT 0 NOT NULL,
+                "gpacod" VARCHAR(5),
+                "malsrvlvl" VARCHAR(2),
+                "dstarpcod" VARCHAR(3),
+                "rdtoft" numeric(10) DEFAULT 0,
+                "rdtday" numeric(1) DEFAULT 0,
+                "rdtrul" VARCHAR(20),
+                "malcls" VARCHAR(1),
+                "maltyp" VARCHAR(1),
+                "lstupdusr" VARCHAR(50),
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                "orgarpcod" VARCHAR(3),
+                "vldfrmdat" date,
+                "vldtoodat" date,
+                CONSTRAINT "malrdtreqdlvtim_pk" PRIMARY KEY ("cmpcod", "sernum")
+              );
+              COMMENT ON TABLE "malrdtreqdlvtim" IS 'holds the Required delivery time configured values through the RDT Offset as well as RDT Rule value .Offset value is set from Mail Performance Master Screen(MTK055)
+              and RDT rule will be configured
+              from
+                Generic Master screen,
+                a new master USPS Domestic Mailbag RDT Rule will be added to SHRGENMST table.';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."cmpcod" IS 'Company Code. The company code that uniquely identifies the company for which the application is hosted';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."sernum" IS 'Sequence Number, unique for each  record.It will be taken from oracle sequence namely MALRDTREQDLVTIM_SEQ';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."gpacod" IS 'PA code. Postal Administration Code. This is with reference to the Postal Administration Master.';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."malsrvlvl" IS 'Mail USPS Service Level .It will be taken from onetime value of mail.operations.mailservicelevels
+              Possible
+              values
+                are :Civilian Preferred - CP,
+                Civilian Expedited - CE,
+                Civilian Defferred - CD,
+                Militiary Preferred - MP,
+                Militiary Defferred - MD,
+              Militiary Expedited - ME,
+              Express Mail - EM,
+              Priority Mail - PM,
+              First Class Letters - FL,
+              First Class Sacks - FS,
+              HazMat - HM,
+              International Offload - IO,
+              Registered - RG,
+              Perishables - PE,
+              Lives - LV,
+              Special Mailer - SM ';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."dstarpcod" IS '<ColumnAccount>BASE</ColumnAccount><ColumnName>DSTARPCOD</ColumnName><ColumnDescription> Destination Airport Code for whcih the RDT Offset or Rule is configured
+              < / ColumnDescription > < ColumnPossibleValues > < / ColumnPossibleValues > < ColumnUnitofData > < / ColumnUnitofData > < ColumnDataSource > < / ColumnDataSource > < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity > < ColumnDataClassification > Normal < / ColumnDataClassification > < ColumnFormula > < / ColumnFormula > < ColumnStatus > Valid < / ColumnStatus > < DataMigrationRequired > N < / DataMigrationRequired > < DataExtractionRequired > N < / DataExtractionRequired > < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."rdtoft" IS 'RDT Offset value configured for each Airport.It is saved in minutes';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."rdtday" IS 'Specifies the day of operation.Possibles value ranges from 0 to 6';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."rdtrul" IS 'Specifies the RDT rule for domestic mailbags.Sample value is 7AM DAY1';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."malcls" IS 'Mail Class specifies what type of mails is carried.It will be taken from onetime value of mail.operations.mailservicelevels ,
+              possibles valyes are :Express Mail - E,
+              Priority Mail - P,
+              First Class Letters - F,
+              First Class Sacks - X,
+              HazMat - H,
+              International Offload - I,
+              Registered - R,
+              Perishables - G,
+              Lives - L,
+              Special Mailer - D ';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."maltyp" IS 'Mail Type.Specifies, What type of mails is carried-Domestic(D) or International(I)';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."tagidx" IS 'This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."orgarpcod" IS '<ColumnAccount>BASE</ColumnAccount><ColumnName>ORGARPCOD</ColumnName><ColumnDescription> Origin Airport Code for whcih the RDT Offset or Rule is configured
+              < / ColumnDescription > < ColumnPossibleValues > < / ColumnPossibleValues > < ColumnUnitofData > < / ColumnUnitofData > < ColumnDataSource > < / ColumnDataSource > < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity > < ColumnDataClassification > Normal < / ColumnDataClassification > < ColumnFormula > < / ColumnFormula > < ColumnStatus > Valid < / ColumnStatus > < DataMigrationRequired > N < / DataMigrationRequired > < DataExtractionRequired > N < / DataExtractionRequired > < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."vldfrmdat" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > VLDFRMDAT < / ColumnName >
+              < ColumnDescription >
+              From
+                Date < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > N < / DataMigrationRequired >
+              < DataExtractionRequired > Y < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malrdtreqdlvtim"."vldtoodat" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > VLDTOODAT < / ColumnName >
+              < ColumnDescription > To Date < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > N < / DataMigrationRequired >
+              < DataExtractionRequired > Y < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+  - changeSet:
+       id: 1688713995003-16
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malrtgidx"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malrtgidx" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "rtgidx" VARCHAR(4) NOT NULL,
+                "rtgseqnum" numeric(5) DEFAULT 0 NOT NULL,
+                "orgcod" VARCHAR(4),
+                "dstcod" VARCHAR(4),
+                "pldeffdat" TIMESTAMP WITHOUT TIME ZONE,
+                "plddisdat" TIMESTAMP WITHOUT TIME ZONE,
+                "dayofopr" VARCHAR(7),
+                "malcls" VARCHAR(15),
+                "clsouttim" VARCHAR(6),
+                "minwgt" numeric(16, 4) DEFAULT 0 NOT NULL,
+                "maxwgt" numeric(16, 4) DEFAULT 0 NOT NULL,
+                "wgtunt" VARCHAR(1),
+                "equten" numeric(2) DEFAULT 0 NOT NULL,
+                "pricod" VARCHAR(2),
+                "hazind" VARCHAR(1),
+                "perind" VARCHAR(1),
+                "ctrtyp" VARCHAR(2) DEFAULT '0' NOT NULL,
+                "malcst" numeric(6) DEFAULT 0 NOT NULL,
+                "fnldlvtim" VARCHAR(6),
+                "daycnt" numeric(5) DEFAULT 0 NOT NULL,
+                "onetimper" numeric(3) DEFAULT 0 NOT NULL,
+                "plnrouscnind" VARCHAR(1),
+                "plnrougenind" VARCHAR(1),
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                CONSTRAINT "malrtgidx_pk" PRIMARY KEY ("cmpcod", "rtgidx", "rtgseqnum")
+              );
+  - changeSet:
+       id: 1688713995003-17
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malrtgidxleg"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malrtgidxleg" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "rtgidx" VARCHAR(4) NOT NULL,
+                "rtgseqnum" numeric(5) DEFAULT 0 NOT NULL,
+                "rtgsernum" numeric(5) DEFAULT 0 NOT NULL,
+                "legorg" VARCHAR(4),
+                "legdst" VARCHAR(4),
+                "legrtg" VARCHAR(3),
+                "legflt" VARCHAR(5),
+                "legdeptim" VARCHAR(6),
+                "legarvtim" VARCHAR(6),
+                "legdlvtim" VARCHAR(6),
+                "legeqp" VARCHAR(6),
+                "legnumstp" numeric(2) DEFAULT 0 NOT NULL,
+                "legtspcod" VARCHAR(6),
+                "legairstpscnind" VARCHAR(1),
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                CONSTRAINT "malrtgidxleg_pk" PRIMARY KEY ("cmpcod", "rtgidx", "rtgseqnum", "rtgsernum")
+              );
+  - changeSet:
+       id: 1688713995003-18
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malsrvlvlmap"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malsrvlvlmap" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "poacod" VARCHAR(5) NOT NULL,
+                "malctg" VARCHAR(1) NOT NULL,
+                "malcls" VARCHAR(1) NOT NULL,
+                "malsubcls" VARCHAR(2) NOT NULL,
+                "malsrvlvl" VARCHAR(2),
+                "lstupdusr" VARCHAR(50),
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                CONSTRAINT "malsrvlvlmap_pk" PRIMARY KEY ("cmpcod", "poacod", "malctg", "malcls", "malsubcls")
+              );
+              COMMENT ON COLUMN "malsrvlvlmap"."tagidx" IS 'This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment';
+  - changeSet:
+       id: 1688713995003-19
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malsrvstdcfg"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malsrvstdcfg" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "gpacod" VARCHAR(5) NOT NULL,
+                "orgcod" VARCHAR(4) NOT NULL,
+                "dstcod" VARCHAR(4) NOT NULL,
+                "srvlvl" VARCHAR(25) NOT NULL,
+                "scnwvdflg" VARCHAR(1) DEFAULT 'N',
+                "srvstd" numeric(5),
+                "ctridr" VARCHAR(25),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "vldfrmdat" date,
+                "vldtoodat" date,
+                CONSTRAINT "malsrvstdcfg_pk" PRIMARY KEY ("cmpcod", "gpacod", "orgcod", "dstcod", "srvlvl")
+              );
+              COMMENT ON COLUMN "malsrvstdcfg"."lstupdtim" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > LSTUPDTIM < / ColumnName >
+              < ColumnDescription > Last Updated Time.The date
+              and time at which record was last updated < ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > N < / DataMigrationRequired >
+              < DataExtractionRequired > Y < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malsrvstdcfg"."lstupdusr" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > LSTUPDUSR < / ColumnName >
+              < ColumnDescription > Last
+              Update
+                User.The application user code who performed the operation on the record < ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > N < / DataMigrationRequired >
+              < DataExtractionRequired > Y < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malsrvstdcfg"."vldfrmdat" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > VLDFRMDAT < / ColumnName >
+              < ColumnDescription >
+              From
+                Date < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > N < / DataMigrationRequired >
+              < DataExtractionRequired > Y < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+              COMMENT ON COLUMN "malsrvstdcfg"."vldtoodat" IS '<ColumnAccount>BASE</ColumnAccount>
+              < ColumnName > VLDTOODAT < / ColumnName >
+              < ColumnDescription > To Date < / ColumnDescription >
+              < ColumnPossibleValues > < / ColumnPossibleValues >
+              < ColumnUnitofData > < / ColumnUnitofData >
+              < ColumnDataSource > < / ColumnDataSource >
+              < ColumnReferentialIntegrity > < / ColumnReferentialIntegrity >
+              < ColumnDataClassification > Normal < / ColumnDataClassification >
+              < ColumnFormula > < / ColumnFormula >
+              < ColumnStatus > Valid < / ColumnStatus >
+              < DataMigrationRequired > N < / DataMigrationRequired >
+              < DataExtractionRequired > Y < / DataExtractionRequired >
+              < DataWarehouseRequired > N < / DataWarehouseRequired > ';
+  - changeSet:
+       id: 1688713995003-20
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malsubclsmst"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE "malsubclsmst" (
+                "cmpcod" VARCHAR(6) NOT NULL,
+                "subclscod" VARCHAR(2) NOT NULL,
+                "des" VARCHAR(100),
+                "subclsgrp" VARCHAR(3),
+                "lstupdtim" TIMESTAMP(3) WITHOUT TIME ZONE,
+                "lstupdusr" VARCHAR(50),
+                "tagidx" numeric(1) DEFAULT 0 NOT NULL,
+                CONSTRAINT "malsubclsmst_pk" PRIMARY KEY ("cmpcod", "subclscod")
+              );
+  - changeSet:
+       id: 1688713995003-21
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malctsarp"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE INDEX "malctsarp_indx1" ON "malctsarp"("cmpcod", "rsdmod", "gpacod");
+  - changeSet:
+       id: 1688713995003-22
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malexgofcmst"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE UNIQUE INDEX "malexgofcmst_pk" ON "malexgofcmst"("cmpcod", "exgofccod");
+  - changeSet:
+       id: 1688713995003-23
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malmsgcfgpar"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE INDEX "malmsgcfgpar_indx1" ON "malmsgcfgpar"("cmpcod", "parcod", "msgcfgseqnum");
+  - changeSet:
+       id: 1688713995003-24
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malpoadtl"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE INDEX "malpoadtl_indx1" ON "malpoadtl"("cmpcod", "poacod");
+  - changeSet:
+       id: 1688713995003-25
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malpoadtl"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE INDEX "malpoadtl_indx2" ON "malpoadtl"("parcod");
+  - changeSet:
+       id: 1688713995003-26
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malrdtreqdlvtim"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE INDEX "malrdtreqdlvtim_ind1" ON "malrdtreqdlvtim"("dstarpcod", "maltyp");
+  - changeSet:
+       id: 1688713995003-27
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malsrvstdcfg"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE INDEX "malsrvstdcfg_indx1" ON "malsrvstdcfg"("cmpcod", "gpacod");
+  - changeSet:
+       id: 1688713995003-28
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malsrvstdcfg"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE INDEX "malsrvstdcfg_indx2" ON "malsrvstdcfg"("dstcod");
+  - changeSet:
+       id: 1688713995003-31
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malevt"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: ALTER TABLE
+                "malevt"
+              ADD
+                CONSTRAINT "malevt_pk" PRIMARY KEY ("cmpcod", "malboxidr", "malctg", "malsubcls");
+  - changeSet:
+       id: 1688713995003-32
+       author: A-2257
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: "malhndtim"
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: ALTER TABLE
+                "malhndtim"
+              ADD
+                CONSTRAINT "malhndtim_pk" PRIMARY KEY ("sernum", "cmpcod");
