@@ -1,0 +1,152 @@
+databaseChangeLog:
+        
+  - changeSet:
+       id: CQRS_TEST_001
+       author: A-8643
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: shrarlactmst
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE SHRARLACTMST(
+                  CMPCOD varchar(6) NOT NULL,
+                  ARLIDR numeric(5) NOT NULL,
+                  ARLNAM varchar(100),
+                  TWOAPHCOD varchar(3),
+                  THRAPHCOD varchar(3),
+                  APHCODUSE numeric(1),
+                  AWBCHKDGT numeric(1),
+                  LSTUPDTIM TIMESTAMP NOT NULL,
+                  BASCURCOD varchar(3),
+                  DYNRTGTYP varchar(1),
+                  RTGMAXCON numeric,
+                  RTGDISOFF numeric(6,3),
+                  RTGCNRREG varchar(1),
+                  RTGCNROFF varchar(1),
+                  RTGUPDFRQ numeric,
+                  LSTUPDUSR varchar(50),
+                  CFGHUB varchar(100),
+                  DEFWGTUNT varchar(2),
+                  DEFVOLUNT varchar(2),
+                  DEFDIMUNT varchar(2),
+                  NATNTY varchar(25),
+                  ACTIND varchar(1),
+                  BLGADR varchar(125),
+                  BLGCTYCOD varchar(25),
+                  BLGCNTCOD varchar(25),
+                  BLGSTANAM varchar(25),
+                  BLGPHNONE varchar(25),
+                  BLGPHNTWO varchar(25),
+                  BLGMOBNUM varchar(25),
+                  BLGEML varchar(300),
+                  BLGFAX varchar(25),
+                  CONPER varchar(50),
+                  ZIPCOD varchar(10),
+                  ACCNUM varchar(15),
+                  ISSPRTARL varchar(2),
+                  OWNARLIND varchar(1),
+                  DMYARLFLG varchar(1) DEFAULT 'N' NOT NULL,
+                  HNDARLIMPFLG varchar(1) DEFAULT 'Y' NOT NULL,
+                  HNDARLEXPFLG varchar(1) DEFAULT 'N' NOT NULL,
+                  ARLGRPCOD varchar(5),
+                  BLGPRD varchar(1),
+                  BLGCODCRDCARCHG varchar(25),
+                  BLGCODARLBLG varchar(25),
+                  CASIMPMBRFLG varchar(1));
+
+  - changeSet:
+       id: CQRS_TEST_002
+       author: A-8643
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: shragtmst
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE SHRAGTMST
+                    (	CMPCOD VARCHAR(6) NOT NULL,
+                    AGTCOD VARCHAR(15) NOT NULL,
+                    AGTNAM VARCHAR(150),
+                    CUSCOD VARCHAR(15),
+                    STNCOD VARCHAR(4),
+                    ARLIDR NUMERIC(5,0),
+                    AGTTYP VARCHAR(1),
+                    OWNFLG VARCHAR(1),
+                    RMK VARCHAR(100),
+                    LSTUPDUSR VARCHAR(50),
+                    STKHLDCOD VARCHAR(15),
+                    CTYNAM VARCHAR(50),
+                    IATCNTCOD VARCHAR(6),
+                    IATCOD VARCHAR(14),
+                    BLGCURCOD VARCHAR(3),
+                    VLDTOODAT DATE,
+                    VLDFRMDAT DATE,
+                    CASAGTCOD VARCHAR(14),
+                    CASIDR VARCHAR(13),
+                    SALRPTFLG VARCHAR(1),
+                    CTLLOCFLG VARCHAR(1),
+                    SELLOCFLG VARCHAR(1),
+                    GENPROINVFLG VARCHAR(1),
+                    RPTPRD VARCHAR(10),
+                    BLGPRD VARCHAR(9),
+                    NRMCOMPER NUMERIC(16,4),
+                    CTLIATAGTCOD VARCHAR(15),
+                    CTLIATAGTNAM VARCHAR(150),
+                    CTLBILTOOIND VARCHAR(2),
+                    ENDLMTFLG VARCHAR(1),
+                    NONFLG VARCHAR(1),
+                    ENDMAXVAL NUMERIC(16,4),
+                    ENDAWBFLG VARCHAR(1),
+                    NRMCOMFXD NUMERIC(16,4),
+                    ENDVAL NUMERIC(16,4),
+                    ENDPER NUMERIC(16,4),
+                    FWDARLFLG VARCHAR(3),
+                    HLDCMP VARCHAR(15),
+                    GSACOMTYP VARCHAR(3),
+                    GSACOMVAL NUMERIC(16,4),
+                    GSACOMVALPER NUMERIC(16,4),
+                    GSATYP VARCHAR(3),
+                    LSTUPDTIM TIMESTAMP (3),
+                    ACCNUM VARCHAR(15),
+                    USRUPDADRFLG VARCHAR(1),
+                    BLKFLG VARCHAR(1),
+                    AGTBOXNUM VARCHAR(7),
+                    AGTACCCOD VARCHAR(14),
+                    CONSTRAINT SHRAGTMST_PK PRIMARY KEY (AGTCOD, CMPCOD));
+
+  - changeSet:
+       id: CQRS_TEST_003
+       author: A-8643
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: SHRDOCMST
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql:  CREATE TABLE SHRDOCMST
+                      (	DOCSTA VARCHAR(10) NOT NULL,
+                      DOCRMK VARCHAR(100),
+                      CMPCOD VARCHAR(6) NOT NULL,
+                      DOCCOD VARCHAR(15) NOT NULL,
+                      DOCSUBTYP VARCHAR(15) NOT NULL,
+                      DOCDES VARCHAR(100),
+                      DOCSUBTYPDES VARCHAR(100),
+                      LSTUPDUSR VARCHAR(50) NOT NULL,
+                      LSTUPDTIM TIMESTAMP NOT NULL,
+                      DOCFMT VARCHAR(10) NOT NULL,
+                      FMTSTG VARCHAR(17) NOT NULL,
+                      PRDCOD VARCHAR(6),
+                      DOCLEN NUMERIC,
+                      CHKDGTFLG VARCHAR(1),
+                      CONSTRAINT SHRDOCMST_PK PRIMARY KEY (DOCCOD, DOCSUBTYP, CMPCOD));
+            

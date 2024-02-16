@@ -1,0 +1,979 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ibsplc.neoicargo.stock.dao.mybatis.StockQueryMapper">
+  <select id="findStockForStockHolder" resultMap="findStockForStockHolder" parameterType="map">
+    SELECT stk.arlidr,
+           rng.doctyp,
+           rng.docsubtyp,
+           SUM(rng.ascendrng - rng.ascstarng + 1) AS total,
+           stk.ordlvl
+    FROM stkhldstk stk,
+         stkrng rng
+    WHERE stk.cmpcod = rng.cmpcod
+      AND stk.stkhldcod = rng.stkhldcod
+      AND stk.doctyp = rng.doctyp
+      AND stk.docsubtyp = rng.docsubtyp
+      AND stk.arlidr = rng.arlidr
+      AND stk.cmpcod = #{stockAllocationVO.companyCode}
+      AND stk.arlidr = #{stockAllocationVO.airlineIdentifier}
+      AND stk.stkhldcod = #{stockAllocationVO.stockControlFor}
+      AND stk.doctyp = #{stockAllocationVO.documentType}
+      AND stk.docsubtyp = #{stockAllocationVO.documentSubType}
+    GROUP BY stk.arlidr,
+             rng.doctyp,
+             rng.docsubtyp,
+             stk.ordlvl
+  </select>
+  <resultMap id="findStockForStockHolder" type="com.ibsplc.neoicargo.stock.vo.StockVO">
+    <result property="documentType" column="DOCTYP" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="DOCSUBTYP" jdbcType="VARCHAR"/>
+    <result property="reorderLevel" column="ORDLVL" jdbcType="NUMERIC"/>
+    <result property="airlineId" column="ARLIDR" jdbcType="NUMERIC"/>
+    <result property="totalStock" column="TOTAL" jdbcType="NUMERIC"/>
+  </resultMap>
+
+  <select id="findUsedRangesForMerge" parameterType="map" resultMap="findUsedRangesForMerge">
+    SELECT
+    cmpcod,
+    arlidr,
+    doctyp,
+    docsubtyp,
+    frmstkhldcod,
+    ascstarng,
+    ascendrng,
+    starng,
+    endrng,
+    rngtyp
+    FROM stkrngtxnhis
+    WHERE
+    cmpcod= #{rangeFilterVO.companyCode}
+    AND arlidr= #{rangeFilterVO.airlineIdentifier}
+    AND doctyp= #{rangeFilterVO.documentType}
+    AND docsubtyp= #{rangeFilterVO.documentSubType}
+    AND frmstkhldcod= #{rangeFilterVO.stockHolderCode}
+    AND status= #{rangeFilterVO.status}
+    <if test="rangeFilterVO.asciiStartRange >= 0">
+      AND ascstarng= #{rangeFilterVO.asciiStartRange}
+      <if test="rangeFilterVO.asciiEndRange >= 0">
+        OR ascendrng= #{rangeFilterVO.asciiEndRange}
+      </if>
+    </if>
+    <if test="rangeFilterVO.asciiEndRange >= 0">
+      AND ascendrng= #{rangeFilterVO.asciiEndRange}
+    </if>
+    AND date_trunc('days', TXNDAT)= #{rangeFilterVO.txnDat}
+  </select>
+
+  <resultMap id="findUsedRangesForMerge" type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="companyCode" column="cmpcod" jdbcType="VARCHAR"/>
+    <result property="airlineIdentifier" column="arlidr" jdbcType="NUMERIC"/>
+    <result property="sequenceNumber" column="hisseqnum" jdbcType="VARCHAR"/>
+    <result property="documentType" column="doctyp" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="docsubtyp" jdbcType="VARCHAR"/>
+    <result property="stockHolderCode" column="frmstkhldcod" jdbcType="VARCHAR"/>
+    <result property="asciiStartRange" column="ascstarng" jdbcType="DOUBLE"/>
+    <result property="asciiEndRange" column="ascendrng" jdbcType="DOUBLE"/>
+    <result property="startRange" column="starng" jdbcType="VARCHAR"/>
+    <result property="endRange" column="endrng" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <select id="findStockRangeHistoryList" parameterType="map" resultType="java.lang.Long">
+    SELECT stkrngtxnhissernum
+    FROM stkrngtxnhis
+    <where>
+      <foreach item="stockRangeHistoryFilterVO" index="index"
+        collection="stockRangeHistoryFilterVOs" open="(" separator=" OR " close=")">
+        cmpcod = #{stockRangeHistoryFilterVO.companyCode} AND
+        arlidr = #{stockRangeHistoryFilterVO.airlineId} AND
+        doctyp = #{stockRangeHistoryFilterVO.docType} AND
+        docsubtyp = #{stockRangeHistoryFilterVO.docSubType} AND
+        frmstkhldcod = #{stockRangeHistoryFilterVO.fromStockHolderCode}
+      </foreach>
+    </where>
+  </select>
+
+  <select id="findPriorities" resultMap="findPriorities" parameterType="map">
+    SELECT
+    mst.stkhldcod AS stkhldcod,
+    mst.stkhldtyp AS stkhldtyp,
+    pry.stkhldpry AS stkhldpry
+    FROM
+    stkhldmst mst,
+    stkhldtyppry pry
+    WHERE mst.cmpcod = pry.cmpcod
+    AND mst.stkhldtyp = pry.stkhldtyp
+    AND mst.cmpcod = #{companyCode} AND mst.stkhldcod IN
+    <foreach item='stockHolderCode' collection='stockHolderCodes'
+      open='(' separator=',' close=')'>
+      #{stockHolderCode}
+    </foreach>
+  </select>
+  <resultMap id="findPriorities" type="com.ibsplc.neoicargo.stock.vo.StockHolderPriorityVO">
+    <result property="stockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="stockHolderType" column="stkhldtyp" jdbcType="VARCHAR"/>
+    <result property="priority" column="stkhldpry" jdbcType="NUMERIC"/>
+  </resultMap>
+
+  <select id="findStockHolderTypes" resultMap="findStockHolderTypes" parameterType="map">
+    SELECT CMPCOD,
+           STKHLDTYP,
+           STKHLDPRY
+    FROM stkhldtyppry
+    WHERE CMPCOD = #{companyCode}
+    ORDER BY STKHLDPRY
+  </select>
+  <resultMap id="findStockHolderTypes" type="com.ibsplc.neoicargo.stock.vo.StockHolderPriorityVO">
+    <result property="companyCode" column="CMPCOD" jdbcType="VARCHAR"/>
+    <result property="stockHolderType" column="STKHLDTYP" jdbcType="VARCHAR"/>
+    <result property="priority" column="STKHLDPRY" jdbcType="NUMERIC"/>
+  </resultMap>
+
+  <select id="findStockHolderTypeCode" parameterType="map" resultType="java.lang.String">
+    SELECT
+    stkhldnam
+    FROM
+    stkhldmst mst,
+    stkhldstk stk
+    WHERE
+    mst.stkhldmstsernum = stk.stkhldmstsernum
+    AND mst.cmpcod = #{companyCode}
+    AND mst.stkhldcod = #{stockHolderCode}
+    AND mst.stkhldtyp = #{stockHolderType}
+    <if test="documentType!=null">
+      AND stk.doctyp = #{documentType}
+    </if>
+    <if test="documentSubType!=null">
+      AND stk.docsubtyp = #{documentSubType}
+    </if>
+  </select>
+
+
+  <select id="findStockRequests" resultMap="findStockRequests" parameterType="map">
+    WITH findStockRequests AS (
+      SELECT DISTINCT stkreqmst.cmpcod AS cmpcod,
+      stkreqmst.reqrefnum AS reqrefnum,
+      stkreqmst.arlidr AS arlidr,
+      stkreqmst.stkhldcod AS stkhldcod,
+      stkreqmst.reqdat AS reqdat,
+      stkreqmst.doctyp AS doctyp,
+      stkreqmst.docsubtyp AS docsubtyp,
+      stkreqmst.reqstkqty AS reqstkqty,
+      stkreqmst.reqsta AS reqsta,
+      stkreqmst.aprstkqty AS aprstkqty,
+      stkreqmst.alcstkqty AS alcstkqty,
+      stkreqmst.mnlstkflg AS mnlstkflg,
+      stkreqmst.reqrmk AS reqrmk,
+      stkhldmst.stkhldtyp AS stkhldtyp,
+      stkhldmst.lstupdtim AS lstupdtim
+
+      FROM stkhldstk stkhldstk
+      INNER JOIN stkhldmst stkhldmst ON stkhldstk.stkhldmstsernum = stkhldmst.stkhldmstsernum
+      INNER JOIN stkreqmst stkreqmst ON stkhldstk.stkhldstksernum = stkreqmst.stkhldstksernum
+
+      <include refid="findStockRequestsViewWhere"/>
+    )
+    SELECT *
+    FROM (
+        TABLE findStockRequests
+        LIMIT #{limit}
+        OFFSET #{offset}
+    ) rowNumber
+    INNER JOIN (SELECT count(*) FROM findStockRequests) c(totalRecordCount) ON true;
+  </select>
+
+  <resultMap id="findStockRequests" type="com.ibsplc.neoicargo.stock.vo.StockRequestVO">
+    <result property="companyCode" column="cmpcod" jdbcType="VARCHAR"/>
+    <result property="requestRefNumber" column="reqrefnum" jdbcType="VARCHAR"/>
+    <result property="stockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="stockHolderType" column="stkhldtyp" jdbcType="VARCHAR"/>
+    <result property="documentType" column="doctyp" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="docsubtyp" jdbcType="VARCHAR"/>
+    <result property="remarks" column="reqrmk" jdbcType="VARCHAR"/>
+    <result property="isManual" column="mnlstkflg" jdbcType="VARCHAR"/>
+    <result property="status" column="reqsta" jdbcType="VARCHAR"/>
+    <result property="airlineIdentifier" column="arlidr" jdbcType="VARCHAR"/>
+    <result property="requestedStock" column="reqstkqty" jdbcType="NUMERIC"/>
+    <result property="allocatedStock" column="alcstkqty" jdbcType="NUMERIC"/>
+    <result property="approvedStock" column="aprstkqty" jdbcType="NUMERIC"/>
+    <result property="persistedApprovedStock" column="aprstkqty" jdbcType="NUMERIC"/>
+    <result property="totalRecordCount" column="totalRecordCount" jdbcType="NUMERIC"/>
+    <result property="requestDate" column="reqdat" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="lastStockHolderUpdateTime" column="lstupdtim" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+  </resultMap>
+
+  <sql id="findStockRequestsViewWhere">
+    WHERE 1 = 1
+
+    <if test="stockRequestFilterVO.companyCode != null
+        and not stockRequestFilterVO.companyCode.trim().isEmpty()">
+      AND stkreqmst.CMPCOD = #{stockRequestFilterVO.companyCode}
+    </if>
+
+    <if test="stockRequestFilterVO.requestRefNumber != null
+        and not stockRequestFilterVO.requestRefNumber.trim().isEmpty()">
+      AND stkreqmst.REQREFNUM = #{stockRequestFilterVO.requestRefNumber}
+    </if>
+
+     <if test="stockRequestFilterVO.stockHolderCode != null
+        and not stockRequestFilterVO.stockHolderCode.trim().isEmpty()">
+       AND UPPER(stkreqmst.STKHLDCOD) = UPPER(#{stockRequestFilterVO.stockHolderCode})
+     </if>
+
+     <if test="stockRequestFilterVO.documentType != null
+        and not stockRequestFilterVO.documentType.trim().isEmpty()">
+          AND stkreqmst.DOCTYP = #{stockRequestFilterVO.documentType}
+     </if>
+
+     <if test="stockRequestFilterVO.documentSubType != null
+        and not stockRequestFilterVO.documentSubType.trim().isEmpty() and stockRequestFilterVO.documentSubType != 'ALL'">
+          AND stkreqmst.DOCSUBTYP = #{stockRequestFilterVO.documentSubType}
+     </if>
+
+     <if test="stockRequestFilterVO.isManual != null
+        and not stockRequestFilterVO.isManual.trim().isEmpty()">
+          AND stkreqmst.MNLSTKFLG = #{stockRequestFilterVO.isManual}
+     </if>
+
+     <if test="stockRequestFilterVO.toDate != null">
+          AND date_trunc('day',stkreqmst.REQDAT) <![CDATA[ <= ]]> #{stockRequestFilterVO.toDate}
+     </if>
+
+     <if test="stockRequestFilterVO.fromDate != null">
+          AND date_trunc('day',stkreqmst.REQDAT) <![CDATA[ >= ]]> #{stockRequestFilterVO.fromDate}
+     </if>
+
+      <if test="stockRequestFilterVO.isAllocateCall == true">
+          <if test="stockRequestFilterVO.status != null
+              and not stockRequestFilterVO.status.trim().isEmpty()">
+              <if test="stockRequestFilterVO.status != 'ALL'">
+                  AND stkreqmst.REQSTA = #{stockRequestFilterVO.status}
+              </if>
+              <if test="stockRequestFilterVO.status == 'ALL'">
+                  AND stkreqmst.REQSTA IN ('N','L','A' )
+              </if>
+          </if>
+      </if>
+
+      <if test="stockRequestFilterVO.isAllocateCall == false">
+          <if test="stockRequestFilterVO.status != null
+              and not stockRequestFilterVO.status.trim().isEmpty()">
+              <if test="stockRequestFilterVO.status != 'ALL'">
+                  <if test="stockRequestFilterVO.statuses != null and not stockRequestFilterVO.statuses.isEmpty()">
+                      <if test="stockRequestFilterVO.statuses.size() > 1">
+                          AND stkreqmst.REQSTA IN
+                          <foreach item='stat' collection='stockRequestFilterVO.statuses'
+                                   open='(' separator=',' close=')'>
+                              #{stat}
+                          </foreach>
+                      </if>
+                      <if test="stockRequestFilterVO.statuses.size() == 1">
+                          AND stkreqmst.REQSTA = #{stockRequestFilterVO.status}
+                      </if>
+                  </if>
+              </if>
+          </if>
+      </if>
+
+      <if test="stockRequestFilterVO.stockHolderType != null
+            and not stockRequestFilterVO.stockHolderType.trim().isEmpty()">
+          AND stkhldmst.STKHLDTYP = #{stockRequestFilterVO.stockHolderType}
+      </if>
+
+      <if test="stockRequestFilterVO.approver != null and not stockRequestFilterVO.approver.trim().isEmpty()">
+          AND UPPER(stkhldstk.STKAPRCOD) = UPPER(#{stockRequestFilterVO.approver})
+      </if>
+
+      <if test="stockRequestFilterVO.airlineIdentifier != null">
+          AND stkhldstk.ARLIDR = #{stockRequestFilterVO.airlineIdentifier}
+      </if>
+
+
+        <if test="stockRequestFilterVO.privilegeLevelType != null
+            and stockRequestFilterVO.privilegeRule != null
+            and stockRequestFilterVO.privilegeLevelValue != null
+            and not stockRequestFilterVO.privilegeLevelValue.trim().isEmpty() ">
+              <if test="'STK_HLDR_CODE' == stockRequestFilterVO.privilegeRule
+                  and 'STKHLD' == stockRequestFilterVO.privilegeLevelType">
+                AND (stkhldstk.STKHLDCOD IN
+                    <foreach item='levelValue' collection='stockRequestFilterVO.levelValues'
+                      open='(' separator=',' close=')'>
+                      #{levelValue}
+                    </foreach>
+                    OR stkhldstk.STKAPRCOD IN
+                    <foreach item='levelValue' collection='stockRequestFilterVO.levelValues'
+                      open='(' separator=',' close=')'>
+                      #{levelValue}
+                    </foreach>
+                )
+              </if>
+        </if>
+
+        <if test="stockRequestFilterVO.requestCreatedBy != null and not stockRequestFilterVO.requestCreatedBy.isEmpty()">
+          AND stkreqmst.REQCRTUSR IN
+          <foreach item='createdBy' collection='stockRequestFilterVO.requestCreatedBy'
+            open='(' separator=',' close=')'>
+            #{createdBy}
+          </foreach>
+        </if>
+  </sql>
+
+    <select id="findStockHolderLov" resultMap="findStockHolderLov" parameterType="map">
+        WITH cte AS (
+        SELECT distinct
+            STKHLDMST.STKHLDCOD STKHLDCOD,
+            STKHLDMST.STKHLDTYP STKHLDTYP,
+            UPPER(STKHLDMST.STKHLDNAM) STKHLDNAM,
+            STKHLDMST.STKHLDDES STKHLDDES
+        FROM
+            STKHLDMST STKHLDMST,
+            STKHLDSTK STKHLDSTK
+        WHERE
+            STKHLDMST.STKHLDMSTSERNUM = STKHLDSTK.STKHLDMSTSERNUM
+            AND STKHLDMST.CMPCOD = #{stockHolderLovFilterVO.companyCode}
+            <if test="stockHolderLovFilterVO.documentType!=null">
+                AND STKHLDSTK.DOCTYP = #{stockHolderLovFilterVO.documentType}
+            </if>
+            <if test="stockHolderLovFilterVO.documentSubType!=null">
+                AND STKHLDSTK.DOCSUBTYP = #{stockHolderLovFilterVO.documentSubType}
+            </if>
+            <if test="stockHolderLovFilterVO.stockHolderType!=null">
+                AND  STKHLDMST.STKHLDTYP = #{stockHolderLovFilterVO.stockHolderType}
+            </if>
+        <if test="stockHolderLovFilterVO.stockHolderCode!=null">
+            AND STKHLDMST.STKHLDCOD LIKE  #{stockHolderLovFilterVO.stockHolderCode}
+        </if>
+        <if test="stockHolderLovFilterVO.stockHolderName!=null">
+            AND upper(STKHLDMST.STKHLDNAM) LIKE  upper(#{stockHolderLovFilterVO.stockHolderName})
+        </if>
+        <if test="stockHolderLovFilterVO.approverCode!=null">
+            AND STKHLDSTK.STKAPRCOD = #{stockHolderLovFilterVO.approverCode}
+            AND  EXISTS (
+                        SELECT STKHLDCOD
+                        FROM STKHLDMST
+                        WHERE STKHLDCOD = #{stockHolderLovFilterVO.approverCode}
+                        AND  STKHLDTYP = #{stockHolderLovFilterVO.stockHolderType} )
+        </if>
+        )
+        SELECT *
+            FROM  (
+            TABLE  cte
+            LIMIT  #{limit}
+            OFFSET #{offset}
+        ) sub
+        INNER JOIN (SELECT count(*) FROM cte) c(totalRecordCount) ON true;
+    </select>
+    <resultMap id="findStockHolderLov" type="com.ibsplc.neoicargo.stock.vo.StockHolderLovVO">
+        <result property="stockHolderCode" column="STKHLDCOD" jdbcType="VARCHAR"/>
+        <result property="stockHolderType" column="STKHLDTYP" jdbcType="VARCHAR"/>
+        <result property="stockHolderName" column="STKHLDNAM" jdbcType="VARCHAR"/>
+        <result property="description" column="STKHLDDES" jdbcType="VARCHAR"/>
+        <result property="totalRecordCount" column="totalRecordCount" jdbcType="NUMERIC"/>
+    </resultMap>
+
+  <select id="findStockAgentMappings" resultMap="findStockAgentMappings" parameterType="map">
+    WITH cte AS (
+        SELECT
+            agtcod,
+            stkhldcod,
+            lstupdtim
+        FROM stkhldagt
+        WHERE cmpcod = #{stockAgentFilterVO.companyCode}
+        <if test="stockAgentFilterVO.agentCode != null and not stockAgentFilterVO.agentCode.isEmpty()">
+          AND agtcod = #{stockAgentFilterVO.agentCode}
+        </if>
+        <if test="stockAgentFilterVO.stockHolderCode != null and not stockAgentFilterVO.stockHolderCode.isEmpty()">
+          AND stkhldcod = #{stockAgentFilterVO.stockHolderCode}
+        </if>
+        )
+        SELECT *
+            FROM  (
+            TABLE  cte
+            LIMIT  #{limit}
+            OFFSET #{offset}
+        ) sub
+        INNER JOIN (SELECT count(*) FROM cte) c(totalRecordCount) ON true;
+  </select>
+  <resultMap id="findStockAgentMappings" type="com.ibsplc.neoicargo.stock.vo.StockAgentVO">
+      <result property="agentCode" column="agtcod" jdbcType="VARCHAR"/>
+      <result property="stockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="lastUpdateTime" column="lstupdtim" jdbcType="DATE"
+            typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="totalRecordCount" column="totalRecordCount" jdbcType="NUMERIC"/>
+  </resultMap>
+
+  <select id="findStockRequestDetails" resultMap="findStockRequestDetails" parameterType="map">
+    SELECT stkreqmst.cmpcod    AS cmpcod,
+           stkreqmst.reqrefnum AS reqrefnum,
+           stkreqmst.stkhldcod AS stkhldcod,
+           stkreqmst.reqdat    AS reqdat,
+           stkreqmst.doctyp    AS doctyp,
+           stkreqmst.docsubtyp AS docsubtyp,
+           stkreqmst.mnlstkflg AS mnlstkflg,
+           stkreqmst.reqstkqty AS reqstkqty,
+           stkreqmst.aprstkqty AS aprstkqty,
+           stkreqmst.alcstkqty AS alcstkqty,
+           stkreqmst.reqrmk    AS reqrmk,
+           stkreqmst.aprrejrem AS aprrejrem,
+           stkreqmst.reqsta    AS reqsta,
+           stkreqmst.lstupdtim AS lstupdtim,
+           stkreqmst.lstupdusr AS lstupdusr,
+           stkhldmst.stkhldtyp AS stkhldtyp
+    FROM stkhldstk
+        INNER JOIN stkhldmst ON stkhldstk.stkhldmstsernum = stkhldmst.stkhldmstsernum
+        INNER JOIN stkreqmst ON stkhldstk.stkhldstksernum = stkreqmst.stkhldstksernum
+    AND stkreqmst.cmpcod = #{stockRequestFilterVO.companyCode}
+    AND stkreqmst.reqrefnum = #{stockRequestFilterVO.requestRefNumber}
+
+
+    <if test="stockRequestFilterVO.fromDate != null">
+      AND #{stockRequestFilterVO.fromDate} &lt;= date_trunc('day',stkreqmst.REQDAT)
+    </if>
+
+    <if test="stockRequestFilterVO.toDate != null">
+      AND date_trunc('day',stkreqmst.REQDAT) &lt;= #{stockRequestFilterVO.toDate}
+    </if>
+
+    <if test="stockRequestFilterVO.airlineIdentifier != null">
+      AND stkreqmst.arlidr = #{stockRequestFilterVO.airlineIdentifier}
+    </if>
+
+    <if test="stockRequestFilterVO.documentType != null">
+      AND stkreqmst.doctyp = #{stockRequestFilterVO.documentType}
+    </if>
+
+    <if test="stockRequestFilterVO.documentSubType != null">
+      AND stkreqmst.docsubtyp = #{stockRequestFilterVO.documentSubType}
+    </if>
+
+    <if test="stockRequestFilterVO.privilegeLevelType != null
+      and stockRequestFilterVO.privilegeRule != null
+      and stockRequestFilterVO.privilegeLevelValue != null">
+      <if test="'STK_HLDR_CODE' == stockRequestFilterVO.privilegeRule
+        and 'STKHLD' == stockRequestFilterVO.privilegeLevelType
+        and not stockRequestFilterVO.privilegeLevelValue.isEmpty()">
+        AND (stkhldstk.STKHLDCOD IN
+        <foreach item='levelValue' collection='stockRequestFilterVO.levelValues'
+          open='(' separator=',' close=')'>
+          #{levelValue}
+        </foreach>
+        OR stkhldstk.STKAPRCOD IN
+        <foreach item='levelValue' collection='stockRequestFilterVO.levelValues'
+          open='(' separator=',' close=')'>
+          #{levelValue}
+        </foreach>
+        )
+      </if>
+    </if>
+  </select>
+
+  <resultMap id="findStockRequestDetails" type="com.ibsplc.neoicargo.stock.vo.StockRequestVO">
+    <result property="companyCode" column="cmpcod" jdbcType="VARCHAR"/>
+    <result property="requestRefNumber" column="reqrefnum" jdbcType="VARCHAR"/>
+    <result property="stockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="stockHolderType" column="stkhldtyp" jdbcType="VARCHAR"/>
+    <result property="documentType" column="doctyp" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="docsubtyp" jdbcType="VARCHAR"/>
+    <result property="remarks" column="reqrmk" jdbcType="VARCHAR"/>
+    <result property="isManual" column="mnlstkflg" jdbcType="VARCHAR"/>
+    <result property="status" column="reqsta" jdbcType="VARCHAR"/>
+    <result property="approvalRemarks" column="aprrejrem" jdbcType="VARCHAR"/>
+    <result property="requestedStock" column="reqstkqty" jdbcType="NUMERIC"/>
+    <result property="allocatedStock" column="alcstkqty" jdbcType="NUMERIC"/>
+    <result property="approvedStock" column="aprstkqty" jdbcType="NUMERIC"/>
+    <result property="persistedApprovedStock" column="aprstkqty" jdbcType="NUMERIC"/>
+    <result property="requestDate" column="reqdat" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="lastStockHolderUpdateTime" column="lstupdtim" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+  </resultMap>
+
+  <select id="findBlacklistedStock" resultMap="findBlacklistedStock" parameterType="map">
+    WITH findBlacklistedStock AS (
+      SELECT
+        rng.cmpcod,
+        rng.doctyp,
+        rng.docsubtyp,
+        rng.starng,
+        rng.endrng,
+        coalesce(rng.blklstrmk,' ') AS blklstrmk,
+        rng.blksta,
+        rng.stkhldcod,
+        rng.frtlvlstkhldcod AS frtstkhldcod,
+        stk.stkaprcod AS seclvlstkhldcod,
+        rng.blklstdat,
+        rng.lstupdtim,
+        rng.lstupdusr,
+        rng.arlidr
+      FROM
+        stkblklstrng rng
+          LEFT OUTER JOIN stkhldstk stk ON ( rng.cmpcod = stk.cmpcod
+          AND rng.doctyp = stk.doctyp
+          AND rng.docsubtyp = stk.docsubtyp
+          AND rng.arlidr = stk.arlidr
+          AND rng.frtlvlstkhldcod = stk.stkhldcod )
+      <include refid="findBlacklistedStockWhere"/>
+    )
+    SELECT * FROM (
+      TABLE findBlacklistedStock
+      LIMIT #{limit}
+      OFFSET #{offset}
+    ) rowNumber
+    INNER JOIN (SELECT count(*) FROM findBlacklistedStock) c(totalRecordCount) ON true
+  </select>
+
+  <sql id="findBlacklistedStockWhere">
+    WHERE RNG.BLKSTA ='A'
+
+    <if test="stockFilterVO.companyCode != null">
+      AND rng.CMPCOD = #{stockFilterVO.companyCode}
+    </if>
+
+    <if test="stockFilterVO.documentType != null">
+      AND rng.DOCTYP = #{stockFilterVO.documentType}
+    </if>
+
+    <if
+      test="stockFilterVO.documentSubType != null and stockFilterVO.documentSubType != 'ALL'">
+      AND rng.DOCSUBTYP = #{stockFilterVO.documentSubType}
+    </if>
+
+    <if test="stockFilterVO.airlineIdentifier > 0">
+      AND rng.ARLIDR = #{stockFilterVO.airlineIdentifier}
+    </if>
+
+    <if test="stockFilterVO.rangeFrom != null
+        and not stockFilterVO.rangeFrom.trim().isEmpty()">
+      AND ((#{stockFilterVO.asciiRangeFrom} between rng.ASCSTARNG and rng.ASCENDRNG) OR (rng.ASCSTARNG >= #{stockFilterVO.asciiRangeFrom}))
+      AND (CASE WHEN REGEXP_REPLACE(#{stockFilterVO.rangeFrom}, '([[:digit:]])', '', '') IS NOT NULL
+      THEN CASE WHEN COALESCE(REGEXP_REPLACE(rng.STARNG, '([[:digit:]])', '', ''), '0') = REGEXP_REPLACE(#{stockFilterVO.rangeFrom}, '([[:digit:]])', '', '')
+      THEN 1 ELSE 0 END ELSE 1 END) > 0
+    </if>
+
+    <if test="stockFilterVO.rangeTo != null
+        and not stockFilterVO.rangeTo.trim().isEmpty()">
+      AND ((#{stockFilterVO.asciiRangeTo} between rng.ASCSTARNG and rng.ASCENDRNG) OR (rng.ASCENDRNG &lt;= #{stockFilterVO.asciiRangeTo}))
+      AND (CASE WHEN REGEXP_REPLACE(#{stockFilterVO.rangeTo}, '([[:digit:]])', '', '') IS NOT NULL
+      THEN CASE WHEN COALESCE(REGEXP_REPLACE(rng.ENDRNG,'([[:digit:]])', '', ''), '0') = REGEXP_REPLACE(#{stockFilterVO.rangeTo},'([[:digit:]])', '', '')
+      THEN 1 ELSE 0 END ELSE 1 END) > 0
+    </if>
+
+    <if test="stockFilterVO.fromDate != null">
+      AND #{stockFilterVO.fromDate} &lt;= date_trunc('day',rng.BLKLSTDAT)
+    </if>
+
+    <if test="stockFilterVO.toDate != null">
+      AND date_trunc('day',rng.BLKLSTDAT) &lt;= #{stockFilterVO.toDate}
+    </if>
+  </sql>
+
+  <resultMap id="findBlacklistedStock" type="com.ibsplc.neoicargo.stock.vo.BlacklistStockVO">
+    <result property="companyCode" column="cmpcod" jdbcType="VARCHAR"/>
+    <result property="documentType" column="doctyp" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="docsubtyp" jdbcType="VARCHAR"/>
+    <result property="rangeFrom" column="starng" jdbcType="VARCHAR"/>
+    <result property="rangeTo" column="endrng" jdbcType="VARCHAR"/>
+    <result property="airlineIdentifier" column="arlidr" jdbcType="VARCHAR"/>
+    <result property="remarks" column="blklstrmk" jdbcType="VARCHAR"/>
+    <result property="blacklistDate" column="blklstdat" jdbcType="VARCHAR"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="asciiRangeFrom" column="ascstarng" jdbcType="VARCHAR"/>
+    <result property="asciiRangeTo" column="ascendrng" jdbcType="VARCHAR"/>
+    <result property="lastUpdateUser" column="lstupdusr" jdbcType="VARCHAR"/>
+    <result property="status" column="blksta" jdbcType="VARCHAR"/>
+    <result property="stockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="firstLevelStockHolder" column="frtstkhldcod" jdbcType="VARCHAR"/>
+    <result property="secondLevelStockHolder" column="seclvlstkhldcod" jdbcType="VARCHAR"/>
+    <result property="isManual" column="mnlflg" jdbcType="VARCHAR"/>
+    <result property="totalRecordCount" column="totalRecordCount" jdbcType="NUMERIC"/>
+    <result property="lastUpdateTime" column="lstupdtim" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+  </resultMap>
+
+  <select id="findDocumentDetails" resultMap="findDocumentDetails" parameterType="map">
+    SELECT
+    mst.stkhldcod stkhldcod,
+    mst.stkhldnam stkhldnam,
+    mst.stkhldtyp stkhldtyp,
+    stk.doctyp doctyp,
+    stk.docsubtyp docsubtyp,
+    agt.agtcod agtcod
+    <!--    Out of current implementation. Solution how to work with external tables is not provided yet.-->
+    <!--    agtdtl.agtnam agtnam-->
+    <!--    shr.prdcod prdcod-->
+    FROM
+    stkhldmst mst
+    INNER JOIN stkhldstk stk ON ( mst.cmpcod = stk.cmpcod
+    AND mst.stkhldcod = stk.stkhldcod )
+    LEFT OUTER JOIN stkrng rng ON ( stk.arlidr = rng.arlidr
+    AND stk.stkhldcod = rng.stkhldcod
+    AND stk.doctyp = rng.doctyp
+    AND stk.docsubtyp = rng.docsubtyp )
+    LEFT OUTER JOIN stkhldagt agt ON ( rng.cmpcod = agt.cmpcod
+    AND rng.stkhldcod = agt.stkhldcod )
+    <!--    Out of current implementation. Solution how to work with external tables is not provided yet.-->
+    <!--    LEFT OUTER JOIN shragtmst agtdtl ON ( agt.cmpcod = agtdtl.cmpcod-->
+    <!--    AND agt.agtcod = agtdtl.agtcod )-->
+    <!--    LEFT OUTER JOIN shrdocmst shr ON ( stk.cmpcod = shr.cmpcod-->
+    <!--    AND stk.doctyp = shr.doccod-->
+    <!--    AND stk.docsubtyp = shr.docsubtyp-->
+    <!--    AND stk.cmpcod = shr.cmpcod )-->
+    WHERE
+    rng.cmpcod = #{companyCode}
+    AND rng.arlidr = #{airlineIdentifier}
+    AND #{documentNumber} <![CDATA[ >= ]]> rng.ascstarng
+    AND #{documentNumber} <![CDATA[ <= ]]> rng.ascendrng LIMIT 1
+  </select>
+
+  <resultMap id="findDocumentDetails" type="com.ibsplc.neoicargo.stock.vo.StockRequestVO">
+    <result property="stockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="stockHolderName" column="stkhldnam" jdbcType="VARCHAR"/>
+    <result property="stockHolderType" column="stkhldtyp" jdbcType="VARCHAR"/>
+    <result property="documentType" column="doctyp" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="docsubtyp" jdbcType="VARCHAR"/>
+    <result property="agentCode" column="agtcod" jdbcType="VARCHAR"/>
+    <!--    Out of current implementation. Solution how to work with external tables is not provided yet.-->
+    <!--    <result property="productCode" column="prdcod" jdbcType="VARCHAR"/>-->
+    <!--    <result property="agentName" column="agtnam" jdbcType="VARCHAR"/>-->
+  </resultMap>
+  
+
+    <select id="findStockDetails" parameterType="map" resultType="java.lang.String">
+        SELECT
+            mstdocnum
+        FROM
+            stkrngmsgtmp
+        WHERE
+            cmpcod = #{documentFilterVO.companyCode}
+          AND arlidr = #{documentFilterVO.airlineIdentifier}
+          AND mstdocnum = #{documentFilterVO.documentNumber}
+          AND doctyp = #{documentFilterVO.documentType}
+          AND docsubtyp = #{documentFilterVO.documentSubType}
+          AND skpstkchkflg = 'Y'
+    </select>
+    
+	<select id="findAutoPopulateSubtype" parameterType="map"
+		resultType="java.lang.String">
+		SELECT
+		stk.docsubtyp docsubtyp
+		FROM
+		stkhldstk stk
+		WHERE
+		stk.autgenflg = 'Y'
+		AND stk.cmpcod =#{documentFilterVO.companyCode}
+		AND stk.stkhldcod =#{documentFilterVO.stockHolderCode}
+		AND stk.doctyp =#{documentFilterVO.documentType}
+	</select>
+	
+	    <select id="findStockHolders" resultMap="findStockHolders" parameterType="map">
+WITH cte AS (
+	select
+		stkhldmst.cmpcod as cmpcod,
+		stkhldmst.stkhldtyp as stkhldtyp,
+		stkhldmst.stkhldcod as stkhldcod,
+		stkhldstk.doctyp as doctyp,
+		stkhldstk.docsubtyp as docsubtyp,
+		stkhldstk.ordlvl as ordlvl,
+		stkhldstk.ordqty as ordqty,
+		stkhldstk.ordalt as ordalt,
+		stkhldstk.autreqflg as autreqflg,
+		stkhldstk.stkaprcod as stkaprcod,
+		stkhldstk.arlidr as arlidr,
+		stkhldmst.lstupdtim as lstupdtim,
+		stkhldmst.lstupdusr as lstupdusr
+	from
+		stkhldstk stkhldstk,
+		stkhldmst stkhldmst,
+		stkhldtyppry stkhldtyppry
+	where
+		stkhldstk.cmpcod = stkhldmst.cmpcod
+		and stkhldstk.stkhldcod = stkhldmst.stkhldcod
+		and stkhldtyppry.cmpcod = stkhldmst.cmpcod
+		and stkhldtyppry.stkhldtyp = stkhldmst.stkhldtyp
+		and stkhldtyppry.stkhldpry <![CDATA[ >= ]]> (
+		select
+			pry.stkhldpry
+		from
+			stkhldtyppry pry
+		where
+			pry.cmpcod = #{stockHolderFilterVO.companyCode}
+			and pry.stkhldtyp = #{stockHolderFilterVO.stockHolderType}
+			and pry.stkhldpry>0)
+		<if test="stockHolderFilterVO.companyCode != null and stockHolderFilterVO.companyCode.trim().length() != 0">
+			AND stkhldstk.CMPCOD = #{stockHolderFilterVO.companyCode}
+		</if>
+		<if test="stockHolderFilterVO.documentType != null and stockHolderFilterVO.documentType.trim().length() != 0">
+			AND stkhldstk.DOCTYP = #{stockHolderFilterVO.documentType}
+		</if>
+		<if test="stockHolderFilterVO.stockHolderCode != null and stockHolderFilterVO.stockHolderCode.trim().length() != 0">
+			AND stkhldstk.STKAPRCOD = #{stockHolderFilterVO.stockHolderCode}
+		</if>
+		<if test="stockHolderFilterVO.documentSubType != null and stockHolderFilterVO.documentSubType.trim().length() != 0">
+			AND stkhldstk.DOCSUBTYP = #{stockHolderFilterVO.documentSubType}
+		</if>
+		<if test="stockHolderFilterVO.airlineIdentifier != null and stockHolderFilterVO.airlineIdentifier.trim().length() > 0">
+			AND stkhldstk.ARLIDR = #{stockHolderFilterVO.airlineIdentifier}::NUMERIC
+		</if>
+
+		AND STKHLDMST.STKHLDTYP=#{stockHolderFilterVO.stockHolderType}
+		<if test="stockHolderFilterVO.stockHolderCode != null and stockHolderFilterVO.stockHolderCode.trim().length() != 0">
+			UNION ALL SELECT 
+			stkhldmst.CMPCOD AS CMPCOD,
+			stkhldmst.STKHLDTYP AS STKHLDTYP, 
+			stkhldmst.STKHLDCOD AS STKHLDCOD,
+			stkhldstk.DOCTYP AS DOCTYP ,
+			stkhldstk.DOCSUBTYP AS DOCSUBTYP, 
+			stkhldstk.ORDLVL AS ORDLVL, 
+			stkhldstk.ORDQTY AS ORDQTY ,
+			stkhldstk.ORDALT AS ORDALT,
+			stkhldstk.AUTREQFLG AS AUTREQFLG,
+			stkhldstk.STKAPRCOD AS STKAPRCOD,
+			stkhldstk.ARLIDR as ARLIDR,
+			stkhldmst.LSTUPDTIM AS LSTUPDTIM,
+			stkhldmst.LSTUPDUSR AS LSTUPDUSR 
+			FROM  STKHLDSTK stkhldstk,  
+			STKHLDMST stkhldmst  
+			WHERE  stkhldstk.CMPCOD = stkhldmst.CMPCOD AND 
+			stkhldstk.STKHLDCOD = stkhldmst.STKHLDCOD
+			<if test="stockHolderFilterVO.companyCode != null and stockHolderFilterVO.companyCode.trim().length() != 0">
+				AND stkhldstk.CMPCOD = #{stockHolderFilterVO.companyCode}
+			</if>
+			<if test="stockHolderFilterVO.documentType != null and stockHolderFilterVO.documentType.trim().length() != 0">
+				AND stkhldstk.DOCTYP = #{stockHolderFilterVO.documentType}
+			</if>
+			<if test="stockHolderFilterVO.stockHolderCode != null and stockHolderFilterVO.stockHolderCode.trim().length() != 0">
+				AND stkhldstk.STKHLDCOD = #{stockHolderFilterVO.stockHolderCode}
+			</if>
+			<if test="stockHolderFilterVO.documentSubType != null and stockHolderFilterVO.documentSubType.trim().length() != 0">
+				AND stkhldstk.DOCSUBTYP = #{stockHolderFilterVO.documentSubType}
+			</if>
+			<if test="stockHolderFilterVO.stockHolderType != null and stockHolderFilterVO.stockHolderType.trim().length() != 0">
+				AND stkhldmst.STKHLDTYP  = #{stockHolderFilterVO.stockHolderType} 
+			</if>
+			<if test="stockHolderFilterVO.airlineIdentifier != null and stockHolderFilterVO.airlineIdentifier.trim().length() > 0">
+				AND stkhldstk.ARLIDR = #{stockHolderFilterVO.airlineIdentifier}::NUMERIC
+			</if>
+		</if>
+		)   SELECT *
+		    FROM (
+		           TABLE cte
+		             LIMIT #{limit}
+		             OFFSET #{offset}) sub
+		           INNER JOIN (SELECT count(*) FROM cte) c(totalRecordCount) ON true;
+	
+  </select>
+
+  <resultMap id="findStockHolders" type="com.ibsplc.neoicargo.stock.vo.StockHolderDetailsVO">
+    <result property="companyCode" column="CMPCOD" jdbcType="VARCHAR"/>
+    <result property="stockHolderType" column="STKHLDTYP" jdbcType="VARCHAR"/>
+    <result property="stockHolderCode" column="STKHLDCOD" jdbcType="VARCHAR"/>
+    <result property="docType" column="DOCTYP" jdbcType="VARCHAR"/>
+    <result property="docSubType" column="DOCSUBTYP" jdbcType="VARCHAR"/>
+    <result property="reorderLevel" column="ORDLVL" jdbcType="NUMERIC"/>
+    <result property="reorderQuantity" column="ORDQTY" jdbcType="NUMERIC"/>
+    <result property="isReorderAlert" column="ORDALT" jdbcType="VARCHAR"/>
+    <result property="isAutoStockRequest" column="AUTREQFLG" jdbcType="VARCHAR"/>
+    <result property="approverCode" column="STKAPRCOD" jdbcType="VARCHAR"/>
+    <result property="airlineIdentifier" column="ARLIDR" jdbcType="NUMERIC"/>
+    <result property="lastUpdateTime" column="LSTUPDTIM" jdbcType="DATE" typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="lastUpdateUser" column="LSTUPDUSR" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+	<select id="findCustomerStockDetails" parameterType="map"
+	resultMap="customerStockDetails">
+	select
+		z.cmpcod,
+		z.stkhldcod,
+		MIN(z.stkaprcod) stkaprcod,
+		MIN(mst.stkhldnam) stkaprnam,
+		MIN(z.stkhldtyp) stkhldtyp,
+		MIN(z.stkhldnam) stkhldnam,
+		SUM(z.req_rec) req_rec,
+		SUM(z.req_place) req_place,
+		SUM(z.avail_stock) avlstk
+	from
+		(
+		select
+			stk.cmpcod, stk.doctyp, stk.docsubtyp, stk.stkhldcod, stk.stkaprcod stkaprcod, mst.stkhldtyp, mst.stkhldnam, coalesce( ( select SUM(req1.reqstkqty - req1.alcstkqty) from stkreqmst req1, stkhldstk chdstk where stk.cmpcod = chdstk.cmpcod and stk.stkhldcod = chdstk.stkaprcod and stk.arlidr = chdstk.arlidr and stk.doctyp = chdstk.doctyp and stk.docsubtyp = chdstk.docsubtyp and chdstk.cmpcod = req1.cmpcod and chdstk.stkhldcod = req1.stkhldcod and chdstk.arlidr = req1.arlidr and chdstk.doctyp = req1.doctyp and chdstk.docsubtyp = req1.docsubtyp and req1.reqsta != 'C' and req1.reqsta != 'R' and req1.reqsta != 'M' ), 0) req_rec, 0 req_place, coalesce( ( select SUM(docnum) from stkrng rng where stk.cmpcod = rng.cmpcod and stk.stkhldcod = rng.stkhldcod and stk.arlidr = rng.arlidr and stk.doctyp = rng.doctyp and stk.docsubtyp = rng.docsubtyp ), 0) avail_stock
+		from
+			stkhldstk stk, stkhldmst mst
+		where
+			mst.cmpcod = stk.cmpcod
+			and mst.stkhldcod = stk.stkhldcod
+			and stk.cmpcod =#{stockDetailsFilterVO.companyCode}
+			and stk.stkhldcod =#{stockDetailsFilterVO.stockHolderCode}
+	union all
+		select
+			stk.cmpcod, stk.doctyp, stk.docsubtyp, stk.stkhldcod, stk.stkaprcod stkaprcod, mst.stkhldtyp, mst.stkhldnam, 0 req_rec, ( req.reqstkqty - req.alcstkqty ) req_place, 0 avail_stock
+		from
+			stkhldstk stk
+		inner join stkhldmst mst on
+			( mst.cmpcod = stk.cmpcod
+			and mst.stkhldcod = stk.stkhldcod )
+		left outer join stkreqmst req on
+			( stk.cmpcod = req.cmpcod
+			and stk.stkhldcod = req.stkhldcod
+			and stk.arlidr = req.arlidr
+			and stk.doctyp = req.doctyp
+			and stk.docsubtyp = req.docsubtyp )
+		where
+			stk.cmpcod =#{stockDetailsFilterVO.companyCode}
+			and stk.stkhldcod =#{stockDetailsFilterVO.stockHolderCode}
+			and req.reqsta != 'C'
+			and req.reqsta != 'R'
+			and req.reqsta != 'M'
+			and req.reqstkqty > req.alcstkqty ) z,
+		stkhldmst mst
+	where
+		Z.STKHLDCOD = #{stockDetailsFilterVO.stockHolderCode}
+		and Z.CMPCOD = MST.CMPCOD
+		and Z.STKAPRCOD = MST.STKHLDCOD
+	group by
+		Z.CMPCOD,
+		Z.DOCTYP,
+		Z.DOCSUBTYP,
+		Z.STKHLDCOD
+    </select>
+    
+	<resultMap id="customerStockDetails" type="com.ibsplc.neoicargo.stock.vo.StockDetailsVO">
+		<result property="companyCode" column="CMPCOD" jdbcType="VARCHAR"/>
+	    <result property="stockHolderCode" column="STKHLDCOD" jdbcType="VARCHAR"/>
+	    <result property="stockHolderType" column="STKHLDTYP" jdbcType="VARCHAR"/>
+	    <result property="stockHolderName" column="STKHLDNAM" jdbcType="VARCHAR"/>
+	    <result property="approverCode" column="STKAPRCOD" jdbcType="VARCHAR"/>
+	    <result property="availableStock" column="AVLSTK" jdbcType="NUMERIC"/>
+	    <result property="requestPlaced" column="REQ_PLACE" jdbcType="NUMERIC"/>
+	    <result property="requestReceived" column="REQ_REC" jdbcType="NUMERIC"/>
+	    <result property="stockApproverName" column="STKAPRNAM" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <select id="findAWBStockDetailsForPrint" parameterType="map" resultMap="findAWBStockDetailsForPrint">
+	    select
+		   rng.starng as starng,
+		    rng.endrng as endrng,
+		    rng.docnum as docnum,
+		    rng.arlidr as arlidr,
+		    rng.doctyp as doctype,
+		    mst.stkhldnam,
+		    mst.stkhldcod
+		    <!-- arl.awbchkdgt,
+		    arl.thrnumcod as awbpfx -->
+	    from
+		    stkhldstk stk,
+		    stkrng rng,
+		    stkhldmst mst
+		    <!-- shrarlmst arl -->
+	    where
+		    stk.cmpcod = rng.cmpcod
+		    and stk.stkhldcod = rng.stkhldcod
+		    and stk.doctyp = rng.doctyp
+		    and stk.docsubtyp = rng.docsubtyp
+		    and stk.arlidr = rng.arlidr
+		    and stk.cmpcod = mst.cmpcod
+		    and stk.stkhldcod = mst.stkhldcod
+		    <!-- and stk.cmpcod = arl.cmpcod
+		    and rng.arlidr = arl.arlidr -->
+		    and rng.doctyp = 'AWB'
+		    and stk.cmpcod = #{stockFilterVO.companyCode}
+		    and ( stk.stkaprcod = #{stockFilterVO.stockHolderCode}
+		    or rng.stkhldcod =#{stockFilterVO.stockHolderCode} )
+		    order by
+		    starng,
+		    endrng,
+		    stkhldcod
+    </select>
+  
+    <resultMap id="findAWBStockDetailsForPrint" type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+  	    <result property="startRange" column="starng" jdbcType="VARCHAR"/>
+  	    <result property="endRange" column="endrng" jdbcType="VARCHAR"/>
+  	    <result property="numberOfDocuments" column="docnum" jdbcType="NUMERIC"/>
+  	    <result property="airlineIdentifier" column="arlidr" jdbcType="NUMERIC"/>
+  	    <result property="documentType" column="doctyp" jdbcType="VARCHAR"/>
+  	    <result property="stockHolderName" column="stkhldnam" jdbcType="VARCHAR"/>
+  	    <result property="stockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    </resultMap>
+
+  	<select id="findStockRangeDetails" parameterType="map" resultMap="findStockRangeDetails">
+	 SELECT
+    stkhldcod,
+    docsubtyp,
+    doctyp
+FROM
+    stkrng
+WHERE
+    cmpcod =#{companyCode}
+    AND arlidr =#{airlineId}
+    AND doctyp =#{documentType}
+    AND #{mstDocNumber} BETWEEN ascstarng AND ascendrng
+	
+  </select>
+  
+  <resultMap id="findStockRangeDetails" type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="documentType" column="doctyp" jdbcType="VARCHAR"/>
+    <result property="stockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="docsubtyp" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+    <select id="findAgentsForStockHolder" parameterType="map" resultType="java.lang.String">
+SELECT
+    agtcod
+FROM
+    stkhldagt
+WHERE
+    cmpcod =#{companyCode}
+    AND stkhldcod =#{stockHolderCode}
+	
+  </select>   
+   <select id="checkApprover" parameterType="map" resultType="java.lang.Integer">
+SELECT
+    COUNT(*) count
+FROM
+    stkhldstk
+WHERE
+    cmpcod = #{companyCode}
+    AND stkaprcod = #{stockHolderCode}
+	
+  </select>    
+   <select id="getStockAgentMappings" resultMap="findStockAgentMappings" parameterType="map">
+        SELECT
+            agtcod,
+            stkhldcod,
+            lstupdtim
+        FROM stkhldagt
+        WHERE cmpcod = #{stockAgentFilterVO.companyCode}
+        <if test="stockAgentFilterVO.agentCode != null and not stockAgentFilterVO.agentCode.isEmpty()">
+          AND agtcod = #{stockAgentFilterVO.agentCode}
+        </if>
+        <if test="stockAgentFilterVO.stockHolderCode != null and not stockAgentFilterVO.stockHolderCode.isEmpty()">
+          AND stkhldcod = #{stockAgentFilterVO.stockHolderCode}
+        </if>
+  </select>
+  <select id="findRangeDelete" parameterType="map" resultMap="findRangeDelete">
+  	   SELECT
+  			  stkhldcod,
+        	  docsubtyp,
+        	  mnlflg
+       FROM
+              stkrng
+       WHERE
+              cmpcod =#{companyCode}
+              AND doctyp =#{documentType}
+              AND (
+            	   ascstarng <![CDATA[ <= ]]>#{startRange}
+            	   AND
+            	   ascendrng <![CDATA[ >= ]]>#{startRange}
+              )
+              <if test="documentSubType!= null and documentSubType.trim().length() != 0">
+			    AND docsubtyp = #{documentSubType}
+		    </if>
+  </select>
+  <resultMap id="findRangeDelete" type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+  	    <result property="stockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+  	    <result property="documentSubType" column="docsubtyp" jdbcType="VARCHAR"/>
+  	    <result property="isManual" column="mnlflg" jdbcType="BOOLEAN"/>
+  </resultMap>
+</mapper>

@@ -1,0 +1,110 @@
+{{- if not .Values.disable.ingress }}
+{{- range $tenant := .Values.tenants }}
+  {{- $tenantLower := lower $tenant }}
+  {{- $tenantIngress := get $.Values.ingress $tenant }}
+{{/*
+Create the master ingress configuration if it does not exist
+*/}}
+{{- if not $.Values.disable.ingressMaster }}
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ printf "%s-%s-mst-igrs" $.Release.Name $tenantLower | quote }}
+  namespace: {{ $.Values.namespace | quote }}
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.org/mergeable-ingress-type: "master"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+  labels:
+    release: "{{ $.Release.Name }}"
+    tenant: {{ $tenantLower | quote }}
+    type: "app"
+spec:
+  ingressClassName: {{ $tenantIngress.ingressClassName | quote }}
+  rules:
+    - host: {{ $tenantIngress.host | quote }}
+{{- end }}
+{{- if not (empty (include "isIngressResourceRequired" (dict "global" $ "tenantIngress" $tenantIngress) | trim )) }}
+---
+{{/* Ingress Definition for apiHost and webHosts - aka unifiedIngress */}}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ printf "%s-%s-min-igrs" $.Release.Name $tenantLower | quote }}
+  namespace: {{ $.Values.namespace | quote }}
+  annotations:
+    nginx.org/mergeable-ingress-type: "minion"
+  labels:
+    release: "{{ $.Release.Name }}"
+    tenant: {{ $tenantLower | quote }}
+    type: "app"
+spec:
+  ingressClassName: {{ $tenantIngress.ingressClassName | quote }}
+  rules:
+    - http:
+        paths:
+          {{- range $deployName, $deployDefn := $.Values.deployments }}
+          {{- if and $deployDefn.serviceName $deployDefn.image $deployDefn.contextPath (ne (default "X" $deployDefn.serviceType) "INTERNAL_SERVICE") }}
+          {{- if and $tenantIngress.devIngress (eq $deployDefn.serviceType "DOMAIN_SERVICE") $deployDefn.hostsPrivateApi }}
+          {{- $contextPath := printf "%s/%s/private" $deployDefn.contextPath $tenantLower }}
+          - path: {{ $contextPath | quote }}
+            pathType: "Prefix"
+            backend:
+              serviceName: {{ $deployDefn.serviceName | lower | quote }}
+              servicePort: 80
+          {{- end }}
+          {{- if and $tenantIngress.devIngress (eq $deployDefn.serviceType "EBL") }}
+          - path: {{ $deployDefn.contextPath | quote }}
+            pathType: "Prefix"
+            backend:
+              serviceName: {{ printf "%s-%s" $deployDefn.serviceName $tenantLower | lower | quote }}
+              servicePort: 80
+          {{- end }}
+          {{- if and (eq $deployDefn.serviceType "DOMAIN_SERVICE") $deployDefn.hostsPublicApi }}
+          {{- $contextPath := printf "%s/%s/public" $deployDefn.contextPath $tenantLower }}
+          - path: {{ $contextPath | quote }}
+            pathType: "Prefix"
+            backend:
+              serviceName: {{ $deployDefn.serviceName | lower | quote }}
+              servicePort: 80
+          {{- end }}
+          {{- if and (eq $deployDefn.serviceType "DOMAIN_SERVICE") $deployDefn.hostsEnterpriseApi }}
+          {{- $contextPath := printf "%s/%s/enterprise" $deployDefn.contextPath $tenantLower }}
+          - path: {{ $contextPath | quote }}
+            pathType: "Prefix"
+            backend:
+              serviceName: {{ $deployDefn.serviceName | lower | quote }}
+              servicePort: 80
+          {{- end }}
+          {{- if eq $deployDefn.serviceType "WEB_FE" }}
+          {{- $contextPath := $deployDefn.contextPath }}
+          - path: {{ $contextPath | quote }}
+            pathType: "Prefix"
+            backend:
+              serviceName: {{ printf "%s-%s" $deployDefn.serviceName $tenantLower | lower | quote }}
+              servicePort: 80
+          {{- end }}
+          {{- if eq $deployDefn.serviceType "WEB_GW" }}
+          {{- $contextPath := printf "%s" $deployDefn.contextPath }}
+          - path: {{ $contextPath | quote }}
+            pathType: "Prefix"
+            backend:
+              serviceName: {{ printf "%s-%s" $deployDefn.serviceName $tenantLower | lower | quote }}
+              servicePort: 80
+          {{- end }}
+          {{- if and $tenantIngress.devIngress (eq $deployDefn.serviceType "WEB_BFF") }}
+          {{- $contextPath := $deployDefn.contextPath }}
+          - path: {{ $contextPath | quote }}
+            pathType: "Prefix"
+            backend:
+              serviceName: {{ printf "%s-%s" $deployDefn.serviceName $tenantLower | lower | quote }}
+              servicePort: 80
+          {{- end }}
+          {{- end }}
+      {{- end }}
+      host: {{ $tenantIngress.host | quote }}
+{{- end }}
+{{- end }}
+{{- end }}

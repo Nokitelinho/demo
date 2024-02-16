@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-54540_MSM004.yml
+  - changeSet:
+      id: STK_007
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: STKRNGTXNHIS_SEQ
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE STKRNGTXNHIS_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;
+
+  - changeSet:
+      id: STK_006
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: STKRNGTXNHIS
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE STKRNGTXNHIS(
+          STKRNGTXNHISSERNUM BIGINT,
+          CMPCOD VARCHAR(6) NOT NULL,
+          ARLIDR NUMERIC(5) NOT NULL,
+          FRMSTKHLDCOD VARCHAR(15) NOT NULL,
+          DOCTYP VARCHAR(10) NOT NULL,
+          DOCSUBTYP VARCHAR(15) NOT NULL,
+          RNGTYP VARCHAR(1),
+          STARNG VARCHAR(15),
+          ENDRNG VARCHAR(15),
+          ASCSTARNG DOUBLE PRECISION,
+          ASCENDRNG DOUBLE PRECISION,
+          NUMDOC DOUBLE PRECISION,
+          STATUS VARCHAR(1),
+          TXNDAT TIMESTAMP(3),
+          TOSTKHLDCOD VARCHAR(15),
+          LSTUPDTIM TIMESTAMP(3),
+          LSTUPDUSR VARCHAR(50),
+          ACCNUM VARCHAR(25),
+          USRCOD VARCHAR(50),
+          TXNRMK VARCHAR(1000),
+          VODCHG NUMERIC(16,4),
+          CURCOD VARCHAR(3),
+          TAGIDX NUMERIC(1,0) DEFAULT 0 NOT NULL,
+          AUTALCFLG VARCHAR(1) DEFAULT 'N'::CHARACTER VARYING,
+          CONSTRAINT "stkrngtxnhis_pk" PRIMARY KEY (STKRNGTXNHISSERNUM));

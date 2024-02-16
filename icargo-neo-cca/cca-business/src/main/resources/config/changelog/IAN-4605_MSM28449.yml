@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-4605_MSM28449.yml
+  - changeSet:
+      id: 28449
+      author: A-10597
+      preConditions:
+        - tableExists:
+            tableName: ccaawb
+        - not:
+            columnExists:
+              tableName: ccaawb
+              columnName: hdlcod
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccaawb ADD COLUMN hdlcod VARCHAR(200);
+          COMMENT ON COLUMN ccaawb.hdlcod IS 'Special commodity code';

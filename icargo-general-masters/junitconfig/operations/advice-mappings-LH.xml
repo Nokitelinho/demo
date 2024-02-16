@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adv:advice-mappings xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+					 xmlns:adv="http://www.ibsplc.com/icargo/business/advice" 
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+					 xsi:schemaLocation="http://www.ibsplc.com/icargo/business/advice xibase/java/server/config/framework/xsd/advice-mappings.xsd"
+					 product="operations">
+	<!--UnCommented by A-4772 for ICRD-66190 starts here.Rebase done from LH_stag_dev to Base_stag_Dev-->
+	<!--Commenting the following as per ICRD-84821 starts here-->
+	<!--Uncommenting the below advice call by A-5198 as part of ICRD-84821 -->
+	<adv:advice name="operations.shipment.lh.saveTransportPlan">
+       	<adv:action name="saveShipmentMilestonePlan" type="QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.QualityManagementDefaultsBuilder" 
+              		method="saveShipmentMilestonePlan" async="true" enabled="false"/>
+		<!-- Added by A-5290 for ICRD-91498 --> 			
+		<!-- Added by A-4772 for ICRD-107173 .Added the evaluator class-->
+		<adv:action name="saveShipmentHandlingTimes" type="QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.QualityManagementDefaultsBuilder" 
+              		method="saveShipmentHandlingTimes" async="true" enabled="true" evaluator="com.ibsplc.icargo.business.operations.shipment.builder.lh.QualityManagementDefaultsEvaluator" />
+	</adv:advice>  
+	<!--Commenting the following as per ICRD-84821 ends here-->
+	<!-- Added by A-5273 for ICRD-48172 starts --> 
+	<adv:advice name="operations.shipment.lh.sendFWB"> 
+	  <adv:action name="sendFWBMessage" type="message" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendFWBMessage" async="true" enabled="true" />	  
+	</adv:advice> 
+	
+	 <!--Added by A-6841 for ICRD-143520 starts here-->
+	<adv:advice name="operations.shipment.lh.auditFWBEnhancements"> 
+		<adv:action name="auditFWBEnhancements" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.ShipmentAuditBuilder" method="auditFWBEnhancements" async="true" enabled="true" /> 
+	</adv:advice>
+	 <!--Added by A-6841 for ICRD-143520 ends here-->
+	<adv:advice name="operations.shipment.lh.sendAWBMessages">
+		<adv:action name="sendAWBMessages" type="message" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendAWBMessages" async="true" enabled="true" /> 
+	</adv:advice> 
+	
+	<adv:advice name="operations.shipment.lh.sendCCAEMail"> 
+	  <adv:action name="sendCCAEMail" type="message" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendCCAEMail" async="false" enabled="true" />	  
+	</adv:advice> 
+	
+	<!-- Added for ICRD-63962 by A-5170 starts-->
+	<adv:advice name="operations.shipment.lh.markShipmentClosure"> 
+		<adv:action name="publishShipmentClosure" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.EventsTriggerBuilder" method="publishShipmentClosure" async="false" /> 
+	</adv:advice>
+	<!-- Added for ICRD-37835 by A-5178 starts-->
+	<adv:advice name="operations.shipment.lh.publishShipmentClosure"> 
+		<adv:action name="publishShipmentClosure" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.EventsTriggerBuilder" method="publishShipmentClosure" async="true" /> 
+	</adv:advice> 
+	<!-- Added for ICRD-37835 by A-5178 ENDs-->
+	<!-- Added by A-5173 for ICRD-20782 starts --> 
+	<!--<adv:advice name="operations.shipment.triggerEvents">
+		<adv:action name="triggerEvents" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.EventsTriggerBuilder" method="triggerEvents" async="false" />
+	</adv:advice> -->
+	<adv:advice name="operations.shipment.lh.triggerEventsForShipmentHistory">
+		<adv:action name="triggerEventsForShipmentHistory" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.EventsTriggerBuilder" method="triggerEventsForShipmentHistory" async="true" />
+	</adv:advice> 
+	<adv:advice name="operations.shipment.lh.saveLifeCycleStages">
+		<adv:action name="triggerEventsForShipmentHistory" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.EventsTriggerBuilder" method="saveLifeCycleStages" async="false" />
+	</adv:advice> 
+	<adv:advice name="operations.shipment.lh.triggerEventsForShipmentDetail">
+		<adv:action name="triggerEventsForShipmentDetail" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.EventsTriggerBuilder" method="triggerEventsForShipmentDetail" async="false" />
+	</adv:advice> 
+	<!-- Added by A-5173 for ICRD-20782 ends --> 
+	<!-- Added for ICRD-63962 by A-5170 ends-->
+	<adv:advice name="operations.flthandling.cto.lh.sendFwbAndFhl">
+		<adv:action name="sendAWBMessageForExportManifest" type="message" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="sendAWBMessageForExportManifest" async="false" enabled="true" /> 
+	</adv:advice> 
+	
+	<adv:advice name="operations.flthandling.lh.sendAWBMessages">
+		<adv:action name="sendAWBMessages" type="message" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="sendAWBMessages" async="true" enabled="true" /> 
+	</adv:advice>
+	<!-- Added by A-5273 for ICRD-48172 ends--> 
+	<!-- Added by A-5223 for ICRD-42512 starts-->
+	<adv:advice name="operations.flthandling.lh.sendeNTMMessage">
+		<adv:action name="sendeNTMMessage" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="sendeNTMMessage" async="false" enabled="true" />
+	</adv:advice>
+	<!-- Added by A-5223 for ICRD-42512 ends-->
+	<!-- Added by A-5170 for ICRD-44049 starts-->
+	<adv:advice name="operations.flthandling.lh.saveLoadPlan">
+		<adv:action name="publishLoadPlanDetails" type="EVENT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.lh.EventsTriggerBuilder" method="publishLoadPlanDetails" async="true" enabled="true"/>
+	</adv:advice>
+	<!-- Added by A-5170 for ICRD-44049 ends-->
+	<!-- Added by A-5135 for ICRD-28211 starts-->
+	<adv:advice name="operations.flthandling.cto.lh.finaliseExportFlight">
+		<adv:action name="publishFlightDetails" type="EVENT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.lh.EventsTriggerBuilder" method="publishFlightDetails" async="true" enabled="true"/>
+	</adv:advice>
+	<!-- Added by A-5135 for ICRD-28211 ends-->
+	
+	<adv:advice name="operations.shipment.cto.lh.shipmentlabel">
+		<adv:action name="saveAndPrintAWBLabel" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.ShipmentLabelBuilder" method="saveAndPrintAWBLabel" async="false" enabled="true"/>
+	</adv:advice>
+	
+	<!-- Added for ICRD-61966 by A-5500-->
+	<adv:advice name="operations.flthandling.cto.lh.shipmentlabel">
+		<adv:action name="saveAndPrintAWBLabel" type="EVENT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.lh.ShipmentLabelBuilder" method="saveAndPrintAWBLabel" async="false" enabled="true"/>
+	</adv:advice>
+	<!-- Added by A-5544 for ICRD-84039-->
+	<adv:advice name="operations.shipment.lh.sendFHL"> 
+	  <adv:action name="sendFHLMessageForShipment" type="message" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendFHLMessageForShipment" async="true" enabled="true" />	  
+	</adv:advice> 
+	<!-- Added by A-5223 for ICRD-80581 starts-->
+	 <adv:advice name="operations.flthandling.lh.saveOperationalULDWeighingDetails">
+		<adv:action name="publishActualWeightDetails" type="EVENT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.lh.EventsTriggerBuilder" method="publishActualWeightDetails" async="true" enabled="true"/>
+	</adv:advice>
+	<adv:advice name="operations.flthandling.lh.saveDWSDetails"> 
+		<adv:action name="publishActualWeightDetails" type="EVENT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.lh.EventsTriggerBuilder" method="publishActualWeightDetails" async="true" enabled="true"/>
+	</adv:advice> 
+    <adv:advice name="operations.flthandling.lh.saveULDTagDetails"> 
+		<adv:action name="publishActualWeightDetails" type="EVENT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.lh.EventsTriggerBuilder" method="publishActualWeightDetails" async="true" enabled="true"/>
+	</adv:advice>
+	<!-- Added by A-5223 for ICRD-80581 ends -->  
+	<!--Added by A-5498 starts-->
+    <adv:advice name="operations.shipment.lh.populateShipmentBreakdownVo"> 
+		<adv:action name="populateShipmentBreakdownVo" type="BLOCK" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentBlockBuilder" method="populateShipmentBreakdownVo" async="false" enabled="true"/>
+	</adv:advice>
+	
+	<!--Added by A-5498 ends-->
+	<adv:advice name="operations.shipment.lh.saveAndPrintAWBLabelForHHT">
+		<adv:action name="updateNextLocation" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.ShipmentLabelBuilder" method="updateNextLocation" async="true" enabled="true" />
+		<adv:action name="auditIDLabelSave" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditIDLabelSave" async="true" enabled="true" />
+	</adv:advice>
+	<adv:advice name="operations.cooltool.lh.scheduleSystemTasksForCoolShipment">
+      <adv:action name="scheduleUldAssignmentForCoolShipment" type="EVENT" builder="com.ibsplc.icargo.business.operations.cooltool.builder.lh.CoolShipmentBuilder" method="scheduleUldAssignmentForCoolShipment" async="true" enabled="true" />	  
+      <adv:action name="schedulePickUpOrderJobForCoolShipment" type="EVENT" builder="com.ibsplc.icargo.business.operations.cooltool.builder.lh.CoolShipmentBuilder" method="schedulePickUpOrderJobForCoolShipment" async="true" enabled="true" />
+	</adv:advice>	
+      <adv:advice name="operations.shipment.lh.createOrUpdateWorkPlan">		
+		<adv:action name="createOrUpdateWorkPlan" type="WORK" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.ShipmentWorkFlowBuilder" method="createOrUpdateWorkPlan" async="true" enabled="true" sequenced="true" evaluator="com.ibsplc.icargo.business.operations.shipment.builder.lh.ShipmentWorkFlowEvaluator" />
+	</adv:advice>
+	<adv:advice name="operations.shipment.cto.lh.sendShipmentDespatchReportforacceptance">		
+		<adv:action name="sendShipmentDespatchReportForAcceptance" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendShipmentDespatchReportForAcceptance" async="true" enabled="true"/> 
+	</adv:advice>
+	<adv:advice name="operations.shipment.cto.lh.sendShipmentDespatchReportfordelivery">		
+		<adv:action name="sendShipmentDespatchReportForDelivery" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendShipmentDespatchReportForDelivery" async="true" enabled="true"/> 
+	</adv:advice>
+	<adv:advice name="operations.shipment.cto.lh.sendShipmentDespatchReportforairlinedelivery">		
+		<adv:action name="sendShipmentDespatchReportForAirlineDelivery" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendShipmentDespatchReportForAirlineDelivery" async="true" enabled="true"/> 
+	</adv:advice>	
+	<adv:advice name="operations.shipment.cto.lh.assignPassiveBUPToCoolShipment">
+		 <adv:action name="assignPassiveBUPToCoolShipment" type="COOLTOOL" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.OperationsCoolToolBuilder" method="assignPassiveBUPToCoolShipment" async="true"  sequenced = "true" enabled="true" evaluator="com.ibsplc.icargo.business.operations.shipment.builder.lh.OperationsCoolToolEvaluator"/>
+	</adv:advice>	
+	<adv:advice name="operations.shipment.markShipmentReadyForCarriage"> 
+		 <adv:action name="ctoAcceptanceHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForReadyForCarriage" async="true" enabled="false" />
+		 <adv:action name="shipmentHistoryForReadyForCarriage" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForReadyForCarriage" async="true" enabled="true" />
+	</adv:advice>
+	<adv:advice name="operations.flthandling.cto.lh.assignPassiveBUPToCoolShipmentForBuildUp"> 
+		<adv:action name="assignPassiveBUPToCoolShipmentForBuildUp" type="COOLTOOL" builder="com.ibsplc.icargo.business.operations.flthandling.builder.lh.OperationsCoolToolBuilder" method="assignPassiveBUPToCoolShipmentForBuildUp" async="true" sequenced = "true" enabled="true" evaluator="com.ibsplc.icargo.business.operations.flthandling.builder.lh.OperationsCoolToolEvaluator"/>
+		<adv:action name="createOrUpdateWorkPlan" type="WORK" builder="com.ibsplc.icargo.business.operations.flthandling.builder.lh.OperationsCoolToolBuilder" method="createOrUpdateWorkPlanForBuildup" async="true" enabled="true" sequenced="true" evaluator="com.ibsplc.icargo.business.operations.shipment.builder.lh.ShipmentWorkFlowEvaluator" />
+	</adv:advice> 
+	<adv:advice name="operations.flthandling.lh.assignPassiveBUPToCoolShipmentForFFM"> 
+		<adv:action name="assignPassiveBUPToCoolShipmentForFFM" type="COOLTOOL" builder="com.ibsplc.icargo.business.operations.flthandling.builder.lh.OperationsCoolToolBuilder" method="assignPassiveBUPToCoolShipmentForBuildUp" async="true" sequenced = "true" enabled="true" evaluator="com.ibsplc.icargo.business.operations.flthandling.builder.lh.OperationsCoolToolEvaluator"/>
+	</adv:advice>
+	<adv:advice name="operations.shipment.sendAwbDoc"> 
+		<adv:action name="sendTemplateMessage" type="MESSAGE"
+			builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" 
+			method="sendTemplateMessage"   async="true" />   
+	</adv:advice> 
+	<adv:advice name="operations.shipment.lh.auditBusinessPartnerDetails">		
+		<adv:action name="auditBusinessPartnerDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditBusinessPartnerDetails" async="true" enabled="true" />
+	</adv:advice>
+	<adv:advice name="operations.cooltool.lh.auditCoolShipmentDetails">		
+		<adv:action name="auditCoolShipmentDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.cooltool.builder.CoolShipmentAuditBuilder" method="auditCoolShipmentDetails" async="true" enabled="true" />
+	</adv:advice>
+</adv:advice-mappings>
+  
+

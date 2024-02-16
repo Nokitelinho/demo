@@ -1,0 +1,239 @@
+
+def PROCESS_KEY
+//env.EMAIL_SUBSCRIBERS="963e8e76.ibsplc.com@in.teams.ms, icargo-git-developer@ibsplc.com"
+//env.EMAIL_SUBSCRIBERS="sinoob.saithumuhammed@ibsplc.com"
+env.DB_DELTA_JOB_URL="http://icargobuild01:8080/jenkins/job/DatabaseDeltaScripts_4.10GIT/"
+env.COMPANY_CODE="AV"
+env.SCRIPT_LOG="script.log"
+env.DB_CONNECTION_URL=""
+env.DB_USER=""
+env.DB_PASSWORD=""
+env.DB_HOST_IP_PORT=""
+env.DB_NAME=""
+
+def extractParent(String url){
+	if(url.endsWith("/")){  
+		url=url.substring(0, url.lastIndexOf("/"))
+	}
+	url=url.substring(0, url.lastIndexOf("/"))
+	return url;
+}
+
+def clearScriptLogs() {
+	sh "${SCRIPT_RUNNER} clearlogs"
+}
+
+def compileDBSchema() {
+	sh "${SCRIPT_RUNNER} compile ${DB_USER} ${DB_PASSWORD}  ${DB_HOST_IP_PORT} ${DB_NAME}"
+}
+
+def extractDBHost(){
+	DB_URL=DB_CONNECTION_URL.substring(DB_CONNECTION_URL.lastIndexOf("@") + 1)
+	DB_HOST_IP_PORT=DB_URL.substring(0, DB_URL.lastIndexOf(":"))
+	DB_NAME=DB_URL.substring(DB_URL.lastIndexOf(":") + 1)
+	echo "$DB_NAME"
+	echo "$DB_HOST_IP_PORT"
+}
+
+def downloadAndProcess(String url, String zipfile){
+	script_dir="_1"
+	sh "rm -rf ${script_dir}"
+	sh "mkdir ${script_dir}"
+	sh "wget -nv -O ${zipfile} ${url}/${zipfile}"
+	unzip zipFile: "${zipfile}", dir: "${script_dir}", quiet: true
+	sh "${SCRIPT_RUNNER} folder ${DB_USER} ${DB_PASSWORD}  ${DB_HOST_IP_PORT} ${DB_NAME} ${script_dir}"
+}
+
+def downloadAndProcessSelected(String url, String zipfile, String subdirectories){
+	script_dir="_1"
+	sh "rm -rf ${script_dir}"
+	sh "mkdir ${script_dir}"
+	sh "wget -nv -O ${zipfile} ${url}/${zipfile}"
+	unzip zipFile: "${zipfile}", dir: "${script_dir}", quiet: true
+    for(String sdir : subdirectories.split(",")){
+    	sh "${SCRIPT_RUNNER} folder ${DB_USER} ${DB_PASSWORD}  ${DB_HOST_IP_PORT} ${DB_NAME} ${script_dir}/${sdir}"
+    }
+}
+
+def printTime(){
+    def DATETIME_TAG = java.time.LocalDateTime.now()
+    def fmt = java.time.format.DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
+    def tim=DATETIME_TAG.format(fmt)
+    print tim
+}
+
+pipeline {
+	agent any
+	
+	environment {
+		// generating a random string as key (from linux environment), to use as the process identifier
+		RANDOM_KEY = sh(script:'openssl rand -hex 12', returnStdout:true).trim()
+		PROCESS_KEY="${RANDOM_KEY}_${BUILD_ID}"
+		SCRIPT_RUNNER="icargo-classic/sqlFilesRunner.sh"
+	}
+	
+	 options {
+		buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '1'))
+	}
+	stages {
+	
+		stage("Validation") {
+			steps {
+				script {
+					echo "Checking the existance of Release URL"
+					//sh(script:'wget -qO - ${ICARGO_BUILD_RELEASE_URL}/iCargoConfig.zip ', returnStdout:true).trim()	
+					HTTP_OUT=sh(script:'curl --head ${ICARGO_BUILD_RELEASE_URL}/iCargoConfig.zip  2>/dev/null | grep HTTP', returnStdout:true).trim()	
+					if ( "${HTTP_OUT}".contains("HTTP/1.1 200") ){
+						// echo "iCargoConfig.zip exists in the URL $ICARGO_BUILD_RELEASE_URL"
+					}else{
+						echo "iCargoConfig.zip NOT found in the URL $ICARGO_BUILD_RELEASE_URL"
+						error("iCargoConfig.zip NOT found in the URL $ICARGO_BUILD_RELEASE_URL")						
+					}
+				}					
+			}			
+		}
+	
+		stage('Notifying stakeholders') {
+			steps {
+				script{
+					if( "${env.NOTIFY_ADDRESS_LIST}" == ""){
+						echo "NOTIFY_ADDRESS_LIST is empty. No Wait..."
+					}else {
+						emailext(
+							subject: "iCargo classic in ${domain} will be down in 3 mins",
+							body: """Please save your work, as the ${domain} iCargo Classic server will be shutdown in 3 mins for a new deployment. """,
+							to: "${env.NOTIFY_ADDRESS_LIST}"
+						)
+						echo "Waiting 3 mins for the job to start, so that users can save the work in progress"
+						printTime()
+						sh ' sleep 180 '					
+						printTime()
+					}
+				}
+			}
+		}
+		
+		stage ("Download Stage") {
+			steps {
+				echo "Downloading deployables to landing of domain ${domain}" 
+				sh 'wget -qO - "http://${HOST_IP}:8080/execute?domain=${domain}&url=${ICARGO_BUILD_RELEASE_URL}&action=download"'
+				sh ' sleep 15 '
+			}
+		}
+		
+		
+		stage ("Update DB-Scripts") {
+			steps {
+				script {
+
+					VER_RUNNING=sh(script:'wget -qO - "http://${HOST_IP}:8080/execute?domain=${domain}&action=version-running&url="', returnStdout:true).trim()
+                    echo "Fetching the running version and copied version of icargo"
+                    sh ' sleep 10 '
+					VER_LANDING=sh(script:'wget -qO - "http://${HOST_IP}:8080/execute?domain=${domain}&action=version-landing&url="', returnStdout:true).trim()
+                    echo "Version of icargo running in ${domain} is ${VER_RUNNING} "
+                    echo "New deployable version of icargo is ${VER_LANDING}"	
+                    if("${ICARGO_BUILD_RELEASE_URL}".contains("${VER_LANDING}")){
+						echo "icargo.ear verified for the version ${VER_LANDING}"
+					}else{
+                    	echo "Couldnot read the dowloaded icargo.ear. May be corrupted file due to network latency."
+						error("Couldnot read the dowloaded icargo.ear. May be corrupted file due to network latency.")	
+                    }
+					
+
+					echo "Calling jenkins job for getting db script delta" 
+					def handle = triggerRemoteJob job: "${env.DB_DELTA_JOB_URL}", 
+									auth: CredentialsAuth(credentials: 'icargo'), 
+									blockBuildUntilComplete: true, 
+									parameters: "FROM_VERSION=${VER_RUNNING}\nTO_VERSION=${VER_LANDING}\nCOMPANY_CODE=${COMPANY_CODE}"
+					
+					def status = handle.getBuildStatus()
+					def buildUrl = handle.getBuildUrl()
+					echo buildUrl.toString() + " finished with " + status.toString()
+					lnk=buildUrl.toString()+"console"
+					// - DELETE BELOW TODO  
+					//lnk="http://icargobuild01:8080/jenkins/job/DatabaseDeltaScripts_4.10GIT/273/console"
+					echo "Link generated is ${lnk}"    				
+					
+					sh(script:"echo ${lnk} > link.txt")
+					
+					sh '''
+						rm -f console.html
+						console_link=$(cat link.txt)
+						wget -qO console.html ${console_link} 
+						cat console.html | grep -A 1 "Database delta scripts available under:" > link.txt			    
+					'''
+					db_scripts_url=sh(script:"cat link.txt | grep -oP \"(?<=').*?(?=')\"", returnStdout:true).trim()
+					echo "DB Scripts URL is ${db_scripts_url}"
+					build_base_url=extractParent("${ICARGO_BUILD_RELEASE_URL}")
+					sh 'rm -f *.zip'
+					sh "rm -f ${SCRIPT_LOG}"
+					
+					echo "Probing Database credentials..."
+					DB_CONNECTION_URL=sh(script:'wget -qO - "http://${HOST_IP}:8080/execute?domain=${domain}&action=db-url&url="', returnStdout:true).trim()
+					DB_USER=sh(script:'wget -qO - "http://${HOST_IP}:8080/execute?domain=${domain}&action=db-username&url="', returnStdout:true).trim()
+					DB_PASSWORD=sh(script:'wget -qO - "http://${HOST_IP}:8080/execute?domain=${domain}&action=db-password&url="', returnStdout:true).trim()
+					extractDBHost()
+					clearScriptLogs();
+					downloadAndProcess("${db_scripts_url}/oracle", "database.zip")					
+					downloadAndProcess("${ICARGO_BUILD_RELEASE_URL}", "views.zip")
+					downloadAndProcess("${ICARGO_BUILD_RELEASE_URL}", "EntityViews.zip")
+					downloadAndProcessSelected("${build_base_url}", "OracleSource.zip", "materializedviews,procedures,Types")
+					//downloadAndProcess("${build_base_url}", "Types.zip")
+					//downloadAndProcess("${build_base_url}", "procedures.zip")
+					compileDBSchema();
+					
+					
+					
+
+				}
+				
+			}
+		}
+		stage ("Autodeployment to server") {
+			steps {				
+				echo "Key Generated for identifying the process is ${env.PROCESS_KEY}"
+				sh 'wget -qO - "http://${HOST_IP}:8080/autodeploy?domain=${domain}&url=${ICARGO_BUILD_RELEASE_URL}&invKey=$PROCESS_KEY"'
+				sh 'sleep 10 '
+			}
+		}
+		stage ("Deployment Logs") {
+			steps {				
+				//sh 'wget -qO - "http://${HOST_IP}:8080/taillog?domain=${domain}"'
+				sh 'sleep 5'
+			}
+		}
+		
+	}
+	
+	post {
+		success{
+			script {
+				echo "success"
+			}				
+		}
+		failure {
+			script {
+				echo "failed"
+			}
+		}
+		always {
+			script {
+				//TODO sh 'wget -qO - "http://${HOST_IP}:8080/kill?invKey=$PROCESS_KEY"'
+				sh 'sleep 5'
+			}
+			echo "Clearing the workspace"
+			dir("${env.WORKSPACE}@tmp") {
+			  deleteDir()
+			}
+			dir("${env.WORKSPACE}@script") {
+			  deleteDir()
+			}
+			dir("${env.WORKSPACE}@script@tmp") {
+			  deleteDir()
+			}
+			dir("${env.WORKSPACE}") {
+			  sh " rm -f *.zip "
+			}
+		}
+	}
+}

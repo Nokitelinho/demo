@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-54749_MSM008.yml
+  - changeSet:
+      id: STK_014
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: STKREQOAL_SEQ
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE STKREQOAL_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;
+
+  - changeSet:
+      id: STK_015
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: STKREQOAL
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE STKREQOAL(
+                  STKREQOALSERNUM BIGINT,
+                  CMPCOD VARCHAR(6) NOT NULL,
+                  ARPCOD VARCHAR(4) NOT NULL,
+                  ARLIDR NUMERIC(5,0) NOT NULL,
+                  DOCTYP VARCHAR(6) NOT NULL,
+                  DOCSUBTYP VARCHAR(15) NOT NULL,
+                  SERNUM NUMERIC(5,0) NOT NULL,
+                  MODCOM VARCHAR(20),
+                  REQCNT VARCHAR(500),
+                  REQCMPFLG VARCHAR(1),
+                  REQDAT DATE,
+                  ACTTIM DATE,
+                  LSTUPDUSR VARCHAR(50) NOT NULL,
+                  LSTUPDTIM TIMESTAMP NOT NULL,
+                  REQADR VARCHAR(50),
+                  TAGIDX NUMERIC(1,0) DEFAULT 0 NOT NULL,
+                  CONSTRAINT "stkreqoal_pk" PRIMARY KEY (STKREQOALSERNUM),
+                  CONSTRAINT "stkreqoal_sernum_docsubtyp_doctyp_arlidr_arpcod_cmpcod" UNIQUE (SERNUM, DOCSUBTYP, DOCTYP, ARLIDR, ARPCOD, CMPCOD));
+
+                  COMMENT ON COLUMN STKREQOAL.STKREQOALSERNUM is 'Stock Requests for other Airlines serial number';
+                  COMMENT ON COLUMN STKREQOAL.CMPCOD IS 'Company Code.The company code that uniquely identifies the company for which the application is hosted';
+                  COMMENT ON COLUMN STKREQOAL.ARPCOD IS 'Airport Code, used to uniquely identify an airport in the system on which the request is raised.';
+                  COMMENT ON COLUMN STKREQOAL.ARLIDR IS 'The identifier that is used internally to represent an Airline for which therequest is raised.';
+                  COMMENT ON COLUMN STKREQOAL.DOCTYP IS 'Type of the Document like AWB etc for which the request is raised. Possible values are from SHRDOCTYPMST.';
+                  COMMENT ON COLUMN STKREQOAL.DOCSUBTYP IS 'Sub Type for the Document for which the request is raised. Possible values are from SHRDOCTYPMST.';
+                  COMMENT ON COLUMN STKREQOAL.SERNUM IS 'Serial NUMERIC. For uniquely identifying each request on a document type for an airline at an airport.';
+                  COMMENT ON COLUMN STKREQOAL.MODCOM IS 'Mode Of Communication. How the request is being send. Possible values are EMAIL(E-Mail), FAX(Fax), PHONE(Phone)';
+                  COMMENT ON COLUMN STKREQOAL.REQCNT IS 'Request Content. Content of the request. The request description.';
+                  COMMENT ON COLUMN STKREQOAL.REQCMPFLG IS 'Request Completed Flag. Whether is served or not. The possible values are Y and N';
+                  COMMENT ON COLUMN STKREQOAL.REQDAT IS 'Date of issue of the request..';
+                  COMMENT ON COLUMN STKREQOAL.ACTTIM IS 'Action Date. Date of actioning of the request.';
+                  COMMENT ON COLUMN STKREQOAL.REQADR IS 'Request Address. The address to which the request is send.';
+                  COMMENT ON COLUMN STKREQOAL.TAGIDX IS 'This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment';
+                  COMMENT ON COLUMN STKREQOAL.LSTUPDTIM IS 'The date and time at which record was last updated';
+                  COMMENT ON COLUMN STKREQOAL.LSTUPDUSR IS 'Last Update User.The application user code who performed the operation on the record';
+                  COMMENT ON TABLE STKREQOAL  IS 'Stock Requests for other Airlines';

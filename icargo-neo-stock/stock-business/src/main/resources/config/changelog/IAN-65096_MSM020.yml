@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-65096_MSM020.yml
+  - changeSet:
+      id: STK_034
+      author: 203855
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: ALTER TABLE stkrngutl DROP CONSTRAINT stkrngutl_cmpcod_stkhldcod_arlidr_doctyp_docsubtyp_mstdocnum_se;
+             ALTER TABLE stkrngutl DROP COLUMN SEQNUM;
+             ALTER TABLE stkrngutl ADD SEQNUM VARCHAR(10);
+             ALTER TABLE stkrngutl ADD constraint stkrngutl_cmpcod_stkhldcod_arlidr_doctyp_docsubtyp_mstdocnum_se unique (cmpcod, arlidr, stkhldcod, doctyp, docsubtyp, mstdocnum);
+
+

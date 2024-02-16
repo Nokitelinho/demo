@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-57717_MSM014.yml
+  - changeSet:
+      id: STK_025
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: stkaud_seq
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE stkaud_seq START WITH 1 INCREMENT BY 1  MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
+
+  - changeSet:
+      id: STK_026
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: stkaud
+      changes:
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE stkaud (
+          audsernum integer,
+          txnactn varchar(50),
+          usr varchar(50),
+          usrrol varchar(50),
+          txntim timestamp(3),
+          txnzontim varchar(50),
+          txntimstn timestamp(3),
+          addinf text,
+          adtnam varchar(50),
+          stn varchar(50),
+          trgpnt varchar(50),
+          actn varchar(50),
+          chggrpdet json,
+          txntimutc timestamp(3),
+          adtver json,
+          chggrps varchar(255),
+
+          CONSTRAINT "stkaud_pkey" PRIMARY KEY (audsernum)
+          );
+
+          COMMENT ON TABLE stkaud IS 'stk Audit Logs table';
+
+          COMMENT ON COLUMN stkaud.audsernum IS 'Serial number of StockAudit';
+          COMMENT ON COLUMN stkaud.txnactn IS 'The transaction that was perfomed to audit creation';
+          COMMENT ON COLUMN stkaud.usr IS 'The application user code who performed the transaction';
+          COMMENT ON COLUMN stkaud.usrrol IS 'The role code of the application user who performed the transaction';
+          COMMENT ON COLUMN stkaud.txntim IS 'Time when the transaction is perfomed';
+          COMMENT ON COLUMN stkaud.txnzontim IS 'Zoned local time when the transaction is perfomed';
+          COMMENT ON COLUMN stkaud.txntimstn IS 'Station local time when the transaction is perfomed';
+          COMMENT ON COLUMN stkaud.addinf IS 'Additional information about perfomed transaction and updates';
+          COMMENT ON COLUMN stkaud.adtnam IS 'Audit name, type of the audit (Created / Updated / Deleted)';
+          COMMENT ON COLUMN stkaud.stn IS 'The station code where transaction was perfomed';
+          COMMENT ON COLUMN stkaud.trgpnt IS 'Trigger point, scenario that called to audit creation';
+          COMMENT ON COLUMN stkaud.actn IS 'Action name that contains the audit event name and the audit type';
+          COMMENT ON COLUMN stkaud.chggrpdet IS 'Change Group Detail, difference between current and previous version of the audited filds';
+          COMMENT ON COLUMN stkaud.txntimutc IS 'UTC time when the transaction is perfomed';
+          COMMENT ON COLUMN stkaud.adtver IS 'Audit version, stamp of type json';
+          COMMENT ON COLUMN stkaud.chggrps IS 'Audit groups that was changed during the transaction';

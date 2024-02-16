@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-58600_MSM015.yml
+  - changeSet:
+      id: STK_027
+      author: 204083
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: alter table stkreqmst add STKHLDSTKSERNUM bigint not null;
+
+

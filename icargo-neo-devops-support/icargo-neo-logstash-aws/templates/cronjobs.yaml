@@ -1,0 +1,51 @@
+{{/*
+ Curator CronJobs
+*/}}
+{{- if .Values.curator.perEnvironmentEnabled }}
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ printf "icargo-neo-curator-%s" .Values.environmentProfile | lower | quote }} 
+  namespace: {{ .Values.namespace | quote }}
+  labels:
+    app: "icargo-neo-curator"
+    srvtyp: "monitoring_service"
+    prctyp: "python"
+spec:
+  schedule: "10 * * * *" # Run every 10th minute every hour
+  concurrencyPolicy: "Forbid"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+          - name: config-volume
+            configMap:
+              name: {{ printf "curator-configmap-%s" .Values.environmentProfile | lower | quote }}
+              items:
+                - key: curator-cfg.yml
+                  path: curator-cfg.yml
+                - key: curator-actions.yml
+                  path: curator-actions.yml    
+          containers:
+            - name: "icargo-neo-curator"
+              image: {{ .Values.curator.image | quote }}
+              imagePullPolicy: "IfNotPresent"
+              args:
+                - --config 
+                - '/etc/config/curator-cfg.yml'
+                - '/etc/config/curator-actions.yml'
+              env:
+                - name: "TXP_INDEX_RETENTION_HRS"
+                  value: {{ .Values.curator.txProbeIndexRetentionHours | quote }}
+                - name: "LOG_INDEX_RETENTION_DAYS"
+                  value: {{ .Values.curator.logIndexRetentionDays | quote }}
+                - name: "FORCE_MERGE_DISABLED"
+                  value: {{ .Values.curator.forceMergeDisabled | quote }}
+              volumeMounts:
+                - name: config-volume
+                  mountPath: /etc/config/                 
+
+          restartPolicy: Never
+{{- end }}

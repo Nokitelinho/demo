@@ -1,0 +1,668 @@
+<test-configurations>
+	<configuration-id>operations.shipment.saveShipmentDetails</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+				Select MST.CONFLG MSTCONFLG, IDX.CONFLG IDXCONFLG, MST.SHPSTA MSTSHPSTA, IDX.SHPSTA IDXSHPSTA  From Oprshpmst Mst Join Oprshpidx IDX ON MST.DOCOWRIDR = IDX.DOCOWRIDR AND MST.MSTDOCNUM = IDX.MSTDOCNUM	AND MST.SEQNUM= IDX.SEQNUM AND MST.DUPNUM = IDX.DUPNUM where MST.DOCOWRIDR = '${VO1.ownerId}' AND MST.MSTDOCNUM='${VO1.masterDocumentNumber}' AND MST.DUPNUM ='${VO1.duplicateNumber}' AND MST.SEQNUM = '${VO1.sequenceNumber}' AND MST.CMPCOD='${VO1.companyCode}';
+			</query>
+			<evaluation-condition>
+				"#{MSTCONFLG}".equals("#{IDXCONFLG}")
+			</evaluation-condition>
+			<evaluation-condition>
+				"#{MSTSHPSTA}".equals("#{IDXSHPSTA}")
+			</evaluation-condition>		
+		</testcase>
+		
+		<testcase type="CASE2" >				
+			<query>
+				Select Mst.Ubrnum Oprubrnum,  Bkg.Ubrnum ubrnum
+				From Oprshpmst Mst left outer Join Capbkgmst Bkg 
+				On Mst.Docowridr    = Bkg.Docowridr And Mst.Mstdocnum   = Bkg.Mstdocnum
+				And Mst.Seqnum      = Bkg.Seqnum And Mst.Dupnum      = Bkg.Dupnum
+				Where Mst.Docowridr = '${VO1.ownerId}' And Mst.Mstdocnum   ='${VO1.masterDocumentNumber}'
+				AND MST.DUPNUM      ='${VO1.duplicateNumber}' AND MST.SEQNUM      = '${VO1.sequenceNumber}' AND MST.CMPCOD      ='${VO1.companyCode}';
+			</query>
+			<evaluation-condition>
+				"#{Oprubrnum}".equals("#{ubrnum}")
+			</evaluation-condition>
+		</testcase>
+		
+		<testcase type="CASE3" >				
+			<query>
+				SELECT DTACPTFLG , CURCOD, SRCIND From OPRSHPMST where DOCOWRIDR = '${VO1.ownerId}' AND MSTDOCNUM='${VO1.masterDocumentNumber}' AND DUPNUM ='${VO1.duplicateNumber}' AND SEQNUM = '${VO1.sequenceNumber}' AND CMPCOD='${VO1.companyCode}';
+			</query>
+			<evaluation-condition>
+				"#{DTACPTFLG}".equals("Y") &amp;&amp; !"#{CURCOD}".equals("null")
+			</evaluation-condition>
+			<evaluation-condition>
+				!"#{SRCIND}".equals("null")
+			</evaluation-condition>	
+		</testcase>	
+		<testcase type="CASE4" >				
+			<query>
+				Select 1  From dual
+			</query>
+			<evaluation-condition>
+				!"${VO1.shipmentPrefix}".equals("null")
+			</evaluation-condition>			
+		</testcase>			
+				<testcase type="CASE5" >				
+			<query>
+				Select 1  From dual
+			</query>
+			<evaluation-condition>
+				!"${VO1.shipmentPrefix}".equals("null")
+			</evaluation-condition>			
+		</testcase>
+		
+		<testcase type="CASE6" >				
+			<query>
+				SELECT DOCOWRIDR From OPRSHPMST where MSTDOCNUM='${VO1.masterDocumentNumber}' AND DUPNUM ='${VO1.duplicateNumber}' AND SEQNUM = '${VO1.sequenceNumber}' AND CMPCOD='${VO1.companyCode}';
+			</query>
+			<evaluation-condition>
+				"#{DOCOWRIDR}" == 0
+			</evaluation-condition>
+		</testcase>	
+		
+		<testcase type="CASE7" >				
+			<query>
+				select shp1.dupnum DUPNUM1,shp2.dupnum DUPNUM2 from oprshpmst shp1, oprshpmst shp2 where shp1.mstdocnum = shp2.mstdocnum and shp1.docowridr = shp2.docowridr
+				and shp1.cmpcod = shp2.cmpcod and shp1.dupnum!= shp2.dupnum and shp1.seqnum = shp2.seqnum	and shp1.seqnum = 1	and shp1.cmpcod = 'LH' and shp1.shpsta != 'C' and  shp2.shpsta != 'C'
+				AND DOCOWRIDR = '${VO1.ownerId}' AND MSTDOCNUM='${VO1.masterDocumentNumber}' AND DUPNUM ='${VO1.duplicateNumber}' AND SEQNUM = '${VO1.sequenceNumber}' AND CMPCOD='${VO1.companyCode}';
+			</query>
+			<evaluation-condition>
+				!"#{DUPNUM1}".equals("#{DUPNUM2}")
+			</evaluation-condition>
+		</testcase>
+	</test-cases>	
+	<configuration-id>operations.shipment.cto.saveCTODeliveryDetails</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			#set($data="")			
+			#foreach( $ctoShipmentDeliveryVO in $!{VO1.ctoShipmentDeliveryVOs})			
+			#set( $query= "SELECT SUM(AVLPCS) TOTAVLPCS, SUM(LOCPCS) TOTLOCPCS, MAX(ROL.USRTYP)  USRTYP
+			FROM OPRARPSHP ARP LEFT OUTER JOIN WHSOPRSHPLOC LOC ON
+			ARP.CMPCOD = LOC.CMPCOD
+			AND ARP.DOCOWRIDR = LOC.DOCOWRIDR 
+			AND ARP.MSTDOCNUM = LOC.MSTDOCNUM
+			AND ARP.SEQNUM = LOC.SEQNUM
+			AND ARP.DUPNUM = LOC.DUPNUM
+			AND ARP.ARPCOD = LOC.ARPCOD
+			LEFT OUTER JOIN ADMUSRMST USR ON
+			ARP.CMPCOD = USR.CMPCOD
+			AND ARP.LSTUPDUSR = USR.USRCOD
+			LEFT OUTER JOIN ADMROLGRPMST ROL ON
+			USR.CMPCOD = ROL.CMPCOD
+			AND USR.DEFROLGRP = ROL.ROLGRPCOD
+			WHERE 
+			ARP.CMPCOD = '${ctoShipmentDeliveryVO.companyCode}' 
+			AND ARP.DOCOWRIDR = '${ctoShipmentDeliveryVO.ownerId}'
+			AND ARP.MSTDOCNUM ='${ctoShipmentDeliveryVO.masterDocumentNumber}'
+			AND ARP.DUPNUM = '${ctoShipmentDeliveryVO.duplicateNumber}'
+			AND ARP.SEQNUM ='${ctoShipmentDeliveryVO.sequenceNumber}'
+			And Arp.ARPCOD ='${ctoShipmentDeliveryVO.airportCode}'
+			GROUP BY ARP.CMPCOD, ARP.DOCOWRIDR, ARP.MSTDOCNUM, ARP.SEQNUM, ARP.DUPNUM;")			
+			#set( $data= $data + $query)
+			#end			
+			$data
+			</query>
+			<evaluation-condition>
+				"#{TOTAVLPCS}"== "#{TOTLOCPCS}"  &amp;&amp; !"#{USRTYP}".equals("GHA")
+			</evaluation-condition>					
+		</testcase>			
+		<testcase type="CASE2" >				
+			<query>
+			#set($data="")	
+			#foreach( $ctoShipmentDeliveryVO in $!{VO1.ctoShipmentDeliveryVOs})			
+			#set( $query= "SELECT arp.avlpcs
+			FROM OPRULDSHP uldshp
+			JOIN OPRARPSHP arp
+			ON arp.mstdocnum  = uldshp.mstdocnum
+			AND arp.docowridr = uldshp.docowridr
+			AND arp.cmpcod    = uldshp.cmpcod
+			AND arp.dupnum    = uldshp.dupnum
+			AND arp.seqnum    = uldshp.seqnum
+			AND arp.arpcod    = uldshp.arpcod	
+			WHERE 
+			ARP.CMPCOD = '${ctoShipmentDeliveryVO.companyCode}' 
+			AND ARP.DOCOWRIDR = '${ctoShipmentDeliveryVO.ownerId}'
+			AND ARP.MSTDOCNUM ='${ctoShipmentDeliveryVO.masterDocumentNumber}'
+			AND ARP.DUPNUM = '${ctoShipmentDeliveryVO.duplicateNumber}'
+			AND ARP.SEQNUM ='${ctoShipmentDeliveryVO.sequenceNumber}'
+			And Arp.ARPCOD ='${ctoShipmentDeliveryVO.airportCode}' AND ARP.SEQNUM >1;")		
+			#set( $data= $data + $query)
+			#end			
+			$data
+			</query>
+			<evaluation-condition>
+				"#{avlpcs}"== 0
+			</evaluation-condition>					
+		</testcase>	
+
+		<testcase type="CASE3" >				
+			<query>
+			#set($data="")	
+			#foreach( $ctoShipmentDeliveryVO in $!{VO1.ctoShipmentDeliveryVOs})			
+			#set( $query= "SELECT arp.avlpcs
+			FROM OPRULDSHP uldshp
+			JOIN OPRARPSHP arp
+			ON arp.mstdocnum  = uldshp.mstdocnum
+			AND arp.docowridr = uldshp.docowridr
+			AND arp.cmpcod    = uldshp.cmpcod
+			AND arp.dupnum    = uldshp.dupnum
+			AND arp.seqnum    = uldshp.seqnum
+			AND arp.arpcod    = uldshp.arpcod	
+			WHERE 
+			ARP.CMPCOD = '${ctoShipmentDeliveryVO.companyCode}' 
+			AND ARP.DOCOWRIDR = '${ctoShipmentDeliveryVO.ownerId}'
+			AND ARP.MSTDOCNUM ='${ctoShipmentDeliveryVO.masterDocumentNumber}'
+			AND ARP.DUPNUM = '${ctoShipmentDeliveryVO.duplicateNumber}'
+			AND ARP.SEQNUM ='${ctoShipmentDeliveryVO.sequenceNumber}'
+			And Arp.ARPCOD ='${ctoShipmentDeliveryVO.airportCode}'
+			AND arp.SEQNUM ='1' AND Arp.Conbdnflg ='Y' AND NVL(DCSFLG,'N') ='N';")			
+			#set( $data= $data + $query)
+			#end			
+			$data
+			</query>
+			<evaluation-condition>
+				"#{avlpcs}"== 0
+			</evaluation-condition>					
+		</testcase>			
+	</test-cases>
+	
+	
+	<configuration-id>operations.shipment.saveDamageDiscrepancy</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			#foreach( $damageDetailVO in $!{VO1})
+			SELECT IRRCOD FROM OPRSHPIRRDTL IRR WHERE 
+			IRR.CMPCOD = '${damageDetailVO.companyCode}' 
+			AND IRR.DOCOWRIDR = '${damageDetailVO.ownerId}'
+			AND IRR.MSTDOCNUM ='${damageDetailVO.masterDocumentNumber}'
+			AND IRR.DUPNUM = '${damageDetailVO.duplicateNumber}'
+			AND IRR.SEQNUM ='${damageDetailVO.sequenceNumber}'
+			AND 'I' = '${damageDetailVO.cdsStatus}'
+			</query>
+			<evaluation-condition>
+				!"#{IRRCOD}".equals("null")
+			</evaluation-condition>					
+		</testcase>	
+        <testcase type="CASE2" >				
+			<query>
+			#foreach( $damageDetailVO in $!{VO1})
+			SELECT MSTDOCNUM FROM OPRSHPBLK BLK WHERE 
+			BLK.CMPCOD = '${damageDetailVO.companyCode}' 
+			AND BLK.DOCOWRIDR = '${damageDetailVO.ownerId}'
+			AND BLK.MSTDOCNUM ='${damageDetailVO.masterDocumentNumber}'
+			AND BLK.DUPNUM = '${damageDetailVO.duplicateNumber}'
+			AND BLK.SEQNUM ='${damageDetailVO.sequenceNumber}'
+			AND 'P' = '${damageDetailVO.cdsStatus}'
+			
+			</query>
+			<evaluation-condition>
+				!"#{MSTDOCNUM}".equals("null")
+			</evaluation-condition>					
+		</testcase>					
+	</test-cases>
+	<configuration-id>operations.shipment.cto.saveCTOAcceptanceDetails</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+				SELECT ARPSHP.AVLPCS, ARPSHP.AVLWGT, ARPSHP.ACPPCS, ARPSHP.ACPWGT, SHPIDX.SHPSTA
+				FROM OPRSHPIDX SHPIDX LEFT OUTER JOIN OPRSHPMST SHPMST 	ON SHPIDX.CMPCOD     = SHPMST.CMPCOD AND SHPIDX.DOCOWRIDR = SHPMST.DOCOWRIDR
+				AND SHPIDX.MSTDOCNUM = SHPMST.MSTDOCNUM	AND SHPIDX.DUPNUM    = SHPMST.DUPNUM AND SHPIDX.SEQNUM    = SHPMST.SEQNUM
+				INNER JOIN OPRARPSHP ARPSHP	ON SHPIDX.CMPCOD     = ARPSHP.CMPCOD AND SHPIDX.DOCOWRIDR = ARPSHP.DOCOWRIDR AND SHPIDX.MSTDOCNUM = ARPSHP.MSTDOCNUM
+				AND SHPIDX.DUPNUM    = ARPSHP.DUPNUM AND SHPIDX.SEQNUM    = ARPSHP.SEQNUM WHERE ARPSHP.CMPCOD  = '${VO1.companyCode}' AND ARPSHP.MSTDOCNUM = '${VO1.documentNumber}'				
+				AND ARPSHP.ARPCOD = '${VO1.airportCode}' AND ARPSHP.DOCOWRIDR = ${VO1.ownerId} AND ARPSHP.DUPNUM    = ${VO1.duplicateNumber} AND ARPSHP.SEQNUM    = ${VO1.sequenceNumber};
+			</query>
+			<evaluation-condition>
+				!"#{SHPSTA}".equals("D")
+			</evaluation-condition>	
+			<evaluation-condition>
+				"#{AVLPCS}" > 0  &amp;&amp; "#{AVLWGT}" > 0 &amp;&amp; "#{ACPPCS}" > 0  &amp;&amp; "#{ACPWGT}" > 0 
+			</evaluation-condition>	
+		</testcase>
+		
+		<testcase type="CASE2" >				
+			<query>
+				SELECT RDYCRGFLG FROM OPRSHPMST SHPMST INNER JOIN OPRSHPDTL SHPDTL ON SHPMST.CMPCOD     = SHPDTL.CMPCOD
+				AND SHPMST.DOCOWRIDR = SHPDTL.DOCOWRIDR AND SHPMST.MSTDOCNUM = SHPDTL.MSTDOCNUM AND SHPMST.DUPNUM    = SHPDTL.DUPNUM
+				AND SHPMST.SEQNUM    = SHPDTL.SEQNUM WHERE SHPMST.CMPCOD  = '${VO1.companyCode}' AND ACPFNLFLG = 'Y' AND EXEFLG = 'Y'
+				AND SHPMST.DOCOWRIDR = ${VO1.ownerId} AND SHPMST.MSTDOCNUM = '${VO1.documentNumber}' AND SHPMST.DUPNUM    = ${VO1.duplicateNumber} AND SHPMST.SEQNUM    = ${VO1.sequenceNumber};				
+			</query>
+			<evaluation-condition>
+				"#{RDYCRGFLG}".equals("Y")
+			</evaluation-condition>	
+		</testcase>	
+		
+		<!--<testcase type="CASE3" >				
+			<query>
+				SELECT SHPMST.ORGCOD, SHPDTL.ACPARPCOD, SHPDTL.TOTACPPCS,
+				SHPDTL.TOTACPWGT, SHPIDX.SHPSTA
+				FROM OPRSHPIDX SHPIDX
+				LEFT OUTER JOIN OPRSHPMST SHPMST
+				ON SHPIDX.CMPCOD     = SHPMST.CMPCOD
+				AND SHPIDX.DOCOWRIDR = SHPMST.DOCOWRIDR
+				AND SHPIDX.MSTDOCNUM = SHPMST.MSTDOCNUM
+				AND SHPIDX.DUPNUM    = SHPMST.DUPNUM
+				AND SHPIDX.SEQNUM    = SHPMST.SEQNUM
+				INNER JOIN OPRSHPDTL SHPDTL
+				ON SHPIDX.CMPCOD     = SHPDTL.CMPCOD
+				AND SHPIDX.DOCOWRIDR = SHPDTL.DOCOWRIDR
+				AND SHPIDX.MSTDOCNUM = SHPDTL.MSTDOCNUM
+				AND SHPIDX.DUPNUM    = SHPDTL.DUPNUM
+				AND SHPIDX.SEQNUM    = SHPDTL.SEQNUM
+				WHERE SHPIDX.CMPCOD  = '${VO1.companyCode}'
+				AND SHPIDX.DOCOWRIDR = '${VO1.ownerId}'
+				AND SHPIDX.MSTDOCNUM = '${VO1.documentNumber}'
+				AND SHPIDX.DUPNUM    = '${VO1.duplicateNumber}'
+				AND SHPIDX.SEQNUM    = '${VO1.sequenceNumber}'
+				AND
+				  CASE
+					WHEN SHPIDX.ORGCOD     = '${VO1.origin}'
+					THEN (SHPDTL.ACPARPCOD = '${VO1.airportCode}'
+					ELSE SHPDTL.ACPARPCOD IS NULL) ;
+			</query>
+			<evaluation-condition>
+				"#{ORGCOD}".equals("#{ACPARPCOD}")
+			</evaluation-condition>
+			<evaluation-condition>
+				!"#{SHPSTA}".equals("D")
+			</evaluation-condition>	
+			<evaluation-condition>
+				"#{TOTACPPCS}" > 0  &amp;&amp; "#{TOTACPWGT}" > 0 
+			</evaluation-condition>				
+		</testcase> -->
+	</test-cases>	
+	<configuration-id>operations.shipment.cto.createStorageUnitsForULD</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			#foreach( $storageUnitVO in $!{VO1})
+			  SELECT ARPCOD,
+			  STUCOD,
+			  STUTYPNAM,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST
+			  WHERE CMPCOD = '${storageUnitVO.companyCode}'
+			  AND STUCOD = '${storageUnitVO.uldNumber}';
+			</query>
+			<evaluation-condition>
+				!"#{STUTYPNAM}".equals("null")
+			</evaluation-condition>					
+		</testcase>	
+		<testcase type="CASE2" >				
+			<query>
+			#foreach( $storageUnitVO in $!{VO1})
+			  SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${storageUnitVO.uldNumber}'
+			  AND SHP.CMPCOD = '${storageUnitVO.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD = SHP.CMPCOD
+			  AND LOC.WHSCOD = SHP.WHSCOD
+			  AND LOC.ARPCOD = SHP.ARPCOD
+			  AND LOC.LOCCOD = SHP.CURLOCCOD);
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>				
+		</testcase>	
+		<testcase type="CASE3" >				
+			<query>
+			#foreach( $storageUnitVO in $!{VO1})
+			 SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${storageUnitVO.uldNumber}'
+			  AND SHP.CMPCOD = '${storageUnitVO.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD=SHP.CMPCOD
+			  AND LOC.WHSCOD  =SHP.WHSCOD
+			  AND LOC.ARPCOD  =SHP.ARPCOD
+			  AND LOC.LOCCOD  =SHP.DEFLOCCOD);
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>					
+		</testcase>	
+		<testcase type="CASE4" >				
+			<query>
+			#foreach( $storageUnitVO in $!{VO1})
+			 SELECT ARPCOD,
+			  WHSCOD,
+			  LOCCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  STUCOD,
+			  LOCPCS,
+			  TXNPCS
+			  FROM WHSOPRSHPLOC
+			  WHERE (ARPCOD,WHSCOD,STUCOD) IN
+			  (SELECT ARPCOD,
+				WHSCOD,
+				STUCOD
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${storageUnitVO.uldNumber}'
+			  AND SHP.CMPCOD = '${storageUnitVO.companyCode}'
+			  AND NOT EXISTS
+				(SELECT 1
+				FROM WHSLOCMST LOC
+				WHERE LOC.CMPCOD=SHP.CMPCOD
+				AND LOC.WHSCOD  =SHP.WHSCOD
+				AND LOC.ARPCOD  =SHP.ARPCOD
+				AND LOC.LOCCOD  =SHP.CURLOCCOD		
+				))
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>					
+		</testcase>	
+		</test-cases>	
+<configuration-id>operations.shipment.saveULDDeliveryDetails</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			#foreach( $damageDetailVO in $!{VO1})
+			#foreach( $uldManifestVO in $uldManifestVOs)
+				#foreach( $shipmentManifestVO in $uldManifestVO.manifestShipmentDetails)
+			SELECT IRRCOD FROM OPRSHPIRRDTL IRR WHERE 
+			IRR.CMPCOD = '${damageDetailVO.companyCode}' 
+			AND IRR.DOCOWRIDR = '${damageDetailVO.ownerId}'
+			AND IRR.MSTDOCNUM ='${damageDetailVO.masterDocumentNumber}'
+			AND IRR.DUPNUM = '${damageDetailVO.duplicateNumber}'
+			AND IRR.SEQNUM ='${damageDetailVO.sequenceNumber}'
+			AND 'I' = '${damageDetailVO.cdsStatus}'
+			</query>
+			<evaluation-condition>
+				!"#{IRRCOD}".equals("null")
+			</evaluation-condition>					
+		</testcase>	
+        <testcase type="CASE2" >				
+			<query>
+			#foreach( $damageDetailVO in $!{VO1})
+			SELECT MSTDOCNUM FROM OPRSHPBLK BLK WHERE 
+			BLK.CMPCOD = '${damageDetailVO.companyCode}' 
+			AND BLK.DOCOWRIDR = '${damageDetailVO.ownerId}'
+			AND BLK.MSTDOCNUM ='${damageDetailVO.masterDocumentNumber}'
+			AND BLK.DUPNUM = '${damageDetailVO.duplicateNumber}'
+			AND BLK.SEQNUM ='${damageDetailVO.sequenceNumber}'
+			AND 'P' = '${damageDetailVO.cdsStatus}'
+			
+			</query>
+			<evaluation-condition>
+				!"#{MSTDOCNUM}".equals("null")
+			</evaluation-condition>					
+		</testcase>	
+		<testcase type="CASE3" >				
+			<query>
+			#set($data="")	
+			#foreach( $uldDeliveryVO in $!{VO1})				
+			#foreach( $shipmentDeliveryVO in $!{uldDeliveryVO.shipmentDeliveryDetails})			
+			#set( $query= "SELECT SUM(AVLPCS) TOTAVLPCS, SUM(LOCPCS) TOTLOCPCS, MAX(ROL.USRTYP)  USRTYP
+			FROM OPRARPSHP ARP LEFT OUTER JOIN WHSOPRSHPLOC LOC ON
+			ARP.CMPCOD = LOC.CMPCOD
+			AND ARP.DOCOWRIDR = LOC.DOCOWRIDR 
+			AND ARP.MSTDOCNUM = LOC.MSTDOCNUM
+			AND ARP.SEQNUM = LOC.SEQNUM
+			AND ARP.DUPNUM = LOC.DUPNUM
+			AND ARP.ARPCOD = LOC.ARPCOD
+			LEFT OUTER JOIN ADMUSRMST USR ON
+			ARP.CMPCOD = USR.CMPCOD
+			AND ARP.LSTUPDUSR = USR.USRCOD
+			LEFT OUTER JOIN ADMROLGRPMST ROL ON
+			USR.CMPCOD = ROL.CMPCOD
+			AND USR.DEFROLGRP = ROL.ROLGRPCOD
+			WHERE 
+			ARP.CMPCOD = '${shipmentDeliveryVO.companyCode}' 
+			AND ARP.DOCOWRIDR = '${shipmentDeliveryVO.ownerId}'
+			AND ARP.MSTDOCNUM ='${shipmentDeliveryVO.masterDocumentNumber}'
+			AND ARP.DUPNUM = '${shipmentDeliveryVO.duplicateNumber}'
+			AND ARP.SEQNUM ='${shipmentDeliveryVO.sequenceNumber}'
+			And Arp.ARPCOD ='${shipmentDeliveryVO.airportCode}'
+			GROUP BY ARP.CMPCOD, ARP.DOCOWRIDR, ARP.MSTDOCNUM, ARP.SEQNUM, ARP.DUPNUM;")			
+			#set( $data= $data + $query)
+			#end			
+			$data
+			</query>
+			<evaluation-condition>
+				"#{TOTAVLPCS}"== "#{TOTLOCPCS}"  &amp;&amp; !"#{USRTYP}".equals("GHA")
+			</evaluation-condition>					
+		</testcase>	
+		<testcase type="CASE4" >				
+			<query>
+			#set($data="")	
+			#foreach( $uldDeliveryVO in $!{VO1})				
+			#foreach( $shipmentDeliveryVO in $!{uldDeliveryVO.shipmentDeliveryDetails})			
+			#set( $query= "SELECT arp.avlpcs
+			FROM OPRULDSHP uldshp
+			JOIN OPRARPSHP arp
+			ON arp.mstdocnum  = uldshp.mstdocnum
+			AND arp.docowridr = uldshp.docowridr
+			AND arp.cmpcod    = uldshp.cmpcod
+			AND arp.dupnum    = uldshp.dupnum
+			AND arp.seqnum    = uldshp.seqnum
+			AND arp.arpcod    = uldshp.arpcod	
+			WHERE 
+			ARP.CMPCOD = '${shipmentDeliveryVO.companyCode}' 
+			AND ARP.DOCOWRIDR = '${shipmentDeliveryVO.ownerId}'
+			AND ARP.MSTDOCNUM ='${shipmentDeliveryVO.masterDocumentNumber}'
+			AND ARP.DUPNUM = '${shipmentDeliveryVO.duplicateNumber}'
+			AND ARP.SEQNUM ='${shipmentDeliveryVO.sequenceNumber}'
+			And Arp.ARPCOD ='${shipmentDeliveryVO.airportCode}' AND ARP.SEQNUM >1;")			
+			#set( $data= $data + $query)
+			#end			
+			$data
+			</query>
+			<evaluation-condition>
+				"#{avlpcs}"== 0
+			</evaluation-condition>					
+		</testcase>	
+
+		<testcase type="CASE5" >				
+			<query>
+			#set($data="")	
+			#foreach( $uldDeliveryVO in $!{VO1})				
+			#foreach( $shipmentDeliveryVO in $!{uldDeliveryVO.shipmentDeliveryDetails})			
+			#set( $query= "SELECT arp.avlpcs
+			FROM OPRULDSHP uldshp
+			JOIN OPRARPSHP arp
+			ON arp.mstdocnum  = uldshp.mstdocnum
+			AND arp.docowridr = uldshp.docowridr
+			AND arp.cmpcod    = uldshp.cmpcod
+			AND arp.dupnum    = uldshp.dupnum
+			AND arp.seqnum    = uldshp.seqnum
+			AND arp.arpcod    = uldshp.arpcod	
+			WHERE 
+			ARP.CMPCOD = '${shipmentDeliveryVO.companyCode}' 
+			AND ARP.DOCOWRIDR = '${shipmentDeliveryVO.ownerId}'
+			AND ARP.MSTDOCNUM ='${shipmentDeliveryVO.masterDocumentNumber}'
+			AND ARP.DUPNUM = '${shipmentDeliveryVO.duplicateNumber}'
+			AND ARP.SEQNUM ='${shipmentDeliveryVO.sequenceNumber}'
+			And Arp.ARPCOD ='${shipmentDeliveryVO.airportCode}'
+			AND arp.SEQNUM ='1' AND Arp.Conbdnflg ='Y' AND NVL(DCSFLG,'N') ='N';")			
+			#set( $data= $data + $query)
+			#end			
+			$data
+			</query>
+			<evaluation-condition>
+				"#{avlpcs}"== 0
+			</evaluation-condition>					
+		</testcase>					
+	</test-cases>
+	<configuration-id>operations.shipment.saveULDDeliveryDetails</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			#foreach( $damageDetailVO in $!{VO1})
+			#foreach( $uldManifestVO in $uldManifestVOs)
+				#foreach( $shipmentManifestVO in $uldManifestVO.manifestShipmentDetails)
+			SELECT IRRCOD FROM OPRSHPIRRDTL IRR WHERE 
+			IRR.CMPCOD = '${damageDetailVO.companyCode}' 
+			AND IRR.DOCOWRIDR = '${damageDetailVO.ownerId}'
+			AND IRR.MSTDOCNUM ='${damageDetailVO.masterDocumentNumber}'
+			AND IRR.DUPNUM = '${damageDetailVO.duplicateNumber}'
+			AND IRR.SEQNUM ='${damageDetailVO.sequenceNumber}'
+			AND 'I' = '${damageDetailVO.cdsStatus}'
+			</query>
+			<evaluation-condition>
+				!"#{IRRCOD}".equals("null")
+			</evaluation-condition>					
+		</testcase>	
+        <testcase type="CASE2" >				
+			<query>
+			#foreach( $damageDetailVO in $!{VO1})
+			SELECT MSTDOCNUM FROM OPRSHPBLK BLK WHERE 
+			BLK.CMPCOD = '${damageDetailVO.companyCode}' 
+			AND BLK.DOCOWRIDR = '${damageDetailVO.ownerId}'
+			AND BLK.MSTDOCNUM ='${damageDetailVO.masterDocumentNumber}'
+			AND BLK.DUPNUM = '${damageDetailVO.duplicateNumber}'
+			AND BLK.SEQNUM ='${damageDetailVO.sequenceNumber}'
+			AND 'P' = '${damageDetailVO.cdsStatus}'
+			
+			</query>
+			<evaluation-condition>
+				!"#{MSTDOCNUM}".equals("null")
+			</evaluation-condition>					
+		</testcase>	
+		<testcase type="CASE3" >				
+			<query>
+			#set($data="")	
+			#foreach( $uldDeliveryVO in $!{VO1})				
+			#foreach( $shipmentDeliveryVO in $!{uldDeliveryVO.shipmentDeliveryDetails})			
+			#set( $query= "SELECT SUM(AVLPCS) TOTAVLPCS, SUM(LOCPCS) TOTLOCPCS, MAX(ROL.USRTYP)  USRTYP
+			FROM OPRARPSHP ARP LEFT OUTER JOIN WHSOPRSHPLOC LOC ON
+			ARP.CMPCOD = LOC.CMPCOD
+			AND ARP.DOCOWRIDR = LOC.DOCOWRIDR 
+			AND ARP.MSTDOCNUM = LOC.MSTDOCNUM
+			AND ARP.SEQNUM = LOC.SEQNUM
+			AND ARP.DUPNUM = LOC.DUPNUM
+			AND ARP.ARPCOD = LOC.ARPCOD
+			LEFT OUTER JOIN ADMUSRMST USR ON
+			ARP.CMPCOD = USR.CMPCOD
+			AND ARP.LSTUPDUSR = USR.USRCOD
+			LEFT OUTER JOIN ADMROLGRPMST ROL ON
+			USR.CMPCOD = ROL.CMPCOD
+			AND USR.DEFROLGRP = ROL.ROLGRPCOD
+			WHERE 
+			ARP.CMPCOD = '${shipmentDeliveryVO.companyCode}' 
+			AND ARP.DOCOWRIDR = '${shipmentDeliveryVO.ownerId}'
+			AND ARP.MSTDOCNUM ='${shipmentDeliveryVO.masterDocumentNumber}'
+			AND ARP.DUPNUM = '${shipmentDeliveryVO.duplicateNumber}'
+			AND ARP.SEQNUM ='${shipmentDeliveryVO.sequenceNumber}'
+			And Arp.ARPCOD ='${shipmentDeliveryVO.airportCode}'
+			GROUP BY ARP.CMPCOD, ARP.DOCOWRIDR, ARP.MSTDOCNUM, ARP.SEQNUM, ARP.DUPNUM;")			
+			#set( $data= $data + $query)
+			#end			
+			$data
+			</query>
+			<evaluation-condition>
+				"#{TOTAVLPCS}"== "#{TOTLOCPCS}"  &amp;&amp; !"#{USRTYP}".equals("GHA")
+			</evaluation-condition>					
+		</testcase>	
+		<testcase type="CASE4" >				
+			<query>
+			#set($data="")	
+			#foreach( $uldDeliveryVO in $!{VO1})				
+			#foreach( $shipmentDeliveryVO in $!{uldDeliveryVO.shipmentDeliveryDetails})			
+			#set( $query= "SELECT arp.avlpcs
+			FROM OPRULDSHP uldshp
+			JOIN OPRARPSHP arp
+			ON arp.mstdocnum  = uldshp.mstdocnum
+			AND arp.docowridr = uldshp.docowridr
+			AND arp.cmpcod    = uldshp.cmpcod
+			AND arp.dupnum    = uldshp.dupnum
+			AND arp.seqnum    = uldshp.seqnum
+			AND arp.arpcod    = uldshp.arpcod	
+			WHERE 
+			ARP.CMPCOD = '${shipmentDeliveryVO.companyCode}' 
+			AND ARP.DOCOWRIDR = '${shipmentDeliveryVO.ownerId}'
+			AND ARP.MSTDOCNUM ='${shipmentDeliveryVO.masterDocumentNumber}'
+			AND ARP.DUPNUM = '${shipmentDeliveryVO.duplicateNumber}'
+			AND ARP.SEQNUM ='${shipmentDeliveryVO.sequenceNumber}'
+			And Arp.ARPCOD ='${shipmentDeliveryVO.airportCode}' AND ARP.SEQNUM >1;")			
+			#set( $data= $data + $query)
+			#end			
+			$data
+			</query>
+			<evaluation-condition>
+				"#{avlpcs}"== 0
+			</evaluation-condition>					
+		</testcase>	
+
+		<testcase type="CASE5" >				
+			<query>
+			#set($data="")	
+			#foreach( $uldDeliveryVO in $!{VO1})				
+			#foreach( $shipmentDeliveryVO in $!{uldDeliveryVO.shipmentDeliveryDetails})			
+			#set( $query= "SELECT arp.avlpcs
+			FROM OPRULDSHP uldshp
+			JOIN OPRARPSHP arp
+			ON arp.mstdocnum  = uldshp.mstdocnum
+			AND arp.docowridr = uldshp.docowridr
+			AND arp.cmpcod    = uldshp.cmpcod
+			AND arp.dupnum    = uldshp.dupnum
+			AND arp.seqnum    = uldshp.seqnum
+			AND arp.arpcod    = uldshp.arpcod	
+			WHERE 
+			ARP.CMPCOD = '${shipmentDeliveryVO.companyCode}' 
+			AND ARP.DOCOWRIDR = '${shipmentDeliveryVO.ownerId}'
+			AND ARP.MSTDOCNUM ='${shipmentDeliveryVO.masterDocumentNumber}'
+			AND ARP.DUPNUM = '${shipmentDeliveryVO.duplicateNumber}'
+			AND ARP.SEQNUM ='${shipmentDeliveryVO.sequenceNumber}'
+			And Arp.ARPCOD ='${shipmentDeliveryVO.airportCode}'
+			AND arp.SEQNUM ='1' AND Arp.Conbdnflg ='Y' AND NVL(DCSFLG,'N') ='N';")			
+			#set( $data= $data + $query)
+			#end			
+			$data
+			</query>
+			<evaluation-condition>
+				"#{avlpcs}"== 0
+			</evaluation-condition>					
+		</testcase>					
+	
+	</test-cases>	
+</test-configurations>
+
+	
+
+	

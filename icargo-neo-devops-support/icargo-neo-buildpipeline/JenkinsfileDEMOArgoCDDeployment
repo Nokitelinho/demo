@@ -1,0 +1,181 @@
+def Stage_Name="Init"
+def ENV
+def releaseVersion
+def bom_env
+def tenantId = "base"
+def applicationId ="icargo-neo"
+def currentVersion
+def jiraIds
+env.argoCdRepoRUL="http://Icargo-release@bitbucket.ibsplc.com/scm/icneo/icargo-neo-argocd.git"
+env.EMAIL_SUBSCRIBERS="sinoob.saithumuhammed@ibsplc.com,Sander.Joseph@ibsplc.com,anjana.narayanan@ibsplc.com,jesin.zachariah@ibsplc.com,jiji.joseph@ibsplc.com,jojeet.philip@ibsplc.com,Lakshmi.Ramachandran@ibsplc.com,leena.joseph@ibsplc.com,Santhi.Kaimala@ibsplc.com,shinu.john@ibsplc.com,Arun.Padinhare@ibsplc.com,arun.thomas@ibsplc.com,aswin.ravikumar@ibsplc.com,bejoy.kunjumon@ibsplc.com,binish.prabhakaran@ibsplc.com,freddy.kurien@ibsplc.com,hari.reddy@ibsplc.com,jayakrishnan.jayaram@ibsplc.com,jens.parappallil@ibsplc.com,juby.mathew@ibsplc.com,Kannan.Muraleedharan@ibsplc.com,kashyap.prakasan@ibsplc.com,lakshmi.narayanan@ibsplc.com,manoj.balan@ibsplc.com,manu.purushothaman@ibsplc.com,manu.raghavan@ibsplc.com,philip.scaria@ibsplc.com,Remya.Mathew@ibsplc.com,rony.john@ibsplc.com,sharika.narayanankutty@ibsplc.com,sooraj.sadasivanpillai@ibsplc.com,Vijayakumar.Ramasamy@ibsplc.com,vivek.radhakrishnan@ibsplc.com,Akshaya.Raj@ibsplc.com,Arathy.Sathy@ibsplc.com,Arjun.Villadath@ibsplc.com,Arya.Geetha@ibsplc.com,Gokul.Gopinathpillai@ibsplc.com,Jisha.Joshi@ibsplc.com,Pallabi.Nath@ibsplc.com,Preethi.Lalitha@ibsplc.com,rajani.chandran@ibsplc.com,Rinimol.Ramdas@ibsplc.com,Sandra.Thadathil@ibsplc.com,Shabab.Erkkara@ibsplc.com,Tresa.Jayan@ibsplc.com,raji.prakash@ibsplc.com,jasmine.ameena@ibsplc.com"
+
+
+pipeline {
+    agent any
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '1'))
+    }
+		
+    parameters {
+        text(defaultValue: "iCO_5.0.7.7100", description: 'The version we plan to deploy to the environment', name: 'releaseVersion')
+    }
+	
+    stages {			
+			stage('Argo Cd Repo Checkout') {
+				steps{
+					checkout([$class           : 'GitSCM',
+					branches         : [[name: "demo"]],
+					extensions: [[$class: 'CleanBeforeCheckout'],
+								[$class: 'RelativeTargetDirectory',
+								relativeTargetDir: 'argocdRepo/']],
+					userRemoteConfigs: [[
+							credentialsId: "f60d9763-39f7-4e73-8467-258d60f1d7f6",
+							url: env.argoCdRepoRUL]]])
+				}
+			}
+			stage("Bom Creation Stage") {			
+				steps {
+						echo "Bom Creation Stage"
+						sh '''
+							if [ -e ${WORKSPACE}/bom.yaml ]; then
+									echo "---- >Deleting bom ---  "
+									rm  ${WORKSPACE}/bom.yaml
+								fi
+						'''
+						script {
+								
+								env.RELVER=releaseVersion
+								echo "ReleaseVersion is ${env.releaseVersion}"
+								env.GETURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds/"+env.releaseVersion+"/bom"
+								bom = ["curl","-o","${WORKSPACE}/bom.yaml" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/yaml", "${env.GETURL}"].execute().text
+						}
+						sshagent( ['gitCommitCrendentials']) {sh '''
+							cat ${WORKSPACE}/bom.yaml > ${WORKSPACE}/argocdRepo/etc/icargo-neo-bom.yml
+							cd argocdRepo
+							pwd
+							git pull origin demo
+							git add --all
+							git commit -m updating_to_latest_yaml
+							git push origin HEAD:demo
+						'''}
+							
+					}
+			}
+			stage("Demo Refresh From ArgoCD") {			
+				steps{
+						script{
+							env.tokenURL ="https://k8s-argocd-argocdse-7d202af679-a2c010e40856d41b.elb.ap-south-1.amazonaws.com/api/v1/session"
+							env.data='{"username":"admin","password":"admin123"}'
+							response = sh(script: 'curl -X POST -d $data $tokenURL --insecure ', returnStdout: true)
+							jsonObjToken = readJSON text: response
+							env.tokenValue="'Authorization: Bearer ${jsonObjToken.token}'"
+							echo"Token value   ${env.tokenValue}"
+								
+							env.RefreshURL=" https://k8s-argocd-argocdse-7d202af679-a2c010e40856d41b.elb.ap-south-1.amazonaws.com/api/v1/applications/icargo-app?refresh=true"
+							env.cont='Content-Type:application/json'
+							response = sh(script: "curl -X GET -H $tokenValue $RefreshURL --insecure ", returnStdout: true)
+							sleep(100)
+
+							env.getStatusURL=" https://k8s-argocd-argocdse-7d202af679-a2c010e40856d41b.elb.ap-south-1.amazonaws.com/api/v1/applications/icargo-app"
+							statusResponse = sh(script: "curl -X GET -H $tokenValue $getStatusURL --insecure ", returnStdout: true)
+							jsonObj = readJSON text: statusResponse
+							echo "Reponse  Health  ${jsonObj.status.health.status}"
+							while("${jsonObj.status.health.status}"=='Progressing') {
+									sleep(100)
+									statusResponse = sh(script: "curl -X GET -H $tokenValue $getStatusURL --insecure ", returnStdout: true)
+									jsonObj = readJSON text: statusResponse
+							}
+                            if("${jsonObj.status.health.status}"!='Healthy') {
+                                sleep(1000)
+                            }
+                            statusResponse = sh(script: "curl -X GET -H $tokenValue $getStatusURL --insecure ", returnStdout: true)
+                            if("${jsonObj.status.health.status}"!='Healthy') {
+                                sleep(1000)
+                            }
+                            statusResponse = sh(script: "curl -X GET -H $tokenValue $getStatusURL --insecure ", returnStdout: true)
+							if("${jsonObj.status.health.status}"!='Healthy') {
+								healthJson ="${jsonObj.status.resources}"
+								writeFile file: 'healthstatus.json', text: healthJson
+								error "Demo Deployment Failed.."
+								
+							}
+						}
+					}
+			}
+			}
+		post {
+		    success{
+					script {
+						emailext( 
+								attachmentsPattern: "bom.yaml,healthstatus.json",
+								recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+										[$class: 'RequesterRecipientProvider'],
+										[$class: 'DevelopersRecipientProvider']],
+								mimeType: 'text/html',
+								to : "${env.EMAIL_SUBSCRIBERS}",
+											subject: "Success: Job '${env.JOB_NAME} [${env.RELVER}]'",
+											body: """Success: Job '${env.JOB_NAME} [${env.RELVER}]':
+									<br />
+									Check console output at:  ${env.BUILD_URL}/console 
+									<br />
+									Job Name:  ${env.JOB_NAME} 
+												Release Version: ${env.RELVER}
+									<br />
+									Jenkins Build Number: [${env.BUILD_NUMBER}]"""             
+									)
+							
+					}
+					
+					sh '''
+						if [ -e ${WORKSPACE}/bom.yaml ]; then
+							rm  ${WORKSPACE}/bom.yaml
+						fi
+						
+						if [ -e ${WORKSPACE}/healthstatus.json ]; then
+							rm  ${WORKSPACE}/healthstatus.json
+						fi
+					'''
+					
+	             }
+			failure {
+				script {
+					dir("argocdRepo"){
+							git_commit_hash = sh(
+								script: "printf \$(git log -1 --pretty=%H)",
+								returnStdout: true
+							)
+							env.git_commit_hash=git_commit_hash
+					}
+				}
+				sshagent( ['gitCommitCrendentials']) {sh '''
+                          pwd
+                          cd argocdRepo
+                    	  git revert $git_commit_hash --no-edit 
+                    	  git push origin HEAD:demo
+				'''}
+				script {
+					emailext(
+                    attachmentsPattern: "healthstatus.json",
+					mimeType: 'text/html',
+					recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+									[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']],
+					to : "${env.EMAIL_SUBSCRIBERS}",
+					subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+					body: """
+						 <div style="color:red;font-size:20px">
+						 FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+						 </div>
+						 Failure happened in ${Stage_Name}.
+						 <br />
+						 Check console output at:  ${env.BUILD_URL}/console
+						 <br />
+						 Job Name:  ${env.JOB_NAME} 
+						 <br />
+						 Build Number: [${env.BUILD_NUMBER}]"""
+					  )		
+				}
+			 }
+		 }
+}

@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-37905_MSM27650.yaml
+  - changeSet:
+       id: 27650
+       author: A-4789
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              schemaName: ${SCHEMA}
+              tableName: TRKAWBMST
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: ALTER TABLE TRKAWBMST ADD COLUMN AWBSTA VARCHAR(1);
+          COMMENT ON COLUMN TRKAWBMST.AWBSTA IS 'AWB Status, indicates the current state of the AWB - Possible values are New, Executed, Reopened, Void, Purged, Closed, Cancelled, Deleted, Blacklisted etc';

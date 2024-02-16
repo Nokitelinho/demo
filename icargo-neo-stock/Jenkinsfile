@@ -1,0 +1,480 @@
+def Stage_Name
+def ARTIFACTORY_HOST
+def ARTIFACTORY_REPO
+def APP
+def ENV
+def bitbucketURL ="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"
+def commitId
+def response
+def results
+def data
+def bitbucketresponse
+def loadValuesYaml(){
+  def valuesYaml = readYaml file: 'app.yml'
+  return valuesYaml;
+}
+
+pipeline {
+    agent any
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '1'))
+    }
+    stages {
+		stage('Initial Setup') {
+			steps {
+                script {
+					Stage_Name = 'Initial Setup'
+					valuesYaml = loadValuesYaml()
+					echo " valuesYaml   : ${valuesYaml}"
+					appServers = valuesYaml.APP.each{ k,v->}
+					for(app in appServers) { 
+							env.JAVA_HOME=app.JAVA_HOME
+							env.M2_HOME =app.M2_HOME
+							env.repo=app.repo
+							env.token=app.token
+							env.project_name=app.project_name
+							env.sonar_host_url=app.sonar_host_url
+							env.sonar_projectkey_dev=app.sonar_projectkey_dev
+							env.sonar_projectkey_master=app.sonar_projectkey_master
+							env.sonar_password=app.sonar_password
+							env.sonar_user=app.sonar_user
+							env.sonar_project_name_dev=app.sonar_project_name_dev
+							env.sonar_project_name_master=app.sonar_project_name_master
+                      		env.stop_script=app.stop_script
+                      		env.copy_script=app.copy_script
+                      		env.start_script=app.start_script
+                      		env.sonar_project_name_integrationtest=app.sonar_project_name_integrationtest
+                      		env.sonar_projectkey_integrationtest=app.sonar_projectkey_integrationtest
+                      		env.deploy_stage=app.deploy_stage
+                      		env.integration_test_stage=app.integration_test_stage
+							env.sonar_project_name_integrationtest_dev=app.sonar_project_name_integrationtest_dev
+                      		env.sonar_projectkey_integrationtest_dev=app.sonar_projectkey_integrationtest_dev
+                            env.service_name =app.service_name
+                      		env.release_url=app.release_url
+						}
+                }
+
+            }
+        }
+        stage('Build') {
+			when {
+                        branch 'master'
+            }
+			
+            steps {
+                script {
+					Stage_Name = 'Build Stage'
+					
+					echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+                }
+
+                checkout([$class           : 'GitSCM',
+                          branches         : [[name: env.BRANCH_NAME]],
+                          userRemoteConfigs: [[
+                                                      credentialsId: env.token,
+                                                      url          : env.repo]]])
+
+                 dir(path: '.') {
+                    sh '''export M2_HOME=$M2_HOME
+                      export M2=$M2_HOME/bin
+                      export JAVA_HOME=$JAVA_HOME
+                      export PATH=$M2:$JAVA_HOME:$PATH
+                      mvn clean install -DsendCredentialsOverHttp=true -Dproj.name=$project_name'''
+                }
+				script {
+                    Stage_Name = 'Build Stage'
+					 echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+					 def notifyBitbucket = {
+					  echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+					  return "ees"
+					 }
+					 echo "   notifyBitbucket  ${notifyBitbucket}"
+                }
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+				
+            }
+        }
+		
+		stage('Build Branch') {
+			when {
+				not{
+					 branch 'master'
+				}      
+            }
+            steps {
+                script {
+					Stage_Name = 'Build Stage'
+					
+					echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+                }
+
+                checkout([$class           : 'GitSCM',
+                          branches         : [[name: env.BRANCH_NAME]],
+                          userRemoteConfigs: [[
+                                                      credentialsId: env.token,
+                                                      url          : env.repo]]])
+
+                 dir(path: '.') {
+                    sh '''export M2_HOME=/opt/apache-maven-3.6.2
+                      export M2=$M2_HOME/bin
+                      export JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto
+                      export PATH=$M2:$JAVA_HOME:$PATH
+                      mvn clean install -U -Dproj.name=$project_name -Dmaven.install.skip=true'''
+                }
+				archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+            }
+        }
+        
+        stage('SonarQube Analysis') {
+            when {
+                        branch 'master'
+            }
+            steps {
+                script {
+                    Stage_Name = 'SonarQube Analysis Stage'
+                }
+				withSonarQubeEnv('Sonar Qube -Linux') {
+                    sh '''export M2_HOME=$M2_HOME
+                      export M2=$M2_HOME/bin
+                      export JAVA_HOME=$JAVA_HOME
+                      export PATH=$M2:$JAVA_HOME:$PATH
+                      mvn sonar:sonar -Dsonar.login=$sonar_user -Dsonar.password=$sonar_password -Dproj.name=$sonar_project_name_master -Dsonar.projectKey=$sonar_projectkey_master -Dsonar.host.url=$sonar_host_url
+					  '''
+                }
+            }
+		}
+		stage('SonarQube Analysis Dev') {
+			when {
+				not{
+					 branch 'master'
+				}      
+            }
+            steps {
+                script {
+                    Stage_Name = 'SonarQube Analysis Stage Dev Stage'
+                }
+				withSonarQubeEnv('Sonar Qube -Linux') {
+                    sh '''export M2_HOME=$M2_HOME
+                      export M2=$M2_HOME/bin
+                      export JAVA_HOME=$JAVA_HOME
+                      export PATH=$M2:$JAVA_HOME:$PATH
+                      mvn sonar:sonar -Dsonar.login=$sonar_user -Dsonar.password=$sonar_password -Dproj.name=$sonar_project_name_dev -Dsonar.projectKey=$sonar_projectkey_dev -Dsonar.host.url=$sonar_host_url'''
+                }
+                
+            }
+        }
+        stage('Quality Gate Status Check') {
+            when {
+                        branch 'master'
+            }
+            steps {
+                script {
+                    Stage_Name = 'Quality Gate Status Check Stage'
+                }
+                sleep(40)
+				script {
+                def qg = waitForQualityGate()
+				  if (qg.status != 'OK') {
+					  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+				  }else{
+					 print "Success" 
+				  }
+				 }
+				
+            }
+        }
+		
+		stage('Quality Gate Status Check Dev') {
+            when {
+				not{
+					 branch 'master'
+				}      
+            }
+            steps {
+                script {
+                    Stage_Name = 'Quality Gate Status Check Stage Dev'
+                }
+                sleep(40)
+				script {
+                def qg = waitForQualityGate()
+				  if (qg.status != 'OK') {
+					  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+				  }else{
+					 print "Success" 
+				  }
+				 }
+            }
+        }
+		
+		stage('Contract Integration Test') {
+            when {
+                        branch 'master'
+              			expression{integration_test_stage=='true'}
+            }
+            steps {
+                script {
+                    Stage_Name = 'Contract Integration Stage'
+                }
+				    sh '''export M2_HOME=$M2_HOME
+                      export M2=$M2_HOME/bin
+                      export JAVA_HOME=$JAVA_HOME
+                      export PATH=$M2:$JAVA_HOME:$PATH
+                      mvn clean install -Pinttest -Dspring.profiles.active=test
+					  '''
+            }
+		}
+		stage('Contract Integration Analysis') {
+            when {
+                        branch 'master'
+              			expression{integration_test_stage=='true'}
+            }
+            steps {
+              	sleep(40)
+                script {
+                    Stage_Name = 'SonarQube Integration Analysis Stage'
+                }
+				withSonarQubeEnv('Sonar Qube -Linux') {
+                    sh '''export M2_HOME=/opt/apache-maven-3.6.2
+                      export M2=$M2_HOME/bin
+                      export JAVA_HOME=/jdk1.8.0_192
+                      export PATH=$M2:$JAVA_HOME:$PATH
+                      mvn sonar:sonar -Dsonar.login=$sonar_user -Dsonar.password=$sonar_password -Dproj.name=$sonar_project_name_integrationtest -Dsonar.projectKey=$sonar_projectkey_integrationtest -Dsonar.host.url=$sonar_host_url
+					  '''
+                }
+            }
+		}
+		
+		stage('Contract Integration Test - Dev') {
+            when {
+                        not{
+							branch 'master'
+						} 
+              			expression{integration_test_stage=='true'}
+            }
+            steps {
+                script {
+                    Stage_Name = 'Contract Integration Stage -Dev'
+                }
+				    sh '''export M2_HOME=$M2_HOME
+                      export M2=$M2_HOME/bin
+                      export JAVA_HOME=$JAVA_HOME
+                      export PATH=$M2:$JAVA_HOME:$PATH
+                      mvn clean install -Pinttest -Dspring.profiles.active=test -Dmaven.install.skip=true
+					  '''
+            }
+		}
+      
+    
+      	stage('Contract Integration Analysis - Dev') {
+            when {
+                         not{
+							branch 'master'
+						} 
+              			expression{integration_test_stage=='true'}
+            }
+            steps {
+              	sleep(40)
+                script {
+                    Stage_Name = 'SonarQube Integration Analysis Stage'
+                }
+				withSonarQubeEnv('Sonar Qube -Linux') {
+                    sh '''export M2_HOME=/opt/apache-maven-3.6.2
+                      export M2=$M2_HOME/bin
+                      export JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto
+                      export PATH=$M2:$JAVA_HOME:$PATH
+                      mvn sonar:sonar -Dsonar.login=$sonar_user -Dsonar.password=$sonar_password -Dproj.name=$sonar_project_name_integrationtest_dev -Dsonar.projectKey=$sonar_projectkey_integrationtest_dev -Dsonar.host.url=$sonar_host_url
+					  '''
+                }
+            }
+		}
+		
+		 stage('Contract Test Quality Gate Status Check') {
+            when {
+                        branch 'master'
+              			expression{integration_test_stage=='true'}
+            }
+            steps {
+                script {
+                    Stage_Name = 'Contract Test Quality Gate Status Check Stage'
+                }
+                sleep(40)
+				script {
+                def qg = waitForQualityGate()
+				  if (qg.status != 'OK') {
+					  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+				  }else{
+					 print "Success" 
+				  }
+				 }
+				
+            }
+        }
+		
+		stage('Contract Test Quality Gate Status Check Dev') {
+            when {
+                         not{
+							branch 'master'
+						} 
+              			expression{integration_test_stage=='true'}
+            }
+            steps {
+                script {
+                    Stage_Name = 'Contract Test Quality Gate Status Check Stage Dev'
+                }
+                sleep(40)
+				script {
+                def qg = waitForQualityGate()
+				  if (qg.status != 'OK') {
+					  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+				  }else{
+					 print "Success" 
+				  }
+				 }
+            }
+        }
+		
+		stage('Deploy') {
+            when {
+                branch 'master'
+             	expression{deploy_stage=='true'}
+            }
+            steps {
+                script {
+                    Stage_Name = 'Deploy Stage'
+                }
+				sh '''ssh  $stop_script
+					scp -v  ${WORKSPACE}/$copy_script
+					
+                              '''
+                sh '''ssh  $start_script
+                              '''
+            }
+        }
+		
+     
+		
+		
+		
+		
+}
+
+
+	
+
+    post {
+		success{
+			script {
+			 echo "GIT_COMMIT is ${env.GIT_COMMIT}"
+			 data='{"key": "'+env.BUILD_ID+'","state":"SUCCESSFUL", "name":"'+env.JOB_NAME+'","url":"'+env.BUILD_URL+'","description":"Build is successful."}'
+							bitbucketURL="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"+env.GIT_COMMIT
+							echo "bitbucketURL  ${bitbucketURL}"
+							bitbucketresponse = ["curl", "-u", "icargo-release:Icargo-release", "-X", "POST", "-H", "Content-Type: application/json", "-d", "${data}", "${bitbucketURL}"].execute().text
+							echo "bitbucketresponse ${bitbucketresponse}"
+			
+			if (env.BRANCH_NAME == 'master') {
+              env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+              echo "GIT_COMMIT_MSG is ${env.GIT_COMMIT_MSG}"
+              env.GIT_AUTHOR = sh (script: 'git log -1 --pretty=%cn ${GIT_COMMIT}', returnStdout: true).trim()
+			  echo "GIT_COMMIT is ${env.GIT_COMMIT[0..6]}"
+              env.POSTURL=env.release_url+env.service_name+"/"+env.GIT_COMMIT[0..6]
+              echo "POSTURL is ${env.POSTURL}"
+              env.dataForPost='{"branch":"master"}'
+              env.cont='Content-Type:application/json'
+              response = sh(script: 'curl -XPOST -s -o /dev/null -w %{http_code} -H $cont -d $dataForPost $POSTURL', returnStdout: true)
+              echo "def response ${response}"
+              if (response != '200') {
+                  error "Pipeline aborted due to Dokcer push: ${response}"
+              }else{
+                  print "Docker image successfully released" 
+              }
+							
+                    
+                    emailext(
+                            subject: "Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+Check console output at:  ${env.BUILD_URL}  
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'cc:'
+                    )
+					
+					
+                } else {
+					emailext(
+                            subject: "Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+Check console output at:  ${env.BUILD_URL}
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider']],
+							to: 'cc:'
+                    )
+                }
+				
+				
+			
+			}
+			
+	}
+	
+        failure {
+            script {
+			
+				echo "GIT_COMMIT is ${env.GIT_COMMIT}"
+				data='{"key": "'+env.BUILD_ID+'","state":"FAILED", "name":"'+env.JOB_NAME+'","url":"'+env.BUILD_URL+'","description":"Build has failed"}'
+							bitbucketURL="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"+env.GIT_COMMIT
+							echo "bitbucketURL  ${bitbucketURL}"
+							bitbucketresponse = ["curl", "-u", "icargo-release:Icargo-release", "-X", "POST", "-H", "Content-Type: application/json", "-d", "${data}", "${bitbucketURL}"].execute().text
+							echo "bitbucketresponse ${bitbucketresponse}"
+							
+				if (env.BRANCH_NAME == 'master') {
+                    emailext(
+                            subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+Failure happened in ${Stage_Name}.
+										
+Check console output at:  ${env.BUILD_URL}  
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'cc:sander.joseph@ibsplc.com'
+                    )
+					
+					
+                } else {
+					emailext(
+                            subject: "BRANCH FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+Failure happened in ${Stage_Name}
+
+Check console output at:  ${env.BUILD_URL}
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider']],
+							to: 'cc:sander.joseph@ibsplc.com'
+                    )
+                }
+            }
+        }
+    }
+}

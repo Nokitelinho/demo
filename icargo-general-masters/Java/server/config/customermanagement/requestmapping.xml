@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+	The file contains mapping information for request URI and to its corresponding handler
+	and  screen. There will be entries for each request URI which need to be mapped.
+	This file is used to build request mapping objects.
+-->
+
+<request-mappings>
+    <url-mapping url="customermanagement">
+     <submodule-mapping submodule="defaults">
+
+		<request-service-name>CUSTOMERMANAGEMENT_DEFAULTS</request-service-name>
+			<!--Added as part of ICRD-212854 starts -->
+			<request-action actionName="findUserDetails" methodName="findUserDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+			<!--Added as part of ICRD-212854 ends -->
+			<!-- <request-action actionName="findAllLoyaltyProgrammes" methodName="findAllLoyaltyProgrammes" parameterTypes="java.lang.String" permissionCheck="false" /> -->
+			<request-action actionName="listLoyaltyAttributeDetails" methodName="listLoyaltyAttributeDetails" parameterTypes="java.lang.String" permissionCheck="false" />
+			<request-action actionName="createLoyaltyProgramme" methodName="createLoyaltyProgramme" parameterTypes="com.ibsplc.icargo.business.customermanagement.defaults.loyalty.vo.LoyaltyProgrammeVO" permissionCheck="false" />
+			<request-action actionName="listLoyaltyProgramme" methodName="listLoyaltyProgramme" parameterTypes="com.ibsplc.icargo.business.customermanagement.defaults.loyalty.vo.LoyaltyProgrammeFilterVO" permissionCheck="false" />
+			<request-action actionName="saveCustomerGroup" methodName="saveCustomerGroup" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="listCustomerGroup" methodName="listCustomerGroup" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+			<request-action actionName="customerGroupLOV" methodName="customerGroupLOV" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false" />
+			<request-action actionName="saveTempCustomer" methodName="saveTempCustomer" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="listTempCustomer" methodName="listTempCustomer" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+			<request-action actionName="listTempCustomerDetails" methodName="listTempCustomerDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.ListTempCustomerVO" permissionCheck="false" />
+			<request-action actionName="saveGroupLoyaltyPgm" methodName="saveGroupLoyaltyPgm" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="listGroupLoyaltyPgm" methodName="listGroupLoyaltyPgm" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+			<request-action actionName="listAllLoyaltyProgrammes" methodName="listAllLoyaltyProgrammes" parameterTypes="com.ibsplc.icargo.business.customermanagement.defaults.loyalty.vo.LoyaltyProgrammeFilterVO,int" permissionCheck="false" />
+			<!--  <request-action actionName="generateLoyaltyPointsForAWB" methodName="generateLoyaltyPointsForAWB" parameterTypes="com.ibsplc.icargo.business.customermanagement.defaults.loyalty.vo.AirWayBillLoyaltyProgramVO" permissionCheck="false" /> -->
+			<request-action actionName="registerCustomer" methodName="registerCustomer" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerVO" permissionCheck="false" />
+			<request-action actionName="listCustomer" methodName="listCustomer" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+			<!--  <request-action actionName="listCustomerDetails" methodName="listCustomerDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerListFilterVO" permissionCheck="false" /> -->
+			<request-action actionName="checkForCustomer" methodName="checkForCustomer" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="listLoyaltyPgmToCustomers" methodName="listLoyaltyPgmToCustomers" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+			<request-action actionName="listLoyaltyPointsForAwb" methodName="listLoyaltyPointsForAwb" parameterTypes="com.ibsplc.icargo.business.customermanagement.defaults.loyalty.vo.ListPointsAccumulatedFilterVO,int" permissionCheck="false" />
+			<request-action actionName="saveLoyaltyPgmToCustomers" methodName="saveLoyaltyPgmToCustomers" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findParameterDetails" methodName="findParameterDetails" parameterTypes="java.lang.String" permissionCheck="false" />
+			<request-action actionName="listPointAccumulated" methodName="listPointAccumulated" parameterTypes="com.ibsplc.icargo.business.customermanagement.defaults.loyalty.vo.AirWayBillLoyaltyProgramFilterVO" permissionCheck="false" />
+			<request-action actionName="showPoints" methodName="showPoints" parameterTypes="com.ibsplc.icargo.business.customermanagement.defaults.loyalty.vo.AirWayBillLoyaltyProgramFilterVO" permissionCheck="false" />
+			<request-action actionName="customerContactsLov" methodName="customerContactsLov" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+			<request-action actionName="saveCustomerContactPoints" methodName="saveCustomerContactPoints" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="listCustomerContactPoints" methodName="listCustomerContactPoints" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+			<request-action actionName="changeStatusOfCustomers" methodName="changeStatusOfCustomers" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="validateCustomerForPointsRedemption" methodName="validateCustomerForPointsRedemption" parameterTypes="com.ibsplc.icargo.business.customermanagement.defaults.loyalty.vo.RedemptionValidationVO" permissionCheck="false" />
+			<request-action actionName="runningLoyaltyProgrammeLOV" methodName="runningLoyaltyProgrammeLOV" parameterTypes="java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate,int" permissionCheck="false" />
+			<!--  <request-action actionName="deleteCustomers" methodName="deleteCustomers" parameterTypes="java.util.Collection" permissionCheck="false" /> -->
+			<request-action actionName="saveCustomerServices" methodName="saveCustomerServices" parameterTypes="com.ibsplc.icargo.business.customermanagement.defaults.loyalty.vo.CustomerServicesVO" permissionCheck="false" />
+			<request-action actionName="listCustomerServices" methodName="listCustomerServices" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+			<request-action actionName="customerServicesLOV" methodName="customerServicesLOV" parameterTypes="java.lang.String,java.lang.String,int" permissionCheck="false" />
+		    <!-- added by kiran starts -->
+		        <request-action actionName="viewCustomerGroups" methodName="viewCustomerGroups" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerGroupFilterVO" permissionCheck="false" />
+     		    <request-action actionName="listCustomerGroupDetails" methodName="listCustomerGroupDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		    	<request-action actionName="saveCustomerGroupDetails" methodName="saveCustomerGroupDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+	 	        <request-action actionName="deleteCustomerGroups" methodName="deleteCustomerGroups" parameterTypes="java.util.Collection" permissionCheck="false" />
+		    <!-- added by kiran ends -->
+		    <request-action actionName="findClaimList" methodName="findClaimList" parameterTypes="com.ibsplc.icargo.business.claims.defaults.vo.ClaimFilterVO" permissionCheck="false" />
+			<request-action actionName="findSpotRateRequestsByFilter" methodName="findSpotRateRequestsByFilter" parameterTypes="com.ibsplc.icargo.business.tariff.freight.spotrate.vo.SpotRateRequestFilterVO" permissionCheck="false" />
+			<request-action actionName="listInvoices" methodName="listInvoices" parameterTypes="com.ibsplc.icargo.business.accounting.invoicing.vo.InvoiceFilterVO" permissionCheck="false" />
+			<request-action actionName="findMessageForCustomers" methodName="findMessageForCustomers" parameterTypes="com.ibsplc.icargo.business.msgbroker.message.vo.MessageListFilterVO,java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findBookings" methodName="findBookings" parameterTypes="com.ibsplc.icargo.business.capacity.booking.vo.BookingFilterVO" permissionCheck="false" />
+			<request-action actionName="findCustomerStockDetails" methodName="findCustomerStockDetails" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockDetailsFilterVO" permissionCheck="false" />
+			<request-action actionName="findCustomerEnquiryDetails" methodName="findCustomerEnquiryDetails" parameterTypes="com.ibsplc.icargo.business.capacity.allotment.vo.CustomerAllotmentEnquiryFilterVO" permissionCheck="false" />
+			<request-action actionName="findRateLineDetailsByFilter" methodName="findRateLineDetailsByFilter" parameterTypes="com.ibsplc.icargo.business.tariff.freight.vo.TariffFilterVO" permissionCheck="false" />
+			<request-action actionName="findCharterForCustomer" methodName="findCharterForCustomer" parameterTypes="com.ibsplc.icargo.business.cap.defaults.charter.vo.ListCharterOperationsFilterVO" permissionCheck="false" />
+			<request-action actionName="customerEnquiryDetails" methodName="customerEnquiryDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false"/> 
+			<request-action actionName="printListCustomerReport" methodName="printListCustomerReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />		
+			  <request-action actionName="generateLoyaltyDetailsReport" methodName="generateLoyaltyDetailsReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			 <!-- added by Jaise starts -->
+			 <!-- <request-action actionName="findShipments" methodName="findShipments" parameterTypes="com.ibsplc.icargo.business.operations.shipment.vo.ShipmentFilterVO" permissionCheck="false" />	-->	
+  			 <!-- added by Jaise ends -->
+			 <!-- added by a-3045 for CR HA68 starts -->
+			 <request-action actionName="uploadTSAData" methodName="uploadTSAData" parameterTypes="java.lang.String,[B" permissionCheck="false" />		
+  			 <!-- added by a-3045 for CR HA68 ends -->
+  			 <!-- ICRD-18206 A-4789 15 Oct 2012 Changes starts here -->
+			<request-action actionName="saveCustomerDetails" methodName="saveCustomerDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="saveCustomerCreditDetails" methodName="saveCustomerCreditDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerCreditVO" permissionCheck="false"/>
+			<request-action actionName="findCustomerCreditDetails" methodName="findCustomerCreditDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerCreditFilterVO" permissionCheck="false"/>
+			<request-action actionName="saveCustomerCertificateDetails" methodName="saveCustomerCertificateDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="updateCustomerStatus" methodName="updateCustomerStatus" parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="getAllCustomers" methodName="getAllCustomers" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+			<request-action actionName="getCustomerDetails" methodName="getCustomerDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<!-- ICRD-18206 A-4789 15 Oct 2012 Changes ends here -->
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+			<!-- Added for ICRD-67442 by A-5163 starts -->
+			<request-action actionName="loadCustomerDetailsHistory" methodName="loadCustomerDetailsHistory" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false"/>
+			<request-action actionName="findSystemParameterByCodes" methodName="findSystemParameterByCodes" parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<!-- Added as part of CR ICRD-253447 by A-8154 -->
+			<request-action actionName="validateStockHolderFromCustomerActivation" methodName="validateStockHolderFromCustomerActivation" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerVO" permissionCheck="false" />
+			<!-- Added as part of CR ICRD-236527 by A-8227 starts -->
+			<request-action actionName="getBillingInvoiceDetails" methodName="getBillingInvoiceDetails" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+			<request-action actionName="getCCADetails" methodName="getCCADetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+		    <request-action actionName="getPaymentDetails" methodName="getPaymentDetails" parameterTypes="com.ibsplc.icargo.business.cra.agentbilling.defaults.vo.CustomerInvoiceDetailsVO" permissionCheck="false" />
+			<!-- Added as part of CR ICRD-236527 by A-8227 ends-->
+			<!-- Added by A-8169 for ICRD-236527 starts -->
+			<request-action actionName="printAccountStatement" methodName="printAccountStatement" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerFilterVO" permissionCheck="false" />
+			<!-- Added by A-8169 for ICRD-236527 ends -->
+			<!-- Added by A-8169 for ICRD-236527 starts -->
+			<request-action actionName="getCustomerScribbleDetails" methodName="getCustomerScribbleDetails" parameterTypes="com.ibsplc.icargo.framework.web.json.vo.ScribbleNoteFilterVO" permissionCheck="false" />
+			<request-action actionName="saveCustomerScribbleDetails" methodName="saveCustomerScribbleDetails" parameterTypes="com.ibsplc.icargo.framework.web.json.vo.ScribbleNoteDetailsVO" permissionCheck="false" />
+			<!-- Added by A-8169 for ICRD-236527 ends -->
+			<request-action actionName="emailAccountStatement" methodName="emailAccountStatement" parameterTypes="com.ibsplc.icargo.business.customermanagement.defaults.profile.vo.EmailAccountStatementFeatureVO" permissionCheck="false" />
+			<request-action actionName="listGroupDetailsForCustomer" methodName="listGroupDetailsForCustomer" parameterTypes="com.ibsplc.icargo.business.shared.generalmastergrouping.vo.GeneralMasterGroupFilterVO" permissionCheck="false" />
+  	<request-action actionName="findCustomerCertificates" methodName="findCustomerCertificates" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerVO" permissionCheck="false" />
+  			<!-- Added as part of IASCB-190051 starts -->
+  			<request-action actionName="validateSinglePoa" methodName="validateSinglePoa" parameterTypes="com.ibsplc.icargo.business.operations.shipment.vo.ShipmentFilterVO" permissionCheck="false"/>
+			<request-action actionName="validateShipmentDetails" methodName="validateShipmentDetails" parameterTypes="com.ibsplc.icargo.business.operations.shipment.vo.ShipmentFilterVO" permissionCheck="false"/>
+			<request-action actionName="findShipmentHandlingHistory" methodName="findShipmentHandlingHistory" parameterTypes="com.ibsplc.icargo.business.operations.shipment.vo.ShipmentHistoryFilterVO" permissionCheck="false"/>
+			<request-action actionName="saveBrokerMapping" methodName="saveBrokerMapping" parameterTypes="com.ibsplc.icargo.business.shared.customer.vo.CustomerVO" permissionCheck="false"/>
+			<request-action actionName="uploadBrokerMappingDocuments" methodName="uploadBrokerMappingDocuments" parameterTypes="com.ibsplc.icargo.business.businessframework.documentrepository.defaults.vo.DocumentRepositoryMasterVO" permissionCheck="false"/>
+			<request-action actionName="interfaceBrokerMappingDocuments" methodName="interfaceBrokerMappingDocuments" parameterTypes="java.util.Collection" permissionCheck="false"/>
+  			<!-- Added as part of IASCB-190051 ends -->
+  	</submodule-mapping>
+    </url-mapping>
+</request-mappings>

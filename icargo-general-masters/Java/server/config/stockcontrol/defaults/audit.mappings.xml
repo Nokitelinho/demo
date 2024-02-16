@@ -1,0 +1,27 @@
+<audit-mappings xmlns="http://www.ibsplc.com/icargo/audit/mappings" product="stockcontrol" subproduct="defaults">
+<audit-entities package="com.ibsplc.icargo.business.stockcontrol.defaults">
+
+	<audit name="stockcontrol.defaults.StockHolderAudit" entity="StockHolder" enabled="true">
+				StockHolderAudit
+	</audit> 
+	<audit name="stockcontrol.defaults.Stock" entity="Stock" enabled="true">
+			StockAudit
+	</audit>
+	<audit name="stockcontrol.defaults.StockRequest" entity="StockRequest" enabled="false">
+			StockRequestAudit
+	</audit>
+	<audit name="stockcontrol.defaults.BlackListStock" entity="BlackListStock" enabled="true">
+			BlacklistStockAudit
+	</audit>
+	
+</audit-entities>
+
+<audit-entities package="com.ibsplc.icargo.business.stockcontrol.defaults.reservation">
+	
+	<audit name="stockcontrol.defaults.reservation.Reservation" entity="Reservation" enabled="true">
+			ReservationAudit
+	</audit>
+	
+</audit-entities>
+
+</audit-mappings>

@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-35824_MSM27196.yml
+  - changeSet:
+       id: 27196
+       author: A-10597
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: ccaawbchgdtl
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE ccaawbchgdtl (
+            ccaawbchgsernum integer,	
+            ccasernum integer,	
+            rectyp varchar(1),	
+            cmpcod varchar(6),	
+            chg numeric(16,4),	
+            paytyp varchar(50),	
+            duecarflg varchar(10),	
+            dueagtflg varchar(10),	
+            chghed varchar(200),	
+            chdcod varchar(100),	
+            recchg numeric(16,4),	
+            lstupdtim timestamp(3) NOT NULL,	
+            lstupdusr varchar(50) NOT NULL,	
+            CONSTRAINT ccaawbchgdtl_pk PRIMARY KEY (ccaawbchgsernum, ccasernum)
+           );
+            
+            comment on table ccaawbchgdtl is 'CCA Awb Charge Detail table , Child Table of CCAAWB';
+            
+            comment on column ccaawbchgdtl.cmpcod is 'The code that uniquely identifies the company for which the application is hosted';
+            comment on column ccaawbchgdtl.ccasernum is 'CCA Serial Number';
+            comment on column ccaawbchgdtl.rectyp is 'CCA Record Type Original-O, Revised-R';
+            comment on column ccaawbchgdtl.ccaawbchgsernum is 'Charge Detil Serial Number';
+            comment on column ccaawbchgdtl.paytyp is 'Paymente Type';
+            comment on column ccaawbchgdtl.chg is 'Charge';
+            comment on column ccaawbchgdtl.duecarflg is 'Due Carrier Flag';
+            comment on column ccaawbchgdtl.dueagtflg is 'Due Agent Flag';
+            comment on column ccaawbchgdtl.chghed is 'Charge Head';
+            comment on column ccaawbchgdtl.chdcod is 'Charge Head Code';
+            comment on column ccaawbchgdtl.recchg is 'Recommented Charge';
+            comment on column ccaawbchgdtl.lstupdtim is 'The date and time at which record was last updated';
+            comment on column ccaawbchgdtl.lstupdusr is 'Last Update User.The application user code who performed the operation on the record';

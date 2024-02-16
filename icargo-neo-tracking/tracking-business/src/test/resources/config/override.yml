@@ -1,0 +1,13 @@
+spring:
+  profile:
+    active: test
+  liquibase:
+    enabled: true
+    change-log: classpath:/config/db.changelog-master-test.yaml
+  cloud:
+    stream:
+      bindings:
+        AWB_EVENT_CHANNEL_IN:
+          destination: av-awb-domain-events
+        QMS_DOMAIN_EVENTS_CHANNEL_IN:
+          destination: av-qms-domain-events

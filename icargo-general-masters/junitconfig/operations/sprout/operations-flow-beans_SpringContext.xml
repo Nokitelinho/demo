@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	
+	
+	<bean id="operationsAcceptanceController"
+		class="com.ibsplc.icargo.business.operations.shipment.AcceptanceController">  			
+	</bean>	
+	
+	<bean id="operationsShipmentController"
+		class="com.ibsplc.icargo.business.operations.shipment.ShipmentController">  			
+	</bean>	
+	
+	<bean id="operationsPltTrackingController"
+			class="com.ibsplc.icargo.business.operations.shipment.plt.TrackingController">  			
+	</bean>	
+	<bean id="operationsCTOShipmentController"
+		class="com.ibsplc.icargo.business.operations.shipment.cto.CTOShipmentController">  			
+	</bean>
+	
+	<bean id="operations_flthandling_ORDINO_EVENT_MSGBROKER_CHANNEL_Mapper"
+       class="com.ibsplc.icargo.business.qualitymanagement.defaults.adhocalert.handler.MsgBrokerEventMapper">
+     </bean> 
+    	<bean id="operationsCTODiscrepancyController"
+		class="com.ibsplc.icargo.business.operations.shipment.discrepancy.CTODiscrepancyController">  			
+	</bean>	
+	<bean id="operationsDeliveryController"
+		class="com.ibsplc.icargo.business.operations.shipment.delivery.DeliveryController">  			
+	</bean>	
+	<bean id="operationsCTOAcceptanceController"
+		class="com.ibsplc.icargo.business.operations.shipment.cto.CTOAcceptanceController">  			
+	</bean>	
+	<bean id="operationsTKCTOManifestController"
+		class="com.ibsplc.icargo.business.operations.flthandling.cto.tk.TKCTOManifestController">  			
+	</bean>	
+	<bean id="operationsCTODeliveryController"
+		class="com.ibsplc.icargo.business.operations.shipment.cto.delivery.CTODeliveryController">  			
+	</bean>	
+	<bean id="operationsDiscrepancyController"
+		class="com.ibsplc.icargo.business.operations.shipment.discrepancy.DiscrepancyController">  			
+	</bean>
+    	<bean id="operationsInterlineController"
+		class="com.ibsplc.icargo.business.operations.flthandling.interline.InterlineController">  			
+	</bean>	
+	<bean id="operationsManifestController"
+		class="com.ibsplc.icargo.business.operations.flthandling.ManifestController">  			
+	</bean>	
+	<bean id="operationsArrivalController"
+		class="com.ibsplc.icargo.business.operations.flthandling.ArrivalController">  			
+	</bean>	
+	<bean id="operationsCTOManifestController"
+		class="com.ibsplc.icargo.business.operations.flthandling.cto.CTOManifestController">  			
+	</bean>	
+	<bean id="operationsBreakdownController"
+		class="com.ibsplc.icargo.business.operations.flthandling.cto.BreakdownController">  			
+	</bean>	
+	<bean id="operationsRampController"
+		class="com.ibsplc.icargo.business.operations.flthandling.cto.ramp.RampController">  			
+	</bean>	
+	<bean id="operationsLoadPlanController"
+		class="com.ibsplc.icargo.business.operations.flthandling.loadplan.LoadPlanController">  			
+	</bean>	
+	<bean id="operationsLHAcceptanceController"
+		class="com.ibsplc.icargo.business.operations.shipment.lh.LHAcceptanceController">  			
+	</bean>	
+		
+	<bean id="operationsLHShipmentController"
+		class="com.ibsplc.icargo.business.operations.shipment.lh.LHShipmentController">  			
+	</bean>
+	 <bean id="operationsCoolToolController"
+			class="com.ibsplc.icargo.business.operations.cooltool.CoolToolController">  			
+	</bean>	
+	<bean id="operations.shipment.saveCCAPreProcessor"
+	    class="com.ibsplc.icargo.business.operations.shipment.interceptor.SaveCCAPreProcessor">
+	</bean>
+	<bean id="operations_shipment_SAVESHIPHISTORY_EVENT_MSGBROKER_CHANNEL_Mapper"
+			class="com.ibsplc.icargo.business.qualitymanagement.defaults.adhocalert.handler.MsgBrokerEventMapper">
+	</bean>	
+	<bean id="operations_shipment_REOPEN_AWB_EVENT_MSGBROKER_CHANNEL_Mapper"
+			class="com.ibsplc.icargo.business.qualitymanagement.defaults.adhocalert.handler.MsgBrokerEventMapper">
+	</bean>
+	<bean id="operations_shipment_DELETE_AWB_EVENT_MSGBROKER_CHANNEL_Mapper"
+			class="com.ibsplc.icargo.business.qualitymanagement.defaults.adhocalert.handler.MsgBrokerEventMapper">
+	</bean>	
+     <bean id="operations_shipment_STATUS_HISTORY_EVENT_WORKFLOW_CHANNEL_Mapper"
+         class="com.ibsplc.icargo.business.qualitymanagement.defaults.adhocalert.handler.WorkflowEventMapper">
+     </bean> 
+	 <bean id="operationsRegulatoryValidator"
+         class="com.ibsplc.icargo.business.operations.shipment.RegulatoryValidator">
+	</bean> 
+	<bean id="operations_flthandling_ARRIVAL_EVENT_MSGBROKER_CHANNEL_Mapper" 
+		  class="com.ibsplc.icargo.business.qualitymanagement.defaults.adhocalert.handler.MsgBrokerEventMapper"> 
+     </bean> 
+	 <bean id="operationsTKShipmentController"
+		class="com.ibsplc.icargo.business.operations.shipment.tk.TKShipmentController">  			
+	</bean>
+	
+</beans>

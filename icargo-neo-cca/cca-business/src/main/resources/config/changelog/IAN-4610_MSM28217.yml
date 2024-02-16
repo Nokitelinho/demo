@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-4610_MSM28217.yml
+  - changeSet:
+       id: 28217
+       author: A-1945
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: ccaawbtaxdtl
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE ccaawbtaxdtl (
+            ccaawbtaxsernum bigint not null,
+            ccasernum integer,
+            rectyp varchar(1),
+            cfgtyp varchar(10),
+            taxdtl json,
+            cmpcod varchar(6) not null,
+            lstupdtim timestamp not null,
+            lstupdusr varchar(50) not null,
+
+            CONSTRAINT ccaawbtaxdtl_pkey PRIMARY KEY (ccaawbtaxsernum, ccasernum, rectyp)
+            );
+
+            COMMENT ON TABLE ccaawbtaxdtl IS 'AWB Tax Detail table, child table of ccaawb';
+
+            COMMENT ON COLUMN ccaawbtaxdtl.ccaawbtaxsernum IS 'Serial number of Tax Detail';
+            COMMENT on COLUMN ccaawbtaxdtl.ccasernum is 'CCA serial number';
+            COMMENT on COLUMN ccaawbtaxdtl.rectyp is 'CCA AWB record rype Original-O, Revised-R';
+            COMMENT ON COLUMN ccaawbtaxdtl.cfgtyp IS 'Configuration type';
+            COMMENT ON COLUMN ccaawbtaxdtl.taxdtl IS 'Tax details of type json';
+            COMMENT ON COLUMN ccaawbtaxdtl.cmpcod IS 'The code that uniquely identifies the company for which the application is hosted';
+            COMMENT ON COLUMN ccaawbtaxdtl.lstupdtim IS 'The date and time at which record was last updated';
+            COMMENT ON COLUMN ccaawbtaxdtl.lstupdusr IS 'Last update user. The application user code who performed the operation on the record';

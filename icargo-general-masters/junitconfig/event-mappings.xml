@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evt:event-mappings xmlns:evt="http://www.ibsplc.com/icargo/business/event" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ibsplc.com/icargo/business/event xibase/java/server/config/framework/xsd/event-mappings.xsd ">
+  <!--Message :MsgBroker-Message Events Starts-->
+    <!--<evt:event name="auditMessageReceipt">
+		<evt:action name="auditMessageReceipt" type="WORKFLOW" builder="com.ibsplc.icargo.business.msgbroker.message.builder.WorkflowBuilder" method="initiateWorkflow" async="false" />  
+    </evt:event>-->
+    <!--<evt:event name="auditOnMessagesSend"> -->
+    	<!--<evt:action name="auditOnMessagesSend" type="AUDIT" builder="com.ibsplc.icargo.business.msgbroker.message.builder.MsgBrokerMessageBuilder" method="auditMessagesSend" async="false"/>-->
+    <!-- </evt:event>-->
+    <!-- <evt:event name="auditOnMessageSend"> -->
+    	<!--<evt:action name="auditOnMessageSend" type="AUDIT" builder="com.ibsplc.icargo.business.msgbroker.message.builder.MsgBrokerMessageBuilder" method="auditMessageSend" async="false"/>-->
+    <!-- </evt:event> -->
+	
+	 <!--Message :MsgBroker-Message Events ends-->
+	 
+	 <!--<evt:event name="updateFlightStatus">
+          <evt:action name="auditUpdateFlightStatus" type="AUDIT" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationHistoryBuilder" method="auditUpdateFlightStatus" async="false" />	-->	  
+           <!-- added by a-5111 for bug id:25875-->
+		<!--  <evt:action name="updateFlightStatus" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationPublishBuilder" method="publishFlightDataForUpdateFlightStatus" async="true" />		     
+     </evt:event>-->
+	
+	<!--<evt:event name="openFlight">
+          <evt:action name="auditOpenFlightForBooking" type="AUDIT" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationHistoryBuilder" method="auditOpenFlightForBooking" async="false" />		  
+    </evt:event>-->
+	<!--<evt:event name="closeFlightForBooking">
+          <evt:action name="auditCloseFlightForBooking" type="AUDIT" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationHistoryBuilder" method="auditCloseFlightForBooking" async="false"/>		  
+    </evt:event>-->
+	<!--<evt:event name="closeSegment">
+          <evt:action name="auditCloseSegment" type="AUDIT" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationHistoryBuilder" method="auditCloseSegment" async="false" />		  
+    </evt:event>-->
+	
+	
+	<!--<evt:event name="saveFlight">
+          <evt:action name="auditSaveFlight" type="AUDIT" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationHistoryBuilder" method="auditSaveFlight" async="false" />-->		  
+           <!-- added by a-5111 for bug id:25875-->
+	      <!--<evt:action name="saveFlight" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationPublishBuilder" method="publishFlightData" async="true" />		  
+    </evt:event>-->
+	
+	<!--<evt:event name="openSegment">
+          <evt:action name="auditOpenSegment" type="AUDIT" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationHistoryBuilder" method="auditOpenSegment" async="false" />		  
+    </evt:event>-->
+
+	<!--<evt:event name="saveMarkFlightMovement">
+          <evt:action name="auditMvtUpdate" type="AUDIT" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationHistoryBuilder" method="auditMvtUpdate" async="false" />-->		  
+           	<!-- Added By a-5111 for BUG id:25875-->   
+          <!--<evt:action name="saveMarkFlightMovement" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationPublishBuilder" method="publishFlightDataForMarkFlightMovements" async="true" />		  
+		  <evt:action name="saveShipmentHistoryForArrival" type="SHPHIS" builder="com.ibsplc.icargo.business.flight.operation.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForArrival" async="false" />		  
+    </evt:event>-->
+	<evt:event name="reopenFlight">
+           <evt:action name="reopenFlightAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="reopenFlightAudit" async="false" />		  
+    </evt:event>
+	<evt:event name="operations.flthandling.closeFlight">
+           <evt:action name="auditCloseFlight" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditCloseFlight" async="false" />		  
+		   <evt:action name="saveShipmentHistoryForCloseFlight" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForImpDiscrepancy" async="false" />
+    </evt:event>
+	<evt:event name="printDWSEnquiryReport">
+          <evt:action name="auditDWSPrint" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditDWSPrint" async="false" />		  
+    </evt:event>
+	<evt:event name="generateManifestReport">
+           <evt:action name="printManifestAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="printManifestAudit" async="false" />		  
+    </evt:event>
+	<evt:event name="saveLoadPlan">
+          <evt:action name="auditReleaseForOps" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditReleaseForOps" async="false" />		  
+          <evt:action name="loadPlanAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditLoadPlanShipment" async="false" />
+		  <!-- CRQ ID: ICRD-19906 - Jeena - Added to get SLAM call through event framework-->
+		  <evt:action name="slamForLoadplan" type="SLAM" builder="com.ibsplc.icargo.business.operations.flthandling.builder.SlamBuilder" method="slamForLoadplan" async="true" />
+		   <!--Changes for ICRD-20041 A-5132 starts-->
+		  <evt:action name="saveTrackingForLoadPlan" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForLoadPlan" async="true" />
+		  <!--Changes for ICRD-20041 A-5132 ends-->
+    </evt:event>
+	<!--Added by T-1916 for ICRD-20038	-->
+	<evt:event name="operations.flthandling.cto.finaliseExportFlight">
+           <evt:action name="finalizeFlightAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="finalizeFlightAudit" async="false" />
+          <evt:action name="finaliseFlightAuditForShipment" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentsDepartureDetails" async="false" />
+		  <evt:action name="finaliseExportFlight" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForDeparture" async="true" />	
+		  <evt:action name="saveShipmentHistoryForFlightFinalize" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="finaliseExportFlight" async="false" />
+    </evt:event>
+	<evt:event name="operations.flthandling.cto.saveCTOExportManifest">
+		<evt:action name="slamForManifest" type="SLAM" builder="com.ibsplc.icargo.business.operations.flthandling.builder.SlamBuilder" method="slamForManifest" async="true" />
+         <evt:action name="auditExportFlight" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditExportFlight" async="false" />		  
+	  <evt:action name="printExportManifestAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="printExportManifestAudit" async="false" />
+	  <evt:action name="shipmentManifestAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentManifestDetails" async="false" />
+	<!-- Added for ICRD-20041 A-5132 -->	
+	 <evt:action name="saveTrackingForManifest" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForManifest" async="true" />	 
+	 <evt:action name="ctoExportManifestShipmentHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForManifest" async="false" />
+	   <evt:action name="ctoExportManifestDiscrepancyShipmentHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForExportDiscrepancy" async="false" />
+       </evt:event>
+	<evt:event name="operations.flthandling.closeFlightForImportManifest">
+         <evt:action name="auditCloseFlight" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditCloseFlight" async="false" />		  
+		 <evt:action name="saveShipmentHistoryForImpDiscrepancy" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForImpDiscrepancy" async="false" />	  
+    </evt:event>
+	<!-- Added by A-5132 for ICRD-20041-->
+	<evt:event name="autoArrive">
+         <evt:action name="saveTrackingForAutoArrival" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForAutoArrival" async="true" />		  
+    </evt:event>
+	<evt:event name="saveDWSDetails">
+         <evt:action name="saveDWSDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="saveDWSDetailsAudit" async="false" />		  
+    </evt:event>
+		<!--Added by T-1916 for ICRD-20038	-->
+    <evt:event name="operations.flthandling.saveBreakdownDetails">
+		<evt:action name="slamForBreakdown" type="SLAM" builder="com.ibsplc.icargo.business.operations.flthandling.builder.SlamBuilder" method="slamForBreakdown" async="true" />
+         <evt:action name="auditUldBreakdown" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditUldBreakdown" async="false" />
+          <evt:action name="breakDownAuditForShipment" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditBreakDownDetails" async="false" />
+		  <evt:action name="saveBreakdownDetails" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForBreakdown" async="true" />	
+		  <evt:action name="saveNotesForBreakdown" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForBreakdown" async="false" />
+		  <evt:action name="breakdownDetailsShipmentHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveBreakdownDetails" async="false" />
+		  <evt:action name="breakdownShipmentVersionHistory" type="VERHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentVersionBuilder" method="saveBreakdownDetails" async="false" />
+    </evt:event>
+	<evt:event name="flagFlight">
+           <evt:action name="auditForFlagFlight" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditForFlagFlight" async="false" />		  
+    </evt:event>
+	<evt:event name="saveNotocDetails">
+          <evt:action name="saveNotocAuditDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="saveNotocAuditDetails" async="false" />		  
+    </evt:event>
+	
+	<!--Allotment :Capacity-Allotment Events Starts-->
+	<!--
+	<evt:event name="releaseSegmentAllotments">
+          <evt:action name="auditReleaseAllotments" type="AUDIT" builder="com.ibsplc.icargo.business.capacity.allotment.builder.CapacityAllotmentAuditBuilder" method="auditReleaseAllotments" async="false" />		  
+    </evt:event>
+	
+	<evt:event name="releaseStationAllotments">
+          <evt:action name="auditReleaseAllotments" type="AUDIT" builder="com.ibsplc.icargo.business.capacity.allotment.builder.CapacityAllotmentAuditBuilder" method="auditReleaseAllotments" async="false" />		  
+    </evt:event>
+	
+	<evt:event name="releaseAllotment">
+          <evt:action name="auditReleaseAllotment" type="AUDIT" builder="com.ibsplc.icargo.business.capacity.allotment.builder.CapacityAllotmentAuditBuilder" method="auditReleaseAllotment" async="false" />		  
+    </evt:event>
+	
+	<evt:event name="openAllotment">
+          <evt:action name="auditOpenAllotmentForBooking" type="AUDIT" builder="com.ibsplc.icargo.business.capacity.allotment.builder.CapacityAllotmentAuditBuilder" method="auditOpenAllotmentForBooking" async="false" />		  
+    </evt:event>
+	<evt:event name="closeAllotment">
+          <evt:action name="auditCloseAllotmentForBooking" type="AUDIT" builder="com.ibsplc.icargo.business.capacity.allotment.builder.CapacityAllotmentAuditBuilder" method="auditCloseAllotmentForBooking" async="false" />		  
+    </evt:event>
+	<evt:event name="saveFlightAllotmentDetails">
+          <evt:action name="auditAllotmentChange" type="AUDIT" builder="com.ibsplc.icargo.business.capacity.allotment.builder.CapacityAllotmentAuditBuilder" method="auditAllotmentChange" async="false" />		  
+    </evt:event>
+	-->
+    <!-- WorkFlow to Event Framework:Added by A-3207 Starts-->
+	 <!--
+    <evt:event name="updateAllotmentRequestStatus">
+              <evt:action name="generateNotificationForStatusUpdate" type="WORKFLOW" builder="com.ibsplc.icargo.business.capacity.allotment.builder.WorkFlowBuilder" method="generateNotificationForStatusUpdate" async="true" />		  
+    </evt:event>
+    <evt:event name="saveScheduleAllotmentDetails">
+              <evt:action name="generateNotificationForAllotmentCreation" type="WORKFLOW" builder="com.ibsplc.icargo.business.capacity.allotment.builder.WorkFlowBuilder" method="generateNotificationForAllotmentCreation" async="true" />		  
+    </evt:event>
+      -->
+    <!-- WorkFlow to Event Framework:Added by A-3207 Ends-->
+	
+	<!--Allotment :Capacity-Allotment Events Ends-->
+	
+	 <!--
+    	 <evt:event name="updateFlightBookingStatusForMonitoring">
+              <evt:action name="notificationForRejectShipment" type="WORKFLOW" builder="com.ibsplc.icargo.business.capacity.booking.builder.WorkFlowBuilder" method="notificationForRejectShipment" async="true" />		  
+   	 </evt:event>
+	 -->
+    
+	 <!--Added by A-4820 for ICRD-16244-->
+	 <evt:event name="capacity.monitoring.updateFlightBookingStatusForMonitoring">
+			  <evt:action name="updateBookingVersionFromMonitoring" type="CAPHIS" builder="com.ibsplc.icargo.business.capacity.booking.builder.BookingHistoryBuilder" method="updateBookingVersionFromMonitoring" async="false" />		  			 
+   	 </evt:event>
+	 <!--
+	 <evt:event name="capacity.booking.updateBookingStatus">
+              <evt:action name="updateBookingVersion" type="CAPHIS" builder="com.ibsplc.icargo.business.capacity.booking.builder.BookingHistoryBuilder" method="updateBookingVersion" async="false" />		  
+   	 </evt:event>
+	 -->
+	  <!--Added by A-4820 for ICRD-16244 ends-->
+    <!-- Shipment :Operations-Shipment Events  Starts-->
+      <evt:event name="saveHAWBDetails"> 
+	  <evt:action name="saveNotesForHAWBDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForHAWBDetails" async="false" />
+	  <!-- CRQ ID: ICRD-21299 - A-5215 - AWH History-->
+	   <evt:action name="saveHAWBVersionDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveHAWBDetails" async="false" />		
+	</evt:event> 
+	 <evt:event name="saveShipmentDetails"> 
+	  <evt:action name="saveNotesForShipmentDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForShipmentDetails" async="false" />
+	   <!-- CRQ ID: ICRD-21299 - A-5215 -->
+	  <evt:action name="saveShipmentDetailsHistory" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveShipmentDetails" async="false" />	
+	</evt:event>
+	<evt:event name="operations.shipment.saveAcceptanceDetails"> 
+	<evt:action name="acceptanceAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditAcceptanceDetails" async="false" />
+	  <!-- CRQ ID: ICRD-17843 - Jeena - Added to get the text component in scribblepad-->
+	  <evt:action name="saveNotesForAcceptance" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForAcceptance" async="false" />
+	  <evt:action name="acceptanceHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForAcceptance" async="false" />
+	  <!-- CRQ ID: ICRD-21299 - A-5215 AWB Hhistory Starts -->
+	  <evt:action name="acceptanceVersionDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveAcceptanceDetails" async="false" />	 
+ <evt:action name="saveAcceptanceHistory" type="ACPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.AcceptanceVersionBuilder" method="saveAcceptanceDetailsHistory" async="false" />
+	  
+	</evt:event>
+	<evt:event name="operations.shipment.saveAndPrintShipmentDeeclarations"> 
+	  <evt:action name="saveAndPrintShipmentVersionDeeclarations" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveAndPrintShipmentDeeclarations" async="false" />
+	</evt:event>
+	<evt:event name="operations.shipment.saveShipmentForBooking"> 
+	  <evt:action name="saveShipmentVersionForBooking" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveShipmentForBooking" async="false" />
+	</evt:event>
+	<evt:event name="operations.shipment.updateOperationalShipmentForCTM"> 
+	  <evt:action name="updateOperationalShipmentVersionForCTM" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="updateOperationalShipmentForCTM" async="false" />
+	</evt:event>
+	<evt:event name="operations.shipment.saveShipmentsForCRA"> 
+	  <evt:action name="saveShipmentsVersionForCRA" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveShipmentsForCRA" async="false" />
+	</evt:event>
+	<evt:event name="operations.shipment.saveHandlingInstructionDetails"> 
+	  <evt:action name="saveHandlingInstructionVersionDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveHandlingInstructionDetails" async="false" />
+	</evt:event>
+	<evt:event name="operations.shipment.saveCTOFoundShipmentDetails"> 
+	  <evt:action name="saveCTOFoundShipmentVersionDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveCTOFoundShipmentDetails" async="false" />
+	</evt:event>
+	<!-- CRQ ID: ICRD-21299 - A-5215 AWB Hhistory Ends -->
+	<evt:event name="saveDeliveryNote"> 
+	  <evt:action name="deliveryNoteAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditDeliveryNoteDetails" async="false" />
+	</evt:event>
+	<evt:event name="resendNotifications"> 
+	  <evt:action name="notificationAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditShipmentNotifications" async="false" />
+	</evt:event>
+	<evt:event name="operations.shipment.saveDeliveryDetails"> 
+		<evt:action name="TrackingForDelivery" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForDelivery" async="true" />
+	  <evt:action name="deliveryAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditDeliveryDetails" async="false" />
+	<!-- CRQ ID: ICRD-17843 - T-1916 - Added to get the text component in scribblepad-->
+	  <evt:action name="saveNotesForDelivery" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForDelivery" async="false" />
+	  <evt:action name="deliveryHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForDelivery" async="false" />	  
+	</evt:event>
+	<evt:event name="saveNotification"> 
+	  <evt:action name="notificationAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditShipmentNotificationDetails" async="false" />
+	</evt:event>        
+	<evt:event name="operations.shipment.saveULDAcceptanceDetails"> 
+		<evt:action name="TrackingForULDAcceptance" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForULDAcceptance" async="true" />
+	  <evt:action name="ctoUldAcceptanceAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditULDAcceptanceDetailsForCTO" async="false" />
+	  <!-- CRQ ID: ICRD-17843 - Jeena - Added to get the text component in scribblepad-->
+	  <evt:action name="saveNotesForULDAcceptance" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForULDAcceptance" async="false" />
+	   <!-- CRQ ID: ICRD-21299 - A-5215 - AWH History-->
+	   <evt:action name="saveULDAcceptanceVersionDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveULDAcceptanceDetails" async="false" />	
+<evt:action name="saveULDAcceptanceDetailsHistory" type="ACPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.AcceptanceVersionBuilder" method="saveULDAcceptanceDetails" async="false" />
+	</evt:event>
+	<!-- added by a-5133 as part of CR ICRD-20041 starts -->
+	<evt:event name="operations.shipment.cto.saveCTODeliveryDetails"> 
+	  <evt:action name="deliveryAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditCTODeliveredDetails" async="false" />
+	  <evt:action name="TrackingForCTODelivery" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForCTODelivery" async="true" />
+	  <evt:action name="ctoDeliveryHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForDelivery" async="false" />	  
+	</evt:event>               
+	<!-- added by a-5133 as part of CR ICRD-20041 ends -->
+	<evt:event name="saveUldArrivalDetails"> 
+	   <evt:action name="uldArrivalAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentULDArrivalDetails" async="false" />
+		
+	</evt:event>
+	<evt:event name="operations.shipment.saveULDDeliveryDetails"> 
+		<evt:action name="TrackingForULDDelivery" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForULDDelivery" async="true" />
+	  <evt:action name="uldDeliveryAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditShipmentDeliveredDetails" async="false" />	  
+	  <evt:action name="uldDeliveryHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForDelivery" async="false" />	  
+	</evt:event>
+	<evt:event name="saveGroupDeliveryDetails"> 
+	  <evt:action name="groupDeliveryAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditGroupDeliveryDetails" async="false" />
+	   <evt:action name="groupDeliveryTracking" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForGroupDelivery" async="true" />
+	</evt:event>
+	<evt:event name="saveFZEMessageDetails"> 
+	  <evt:action name="acceptanceforFZEAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditHAWBAcceptance" async="false" />
+	</evt:event>
+	<evt:event name="identifyAndStampDiscrepancy"> 
+	  <evt:action name="discrepancyAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditShipmentDiscrepancyDetails" async="false" />
+	</evt:event>
+	
+	<evt:event name="createBlock"> 
+		 <evt:action name="shipmentBlockCreatedAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditCreateBlockDetails" async="false" />
+	</evt:event>
+	<evt:event name="releaseBlock"> 
+		<evt:action name="shipmentBlockReleasedAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditReleaseBlockDetails" async="false" />
+	</evt:event>
+	<evt:event name="saveShipperReturnNoteDetails"> 
+		<evt:action name="shipmentReturnAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditShipmentReturned" async="false" />
+		<!-- CRQ ID: ICRD-17843 - Jeena - Added to get the text component in scribblepad-->
+	    <evt:action name="saveNotesForShipperReturnNoteDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForShipperReturnNoteDetails" async="false" />
+	</evt:event>
+	<evt:event name="saveDeliveryReturns"> 
+		<evt:action name="deliveryReturnAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditDeliveryReturn" async="false" />
+	</evt:event>
+         <evt:event name="operations.shipment.saveHandoverDocument"> 
+		<evt:action name="documentHandOverAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditDocumentHandOver" async="false" />
+		<evt:action name="saveShipmentHistoryForDocumentHandover" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForDocumentHandover" async="false" />	  
+	</evt:event>   
+    <!-- Added by A-5132 as part Bug ICRD-20023 starts -->  
+	<evt:event name="saveShipmentNotes"> 
+		<evt:action name="auditAwbNotes" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditAwbNotes" async="false" />
+	</evt:event>
+	<!-- Added by A-5132 as part Bug ICRD-20023 ends -->     
+    <evt:event name="saveCTODeliveryNote"> 
+		
+		 <evt:action name="saveNotesForCTODeliveryNote" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForCTODeliveryNote" async="false" />
+	 </evt:event> 
+	<evt:event name="saveCTODeliveryNoteWithTrackingNumber"> 
+		<evt:action name="saveNotesForCTODeliveryNote" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForCTODeliveryNote" async="false" />
+	
+	</evt:event> 
+	<!-- Added as part of CRQ ICRD-16898 starts-->
+	<!--evt:event name="saveDangerousGoodsOccurrenceDetails"> 
+		<evt:action name="saveDangerousGoodsOccurrenceDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="saveDangerousGoodsOccurrenceDetails" async="false" />
+	</evt:event--> 
+	<!-- Added as part of CRQ ICRD-16898 ends-->
+   <!-- Shipment :Operations-Shipment Events Ends -->
+   
+   
+   <!-- Shipment :Operations-FlightHandling Events Starts -->
+             <evt:event name="saveULDArrivalDetails"> 
+		  <evt:action name="saveNotesForUldArrivalDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForUldArrivalDetails" async="false" />
+	</evt:event> 
+	<!--Added by A-4820 for ICRD-20041	-->
+	<evt:event name="operations.flthandling.saveArrivalDetails"> 
+	 <evt:action name="arrivalTracking" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForArrival"   async="true" /> 
+	 <evt:action name="arrivalAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentArrivalDetails" async="false" />
+	   <evt:action name="saveNotesForArrivalDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForArrivalDetails" async="false" />
+	   <evt:action name="saveArrivalDetails" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveArrivalDetails" async="false" />	  
+	</evt:event>
+	<!--Added by T-1916 for ICRD-20038	-->
+	<evt:event name="operations.flthandling.cto.saveOffloadDetails"> 
+	<evt:action name="saveOffloadDetails" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingDetailsForOffload" async="true" />
+	  <evt:action name="offloadAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentsOffloadDetails" async="false" />
+	  <evt:action name="saveShipmentHistoryForOffload" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForOffload" async="false" />	  
+	</evt:event>
+	<evt:event name="operations.flthandling.cto.saveCTOImportManifestDetails"> 
+	  <!--Added by A-5126 for ICRD-20041	-->
+	 <evt:action name="CTOImportManifestDetails" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForImportManifest" async="true" />
+	 <evt:action name="ctoManifestAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditCTOShipmentManifestDetails" async="false" />
+	 <!-- CRQ ID: ICRD-19906 - Jeena - Added to get SLAM call through event framework-->
+	 <evt:action name="slamForImportManifest" type="SLAM" builder="com.ibsplc.icargo.business.operations.flthandling.builder.SlamBuilder" method="slamForImportManifest" async="true" />
+	 <evt:action name="saveNotesForAddUpdateManifestDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForAddUpdateManifestDetails" async="false" />
+	 <evt:action name="saveCTOImportManifestDetails" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveCTOImportManifestDetails" async="false" />	  
+	 <evt:action name="saveCTOImportManifestVersionDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentVersionBuilder" method="saveCTOImportManifestDetails" async="false" />	
+	</evt:event>	
+	<evt:event name="operations.shipment.cto.saveCTOAcceptanceDetails"> 
+	  <evt:action name="ctoAcceptanceAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditShpAcceptanceDetailsForCTO" async="false" />
+	  <evt:action name="TrackingForCTOAcceptance" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForCTOAcceptance" async="true" />
+	  <evt:action name="ctoAcceptanceHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForAcceptance" async="false" />
+	  <evt:action name="saveCTOAcceptanceVersionDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveCTOAcceptanceDetails" async="false" />  
+<evt:action name="saveAcceptanceDetailsHistory" type="ACPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.AcceptanceVersionBuilder" method="saveAcceptanceDetailsHistory" async="false" />
+	</evt:event>
+	<evt:event name="operations.flthandling.saveCTM"> 
+	   <evt:action name="saveNotesForCTM" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForCTM" async="false" />
+	   <evt:action name="saveCTMShipmentHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveCTMShipmentHistory" async="false" />	  
+	   <evt:action name="updateOperationalShipmentVersionForCTM" type="VERHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentVersionBuilder" method="updateOperationalShipmentForCTM" async="false" />
+	</evt:event>
+	 <evt:event name="operations.flthandling.saveManifestDetails"> 
+	 <evt:action name="saveManifestDetails" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForManifest" async="false" />	  
+	</evt:event>
+	<evt:event name="operations.flthandling.cto.saveBuildupDetails"> 
+	   <evt:action name="buildUpAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentBuildUpDetails" async="false" />
+	   <evt:action name="buildTracking" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForBuildup" async="true" />
+	   
+	 <evt:action name="saveNotesForBuildupDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForBuildupDetails" async="false" />
+	</evt:event>	
+	<evt:event name="reassignShipments"> 
+	  <evt:action name="reAssignAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentReAssignedDetails" async="false" />
+	</evt:event>
+	
+	<evt:event name="generateNOTOCMessage"> 
+		 <evt:action name="saveNotocAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditNotocGenerated" async="false" />
+	</evt:event>
+	<!--Added by A-5126 for ICRD-20041-->
+	<evt:event name="saveCTMDetails"> 
+		 <evt:action name="TrackingForTransferManifest" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForTransferManifest" async="true" />
+	</evt:event>
+	<!--Added by T-1916 for ICRD-20038	-->
+	 <evt:event name="autoProcessFlight"> 
+		 <evt:action name="TrackingForAutoProcessFlight" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForAutoDeparture" async="true" />
+	</evt:event>         
+	<!-- added by A-5126 for CR ICRD-20041 -->
+	<evt:event name="saveUldArrivalDetails"> 
+	   <evt:action name="uldArrivalTracking" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForArrival" async="true" />
+	</evt:event>
+	<!-- added by T-1928 for ICRD-20053 -->
+	<evt:event name="saveRampTransferDetails"> 
+	   <evt:action name="auditRampTransferDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditRampTransferDetails" async="false" />
+		 <evt:action name="saveRampTransferDetailsHistory" type="VERHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentVersionBuilder" method="saveRampTransferDetails" async="false" />
+	</evt:event>
+   <!-- Shipment :Operations-FlightHandling Events Ends-->   
+   
+   
+   <!-- Warehouse :Warehouse-Defaults Events Starts--> 
+   
+   <evt:event name="relocateShipment"> 
+      	  <evt:action name="relocateShipmentAudit" type="AUDIT" builder="com.ibsplc.icargo.business.warehouse.defaults.builder.WarehouseAuditBuilder" method="auditShipmentRelocated" async="false" />
+   </evt:event>
+   <!-- Warehouse :Warehouse-Defaults Events Ends--> 
+   
+   
+   <!-- Cashiering :Cashiering-Defaults Events Starts--> 
+   <!--
+   <evt:event name="acceptPayment"> 
+   	  <evt:action name="paymentAdviceGenerated" type="AUDIT" builder="com.ibsplc.icargo.business.cashiering.defaults.builder.CashieringDefaultsAuditBuilder" method="auditPaymentAdviceDetail" async="false" />
+	  <evt:action name="paymentAdviceGenerated" type="AUDIT" builder="com.ibsplc.icargo.business.cashiering.defaults.builder.CashieringDefaultsAuditBuilder" method="populatePaymentAdviceGenerated" async="false" />
+   </evt:event>-->
+      
+   <!-- Cashiering :Cashiering-Defaults Events Ends--> 
+   
+   <!-- Freight :Tariff-Freight Events Starts--> 
+	<evt:event name="createSpotRateRequest">          
+          <evt:action name="createSpotRateRequestAudit" type="AUDIT" builder="com.ibsplc.icargo.business.tariff.freight.builder.TariffFreightAuditBuilder" method="auditShipmentSpotrateRequest"   async="false" />         
+    </evt:event>
+   <!-- Freight :Tariff-Freight Events Ends--> 
+	
+   <!-- CRA :awb Events starts-->
+   <!--CRA:defaults starts-->
+   <!--<evt:event name="saveCCCollectorDetails">          
+          <evt:action name="saveCCCollectorDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsMastersAuditBuilder" method="auditForCCCollectorDetails"   async="false" />         
+    </evt:event> -->
+	<!--<evt:event name="saveCASSSchedule">          
+          <evt:action name="saveCASSScheduleAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsMastersAuditBuilder" method="auditForCASSScheduleDetails"   async="false" />         
+    </evt:event> -->
+	<!--<evt:event name="saveAccountingCalendarDetails">          
+          <evt:action name="saveAccountingCalendarDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsMastersAuditBuilder" method="auditForAccountingCalendarDetails"   async="false" />         
+    </evt:event> -->
+	<!--<evt:event name="saveAirlineForCRA">          
+          <evt:action name="saveAirlineAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsMastersAuditBuilder" method="auditForCRAAirlineDetails"   async="false" />         
+    </evt:event> -->
+   <!--<evt:event name="saveIATACalendarDetails">          
+          <evt:action name="saveIATACalendarDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsMastersAuditBuilder" method="auditForIATACalendarDetails"   async="false" />         
+    </evt:event> -->
+	 <evt:event name="saveAccountDetails">          
+          <evt:action name="saveAccountDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRAAccountingMastersAuditBuilder" method="saveAccountDetails"   async="false" />         
+    </evt:event>
+    <!-- <evt:event name="finaliseAWB">          
+          <evt:action name="finaliseAWBAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsAuditBuilder" method="auditShipmentForRateAudit"   async="false" />         
+    </evt:event> -->
+	
+	<!-- <evt:event name="deleteAWB">          
+          <evt:action name="deleteAWBAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsAuditBuilder" method="auditShipmentForRateAudit"   async="false" />         
+    </evt:event> -->
+	
+	<!--<evt:event name="calculateBillingDetails">          
+          <evt:action name="calculateBillingDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsAuditBuilder" method="auditShipmentForRateAudit"   async="false" />         
+    </evt:event>-->
+	<!-- <evt:event name="saveRateAuditedAWBs">          
+          <evt:action name="saveRateAuditedAWBsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsAuditBuilder" method="auditShipmentForRateAudit"   async="false" />         
+    </evt:event> -->
+	
+	<!-- <evt:event name="deleteCCA">          
+          <evt:action name="deleteCCAAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsAuditBuilder" method="auditShipmentForCCA"   async="false" />         
+    </evt:event> -->
+	
+	<!--<evt:event name="saveAWBRoutingDetailsForDefaults">          
+          <evt:action name="saveAWBRoutingDetailsForDefaultsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsAuditBuilder" method="auditShipmentForRouting"   async="false" />         
+    </evt:event> -->
+	
+	<!-- <evt:event name="saveCCA">          
+          <evt:action name="saveCCAAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsAuditBuilder" method="auditShipmentForCCA"   async="false" />         
+		   <evt:action name="saveNotesForCCA" type="NOTES" builder="com.ibsplc.icargo.business.cra.defaults.builder.AWBNotesBuilder" method="saveNotesForCCA" async="false" />	  
+    </evt:event> -->
+	
+	<!-- <evt:event name="saveRateAuditDetails">          
+             <evt:action name="saveNotesForRateAuditDetails" type="NOTES" builder="com.ibsplc.icargo.business.cra.defaults.builder.AWBNotesBuilder" method="saveNotesForRateAuditDetails" async="false" />		  
+					  
+    </evt:event> -->
+    <!-- <evt:event name="finalizeSisInvoiceAsSch">          
+                 <evt:action name="finalizeSisInvoiceAsSch" type="NOTES" builder="com.ibsplc.icargo.business.cra.defaults.builder.CRADefaultsTransactionAuditBuilder" method="auditTransactionForFinalizeSisInvoiceAsSch" async="false" />		  
+    </evt:event> -->
+	 <!--CRA:defaults ends-->
+				
+     <!--CRA:AgentBilling Starts-->
+	 <!--
+	<evt:event name="saveSettlementsAtAwbLevel">          
+          <evt:action name="saveSettlementsAtAwbLevelAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.agentbilling.builder.CRAAgentBillingAuditBuilder" method="auditShipmentForAgentBillingSettlement"   async="false" />         
+    </evt:event>
+	
+	<evt:event name="updateCraDocumentStatus">          
+          <evt:action name="updateCraDocumentStatusAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.agentbilling.builder.CRAAgentBillingAuditBuilder" method="auditShipmentForCRA"   async="false" />         
+    </evt:event>
+	
+	<evt:event name="markAWBAsVoid">          
+          <evt:action name="markAWBAsVoidAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.agentbilling.builder.CRAAgentBillingAuditBuilder" method="auditShipmentForCRA"   async="false" />         
+    </evt:event>-->
+    <evt:event name="generateAgentBillingInvoice">          
+          <evt:action name="generateAgentBillingInvoice" type="AUDIT" builder="com.ibsplc.icargo.business.cra.agentbilling.builder.CRAAgentBillingTransactionAuditBuilder" method="auditTransactionForGenerateInvoice"   async="false" />         
+    </evt:event>
+	<!--
+    <evt:event name="saveSettlementsAtInvoiceLevel">          
+	  <evt:action name="saveSettlementsAtInvoiceLevel" type="AUDIT" builder="com.ibsplc.icargo.business.cra.agentbilling.builder.CRAAgentBillingTransactionAuditBuilder" method="auditTransactionForSaveSettlementsAtInvoiceLevel"   async="false" />         
+    </evt:event>
+    <evt:event name="generateCASSBilling">          
+    	  <evt:action name="generateCASSBilling" type="AUDIT" builder="com.ibsplc.icargo.business.cra.agentbilling.builder.CRAAgentBillingTransactionAuditBuilder" method="auditTransactionForGenerateCASSBilling"   async="false" />         
+    </evt:event>
+    <evt:event name="saveCASSSettlement">          
+	  <evt:action name="saveCASSSettlement" type="AUDIT" builder="com.ibsplc.icargo.business.cra.agentbilling.builder.CRAAgentBillingTransactionAuditBuilder" method="auditTransactionForSaveCASSSettlement"   async="false" />         
+    </evt:event>-->
+     <!--CRA:Flown Starts-->
+	 <!--
+      <evt:event name="processFlightSegments">          
+     	  <evt:action name="processFlightSegments" type="AUDIT" builder="com.ibsplc.icargo.business.cra.flown.builder.CRAFlownTransactionAuditBuilder" method="auditTransactionForProcessFlightSegments"   async="false" />         
+    </evt:event>-->
+     
+      <!--CRA:Flown Ends-->
+    
+	 <!--CRA:AgentBilling ends-->
+	<!--<evt:event name="assignFlownException">          
+          <evt:action name="assignFlownExceptionAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.flown.builder.CRAFlownAuditBuilder" method="auditShipmentForFlownExceptions"   async="false" />         
+    </evt:event>-->
+	
+	 <!--CRA:sisBilling Starts-->
+	
+ 	<evt:event name="saveInvoiceDetails">          
+	     <evt:action name="saveInvoiceDetails" type="AUDIT" builder="com.ibsplc.icargo.business.cra.sisbilling.builder.CRASisBillingTransactionAuditBuilder" method="auditTransactionForSaveInvoiceDetails"   async="false" />         
+    </evt:event>
+	<evt:event name="processInvoice">          
+	     <evt:action name="processInvoice" type="AUDIT" builder="com.ibsplc.icargo.business.cra.sisbilling.builder.CRASisBillingTransactionAuditBuilder" method="auditTransactionForProcessInvoices"   async="false" />         
+    </evt:event>
+	<!--
+	<evt:event name="saveMemo">          
+          <evt:action name="saveMemoAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.sisbilling.builder.CRASisBillingAuditBuilder" method="auditShipmentForSISBillingMemo"   async="false" />         
+    </evt:event>-->
+    
+    <!-- Added by A-5216 for ICRD-9669 starts -->
+	<evt:event name="saveFormOne">          
+	     <evt:action name="saveFormOne" type="AUDIT" builder="com.ibsplc.icargo.business.cra.sisbilling.builder.CRASisBillingTransactionAuditBuilder" method="auditTransactionForSaveInvoiceDetails"   async="false" />         
+    </evt:event>
+	<!-- Added by A-5216 for ICRD-9669 ends -->
+	
+	<evt:event name="withdrawAWBFromInvoice">          
+          <evt:action name="withdrawAWBFromInvoiceAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.sisbilling.builder.CRASisBillingAuditBuilder" method="auditShipmentForSISBilling"   async="false" />         
+    </evt:event>
+	
+	<evt:event name="updateDocumentTransactionStatus">          
+          <evt:action name="updateDocumentTransactionStatusAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.sisbilling.builder.CRASisBillingAuditBuilder" method="auditShipmentForSISBillingException"   async="false" />         
+    </evt:event>
+	
+	<evt:event name="assignException">          
+          <evt:action name="assignExceptionAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.sisbilling.builder.CRASisBillingAuditBuilder" method="auditShipmentForSISBillingException"   async="false" />         
+    </evt:event>
+	
+	<evt:event name="saveInterlineBillingEntries">          
+          <evt:action name="saveInterlineBillingEntriesAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.sisbilling.builder.CRASisBillingAuditBuilder" method="auditShipmentForSISBilling"   async="false" />         
+    </evt:event>
+	
+    <evt:event name="generateSisBillingInvoice">          
+              <evt:action name="generateSisBillingInvoice" type="AUDIT" builder="com.ibsplc.icargo.business.cra.sisbilling.builder.CRASisBillingTransactionAuditBuilder" method="auditTransactionForGenerateInvoice"   async="false" />         
+    </evt:event>
+	
+	 <!--CRA:sisBilling ends-->
+	 
+	 <!--CRA:Proration starts-->
+	<!--<evt:event name="saveManualProrationDetails">          
+          <evt:action name="saveManualProrationDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationAuditBuilder" method="auditShipmentForProration"   async="false" />         
+    </evt:event>
+	
+	<evt:event name="saveProrationExceptions">          
+          <evt:action name="saveProrationExceptionsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationAuditBuilder" method="auditShipmentForProrationException"   async="false" />         
+    </evt:event>
+	
+	<evt:event name="saveAWBRoutingDetailsForProration">          
+          <evt:action name="saveAWBRoutingDetailsForProrationAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationAuditBuilder" method="auditShipmentForRouting"   async="false" />         
+    </evt:event>-->
+	<!-- Added by A-5219 for ICRD-25191 start-->
+	<!--<evt:event name="saveProrateFactors">          
+          <evt:action name="saveProrateFactorsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationMastersAuditBuilder" method="auditForProrateFactorDetails"   async="false" />         
+    </evt:event>
+	<evt:event name="updateProrateFactorStatus">          
+          <evt:action name="updateProrateFactorStatusAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationMastersAuditBuilder" method="auditForProrateFactorUpdate"   async="false" />         
+    </evt:event>-->
+
+	<!-- Added by A-5219 for ICRD-25191 end-->
+	<!--<evt:event name="saveSpaDetails">          
+          <evt:action name="saveSpaDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationMastersAuditBuilder" method="auditForSpaDetails"   async="false" />         
+    </evt:event>
+    <evt:event name="activateSpaRateDetails">          
+          <evt:action name="activateSpaRateDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationMastersAuditBuilder" method="auditForSpaDetails"   async="false" />         
+    </evt:event>
+    <evt:event name="inActivateSpaRateDetails">          
+          <evt:action name="inActivateSpaRateDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationMastersAuditBuilder" method="auditForSpaDetails"   async="false" />         
+    </evt:event>
+    <evt:event name="cancelSpaRateDetails">          
+          <evt:action name="cancelSpaRateDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationMastersAuditBuilder" method="auditForSpaDetails"   async="false" />         
+    </evt:event>
+    <evt:event name="saveProvReqDetails">          
+          <evt:action name="saveProvReqDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationMastersAuditBuilder" method="auditForProvisoDetails"   async="false" />         
+    </evt:event>
+    <evt:event name="activateProvReqRateDetails">          
+          <evt:action name="activateProvReqRateDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationMastersAuditBuilder" method="auditForProvisoDetails"   async="false" />         
+    </evt:event>
+    <evt:event name="inActivateProvReqRateDetails">          
+          <evt:action name="inActivateProvReqRateDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationMastersAuditBuilder" method="auditForProvisoDetails"   async="false" />         
+    </evt:event>
+    <evt:event name="cancelProvReqRateDetails">          
+          <evt:action name="cancelProvReqRateDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.proration.builder.CRAProrationMastersAuditBuilder" method="auditForProvisoDetails"   async="false" />         
+    </evt:event>-->
+	
+	 <!--CRA:Proration ends-->
+	
+	
+	
+	
+	<!--CRA:Accounting starts-->
+	<!--
+	<evt:event name="saveAccountingDetails">          
+          <evt:action name="saveAccountingDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.accounting.builder.CRAAccountingAuditBuilder" method="auditShipmentForCRAAccounting"   async="false" />         
+    </evt:event>
+	<evt:event name="saveCRAAccountingDetails">          
+          <evt:action name="saveCRAAccountingDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.accounting.builder.CRAAccountingAuditBuilder" method="auditShipmentForCRAAccounting"   async="false" />         
+    </evt:event>-->
+	<!--CRA:Accounting ends-->
+	
+	<!--
+	<evt:event name="saveTransactionDetails">          
+          <evt:action name="saveTransactionDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.cra.salesreport.builder.CRASalesReportAuditBuilder" method="auditShipmentForCRASalesReport"   async="false" />         
+    </evt:event>-->
+	<evt:event name="saveDocumentDiscrepancy">          
+         <evt:action name="saveNotesForDocumentDiscrepancy" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForDocumentDiscrepancy" async="false" />
+    </evt:event>
+	<!--
+	<evt:event name="capacity.booking.saveBookingDetails">          
+         <evt:action name="saveNotesForBooking" type="NOTES" builder="com.ibsplc.icargo.business.capacity.booking.builder.AWBNotesBuilder" method="saveNotesForBooking" async="false" />
+		 <evt:action name="slamForBooking" type="SLAM" builder="com.ibsplc.icargo.business.capacity.booking.builder.SlamBuilder" method="slamForBooking" async="true" />		  
+		 <evt:action name="saveShipmentHistoryForBooking" type="SHPHIS" builder="com.ibsplc.icargo.business.capacity.booking.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForBooking" async="false" />		  
+		 <evt:action name="BookingHistory" type="BKGHIS" builder="com.ibsplc.icargo.business.capacity.booking.builder.BookingHistoryBuilder" method="saveBookingHistory" async="false" />   
+   </evt:event>
+   -->
+     <!-- CRA :awb Events ends-->
+	 <!-- Added by A-4777 for ICRD-19904 starts -->
+	 
+	<evt:event name="saveCTOAcceptanceDetails"> 
+	  <evt:action name="ctoAcceptanceAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditShpAcceptanceDetailsForCTO" async="false" />
+	  <evt:action name="TrackingForCTOAcceptance" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForCTOAcceptance" async="true" />
+	  <!--SLAM Event for OPR022 screen starts-->
+	  <evt:action name="slamForAWBAcceptance" type="SLAM" builder="com.ibsplc.icargo.business.operations.shipment.builder.SlamBuilder" method="slamForAWBAcceptance" async="true" />
+	  <!--SLAM Event for OPR022 screen ends-->
+	 </evt:event>
+	 <evt:event name="saveULDAcceptanceDetails"> 
+	 <evt:action name="ctoUldAcceptanceAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditULDAcceptanceDetailsForCTO" async="false" />
+	 <!--SLAM Event for OPR056 screen starts-->
+	 <evt:action name="slamForULDAcceptance" type="SLAM" builder="com.ibsplc.icargo.business.operations.shipment.builder.SlamBuilder" method="slamForULDAcceptance" async="true" />
+	 <!--SLAM Event for OPR056 screen ends-->
+	 </evt:event>
+	 <evt:event name="saveUldArrivalDetails"> 
+	 <!--SLAM Event for OPR061 screen starts-->
+	 <evt:action name="slamForTruckArrivalManifest" type="SLAM" builder="com.ibsplc.icargo.business.operations.flthandling.builder.SlamBuilder" method="slamForTruckArrivalManifest" async="true" />
+	 <!--SLAM Event for OPR061 screen ends-->
+	</evt:event>	
+	 <!-- Added by A-4777 for ICRD-19904 ends -->
+	  <!--Added by A-4777 Workflow Event starts-->
+	<evt:event name="sendNotification"> 	
+	 <evt:action name="sendNotificationDetails" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.flthandling.builder.WorkflowBuilder" method="sendNotificationDetails" async="true" />	 
+	</evt:event>
+	<!--Workflow Event for tariff starts-->
+	<!--<evt:event name="extendRateCard"> 	
+	 <evt:action name="generateNotificationForRateCardExtend" type="WORKFLOW" builder="com.ibsplc.icargo.business.tariff.freight.builder.WorkflowBuilder" method="generateNotificationForRateCardExtend" async="true" />	 
+	</evt:event>-->
+	<!--<evt:event name="saveRateCard"> 	
+	 <evt:action name="generateNotificationForRateCardSave" type="WORKFLOW" builder="com.ibsplc.icargo.business.tariff.freight.builder.WorkflowBuilder" method="generateNotificationForRateCardSave" async="true" />	 
+	</evt:event>-->
+	<!--<evt:event name="copyRateCard"> 	
+	 <evt:action name="generateNotificationForRateCardCopy" type="WORKFLOW" builder="com.ibsplc.icargo.business.tariff.freight.builder.WorkflowBuilder" method="generateNotificationForRateCardCopy" async="true" />	 
+	</evt:event>-->
+	<!--<evt:event name="activateRateCards"> 	
+	 <evt:action name="generateNotificationForRateCardActive" type="WORKFLOW" builder="com.ibsplc.icargo.business.tariff.freight.builder.WorkflowBuilder" method="generateNotificationForRateCardActive" async="true" />	 
+	</evt:event>-->
+	<!--<evt:event name="deActivateRateLines"> 	
+	 <evt:action name="deActivateRateLines" type="WORKFLOW" builder="com.ibsplc.icargo.business.tariff.freight.builder.WorkflowBuilder" method="deActivateRateLines" async="true" />	 
+	</evt:event>-->
+	<!--<evt:event name="saveRateLineDetails"> 	
+	 <evt:action name="generateNotificationForRateLineSave" type="WORKFLOW" builder="com.ibsplc.icargo.business.tariff.freight.builder.WorkflowBuilder" method="generateNotificationForRateLineSave" async="true" />	 
+	</evt:event>-->
+	<!--<evt:event name="activateRateLines"> 	
+	 <evt:action name="activateRateLines" type="WORKFLOW" builder="com.ibsplc.icargo.business.tariff.freight.builder.WorkflowBuilder" method="activateRateLines" async="true" />	 
+	</evt:event>-->
+	<!--<evt:event name="saveAndActivateOverlapRateLines"> 
+	 <evt:action name="activateRateLinesWithoutChecks" type="WORKFLOW" builder="com.ibsplc.icargo.business.tariff.freight.builder.WorkflowBuilder" method="activateRateLinesWithoutChecks" async="true" />	 
+	</evt:event>-->
+	<!--<evt:event name="cancelRateLines"> 
+	 <evt:action name="cancelRateLines" type="WORKFLOW" builder="com.ibsplc.icargo.business.tariff.freight.builder.WorkflowBuilder" method="cancelRateLines" async="true" />	 
+	</evt:event>-->
+	<!--<evt:event name="copyRateLines"> 
+	 <evt:action name="copyRateLines" type="WORKFLOW" builder="com.ibsplc.icargo.business.tariff.freight.builder.WorkflowBuilder" method="copyRateLines" async="true" />	 
+	</evt:event>-->
+	<!--<evt:event name="deActivateRateCards"> 
+	 <evt:action name="deActivateRateLinesForRatecards" type="WORKFLOW" builder="com.ibsplc.icargo.business.tariff.freight.builder.WorkflowBuilder" method="deActivateRateLinesForRatecards" async="true" />	 
+	</evt:event>-->
+	<!--Workflow Event for tariff ends-->
+	<!--Added by A-4777 Workflow Event starts-->	
+	<!-- Added by A-4820 for ICRD-20320 starts -->
+   <evt:event name="cancelFlight"> 
+	 <evt:action name="cancelFlight" type="WORKFLOW" builder="com.ibsplc.icargo.business.flight.operation.builder.WorkflowBuilder" method="generateNotificationForCancelFlight" async="true" />
+	 <!--  Added By A-5111 for Bug ID:25875 -->
+     <evt:action name="cancelFlight" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationPublishBuilder" method="publishFlightDataForCancellation" async="true" />
+   </evt:event>	  
+   
+   <!-- Added By A-5111 for Bug id:25875-->
+    <evt:event name="saveFlightMVTDetails"> 
+	 <evt:action name="saveFlightMVTDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationPublishBuilder" method="publishFlightDataForMVT" async="true" />
+    </evt:event>
+   
+    <evt:event name="updateFlightControlDetails"> 
+	 <evt:action name="updateFlightControlDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.operation.builder.FlightOperationPublishBuilder" method="publishFlightDataForControlStation" async="true" />
+    </evt:event>
+   <!--Added By A-5111 for Bug id:25875 -->
+   
+   
+   
+   
+   <!--<evt:event name="saveFlightSchedule"> 
+	 <evt:action name="saveFlightSchedule" type="WORKFLOW" builder="com.ibsplc.icargo.business.flight.schedule.builder.WorkflowBuilder" method="generateNotificationForNewSchedule" async="true" />
+	
+   </evt:event>	 
+   <evt:event name="validateScheduleModification"> 
+	<evt:action name="validateScheduleModification" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.schedule.builder.FlightSchedulePublishBuilder" method="publishScheduleModification" async="true" />
+   </evt:event>	 
+   <evt:event name="burstFlightSchedule"> 
+	<evt:action name="burstFlightSchedule" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.schedule.builder.FlightSchedulePublishBuilder" method="publishBurstSchedules" async="true" />
+   </evt:event>	  
+   <evt:event name="saveFlightScheduleTemps"> 
+	<evt:action name="saveFlightScheduleTemps" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.schedule.builder.FlightSchedulePublishBuilder" method="publishFlightScheduleForMessages" async="true" />
+   </evt:event>	
+   <evt:event name="cancelFlightSchedules"> 
+	<evt:action name="cancelFlightSchedules" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.schedule.builder.FlightSchedulePublishBuilder" method="publishFlightSchedulesForCancellation" async="true" />
+   </evt:event>	 
+ <evt:event name="continueScheduleModification"> 	 
+	  <evt:action name="continueScheduleModification" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.schedule.builder.FlightSchedulePublishBuilder" method="publishFlightScheduleForStatusContinue" async="true" />
+   </evt:event>	 
+   <evt:event name="saveFlightScheduleStatus"> 
+	 <evt:action name="saveFlightScheduleStatus" type="WORKFLOW" builder="com.ibsplc.icargo.business.flight.schedule.builder.WorkflowBuilder" method="generateNotificationForMakingOperationalAndNonOperational" async="true" />
+	  <evt:action name="saveFlightSchedule" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.schedule.builder.FlightSchedulePublishBuilder" method="publishSaveFlightScheduleStatus" async="true" />
+   </evt:event>	 
+ <evt:event name="updateFlightSchedules"> 	 
+	  <evt:action name="saveFlightSchedule" type="PUBLISH" builder="com.ibsplc.icargo.business.flight.schedule.builder.FlightSchedulePublishBuilder" method="publishUpdateFlightSchedules" async="true" />
+   </evt:event>-->	  
+    <!--
+   <evt:event name="blacklistStock"> 
+	 <evt:action name="blacklistStock" type="WORKFLOW" builder="com.ibsplc.icargo.business.stockcontrol.defaults.builder.WorkflowBuilder" method="notificationForBlacklistStockAndRevokeBlacklistStock" async="true" />
+   </evt:event>
+  
+    <evt:event name="saveOffsetConfigurationDetails"> 
+	 <evt:action name="saveOffsetConfigurationDetails" type="WORKFLOW" builder="com.ibsplc.icargo.business.cdmp.cdmpmasters.builder.WorkflowBuilder" method="sendAlertForWeightAndVolumeToleranceOnOffsetSave" async="true" />  
+   </evt:event>	 
+    <evt:event name="saveOffsetConfigurationDetailsFromMessage"> 
+	 <evt:action name="saveOffsetConfigurationDetailsFromMessage" type="WORKFLOW" builder="com.ibsplc.icargo.business.cdmp.cdmpmasters.builder.WorkflowBuilder" method="sendAlertForWeightAndVolumeToleranceOnOffsetSave" async="true" />  
+   </evt:event>	-->
+   <!-- Added by A-4820 for ICRD-20320 ends -->
+<!-- ICRD-18206 A-4789 CustomerDB audit starts -->	
+	<!--<evt:event name="saveCustomerDetails"> 	
+		<evt:action name="auditSaveCustomerDetails" type="AUDIT" builder="com.ibsplc.icargo.business.shared.customer.builder.SharedCustomerAuditBuilder" method="auditCustomerSave" async="true" />	 
+	</evt:event>
+	<evt:event name="saveCustomerCertificateDetails"> 	
+		<evt:action name="auditSaveCustomerCertificateDetails" type="AUDIT" builder="com.ibsplc.icargo.business.shared.customer.builder.SharedCustomerAuditBuilder" method="auditCustomerCertificateSave" async="true" />	 
+	</evt:event>
+	<evt:event name="updateCustomerStatus"> 	
+		<evt:action name="auditUpdateCustomerStatus" type="AUDIT" builder="com.ibsplc.icargo.business.shared.customer.builder.SharedCustomerAuditBuilder" method="auditCustomerStatusUpdate" async="true" />	 
+	</evt:event>-->
+	<!-- ICRD-18206 A-4789 CustomerDB audit ends -->
+   
+   	 	<evt:event name="saveCheckSheetDetails">          
+          <evt:action name="saveCheckSheetDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="saveCheckSheetAuditDetails"   async="false" />         
+    </evt:event>
+	<!-- TARIFF : Spot Rate Request starts-->
+	<!-- Added by a-4443 for icrd-18368 starts-->
+		<!--<evt:event name="tariff.freight.saveSpotRateRequest">  
+			 <evt:action name="saveSpotRateRequest" type="AUDIT" builder="com.ibsplc.icargo.business.tariff.freight.builder.TariffFreightAuditBuilder" method="auditSaveSpotRateRequest" async="false" />
+			 <evt:action name="saveSpotRateRequest" type="WORKFLOW" builder="com.ibsplc.icargo.business.tariff.freight.builder.WorkflowBuilder" method="generateNotificationForSpotRateRequest" async="false" />		  
+		</evt:event>-->
+		<!--<evt:event name="tariff.freight.updateSpotRateRequestDetails">  
+			 <evt:action name="updateSpotRateRequestDetails" type="AUDIT" builder="com.ibsplc.icargo.business.tariff.freight.builder.TariffFreightAuditBuilder" method="auditUpdateSpotRateRequestDetails" async="false" />
+		
+		</evt:event>-->
+	<!-- Added by a-4443 for icrd-18368 ends-->
+	<!-- TARIFF : Spot Rate Request ends-->
+   
+	<!-- ICRD-20099 A-5277 MasterData Publish starts -->
+	<!--<evt:event name="saveProductDetails"> 	
+		<evt:action name="saveProductDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.products.defaults.builder.ProductPublishBuilder" method="saveProductDetails" async="true" />	 
+	</evt:event>
+	<evt:event name="updateProductStatus"> 	
+		<evt:action name="updateProductStatus" type="PUBLISH" builder="com.ibsplc.icargo.business.products.defaults.builder.ProductPublishBuilder" method="updateProductStatus" async="true" />	 
+	</evt:event>
+	
+	<evt:event name="saveAirline"> 	
+		<evt:action name="saveAirline" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.airline.builder.SharedAirlinePublishBuilder" method="saveAirline" async="true" />	 
+	</evt:event>
+	<evt:event name="saveCityDetails"> 	
+		<evt:action name="saveCityDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.area.builder.SharedAreaPublishBuilder" method="saveCityDetails" async="true" />	 
+	</evt:event>
+	<evt:event name="saveRegionDetails"> 	
+		<evt:action name="saveRegionDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.area.builder.SharedAreaPublishBuilder" method="saveRegionDetails" async="true" />	 
+	</evt:event>
+	<evt:event name="saveStationMasterDetails"> 	
+		<evt:action name="saveStationMasterDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.area.builder.SharedAreaPublishBuilder" method="saveStationMasterDetails" async="true" />	 
+	</evt:event>
+	<evt:event name="saveCountryCodeDetails"> 	
+		<evt:action name="saveCountryCodeDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.area.builder.SharedAreaPublishBuilder" method="saveCountryCodeDetails" async="true" />	 
+	</evt:event>
+	<evt:event name="saveAirportDetails"> 	
+		<evt:action name="saveAirportDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.area.builder.SharedAreaPublishBuilder" method="saveAirportDetails" async="true" />	 
+	</evt:event>
+	<evt:event name="saveIncompatibleCommodity"> 	
+		<evt:action name="saveIncompatibleCommodity" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.commodity.builder.SharedCommodityPublishBuilder" method="saveIncompatibleCommodity" async="true" />	 
+	</evt:event>
+	<evt:event name="saveCommodityDetails"> 	
+		<evt:action name="saveCommodityDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.commodity.builder.SharedCommodityPublishBuilder" method="saveCommodityDetails" async="true" />	 
+	</evt:event>
+	<evt:event name="saveIATACommodity"> 	
+		<evt:action name="saveIATACommodity" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.commodity.builder.SharedCommodityPublishBuilder" method="saveIATACommodity" async="true" />	 
+	</evt:event>
+	<evt:event name="saveCurrencyDetails"> 	
+		<evt:action name="saveCurrencyDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.currency.builder.SharedCurrencyPublishBuilder" method="saveCurrencyDetails" async="true" />	 
+	</evt:event>
+	<evt:event name="saveCurrencyExchangeRates"> 	
+		<evt:action name="saveCurrencyExchangeRates" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.currency.builder.SharedCurrencyPublishBuilder" method="saveCurrencyExchangeRates" async="true" />	 
+	</evt:event>
+	<evt:event name="saveUNIDDetails"> 	
+		<evt:action name="saveUNIDDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.dgr.builder.SharedDGRPublishBuilder" method="saveUNIDDetails" async="true" />	 
+	</evt:event>
+	<evt:event name="saveUNIDCheckList"> 	
+		<evt:action name="saveUNIDCheckList" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.dgr.builder.SharedDGRPublishBuilder" method="saveUNIDCheckList" async="true" />	 
+	</evt:event>
+	<evt:event name="saveSCC"> 	
+		<evt:action name="saveSCC" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.scc.builder.SCCPublishBuilder" method="saveSCC" async="true" />	 
+	</evt:event>
+	<evt:event name="saveULDGroupDetails"> 	
+		<evt:action name="saveULDGroupDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.uld.builder.ULDPublishBuilder" method="saveULDGroupDetails" async="true" />	 
+	</evt:event>
+	<evt:event name="saveULDTypeDetails"> 	
+		<evt:action name="saveULDTypeDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.uld.builder.ULDPublishBuilder" method="saveULDTypeDetails" async="true" />	 
+	</evt:event>
+	<evt:event name="saveAircraftMasterDetails"> 	 
+	  <evt:action name="saveAircraftMasterDetails" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.aircraft.builder.SharedAircraftPublishBuilder" method="publishAircraftConfiguration" async="true" />
+	</evt:event>
+	<evt:event name="modifyAircraftTypeStatus"> 	 
+	  <evt:action name="modifyAircraftTypeStatus" type="PUBLISH" builder="com.ibsplc.icargo.business.shared.aircraft.builder.SharedAircraftPublishBuilder" method="publishAircraftConfigurationModifyStatus" async="true" />
+	</evt:event>-->
+	<!-- ICRD-20099 A-5277 MasterData Publish ends -->
+	<evt:event name="saveAgentDetails"> 	 
+	  <evt:action name="saveAgentDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.shared.agent.builder.SharedAgentMastersAuditBuilder" method="auditForAgentDetails" async="true" />
+	</evt:event>
+	<evt:event name="saveCountryCodeDetails"> 	 
+	  <evt:action name="saveCountryCodeDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.shared.area.builder.SharedAreaMastersAuditBuilder" method="auditForCountryDetails" async="true" />
+	</evt:event>
+	<evt:event name="saveCurrencyExchangeRates"> 	 
+	  <evt:action name="saveCurrencyExchangeRatesAudit" type="AUDIT" builder="com.ibsplc.icargo.business.shared.currency.builder.SharedCurrencyMastersAuditBuilder" method="auditForCurrencyExchangeRates" async="true" />
+	</evt:event>
+	
+	<!--added by A-4752 as part ICRD-17226 -->
+	<evt:event name="saveRampHandlingDetails">
+		<evt:action name="saveRampHandlingDetails" type="WORKFLOW" builder="com.ibsplc.icargo.business.warehouse.defaults.builder.WorkflowBuilder" method="sendPickupOrder" async="true" />
+		<evt:action name="rampHandlingULDAudit" type="AUDIT" builder="com.ibsplc.icargo.business.warehouse.defaults.builder.WarehouseAuditBuilder" method="auditRampHandlingDetails" async="false" /> 
+	</evt:event> 
+</evt:event-mappings>

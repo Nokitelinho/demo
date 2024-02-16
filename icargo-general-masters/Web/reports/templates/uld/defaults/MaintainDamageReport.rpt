@@ -1,0 +1,1465 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<inet:Report xmlns:inet="http://www.inetsoftware.de" major_version="8" minor_version="97" major_xml_version="7" minor_xml_version="1" count="3" id="0">
+    <Datasource dll="Local Oracle Server_configuration.dll">
+      <DataSourceConfiguration name="Local Oracle Server">
+        <property name="quotesLowerCase" value="true"/>
+        <property name="port7" value="1521"/>
+        <property name="port6" value="1521"/>
+        <property name="port10" value="1521"/>
+        <property name="password" value="00B15B31EA85A6639E1310A41C7FCD5E36B45E65F78BA474FE21624215B1819CEC"/>
+        <property name="port5" value="1521"/>
+        <property name="port4" value="1521"/>
+        <property name="port3" value="1521"/>
+        <property name="port2" value="1521"/>
+        <property name="port1" value="1521"/>
+        <property name="driverClassName" value="com.inet.ora.OraDriver"/>
+        <property name="caseSensitive" value="false"/>
+        <property name="url" value="jdbc:inetora"/>
+        <property name="sid" value="ORCL"/>
+        <property name="supportsOrderBy" value="true"/>
+        <property name="supportsParenthesesForJoin" value="true"/>
+        <property name="identifierQuoteString" value=""/>
+        <property name="supportsSQL92" value="false"/>
+        <property name="supportsWhere" value="true"/>
+        <property name="failover" value="false"/>
+        <property name="port" value="1521"/>
+        <property name="logonMode" value="normal"/>
+        <property name="alterSession" value="false"/>
+        <property name="driverLibrary" value=""/>
+        <property name="host" value="localhost"/>
+        <property name="loadbalance" value="false"/>
+        <property name="databaseClassName" value=""/>
+        <property name="opencursors" value="300"/>
+        <property name="savePassword" value="true"/>
+        <property name="dedicated" value="false"/>
+        <property name="port9" value="1521"/>
+        <property name="aliasToken" value=""/>
+        <property name="port8" value="1521"/>
+        <property name="user" value="SCOTT"/>
+      </DataSourceConfiguration>
+      <Tablesource alias="DUMMY_VW_ULDOPRDAMAGERPT" databaseIdentifier="ICARGOQF.DUMMY_VW_ULDOPRDAMAGERPT">
+        <Column name="DMGREFNUM" type="11" description="DMGREFNUM" />
+        <Column name="DMGSEC" type="11" description="DMGSEC" />
+        <Column name="DMG" type="11" description="DMG" />
+        <Column name="DMSSVT" type="11" description="DMSSVT" />
+        <Column name="RPTARP" type="11" description="RPTARP" />
+        <Column name="DMGRPTDAT" type="11" description="DMGRPTDAT" />
+        <Column name="RMK" type="11" description="RMK" />
+        <Column name="DMGPTYTYP" type="11" description="DMGPTYTYP" />
+        <Column name="DMGPTYCOD" type="11" description="DMGPTYCOD" />
+        <Column name="DMGLOC" type="11" description="DMGLOC" />
+        <Column name="DMGSTA" type="11" description="DMGSTA" />
+      </Tablesource>
+    </Datasource>
+  <Database>
+    <QueryChanges mask="0" count="4">
+      <Attribute name="queryChange" value="null"/>
+      <Attribute name="queryChange" value="null"/>
+      <Attribute name="queryChange" value="null"/>
+      <Attribute name="queryChange" value="null"/>
+    </QueryChanges>
+  </Database>
+  <FormulaFields count="1">
+    <Field type="FormulaField" valueType="6">
+      <Attribute name="name" value="shoCurVal"/>
+      <Attribute name="shortName" value="shoCurVal"/>
+      <Attribute name="formula type" value="0"/>
+      <Attribute name="basic syntax" value="true"/>
+      <![CDATA[Shared curVal As Number
+curVal=1
+Formula = curVal
+]]>
+    </Field>
+  </FormulaFields>
+
+  <PromptFields count="6">
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="ReportId"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="0"/>
+      <Attribute name="sort_type" value="0"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="StaffId"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="1"/>
+      <Attribute name="sort_type" value="0"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="Station"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="2"/>
+      <Attribute name="sort_type" value="0"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="PrintDate"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="822"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+      <Attribute name="sort_type" value="0"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="PrintTime"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="825"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+      <Attribute name="sort_type" value="0"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="UldNo"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value=""/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="826"/>
+      <DefaultPromptValues>
+            <DefaultValue value="&#39;&#39;"/>
+      </DefaultPromptValues>
+      <Attribute name="sort_type" value="0"/>
+    </Field>
+  </PromptFields>
+
+  <SQLFields count="0">
+  </SQLFields>
+
+  <SummaryFields count="0">
+  </SummaryFields>
+
+  <SortFields count="0">
+  </SortFields>
+
+  <GroupNameFields count="0">
+  </GroupNameFields>
+
+  <ReportProperties>
+    <Attribute name="page width" value="16839"/>
+    <Attribute name="page height" value="11907"/>
+    <Attribute name="page orientation" value="2"/>
+    <Attribute name="page margin left" value="360"/>
+    <Attribute name="page margin right" value="360"/>
+    <Attribute name="page margin top" value="360"/>
+    <Attribute name="page margin bottom" value="360"/>
+    <Attribute name="report title" value=""/>
+    <Attribute name="report author" value=""/>
+    <Attribute name="report keywords" value=""/>
+    <Attribute name="report subject" value=""/>
+    <Attribute name="report template" value=""/>
+    <Attribute name="report comments" value=""/>
+    <Attribute name="report last saved" value="17 Aug 2011 12:15:09 GMT"/>
+    <Attribute name="report created" value="22 Nov 2005 14:03:43 GMT"/>
+    <Attribute name="mailing label type 1" value="User-Defined Label"/>
+    <Attribute name="mailing label type 2" value=""/>
+    <Attribute name="format with multiple columns" value="false"/>
+    <Attribute name="mailing label width" value="0"/>
+    <Attribute name="mailing label height" value="0"/>
+    <Attribute name="mailing label distance vertical" value="0"/>
+    <Attribute name="mailing label distance horizontal" value="0"/>
+    <Attribute name="across then down" value="false"/>
+    <Attribute name="format groups with multiple columns" value="false"/>
+    <Attribute name="distinct" value="false"/>
+    <Attribute name="convert date time" value="2"/>
+    <Attribute name="data source" value="gha"/>
+    <Attribute name="data source desc" value="Oracle Server"/>
+    <Attribute name="suppress if no rows" value="false"/>
+    <Attribute name="convert null values to default" value="false"/>
+    <Attribute name="hide PageFooter inside ReportHeader" value="true"/>
+    <Attribute name="form print" value="false"/>
+    <Attribute name="printing enabled" value="true"/>
+    <Attribute name="clipboard enabled" value="true"/>
+    <Attribute name="export enabled" value="true"/>
+    <Attribute name="group tree visible" value="true"/>
+  </ReportProperties>
+  <AreaPair type="PageAreaPair" id="0">
+    <Area type="PageHeader" count="4">
+      <AreaProperties>
+        <Attribute name="drill down" value="true"/>
+        <Attribute name="keep together" value="true"/>
+        <Attribute name="underlay following section" value="true"/>
+        <PropertyFormula valueType="-1" propertyType="drill down">
+          <Attribute name="name" value="drill down"/>
+          <Attribute name="basic syntax" value="false"/>
+          <![CDATA[Shared curVal As Number
+
+If curVal = 1 Then 
+
+     Formula = true
+ 
+Else
+
+    Formula = false
+
+End If
+]]>
+        </PropertyFormula>
+        <PropertyFormula valueType="8" propertyType="suppress">
+          <Attribute name="name" value="suppress"/>
+          <Attribute name="shortName" value="Section_Visibility"/>
+          <Attribute name="basic syntax" value="true"/>
+          <![CDATA[Shared curVal As Number
+
+If curVal = 1 Then 
+
+     Formula = true
+ 
+Else
+
+    Formula = false
+
+End If
+]]>
+        </PropertyFormula>
+      </AreaProperties>
+      <Section type="PageHeader" count="15" width="16119" height="1650" id="0">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+        <Element type="Text" count="1" x_position="12840" y_position="135" width="885" height="240">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Report Id]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="12840" y_position="435" width="885" height="270">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+            <Attribute name="can grow" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Date ]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="12840" y_position="750" width="885" height="240">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Staff Id]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="12840" y_position="1065" width="885" height="240">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[Station]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="13740" y_position="135" width="135" height="240">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="13740" y_position="450" width="135" height="195">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+            <Attribute name="can grow" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="13740" y_position="765" width="120" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="13740" y_position="1065" width="120" height="240">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[:]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="13890" y_position="135" width="2010" height="240">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?ReportId"/>
+        </Element>
+        <Element type="FieldElement" x_position="13890" y_position="765" width="1980" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?StaffId"/>
+        </Element>
+        <Element type="FieldElement" x_position="13890" y_position="1080" width="1950" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?Station"/>
+        </Element>
+        <Element type="Text" count="1" x_position="6150" y_position="900" width="3037" height="345">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="280"/>
+                <Attribute name="font style" value="1"/>
+              </FontProperties>
+            <![CDATA[RPTOPR026#Title]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="13890" y_position="450" width="1245" height="255">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?PrintDate"/>
+        </Element>
+        <Element type="FieldElement" x_position="15135" y_position="450" width="983" height="255">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?PrintTime"/>
+        </Element>
+        <Element type="Box" x2_position="16050" y2_position="0" x_position="0" y_position="0" width="0" height="0">
+          <BoxProperties>
+            <Attribute name="close border on page break" value="true"/>
+              <LineProperties>
+                <Attribute name="id" value="1"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+      </Section>
+      <Section type="PageHeader" count="3" width="16119" height="1200" id="1">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+        <Element type="Box" x2_position="16065" y2_position="899" x_position="0" y_position="300" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <BoxProperties>
+            <Attribute name="close border on page break" value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="6000" y_position="450" width="1795" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026ULDNo]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="7950" y_position="450" width="1410" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" refname="?UldNo"/>
+        </Element>
+      </Section>
+      <Section type="PageHeader" count="1" width="16119" height="930" id="2">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+        <Element type="Text" count="1" x_position="58" y_position="120" width="3730" height="360">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+                <Attribute name="font style" value="1"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026DamageDetails]]>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+      <Section type="PageHeader" count="22" width="16119" height="664" id="3">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+        <Element type="Box" x2_position="16050" y2_position="664" x_position="0" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <BoxProperties>
+            <Attribute name="background color" value="12632256"/>
+            <Attribute name="close border on page break" value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Line" x2_position="1030" y2_position="646" x_position="1030" y_position="15" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="6156" y2_position="647" x_position="6156" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="7172" y2_position="647" x_position="7172" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="8150" y2_position="655" x_position="8150" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="9522" y2_position="655" x_position="9522" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="10342" y2_position="655" x_position="10342" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="11850" y2_position="655" x_position="11850" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="12900" y2_position="655" x_position="12900" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Line" x2_position="14280" y2_position="655" x_position="14280" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="6195" y_position="57" width="960" height="480">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR026#severe]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7204" y_position="57" width="930" height="560">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR026#RptArp]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8210" y_position="57" width="1270" height="480">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+              <Attribute name="keep together" value="true"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR026#RptDate]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="14368" y_position="57" width="1635" height="480">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR026#Rmk]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="12898" y_position="57" width="1352" height="480">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026Party]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="10548" y_position="57" width="1142" height="480">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026Location]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9555" y_position="57" width="768" height="480">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026Closed]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="11849" y_position="57" width="1063" height="480">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026PartyType]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="1246" y_position="57" width="2250" height="480">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026Section]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x2_position="3676" y2_position="655" x_position="3676" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="4501" y_position="57" width="1049" height="480">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026Damage]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="46" y_position="39" width="980" height="552">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR026#DmgRefNo]]>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="PageFooter" count="1">
+      <AreaProperties>
+        <Attribute name="drill down" value="true"/>
+        <Attribute name="print at bottom of page" value="true"/>
+        <Attribute name="new page after" value="true"/>
+        <Attribute name="keep together" value="true"/>
+        <Attribute name="underlay following section" value="true"/>
+      </AreaProperties>
+      <Section type="PageFooter" count="1" width="16119" height="588" id="4">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="13800" y_position="120" width="2238" height="261">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="3"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="SpecialVarField" id="16"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="ReportAreaPair" id="0">
+    <Area type="ReportHeader" count="1">
+      <AreaProperties>
+        <Attribute name="drill down" value="true"/>
+        <Attribute name="new page before" value="true"/>
+        <Attribute name="underlay following section" value="true"/>
+      </AreaProperties>
+      <Section type="ReportHeader" count="0" width="16119" height="20" id="5">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+    <Area type="ReportFooter" count="2">
+      <AreaProperties>
+        <Attribute name="drill down" value="true"/>
+        <Attribute name="underlay following section" value="true"/>
+      </AreaProperties>
+      <Section type="ReportFooter" count="2" width="16119" height="2598" id="6">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+        <Element type="Subreport" x_position="0" y_position="300" width="16050" height="308">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <BorderProperties>
+            <Attribute name="border color" value="16777215"/>
+          </BorderProperties>
+          <SubreportProperties>
+            <Attribute name="report id" value="4"/>
+          </SubreportProperties>
+          <SubreportLinks count="0">
+          </SubreportLinks>
+          <FontProperties>
+            <Attribute name="font name" value="Times New Roman"/>
+            <Attribute name="font size" value="240"/>
+          </FontProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="360" y_position="2160" width="1679" height="226">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Times New Roman"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[PlacetoInsertPicture]]>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+      <Section type="ReportFooter" count="0" width="16119" height="668" id="7">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="DetailArea" id="1">
+    <Area type="Detail" count="2">
+      <AreaProperties>
+        <Attribute name="underlay following section" value="true"/>
+      </AreaProperties>
+      <Section type="Detail" count="12" width="16119" height="450" id="8">
+        <SectionProperties>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+        <Element type="Box" x2_position="16050" y2_position="20" x_position="0" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <BoxProperties>
+            <Attribute name="close border on page break" value="true"/>
+              <LineProperties>
+                <Attribute name="id" value="6"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="FieldElement" x_position="132" y_position="57" width="750" height="266">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDAMAGERPT.DMGREFNUM"/>
+        </Element>
+        <Element type="FieldElement" x_position="1078" y_position="57" width="2576" height="266">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="can grow" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDAMAGERPT.DMGSEC"/>
+        </Element>
+        <Element type="FieldElement" x_position="3721" y_position="57" width="2434" height="274">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="1"/>
+            <Attribute name="can grow" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDAMAGERPT.DMG"/>
+        </Element>
+        <Element type="FieldElement" x_position="6202" y_position="57" width="942" height="266">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDAMAGERPT.DMSSVT"/>
+        </Element>
+        <Element type="FieldElement" x_position="7309" y_position="57" width="750" height="266">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDAMAGERPT.RPTARP"/>
+        </Element>
+        <Element type="FieldElement" x_position="8204" y_position="57" width="1332" height="266">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDAMAGERPT.DMGRPTDAT"/>
+        </Element>
+        <Element type="FieldElement" x_position="11978" y_position="57" width="900" height="266">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDAMAGERPT.DMGPTYTYP"/>
+        </Element>
+        <Element type="FieldElement" x_position="12898" y_position="57" width="1452" height="266">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDAMAGERPT.DMGPTYCOD"/>
+        </Element>
+        <Element type="FieldElement" x_position="10336" y_position="57" width="1618" height="266">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDAMAGERPT.DMGLOC"/>
+        </Element>
+        <Element type="FieldElement" x_position="9654" y_position="57" width="600" height="266">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDAMAGERPT.DMGSTA"/>
+        </Element>
+        <Element type="FieldElement" x_position="14344" y_position="57" width="1676" height="266">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDAMAGERPT.RMK"/>
+        </Element>
+      </Section>
+      <Section type="Detail" count="1" width="16119" height="390" id="9">
+        <SectionProperties>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="161" y_position="0" width="960" height="240">
+          <CommonProperties>
+            <Attribute name="suppress" value="true"/>
+            <Attribute name="horizontal align" value="3"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Times New Roman"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <NumberProperties>
+            <Attribute name="thousand seperators symbol" value=","/>
+            <Attribute name="decimal seperators symbol" value="."/>
+            <Attribute name="currency symbol" value=""/>
+          </NumberProperties>
+          <Reference name="field" type="FormulaField" refname="@shoCurVal"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+
+<inet:Report xmlns:inet="http://www.inetsoftware.de" major_version="8" minor_version="97" major_xml_version="7" minor_xml_version="1" count="2" id="4">
+    <Datasource dll="pdsora7.dll" host="gha" schema="" catalog="" user="icargobp" password="" url="">
+      <Tablesource alias="DUMMY_VW_ULDOPRDMGRPRRPT" databaseIdentifier="ICARGOBP.DUMMY_VW_ULDOPRDMGRPRRPT">
+        <Column name="RPRHED" type="11" />
+        <Column name="RPRARP" type="11" />
+        <Column name="RPRDAT" type="11" />
+        <Column name="RPRDMGREFNUM" type="11" />
+        <Column name="RPRAMT" type="11" />
+        <Column name="RPRCUR" type="11" />
+        <Column name="RPRRMK" type="11" />
+      </Tablesource>
+    </Datasource>
+  <Database>
+    <QueryChanges mask="0" count="4">
+      <Attribute name="queryChange" value="null"/>
+      <Attribute name="queryChange" value="null"/>
+      <Attribute name="queryChange" value="null"/>
+      <Attribute name="queryChange" value="null"/>
+    </QueryChanges>
+  </Database>
+  <FormulaFields count="0">
+  </FormulaFields>
+
+  <PromptFields count="1">
+    <Field type="PromptVarField" valueType="11">
+      <Attribute name="name" value="Pm-DUMMY_VW_ULDOPRDAMAGERPT.DMGULDNUM"/>
+      <Attribute name="allow_multiple_values" value="false"/>
+      <Attribute name="discrete_or_range" value="0"/>
+      <Attribute name="allow editing" value="true"/>
+      <Attribute name="description_only" value="false"/>
+      <Attribute name="edit mask" value=""/>
+      <Attribute name="prompt_text" value="Pm-DUMMY_VW_ULDOPRDAMAGERPT.DMGULDNUM"/>
+      <Attribute name="use_range" value="false"/>
+      <Attribute name="id" value="827"/>
+      <Attribute name="sort_type" value="0"/>
+    </Field>
+  </PromptFields>
+
+  <SQLFields count="0">
+  </SQLFields>
+
+  <SummaryFields count="0">
+  </SummaryFields>
+
+  <SortFields count="0">
+  </SortFields>
+
+  <GroupNameFields count="0">
+  </GroupNameFields>
+
+  <ReportProperties>
+    <Attribute name="page width" value="16839"/>
+    <Attribute name="page height" value="11907"/>
+    <Attribute name="page orientation" value="0"/>
+    <Attribute name="page margin left" value="360"/>
+    <Attribute name="page margin right" value="360"/>
+    <Attribute name="page margin top" value="360"/>
+    <Attribute name="page margin bottom" value="360"/>
+    <Attribute name="report title" value="RepairDetails"/>
+    <Attribute name="report last saved" value="17 Aug 2011 12:15:09 GMT"/>
+    <Attribute name="mailing label type 1" value="User-Defined Label"/>
+    <Attribute name="mailing label type 2" value=""/>
+    <Attribute name="format with multiple columns" value="false"/>
+    <Attribute name="mailing label width" value="0"/>
+    <Attribute name="mailing label height" value="0"/>
+    <Attribute name="mailing label distance vertical" value="0"/>
+    <Attribute name="mailing label distance horizontal" value="0"/>
+    <Attribute name="across then down" value="false"/>
+    <Attribute name="format groups with multiple columns" value="false"/>
+    <Attribute name="distinct" value="false"/>
+    <Attribute name="convert date time" value="2"/>
+    <Attribute name="data source" value="gha"/>
+    <Attribute name="data source desc" value="Oracle Server"/>
+    <Attribute name="suppress if no rows" value="false"/>
+    <Attribute name="convert null values to default" value="false"/>
+    <Attribute name="hide PageFooter inside ReportHeader" value="true"/>
+    <Attribute name="form print" value="false"/>
+    <Attribute name="printing enabled" value="true"/>
+    <Attribute name="clipboard enabled" value="true"/>
+    <Attribute name="export enabled" value="true"/>
+    <Attribute name="group tree visible" value="true"/>
+  </ReportProperties>
+  <AreaPair type="ReportAreaPair" id="0">
+    <Area type="ReportHeader" count="2">
+      <AreaProperties>
+        <Attribute name="drill down" value="true"/>
+        <Attribute name="underlay following section" value="true"/>
+      </AreaProperties>
+      <Section type="ReportHeader" count="1" width="16050" height="480" id="0">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+        <Element type="Text" count="1" x_position="60" y_position="120" width="3540" height="360">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+                <Attribute name="font style" value="1"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026RepairDetails]]>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+      <Section type="ReportHeader" count="15" width="16050" height="600" id="1">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="keep together" value="true"/>
+          <Attribute name="background color" value="12632256"/>
+        </SectionProperties>
+        <Element type="Box" x2_position="16050" y2_position="598" x_position="0" y_position="0" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <BoxProperties>
+            <Attribute name="close border on page break" value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Line" x2_position="2040" y2_position="599" x_position="2040" y_position="0" width="0" height="599">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <Attribute name="id" value="1"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x2_position="4200" y2_position="599" x_position="4200" y_position="0" width="0" height="599">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <Attribute name="id" value="1"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x2_position="6240" y2_position="599" x_position="6240" y_position="0" width="0" height="599">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <Attribute name="id" value="1"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x2_position="8280" y2_position="599" x_position="8280" y_position="0" width="0" height="599">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <Attribute name="id" value="1"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x2_position="10440" y2_position="599" x_position="10440" y_position="0" width="0" height="599">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <Attribute name="id" value="1"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x2_position="12600" y2_position="599" x_position="12600" y_position="0" width="0" height="599">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <LineProperties>
+            <Attribute name="id" value="1"/>
+          </LineProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="60" y_position="120" width="1795" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026RepairHead]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="2205" y_position="120" width="1795" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026RepairAirport]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4350" y_position="120" width="1795" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026RepairDate]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="6423" y_position="120" width="1795" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR026#DmgRefNo]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="8640" y_position="120" width="1795" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026Amount]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="10623" y_position="120" width="1795" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026Currency]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="13320" y_position="120" width="1795" height="225">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <Attribute name="horizontal align" value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <Attribute name="font name" value="Arial"/>
+                <Attribute name="font size" value="200"/>
+              </FontProperties>
+            <![CDATA[RPTOPR#026Remarks]]>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Box" x2_position="16050" y2_position="50" x_position="0" y_position="567" width="0" height="0">
+          <CommonProperties>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <BoxProperties>
+            <Attribute name="close border on page break" value="true"/>
+              <LineProperties>
+                <Attribute name="id" value="2"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="ReportFooter" count="1">
+      <AreaProperties>
+        <Attribute name="drill down" value="true"/>
+        <Attribute name="underlay following section" value="true"/>
+      </AreaProperties>
+      <Section type="ReportFooter" count="0" width="16050" height="495" id="2">
+        <SectionProperties>
+          <Attribute name="drill down" value="true"/>
+          <Attribute name="suppress" value="true"/>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+      </Section>
+    </Area>
+  </AreaPair>
+
+  <AreaPair type="DetailArea" id="1">
+    <Area type="Detail" count="1">
+      <AreaProperties>
+        <Attribute name="underlay following section" value="true"/>
+      </AreaProperties>
+      <Section type="Detail" count="7" width="16050" height="430" id="3">
+        <SectionProperties>
+          <Attribute name="keep together" value="true"/>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="180" y_position="120" width="1740" height="225">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDMGRPRRPT.RPRHED"/>
+        </Element>
+        <Element type="FieldElement" x_position="2398" y_position="120" width="1440" height="255">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDMGRPRRPT.RPRARP"/>
+        </Element>
+        <Element type="FieldElement" x_position="4575" y_position="120" width="1170" height="255">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDMGRPRRPT.RPRDAT"/>
+        </Element>
+        <Element type="FieldElement" x_position="6497" y_position="120" width="1425" height="255">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDMGRPRRPT.RPRDMGREFNUM"/>
+        </Element>
+        <Element type="FieldElement" x_position="8640" y_position="120" width="1320" height="255">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDMGRPRRPT.RPRAMT"/>
+        </Element>
+        <Element type="FieldElement" x_position="10976" y_position="120" width="1095" height="255">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDMGRPRRPT.RPRCUR"/>
+        </Element>
+        <Element type="FieldElement" x_position="12932" y_position="120" width="2670" height="244">
+          <CommonProperties>
+            <Attribute name="horizontal align" value="2"/>
+            <Attribute name="keep together" value="true"/>
+          </CommonProperties>
+          <FontProperties>
+            <Attribute name="font name" value="Arial"/>
+            <Attribute name="font size" value="200"/>
+          </FontProperties>
+          <Reference name="field" type="DatabaseField" refname="DUMMY_VW_ULDOPRDMGRPRRPT.RPRRMK"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+
+</inet:Report>
+</inet:Report>

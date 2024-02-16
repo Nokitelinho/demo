@@ -1,0 +1,77 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-54749_MSM010.yml
+  - changeSet:
+      id: STK_018
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: STKBLKLSTRNG_SEQ
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE STKBLKLSTRNG_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;
+
+  - changeSet:
+      id: STK_019
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: STKBLKLSTRNG
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE STKBLKLSTRNG(
+                  STKBLKLSTRNGSERNUM BIGINT,
+                  CMPCOD VARCHAR(6) NOT NULL,
+                  DOCTYP VARCHAR(15) NOT NULL,
+                  DOCSUBTYP VARCHAR(15) NOT NULL,
+                  STARNG VARCHAR(15) NOT NULL,
+                  ENDRNG VARCHAR(15) NOT NULL,
+                  ARLIDR NUMERIC(5,0) NOT NULL,
+                  BLKLSTRMK VARCHAR(500),
+                  BLKLSTDAT DATE,
+                  ASCSTARNG NUMERIC,
+                  ASCENDRNG NUMERIC,
+                  LSTUPDTIM TIMESTAMP  NOT NULL,
+                  LSTUPDUSR VARCHAR(50) NOT NULL,
+                  BLKSTA VARCHAR(1),
+                  STKHLDCOD VARCHAR(15),
+                  FRTLVLSTKHLDCOD VARCHAR(15),
+                  ACTCOD VARCHAR(1),
+                  TAGIDX NUMERIC(1,0) DEFAULT 0 NOT NULL,
+                  MNLFLG VARCHAR(1) DEFAULT 'N' NOT NULL,
+                  CONSTRAINT "stkblklstrng_pk" PRIMARY KEY (STKBLKLSTRNGSERNUM),
+                  CONSTRAINT "stkblklstrng_arlidr_endrng_starng_doctyp_docsubtyp_cmpcod_blksta" UNIQUE (ARLIDR, ENDRNG, STARNG, DOCTYP, DOCSUBTYP, CMPCOD, BLKSTA));
+
+                  COMMENT ON COLUMN STKBLKLSTRNG.STKBLKLSTRNGSERNUM IS 'Serila number';
+                  COMMENT ON COLUMN STKBLKLSTRNG.CMPCOD IS 'Company Code.The company code that uniquely identifies the company for which the application is hosted';
+                  COMMENT ON COLUMN STKBLKLSTRNG.DOCTYP IS 'AWB Document type';
+                  COMMENT ON COLUMN STKBLKLSTRNG.DOCSUBTYP IS 'AWB Document Sub Type';
+                  COMMENT ON COLUMN STKBLKLSTRNG.STARNG IS 'Start range';
+                  COMMENT ON COLUMN STKBLKLSTRNG.ENDRNG IS 'End Range';
+                  COMMENT ON COLUMN STKBLKLSTRNG.ARLIDR IS 'Airline to which stock belongs';
+                  COMMENT ON COLUMN STKBLKLSTRNG.BLKLSTRMK IS 'Remarks';
+                  COMMENT ON COLUMN STKBLKLSTRNG.BLKLSTDAT IS 'The Date on which the stock is black listed';
+                  COMMENT ON COLUMN STKBLKLSTRNG.ASCSTARNG IS 'Ascii value of start range';
+                  COMMENT ON COLUMN STKBLKLSTRNG.ASCENDRNG IS 'Ascii value of end range';
+                  COMMENT ON COLUMN STKBLKLSTRNG.LSTUPDTIM IS 'The date and time at which record was last updated';
+                  COMMENT ON COLUMN STKBLKLSTRNG.LSTUPDUSR IS 'Last Update User.The application user code who performed the operation on the record';
+                  COMMENT ON COLUMN STKBLKLSTRNG.BLKSTA IS 'Black List Status';
+                  COMMENT ON COLUMN STKBLKLSTRNG.STKHLDCOD IS 'Stock Holder Code';
+                  COMMENT ON COLUMN STKBLKLSTRNG.FRTLVLSTKHLDCOD IS 'First Level stock Holder Code';
+                  COMMENT ON COLUMN STKBLKLSTRNG.ACTCOD IS 'Indicates the action performed.Possible Values are B-Blacklist,V-Void';
+                  COMMENT ON COLUMN STKBLKLSTRNG.TAGIDX IS 'This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment';
+                  COMMENT ON COLUMN STKBLKLSTRNG.MNLFLG IS 'Black List Stock is Manual or not,Possible values are Y/N';
+                  COMMENT ON TABLE STKBLKLSTRNG  IS 'Black List Range';
+                  

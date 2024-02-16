@@ -1,0 +1,22 @@
+iCargo Neo Monitoring Suite Installed.
+
+Application Namespace : {{ .Values.monitoringNamespace }}
+Docker Registry       : {{ .Values.dockerRegistry }}
+
+1. Watch all cluster members come up.
+  $ kubectl get pods --namespace={{ .Values.monitoringNamespace }} --watch
+
+2. Logstash ( enabled {{ .Values.logstash.enabled }} )
+{{- if .Values.logstash.enabled }}
+   Logstash UDP Logger configurations
+   Host            : {{ printf "icargo-neo-logstash.%s.svc.cluster.local" .Values.monitoringNamespace }}
+   Udp Port        : {{ .Values.logstash.udpPort }}
+{{- end }}
+
+3. Txprobe ( enabled {{ .Values.txProbe.enabled }} )
+{{- if .Values.txProbe.enabled }}
+   TxProbe Aggregator configuration
+   Host            : {{ printf "neo-txprobe-aggregator.%s.svc.cluster.local" .Values.monitoringNamespace }}
+   Aggregator Port : {{ .Values.txProbe.transportPort }}
+   Http Json Port  : {{ .Values.txProbe.httpPort }}
+{{- end }}

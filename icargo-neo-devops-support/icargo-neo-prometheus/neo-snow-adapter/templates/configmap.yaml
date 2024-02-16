@@ -1,0 +1,16 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{printf "%s-%s" (include "neo-snow-adapter.name" .) "app-configmap" | quote }}
+  namespace: {{ .Values.namespaceOverride | default "icargo-system" }}
+data:
+  application-{{ .Values.snowAdapter.springProfile }}.yaml: {{ toYaml .Values.snowAdapter.configOverrides | quote }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{printf "%s-%s" (include "neo-snow-adapter.name" .) "mappings-configmap" | quote }}
+  namespace: {{ .Values.namespaceOverride | default "icargo-system" }}
+data:
+  mappings.yaml: {{ toYaml .Values.snowAdapter.mappingsOverrides | quote }}  

@@ -1,0 +1,1525 @@
+<?xml version="1.0"?>
+<QRY:Definitions xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries" module="admin.user">
+
+
+	<QRY:Definition>
+	<QRY:Id>1</QRY:Id>
+	<QRY:Source Name="admin.user.findUserDetails" Type="NATIVE">
+	<![CDATA[
+		SELECT DISTINCT usrmst.cmpcod, usrmst.usrcod, usrmst.fstnam, usrmst.mdlnam,
+				usrmst.lstnam, usrmst.peradd, usrmst.perzipcod, usrmst.perphn,
+				usrmst.pereml, usrmst.perfax, usrmst.permobnum, usrmst.offadd,
+				usrmst.offzipcod, usrmst.offphn, usrmst.offeml, usrmst.offfax,
+				usrmst.offmobnum, usrmst.usrrmk, usrmst.defrolgrp,
+				usrmst.numses, usrmst.numgrclog, usrmst.pwdexpdat, usrmst.pwdchgreqflg,
+				usrmst.accdisflg, usrmst.accfrmdat, usrmst.accenddat,
+				usrmst.accdisrmk, usrmst.defoff, usrmst.defstn, usrmst.defarp,
+				usrmst.lstupdusr, usrmst.lstupdtim, usrmst.usrpwd,
+			    usrmst.jobtil, usrmst.crtdat,
+				usrmst.msgaltflg, usrmst.defwhs, usrmst.disusrcod,
+				usrmst.defaut, usrmst.strscridr,
+				usrmst.deflng,usrmst.usrtyp,
+				usrmst.empid,usrmst.depnam,
+				usrmst.dlvreqflg,
+				usrmst.offctynam,
+				usrmst.offcntnam,usrmst.usrttl, usrmst.cmpdtatwo,
+				usrmst.PORUSRTYP,usrmst.PORDEFROLGRP,usrmst.MAXCLDUSRCNT,usrmst.CLDUSRCNT,
+				(SELECT fstnam
+				   FROM admusrmst
+				  WHERE cmpcod = usrmst.cmpcod
+				    AND usrcod = usrmst.disusrcod) disusrnam
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<!-- Removed CUS.CUSIACNUM by A-5290 for ICRD-59741 -->
+	<QRY:Definition>
+	<QRY:Id>2</QRY:Id>
+	<QRY:Source Name="admin.user.getUserDetailsForLogon" Type="NATIVE">
+	<![CDATA[
+		
+		SELECT A.CMPCOD,
+			  A.USRCOD,
+			  A.FSTNAM,
+			  A.DEFROLGRP USRDEFROLGRP,
+			  A.DEFSTN,
+			  A.DEFARP,
+			  A.DEFWHS,
+			  A.DEFOFF,
+			  A.MSGALTFLG,
+			  A.REMNUMSES,
+			  A.REMGRCLOG,
+			  A.PWDCHGREQFLG,
+			  A.PWDEXPDAT,
+			  A.DEFAUT,
+			  A.NUMSES,
+			  A.NUMGRCLOG,
+			  ADMROL.USRTYP,
+			  coalesce(ADMROL.ARCROL, 'N') ARCROL,
+			  A.USRTYP AS DEFUSRTYP,
+			  A.CUSCOD,
+			  A.ACCDISFLG,
+			  A.ACCFRMDAT,
+			  A.ACCENDDAT,
+			  CUS.KNWSHP,
+			  S.TWOAPHCOD,
+			  S.THRAPHCOD,
+			  S.THRNUMCOD,
+			  S.FORNUMCOD,
+			  S.APHCODUSE,
+			  S.NUMCODUSE,
+			  S.ARLIDR,
+			  STN.DEFROLGRP STNDEFROLGRP,
+			  STNROL.USRTYP STNUSRTYP,
+			  coalesce(STNROL.ARCROL, 'N') STNARCROL,
+			  A.PORUSRTYP,
+			  coalesce(A.DEFLNG,
+			  (SELECT PARVAL
+			  FROM SHRSYSPAR
+			  WHERE CMPCOD=A.CMPCOD
+			  AND PARCOD  ='logonattributes.language'
+			  )) LANGUAGE_1,
+			  (SELECT PARVAL
+			  FROM SHRSYSPAR
+			  WHERE CMPCOD=A.CMPCOD
+			  AND PARCOD  ='logonattributes.dateformat'
+			  ) DATEFORMAT,
+			  (SELECT PARVAL
+			  FROM SHRSYSPAR
+			  WHERE CMPCOD=A.CMPCOD
+			  AND PARCOD  ='logonattributes.timeformat'
+			  ) TIMEFORMAT,
+			  (SELECT PARVAL
+			  FROM SHRSYSPAR
+			  WHERE CMPCOD=A.CMPCOD
+			  AND PARCOD  ='logonattributes.dateandtimeformat'
+			  ) DATEANDTIMEFORMAT,
+			  (SELECT MODNAM FROM SHRMODMST WHERE CMPCOD=A.CMPCOD AND DSPCOD = A.STRSCRIDR
+			  ) STRMODNAM,
+			  (SELECT ACTCOD FROM SHRMODMST WHERE CMPCOD=A.CMPCOD AND DSPCOD = A.STRSCRIDR
+			  ) STRACTCOD,
+			  (SELECT PARVAL
+			  FROM SHRSYSPAR
+			  WHERE CMPCOD=A.CMPCOD
+			  AND PARCOD  ='framework.security.isAlertMessageEnabled'
+			  ) SYSPARMSGALTFLG,
+			  (SELECT PARVAL
+			  FROM SHRSYSPAR
+			  WHERE CMPCOD=A.CMPCOD
+			  AND PARCOD  ='framework.security.isPasswordPolicyEnabled'
+			  ) ISPWDPOLENB,
+			  (SELECT PARVAL
+			  FROM SHRSYSPAR
+			  WHERE CMPCOD=A.CMPCOD
+			  AND PARCOD  ='system.defaults.unit.weight'
+			  ) DFTWGTUNT,
+			  (SELECT PARVAL
+			  FROM SHRSYSPAR
+			  WHERE CMPCOD=A.CMPCOD
+			  AND PARCOD  ='system.defaults.unit.volume'
+			  ) DFTVOLUNT,
+			  (SELECT PARVAL
+			  FROM SHRSYSPAR
+			  WHERE CMPCOD=A.CMPCOD
+			  AND PARCOD  ='system.defaults.unit.length'
+			  ) DFTDIMUNT,
+			  (SELECT PARVAL
+			  FROM SHRSYSPAR
+			  WHERE CMPCOD=A.CMPCOD
+			  AND PARCOD  ='system.defaults.unit.currency'
+			  ) DFTCURUNT,
+			  (SELECT ONETIM.FLDDES
+			  FROM SHRONETIM ONETIM,
+				SHRSYSPAR SYSPAR
+			  WHERE ONETIM.CMPCOD=A.CMPCOD
+			  AND SYSPAR.CMPCOD  =A.CMPCOD
+			  AND FLDTYP         ='shared.defaults.weightUnitCodes'
+			  AND SYSPAR.PARCOD  ='system.defaults.unit.weight'
+			  AND FLDVAL         =SYSPAR.PARVAL
+			  ) DFTWGTUNTDES,
+			  (SELECT ONETIM.FLDDES
+			  FROM SHRONETIM ONETIM,
+				SHRSYSPAR SYSPAR
+			  WHERE ONETIM.CMPCOD=A.CMPCOD
+			  AND SYSPAR.CMPCOD  =A.CMPCOD
+			  AND FLDTYP         ='shared.defaults.dimensionUnitCodes'
+			  AND SYSPAR.PARCOD  ='system.defaults.unit.length'
+			  AND FLDVAL         =SYSPAR.PARVAL
+			  ) DFTDIMUNTDES,
+			  (SELECT ONETIM.FLDDES
+			  FROM SHRONETIM ONETIM,
+				SHRSYSPAR SYSPAR
+			  WHERE ONETIM.CMPCOD=A.CMPCOD
+			  AND SYSPAR.CMPCOD  =A.CMPCOD
+			  AND FLDTYP         ='shared.defaults.volumeUnitCodes'
+			  AND SYSPAR.PARCOD  ='system.defaults.unit.volume'
+			  AND FLDVAL         =SYSPAR.PARVAL
+			  ) DFTVOLUNTDES,
+			  PWDDEF.ISSFRCPWDCHG,
+			  PWDDEF.PWDALTPRD,
+ADMROL.IMGPAR,
+			  A.PERADD,
+			  A.PERPHN,
+			  A.PEREML,
+			  A.PERFAX,
+			  A.PERMOBNUM,
+			  A.PERZIPCOD,
+			  A.EMPID,
+			  A.DEPNAM,
+			  A.OFFADD,
+			  A.OFFPHN,
+			  A.OFFEML,
+			  A.OFFFAX,
+			  A.OFFMOBNUM,
+			  A.OFFZIPCOD,
+			  A.CUSCOD,
+			  A.DLVREQFLG ,
+			  USRPAR.PARCOD,
+    USRPAR.PARVAL,
+			  (SELECT LISTAGG(MPGCOD, ',') WITHIN GROUP (
+			  ORDER BY MPGCOD DESC)
+		FROM ADMUSRPORAHCMPG MPG 
+		WHERE A.CMPCOD   = MPG.CMPCOD
+		AND A.USRCOD   = MPG.USRCOD		
+			  AND MPG.MPGTYP ='C'
+			  ) CUSCODES,
+			  A.SALREPFLG,
+			  A.JOBTIL
+FROM ADMUSRMST A 
+			INNER JOIN ADMROLGRPMST ADMROL
+			ON ADMROL.CMPCOD     = A.CMPCOD
+			AND ADMROL.ROLGRPCOD = A.DEFROLGRP
+			INNER JOIN SHRSYSPAR PAR
+			ON PAR.CMPCOD  = A.CMPCOD
+			AND PAR.PARCOD = 'logonattributes.ownairlineidentifier'
+			INNER JOIN SHRARLMST S
+			ON S.CMPCOD  = PAR.CMPCOD
+			AND S.ARLIDR = PAR.PARVAL
+			LEFT OUTER JOIN ADMPWDDEF PWDDEF
+			ON PWDDEF.CMPCOD = A.CMPCOD
+			LEFT OUTER JOIN ADMUSRALLSTN STN
+			ON STN.CMPCOD  = A.CMPCOD
+			AND STN.USRCOD = A.USRCOD
+			AND STN.STNCOD = A.DEFSTN
+			LEFT OUTER JOIN ADMROLGRPMST STNROL
+			ON STNROL.CMPCOD     = STN.CMPCOD
+			AND STNROL.ROLGRPCOD = STN.DEFROLGRP
+			LEFT OUTER JOIN ADMUSRALLOFF OFFICE
+			ON OFFICE.CMPCOD  = A.CMPCOD
+			AND OFFICE.USRCOD = A.USRCOD
+			AND OFFICE.OFFCOD = A.DEFOFF
+			LEFT OUTER JOIN SHRCUSMST CUS
+			ON CUS.CMPCOD  = A.CMPCOD
+			AND CUS.CUSCOD = A.CUSCOD
+			LEFT OUTER JOIN ADMUSRPAR USRPAR
+			ON Usrpar.Cmpcod  = A.Cmpcod
+			AND Usrpar.Usrcod = A.Usrcod							  
+			  WHERE A.USRCOD = ? AND 
+			  A.CMPCOD = ? 
+
+		 
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	
+	<QRY:Definition>
+	<QRY:Id>3</QRY:Id>
+	<QRY:Source Name="admin.user.findUserDetailslov_base" Type="NATIVE">
+	<![CDATA[
+		SELECT DISTINCT
+    mst.usrcod,
+    mst.cmpcod,
+    mst.defstn,
+    mst.fstnam
+    || ' '
+    || mst.mdlnam AS usrnam
+FROM
+    admusrmst mst
+    LEFT OUTER JOIN admstnrolgrp rol ON mst.cmpcod = rol.cmpcod
+                                        AND mst.usrcod = rol.usrcod
+                                        AND mst.defstn = rol.stncod
+WHERE
+    mst.cmpcod =?
+		
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>4</QRY:Id>
+	<QRY:Source Name="admin.user.findUserDetailslov_next" Type="NATIVE">
+	<![CDATA[
+		SELECT DISTINCT ROL.USRCOD, ROL.CMPCOD,MST.DEFSTN,
+				MST.FSTNAM || ' ' || MST.MDLNAM AS USRNAM
+			   FROM ADMUSRMST MST, ADMSTNROLGRP ROL
+			  WHERE ROL.CMPCOD = MST.CMPCOD
+			    AND ROL.USRCOD = MST.USRCOD
+			    AND ROL.STNCOD = MST.DEFSTN
+			    AND ROL.CMPCOD = ?
+
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>5</QRY:Id>
+	<QRY:Source Name="admin.user.validateusers" Type="NATIVE">
+	<![CDATA[
+		SELECT DISTINCT MST.USRCOD AS USRCOD, MST.CMPCOD,
+		                MST.FSTNAM || ' ' || MST.MDLNAM AS USRNAM
+		           FROM ADMUSRMST MST, ADMSTNROLGRP ROL
+		          WHERE MST.CMPCOD = ROL.CMPCOD
+		            AND ROL.USRCOD = MST.USRCOD
+		            AND ROL.STNCOD = MST.DEFSTN
+		            AND MST.CMPCOD = ?
+		            AND MST.DEFROLGRP = ?
+		UNION ALL
+		SELECT DISTINCT ROL.USRCOD AS USRCOD, ROL.CMPCOD,
+		                MST.FSTNAM || ' ' || MST.MDLNAM AS USRNAM
+		           FROM ADMUSRMST MST, ADMSTNROLGRP ROL
+		          WHERE ROL.CMPCOD = MST.CMPCOD
+		            AND ROL.USRCOD = MST.USRCOD
+		            AND ROL.STNCOD = MST.DEFSTN
+		            AND ROL.CMPCOD = ?
+           		    AND ROL.ROLGRPCOD = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>6</QRY:Id>
+	<QRY:Source Name="admin.user.findRoleGroupOnline" Type="NATIVE">
+	<![CDATA[
+				SELECT DISTINCT
+						 SESMST.ROLGRPCOD SESMSTROLGRPCOD
+				  FROM
+				  		 ICGSESMST SESMST
+				 WHERE
+				 		 SESMST.CMPCOD = ?					
+					AND SESMST.ROLGRPCOD = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+	<QRY:Id>7</QRY:Id>
+	<QRY:Source Name="admin.user.findRoleGroup" Type="NATIVE">
+	<![CDATA[
+				SELECT DISTINCT
+						 USR.DEFROLGRP USRDEFROLGRP
+				  FROM 
+						 ADMUSRMST USR
+				 WHERE 
+						 USR.CMPCOD = ?					
+					AND USR.DEFROLGRP = ?			
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>8</QRY:Id>
+	<QRY:Source Name="admin.user.findUsersInRoleGroup" Type="NATIVE">
+	<![CDATA[
+			SELECT DISTINCT
+					 USR.USRCOD USRUSRCOD
+			  FROM 
+			  		 ADMUSRMST USR
+			 WHERE 
+			 		 USR.CMPCOD = ?				
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>9</QRY:Id>
+	<QRY:Source Name="admin.user.findSpecificStaffOnline" Type="NATIVE">
+	<![CDATA[
+			 SELECT DISTINCT
+			 		 SESMST.USRCOD  SESMSTUSRCOD
+				FROM 
+					 ICGSESMST SESMST
+				WHERE 
+					 SESMST.CMPCOD = ?
+				AND SESMST.USRCOD = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>10</QRY:Id>
+	<QRY:Source Name="admin.user.findSpecificStaff" Type="NATIVE">
+	<![CDATA[
+          SELECT DISTINCT
+          		 USRMST.USRCOD  USRMSTUSRCOD
+          FROM 
+          		 ADMUSRMST USRMST
+          WHERE 
+          		 USRMST.CMPCOD = ?
+				AND USRMST.USRCOD = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>11</QRY:Id>
+	<QRY:Source Name="admin.user.validateRoleGroup" Type="NATIVE">
+	<![CDATA[
+		SELECT ROLGRPCOD, ROLGRPNAM
+		  FROM ADMROLGRPMST
+		 WHERE CMPCOD = ? AND ROLGRPCOD IN 
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>12</QRY:Id>
+	<QRY:Source Name="admin.user.validateuserswitoutrolegrp" Type="NATIVE">
+	<![CDATA[
+	 SELECT DISTINCT MST.USRCOD AS USRCOD, MST.CMPCOD,
+		 MST.FSTNAM || ' ' || MST.MDLNAM AS USRNAM
+	 FROM ADMUSRMST MST
+	 WHERE MST.CMPCOD = ?
+	 AND MST.USRCOD IN 
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+		
+	<QRY:Definition>
+		<QRY:Id>13</QRY:Id>
+		<QRY:Source Name="admin.user.validateuser" Type="NATIVE">
+		<![CDATA[
+			SELECT MST.USRCOD,MST.CMPCOD,MST.FSTNAM AS USRNAM
+			FROM ADMUSRMST MST
+			WHERE MST.CMPCOD = ?
+			      AND MST.USRCOD = ?
+			      AND MST.USRPWD = ?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+		<QRY:Id>14</QRY:Id>
+		<QRY:Source Name="admin.user.finduserallowablestations" Type="NATIVE">
+		<![CDATA[
+				( SELECT
+    allstn.cmpcod,
+    allstn.usrcod,
+    allstn.stncod,
+    allstn.defrolgrp
+  FROM
+    shrstnmst stnmst
+    LEFT OUTER JOIN admusrallstn allstn ON stnmst.cmpcod = allstn.cmpcod
+                                           AND stnmst.stncod = allstn.stncod
+  WHERE
+    allstn.cmpcod =?
+    AND allstn.usrcod =?
+)
+				  UNION ALL
+
+                ( SELECT USRMST.CMPCOD , USRMST.USRCOD , USRMST.DEFSTN STNCOD , USRMST.DEFROLGRP 
+			        FROM ADMUSRMST USRMST 
+				   WHERE USRMST.CMPCOD = ?
+				     AND USRMST.USRCOD = ?
+				     AND NOT EXISTS 
+				              ( SELECT 1 FROM ADMUSRALLSTN WHERE CMPCOD = USRMST.CMPCOD AND USRCOD = USRMST.USRCOD AND STNCOD = USRMST.DEFSTN )				   
+			    )
+
+					
+		]]>
+		</QRY:Source>
+		</QRY:Definition>
+		
+		
+		
+		<QRY:Definition>
+		<QRY:Id>15</QRY:Id>
+		<QRY:Source Name="admin.user.finduserstationrolegroups" Type="NATIVE">
+		<![CDATA[
+			 
+			SELECT ROL.CMPCOD,ROL.USRCOD,ROL.STNCOD,ROL.DEFROLGRP ROLGRP,MST.USRTYP,coalesce(MST.ARCROL, 'N') ARCROL
+			 FROM ADMUSRALLSTN ROL,ADMROLGRPMST MST
+			 WHERE MST.CMPCOD=ROL.CMPCOD
+			 AND MST.ROLGRPCOD=ROL.DEFROLGRP 
+			 AND ROL.CMPCOD=?
+			 AND ROL.USRCOD=?
+			 AND ROL.STNCOD=?
+			 
+			 UNION	ALL 
+			 
+			SELECT USRMST.CMPCOD,USRMST.USRCOD,USRMST.DEFSTN STNCOD ,USRMST.DEFROLGRP ROLGRP,MST.USRTYP,coalesce(MST.ARCROL, 'N') ARCROL
+			 FROM ADMUSRMST USRMST,ADMROLGRPMST MST
+			 WHERE MST.CMPCOD=USRMST.CMPCOD
+			 AND MST.ROLGRPCOD=USRMST.DEFROLGRP
+			 AND USRMST.CMPCOD=?
+			 AND USRMST.USRCOD=?
+			 AND USRMST.DEFSTN=?
+			 AND NOT EXISTS ( SELECT 1 FROM ADMSTNROLGRP WHERE CMPCOD = USRMST.CMPCOD AND USRCOD = USRMST.USRCOD AND ROLGRPCOD = USRMST.DEFROLGRP AND STNCOD = USRMST.DEFSTN )
+             AND NOT EXISTS ( SELECT 1 FROM ADMUSRALLSTN WHERE CMPCOD = USRMST.CMPCOD AND USRCOD = USRMST.USRCOD AND DEFROLGRP = USRMST.DEFROLGRP AND STNCOD = USRMST.DEFSTN )	
+			 
+			 UNION	ALL 
+			 SELECT ROL.CMPCOD,ROL.USRCOD,ROL.STNCOD,ROL.ROLGRPCOD ROLGRP,MST.USRTYP,coalesce(MST.ARCROL, 'N') ARCROL
+			 FROM ADMSTNROLGRP ROL,ADMROLGRPMST MST
+			 WHERE 
+			 MST.CMPCOD=ROL.CMPCOD
+			 AND MST.ROLGRPCOD=ROL.ROLGRPCOD
+			 AND ROL.CMPCOD=?
+			 AND ROL.USRCOD= ?
+			 AND ROL.STNCOD= ?
+			 
+			 
+		]]>
+		</QRY:Source>
+		</QRY:Definition>	
+		
+		<QRY:Definition>
+		<QRY:Id>16</QRY:Id>
+		<QRY:Source Name="admin.user.findallstationairports" Type="NATIVE">
+		<![CDATA[
+					 SELECT ARP.CMPCOD,ARP.STNCOD,ARP.ARPCOD,ARP.ARPNAM 
+					 FROM SHRSTNARP ARP
+					 WHERE ARP.CMPCOD=?
+					 AND ARP.STNCOD=? 			 
+		]]>
+		</QRY:Source>
+		</QRY:Definition>	
+		
+		<QRY:Definition>
+		<QRY:Id>17</QRY:Id>
+		<QRY:Source Name="admin.user.findalloffices" Type="NATIVE">
+		<![CDATA[
+			SELECT DISTINCT
+    allstn.cmpcod,
+    allstn.usrcod,
+    offmst.offcod
+FROM
+    shroffmst offmst
+    LEFT OUTER JOIN admusrallstn allstn ON offmst.cmpcod = allstn.stncod
+                                        AND offmst.stncod = allstn.stncod
+WHERE
+    allstn.cmpcod =?
+    AND allstn.usrcod =? 
+	
+	
+	 
+		]]>
+		</QRY:Source>
+		</QRY:Definition>
+	
+	    <QRY:Definition>
+	   	<QRY:Id>18</QRY:Id>
+	   	<QRY:Source Name="admin.user.findUserEnquiryDetails" Type="NATIVE">
+	   	<![CDATA[
+	        SELECT
+    usrmst.cmpcod,
+    usrmst.usrcod,
+    usrmst.fstnam,
+    usrmst.mdlnam,
+    usrmst.lstnam,
+    usrmst.usrrmk,
+			coalesce( (
+			select
+				defrolgrp
+			from
+				admusrallstn allstndef
+	     	 WHERE
+            usrmst.cmpcod = allstndef.cmpcod
+            AND usrmst.usrcod = allstndef.usrcod
+            AND usrmst.defstn = allstndef.stncod
+    ),usrmst.defrolgrp) usrdefrolgrp,
+    usrmst.pwdexpdat,
+    usrmst.accdisflg,
+    usrmst.accfrmdat,
+    usrmst.accenddat,
+    usrmst.accdisrmk,
+    usrmst.defoff,
+    usrmst.defstn,
+    usrmst.defarp,
+    usrmst.defwhs,
+    usrmst.remgrclog,
+    usrmst.offctynam,
+    usrmst.offcntnam,
+    usrmst.offeml,
+    usrmst.crtdat,
+    usrmst.porusrtyp,
+    usrmst.pordefrolgrp,
+    usrmst.lstlogintim,
+    mpg.mpgtyp,
+    mpg.mpgcod,USRMST.DEPNAM,USRMST.LSTUPDTIM,USRMST.LSTUPDUSR
+FROM
+    admusrmst usrmst
+    LEFT OUTER JOIN admusrporahcmpg mpg ON usrmst.usrcod = mpg.usrcod
+                                           AND usrmst.cmpcod = mpg.cmpcod
+                                           AND mpg.mpgtyp = 'C'
+WHERE usrmst.cmpcod =?
+				
+	     ]]>
+	     </QRY:Source>
+	     </QRY:Definition>
+	     
+	     <QRY:Definition>
+	     <QRY:Id>19</QRY:Id>
+	     <QRY:Source Name="admin.user.findAllPasswordsForUser" Type="NATIVE">
+	     <![CDATA[
+	          SELECT CMPCOD,USRCOD,SERNUM,OLDPWD,CRTDAT
+	     	  FROM ADMUSRPWDHIS PWDHIS
+	     	  WHERE PWDHIS.CMPCOD=?
+	     	  AND PWDHIS.USRCOD=? 	 
+	     	  ORDER BY CRTDAT  
+	     
+	     ]]>
+	     </QRY:Source>
+	     </QRY:Definition>   
+	     
+	     <QRY:Definition>
+	     <QRY:Id>20</QRY:Id>
+	     <QRY:Source Name="admin.user.checkPasswordHistory" Type="NATIVE">
+	     <![CDATA[
+	          SELECT CMPCOD
+	     	  FROM ADMUSRPWDHIS PWDHIS
+	     	  WHERE PWDHIS.CMPCOD=?
+	     	  AND PWDHIS.USRCOD=? 	 
+	     	  AND PWDHIS.OLDPWD=?
+	     			  
+	      ]]>
+	     </QRY:Source>
+	     </QRY:Definition>   
+	     
+	     
+	     <QRY:Definition>
+	     <QRY:Id>21</QRY:Id>
+	     <QRY:Source Name="admin.user.isPasswordGuessable" Type="NATIVE">
+	     <![CDATA[
+			SELECT COUNT(1) AS GUESSABLE FROM (
+	        SELECT 1 AS GUESSABLE
+			FROM ADMGUSPWDMST
+			WHERE CMPCOD = ? AND (
+			  (? LIKE KEYVAL || '%' AND PWDKEY = 'S') OR
+			  (? = KEYVAL AND PWDKEY = 'Q') OR
+			  (? LIKE '%'||KEYVAL AND PWDKEY = 'E') OR
+			  (? LIKE '%'||KEYVAL || '%' AND PWDKEY = 'C')
+			) 
+			
+	      ]]>
+	     </QRY:Source>
+	     </QRY:Definition>   	  
+	     
+	     <QRY:Definition>
+	     <QRY:Id>22</QRY:Id>
+	     <QRY:Source Name="admin.user.findMaxSequenceNumber" Type="NATIVE">
+	     <![CDATA[
+	          SELECT MAX(SEQNUM)AS MAXSEQNUM
+	     	  FROM ADMGUSPWDMST MST
+	     	  WHERE MST.CMPCOD=?
+	      ]]>
+	     </QRY:Source>
+	     </QRY:Definition>   	  	        
+	     
+
+	      	  
+	     
+	   <QRY:Definition>
+	   <QRY:Id>23</QRY:Id>
+	   <QRY:Source Name="admin.user.findPasswordRecycleThreshold" Type="NATIVE">
+	   <![CDATA[
+	        SELECT PWDRCYTHR FROM ADMPWDDEF DEF
+	        WHERE DEF.CMPCOD=?
+	   ]]>
+	   </QRY:Source>
+	   </QRY:Definition>   
+
+        <QRY:Definition>
+		<QRY:Id>24</QRY:Id>
+		<QRY:Source Name="admin.user.findPasswordPolicy" Type="NATIVE">
+			<![CDATA[
+				SELECT  CMPCOD,MAXLEN,MAXCAP,MAXNUM,MAXSPLCHR,ISSFRCPWDCHG,MINLEN,MINCAP,MINNUM,MINSPLCHR,DLYTHR,PWDEXPTHR,PWDRCYTHR,
+				ISUSRCODGUS,ISUSRNAMGUS,ISJOBTILGUS,ISEMPIDGUS,ISCMPNAMGUS,ISDEPNAMGUS,ISEMAILGUS,PWDALTPRD,DEFPWD
+				FROM  ADMPWDDEF
+				WHERE CMPCOD = ?
+
+		]]>
+		</QRY:Source>
+		</QRY:Definition>	 
+		
+	   <QRY:Definition>
+	   <QRY:Id>25</QRY:Id>
+	   <QRY:Source Name="admin.user.findGuessablePasswords" Type="NATIVE">
+	   <![CDATA[
+	        SELECT CMPCOD,SEQNUM,PWDKEY,KEYVAL FROM ADMGUSPWDMST MST
+	        WHERE MST.CMPCOD=?
+	   ]]>
+	   </QRY:Source>
+	   </QRY:Definition>   
+	   
+	<!--  query added by Kiran to get allowable offices for a user  -->   
+	   
+	<QRY:Definition>
+		<QRY:Id>26</QRY:Id>
+		<QRY:Source Name="admin.user.findUserAllowableOffices" Type="NATIVE">
+		<![CDATA[
+		
+				( SELECT 'DEFAULT' STNCOD , USRMST.CMPCOD , USRMST.USRCOD , USRMST.DEFOFF OFFCOD 
+					FROM ADMUSRMST USRMST 
+					WHERE USRMST.CMPCOD = ? and USRMST.USRCOD = ? )
+					
+				UNION ALL					
+		
+				( SELECT '***' STNCOD ,USRALLOFF.CMPCOD,USRALLOFF.USRCOD,USRALLOFF.OFFCOD							    
+				    FROM ADMUSRALLOFF USRALLOFF			 
+					WHERE USRALLOFF.CMPCOD = ? AND USRALLOFF.USRCOD = ? ) 
+
+				UNION ALL 	
+
+				( SELECT DISTINCT ALLSTN.STNCOD,ALLSTN.CMPCOD,ALLSTN.USRCOD,OFFMST.OFFCOD				 
+					FROM SHROFFMST OFFMST,ADMUSRALLSTN ALLSTN 			 
+					WHERE ALLSTN.CMPCOD = ? AND ALLSTN.USRCOD = ? AND ALLSTN.STNCOD = OFFMST.STNCOD )
+
+
+
+
+		]]>
+		</QRY:Source>
+		</QRY:Definition>	
+		
+		<!--  query added by Kiran to get allowable offices for a user ends -->   		   
+		
+	<QRY:Definition>
+	<QRY:Id>27</QRY:Id>
+	<QRY:Source Name="admin.user.validatecashiers" Type="NATIVE">
+	<![CDATA[
+		SELECT DISTINCT
+    mst.usrcod AS usrcod,
+    mst.cmpcod,
+    mst.fstnam
+    || ' '
+    || mst.mdlnam AS usrnam
+FROM
+    admusrmst mst
+    LEFT OUTER JOIN admstnrolgrp rol ON mst.cmpcod = rol.cmpcod
+                                        AND mst.usrcod = rol.usrcod
+                                        AND mst.defstn = rol.stncod
+WHERE
+    mst.cmpcod = ?
+    AND (
+        mst.defrolgrp = ?
+        OR mst.defrolgrp = ?
+    )
+		  UNION ALL
+SELECT DISTINCT
+    rol.usrcod AS usrcod,
+    rol.cmpcod,
+    mst.fstnam
+    || ' '
+    || mst.mdlnam AS usrnam
+FROM
+    admusrmst mst
+    INNER JOIN admstnrolgrp rol ON mst.cmpcod = rol.cmpcod
+                                        AND mst.usrcod = rol.usrcod
+                                        AND mst.defstn = rol.stncod
+    AND rol.cmpcod = ?
+    AND (
+        rol.rolgrpcod = ?
+        OR rol.rolgrpcod = ?
+    )
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>27</QRY:Id>
+			<QRY:Source Name="admin.user.findUserAllowableStationsPages" Type="NATIVE">
+				<![CDATA[
+				SELECT DISTINCT usrmst.cmpcod, usrmst.usrcod, 
+								usralstn.stncod allstn, usralstn.defrolgrp stndefrol,
+								stnrol.rolgrpcod
+								FROM
+									admusrmst usrmst
+									LEFT OUTER JOIN admusrallstn usralstn ON usrmst.cmpcod = usralstn.cmpcod
+																		   AND usrmst.usrcod = usralstn.usrcod
+									LEFT OUTER JOIN admstnrolgrp stnrol ON usralstn.cmpcod = stnrol.cmpcod
+																			 AND usralstn.usrcod = stnrol.usrcod
+																			 AND usralstn.stncod = stnrol.stncod
+								WHERE
+									usrmst.cmpcod =?
+							    AND usrmst.usrcod = ?
+								ORDER BY
+									allstn,
+									stndefrol
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>28</QRY:Id>
+		<QRY:Source Name="admin.user.udapteUserDetails" Type="PROCEDURE">
+			<![CDATA[
+				CALL PKG_ADM_USER_DETAIL_INTERFACE.SPR_UPDATE_USERDETAILS(?, ?)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>28</QRY:Id>
+		<QRY:Source Name="admin.user.validatemessageheader" Type="NATIVE">
+			<![CDATA[
+				SELECT 'true' ISVALID FROM ADMUSRMST WHERE CMPCOD=? AND USRCOD=?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>29</QRY:Id>
+	<QRY:Source Name="admin.user.listUsers" Type="NATIVE">
+	<![CDATA[
+		SELECT DISTINCT
+    usrmst.cmpcod,
+    usrmst.usrcod,
+    usrmst.fstnam,
+    usrmst.mdlnam,
+    usrmst.lstnam,
+    usrmst.peradd,
+    usrmst.perzipcod,
+    usrmst.perphn,
+    usrmst.pereml,
+    usrmst.perfax,
+    usrmst.permobnum,
+    usrmst.offadd,
+    usrmst.offzipcod,
+    usrmst.offphn,
+    usrmst.offeml,
+    usrmst.offfax,
+    usrmst.offmobnum,
+    usrmst.usrrmk,
+    usrmst.defrolgrp,
+    usrmst.numses,
+    usrmst.numgrclog,
+    usrmst.pwdexpdat,
+    usrmst.pwdchgreqflg,
+    usrmst.accdisflg,
+    usrmst.accfrmdat,
+    usrmst.accenddat,
+    usrmst.accdisrmk,
+    usrmst.defoff,
+    usrmst.defstn,
+    usrmst.defarp,
+    usrmst.lstupdusr,
+    usrmst.lstupdtim,
+    usrmst.usrpwd,
+    usralstn.stncod,
+    usroff.offcod,
+    usrmst.jobtil,
+    usrmst.crtdat,
+    usrmst.msgaltflg,
+    usrmst.defwhs,
+    usrmst.disusrcod,
+    usrmst.defaut,
+    usrmst.strscridr,
+    fav.scridr,
+    shmodmst.modnam favmodnam,
+    grc.grclog,
+    grc.logdat,
+    usralstn.stncod allstn,
+    usralstn.defrolgrp stndefrol,
+    stnrol.rolgrpcod,
+    usrmst.deflng,
+    usrmst.usrtyp,
+    usrmst.empid,
+    usrmst.depnam,
+    usrmst.cuscod,
+    usrmst.dlvreqflg,
+    parmst.parcod,
+    parmst.pardes,
+    (
+        SELECT
+            parval
+        FROM
+            admusrpar usrpar
+        WHERE
+            usrpar.cmpcod = usrmst.cmpcod
+            AND usrpar.usrcod = usrmst.usrcod
+            AND usrpar.parcod = parmst.parcod
+    ) parval,
+    (
+        SELECT
+            fstnam
+        FROM
+            admusrmst
+        WHERE
+            cmpcod = usrmst.cmpcod
+            AND usrcod = usrmst.disusrcod
+    ) disusrnam,
+    (
+        SELECT
+            modnam
+        FROM
+            shrmodmst
+        WHERE
+            cmpcod = usrmst.cmpcod
+            AND dspcod = usrmst.strscridr
+    ) strmodnam
+FROM
+    admusrmst usrmst
+    LEFT OUTER JOIN admusrallstn usralstn ON usrmst.cmpcod = usralstn.cmpcod
+                                             AND usrmst.usrcod = usralstn.usrcod
+    LEFT OUTER JOIN admstnrolgrp stnrol ON stnrol.cmpcod = usralstn.cmpcod
+                                           AND stnrol.usrcod = usralstn.usrcod
+                                           AND stnrol.stncod = usralstn.stncod
+    LEFT OUTER JOIN admusralloff usroff ON usrmst.cmpcod = usroff.cmpcod
+                                           AND usrmst.usrcod = usroff.usrcod
+    LEFT OUTER JOIN admusrfav fav ON usrmst.cmpcod = fav.cmpcod
+                                     AND usrmst.usrcod = fav.usrcod
+    LEFT OUTER JOIN shrmodmst shmodmst ON fav.cmpcod = shmodmst.cmpcod
+                                          AND fav.scridr = shmodmst.dspcod
+    LEFT OUTER JOIN admusrgrc grc ON usrmst.cmpcod = grc.cmpcod
+                                     AND usrmst.usrcod = grc.usrcod
+    LEFT OUTER JOIN admusrparmst parmst ON usrmst.cmpcod = parmst.cmpcod
+WHERE
+    usrmst.cmpcod =  ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>30</QRY:Id>
+			<QRY:Source Name="admin.user.findUserParameters" Type="NATIVE">
+				<![CDATA[
+				SELECT PARCOD,PARDES,CMPCOD,PARLOV FROM ADMUSRPARMST WHERE CMPCOD = ?
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+			<QRY:Id>31</QRY:Id>
+			<QRY:Source Name="admin.user.findUserParametersValueMap" Type="NATIVE">
+				<![CDATA[
+				SELECT usrpar.parcod PARCOD,usrpar.parval PARVAL 
+					FROM admusrpar usrpar LEFT OUTER JOIN admusrparmst parmst
+                        ON  usrpar.parcod = parmst.parcod 
+							AND usrpar.cmpcod = parmst.cmpcod 
+                        WHERE usrpar.cmpcod = ?
+							AND usrpar.usrcod= ?
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>32</QRY:Id>
+	<QRY:Source Name="admin.user.findUserDetailslov_query1" Type="NATIVE">
+	<![CDATA[
+		SELECT DISTINCT
+    mst.usrcod,
+    mst.cmpcod,
+    mst.fstnam
+    || ' '
+    || mst.mdlnam AS usrnam
+FROM
+    admusrmst mst
+    LEFT OUTER JOIN admstnrolgrp rol ON mst.cmpcod = rol.cmpcod
+                                        AND mst.usrcod = rol.usrcod
+                                        AND mst.defstn = rol.stncod
+WHERE
+    mst.cmpcod =?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>33</QRY:Id>
+	<QRY:Source Name="admin.user.findUserDetailslov_query2" Type="NATIVE">
+	<![CDATA[
+		SELECT DISTINCT ROL.USRCOD, ROL.CMPCOD, 
+				MST.FSTNAM || ' ' || MST.MDLNAM AS USRNAM
+			   FROM ADMUSRMST MST, ADMSTNROLGRP ROL
+			  WHERE ROL.CMPCOD = MST.CMPCOD
+			    AND ROL.USRCOD = MST.USRCOD
+			    AND ROL.CMPCOD = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>34</QRY:Id>
+	<QRY:Source Name="admin.user.findUserDetailslov_query3" Type="NATIVE">
+	<![CDATA[
+		SELECT DISTINCT ROL.USRCOD, ROL.CMPCOD, 
+				MST.FSTNAM || ' ' || MST.MDLNAM AS USRNAM
+			   FROM ADMUSRMST MST, ADMUSRALLSTN ROL
+			  WHERE ROL.CMPCOD = MST.CMPCOD
+			    AND ROL.USRCOD = MST.USRCOD
+			    AND ROL.CMPCOD = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>35</QRY:Id>
+	<QRY:Source Name="admin.user.findExhaustedlogindetails" Type="NATIVE">
+	<![CDATA[
+		SELECT GRCLOG,LOGDAT FROM ADMUSRGRC GRC
+			  WHERE GRC.CMPCOD = ? 
+			  AND GRC.USRCOD = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>36</QRY:Id>
+	<QRY:Source Name="admin.user.findUserFavourites" Type="NATIVE">
+	<![CDATA[
+	
+	SELECT FAV.SCRIDR,SHMODMST.MODNAM FAVMODNAM
+		FROM ADMUSRFAV FAV LEFT OUTER JOIN SHRMODMST SHMODMST ON FAV.SCRIDR   = SHMODMST.DSPCOD
+		AND FAV.CMPCOD   = SHMODMST.CMPCOD
+		WHERE FAV.CMPCOD = ?
+		AND FAV.USRCOD   = ?
+	
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>37</QRY:Id>
+	<QRY:Source Name="admin.user.findUserParametersList" Type="NATIVE">
+	<![CDATA[
+	
+	SELECT
+    parmst.cmpcod,
+    parmst.parcod,
+    parmst.pardes,
+    parmst.parlov,
+    usrpar.parval
+FROM
+    admusrparmst parmst
+    LEFT OUTER JOIN admusrpar usrpar ON parmst.cmpcod = usrpar.cmpcod
+                                        AND parmst.parcod = usrpar.parcod
+WHERE parmst.cmpcod = ?
+    AND usrpar.usrcod = ?
+	
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>38</QRY:Id>
+	<QRY:Source Name="admin.user.findUserOffices" Type="NATIVE">
+	<![CDATA[
+	
+	SELECT * FROM  ADMUSRALLOFF USROFF WHERE 
+		USROFF.CMPCOD= ?
+		AND USROFF.USRCOD=?
+	
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>39</QRY:Id>
+	<QRY:Source Name="admin.user.findUserStations" Type="NATIVE">
+	<![CDATA[
+	
+	SELECT Usralstn.Cmpcod,USRALSTN.USRCOD,USRALSTN.STNCOD ALLSTN,USRALSTN.DEFROLGRP STNDEFROL,
+		(SELECT LISTAGG(ROLGRPCOD, ',') WITHIN GROUP (ORDER BY ROLGRPCOD DESC) 
+		FROM ADMSTNROLGRP STNROL WHERE USRALSTN.CMPCOD = STNROL.CMPCOD
+		AND USRALSTN.USRCOD   = STNROL.USRCOD
+		AND USRALSTN.STNCOD   = STNROL.STNCOD) ROLGRPCOD
+		FROM 
+		ADMUSRALLSTN USRALSTN
+		WHERE USRALSTN.CMPCOD= ?
+		AND USRALSTN.USRCOD=?	
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+  
+		<QRY:Definition>
+	<QRY:Id>40</QRY:Id>
+		<QRY:Source Name="admin.user.getPortalUserDetails" Type="NATIVE">
+	<![CDATA[
+				 SELECT USR.CMPCOD,USR.USRCOD,
+				  USR.PORDEFROLGRP,
+				  USR.CRTUSR            ,
+				  USR.PORUSRTYP         ,
+				  USR.USRTTL            ,
+				  USR.MAXCLDUSRCNT      ,
+				  USR.CLDUSRCNT         ,
+				  USR.NFNFMT         ,
+				  USR.STDEMLFLG         ,
+				  USR.NFNLNG         ,
+				  USR.SECINFMSGFLG         ,
+				  MPG.MPGTYP            ,
+				  MPG.MPGCOD            ,
+				  NTFADR.NTFADD         ,
+				  NTFADR.NTFMOD         ,
+				  NTF.MILSTNCOD         
+				   FROM ADMUSRMST USR
+				LEFT OUTER JOIN ADMUSRPORAHCMPG MPG
+					 ON USR.USRCOD=MPG.USRCOD
+					 AND USR.CMPCOD    =MPG.CMPCOD
+				LEFT OUTER JOIN ADMUSRPORNTF NTF
+					 ON USR.USRCOD =NTF.USRCOD
+					 AND USR.CMPCOD     =NTF.CMPCOD
+				LEFT OUTER JOIN ADMUSRPORNTFADR NTFADR
+					 ON USR.USRCOD =NTFADR.USRCOD
+					 AND USR.CMPCOD     =NTFADR.CMPCOD
+				WHERE USR.USRCOD =  ?
+				      AND USR.CMPCOD     =  ?	
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>41</QRY:Id>
+		<QRY:Source Name="admin.user.findHandlingAreaUsers" Type="NATIVE">
+	<![CDATA[
+				Select Usrmst.Usrcod,Usrmst.fstnam, Usrmst.lstnam
+				From Admusrmst Usrmst,
+				Admusrpar Usrpar
+				Where Usrmst.Cmpcod = Usrpar.Cmpcod
+				AND USRMST.USRCOD = USRPAR.USRCOD
+				and USRMST.cmpcod = ?
+				AND Usrpar.Parcod = 'admin.user.isWarehouseLoginRequired'
+				And Usrpar.Parval = 'Y'
+				And Usrmst.Defarp = ?
+				and USRMST.DEFWHS = ?
+				And USRMST.Usrcod like ?
+				union 
+				Select Usrmst.Usrcod,Usrmst.fstnam, Usrmst.lstnam
+				From Admusrmst Usrmst,
+				Admusrpar Usrpar
+				Where Usrmst.Cmpcod = Usrpar.Cmpcod
+				AND USRMST.USRCOD = USRPAR.USRCOD
+				and USRMST.cmpcod = ?
+				AND Usrpar.Parcod = 'admin.user.isWarehouseLoginRequired'
+				And Usrpar.Parval = 'Y'
+				And Usrmst.Defarp = ?
+				and USRMST.DEFWHS = ?
+				And USRMST.fstnam like ?
+				union 
+				Select Usrmst.Usrcod,Usrmst.fstnam, Usrmst.lstnam
+				From Admusrmst Usrmst,
+				Admusrpar Usrpar
+				Where Usrmst.Cmpcod = Usrpar.Cmpcod
+				AND USRMST.USRCOD = USRPAR.USRCOD
+				and USRMST.cmpcod = ?
+				AND Usrpar.Parcod = 'admin.user.isWarehouseLoginRequired'
+				And Usrpar.Parval = 'Y'
+				And Usrmst.Defarp = ?
+				and USRMST.DEFWHS = ?
+				And USRMST.lstnam like ?
+				
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>42</QRY:Id>
+		<QRY:Source Name="admin.user.findInactiveUsers" Type="NATIVE">
+	<![CDATA[
+				SELECT USRCOD FROM ADMUSRMST WHERE CMPCOD = ? AND USRTYP = 'N' AND coalesce(LSTLOGINTIM, LSTUPDTIM) < SYSDATE-? 
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>42</QRY:Id>
+		<QRY:Source Name="admin.user.findPortalUserForMappedCustomer" Type="NATIVE">
+	<![CDATA[
+		SELECT USRMST.USRCOD USRCOD,
+		USRMST.ACCDISFLG ACCDISFLG
+		FROM ADMUSRMST USRMST,
+		ADMUSRPORAHCMPG PORMPG
+		WHERE USRMST.CMPCOD=PORMPG.CMPCOD
+		AND USRMST.USRCOD  =PORMPG.USRCOD
+		AND PORMPG.MPGTYP  ='C'
+		AND PORMPG.MPGCOD  = ?
+		AND PORMPG.CMPCOD  = ? 
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+		<QRY:Definition>
+	<QRY:Id>43</QRY:Id>
+		<QRY:Source Name="admin.user.validateHandlingAreaUsers" Type="NATIVE">
+	<![CDATA[
+		SELECT adm.usrcod,
+		adm.fstnam,
+		adm.lstnam,
+		par.parcod,
+		par.parval
+		FROM admusrmst adm,
+		ADMUSRPAR par
+		WHERE adm.usrcod=par.usrcod
+		AND adm.cmpcod  = ?
+		AND adm.usrcod  = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	 <QRY:Definition>
+	   	<QRY:Id>44</QRY:Id>
+	   	<QRY:Source Name="admin.user.findUserEnquiryDetailsForDefRole" Type="NATIVE">
+	   	<![CDATA[
+	       SELECT
+    usrmst.cmpcod,
+    usrmst.usrcod,
+    usrmst.fstnam,
+    usrmst.mdlnam,
+    usrmst.lstnam,
+    usrmst.usrrmk,
+			coalesce( (
+			select
+				defrolgrp
+			from
+				admusrallstn allstndef
+			where
+				usrmst.cmpcod = allstndef.cmpcod
+            AND usrmst.usrcod = allstndef.usrcod
+            AND usrmst.defstn = allstndef.stncod
+    ),usrmst.defrolgrp) usrdefrolgrp,
+    usrmst.pwdexpdat,
+    usrmst.accdisflg,
+    usrmst.accfrmdat,
+    usrmst.accenddat,
+    usrmst.accdisrmk,
+    usrmst.defoff,
+    usrmst.defstn,
+    usrmst.defarp,
+    usrmst.defwhs,
+    usrmst.remgrclog,
+    usrmst.offctynam,
+    usrmst.offcntnam,
+    usrmst.offeml,
+    usrmst.crtdat,
+    usrmst.porusrtyp,
+    usrmst.pordefrolgrp,
+    usrmst.lstlogintim,
+    mpg.mpgtyp,
+    mpg.mpgcod,USRMST.DEPNAM,USRMST.LSTUPDTIM,USRMST.LSTUPDUSR,
+    (
+        SELECT
+            COUNT(1)
+        FROM
+            admusrallstn allstn
+	     	 WHERE
+            usrmst.cmpcod = allstn.cmpcod
+            AND usrmst.usrcod = allstn.usrcod
+            AND allstn.stncod <> usrmst.defstn
+    ) stncnt
+FROM
+    admusrmst usrmst
+    LEFT OUTER JOIN admusrporahcmpg mpg ON usrmst.usrcod = mpg.usrcod
+                                           AND usrmst.cmpcod = mpg.cmpcod
+                                           AND mpg.mpgtyp = 'C'
+							 WHERE 
+    usrmst.cmpcod =?
+    AND (
+        (
+            usrmst.defrolgrp =?
+            AND NOT EXISTS (
+                SELECT
+                    1
+                FROM
+                    admusrallstn allstntab
+							    WHERE 
+                    allstntab.cmpcod = usrmst.cmpcod
+                    AND allstntab.usrcod = usrmst.usrcod
+                    AND allstntab.stncod = usrmst.defstn
+            )
+        )
+        OR ( EXISTS (
+            SELECT
+                1
+            FROM
+                admusrallstn allstntab1
+            WHERE
+                allstntab1.cmpcod = usrmst.cmpcod
+                AND allstntab1.usrcod = usrmst.usrcod
+                AND allstntab1.defrolgrp =?
+					))
+    )
+	     ]]>
+	     </QRY:Source>
+	     </QRY:Definition>
+		 
+		 
+		<QRY:Definition>
+	   	<QRY:Id>45</QRY:Id>
+	   	<QRY:Source Name="admin.user.findUserEnquiryDetailsForAdlRole" Type="NATIVE">
+	   	<![CDATA[
+	        SELECT USRMST.CMPCOD,USRMST.USRCOD,USRMST.FSTNAM,USRMST.MDLNAM,USRMST.LSTNAM,USRMST.USRRMK,
+			coalesce( (
+			select
+				defrolgrp
+			from
+				admusrallstn allstndef
+			where
+				usrmst.cmpcod = allstndef.cmpcod
+				and usrmst.usrcod = allstndef.usrcod
+				and usrmst.defstn = allstndef.stncod
+			),usrmst.defrolgrp) USRDEFROLGRP,
+			USRMST.PWDEXPDAT,USRMST.ACCDISFLG,
+			 USRMST.ACCFRMDAT,USRMST.ACCENDDAT,USRMST.ACCDISRMK,USRMST.DEFOFF,
+			 USRMST.DEFSTN,USRMST.DEFARP,USRMST.DEFWHS,USRMST.REMGRCLOG,	
+			 USRMST.OFFCTYNAM ,USRMST.OFFCNTNAM,USRMST.OFFEML,USRMST.CRTDAT,USRMST.PORUSRTYP,USRMST.PORDEFROLGRP,
+			 USRMST.LSTLOGINTIM,MPG.MPGTYP,MPG.MPGCOD,USRMST.DEPNAM,USRMST.LSTUPDTIM,USRMST.LSTUPDUSR
+			FROM ADMUSRMST USRMST LEFT OUTER JOIN ADMUSRPORAHCMPG MPG ON USRMST.USRCOD=MPG.USRCOD
+				AND USRMST.CMPCOD=MPG.CMPCOD
+				AND MPG.MPGTYP = 'C'
+	     	 WHERE USRMST.CMPCOD=?        
+				AND EXISTS 
+				(SELECT 1 FROM ADMSTNROLGRP STNROLGRP
+					WHERE 
+					STNROLGRP.CMPCOD = USRMST.CMPCOD AND
+					STNROLGRP.USRCOD = USRMST.USRCOD AND
+					STNROLGRP.ROLGRPCOD= ? )
+			
+				
+	     ]]>
+	     </QRY:Source>
+	     </QRY:Definition>
+		 
+		 
+		<QRY:Definition>
+	   	<QRY:Id>46</QRY:Id>
+	   	<QRY:Source Name="admin.user.findDefRolesForUser" Type="NATIVE">
+	   	<![CDATA[
+	        
+			SELECT USRMST.CMPCOD,USRMST.USRCOD,
+			 ALLSTN.DEFROLGRP ROLGRP,ALLSTN.STNCOD
+			FROM ADMUSRMST USRMST,ADMUSRALLSTN ALLSTN
+	     	 WHERE
+				USRMST.USRCOD=ALLSTN.USRCOD
+				AND USRMST.CMPCOD=ALLSTN.CMPCOD
+				AND ALLSTN.STNCOD<>USRMST.DEFSTN			
+				AND USRMST.CMPCOD= ?
+				AND USRMST.USRCOD= ?
+				AND ALLSTN.DEFROLGRP= ?
+				
+	     ]]>
+	     </QRY:Source>
+	     </QRY:Definition>
+		 
+		 
+		<QRY:Definition>
+	   	<QRY:Id>47</QRY:Id>
+	   	<QRY:Source Name="admin.user.findAdlRolesForUser" Type="NATIVE">
+	   	<![CDATA[
+	        
+			SELECT USRMST.CMPCOD,USRMST.USRCOD,
+			STNROLGRP.ROLGRPCOD ROLGRP,STNROLGRP.STNCOD STNCOD
+			FROM ADMUSRMST USRMST,ADMSTNROLGRP STNROLGRP
+	     	 WHERE
+				USRMST.USRCOD=STNROLGRP.USRCOD
+				AND USRMST.CMPCOD=STNROLGRP.CMPCOD			
+				AND USRMST.CMPCOD=?
+				AND USRMST.USRCOD= ?
+				AND STNROLGRP.ROLGRPCOD= ?
+				
+	     ]]>
+	     </QRY:Source>
+	     </QRY:Definition>
+		 
+	
+		 <QRY:Definition>
+	   	<QRY:Id>48</QRY:Id>
+	   	<QRY:Source Name="postgres.admin.user.getUserDetailsForLogon" Type="NATIVE">
+	   	<![CDATA[
+		 select  a.cmpcod,
+			    a.usrcod,
+			    a.fstnam,
+				a.defrolgrp usrdefrolgrp,
+				a.defstn,
+				a.defarp,
+				a.defwhs,
+				a.defoff,
+				a.msgaltflg,
+				a.remnumses,
+				a.remgrclog,
+				a.pwdchgreqflg,
+				a.pwdexpdat,
+				a.defaut,
+				a.numses,
+				a.numgrclog,
+				admrol.usrtyp,
+			  coalesce(admrol.arcrol, 'N') arcrol,
+				a.usrtyp AS defusrtyp,
+				a.cuscod,
+				a.accdisflg,
+				a.accfrmdat,
+				a.accenddat,
+				cus.knwshp,
+				s.twoaphcod,
+				s.thraphcod,
+				s.thrnumcod,
+				s.fornumcod,
+				s.aphcoduse,
+				s.numcoduse,
+				s.arlidr,
+				stn.defrolgrp stndefrolgrp,
+				stnrol.usrtyp stnusrtyp,
+			  coalesce(stnrol.arcrol, 'N') stnarcrol,
+				a.porusrtyp,
+			  coalesce(a.deflng,
+			  (SELECT parval
+			  FROM shrsyspar
+			  WHERE cmpcod = a.cmpcod
+			  AND parcod = 'logonattributes.language'
+			  )) language_1,
+			  (SELECT parval
+			  FROM shrsyspar
+			  WHERE cmpcod = a.cmpcod
+			  AND parcod = 'logonattributes.dateformat'
+			  ) dateformat,
+			  (SELECT parval
+			  FROM shrsyspar
+			  WHERE cmpcod = a.cmpcod
+			  AND parcod = 'logonattributes.timeformat'
+			  ) timeformat,
+			  (SELECT parval
+			  FROM shrsyspar
+			  WHERE cmpcod = a.cmpcod
+			  AND parcod  ='logonattributes.dateandtimeformat'
+			  ) dateandtimeformat,
+			  (SELECT modnam FROM shrmodmst WHERE cmpcod = a.cmpcod AND dspcod = a.strscridr
+			  ) strmodnam,
+			  (SELECT ACTCOD FROM shrmodmst WHERE cmpcod = a.cmpcod AND dspcod = a.strscridr
+			  ) stractcod,
+			  (SELECT parval
+			  FROM shrsyspar
+			  WHERE cmpcod = a.cmpcod
+			  AND parcod  ='framework.security.isAlertMessageEnabled'
+			  ) stractcod,
+			  (SELECT parval
+			  FROM shrsyspar
+			  WHERE cmpcod = a.cmpcod
+			  AND parcod  ='framework.security.isPasswordPolicyEnabled'
+			  ) ispwdpolenb,
+			  (SELECT parval
+			  FROM shrsyspar
+			  WHERE cmpcod = a.cmpcod
+			  AND parcod  ='system.defaults.unit.weight'
+			  ) dftwgtunt,
+			  (SELECT parval
+			  FROM shrsyspar
+			  WHERE cmpcod = a.cmpcod
+			  AND parcod  ='system.defaults.unit.volume'
+			  ) dftvolunt,
+			  (SELECT parval
+			  FROM shrsyspar
+			  WHERE cmpcod = a.cmpcod
+			  AND parcod  ='system.defaults.unit.length'
+			  ) dftdimunt,
+			  (SELECT parval
+			  FROM shrsyspar
+			  WHERE cmpcod = a.cmpcod
+			  AND parcod  ='system.defaults.unit.currency'
+			  ) dftcurunt,
+			  (SELECT onetim.flddes
+			  FROM shronetim onetim,
+				shrsyspar syspar
+			  WHERE onetim.cmpcod = a.cmpcod
+              AND syspar.cmpcod = a.cmpcod
+              AND fldtyp = 'shared.defaults.weightUnitCodes'
+              AND syspar.parcod = 'system.defaults.unit.weight'
+              AND fldval = syspar.parval
+			  ) dftwgtuntdes,
+			  (SELECT onetim.flddes
+			  FROM shronetim onetim,
+				shrsyspar syspar
+			  WHERE onetim.cmpcod = a.cmpcod
+			  AND syspar.cmpcod = a.cmpcod
+              AND fldtyp = 'shared.defaults.dimensionUnitCodes'
+              AND syspar.parcod = 'system.defaults.unit.length'
+              AND fldval = syspar.parval
+			  ) dftdimuntdes,
+			  (SELECT onetim.flddes
+			  FROM shronetim onetim,
+				shrsyspar syspar
+			  WHERE onetim.cmpcod = a.cmpcod
+              AND syspar.cmpcod = a.cmpcod
+              AND fldtyp = 'shared.defaults.volumeUnitCodes'
+              AND syspar.parcod = 'system.defaults.unit.volume'
+              AND fldval = syspar.parval
+			  ) dftvoluntdes,
+				pwddef.issfrcpwdchg,
+				pwddef.pwdaltprd,
+				admrol.imgpar,
+				a.peradd,
+				a.perphn,
+				a.pereml,
+				a.perfax,
+				a.permobnum,
+				a.perzipcod,
+				a.empid,
+				a.depnam,
+				a.offadd,
+				a.offphn,
+				a.offeml,
+				a.offfax,
+				a.offmobnum,
+				a.offzipcod,
+				a.cuscod ,
+				a.dlvreqflg,
+				usrpar.parcod,
+				usrpar.parval,
+			  (SELECT string_agg(mpgcod,',')
+		FROM  admusrporahcmpg mpg
+		WHERE a.cmpcod = mpg.cmpcod
+            AND a.usrcod = mpg.usrcod
+            AND mpg.mpgtyp = 'C'
+			  ) cuscodes,
+			  a.salrepflg,
+			  a.jobtil
+FROM admusrmst a
+			INNER JOIN admrolgrpmst admrol
+			ON admrol.cmpcod = a.cmpcod
+			AND admrol.rolgrpcod = a.defrolgrp
+			INNER JOIN shrsyspar par 
+			ON par.cmpcod = a.cmpcod
+			AND par.parcod = 'logonattributes.ownairlineidentifier'
+			INNER JOIN shrarlmst s
+			ON  s.cmpcod = par.cmpcod
+			AND to_char(s.arlidr) = par.parval
+			LEFT OUTER JOIN admpwddef pwddef 
+			ON pwddef.cmpcod = a.cmpcod
+			LEFT OUTER JOIN admusrallstn stn
+			ON stn.cmpcod = a.cmpcod
+            AND stn.usrcod = a.usrcod
+            AND stn.stncod = a.defstn
+			LEFT OUTER JOIN admrolgrpmst stnrol
+			ON  stnrol.cmpcod = stn.cmpcod
+            AND stnrol.rolgrpcod = stn.defrolgrp
+			LEFT OUTER JOIN admusralloff office
+			ON office.cmpcod = a.cmpcod
+			AND office.usrcod = a.usrcod
+			AND office.offcod = a.defoff
+			LEFT OUTER JOIN shrcusmst cus
+			ON cus.cmpcod = a.cmpcod
+            AND cus.cuscod = a.cuscod
+			LEFT OUTER JOIN admusrpar usrpar
+			ON usrpar.cmpcod = a.cmpcod
+            AND usrpar.usrcod = a.usrcod							  
+			WHERE a.usrcod =?
+			AND a.cmpcod =?
+	 ]]>
+	     </QRY:Source>
+	     </QRY:Definition>
+		 <QRY:Definition>
+	   	<QRY:Id>49</QRY:Id>
+	   	<QRY:Source Name="postgres.admin.user.findUserStations" Type="NATIVE">
+	   	<![CDATA[
+			SELECT Usralstn.Cmpcod,USRALSTN.USRCOD,USRALSTN.STNCOD ALLSTN,USRALSTN.DEFROLGRP STNDEFROL,
+		(SELECT String_agg(ROLGRPCOD, ',' ORDER BY ROLGRPCOD DESC) 
+		FROM ADMSTNROLGRP STNROL WHERE USRALSTN.CMPCOD = STNROL.CMPCOD
+		AND USRALSTN.USRCOD   = STNROL.USRCOD
+		AND USRALSTN.STNCOD   = STNROL.STNCOD) ROLGRPCOD
+		FROM 
+		ADMUSRALLSTN USRALSTN
+		WHERE USRALSTN.CMPCOD= ?
+		AND USRALSTN.USRCOD=?
+	 ]]>
+	     </QRY:Source>
+	     </QRY:Definition>
+	
+		<QRY:Definition>
+	   	<QRY:Id>50</QRY:Id>
+	   	<QRY:Source Name="admin.user.findRoleGroupUserEmailDetails" Type="NATIVE">
+	   	<![CDATA[
+			SELECT CMPCOD,USRCOD,OFFEML,DEFROLGRP FROM ADMUSRMST WHERE CMPCOD =? 
+		]]>
+	     </QRY:Source>
+	     </QRY:Definition>
+	
+	
+</QRY:Definitions>

@@ -1,0 +1,42 @@
+spring:
+    profiles: prod
+    cloud:
+      service-registry:
+          auto-registration:
+              enabled: false
+      stream:
+        bindings:
+          BKG_EVENT_OUT:
+            destination: av-booking-domain-events
+            content-type: application/json
+          BKG_CANCEL_EVENT_OUT:
+            destination: av-booking-domain-events
+            content-type: application/json
+        kafka:
+          binder:
+            brokers: 10.250.3.171:9092
+            headers: messageType
+          bindings:
+            BKG_EVENT_OUT:
+              producer:
+                configuration:
+                  key:
+                    serializer: org.apache.kafka.common.serialization.StringSerializer
+            BKG_CANCEL_EVENT_OUT:
+              producer:
+                configuration:
+                  key:
+                    serializer: org.apache.kafka.common.serialization.StringSerializer
+    datasource:
+        password: postgres@123
+        platform: postgres
+        url: jdbc:postgresql://10.250.3.213:5432/icargo
+        username: postgres
+
+neo:
+ logging:
+    appenders: udp,console # comma separated list of appenders to be added, supported values are console,tcp,udp
+    root-level: WARN       # root logger level 
+    udp:
+      host: 10.250.3.92    # the hostname of the logstash server 
+      port: 3000           # udp port

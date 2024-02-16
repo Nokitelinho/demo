@@ -1,0 +1,174 @@
+namespace: "neo-ns"
+tenants: ["AV"]
+envName: "ico-neo-alpha"
+# This would be applied to all the java m/s and node m/s
+applicationProfile: "k8s"
+environmentProfile: "DEV" # STAG, DEV, PROD
+#dockerRegistry: "ibsbox:5000/icargo-docker-local"
+dockerRegistry: "192.168.49.43/icargo-docker-local"
+cloudConfigServerUrl: "http://neo-config-server/config-service"
+# Artifact Id of the config server
+configServerArtifactId: "neo-config-server"
+enableGroupedDeployment: false
+
+## Specify pre-requistes before a deployment artefact is started
+#The deployment artefact waits for being deployed until the k8s 
+#service for its dependant deployment artifcat is successfully started
+#Only applicable for NEO deployments of type "DOMAIN_SERVICE"
+# Specify a default dependancy with the key "default"
+# Example:
+# initDependencies:
+#    enabled: true
+#    dependencies:
+#     # Deployment Name: Dependant Deployment Name (deployment names as in the artefact BOM)
+#     neo-qf-efreights-business: "neo-businessrules-business"  
+#     neo-truckmanagement-business: "neo-businessrules-business" 
+initDependencies:
+  enabled: true
+  image: "icargo-neo-init-controller:1.0.5"
+  dependencies:
+    #Deployment Name: Dependant Deployment Name
+    #Only for deployments of type "DOMAIN_SERVICE"
+    auth-service-business: "neo-admin-business"
+    neo-admin-business: "ebl-nbridge-base-rt"
+    neo-msgbroker-eai-base-rt: "neo-admin-business"
+    neo-booking-business: "neo-admin-business, neo-businessrules-business"
+    icargo-neo-customs-business: "neo-admin-business"
+
+crashDumps:
+  enabled: true
+  mountPath: "/icargo-crash-dumps" # Mount path of the volume inside the pod
+  hostPath: "/icargo-crash-dumps"  # The directory in the node which is mounted ( will be created if not present )
+
+# Smart Loadbalacer to proxy requests based on application versions for blue-green deployment
+smartLoadbalancer:
+  enabled: true
+  image: "icargo-neo-slb:v1.1.7"
+  port: 2080
+
+#Enable tomcat access logs thorugh logback
+#Not a logstash instance with UDP port 9060 should be configured prior to enabling this
+accessLog:
+  enabled: false
+  mountPath: "/app/resources/conf"
+  config: "logback-access.xml"
+
+# Some Defaults
+default:
+  containerPort: 8080
+  processType: "JAVA"
+  javaMemoryProfile: "JavaDefaultMemArgs" 
+  cpuProfile: "Default"
+  healthEndpoint: "/health"
+  memoryRequestWebBff: "64Mi"
+  memoryRequestWebGw: "64Mi"
+  memoryRequestWebFe: "16Mi"
+  memoryRequestDomainService: "512Mi"
+  # Limits are optional if the below are not set then it is equivalent to no limits
+  memoryLimitDomainService: "2560Mi" # 2.5 GiB
+  memoryLimitWebBff: "256Mi"
+  memoryLimitWebGw: "512Mi"
+  memoryLimitWebFe: "256Mi"
+# The options can be overriden at a service level as well.
+environment:
+  DEV:
+    upgradeStrategy: "RollingUpdate"
+    imagePullPolicy: "IfNotPresent"
+    numberOfReplicas: 1
+    autoScalingEnabled: false
+    replicaEnabled: false
+    JavaSmallMemArgs: "-Xms96M -Xmx96M -XX:+UseG1GC"
+    JavaDefaultMemArgs: "-Xms128M -Xmx128M -XX:+UseG1GC"
+    JavaHugeMemArgs: "-Xms256M -Xmx256M -XX:+UseG1GC"
+  PROD:
+    upgradeStrategy: "RollingUpdate"
+    imagePullPolicy: "IfNotPresent"
+    numberOfReplicas: 3
+    autoScalingEnabled: true
+    replicaEnabled: true
+    JavaSmallMemArgs: "-Xms128M -Xmx128M -XX:+UseG1GC"
+    JavaDefaultMemArgs: "-Xms256M -Xmx256M -XX:+UseG1GC"
+    JavaHugeMemArgs: "-Xms512M -Xmx512M -XX:+UseG1GC"
+
+# Separate ingress for web and webservice
+ingress:
+  AV:
+    devIngress: true # Should a separate ingress be created for private API and bff endpoints for dev testing
+    host: av.icargo-neo.ibsplc.aero
+    #The ingress class name to be set on the Ingress. When having multiple ingress controllers (for e.g for different env's that are co-located)
+    #have different values for these (for e.g nginx-stg). The Ingress controller should be installed with the corresponding class name
+    ingressClassName: "nginx-alpha"
+  LH:
+    devIngress: true
+    host: lh.icargo-neo.ibsplc.aero
+    ingressClassName: "nginx-alpha"
+
+# custom deployments properties
+deployments:
+  neo-config-server:
+    javaMemoryProfile: 'JavaSmallMemArgs'
+    serviceName: 'neo-config-server'
+
+# Object creation flags, used during incremental deployments with single entry boms
+disable:
+  ns: false
+  ingress: false
+  ingressMaster: false
+  prometheus: true
+  serviceaccounts: false
+
+#Enable prometheus pod monitor and deploy the NEO promethues alert rules
+prometheus:
+  enabled: false
+  alertRules:
+    jdbcPool: true
+    kafkaConsumer: true
+    jvmHeap: true
+    jvmThreads: true
+    k8sWorkerNode: true
+    pod: true
+  alertManagerConfigOverrides:
+    snowReceiver:
+      enabled: true
+      url: "http://neo-snow-adapter.icargo-system/snow-adapter/api/alertmanager/receive"  
+
+
+#include raw content (contents are included as is generated k8s deployment script)
+#Example:
+# rawIncludes:
+#    icargo-gold-stg-svc: |-   
+#     ---
+#     kind: Service
+#     apiVersion: v1
+#     metadata:
+#      name: icargo-gold-stg
+#      namespace: {{ .Values.namespace | quote }}
+#     spec:
+#      type: ClusterIP
+#      ports:
+#      - name: http
+#        port: 80
+#        targetPort: 80
+#      - name: https
+#        port: 443
+#        targetPort: 443
+#       ---
+#       apiVersion: v1    
+#       kind: Endpoints
+#       metadata:
+#         name: icargo-gold-stg
+#         namespace: {{ .Values.namespace | quote }}
+#       subsets:
+#         - addresses:
+#             - ip: 10.192.138.70
+#             - ip: 10.192.222.70
+#           ports:
+#             - name: http
+#               port: 80
+#             - name: https
+#               port: 443 
+rawIncludes: {}
+
+#Specify overrides of docker registry for specific deployments
+#specify as <deployment name as in bom>: <registry url>
+dockerRegistryOverrides: {}

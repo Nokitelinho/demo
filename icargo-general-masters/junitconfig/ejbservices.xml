@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+
+<!-- EJB Services -->
+
+<EJB:Services xmlns:EJB="http://www.ibsplc.com/ejb/ejbservices/">
+
+
+<EJB:Service>
+<EJB:ServiceId>1</EJB:ServiceId>
+<EJB:ServiceName>KEY_SERVER</EJB:ServiceName>
+<EJB:JndiName>com.ibsplc.xibase.server.framework.persistence.keygen.keyserver.KeyServerHome</EJB:JndiName>
+<EJB:HomeClassName>com.ibsplc.xibase.server.framework.persistence.keygen.keyserver.KeyServerHome</EJB:HomeClassName>
+<EJB:EjbName>KeyServer</EJB:EjbName>
+<EJB:EjbJar>keyserver-ejb</EJB:EjbJar>
+<EJB:ServerName>Weblogic</EJB:ServerName>
+</EJB:Service>
+
+
+<EJB:Service>
+<EJB:ServiceId>2</EJB:ServiceId>
+<EJB:ServiceName>LOCK_SERVICE</EJB:ServiceName>
+<EJB:JndiName>com.ibsplc.xibase.server.framework.persistence.lock.service.LockManagerHome</EJB:JndiName>
+<EJB:HomeClassName>com.ibsplc.xibase.server.framework.persistence.lock.service.LockManagerHome</EJB:HomeClassName>
+<EJB:EjbName>LockManager</EJB:EjbName>
+<EJB:EjbJar>xibase-lock-services-ejb</EJB:EjbJar>
+<EJB:ServerName>Weblogic</EJB:ServerName>
+</EJB:Service>
+
+ <EJB:Service>
+	        <EJB:ServiceId>3</EJB:ServiceId>
+	        <EJB:ServiceName>SESSION_RESOLVER</EJB:ServiceName>
+	        <EJB:JndiName>com.ibsplc.icargo.framework.security.context.SessionResolverHome</EJB:JndiName>
+	        <EJB:HomeClassName>com.ibsplc.icargo.framework.security.context.SessionResolverHome</EJB:HomeClassName>
+			<EJB:EjbName>SessionResolver</EJB:EjbName>
+			<EJB:EjbJar>session-resolver-services-ejb</EJB:EjbJar>
+	        <EJB:ServerName>Weblogic</EJB:ServerName>
+    </EJB:Service>
+
+    <EJB:Service>
+            <EJB:ServiceId>8</EJB:ServiceId>
+            <EJB:ServiceName>SECURITY_PROVIDER</EJB:ServiceName>
+            <EJB:JndiName>com.ibsplc.icargo.framework.security.services.SecurityProviderServicesHome</EJB:JndiName>
+            <EJB:HomeClassName>com.ibsplc.icargo.framework.security.services.SecurityProviderServicesHome</EJB:HomeClassName>
+			<EJB:EjbName>SecurityProviderServices</EJB:EjbName>
+			<EJB:EjbJar>security-services-ejb</EJB:EjbJar>
+            <EJB:ServerName>Weblogic</EJB:ServerName>
+    </EJB:Service>
+
+       <EJB:Service>
+             <EJB:ServiceId>9</EJB:ServiceId>
+             <EJB:ServiceName>TX_AUDIT_MANAGER</EJB:ServiceName>
+             <EJB:JndiName>com.ibsplc.xibase.server.framework.tx.audit.services.TxAuditServicesHome</EJB:JndiName>
+             <EJB:HomeClassName>com.ibsplc.xibase.server.framework.tx.audit.services.TxAuditServicesHome</EJB:HomeClassName>
+			 <EJB:EjbName>TransactionAudit</EJB:EjbName>
+			 <EJB:EjbJar>xibase-txaudit-services-ejb</EJB:EjbJar>
+             <EJB:ServerName>Weblogic</EJB:ServerName>
+        </EJB:Service>
+        <EJB:Service>
+             <EJB:ServiceId>10</EJB:ServiceId>
+             <EJB:ServiceName>TX_AUDIT_LOG_MANAGER</EJB:ServiceName>
+             <EJB:JndiName>com.ibsplc.xibase.server.framework.tx.audit.services.log.TxLogLocalHome</EJB:JndiName>
+             <EJB:HomeClassName>com.ibsplc.xibase.server.framework.tx.audit.services.log.TxLogLocalHome</EJB:HomeClassName>
+			 <EJB:EjbName>TransactionLog</EJB:EjbName>
+			 <EJB:EjbJar>xibase-txaudit-services-ejb</EJB:EjbJar>
+             <EJB:ServerName>Weblogic</EJB:ServerName>
+        </EJB:Service>
+
+	<EJB:Service>
+    	<EJB:ServiceId>11</EJB:ServiceId>
+    	<EJB:ServiceName>JOBSCHEDULER_FRONT_CONTROLLER</EJB:ServiceName>
+    	<EJB:JndiName>com.ibsplc.icargo.jobscheduler.frontcontroller</EJB:JndiName>
+    	<EJB:HomeClassName>com.ibsplc.xibase.server.framework.frontcontroller.FrontControllerHome</EJB:HomeClassName>
+		<EJB:EjbName>FrontControllerEJB</EJB:EjbName>
+		<EJB:EjbJar>xibase-jobscheduler-frontcontroller-ejb</EJB:EjbJar>
+    	<EJB:ServerName>Weblogic</EJB:ServerName>
+    </EJB:Service>
+
+    <EJB:Service>
+	    <EJB:ServiceId>12</EJB:ServiceId>
+	    <EJB:ServiceName>LOG_CONTROL</EJB:ServiceName>
+	    <EJB:JndiName>com.ibsplc.xibase.server.framework.util.logcontrol.services.LogControllerHome</EJB:JndiName>
+	    <EJB:HomeClassName>com.ibsplc.xibase.server.framework.util.logcontrol.services.LogControllerHome</EJB:HomeClassName>
+		<EJB:EjbName>LogControllerEJB</EJB:EjbName>
+		<EJB:EjbJar>xibase_logcontroller_ejb</EJB:EjbJar>
+	    <EJB:ServerName>Weblogic</EJB:ServerName>
+    </EJB:Service>
+     <EJB:Service>
+	    	<EJB:ServiceId>13</EJB:ServiceId>
+	    	<EJB:ServiceName>FRAMEWORK_FRONT_CONTROLLER</EJB:ServiceName>
+	    	<EJB:JndiName>com.ibsplc.xibase.frontcontroller</EJB:JndiName>
+	    	<EJB:HomeClassName>com.ibsplc.xibase.server.framework.frontcontroller.FrontControllerHome</EJB:HomeClassName>
+			<EJB:EjbName>FrontControllerEJB</EJB:EjbName>
+			<EJB:EjbJar>xibase-frontcontroller-ejb</EJB:EjbJar>
+	    	<EJB:ServerName>Weblogic</EJB:ServerName>
+    </EJB:Service>
+
+     <EJB:Service>
+	    	<EJB:ServiceId>14</EJB:ServiceId>
+	    	<EJB:ServiceName>AUDITCONFIG_FRONT_CONTROLLER</EJB:ServiceName>
+	    	<EJB:JndiName>com.ibsplc.xibase.server.framework.audit.configuration.services.AuditConfigurationServicesHome</EJB:JndiName>
+	    	<EJB:HomeClassName>com.ibsplc.xibase.server.framework.audit.configuration.services.AuditConfigurationServicesHome</EJB:HomeClassName>
+			<EJB:EjbName>AuditConfigurationServices</EJB:EjbName>
+			<EJB:EjbJar>xibase-frontcontroller-ejb</EJB:EjbJar>
+	    	<EJB:ServerName>Weblogic</EJB:ServerName>
+    </EJB:Service>
+	<EJB:Service>
+			<EJB:ServiceId>15</EJB:ServiceId>
+			<EJB:ServiceName>GROUPTAG_ORCHESTRATION</EJB:ServiceName>
+			<EJB:JndiName>com.ibsplc.icargo.framework.client.orchestration.grouptag.services.GroupTagServicesHome</EJB:JndiName>
+			<EJB:HomeClassName>com.ibsplc.icargo.framework.client.orchestration.grouptag.services.GroupTagServicesHome</EJB:HomeClassName>
+			<EJB:EjbName>GroupTagServices</EJB:EjbName>
+			<EJB:EjbJar>grouptag-services-ejb</EJB:EjbJar>
+			<EJB:ServerName>Weblogic</EJB:ServerName>
+	</EJB:Service>
+
+</EJB:Services>
+

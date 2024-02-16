@@ -1,0 +1,59 @@
+EBL_URL_NBRIDGE: http://k8s-k8smockn-k8smockn-b7e3d1372b-3c2d00f71d804f1a.elb.ap-south-1.amazonaws.com/ebl-nbridge/v1/
+
+spring:
+  profile:
+    active: test
+  cloud:
+    stream:
+      defaultBinder: test
+  liquibase:
+    enabled: true
+    change-log: classpath:/config/db.changelog-master-test.yaml
+
+neo:
+  jaxrs.client.serviceBindings:
+    - name: neo-masters-business
+      address: http://k8s-k8smockn-k8smockn-b7e3d1372b-3c2d00f71d804f1a.elb.ap-south-1.amazonaws.com/masters
+      basePath: /private
+    - name: neo-awb-business
+      address: http://k8s-k8smockn-k8smockn-b7e3d1372b-3c2d00f71d804f1a.elb.ap-south-1.amazonaws.com/awb
+      basePath: /private
+    - name: neo-booking-business
+      address: http://k8s-k8smockn-k8smockn-b7e3d1372b-3c2d00f71d804f1a.elb.ap-south-1.amazonaws.com/awb-booking
+      basePath: /private
+  cqrs:
+    component-scan:
+      basePackages: "com.ibsplc.neoicargo.stock"
+    schema-name: ${NEO_DB_SCHEMA}
+    jpa:
+      database: postgresql
+      show-sql: true
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          jdbc.lob.non_contextual_creation: true
+          format_sql: true
+    liquibase:
+      enabled: true
+      change-log: classpath:/config/db.test.changelog-cqrs.yaml
+    datasource:
+      name: ${NEO_DATABASE}_cqrs
+      platform: postgres
+      password: ${NEO_DB_PASSWORD}
+      username: ${NEO_DB_USERNAME}
+      url: jdbc:postgresql://${NEO_OLTP_DB_URL}/${NEO_DATABASE}_cqrs
+      type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      leakDetectionThreshold: 10000
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+      #maximumPoolSize: 5
+      minimumIdle: 1
+    mybatis:
+      config-location: classpath:config/cqrs-mybatis/MyBatis_Configuration.xml
+      mapper-locations: classpath:config/cqrs-mybatis/mappers/*.xml
+logging: 
+  level: 
+    root: ERROR
+

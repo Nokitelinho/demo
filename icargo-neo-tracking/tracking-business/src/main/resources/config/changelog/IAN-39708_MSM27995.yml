@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-39708_MSM27995.yml
+  - changeSet:
+       id: 27995
+       author: A-4789
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              schemaName: ${SCHEMA}
+              tableName: TRKSHPMILSTNEVT
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: ALTER TABLE TRKSHPMILSTNEVT ADD COLUMN WGT NUMERIC(16,4);
+              COMMENT ON COLUMN TRKSHPMILSTNEVT.WGT IS 'Transaction Weight for the event';
+              ALTER TABLE TRKSHPMILSTNEVT ADD COLUMN WGTUNT VARCHAR(1);
+              COMMENT ON COLUMN TRKSHPMILSTNEVT.WGTUNT IS ' Corresponding Weight unit for the WGT column';
+              ALTER TABLE TRKSHPMILSTNEVT ADD COLUMN VOLUNT VARCHAR(1);
+              COMMENT ON COLUMN TRKSHPMILSTNEVT.VOLUNT IS 'Volume unit';

@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-54749_MSM009.yml
+  - changeSet:
+      id: STK_016
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: STKRNGUTLHIS_SEQ
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE STKRNGUTLHIS_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;
+
+  - changeSet:
+      id: STK_017
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: STKRNGUTLHIS
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE STKRNGUTLHIS(
+                  STKRNGUTLHISSERNUM BIGINT,
+                  CMPCOD VARCHAR(6) NOT NULL,
+                  ARLIDR NUMERIC(5,0) NOT NULL,
+                  STKHLDCOD VARCHAR(15) NOT NULL,
+                  DOCTYP VARCHAR(10) NOT NULL,
+                  DOCSUBTYP VARCHAR(15) NOT NULL,
+                  HISSEQNUM VARCHAR(10) NOT NULL,
+                  STARNG VARCHAR(15),
+                  ENDRNG VARCHAR(15),
+                  ASCSTARNG NUMERIC,
+                  ASCENDRNG NUMERIC,
+                  STATUS VARCHAR(1),
+                  TXNDAT TIMESTAMP (3),
+                  LSTUPDTIM TIMESTAMP  NOT NULL,
+                  LSTUPDUSR VARCHAR(50)  NOT NULL,
+                  NUMDOC NUMERIC,
+                  RNGTYP VARCHAR(1),
+                  TAGIDX NUMERIC(1,0) DEFAULT 0 NOT NULL,
+                  CONSTRAINT "stkrngutlhis_pk" PRIMARY KEY (STKRNGUTLHISSERNUM),
+                  CONSTRAINT "stkrngutlhis_hisseqnum_stkhldcod_arlidr_doctyp_docsubtyp_cmpcod" UNIQUE (HISSEQNUM, STKHLDCOD, ARLIDR, DOCTYP, DOCSUBTYP, CMPCOD));
+                  COMMENT ON COLUMN STKRNGUTLHIS.STKRNGUTLHISSERNUM is 'Serial number Utilized Stock History Details';
+                  COMMENT ON COLUMN STKRNGUTLHIS.CMPCOD IS 'Company Code.The company code that uniquely identifies the company for which the application is hosted';
+                  COMMENT ON COLUMN STKRNGUTLHIS.ARLIDR IS 'Airline to which stock belongs';
+                  COMMENT ON COLUMN STKRNGUTLHIS.STKHLDCOD IS 'Stock Holder Code';
+                  COMMENT ON COLUMN STKRNGUTLHIS.DOCTYP IS 'AWB Document type';
+                  COMMENT ON COLUMN STKRNGUTLHIS.DOCSUBTYP IS 'AWB Document Sub Type';
+                  COMMENT ON COLUMN STKRNGUTLHIS.HISSEQNUM IS 'Sequence Number';
+                  COMMENT ON COLUMN STKRNGUTLHIS.STARNG IS 'Start Range';
+                  COMMENT ON COLUMN STKRNGUTLHIS.ENDRNG IS 'End Range';
+                  COMMENT ON COLUMN STKRNGUTLHIS.ASCSTARNG IS 'Ascii value of start range';
+                  COMMENT ON COLUMN STKRNGUTLHIS.ASCENDRNG IS 'Ascii end range';
+                  COMMENT ON COLUMN STKRNGUTLHIS.STATUS IS 'Status';
+                  COMMENT ON COLUMN STKRNGUTLHIS.TXNDAT IS 'Txn date in UTC';
+                  COMMENT ON COLUMN STKRNGUTLHIS.LSTUPDTIM IS 'The date and time at which record was last updated';
+                  COMMENT ON COLUMN STKRNGUTLHIS.LSTUPDUSR IS 'Last Update User.The application user code who performed the operation on the record';
+                  COMMENT ON COLUMN STKRNGUTLHIS.NUMDOC IS 'Number of documents';
+                  COMMENT ON COLUMN STKRNGUTLHIS.RNGTYP IS 'Range type';
+                  COMMENT ON COLUMN STKRNGUTLHIS.TAGIDX IS 'This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment';
+                  COMMENT ON TABLE STKRNGUTLHIS  IS 'Table To Hold Utilized Stock History Details';
+                  

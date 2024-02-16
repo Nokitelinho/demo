@@ -1,0 +1,2541 @@
+openapi: 3.0.3
+info:
+  title: iCargo Neo Stock API
+  description: API for stock operations
+  contact:
+    name: IBS iCargo Support
+    url: http://www.ibsplc.com
+    email: iCargoSupport@ibsplc.com
+  version: 1.0.0
+servers:
+  - url: 'http://k8s-nginxalp-icargong-ed546127d1-89f64463d339106d.elb.ap-south-1.amazonaws.com/stock/av/private/'
+    description: iCargo Neo Stock API - Alpha env
+paths:
+  '/v1/stock/findstockholderdetails/{companyCode}/{stockHolderCode}':
+    get:
+      tags:
+        - Stock API
+      summary: Find StockHolder details by companyCode and stockHolderCode. Return StockHolder with Stock list
+      operationId: findStockHolderDetails
+      parameters:
+        - name: companyCode
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: stockHolderCode
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockHolderModel'
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/findapprovercode':
+    get:
+      tags:
+        - Stock API
+      summary: Find approver code (STKHLDSTK.STKAPRCOD)
+      operationId: findApproverCode
+      description: Use form-data style to pass parameters. Content-Type set to multipart/mixed and disable Content-Type by default.
+      parameters:
+        - name: companyCode
+          description: Use 0 in Key section instead of companyCode and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: stockHolderCode
+          description: Use 1 in Key section instead of stockHolderCode and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: string
+#        - name: airlineId
+#          description: Use 2 in Key section instead of airlineId and set Content-Type application/json (for parameter).
+#          in: query
+#          required: true
+#          schema:
+#            type: integer
+#            format: int64
+        - name: docType
+          description: Use 2 in Key section instead of docType and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: docSubType
+          description: Use 3 in Key section instead of docSubType and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/createhistory/{status}':
+    post:
+      tags:
+        - Stock API
+      summary: Create history (stkrngtxnhis)
+      operationId: createHistory
+      requestBody:
+        $ref: '#/components/requestBodies/StockAllocationModel'
+      parameters:
+        - name: status
+          in: path
+          required: true
+          schema:
+            type: string
+          example: R, U
+      responses:
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/allocatestock':
+    post:
+      tags:
+        - Stock API
+      summary: Allocate Stock
+      operationId: allocateStock
+      requestBody:
+        $ref: '#/components/requestBodies/StockAllocationModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/requestBodies/StockAllocationModel'
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/findmonitoringstockholderdetails':
+    get:
+      tags:
+        - Stock API
+      summary: Find monitoring StockHolder details. Return MonitorStockModel
+      operationId: findMonitoringStockHolderDetails
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorStockModel'
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/findstockholdertypes/{companyCode}':
+    get:
+      tags:
+        - Stock API
+      summary: This endpoint is used to fetch the stockholder types sorted based on priority. Return list of StockHolderPriorityModel
+      operationId: findStockHolderTypes
+      parameters:
+        - name: companyCode
+          in: path
+          required: true
+          schema:
+            type: string
+          example: AV, IBS
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StockHolderPriorityModelForStockHolderTypes'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/findpriorities/{companyCode}':
+    post:
+      tags:
+        - Stock API
+      summary: This endpoint is used to fetch the stockholder priorities. Return list of StockHolderPriorityModel
+      operationId: findPriorities
+      parameters:
+        - name: companyCode
+          in: path
+          required: true
+          schema:
+            type: string
+          example: AV, IBS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+              example: [ "HQ", "VB" ]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StockHolderPriorityModelForPriority'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/deletestock':
+    post:
+      tags:
+        - Stock API
+      summary: Delete ranges (stkrng), update history (stkrngtxnhis)
+      operationId: deleteStock
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/RangeModel'
+      responses:
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '400':
+          description: Range not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/validatestockholders/{companyCode}':
+    post:
+      tags:
+        - Stock API
+      summary: This method is used to validate the stock holder codes. Used by saveStockHolder method to validate the approver codes.
+      operationId: validateStockHolders
+      parameters:
+        - name: companyCode
+          in: path
+          required: true
+          schema:
+            type: string
+          example: AV, IBS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+              example: [ "HQ", "VB" ]
+      responses:
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/stock/validatestockholdertypecode':
+    post:
+      tags:
+        - Stock API
+      summary: Validates StockHolder Type Code
+      operationId: validatestockholdertypecode
+      requestBody:
+        $ref: '#/components/requestBodies/StockRequestModel'
+      responses:
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '400':
+          description: Invalid Stock Holder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/savestockholderdetails':
+    post:
+      tags:
+        - Stock API
+      summary: Save StockHolder details
+      operationId: savestockholderdetails
+      requestBody:
+        $ref: '#/components/requestBodies/StockHolderModel'
+      responses:
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '400':
+          description: Invalid Stock Holder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/stock/viewrange':
+    post:
+      tags:
+        - Stock API
+      summary: Find view range
+      operationId: viewrange
+      requestBody:
+        $ref: '#/components/requestBodies/ViewRangeFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockRangeModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/stock/monitorstock':
+    post:
+      tags:
+        - Stock API
+      summary: Find monitoring stock details. Return MonitorStockListViewPageInfo with list of MonitorStockModel
+      operationId: monitorstock
+      requestBody:
+        $ref: '#/components/requestBodies/StockFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorStockListViewPageInfo'
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/findstockrequests/{displayPage}':
+    post:
+      tags:
+        - Stock API
+      summary: This method will fetch the stock requests satisfying the filter criteria
+      operationId: findstockrequests
+      parameters:
+        - name: displayPage
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/StockRequestFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockRequestViewPageInfo'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/findstockholderlov/{pageNumber}':
+    post:
+      tags:
+        - Stock API
+      summary: Find StockHolder LOV. Return PageView with list of StockHolderLovModel
+      operationId: findstockholderlov
+      parameters:
+        - name: pageNumber
+          in: path
+          required: true
+          schema:
+            type: number
+      requestBody:
+        $ref: '#/components/requestBodies/StockHolderLovFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageView'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/stock/findranges':
+    post:
+      tags:
+        - Stock API
+      summary: Find Ranges method. Return list of RangeModel
+      operationId: findranges
+      requestBody:
+        $ref: '#/components/requestBodies/RangeFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RangeModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/stock/rejectstockrequests':
+    post:
+      tags:
+        - Stock API
+      summary: Reject Stock Request method
+      operationId: rejectstockrequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/RejectStockRequestModel'
+      responses:
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/findavailableranges':
+    post:
+      tags:
+        - Stock API
+      summary: This method will fetch the ranges satisfying the filter criteria
+      operationId: findavailableranges
+      requestBody:
+        $ref: '#/components/requestBodies/StockFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailableRangesViewPageInfo'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/approvestockrequests':
+    post:
+      tags:
+        - Stock API
+      summary: Approve Stock Requests
+      operationId: approvestockrequests
+      requestBody:
+        $ref: '#/components/requestBodies/StockRequestApproveModel'
+      responses:
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/stock/savestockrequestdetails':
+    post:
+      tags:
+        - Stock API
+      summary: Save Stock Requests
+      operationId: savestockrequestdetails
+      requestBody:
+        $ref: '#/components/requestBodies/StockRequestModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/checkstock':
+    post:
+      tags:
+        - Stock API
+      summary: Check stock if exists
+      operationId: checkstock
+      description: Use form-data style to pass parameters. Content-Type set to multipart/mixed and disable Content-Type by default.
+      parameters:
+        - name: companyCode
+          description: Use 0 in Key section instead of companyCode and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: stockHolderCode
+          description: Use 1 in Key section instead of stockHolderCode and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: docType
+          description: Use 2 in Key section instead of docType and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: docSubType
+          description: Use 3 in Key section instead of docSubType and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/savestockagentmappings':
+    post:
+      tags:
+        - Stock API
+      summary: Save Stock Agent Mappings
+      operationId: savestockagentmappings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/StockAgentModel'
+      responses:
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/stock/findstockagentmappings':
+    post:
+      tags:
+        - Stock API
+      summary: Find Stock Agent Mappings
+      operationId: findstockagentmappings
+      requestBody:
+        $ref: '#/components/requestBodies/StockAgentFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindStockAgentMappingsListViewPageInfo'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/findstockrequestdetails':
+    post:
+      tags:
+        - Stock API
+      summary: Find Stock Request Details
+      operationId: findstockrequestdetails
+      requestBody:
+        $ref: '#/components/requestBodies/StockRequestFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockRequestModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/findtotalnoofdocuments':
+    post:
+      tags:
+        - Stock API
+      summary: Find Total No Of Documents
+      operationId: findtotalnoofdocuments
+      requestBody:
+        $ref: '#/components/requestBodies/FindTotalNoOfDocumentsStockFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/stock/validatestockforvoiding':
+    post:
+      tags:
+        - Stock API
+      summary: Validate Stock For Voiding
+      operationId: validatestockforvoiding
+      requestBody:
+        $ref: '#/components/requestBodies/BlacklistStockModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlacklistStockModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/cancelstockrequest':
+    post:
+      tags:
+        - Stock API
+      summary: Cancel Stock Request (change status of StockRequest to 'C')
+      operationId: cancelstockrequest
+      description: We need to pass in request body - companyCode, requestRefNumber, airlineIdentifier, lastUpdateUser, lastUpdateDate
+      requestBody:
+        $ref: '#/components/requestBodies/StockRequestModel'
+      responses:
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+  '/v1/stock/findblacklistedstock/{displayPage}':
+    post:
+      tags:
+        - Stock API
+      summary: Find list of Blacklisted Stock
+      operationId: findblacklistedstock
+      parameters:
+        - name: displayPage
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/StockFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlacklistedStockViewPage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/finddocumentdetails':
+    post:
+      tags:
+        - Stock API
+      summary: Find Document Details
+      operationId: finddocumentdetails
+      description: Use form-data style to pass parameters. Content-Type set to multipart/mixed and disable Content-Type by default.
+      parameters:
+        - name: companyCode
+          description: Use 0 in Key section instead of companyCode and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: airlineId
+          description: Use 1 in Key section instead of airlineId and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: documentNumber
+          description: Use 2 in Key section instead of documentNumber and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindDocumentDetailsStockRequestModel'
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/stock/checkforblacklisteddocument':
+    post:
+      tags:
+        - Stock API
+      summary: Check BlackListed documents
+      operationId: checkforblacklisteddocument
+      parameters:
+        - name: companyCode
+          description: Use 0 in Key section instead of companyCode and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: doctype
+          description: Use 1 in Key section instead of doctype and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: documentNumber
+          description: Use 2 in Key section instead of documentNumber and set Content-Type application/json (for parameter).
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK (Boolean type)
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/stock/findstockrangehistory':
+    post:
+      tags:
+        - Stock API
+      summary: Find stock range history
+      operationId: findstockrangehistory
+      requestBody:
+        $ref: '#/components/requestBodies/StockRangeFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StockRangeHistoryModel'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/stock/findstockrangehistoryforpage':
+    post:
+      tags:
+        - Stock API
+      summary: Find stock range history for page
+      operationId: findstockrangehistoryforpage
+      requestBody:
+        $ref: '#/components/requestBodies/StockRangeFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageView'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/stock/isstockdetailsexists':
+    post:
+      tags:
+        - Stock API
+      summary: Find stock details
+      operationId: isstockdetailsexists
+      requestBody:
+        $ref: '#/components/requestBodies/DocumentFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/stock/validateagentforstockholder':
+    post:
+      tags:
+        - Stock API
+      summary: Validate Agent for StockHolders
+      operationId: validateagentforstockholder
+      requestBody:
+        $ref: '#/components/requestBodies/AWBDocumentValidationModel'
+        $ref: '#/components/requestBodies/DocumentValidationModel'
+      responses:
+        '204':
+          description: No content
+          content:
+            application/json: { }
+        '400':
+          description: Invalid Stock Holder For Agent.
+  '/v1/stock/findautopopulatesubtype':
+    post:
+      tags:
+        - Stock API
+      summary: Find Subtype
+      operationId: findautopopulatesubtype
+      requestBody:
+        $ref: '#/components/requestBodies/DocumentFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  '/v1/stock/findstockholders':
+    post:
+      tags:
+        - Stock API
+      summary: Find Stock Holders
+      operationId: findStockHolders
+      requestBody:
+        $ref: '#/components/requestBodies/StockHolderFilterModel'
+      responses:
+        '200':
+          description: OK
+          content:
+             application/json:
+              schema:
+                $ref: '#/components/schemas/PageView'
+
+  '/v1/stock/savestockutilisation':
+    post:
+      tags:
+        - Stock API
+      summary: Save stock utilisation
+      operationId: saveStockUtilisation
+      requestBody:
+        $ref: '#/components/requestBodies/StockAllocationModel'
+      responses:
+        '200':
+          description: No content
+  '/v1/stock/findCustomerStockDetails':
+    post:
+      tags:
+        - Stock API
+      summary: Find Customer Stock Details
+      operationId: findautopopulatesubtype
+      requestBody:
+        $ref: '#/components/requestBodies/StockDetailsFilterModel'
+      '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockDetailsModel'
+  '/v1/stock/returndocumenttostock':
+    post:
+      tags:
+        - Stock API
+      summary: Returns Document To Stock
+      operationId: returndocumenttostock
+      requestBody:
+        $ref: '#/components/requestBodies/StockAllocationModel'
+      responses:
+        '204':
+          description: No content
+  '/v1/stock/deletestockholder':
+    post:
+      tags:
+        - Stock API
+      summary: Delete Stock Holder
+      operationId: deletestockholder
+      requestBody:
+        $ref: '#/components/requestBodies/StockHolderDetailsModel'
+      responses:
+        '204':
+          description: No content
+             
+components:
+  requestBodies:
+    StockAllocationModel:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockAllocationModel'
+    RangeModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RangeModel'
+    StockRequestOALModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockRequestOALModel'
+    StockFilterModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockFilterModel'
+    StockRangeModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockRangeModel'
+    ViewRangeFilterModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ViewRangeFilterModel'
+    StockRequestModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockRequestModel'
+    FindDocumentDetailsStockRequestModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FindDocumentDetailsStockRequestModel'
+    StockHolderModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockHolderModel'
+    StockRequestFilterModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockRequestFilterModel'
+
+    StockHolderLovFilterModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockHolderLovFilterModel'
+    RangeFilterModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RangeFilterModel'
+    RejectStockRequestModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RejectStockRequestModel'
+    StockRequestApproveModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockRequestApproveModel'
+    StockAgentModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockAgentModel'
+    StockAgentFilterModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockAgentFilterModel'
+    FindTotalNoOfDocumentsStockFilterModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FindTotalNoOfDocumentsStockFilterModel'
+    BlacklistStockModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BlacklistStockModel'
+    StockRangeHistoryModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockRangeHistoryModel'
+    StockRangeFilterModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StockRangeFilterModel'
+    DocumentFilterModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DocumentFilterModel'
+    AWBDocumentValidationModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AWBDocumentValidationModel'
+    AgentDetailModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AgentDetailModel'
+    DocumentValidationModel:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DocumentValidationModel'
+    StockHolderFilterModel:
+      content:
+        application/json:         
+          schema:
+            $ref: '#/components/schemas/StockHolderFilterModel'
+    StockDetailsFilterModel:
+      content:
+        application/json:         
+          schema:
+            $ref: '#/components/schemas/StockDetailsFilterModel'       
+    StockHolderDetailsModel:
+      content:
+        application/json:         
+          schema:
+            $ref: '#/components/schemas/StockHolderDetailsModel'       
+  schemas:
+    Error:
+      type: object
+      properties:
+        error_code:
+          type: string
+        error_description:
+          type: string
+      description: Error details
+    StockHolderPriorityModelForPriority:
+      type: object
+      properties:
+        stockHolderType:
+          type: string
+        stockHolderCode:
+          type: string
+        priority:
+          type: number
+          description: long type
+          example: 1
+        ignoreWarnings:
+          type: boolean
+    StockHolderPriorityModelForStockHolderTypes:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        stockHolderType:
+          type: string
+        priority:
+          type: number
+          description: long type
+          example: 1
+        ignoreWarnings:
+          type: boolean
+    StockHolderPriorityModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        stockHolderType:
+          type: string
+        stockHolderDescription:
+          type: string
+        stockHolderCode:
+          type: string
+        triggerPoint:
+          type: string
+        priority:
+          type: number
+          description: long type
+          example: 1
+        operationFlag:
+          type: string
+        ignoreWarnings:
+          type: boolean
+    StockAllocationModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          example: AV
+        stockHolderCode:
+          type: string
+        airlineCode:
+          type: string
+        documentNumber:
+          type: string
+        remarks:
+          type: string
+        requestRefNumber:
+          type: string
+        transferMode:
+          type: string
+        airportCode:
+          type: string
+        operationFlag:
+          type: string
+        transactionCode:
+          type: string
+        currencyCode:
+          type: string
+        autoAllocated:
+          type: string
+        triggerPoint:
+          type: string
+        documentType:
+          type: string
+          example: AWB
+        documentSubType:
+          type: string
+          example: S
+        lastUpdateUser:
+          type: string
+        captureDateUTC:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        executionDate:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        lastUpdateTime:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        lastUpdateTimeForStockReq:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        stockControlFor:
+          type: string
+        isNewStockFlag:
+          type: boolean
+        isManual:
+          type: boolean
+        enableStockHistory:
+          type: boolean
+        isConfirmationRequired:
+          type: boolean
+        isAllocate:
+          type: boolean
+        isExecuted:
+          type: boolean
+        isReturned:
+          type: boolean
+        isReopened:
+          type: boolean
+        isConfirm:
+          type: boolean
+        isBlacklist:
+          type: boolean
+        isApproverDeleted:
+          type: boolean
+        hasMinReorderLevel:
+          type: boolean
+        isAllocatedforCreate:
+          type: boolean
+        isFromConfirmStock:
+          type: boolean
+        ignoreWarnings:
+          type: boolean
+        noOfReqDocuments:
+          type: integer
+          format: int64
+        airlineIdentifier:
+          type: integer
+          format: int64
+        numberOfProcessedDocs:
+          type: integer
+          format: int64
+        allocatedStock:
+          type: number
+          description: long value
+        voidingCharge:
+          type: number
+          description: double value
+        ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeModel'
+        rejectedDocuments:
+          type: array
+          items:
+            format: string
+        stockForOtherAirlines:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockRequestOALModel'
+    StockHolderModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        stockHolderCode:
+          type: string
+        stockHolderType:
+          type: string
+        stockHolderName:
+          type: string
+        controlPrivilege:
+          type: string
+        operationFlag:
+          type: string
+        lastUpdateUser:
+          type: string
+        lastUpdateTime:
+          type: string
+          format: date-time
+          example: "2022-01-01T12:00:00.000+03:00"
+        stock:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockModel'
+    StockModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        airlineIdentifier:
+          type: integer
+          format: int64
+        stockHolderCode:
+          type: string
+        documentType:
+          type: string
+        documentSubType:
+          type: string
+        reorderLevel:
+          type: integer
+          format: int64
+        reorderQuantity:
+          type: integer
+          format: int64
+        stockApproverCompany:
+          type: string
+        autoprocessQuantity:
+          type: integer
+          format: int64
+        ignoreWarnings:
+          type: boolean
+        autoRequestFlag:
+          type: boolean
+        reorderAlertFlag:
+          type: boolean
+        operationFlag:
+          type: string
+        autoPopulateFlag:
+          type: boolean
+        lastUpdateUser:
+          type: string
+        lastUpdateTime:
+          type: string
+          format: date-time
+          example: "2022-01-01T12:00:00.000+03:00"
+    RangeModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        stockHolderCode:
+          type: string
+        documentType:
+          type: string
+        documentSubType:
+          type: string
+        sequenceNumber:
+          type: string
+        startRange:
+          type: string
+        awbPrefix:
+          type: string
+        endRange:
+          type: string
+        operationFlag:
+          type: string
+        lastUpdateUser:
+          type: string
+        stockHolderName:
+          type: string
+        avlStartRange:
+          type: string
+        avlEndRange:
+          type: string
+        allocStartRange:
+          type: string
+        allocEndRange:
+          type: string
+        fromStockHolderCode:
+          type: string
+        usedStartRange:
+          type: string
+        usedEndRange:
+          type: string
+        allocatedRange:
+          type: string
+        availableRange:
+          type: string
+        usedRange:
+          type: string
+        triggerPoint:
+          type: string
+        airlineIdentifier:
+          type: integer
+          format: int64
+        asciiStartRange:
+          type: number
+          description: long value
+        asciiEndRange:
+          type: number
+          description: long value
+        numberOfDocuments:
+          type: number
+          description: long value
+        avlNumberOfDocuments:
+          type: number
+          description: long value
+        allocNumberOfDocuments:
+          type: number
+          description: long value
+        usedNumberOfDocuments:
+          type: number
+          description: long value
+        isBlackList:
+          type: boolean
+        isManual:
+          type: boolean
+        ignoreWarnings:
+          type: boolean
+        lastUpdateTime:
+          type: string
+          format: date-time
+          example: "2022-01-01T12:00:00.000+03:00"
+        stockAcceptanceDate:
+          type: string
+          format: date-time
+          example: "2022-01-01T12:00:00.000+03:00"
+        masterDocumentNumbers:
+          type: array
+          items:
+            format: string
+    StockRequestOALModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        airportCode:
+          type: string
+        documentType:
+          type: string
+        documentSubType:
+          type: string
+        modeOfCommunication:
+          type: string
+        content:
+          type: string
+        airlineCode:
+          type: string
+        address:
+          type: string
+        triggerPoint:
+          type: string
+        operationFlag:
+          type: string
+        isRequestCompleted:
+          type: boolean
+        ignoreWarnings:
+          type: boolean
+        requestedDate:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        actionTime:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        airlineId:
+          type: integer
+          format: int64
+        serialNumber:
+          type: integer
+          format: int64
+    StockFilterModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          example: AV
+        airlineIdentifier:
+          type: integer
+          example: 1191
+        airlineCode:
+          type: string
+          example: AV
+        totalRecords:
+          type: integer
+          example: 25
+        stockHolderCode:
+          type: string
+          example: HQ
+        stockHolderType:
+          type: string
+          example: H
+        documentType:
+          type: string
+          example: AWB
+        documentSubType:
+          type: string
+          example: S
+        isManual:
+          type: boolean
+          example: true,false
+        isViewRange:
+          type: boolean
+          example: false
+        rangeFrom:
+          type: string
+          example: 1000000
+        rangeTo:
+          type: string
+          example: 1001000
+        fromDate:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        toDate:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        airportCode:
+          type: string
+          example: AV
+        pageNumber:
+          type: integer
+          example: 1
+        absoluteIndex:
+          type: integer
+          example: 1
+        privilegeLevelType:
+          type: string
+          example: STKHLD
+        privilegeLevelValue:
+          type: string
+          example: A
+        privilegeRule:
+          type: string
+          example: STK_HLDR_CODE
+        operationFlag:
+          type: string
+        triggerPoint:
+          type: string
+        ignoreWarnings:
+          type: boolean
+          example: false
+    ViewRangeFilterModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          example: AV
+        airlineIdentifier:
+          type: integer
+          example: 1191
+        stockHolderCode:
+          type: string
+          example: HQ
+        documentType:
+          type: string
+          example: AWB
+        documentSubType:
+          type: string
+          example: S
+        isManual:
+          type: boolean
+          example: true,false
+        isViewRange:
+          type: boolean
+          example: false
+    MonitorStockModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        stockHolderCode:
+          type: string
+        reference:
+          type: string
+        documentType:
+          type: string
+        documentSubType:
+          type: string
+        availableStock:
+          type: number
+          description: long value
+        allocatedStock:
+          type: number
+          description: long value
+        requestsReceived:
+          type: number
+          description: long value
+        requestsPlaced:
+          type: number
+          description: long value
+        phyAllocatedStock:
+          type: number
+          description: long value
+        phyAvailableStock:
+          type: number
+          description: long value
+        manAllocatedStock:
+          type: number
+          description: long value
+        manAvailableStock:
+          type: number
+          description: long value
+        stockHolderType:
+          type: string
+        approverCode:
+          type: string
+        stockHolderName:
+          type: string
+        monitorStock:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitorStockModel'
+        operationFlag:
+          type: string
+        triggerPoint:
+          type: string
+        ignoreWarnings:
+          type: boolean
+    StockRequestModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          example: IBS
+        requestRefNumber:
+          type: string
+        stockHolderCode:
+          type: string
+          example: HQ
+        stockHolderType:
+          type: string
+          example: H
+        requestDate:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        documentType:
+          type: string
+          example: "AWB"
+        documentSubType:
+          type: string
+          example: "S"
+        isManual:
+          type: boolean
+        productName:
+          type: string
+        status:
+          type: string
+        requestedStock:
+          type: number
+        persistedApprovedStock:
+          type: number
+        approvedStock:
+          type: number
+        allocatedStock:
+          type: number
+        remarks:
+          type: string
+        approvalRemarks:
+          type: string
+        operationFlag:
+          type: string
+        lastUpdateDate:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        lastUpdateUser:
+          type: string
+        stockHolderName:
+          type: string
+        agentCode:
+          type: string
+        agentName:
+          type: string
+        productCode:
+          type: string
+        lastStockHolderUpdateTime:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        airlineIdentifier:
+          type: string
+        requestCreatedBy:
+          type: string
+    FindDocumentDetailsStockRequestModel:
+      type: object
+      properties:
+        stockHolderCode:
+          type: string
+          example: HQ
+        stockHolderType:
+          type: string
+          example: H
+        documentType:
+          type: string
+          example: "AWB"
+        documentSubType:
+          type: string
+          example: "S"
+        stockHolderName:
+          type: string
+        agentCode:
+          type: string
+
+    StockRequestFilterModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          example: AV
+        requestRefNumber:
+          type: string
+          example: 127-123456790
+        status:
+          type: string
+          example: ALL, A
+        stockHolderCode:
+          type: string
+          example: HQ
+        stockHolderType:
+          type: string
+          example: H
+        documentType:
+          type: string
+          example: AWB
+        documentSubType:
+          type: string
+          example: S
+        approver:
+          type: string
+          example: HQ
+        airlineIdentifier:
+          type: string
+          example: 1134
+        privilegeLevelType:
+          type: string
+          example: STKHLD
+        privilegeLevelValue:
+          type: string
+          example: HQ
+        privilegeRule:
+          type: string
+          example: STK_HLDR_CODE
+        operationFlag:
+          type: string
+          example: HQ
+        isManual:
+          type: boolean
+        pageSize:
+          type: integer
+          format: int64
+          example: 2
+        isAllocateCall:
+          type: boolean
+        fromDate:
+          type: string
+          format: date-time
+          description: Timestamp in milliseconds
+        toDate:
+          type: string
+          format: date-time
+          description: Timestamp in milliseconds
+        requestCreatedBy:
+          type: array
+          items:
+            format: string
+          example: [value1, value2]
+
+    StockRequestViewPageInfo:
+      type: object
+      properties:
+        defaultPageSize:
+          type: integer
+          format: int64
+        actualPageSize:
+          type: integer
+          format: int64
+        pageNumber:
+          type: integer
+          format: int64
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockRequestModel'
+        hasNextPage:
+          type: boolean
+        startIndex:
+          type: integer
+          format: int64
+        endIndex:
+          type: integer
+          format: int64
+        absoluteIndex:
+          type: integer
+          format: int64
+        totalRecordCount:
+          type: integer
+          format: int64
+        lastPageIndex:
+          type: integer
+          format: int64
+
+    BlacklistedStockViewPage:
+      type: object
+      properties:
+        defaultPageSize:
+          type: integer
+          format: int64
+        actualPageSize:
+          type: integer
+          format: int64
+        pageNumber:
+          type: integer
+          format: int64
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlacklistStockModel'
+        hasNextPage:
+          type: boolean
+        startIndex:
+          type: integer
+          format: int64
+        endIndex:
+          type: integer
+          format: int64
+        absoluteIndex:
+          type: integer
+          format: int64
+        totalRecordCount:
+          type: integer
+          format: int64
+        lastPageIndex:
+          type: integer
+          format: int64
+
+    AvailableRangesViewPageInfo:
+      type: object
+      properties:
+        defaultPageSize:
+          type: integer
+          format: int64
+        actualPageSize:
+          type: integer
+          format: int64
+        pageNumber:
+          type: integer
+          format: int64
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeModel'
+        hasNextPage:
+          type: boolean
+        startIndex:
+          type: integer
+          format: int64
+        endIndex:
+          type: integer
+          format: int64
+        absoluteIndex:
+          type: integer
+          format: int64
+        totalRecordCount:
+          type: integer
+          format: int64
+        lastPageIndex:
+          type: integer
+          format: int64
+
+    MonitorStockListViewPageInfo:
+      type: object
+      properties:
+        defaultPageSize:
+          type: integer
+          format: int64
+        actualPageSize:
+          type: integer
+          format: int64
+        pageNumber:
+          type: integer
+          format: int64
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitorStockModel'
+        hasNextPage:
+          type: boolean
+        startIndex:
+          type: integer
+          format: int64
+        endIndex:
+          type: integer
+          format: int64
+        absoluteIndex:
+          type: integer
+          format: int64
+        totalRecordCount:
+          type: integer
+          format: int64
+        lastPageIndex:
+          type: integer
+          format: int64
+    FindStockAgentMappingsListViewPageInfo:
+      type: object
+      properties:
+        defaultPageSize:
+          type: integer
+          format: int64
+        actualPageSize:
+          type: integer
+          format: int64
+        pageNumber:
+          type: integer
+          format: int64
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindStockAgentMappingsModel'
+        hasNextPage:
+          type: boolean
+        startIndex:
+          type: integer
+          format: int64
+        endIndex:
+          type: integer
+          format: int64
+        absoluteIndex:
+          type: integer
+          format: int64
+        totalRecordCount:
+          type: integer
+          format: int64
+        lastPageIndex:
+          type: integer
+          format: int64
+    StockRangeModel:
+      type: object
+      properties:
+        ignoreWarnings:
+          type: boolean
+        triggerPoint:
+          type: string
+        operationFlag:
+          type: string
+        companyCode:
+          type: string
+          example: AV
+        stockHolderCode:
+          type: string
+          example: HQ
+        reference:
+          type: string
+        documentType:
+          type: string
+          example: "AWB"
+        documentSubType:
+          type: string
+          example: "S"
+        isManual:
+          type: boolean
+        availableRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeModel'
+        allocatedRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeModel'
+    StockHolderLovFilterModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          example: "AV"
+        stockHolderCode:
+          type: string
+          example: "HQ"
+        description:
+          type: string
+        stockHolderType:
+          type: string
+          example: "H"
+        documentType:
+          type: string
+          example: "AWB"
+        documentSubType:
+          type: string
+          example: "S"
+        stockHolderName:
+          type: string
+          example: "*QUARTER"
+        approverCode:
+          type: string
+          example: "HQ"
+        isRequestedBy:
+          type: boolean
+          example: false
+        pageNumber:
+          type: number
+    PageView:
+      type: object
+      properties:
+        defaultPageSize:
+          type: number
+        actualPageSize:
+          type: number
+        pageNumber:
+          type: number
+        hasNextPage:
+          type: boolean
+        startIndex:
+          type: number
+        endIndex:
+          type: number
+        absoluteIndex:
+          type: number
+        totalRecordCount:
+          type: number
+        lastPageIndex:
+          type: number
+        results:
+          type: array
+          items:
+            type: object
+    RangeFilterModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        airlineIdentifier:
+          type: integer
+          format: int64
+        stockHolderCode:
+          type: string
+        documentType:
+          type: string
+        documentSubType:
+          type: string
+        startRange:
+          type: string
+        endRange:
+          type: string
+        numberOfDocuments:
+          type: string
+        isManual:
+          type: boolean
+    RejectStockRequestModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          example: AV
+        requestRefNumber:
+          type: string
+          example: 123-2131245
+        approvalRemarks:
+          type: string
+          example: text
+        airlineIdentifier:
+          type: string
+          example: 1134
+    StockRequestApproveModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          example: AV
+        approverCode:
+          type: string
+          example: HQ
+        documentType:
+          type: string
+        documentSubType:
+          type: string
+        stockRequests:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockRequestModel'
+        isStockAvailableCheck:
+          type: boolean
+        lastUpdateTime:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+    StockRangeHistoryModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        airlineIdentifier:
+          type: integer
+        fromStockHolderCode:
+          type: string
+        documentType:
+          type: string
+        documentSubType:
+          type: string
+        serialNumber:
+          type: string
+        accountNumber:
+          type: string
+        rangeType:
+          type: string
+        startRange:
+          type: string
+        endRange:
+          type: string
+        awbRange:
+          type: string
+        checkDigit:
+          type: integer
+        asciiStartRange:
+          type: integer
+        asciiEndRange:
+          type: integer
+        numberOfDocuments:
+          type: integer
+        status:
+          type: string
+        transactionDate:
+          type: string
+          format: date-time
+        transDateStr:
+          type: string
+        toStockHolderCode:
+          type: string
+        lastUpdateTime:
+          type: string
+          format: date-time
+        lastUpdateUser:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        userId:
+          type: string
+        remarks:
+          type: string
+        voidingCharge:
+          type: number
+        currencyCode:
+          type: string
+        autoAllocated:
+          type: string
+    StockAgentModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          example: AV
+        agentCode:
+          type: string
+          example: AGNT001
+        stockHolderCode:
+          type: string
+        operationFlag:
+          type: string
+          example: D,I,U
+    StockAgentFilterModel:
+      properties:
+        companyCode:
+          type: string
+          example: AV
+        agentCode:
+          type: string
+          example: AGNT001
+        stockHolderCode:
+          type: string
+          example: HQ
+        pageNumber:
+          type: integer
+          example: 1
+    FindStockAgentMappingsModel:
+      type: object
+      properties:
+        agentCode:
+          type: string
+          example: AGNT001
+        stockHolderCode:
+          type: string
+        lastUpdateTime:
+          type: string
+    FindTotalNoOfDocumentsStockFilterModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          example: AV
+        airlineIdentifier:
+          type: integer
+          example: 1191
+        stockHolderCode:
+          type: string
+          example: HQ
+        documentType:
+          type: string
+          example: AWB
+        documentSubType:
+          type: string
+          example: S
+        isManual:
+          type: boolean
+          example: true,false
+    BlacklistStockModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        stockHolderCode:
+          type: string
+        firstLevelStockHolder:
+          type: string
+        secondLevelStockHolder:
+          type: string
+        documentType:
+          type: string
+        documentSubType:
+          type: string
+        rangeFrom:
+          type: string
+        rangeTo:
+          type: string
+        remarks:
+          type: string
+        blacklistDate:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        lastUpdateTime:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        lastUpdateUser:
+          type: string
+        newRangeFrom:
+          type: string
+        newRangeTo:
+          type: string
+        airlineIdentifier:
+          type: integer
+        stationCode:
+          type: string
+        status:
+          type: string
+        asciiRangeFrom:
+          type: number
+        asciiRangeTo:
+          type: number
+        actionCode:
+          type: string
+        agentCode:
+          type: string
+        stockVO:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockModel'
+        voidingCharge:
+          type: number
+        currencyCode:
+          type: string
+        isManual:
+          type: boolean
+        isBlacklistStock:
+          type: boolean
+        isRevokeBlacklist:
+          type: boolean
+    StockRangeFilterModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        airlineIdentifier:
+          type: integer
+          format: int64
+        fromStockHolderCode:
+          type: string
+        toStockHolderCode:
+          type: string
+        documentType:
+          type: string
+        documentSubType:
+          type: string
+        serialNumber:
+          type: string
+        accountNumber:
+          type: string
+        rangeType:
+          type: string
+        startRange:
+          type: string
+        endRange:
+          type: string
+        status:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        endDate:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        startDateStr:
+          type: string
+        awb:
+          type: string
+        awp:
+          type: string
+        isHistory:
+          type: boolean
+        station:
+          type: string
+        userId:
+          type: string
+        availableStatus:
+          type: array
+          items:
+            type: string
+        pageNumber:
+          type: integer
+          format: int64
+        totalRecordsCount:
+          type: integer
+          format: int64
+        privilegeLevelType:
+          type: string
+        privilegeLevelValue:
+          type: string
+        privilegeRule:
+          type: string
+        pageSize:
+          type: integer
+          format: int64
+    DocumentFilterModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        documentType:
+          type: string
+        documentSubType:
+          type: string
+        documentNumber:
+          type: string
+        airlineIdentifier:
+          type: integer
+          format: int64
+        stockOwner:
+          type: string
+        isOtherAirline:
+          type: boolean
+        status:
+          type: string
+        skipStockLocking:
+          type: boolean
+        isExecutionAfterReopen:
+          type: boolean
+        executionDate:
+          type: string
+          format: date-time
+          example: "2017-09-15T01:00+02:00"
+        stockHolderCode:
+          type: string
+        lastUpdateUser:
+          type: string
+        shipmentPrefix:
+          type: string
+        awbDestination:
+          type: string
+        awbOrigin:
+          type: string
+        awbViaPoints:
+          type: string
+    AWBDocumentValidationModel:
+      type: array
+      agentDetails:
+          items:
+            $ref: '#/components/schemas/AgentDetailModel'
+    AgentDetailModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        agentCode:
+          type: string
+    DocumentValidationModel:
+      type: object
+      properties:
+        documentType:
+          type: string
+        stockHolderCode:
+          type: string
+    StockHolderFilterModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        stockHolderCode:
+          type: string
+        documentType:
+          type: string
+        documentSubType:
+          type: string     
+        stockHolderType:
+          type: string
+        stockHolderPriority:
+          type: int  
+        pageNumber:
+          type: int
+        absoluteIndex:
+          type: int
+        airlineIdentifier:
+          type: string
+        totalRecordCount:
+          type: int     
+        operationFlag:
+          type: string
+        triggerPoint:
+          type: string  
+        ignoreWarnings:
+          type: boolean  
+    StockDetailsFilterModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        customerCode:
+          type: string
+    StockDetailsModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        airlineId:
+          type: int
+        approverCode:
+          type: string
+        stockApproverName:
+          type: string
+        stockHolderCode:
+          type: string
+        avlNumberDocuments:
+          type: int
+        allocNumberDocuments:
+          type: int
+        usedNumberDocuments:
+          type: int
+        totalStockAvailed:
+          type: int
+        requestReceived:
+          type: int
+        requestPlaced:
+          type: int
+        availableStock:
+          type: int
+        allocatedStock:
+          type: int
+        usedStock:
+          type: int
+        customerRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeModel'
+        openingBalance:
+          type: int
+        blacklistedStock:
+          type: int
+        receivedStock:
+          type: int
+        transferredStock:
+          type: int
+        returnedStock:
+          type: int
+        utilizedStock:
+          type: int
+    StockHolderDetailsModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        stockHolderCode:
+          type: string

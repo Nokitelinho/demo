@@ -1,0 +1,40 @@
+{{- $groupDeployDict := dict }}
+{{- range $deployName, $deployDefn := .Values.deployments }}
+  {{/* Dont deploy INTERNAL_SERVICES as they need to have custom deployment flows */}}
+  {{- if and $deployDefn.image (ne (default "X" $deployDefn.serviceType) "INTERNAL_SERVICE") }}
+    {{/* Check if groupedDeployment is enabled, a group configured for the deploymentDefn(from bom) and configured in the deploymentGroups */}}
+    {{- if and $.Values.enableGroupedDeployment $deployDefn.deploymentGroup (has $deployDefn.deploymentGroup $.Values.deploymentGroups) }}
+      {{- if hasKey $groupDeployDict $deployDefn.deploymentGroup }}
+        {{- $deployList := get $groupDeployDict $deployDefn.deploymentGroup }}
+          {{- $_ := set $groupDeployDict $deployDefn.deploymentGroup (append $deployList $deployDefn) }}
+        {{- else }}
+          {{- $_ := set $groupDeployDict $deployDefn.deploymentGroup (list $deployDefn) }}
+      {{- end }}
+    {{- else }}
+      {{/* If grouped deployment not configured then deploy with one container/pod model */}}
+      {{- if and (gt (len $.Values.tenants) 1) (or (eq $deployDefn.processType "NODE") (eq $deployDefn.serviceType "EBL")) }}
+        {{ range $tenant := $.Values.tenants }}
+---
+{{- include "neo.deployment" (dict "deployGroup" $deployName "deployList" (list $deployDefn) "global" $ "tenants" (list $tenant)) }}
+          {{- end }}
+        {{- else }}
+---
+{{- include "neo.deployment" (dict "deployGroup" $deployName "deployList" (list $deployDefn) "global" $ "tenants" $.Values.tenants) }}
+        {{- end }} {{/* End of tenants check, node and ebl check */}}
+      {{- end }} {{/* End of group deployment check */}}
+  {{- end }} {{/* End of internal_service check */}}
+{{- end }} {{/* End of range */}}
+{{/* Grouped Deployment */}}
+{{- range $deployGroup, $deployList := $groupDeployDict }}
+---
+  {{- $deployDefn := first $deployList }}
+  {{- if and (gt (len $.Values.tenants) 1) (or (eq $deployDefn.processType "NODE") (eq $deployDefn.serviceType "EBL")) }}
+    {{ range $tenant := $.Values.tenants }}
+---
+{{- include "neo.deployment" (dict "deployGroup" $deployGroup "deployList" $deployList "global" $ "tenants" (list $tenant)) }}
+    {{- end }}
+  {{- else }}
+---
+{{- include "neo.deployment" (dict "deployGroup" $deployGroup "deployList" $deployList "global" $ "tenants" $.Values.tenants) }}
+  {{- end }} {{/* End of tenants check, node and ebl check */}}
+{{- end }} {{/* End of range groupDeployDict */}}

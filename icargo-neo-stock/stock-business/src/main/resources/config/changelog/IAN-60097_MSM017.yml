@@ -1,0 +1,56 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-60097_MSM017.yml
+  - changeSet:
+      id: STK_030
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: stktrsrng_seq
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE stktrsrng_seq START WITH 1 INCREMENT BY 1  MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
+
+  - changeSet:
+      id: STK_031
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: stktrsrng
+      changes:
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE stktrsrng (
+          stktrsrngsernum integer,
+          cmpcod varchar(6) NOT NULL,
+          arlidr numeric(5) NOT NULL,
+          doctyp varchar(15) NOT NULL,
+          docsubtyp varchar(15) NOT NULL,
+          stkhldcod varchar(15) NOT NULL,
+          actstarng varchar(7),
+          actendrng varchar(7),
+          cfrsta varchar(1),
+          cfrdat timestamp (3),
+          misendrng varchar(7),
+          txncod varchar(1),
+          txndat timestamp (3),
+          frmstkhldcod varchar(15),
+          misstarng varchar(7),
+          lstupdusr varchar(50) NOT NULL,
+          lstupdtim timestamp NOT NULL,
+          ascmisstarng numeric(7),
+          ascmisendrng numeric(7),
+          numdoc numeric,
+          misnumdoc numeric,
+          mnlflg varchar(1),
+          misrmk varchar(250),
+          txnrmk varchar(250),
+          tagidx numeric(1) default 0 not null,
+
+          CONSTRAINT "stktrsrng_pkey" PRIMARY KEY (stktrsrngsernum),
+          CONSTRAINT "stktrsrng_pk_cmpcod_stkhldcod_arlidr_doctyp_docsubtyp_unique" UNIQUE (CMPCOD, STKHLDCOD, ARLIDR, DOCTYP, DOCSUBTYP));

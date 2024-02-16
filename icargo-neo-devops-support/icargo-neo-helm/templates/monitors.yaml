@@ -1,0 +1,219 @@
+{{- if $.Values.prometheus.enabled }}
+{{- range $deployName, $deployDefn := .Values.deployments }}
+{{- if and $deployDefn.serviceName $deployDefn.image $deployDefn.contextPath (ne (default "X" $deployDefn.serviceType) "INTERNAL_SERVICE") }}
+{{- if and (eq $deployDefn.processType "JAVA") (eq $deployDefn.serviceType "DOMAIN_SERVICE") }}
+---
+{{- include "neo.podmonitor" (dict "deployName" $deployName "deployDefn" $deployDefn "global"  $ "tenants" $.Values.tenants) }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- if $.Values.prometheus.alertManagerConfigOverrides.snowReceiver.enabled }}
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: {{ printf "%s-%s" $.Values.namespace "alert-config"| quote }}
+  namespace: {{ $.Values.namespace | quote }}
+spec:
+  route:
+    groupBy: ['alertname']
+    receiver: 'neo-snow-adapter'
+  receivers:
+    - name: 'neo-snow-adapter'
+      webhookConfigs:
+        - sendResolved: true
+          url: {{ $.Values.prometheus.alertManagerConfigOverrides.snowReceiver.url }}
+{{- end }}
+
+{{- if $.Values.prometheus.alertRules.jdbcPool }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: 'icargo-prometheus-hikaricp-connections.rules'
+  namespace: {{ $.Values.namespace | quote }}
+spec:
+  groups:
+    - name: hikaricp_connections.rules
+      rules:
+        - alert: JDBCPoolConnectionsPending
+          annotations:        
+            description: >-
+              'Pending JDBCPoolConnections for  {{`{{`}} $labels.application {{`}}`}} is now {{`{{`}} $value {{`}}`}}.'           
+          expr: >-    
+            (sum by(namespace, application) (hikaricp_connections_pending)) > 0
+          for: 1m
+          labels:
+            severity: warning   
+    - name: hikaricp_connections_active.rules
+      rules:
+        - alert: JDBCPoolConnectionsExceeding10
+          annotations:        
+            description: >-
+              'JDBCPoolConnections for  {{`{{`}} $labels.application {{`}}`}} is exceeding {{`{{`}} $value {{`}}`}}.'           
+          expr: >-    
+            ( hikaricp_connections_active ) > 10
+          for: 1m
+          labels:
+            severity: warning   
+{{- end }}
+{{- if $.Values.prometheus.alertRules.kafkaConsumer }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: 'icargo-prometheus-kafka-consumer.rules'
+  namespace: {{ $.Values.namespace | quote }}   
+spec:
+  groups:
+    - name: kafka-consumer.rules
+      rules:
+        - alert: KafkaConsumerLagRecords
+          annotations:        
+            description: >-
+              'Kafka consumer for {{`{{`}}$labels.application {{`}}`}} and topic {{`{{`}}$labels.topic {{`}}`}} is lagging by {{`{{`}} $value {{`}}`}} records.'
+          expr: >-    
+            (sum by(namespace, application) (kafka_consumer_records_lag_records)) > 10
+          for: 15m
+          labels:
+            severity: warning    
+    - name: kafka-consumer-increasing.rules
+      rules:
+        - alert: KafkaConsumerIncreasingMessagesPending
+          annotations:        
+            description: >-
+              'Kafka consumer for {{`{{`}}$labels.application {{`}}`}} and topic {{`{{`}}$labels.topic {{`}}`}} has an increasing messages pending rate. '
+          expr: >-    
+            (increase(spring_cloud_stream_binder_kafka_offset{namespace={{$.Values.namespace|quote}}}[15m])) > 0
+          for: 15m
+          labels:
+            severity: warning    
+{{- end }}
+{{- if $.Values.prometheus.alertRules.jvmHeap }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: 'icargo-prometheus-jvm-memory.rules'
+  namespace: {{ $.Values.namespace | quote }}   
+spec:
+  groups:
+    - name: jvm-memory.rules
+      rules:
+        - alert: JvmHeapMemoryUsageWarning
+          annotations:        
+            description: 'JVM Heap used for {{`{{`}}$labels.pod {{`}}`}} is very high - nearing {{`{{`}} $value | humanize {{`}}`}} %'
+          expr: ((sum by (pod,tenant,namespace)(jvm_memory_used_bytes{area="heap"}) / sum by (pod,tenant,namespace)(jvm_memory_max_bytes{area="heap"})) * 100 > 90)
+          for: 9m
+          labels:
+            severity: warning
+        - alert: JvmHeapMemoryUsageCritical
+          annotations:
+            description: 'JVM Heap used for {{`{{`}}$labels.pod {{`}}`}} is very high - nearing {{`{{`}} $value | humanize {{`}}`}} %'
+          expr: ((sum by (pod,tenant,namespace)(jvm_memory_used_bytes{area="heap"}) / sum by (pod,tenant,namespace)(jvm_memory_max_bytes{area="heap"})) * 100 > 95)
+          for: 3m
+          labels:
+            severity: critical
+        - alert: JvmNonHeapMemoryUsageCritical
+          annotations:
+            description: 'JVM Non Heap used for {{`{{`}}$labels.pod {{`}}`}} is very high - nearing {{`{{`}} $value | humanize {{`}}`}} %'
+          expr: (sum by (pod,tenant,namespace)(jvm_memory_used_bytes{area="nonheap"}) / sum by (pod,tenant,namespace)(jvm_memory_max_bytes{area="nonheap"})) * 100 > 95
+          for: 5m
+          labels:
+            severity: critical
+{{- end }}
+{{- if $.Values.prometheus.alertRules.jvmThreads }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: 'icargo-prometheus-jvm-threads.rules'
+  namespace: {{ $.Values.namespace | quote }} 
+spec:
+  groups:
+    - name: jvm-threads.rules
+      rules:
+        - alert: JVMThreadsBlocked
+          annotations:        
+            description: >-
+              'JVM for {{`{{`}}$labels.job {{`}}`}} has several ({{`{{`}} $value {{`}}`}}) blocked threads .'
+          expr: >-    
+            ((jvm_threads_states_threads{state="blocked"}) > 2)
+          for: 15m
+          labels:
+            severity: warning 
+        - alert: JVMThreadsCount
+          annotations:        
+            description: >-
+              'JVM for {{`{{`}}$labels.job {{`}}`}} has a high number of threads ({{`{{`}} $value {{`}}`}}). This is abnormal and may be an issue.'
+          expr: >-    
+            ((jvm_threads_live_threads) > 99)
+          for: 15m
+          labels:
+            severity: info 
+{{- end }}
+{{- if $.Values.prometheus.alertRules.k8sWorkerNode }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: 'icargo-prometheus-eks-node.rules'
+  namespace: {{ $.Values.namespace | quote }}
+spec:
+  groups:
+    - name: eks-node.rules
+      rules:
+        - alert: NodeCPUUsageHigh
+          annotations:        
+            description: >-
+              'CPU Usage for EKS node {{`{{`}}$labels.instance{{`}}`}} is very high. Nearing - nearing {{`{{`}} $value |
+              humanizePercentage {{`}}`}}'
+          expr: >-    
+            ((instance:node_cpu_utilisation:rate1m) > 0.9)
+          for: 15m
+          labels:
+            severity: critical 
+        - alert: NodeMemoryUsageHigh
+          annotations:        
+            description: >-
+              'Memory Usage for EKS node {{`{{`}}$labels.instance{{`}}`}} is very high. Nearing - nearing {{`{{`}} $value |
+              humanizePercentage {{`}}`}}'
+          expr: >-    
+            ((instance:node_memory_utilisation:ratio) > 0.95)
+          for: 15m
+          labels:
+            severity: critical 
+{{- end }}
+{{- if $.Values.prometheus.alertRules.pod }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: 'icargo-prometheus-pod.rules'
+  namespace: {{ $.Values.namespace | quote }}   
+spec:
+  groups:
+    - name: pod.rules
+      rules:
+        - alert: PodWaiting
+          annotations:        
+            description: >-
+              'Pod for application {{`{{`}}$labels.application{{`}}`}} has been waiting to init for the past 15 mins '           
+          expr: >-
+             (kube_pod_container_status_waiting {namespace={{ $.Values.namespace | quote }} } > 0)
+          for: 15m
+          labels:
+            severity: warning 
+        - alert: PodTerminated
+          annotations:        
+            description: >-
+              'Pod for application {{`{{`}}$labels.application{{`}}`}} has been terminated  '           
+          expr: >-    
+            (kube_pod_container_status_terminated {namespace={{ $.Values.namespace | quote }} } > 0)
+          for: 15m
+          labels:
+            severity: critical             
+
+{{- end }}
+{{- end }}

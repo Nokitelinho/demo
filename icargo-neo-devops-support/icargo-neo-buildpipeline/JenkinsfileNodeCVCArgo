@@ -1,0 +1,623 @@
+def Stage_Name
+def ARTIFACTORY_HOST
+def ARTIFACTORY_REPO
+def APP
+def ENV
+def bitbucketURL ="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"
+def commitId
+def response
+def results
+def data
+def bitbucketresponse
+def listOfServices
+def BRANCH_PREFIX  =  env.BRANCH_NAME.split("/")[0]
+echo "BranchPFX is " + BRANCH_PREFIX
+
+def loadValuesYaml(){
+  def valuesYaml = readYaml file: 'app.yml'
+  return valuesYaml;
+}
+
+def cancelPreviousBuilds() {
+    def jobName = env.JOB_NAME
+    def buildNumber = env.BUILD_NUMBER.toInteger()
+    /* Get job name */
+    def currentJob = Jenkins.instance.getItemByFullName(jobName)
+
+    /* Iterating over the builds for specific job */
+    for (def build : currentJob.builds) {
+        def exec = build.getExecutor()
+        /* If there is a build that is currently running and it's not current build */
+        if (build.isBuilding() && build.number.toInteger() != buildNumber && exec != null) {
+            /* Then stop it */
+            exec.interrupt(
+                    Result.ABORTED,
+                    new CauseOfInterruption.UserInterruption("Aborted by #${currentBuild.number}")
+                )
+            println("Aborted previously running build #${build.number}")            
+        }
+    }
+}
+
+pipeline {
+    agent any
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '1'))
+    }
+    stages {
+		stage('Initial Setup') {
+			steps {
+                script {
+                	cancelPreviousBuilds()
+					Stage_Name = 'Initial Setup'
+					valuesYaml = loadValuesYaml()
+					echo " valuesYaml   : ${valuesYaml}"
+					appServers = valuesYaml.APP.each{ k,v->}
+					for(app in appServers) { 
+							env.repo=app.repo
+							env.token=app.token
+							env.project_name=app.project_name
+							env.sonar_host_url=app.sonar_host_url
+							env.sonar_projectkey_dev=app.sonar_projectkey_dev
+							env.sonar_projectkey_master=app.sonar_projectkey_master
+							env.sonar_password=app.sonar_password
+							env.sonar_user=app.sonar_user
+							env.sonar_project_name_dev=app.sonar_project_name_dev
+							env.sonar_project_name_master=app.sonar_project_name_master
+                      		env.stop_script=app.stop_script
+                      		env.copy_script=app.copy_script
+                      		env.start_script=app.start_script
+                      		env.deploy_stage=app.deploy_stage
+                            env.yarn_path=app.yarn_path
+                            env.node_path=app.node_path
+							env.service_name =app.service_name
+							env.docker_reg =app.docker_reg
+                      		env.release_url=app.release_url
+                            env.deployment_name=app.deployment_name
+                            env.bff=app.bff
+							if(app.containsKey("gateway")) {
+								env.gateway=app.gateway
+							} else {
+								env.gateway='false'
+							}
+							if(app.containsKey("storybook")) {
+								env.storybook=app.storybook
+							} else {
+								env.storybook='false'
+							}
+							env.app_dir=app.app_dir
+							env.portal=app.portal
+							if(app.containsKey("build_context")){
+							    env.build_context = Arrays.asList(app.build_context.split(","))	
+                            }					
+						}
+					listOfServices =Arrays.asList(env.service_name.split(","))
+                    sh '''npm config set registry http://repo.ibsplc.com:8182/'''
+                }
+
+            }
+        }
+        stage('Devops Checkout') {
+			 when {
+                expression { ( BRANCH_NAME ==~ /(master)/ || BRANCH_NAME == ~ /(hotfix\/[a-zA-Z0-9.-]*)/ ) && deploy_stage == 'true' }
+            }
+            steps {
+                checkout([$class           : 'GitSCM',
+						branches: [[name: 'refs/heads/master']],
+						extensions: [[$class: 'CleanBeforeCheckout'],
+									[$class: 'RelativeTargetDirectory',relativeTargetDir: 'devops/']],
+						userRemoteConfigs: [[credentialsId: env.token,
+										url: 'http://Icargo-release@bitbucket.ibsplc.com/scm/icneo/icargo-neo-devops-support.git']]])
+				script {
+					if(!(env.gateway=='true' || env.bff=='true')){
+						if(env.portal=='true') {
+							sh"cp -a ./devops/icargo-neo-buildpipeline/frontend-portal/. ."
+						}
+						else{
+							sh"cp -a ./devops/icargo-neo-buildpipeline/frontend-internal/. ."
+						}
+					}
+					sh"find ./devops -mindepth 1 ! -regex '^./devops/icargo-neo-buildpipeline.*' -delete"
+				}
+            }
+        }	
+		
+        stage('Build') {
+			when {
+				expression { BRANCH_NAME ==~ /(master)/ || BRANCH_NAME ==~ /(hotfix\/[a-zA-Z0-9.-]*)/ }
+            }
+
+            steps {
+                script {
+					Stage_Name = 'Build Stage'
+					
+					echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+                }
+
+                checkout([$class           : 'GitSCM',
+                          branches         : [[name: env.BRANCH_NAME]],
+                          userRemoteConfigs: [[
+                                                      credentialsId: env.token,
+                                                      url          : env.repo]]])
+
+				script {
+					if(env.gateway=='true') {
+						dir(path: '.') {
+							
+							sh '''export PATH=$node_path:$PATH:$yarn_path
+							rm -rf node_modules  
+							rm -rf eslint-coverage
+							yarn install'''
+							sh '''export PATH=$node_path:$PATH:$yarn_path
+                            yarn build'''
+						}
+					} 
+                    else if(env.bff=='true') {
+  						dir(path: '.') {
+                           sh '''export PATH=$node_path:$PATH:$yarn_path
+                           rm -rf node_modules 
+                           rm -rf eslint-coverage
+                           yarn install'''
+                           sh '''export PATH=$node_path:$PATH:$yarn_path
+                           yarn build'''
+               		   }
+              	  }
+                    else {
+						dir(path: '.') {
+							sh '''export PATH=$node_path:$PATH:$yarn_path
+							rm -rf node_modules  
+							rm -rf eslint-coverage
+                            node -v
+							yarn install'''
+							
+							sh '''export PATH=$node_path:$PATH:$yarn_path
+							yarn build'''
+							if(env.storybook=='true'){
+								sh ''' export PATH=$node_path:$PATH:$yarn_path                   
+								yarn build-storybook'''
+							}
+							if(env.build_context && env.build_context.size()>1){
+								for(context in env.build_context){
+									sh """export PATH=$node_path:$PATH:$yarn_path
+									yarn build-${context}"""
+								}	
+							}	
+						
+						}
+					}					
+				}
+                
+				script {
+                    Stage_Name = 'Build Stage'
+					 echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+					 def notifyBitbucket = {
+					  echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+					  return "ees"
+					 }
+					 echo "   notifyBitbucket  ${notifyBitbucket}"
+                }
+               
+				
+            }
+        }
+
+        stage('Build Branch') {
+			when {
+				not{
+					 expression { BRANCH_NAME ==~ /(master)/ || BRANCH_NAME ==~ /(hotfix\/[a-zA-Z0-9.-]*)/ }
+				}      
+            }
+            steps {
+                script {
+					Stage_Name = 'Build Stage'
+					
+					echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+                }
+
+                checkout([$class           : 'GitSCM',
+                          branches         : [[name: env.BRANCH_NAME]],
+                          userRemoteConfigs: [[
+                                                      credentialsId: env.token,
+                                                      url          : env.repo]]])
+
+				script {
+					if(env.gateway=='true') {
+						dir(path: '.') {
+							
+							sh '''export PATH=$node_path:$PATH:$yarn_path
+							rm -rf node_modules  
+							rm -rf eslint-coverage
+							yarn install'''
+							sh '''export PATH=$node_path:$PATH:$yarn_path
+                            yarn build'''							
+						}
+					} 
+                     else if(env.bff=='true') {
+  						dir(path: '.') {
+                           sh '''export PATH=$node_path:$PATH:$yarn_path
+                           rm -rf node_modules 
+                           rm -rf eslint-coverage
+                           yarn install'''
+                           sh '''export PATH=$node_path:$PATH:$yarn_path
+                           yarn build'''
+               		   }
+              	  }
+                    else {
+						dir(path: '.') {
+							sh '''export PATH=$node_path:$PATH:$yarn_path
+							rm -rf node_modules  
+							rm -rf eslint-coverage
+							yarn install'''
+							
+							sh '''export PATH=$node_path:$PATH:$yarn_path
+							yarn build'''
+													
+						}
+					}					
+				}
+				script {
+                    Stage_Name = 'Build Stage'
+					 echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+					 def notifyBitbucket = {
+					  echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+					  return "ees"
+					 }
+					 echo "   notifyBitbucket  ${notifyBitbucket}"
+                }
+               
+				
+            }
+        }
+
+        /*stage('SonarQube Analysis') {
+            when {				
+				branch 'master'	
+				expression { gateway == 'false' }				
+            }
+            steps {
+                script {
+                    Stage_Name = 'SonarQube Analysis Stage'
+                }
+				withSonarQubeEnv('Sonar Qube -Linux') {
+                    sh '''export PATH=$PATH:$yarn_path:$node_path
+                    yarn sonar -Dsonar.projectKey=$sonar_projectkey_master -Dsonar.projectName=$sonar_project_name_master'''
+                }
+            }
+		}	
+
+        stage('SonarQube Analysis Dev') {
+            when {
+				not{
+					anyOf {
+						branch 'master'
+						expression { gateway == 'true' }	
+					}			    	
+				}      
+            }
+            steps {
+                script {
+                    Stage_Name = 'SonarQube Analysis Dev Stage'
+                }
+				withSonarQubeEnv('Sonar Qube -Linux') {
+                   sh '''export PATH=$PATH:$yarn_path:$node_path
+                   yarn sonar -Dsonar.projectKey=$sonar_projectkey_dev -Dsonar.projectName=$sonar_project_name_dev'''
+                }
+            }
+		}
+
+		stage('Quality Gate Status Check') {
+            when {				
+				branch 'master'	
+				expression { gateway == 'false' }				
+            }
+            steps {
+                script {
+                    Stage_Name = 'Quality Gate Status Check Stage'
+                }
+                sleep(40)
+				script {
+                    def qg = waitForQualityGate()
+                    if (qg.status != 'OK') {
+                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    }else{
+                        print "Success" 
+                    }
+				}
+				
+            }
+        }
+		
+		stage('Quality Gate Status Check Dev') {
+            when {
+				not{
+					anyOf {
+						branch 'master'
+						expression { gateway == 'true' }	
+					}					
+				}      
+            }
+            steps {
+                script {
+                    Stage_Name = 'Quality Gate Status Check Stage Dev'
+                }
+                sleep(40)
+				script {
+                    def qg = waitForQualityGate()
+                    if (qg.status != 'OK') {
+                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    }else{
+                        print "Success" 
+                    }
+				}
+            }
+        }*/
+		
+		stage('Docker') {
+            when {
+                expression { ( BRANCH_NAME ==~ /(master)/ || BRANCH_NAME ==~ /(hotfix\/[a-zA-Z0-9.-]*)/ ) && deploy_stage=='true' }             	
+            }
+            steps {				
+				sh "bash ./docker.sh 'harbor.ibsplc.com/icargo' ${env.service_name} ${env.app_dir}"				             
+            }
+        }
+		
+		
+		
+		stage('Release Manager Entry') {
+			when{
+				expression { BRANCH_PREFIX == "hotfix"}
+			}
+			steps{
+				script {		
+
+					dir("service"){
+						GIT_COMMIT_SHORT = sh(
+							script: "printf \$(git log -1 --pretty=%H | cut -c -10)",
+							returnStdout: true
+						)
+						echo "GIT COMMIT   ->  ${env.GIT_COMMIT}"
+						echo "GIT_COMMIT_SHORT   ->  ${GIT_COMMIT_SHORT}"
+                        
+					}				
+					listOfServices =Arrays.asList(env.service_name.split(","))
+					env.testValue=listOfServices
+					echo "listOfServices   - ${listOfServices}"
+					echo "size of list "+listOfServices.size()
+					for (servicename in listOfServices) {
+						echo "  -- servicename --  ${servicename}"
+                        env.POSTURL="http://10.246.12.51:5000/release-manager-service/rest/api/release/"+servicename+"/"+GIT_COMMIT_SHORT
+						echo "POSTURL is ${env.POSTURL}"
+						//env.dataForPost='{"branch":"master"}'
+						env.dataForPost='{"branch":"' + env.BRANCH_NAME + '"}'
+						env.cont='Content-Type:application/json'
+						response = sh(script: 'curl -XPOST -s -o /dev/null -w %{http_code} -H $cont -d $dataForPost $POSTURL', returnStdout: true)
+						 sh '''export M2_HOME=$M2_HOME
+                      export M2=$M2_HOME/bin
+                      export JAVA_HOME=$JAVA_HOME
+                      export PATH=$M2:$JAVA_HOME:$PATH
+                     /usr/local/bin/aws ecr describe-image-scan-findings --repository-name $servicename --image-id imageTag=$GIT_COMMIT_SHORT --output json --output json | tee ecr_scanResult.txt
+					  '''
+						if (response != '200') {
+							error "Pipeline aborted due to Dokcer push: ${response}"
+						}else{
+							print "Docker image successfully released" 
+						}
+					}
+				}
+			}
+		}
+
+
+		
+		stage('Docker Image Vulnerability Scan') {
+			when{
+				branch 'master'
+			}
+			steps{
+				script {		
+						GIT_COMMIT_SHORT = sh(
+							script: "printf \$(git log -1 --pretty=%H | cut -c -10)",
+							returnStdout: true
+						)
+						echo "GIT_COMMIT_SHORT   ->  ${GIT_COMMIT_SHORT}"
+                    def listOfServicesDocker =Arrays.asList(env.service_name.split(","))
+					env.testValue=listOfServicesDocker
+					for (servicename in listOfServicesDocker) {
+					env.servicename=servicename
+					env.GIT_COMMIT_SHORT=GIT_COMMIT_SHORT
+					    sh '''export M2_HOME=$M2_HOME
+                      export M2=$M2_HOME/bin
+                      export JAVA_HOME=$JAVA_HOME
+                      export PATH=$M2:$JAVA_HOME:$PATH
+                     /usr/local/bin/aws ecr describe-image-scan-findings --repository-name $servicename --image-id imageTag=$GIT_COMMIT_SHORT --output json --output json | tee ecr_scanResult.txt
+					  '''
+					}
+				}
+			}
+		}
+		
+		stage('Delete Old Branch') {
+		when {
+					expression { BRANCH_NAME ==~ /(master)/ || BRANCH_NAME ==~ /(release\/[a-zA-Z0-9.-]*)/ || BRANCH_NAME ==~ /(hotfix\/[a-zA-Z0-9.-]*)/}
+		}
+		steps {
+			script {
+				Stage_Name = 'Delete Old Branch Stage'
+			}
+			dir(path: '.') {
+				sshagent( ['gitCommitCrendentials']) {
+					sh '''
+						git fetch --prune
+
+						for k in $(git branch -r --merged | sed /\\*/d); do 
+						  if [[ "$(git log $k --since "120 days ago" | wc -l)" -eq 0 ]]; then
+							local_branch_name=$(echo "$k" | sed 's/^origin\\///')
+							echo $local_branch_name
+							if [[ $local_branch_name = feature/* ]] || [[ $local_branch_name = bugfix/* ]]; then 
+								git push $repo --delete $local_branch_name
+							fi
+						  fi
+						done
+					'''
+				}
+			}
+		}
+}
+		
+
+}
+
+    post {
+		success{
+			script {
+            
+            sh '''rm -rf node_modules  
+            rm -rf applications
+							'''
+                            
+			 echo "GIT_COMMIT is ${env.GIT_COMMIT}"
+			 data='{"key": "'+env.BUILD_ID+'","state":"SUCCESSFUL", "name":"'+env.JOB_NAME+'","url":"'+env.BUILD_URL+'","description":"Build is successful."}'
+							bitbucketURL="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"+env.GIT_COMMIT
+							echo "bitbucketURL  ${bitbucketURL}"
+							bitbucketresponse = ["curl", "-u", "icargo-release:Icargo-release", "-X", "POST", "-H", "Content-Type: application/json", "-d", "${data}", "${bitbucketURL}"].execute().text
+							echo "bitbucketresponse ${bitbucketresponse}"
+			
+			if (env.BRANCH_NAME == 'master') {
+				env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+				echo "GIT_COMMIT_MSG is ${env.GIT_COMMIT_MSG}"
+				env.GIT_AUTHOR = sh (script: 'git log -1 --pretty=%cn ${GIT_COMMIT}', returnStdout: true).trim()
+				echo "GIT_COMMIT is ${env.GIT_COMMIT[0..6]}"
+               
+				 recipientProvidersForQADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+			  	echo "recipientProvidersForQADeploy  -> ${recipientProvidersForQADeploy}"
+             	 gitCommitID =env.GIT_COMMIT
+             	 echo "gitCommitID  -> ${gitCommitID}"					
+				
+			  
+			      echo "Deployment name ${env.deployment_name}"
+                    if(env.deployment_name != "null"){
+                    	deploymentList =Arrays.asList(env.deployment_name.split(",")) 
+                    }
+                    else{
+                    	deploymentList =Arrays.asList(env.service_name.split(",")) 
+                    }
+                    
+					for (servicename in deploymentList) {
+						echo "  -- servicename for deployment--  ${servicename}"
+
+						try {
+							build job: "${servicename}-rollout", parameters: [[$class: 'StringParameterValue', name: 'gitCommitID', value: gitCommitID ], [$class: 'StringParameterValue', name: 'recipientProvidersForQADeploy', value: recipientProvidersForQADeploy]],wait: false , propagate: true
+							sleep(20)
+							}
+							catch (Exception e) {
+								echo "WARNING: ${e.message}"
+							}
+              
+					}
+                    
+                    
+                    emailext(
+                            subject: "Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+Check console output at:  ${env.BUILD_URL}  
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'cc:sander.joseph@ibsplc.com'
+                    )
+					
+					
+                } else {
+					emailext(
+                            subject: "Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+Check console output at:  ${env.BUILD_URL}
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider']],
+							to: 'cc:sander.joseph@ibsplc.com'
+                    )
+                }
+				
+				
+			
+			}
+			
+	}
+	
+        failure {
+            script {
+			
+             sh '''rm -rf node_modules  
+            rm -rf applications
+							'''
+				echo "GIT_COMMIT is ${env.GIT_COMMIT}"
+				data='{"key": "'+env.BUILD_ID+'","state":"FAILED", "name":"'+env.JOB_NAME+'","url":"'+env.BUILD_URL+'","description":"Build has failed"}'
+							bitbucketURL="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"+env.GIT_COMMIT
+							echo "bitbucketURL  ${bitbucketURL}"
+							bitbucketresponse = ["curl", "-u", "icargo-release:Icargo-release", "-X", "POST", "-H", "Content-Type: application/json", "-d", "${data}", "${bitbucketURL}"].execute().text
+							echo "bitbucketresponse ${bitbucketresponse}"
+							
+				if (env.BRANCH_NAME == 'master') {
+                    emailext(
+                            subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+Failure happened in ${Stage_Name}.
+										
+Check console output at:  ${env.BUILD_URL}  
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'cc:krishna.kumar@ibsplc.com,bejoy.kunjumon@ibsplc.com,Vikas.Ramachandran@ibsplc.com,Kiran.Rajendran@ibsplc.com'
+                    )
+					
+					
+                } else {
+					emailext(
+                            subject: "BRANCH FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+Failure happened in ${Stage_Name}
+
+Check console output at:  ${env.BUILD_URL}
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider']],
+							to: 'cc:Vikas.Ramachandran@ibsplc.com,Kiran.Rajendran@ibsplc.com'
+                    )
+                }
+            }
+        }
+  always {
+    dir("${env.WORKSPACE}@tmp") {
+      deleteDir()
+    }
+    dir("${env.WORKSPACE}@script") {
+      deleteDir()
+    }
+    dir("${env.WORKSPACE}@script@tmp") {
+      deleteDir()
+    }
+  }
+    }
+}

@@ -1,0 +1,343 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: TEST_DML_0001
+      author: T-2909
+      changes:
+        dbms: postgresql
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: INSERT INTO TRKAWBMST (TRKAWBSERNUM, CMPCOD, SHPPFX, MSTDOCNUM, SHPSEQNUM, ORGCOD, DSTCOD, STDPCS, DISSTDWGT, STDWGT, STDWGTUNT, DISSTDVOL, STDVOL, STDVOLUNT, PRDNAM, SHC, SHPDES, LSTUPDTIM, LSTUPDUSR) VALUES
+          ( nextval('trkawbmst_seq'), 'AV', '134', '78999255', 11, 'KBP', 'SIN', 100, 12.34, 12.34, 'K', 14.2, 14.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '134', '78999256', 12, 'TLL', 'BVA', 200, 22.34, 22.34, 'K', 12.2, 12.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '134', '78999257', 13, 'CPH', 'SOF', 300, 23.4, 23.4, 'K', 2.2, 2.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '176', '55550000', 14, 'CPH', 'SOF', 300, 23.4, 23.4, 'K', 2.2, 2.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN');
+
+  - changeSet:
+      id: TEST_DML_0002
+      author: T-2909
+      changes:
+        dbms: postgresql
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: INSERT INTO TRKSHPMILSTNPLN (TRKSHPMILSTNPLNSERNUM, CMPCOD, SHPKEY, SHPTYP, SHPSEQNUM, ARPCOD, MILSTNCOD, PCS, MILSTNTIM, MILSTNTIMUTC, SRC, OPRTYP, FLTNUM, FLTCARCOD, FLTDAT)
+          VALUES
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999255', 'A', 1111, 'BEL', 'RCS', 100, '01-10-2021  20:54:20', '10-10-2021  20:54:20', 'BKG', 'T', 'AP-1000001', 'TK', '10-10-2021  20:54:20' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999255', 'A', 1111, 'BHM', 'DEP', 100, '02-10-2021  18:54:20', '11-10-2021  18:54:20', 'BKG', 'T', 'AP-1000002', 'TK', '11-10-2021  18:54:20' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999255', 'A', 1111, 'HSV', 'DEP', 100, '03-10-2021  18:54:20', '12-10-2021  18:54:20', 'BKG', 'T', 'AP-1000003', 'TK', '11-10-2021  18:54:20' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999255', 'A', 1111, 'HSV', 'DEP', 100, '04-10-2021  18:54:20', '12-10-2021  18:54:20', 'BKG', 'T', 'AP-1000004', 'TK', '11-10-2021  18:54:20' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999255', 'A', 1111, 'BEL', 'ARR', 100, '01-10-2021  22:54:20', '10-10-2021  21:54:20', 'BKG', 'T', 'AP-1000001', 'TK', '10-10-2021  20:54:20' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999255', 'A', 1111, 'BHM', 'DLV', 100, '02-10-2021  19:57:20', '11-10-2021  18:54:20', 'BKG', 'T', 'AP-1000002', 'TK', '11-10-2021  18:54:20' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999256', 'A', 1112, 'TLL', 'RCS', 200, '05-10-2021  18:54:20', '05-10-2021  20:54:20', 'FOH', 'T', 'AP-1000003', 'TK', '06-10-2021  00:12:00' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999256', 'A', 1112, 'TLL', 'DEP', 200, '05-10-2021  22:12:00', '06-10-2021  00:12:00', 'DEP', 'T', 'AP-1000003', 'TK', '06-10-2021  00:12:00' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999256', 'A', 1112, 'BVA', 'ARR', 200, '06-10-2021  07:15:20', '06-10-2021  08:15:20', 'ARR', 'T', 'AP-1000003', 'TK', '06-10-2021  00:12:00' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999256', 'A', 1112, 'BVA', 'DLV', 200, '06-10-2021  19:33:20', '06-10-2021  20:33:20', 'BKG', 'T', 'AP-1000003', 'TK', '06-10-2021  00:12:00' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999257', 'A', 1113, 'CPH', 'RCS', 300, '05-10-2021  18:54:20', '05-10-2021  20:54:20', 'BKG', 'T', 'AP-1000004', 'TK', '06-10-2021  00:12:00' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999257', 'A', 1113, 'CPH', 'DEP', 300, '05-10-2021  22:12:00', '06-10-2021  00:12:00', 'BKG', 'T', 'AP-1000004', 'TK', '06-10-2021  00:12:00' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999257', 'A', 1113, 'SOF', 'ARR', 300, '06-10-2021  07:15:20', '06-10-2021  08:15:20', 'BKG', 'T', 'AP-1000004', 'TK', '06-10-2021  00:12:00' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '134-78999257', 'A', 1113, 'SOF', 'DLV', 300, '06-10-2021  19:33:20', '06-10-2021  20:33:20', 'BKG', 'T', 'AP-1000004', 'TK', '06-10-2021  00:12:00' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '176-11011066', 'A', 1113, 'SOF', 'DLV', 300, '06-10-2021  19:33:20', '06-10-2021  20:33:20', 'BKG', 'T', 'AP-1000004', 'TK', '06-10-2021  00:12:00' ),
+          (nextval('trkshpmilstnpln_seq'), 'AV', '020-88888888', 'A', 1113, 'SOF', 'DLV', 300, '06-10-2021  19:33:20', '06-10-2021  20:33:20', 'BKG', 'T', 'AP-1000004', 'TK', '06-10-2021  00:12:00' );
+
+  - changeSet:
+      id: TEST_DML_0003
+      author: 201133
+      changes:
+        dbms: postgresql
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: INSERT INTO TRKSHPMILSTNEVT (TRKSHPMILSTNEVTSERNUM, CMPCOD, SHPKEY, SHPTYP, SHPSEQNUM, ARPCOD, MILSTNCOD, MILSTNTIM, MILSTNTIMUTC, PCS, MILSTNDTL, LSTUPDTIM, LSTUPDUSR, WGT, WGTUNT)
+          VALUES
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '134-78999255', 'A', 1111, 'BEL', 'RCS', '01-10-2021  21:54:20', '10-10-2021  21:54:20', 100, '{"flightCarrierCode":"carrier_2", "fromCarrier":"carrier_1", "shipperName":"TEST AIR EXPRESS INTERNATIONAL"}', '10-10-2021  21:54:20', 'ICOADMIN', 1.2, 'K'),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '134-78999255', 'A', 1111, 'BHM', 'DEP', '02-10-2021  19:54:20', '11-10-2021  19:54:20', 100, '{}', '10-10-2021  21:54:20', 'ICOADMIN', 1.3, 'K'),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '134-78999255', 'A', 1111, 'HSV', 'DEP', '03-10-2021  19:54:20', '12-10-2021  19:54:20', 100, '{}', '10-10-2021  21:54:20', 'ICOADMIN', NULL, NULL),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '134-78999255', 'A', 1111, 'HSV', 'DEP', '04-10-2021  19:54:20', '12-10-2021  19:54:20', 100, '{}', '10-10-2021  21:54:20', 'ICOADMIN', 1.5, 'K'),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '134-78999256', 'A', 1112, 'TLL', 'RCS', '05-10-2021  18:56:23', '05-10-2021  20:52:10', 200, '{"flightNumber":"AP-1000003"}', '05-10-2021  18:54:20', 'ICOADMIN', 1.5, 'K'),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '134-78999256', 'A', 1112, 'TLL', 'DEP', '05-10-2021  22:12:00', '06-10-2021  00:12:00', 200, '{"flightNumber":"AP-1000003"}', '05-10-2021  18:54:20', 'ICOADMIN', 1.5, 'K'),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '134-78999256', 'A', 1112, 'BVA', 'ARR', '06-10-2021  07:16:00', '06-10-2021  08:05:20', 200, '{"flightNumber":"AP-1000003"}', '06-10-2021  07:15:20', 'ICOADMIN', 1.5, 'K'),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '134-78999257', 'A', 1113, 'CPH', 'RCS', '05-10-2021  18:52:20', '05-10-2021  20:51:20', 200, '{}', '06-10-2021  07:15:20', 'ICOADMIN', 1.5, 'K'),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '176-11011066', 'A', 1113, 'CPH', 'RCS', '05-10-2021  18:52:20', '05-10-2021  20:51:20', 200, '{}', '06-10-2021  07:15:20', 'ICOADMIN', 1.5, 'K'),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-88888888', 'A', 1114, 'CPH', 'RCS', '05-10-2021  18:52:20', '05-10-2021  20:51:20', 200, '{}', '06-10-2021  07:15:20', 'ICOADMIN', 1.5, 'K'),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '134-78999258', 'A', 1112, 'TLL', 'RCT', '05-10-2021  22:12:00', '06-10-2021  00:12:00', 200, '{"flightCarrierCode":"carrier_2", "fromCarrier":"carrier_1", "shipperName":"TEST AIR EXPRESS INTERNATIONAL"}', '05-10-2021  18:54:20', 'ICOADMIN', 1.5, 'K');
+
+  - changeSet:
+      id: TEST_DML_0004
+      author: 201345
+      changes:
+        dbms: postgresql
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: INSERT INTO TRKSHPMILSTNPLN (TRKSHPMILSTNPLNSERNUM, CMPCOD, SHPKEY, SHPTYP, SHPSEQNUM, ARPCOD, MILSTNCOD, PCS, MILSTNTIM, MILSTNTIMUTC, SRC, OPRTYP, FLTNUM, FLTCARCOD, FLTDAT)
+          VALUES
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'BOM', 'RCS', 478, '01-09-2021  23:00:00', '01-10-2021  01:00:00', 'BKG', 'T',         NULL, 'TK', '01-10-2021  01:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'BOM', 'DEP', 100, '01-10-2021  00:00:00', '01-10-2021  02:00:00', 'BKG', 'T', 'AP-1000001', 'TK', '01-10-2021  02:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'BOM', 'DEP', 278, '01-10-2021  01:00:00', '01-10-2021  03:00:00', 'BKG', 'T', 'AP-1000001', 'TK', '01-10-2021  03:20:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'BOM', 'DEP', 100, '01-10-2021  02:00:00', '01-10-2021  04:00:00', 'BKG', 'T', 'AP-1000002', 'TK', '01-10-2021  04:20:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'DXB', 'ARR', 100, '01-10-2021  03:00:00', '01-10-2021  05:00:00', 'BKG', 'T', 'AP-1000001', 'TK', '01-10-2021  05:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'DXB', 'ARR', 278, '01-10-2021  04:00:00', '01-10-2021  06:00:00', 'BKG', 'T', 'AP-1000001', 'TK', '01-10-2021  06:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'AUH', 'ARR', 100, '01-10-2021  05:00:00', '01-10-2021  07:00:00', 'BKG', 'T', 'AP-1000002', 'TK', '01-10-2021  07:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'DXB', 'DEP', 100, '01-10-2021  06:00:00', '01-10-2021  08:00:00', 'BKG', 'T', 'AP-1000003', 'TK', '01-10-2021  08:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'DXB', 'DEP', 200, '01-10-2021  07:00:00', '01-10-2021  09:00:00', 'BKG', 'T', 'AP-1000004', 'TK', '01-10-2021  09:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'DXB', 'DEP',  78, '01-10-2021  08:00:00', '01-10-2021  10:00:00', 'BKG', 'T', 'AP-1000005', 'TK', '01-10-2021  10:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'CDG', 'ARR', 200, '01-10-2021  09:00:00', '01-10-2021  11:00:00', 'BKG', 'T', 'AP-1000004', 'TK', '01-10-2021  11:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'MUC', 'ARR',  78, '01-10-2021  10:00:00', '01-10-2021  12:00:00', 'BKG', 'T', 'AP-1000005', 'TK', '01-10-2021  12:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'CDG', 'DEP', 200, '01-10-2021  11:00:00', '01-10-2021  13:00:00', 'BKG', 'T', 'AP-1000006', 'TK', '01-10-2021  13:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'MUC', 'DEP',  78, '01-10-2021  12:00:00', '01-10-2021  14:00:00', 'BKG', 'T', 'AP-1000007', 'TK', '01-10-2021  14:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'AUH', 'DEP', 100, '01-10-2021  13:00:00', '01-10-2021  15:00:00', 'BKG', 'T', 'AP-1000008', 'TK', '01-10-2021  15:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'ARR', 100, '01-10-2021  14:00:00', '01-10-2021  16:00:00', 'BKG', 'T', 'AP-1000003', 'TK', '01-10-2021  16:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'ARR', 200, '01-10-2021  15:00:00', '01-10-2021  17:00:00', 'BKG', 'T', 'AP-1000006', 'TK', '01-10-2021  17:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'ARR',  78, '01-10-2021  16:00:00', '01-10-2021  18:00:00', 'BKG', 'T', 'AP-1000007', 'TK', '01-10-2021  18:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'ARR', 100, '01-10-2021  17:00:00', '01-10-2021  19:00:00', 'BKG', 'T', 'AP-1000008', 'TK', '01-10-2021  19:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'DLV', 200, '01-10-2021  18:00:00', '01-10-2021  20:00:00', 'BKG', 'T', 'AP-1000006', 'TK', '01-10-2021  20:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'DLV',  78, '01-10-2021  19:00:00', '01-10-2021  21:00:00', 'BKG', 'T', 'AP-1000007', 'TK', '01-10-2021  21:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'DLV', 100, '01-10-2021  20:00:00', '01-10-2021  22:00:00', 'BKG', 'T', 'AP-1000008', 'TK', '01-10-2021  22:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200221', 'A', 1113, 'BOM', 'RCS', 100, '01-10-2021  01:00:00', '01-10-2021  01:00:00', 'BKG', 'T',         NULL, 'TK', '01-10-2021  01:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200221', 'A', 1113, 'BOM', 'DEP', 100, '01-10-2021  02:00:00', '01-10-2021  02:00:00', 'BKG', 'T', 'AP-1000001', 'TK', '01-10-2021  02:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200221', 'A', 1113, 'DXB', 'ARR', 100, '01-10-2021  05:00:00', '01-10-2021  05:00:00', 'BKG', 'T', 'AP-1000001', 'TK', '01-10-2021  05:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200221', 'A', 1113, 'DXB', 'DEP', 100, '01-10-2021  08:00:00', '01-10-2021  08:00:00', 'BKG', 'T', 'AP-1000003', 'TK', '01-10-2021  08:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200221', 'A', 1113, 'FRA', 'ARR', 100, '01-10-2021  16:00:00', '01-10-2021  16:00:00', 'BKG', 'T', 'AP-1000003', 'TK', '01-10-2021  16:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200221', 'A', 1113, 'FRA', 'DLV', 100, '01-10-2021  22:00:00', '01-10-2021  22:00:00', 'BKG', 'T', 'AP-1000003', 'TK', '01-10-2021  22:10:00' ),
+
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'BOM', 'RCS', 290, '01-10-2021  00:00:00', '01-10-2021  00:00:00', 'BKG', 'T',         NULL, 'TK', '01-10-2021  00:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'BOM', 'DEP',  80, '01-10-2021  01:00:00', '01-10-2021  01:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  01:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'ARR',  80, '01-10-2021  02:00:00', '01-10-2021  02:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  02:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP',  40, '01-10-2021  03:00:00', '01-10-2021  03:00:00', 'BKG', 'T',       '1002', 'TK', '01-10-2021  03:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP',  20, '01-10-2021  04:00:00', '01-10-2021  04:00:00', 'BKG', 'T',       '1003', 'TK', '01-10-2021  04:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP',  20, '01-10-2021  05:00:00', '01-10-2021  05:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  05:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR',  40, '01-10-2021  06:00:00', '01-10-2021  06:00:00', 'BKG', 'T',       '1002', 'TK', '01-10-2021  06:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR',  20, '01-10-2021  07:00:00', '01-10-2021  07:00:00', 'BKG', 'T',       '1003', 'TK', '01-10-2021  07:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR',  20, '01-10-2021  08:00:00', '01-10-2021  08:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  08:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'BOM', 'DEP',  60, '01-10-2021  01:00:00', '01-10-2021  01:00:00', 'BKG', 'T',       '1005', 'TK', '01-10-2021  01:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'ARR',  60, '01-10-2021  02:00:00', '01-10-2021  02:00:00', 'BKG', 'T',       '1005', 'TK', '01-10-2021  02:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP',  40, '01-10-2021  03:00:00', '01-10-2021  03:00:00', 'BKG', 'T',       '1006', 'TK', '01-10-2021  03:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP',  20, '01-10-2021  04:00:00', '01-10-2021  04:00:00', 'BKG', 'T',       '1007', 'TK', '01-10-2021  04:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR',  40, '01-10-2021  06:00:00', '01-10-2021  06:00:00', 'BKG', 'T',       '1006', 'TK', '01-10-2021  06:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR',  20, '01-10-2021  07:00:00', '01-10-2021  07:00:00', 'BKG', 'T',       '1007', 'TK', '01-10-2021  07:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'DLV',  40, '01-10-2021  08:00:00', '01-10-2021  08:00:00', 'BKG', 'T',       '1006', 'TK', '01-10-2021  08:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'DLV',  20, '01-10-2021  08:00:00', '01-10-2021  08:00:00', 'BKG', 'T',       '1007', 'TK', '01-10-2021  08:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'BOM', 'DEP',  75, '01-10-2021  01:00:00', '01-10-2021  01:00:00', 'BKG', 'T',       '1008', 'TK', '01-10-2021  01:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'ARR',  75, '01-10-2021  02:00:00', '01-10-2021  02:00:00', 'BKG', 'T',       '1008', 'TK', '01-10-2021  02:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP',  50, '01-10-2021  03:00:00', '01-10-2021  03:00:00', 'BKG', 'T',       '1009', 'TK', '01-10-2021  03:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP',  25, '01-10-2021  04:00:00', '01-10-2021  04:00:00', 'BKG', 'T',       '1010', 'TK', '01-10-2021  04:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR',  50, '01-10-2021  06:00:00', '01-10-2021  06:00:00', 'BKG', 'T',       '1009', 'TK', '01-10-2021  06:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR',  25, '01-10-2021  07:00:00', '01-10-2021  07:00:00', 'BKG', 'T',       '1010', 'TK', '01-10-2021  07:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'BOM', 'DEP',  75, '01-10-2021  01:00:00', '01-10-2021  01:00:00', 'BKG', 'T',       '1011', 'TK', '01-10-2021  01:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'ARR',  75, '01-10-2021  02:00:00', '01-10-2021  02:00:00', 'BKG', 'T',       '1011', 'TK', '01-10-2021  02:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP',  50, '01-10-2021  03:00:00', '01-10-2021  03:00:00', 'BKG', 'T',       '1012', 'TK', '01-10-2021  03:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP',  25, '01-10-2021  04:00:00', '01-10-2021  04:00:00', 'BKG', 'T',       '1013', 'TK', '01-10-2021  04:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR',  50, '01-10-2021  06:00:00', '01-10-2021  06:00:00', 'BKG', 'T',       '1012', 'TK', '01-10-2021  06:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR',  25, '01-10-2021  07:00:00', '01-10-2021  07:00:00', 'BKG', 'T',       '1013', 'TK', '01-10-2021  07:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'DLV',  50, '01-10-2021  08:00:00', '01-10-2021  08:00:00', 'BKG', 'T',       '1012', 'TK', '01-10-2021  08:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'DLV',  25, '01-10-2021  08:00:00', '01-10-2021  08:00:00', 'BKG', 'T',       '1013', 'TK', '01-10-2021  08:10:00' ),
+
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'AAA', 'RCS', 178, '01-10-2021  00:00:00', '01-10-2021  00:00:00', 'BKG', 'T',         NULL, 'TK', '01-10-2021  00:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'AAA', 'DEP', 100, '01-10-2021  01:00:00', '01-10-2021  01:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  01:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'BBB', 'ARR', 100, '01-10-2021  02:00:00', '01-10-2021  02:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  02:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'AAA', 'DEP',  78, '01-10-2021  03:00:00', '01-10-2021  03:00:00', 'BKG', 'T',       '1002', 'TK', '01-10-2021  03:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'BBB', 'ARR',  78, '01-10-2021  04:00:00', '01-10-2021  04:00:00', 'BKG', 'T',       '1002', 'TK', '01-10-2021  04:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'BBB', 'DEP', 120, '01-10-2021  05:00:00', '01-10-2021  05:00:00', 'BKG', 'T',       '1003', 'TK', '01-10-2021  05:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'CCC', 'ARR', 120, '01-10-2021  06:00:00', '01-10-2021  06:00:00', 'BKG', 'T',       '1003', 'TK', '01-10-2021  06:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'CCC', 'DEP', 100, '01-10-2021  07:00:00', '01-10-2021  07:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  07:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'DDD', 'ARR', 100, '01-10-2021  08:00:00', '01-10-2021  08:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  08:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'CCC', 'DEP',  20, '01-10-2021  01:00:00', '01-10-2021  09:00:00', 'BKG', 'T',       '1005', 'TK', '01-10-2021  09:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'EEE', 'ARR',  20, '01-10-2021  02:00:00', '01-10-2021  10:00:00', 'BKG', 'T',       '1005', 'TK', '01-10-2021  10:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'EEE', 'DEP',  20, '01-10-2021  03:00:00', '01-10-2021  11:00:00', 'BKG', 'T',       '1006', 'TK', '01-10-2021  11:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'DDD', 'ARR',  20, '01-10-2021  04:00:00', '01-10-2021  12:00:00', 'BKG', 'T',       '1006', 'TK', '01-10-2021  12:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'BBB', 'DEP',  58, '01-10-2021  06:00:00', '01-10-2021  13:00:00', 'BKG', 'T',       '1007', 'TK', '01-10-2021  13:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'FFF', 'ARR',  58, '01-10-2021  07:00:00', '01-10-2021  14:00:00', 'BKG', 'T',       '1007', 'TK', '01-10-2021  14:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'FFF', 'DEP',  58, '01-10-2021  08:00:00', '01-10-2021  15:00:00', 'BKG', 'T',       '1008', 'TK', '01-10-2021  15:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'DDD', 'ARR',  58, '01-10-2021  08:00:00', '01-10-2021  16:00:00', 'BKG', 'T',       '1008', 'TK', '01-10-2021  16:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200223', 'A', 1113, 'DDD', 'DLV', 178, '01-10-2021  01:00:00', '01-10-2021  17:00:00', 'BKG', 'T',       '1008', 'TK', '01-10-2021  17:10:00' ),
+
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200224', 'A', 1113, 'AAA', 'RCS', 150, '01-10-2021  01:00:00', '01-10-2021  01:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  01:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200224', 'A', 1113, 'AAA', 'DEP', 100, '01-10-2021  02:00:00', '01-10-2021  02:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  02:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200224', 'A', 1113, 'BBB', 'ARR', 100, '01-10-2021  03:00:00', '01-10-2021  03:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  03:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200224', 'A', 1113, 'BBB', 'DEP', 100, '01-10-2021  04:00:00', '01-10-2021  04:00:00', 'BKG', 'T',       '1002', 'TK', '01-10-2021  04:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200224', 'A', 1113, 'CCC', 'ARR', 100, '01-10-2021  05:00:00', '01-10-2021  05:00:00', 'BKG', 'T',       '1002', 'TK', '01-10-2021  05:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200224', 'A', 1113, 'CCC', 'DLV', 100, '01-10-2021  06:00:00', '01-10-2021  06:00:00', 'BKG', 'T',       '1002', 'TK', '01-10-2021  06:10:00' ),
+
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200224', 'A', 1113, 'AAA', 'DEP',  50, '01-10-2021  07:00:00', '01-10-2021  07:00:00', 'BKG', 'T',       '1003', 'TK', '01-10-2021  07:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200224', 'A', 1113, 'BBB', 'ARR',  50, '01-10-2021  08:00:00', '01-10-2021  08:00:00', 'BKG', 'T',       '1003', 'TK', '01-10-2021  08:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200224', 'A', 1113, 'BBB', 'DEP',  50, '01-10-2021  09:00:00', '01-10-2021  09:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  09:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200224', 'A', 1113, 'CCC', 'ARR',  50, '01-10-2021  10:00:00', '01-10-2021  10:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  10:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200224', 'A', 1113, 'CCC', 'DLV',  50, '01-10-2021  11:00:00', '01-10-2021  11:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  11:10:00' ),
+
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200224', 'A', 1113, 'CCC', 'DRN', 110, '01-10-2021  12:00:00', '01-10-2021  12:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  12:10:00' ),
+
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200225', 'A', 1113, 'AAA', 'RCS', 200, '01-10-2021  01:00:00', '01-10-2021  01:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  01:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200225', 'A', 1113, 'AAA', 'DEP', 100, '01-10-2021  02:00:00', '01-10-2021  02:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  02:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200225', 'A', 1113, 'AAA', 'DEP', 100, '01-10-2021  03:00:00', '01-10-2021  03:00:00', 'BKG', 'T',       '1002', 'TK', '01-10-2021  03:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200225', 'A', 1113, 'BBB', 'ARR', 100, '01-10-2021  04:00:00', '01-10-2021  04:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  04:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200225', 'A', 1113, 'BBB', 'ARR', 100, '01-10-2021  05:00:00', '01-10-2021  05:00:00', 'BKG', 'T',       '1002', 'TK', '01-10-2021  05:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200225', 'A', 1113, 'BBB', 'DEP', 150, '01-10-2021  06:00:00', '01-10-2021  06:00:00', 'BKG', 'T',       '1003', 'TK', '01-10-2021  06:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200225', 'A', 1113, 'BBB', 'DEP',  50, '01-10-2021  07:00:00', '01-10-2021  07:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  07:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200225', 'A', 1113, 'CCC', 'ARR', 150, '01-10-2021  08:00:00', '01-10-2021  08:00:00', 'BKG', 'T',       '1003', 'TK', '01-10-2021  08:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200225', 'A', 1113, 'CCC', 'ARR',  50, '01-10-2021  09:00:00', '01-10-2021  09:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  09:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200225', 'A', 1113, 'CCC', 'DLV', 150, '01-10-2021  10:00:00', '01-10-2021  10:00:00', 'BKG', 'T',       '1003', 'TK', '01-10-2021  10:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200225', 'A', 1113, 'CCC', 'DLV',  50, '01-10-2021  11:00:00', '01-10-2021  11:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  11:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200225', 'A', 1113, 'CCC', 'DRN',   1, '01-10-2021  12:00:00', '01-10-2021  12:00:00', 'BKG', 'T',       '1003', 'TK', '01-10-2021  12:10:00' ),
+
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200226', 'A', 1113, 'AAA', 'RCS', 200, '01-10-2021  01:00:00', '01-10-2021  01:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  01:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200226', 'A', 1113, 'AAA', 'DEP', 100, '01-10-2021  02:00:00', '01-10-2021  02:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  02:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200226', 'A', 1113, 'AAA', 'DEP', 100, '01-10-2021  03:00:00', '01-10-2021  03:00:00', 'BKG', 'T',       '1002', 'TK', '01-10-2021  03:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200226', 'A', 1113, 'BBB', 'ARR', 100, '01-10-2021  04:00:00', '01-10-2021  04:00:00', 'BKG', 'T',       '1001', 'TK', '01-10-2021  04:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200226', 'A', 1113, 'BBB', 'ARR', 100, '01-10-2021  05:00:00', '01-10-2021  05:00:00', 'BKG', 'T',       '1002', 'TK', '01-10-2021  05:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200226', 'A', 1113, 'BBB', 'DEP', 150, '01-10-2021  06:00:00', '01-10-2021  06:00:00', 'BKG', 'T',       '1003', 'TK', '01-10-2021  06:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200226', 'A', 1113, 'BBB', 'DEP',  50, '01-10-2021  07:00:00', '01-10-2021  07:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  07:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200226', 'A', 1113, 'CCC', 'ARR', 150, '01-10-2021  08:00:00', '01-10-2021  08:00:00', 'BKG', 'T',       '1003', 'TK', '01-10-2021  08:10:00' ),
+          ( nextval('trkshpmilstnpln_seq'), 'AV', '020-32200226', 'A', 1113, 'CCC', 'ARR',  50, '01-10-2021  09:00:00', '01-10-2021  09:00:00', 'BKG', 'T',       '1004', 'TK', '01-10-2021  09:10:00' );
+
+
+  - changeSet:
+      id: TEST_DML_0004
+      author: 201436
+      changes:
+        dbms: postgresql
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: INSERT INTO TRKAWBPII (TRKAWBSERNUM, CMPCOD, SHPCOD, SHPDTL, CNSCOD, CNSDTL, LSTUPDTIM, LSTUPDUSR)
+          VALUES
+          ( 1, 'AV', 'DHLGER', '{}', 'DHLFRA', '{}', now(), 'ICOADMIN' ),
+          ( 2, 'AV', 'DHLABRAJ', '{"contact_type":"SHP","name":"DHL ABRAJ SERVICE CENTER","code":"DHLABRAJ","address":"Shipper Str.4 ","country":"LB","state":"kerala","city":"shipper city","zip_code":"17042","phone_number":null,"mobile_number":null,"fax_number":null,"email":null,"billing_address":null,"account_number":null,"iata_code":null}', 'CCBEY', '{"contact_type":"CNS","name":"AIR EXPRESS INTERNATIONAL","code":"CCBEY","address":"test","country":"IN","state":"consignee state","city":"consignee city","zip_code":"99999","phone_number":null,"mobile_number":null,"fax_number":null,"email":"","billing_address":null,"account_number":"11231231231","iata_code":null}', now(), 'ICOADMIN' );
+
+  - changeSet:
+      id: TEST_DML_0005
+      author: 201345
+      changes:
+        dbms: postgresql
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: INSERT INTO TRKSHPMILSTNEVT (TRKSHPMILSTNEVTSERNUM, CMPCOD, SHPKEY, SHPTYP, SHPSEQNUM, ARPCOD, MILSTNCOD, MILSTNTIM, MILSTNTIMUTC, PCS, MILSTNDTL, LSTUPDTIM, LSTUPDUSR)
+          VALUES
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'BOM', 'RCS', '01-09-2021  23:30:00', '01-10-2021  01:30:00', 478, '{"flightNumber":"AP-1000001"}', '01-10-2021  01:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'BOM', 'DEP', '01-10-2021  00:30:00', '01-10-2021  02:30:00', 100, '{"flightNumber":"AP-1000001"}', '01-10-2021  02:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'BOM', 'DEP', '01-10-2021  01:30:00', '01-10-2021  03:30:00', 278, '{"flightNumber":"AP-1000001"}', '01-10-2021  03:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'BOM', 'DEP', '01-10-2021  02:30:00', '01-10-2021  04:30:00', 100, '{"flightNumber":"AP-1000002"}', '01-10-2021  04:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'DXB', 'ARR', '01-10-2021  03:30:00', '01-10-2021  05:30:00', 100, '{"flightNumber":"AP-1000001"}', '01-10-2021  05:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'DXB', 'ARR', '01-10-2021  04:30:00', '01-10-2021  06:30:00', 278, '{"flightNumber":"AP-1000001"}', '01-10-2021  06:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'AUH', 'ARR', '01-10-2021  05:30:00', '01-10-2021  07:30:00', 100, '{"flightNumber":"AP-1000002"}', '01-10-2021  07:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'DXB', 'DEP', '01-10-2021  06:30:00', '01-10-2021  08:30:00', 100, '{"flightNumber":"AP-1000003"}', '01-10-2021  08:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'DXB', 'DEP', '01-10-2021  07:30:00', '01-10-2021  09:30:00', 200, '{"flightNumber":"AP-1000004"}', '01-10-2021  09:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'DXB', 'DEP', '01-10-2021  08:30:00', '01-10-2021  10:30:00',  78, '{"flightNumber":"AP-1000005"}', '01-10-2021  10:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'CDG', 'ARR', '01-10-2021  09:30:00', '01-10-2021  11:30:00', 200, '{"flightNumber":"AP-1000004"}', '01-10-2021  11:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'MUC', 'ARR', '01-10-2021  10:30:00', '01-10-2021  12:30:00',  78, '{"flightNumber":"AP-1000005"}', '01-10-2021  12:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'CDG', 'DEP', '01-10-2021  11:30:00', '01-10-2021  13:30:00', 200, '{"flightNumber":"AP-1000006"}', '01-10-2021  13:30:00', 'ICOADMIN' ),
+
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'AUH', 'DEP', '01-10-2021  13:30:00', '01-10-2021  15:30:00', 100, '{"flightNumber":"AP-1000008"}', '01-10-2021  15:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'ARR', '01-10-2021  14:30:00', '01-10-2021  16:30:00', 100, '{"flightNumber":"AP-1000003"}', '01-10-2021  16:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'ARR', '01-10-2021  15:30:00', '01-10-2021  17:30:00', 200, '{"flightNumber":"AP-1000006"}', '01-10-2021  17:30:00', 'ICOADMIN' ),
+
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'ARR', '01-10-2021  17:30:00', '01-10-2021  19:30:00', 100, '{"flightNumber":"AP-1000008"}', '01-10-2021  19:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'DLV', '01-10-2021  18:30:00', '01-10-2021  20:30:00', 200, '{"flightNumber":"AP-1000003"}', '01-10-2021  20:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'DLV', '01-10-2021  19:30:00', '01-10-2021  21:30:00', 200, '{"flightNumber":"AP-1000006"}', '01-10-2021  21:30:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200220', 'A', 1113, 'FRA', 'DLV', '01-10-2021  20:30:00', '01-10-2021  22:30:00', 100, '{"flightNumber":"AP-1000008"}', '01-10-2021  22:30:00', 'ICOADMIN' ),
+
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'BOM', 'RCS', '01-10-2021  00:10:00', '01-10-2021  00:10:00', 290,    '{"flightNumber":"1001"}', '01-10-2021  00:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'BOM', 'DEP', '01-10-2021  01:10:00', '01-10-2021  01:10:00',  80,    '{"flightNumber":"1001"}', '01-10-2021  01:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'ARR', '01-10-2021  02:10:00', '01-10-2021  02:10:00',  80,    '{"flightNumber":"1001"}', '01-10-2021  02:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP', '01-10-2021  03:10:00', '01-10-2021  03:10:00',  40,    '{"flightNumber":"1002"}', '01-10-2021  03:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP', '01-10-2021  04:10:00', '01-10-2021  04:10:00',  20,    '{"flightNumber":"1003"}', '01-10-2021  04:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP', '01-10-2021  05:10:00', '01-10-2021  05:10:00',  20,    '{"flightNumber":"1004"}', '01-10-2021  05:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR', '01-10-2021  06:10:00', '01-10-2021  06:10:00',  40,    '{"flightNumber":"1002"}', '01-10-2021  06:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR', '01-10-2021  07:10:00', '01-10-2021  07:10:00',  20,    '{"flightNumber":"1003"}', '01-10-2021  07:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR', '01-10-2021  08:10:00', '01-10-2021  08:10:00',  20,    '{"flightNumber":"1004"}', '01-10-2021  08:10:10', 'ICOADMIN' ),
+
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'BOM', 'DEP', '01-10-2021  01:10:00', '01-10-2021  01:10:00',  60,    '{"flightNumber":"1005"}', '01-10-2021  01:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'ARR', '01-10-2021  02:10:00', '01-10-2021  02:10:00',  60,    '{"flightNumber":"1005"}', '01-10-2021  02:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP', '01-10-2021  03:10:00', '01-10-2021  03:10:00',  40,    '{"flightNumber":"1006"}', '01-10-2021  03:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP', '01-10-2021  04:10:00', '01-10-2021  04:10:00',  20,    '{"flightNumber":"1007"}', '01-10-2021  04:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR', '01-10-2021  06:10:00', '01-10-2021  06:10:00',  40,    '{"flightNumber":"1006"}', '01-10-2021  06:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR', '01-10-2021  07:10:00', '01-10-2021  07:10:00',  20,    '{"flightNumber":"1007"}', '01-10-2021  07:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'DLV', '01-10-2021  08:10:00', '01-10-2021  08:10:00',  40,    '{"flightNumber":"1006"}', '01-10-2021  08:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'DLV', '01-10-2021  08:10:00', '01-10-2021  08:10:00',  20,    '{"flightNumber":"1007"}', '01-10-2021  08:10:10', 'ICOADMIN' ),
+
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'BOM', 'DEP', '01-10-2021  01:10:00', '01-10-2021  01:10:00',  75,    '{"flightNumber":"1008"}', '01-10-2021  01:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'ARR', '01-10-2021  02:10:00', '01-10-2021  02:10:00',  75,    '{"flightNumber":"1008"}', '01-10-2021  02:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP', '01-10-2021  03:10:00', '01-10-2021  03:10:00',  50,    '{"flightNumber":"1009"}', '01-10-2021  03:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP', '01-10-2021  04:10:00', '01-10-2021  04:10:00',  25,    '{"flightNumber":"1010"}', '01-10-2021  04:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR', '01-10-2021  06:10:00', '01-10-2021  06:10:00',  50,    '{"flightNumber":"1009"}', '01-10-2021  06:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR', '01-10-2021  07:10:00', '01-10-2021  07:10:00',  25,    '{"flightNumber":"1010"}', '01-10-2021  07:10:10', 'ICOADMIN' ),
+
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'BOM', 'DEP', '01-10-2021  01:10:00', '01-10-2021  01:10:00',  75,    '{"flightNumber":"1011"}', '01-10-2021  01:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'ARR', '01-10-2021  02:10:00', '01-10-2021  02:10:00',  75,    '{"flightNumber":"1011"}', '01-10-2021  02:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP', '01-10-2021  03:10:00', '01-10-2021  03:10:00',  50,    '{"flightNumber":"1012"}', '01-10-2021  03:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'DXB', 'DEP', '01-10-2021  04:10:00', '01-10-2021  04:10:00',  25,    '{"flightNumber":"1013"}', '01-10-2021  04:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR', '01-10-2021  06:10:00', '01-10-2021  06:10:00',  50,    '{"flightNumber":"1012"}', '01-10-2021  06:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'ARR', '01-10-2021  07:10:00', '01-10-2021  07:10:00',  25,    '{"flightNumber":"1013"}', '01-10-2021  07:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'DLV', '01-10-2021  08:10:00', '01-10-2021  08:10:00',  50,    '{"flightNumber":"1012"}', '01-10-2021  08:10:10', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200222', 'A', 1113, 'FRA', 'DLV', '01-10-2021  08:10:00', '01-10-2021  08:10:00',  25,    '{"flightNumber":"1013"}', '01-10-2021  08:10:10', 'ICOADMIN' ),
+
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200224', 'A', 1113, 'AAA', 'RCS', '01-10-2021  01:00:00', '01-10-2021  01:00:00', 150, '{"flightNumber":"1001"}', '01-10-2021  01:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200224', 'A', 1113, 'AAA', 'DEP', '01-10-2021  02:00:00', '01-10-2021  02:00:00', 100, '{"flightNumber":"1001"}', '01-10-2021  02:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200224', 'A', 1113, 'BBB', 'ARR', '01-10-2021  03:00:00', '01-10-2021  03:00:00', 100, '{"flightNumber":"1001"}', '01-10-2021  03:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200224', 'A', 1113, 'BBB', 'DEP', '01-10-2021  04:00:00', '01-10-2021  04:00:00', 100, '{"flightNumber":"1002"}', '01-10-2021  04:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200224', 'A', 1113, 'CCC', 'ARR', '01-10-2021  05:00:00', '01-10-2021  05:00:00', 100, '{"flightNumber":"1002"}', '01-10-2021  05:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200224', 'A', 1113, 'CCC', 'DLV', '01-10-2021  06:00:00', '01-10-2021  06:00:00', 100, '{"flightNumber":"1002"}', '01-10-2021  06:10:00', 'ICOADMIN' ),
+
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200224', 'A', 1113, 'AAA', 'DEP', '01-10-2021  07:00:00', '01-10-2021  07:00:00',  50, '{"flightNumber":"1003"}', '01-10-2021  07:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200224', 'A', 1113, 'BBB', 'ARR', '01-10-2021  08:00:00', '01-10-2021  08:00:00',  50, '{"flightNumber":"1003"}', '01-10-2021  08:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200224', 'A', 1113, 'BBB', 'DEP', '01-10-2021  09:00:00', '01-10-2021  09:00:00',  50, '{"flightNumber":"1004"}', '01-10-2021  09:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200224', 'A', 1113, 'CCC', 'ARR', '01-10-2021  10:00:00', '01-10-2021  10:00:00',  50, '{"flightNumber":"1004"}', '01-10-2021  10:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200224', 'A', 1113, 'CCC', 'DLV', '01-10-2021  11:00:00', '01-10-2021  11:00:00',  50, '{"flightNumber":"1004"}', '01-10-2021  11:10:00', 'ICOADMIN' ),
+
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200224', 'A', 1113, 'CCC', 'DRN', '01-10-2021  12:00:00', '01-10-2021  12:00:00', 110, '{"flightNumber":"1004"}', '01-10-2021  12:10:00', 'ICOADMIN' ),
+
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200225', 'A', 1113, 'AAA', 'RCS', '01-10-2021  01:00:00', '01-10-2021  01:00:00', 200, '{"flightNumber":"1001"}', '01-10-2021  01:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200225', 'A', 1113, 'AAA', 'DEP', '01-10-2021  02:00:00', '01-10-2021  02:00:00', 100, '{"flightNumber":"1001"}', '01-10-2021  02:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200225', 'A', 1113, 'AAA', 'DEP', '01-10-2021  03:00:00', '01-10-2021  03:00:00', 100, '{"flightNumber":"1002"}', '01-10-2021  03:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200225', 'A', 1113, 'BBB', 'ARR', '01-10-2021  04:00:00', '01-10-2021  04:00:00', 100, '{"flightNumber":"1001"}', '01-10-2021  04:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200225', 'A', 1113, 'BBB', 'ARR', '01-10-2021  05:00:00', '01-10-2021  05:00:00', 100, '{"flightNumber":"1002"}', '01-10-2021  05:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200225', 'A', 1113, 'BBB', 'DEP', '01-10-2021  06:00:00', '01-10-2021  06:00:00', 150, '{"flightNumber":"1003"}', '01-10-2021  06:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200225', 'A', 1113, 'BBB', 'DEP', '01-10-2021  07:00:00', '01-10-2021  07:00:00',  50, '{"flightNumber":"1004"}', '01-10-2021  07:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200225', 'A', 1113, 'CCC', 'ARR', '01-10-2021  08:00:00', '01-10-2021  08:00:00', 150, '{"flightNumber":"1003"}', '01-10-2021  08:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200225', 'A', 1113, 'CCC', 'ARR', '01-10-2021  09:00:00', '01-10-2021  09:00:00',  50, '{"flightNumber":"1004"}', '01-10-2021  09:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200225', 'A', 1113, 'CCC', 'DLV', '01-10-2021  10:00:00', '01-10-2021  10:00:00', 150, '{"flightNumber":"1003"}', '01-10-2021  10:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200225', 'A', 1113, 'CCC', 'DLV', '01-10-2021  11:00:00', '01-10-2021  11:00:00',  50, '{"flightNumber":"1004"}', '01-10-2021  11:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200225', 'A', 1113, 'CCC', 'DRN', '01-10-2021  12:00:00', '01-10-2021  12:00:00',   1, '{"flightNumber":"1003"}', '01-10-2021  12:10:00', 'ICOADMIN' ),
+
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200226', 'A', 1113, 'AAA', 'RCS', '01-10-2021  01:00:00', '01-10-2021  01:00:00', 200, '{"flightNumber":"1001", "flightCarrierCode":"TK"}', '01-10-2021  01:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200226', 'A', 1113, 'AAA', 'DEP', '01-10-2021  02:00:00', '01-10-2021  02:00:00', 100, '{"flightNumber":"9991", "flightCarrierCode":"BB"}', '01-10-2021  02:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200226', 'A', 1113, 'AAA', 'DEP', '01-10-2021  03:00:00', '01-10-2021  03:00:00', 100, '{"flightNumber":"1002", "flightCarrierCode":"TK"}', '01-10-2021  03:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200226', 'A', 1113, 'BBB', 'ARR', '01-10-2021  04:00:00', '01-10-2021  04:00:00', 100, '{"flightNumber":"9991", "flightCarrierCode":"BB"}', '01-10-2021  04:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200226', 'A', 1113, 'BBB', 'ARR', '01-10-2021  05:00:00', '01-10-2021  05:00:00', 100, '{"flightNumber":"1002", "flightCarrierCode":"TK"}', '01-10-2021  05:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200226', 'A', 1113, 'BBB', 'DEP', '01-10-2021  06:00:00', '01-10-2021  06:00:00', 150, '{"flightNumber":"9993", "flightCarrierCode":"BB"}', '01-10-2021  06:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200226', 'A', 1113, 'BBB', 'DEP', '01-10-2021  07:00:00', '01-10-2021  07:00:00',  50, '{"flightNumber":"1004", "flightCarrierCode":"TK"}', '01-10-2021  07:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200226', 'A', 1113, 'CCC', 'ARR', '01-10-2021  08:00:00', '01-10-2021  08:00:00', 150, '{"flightNumber":"9993", "flightCarrierCode":"BB"}', '01-10-2021  08:10:00', 'ICOADMIN' ),
+          ( nextval('trkshpmilstnevt_seq'), 'AV', '020-32200226', 'A', 1113, 'CCC', 'ARR', '01-10-2021  09:00:00', '01-10-2021  09:00:00',  50, '{"flightNumber":"1004", "flightCarrierCode":"TK"}', '01-10-2021  09:10:00', 'ICOADMIN' );
+
+  - changeSet:
+      id: TEST_DML_0006
+      author: 201133
+      changes:
+        dbms: postgresql
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: INSERT INTO TRKAWBMST (TRKAWBSERNUM, CMPCOD, SHPPFX, MSTDOCNUM, SHPSEQNUM, ORGCOD, DSTCOD, STDPCS, DISSTDWGT, STDWGT, STDWGTUNT, DISSTDVOL, STDVOL, STDVOLUNT, PRDNAM, SHC, SHPDES, LSTUPDTIM, LSTUPDUSR) VALUES
+          ( nextval('trkawbmst_seq'), 'AV', '134', '00100284', 15, 'KBP', 'DXB', 100, 12.34, 12.34, 'K', 14.2, 14.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '134', '45324532', 15, 'KBP', 'DXB', 100, 12.34, 12.34, 'K', 14.2, 14.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '134', '88028802', 15, 'KBP', 'CDG', 100, 12.34, 12.34, 'K', 14.2, 14.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '134', '88758875', 16, 'TLL', 'BVA', 200, 22.34, 22.34, 'K', 12.2, 12.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '134', '23401184', 17, 'CPH', 'SOF', 300, 23.4, 23.4, 'K', 2.2, 2.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '134', '37833783', 18, 'CPH', 'SOF', 300, 23.4, 23.4, 'K', 2.2, 2.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '020', '32200220', 19, 'BOM', 'FRA', 478, 23.4, 23.4, 'K', 2.2, 2.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '020', '32200221', 15, 'BOM', 'FRA', 100, 12.34, 12.34, 'K', 14.2, 14.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '020', '32200222', 15, 'BOM', 'FRA', 290, 12.34, 12.34, 'K', 14.2, 14.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '020', '32200223', 15, 'AAA', 'DDD', 178, 12.34, 12.34, 'K', 14.2, 14.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '020', '32200224', 15, 'AAA', 'CCC', 150, 12.34, 12.34, 'K', 14.2, 14.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '020', '32200225', 15, 'AAA', 'CCC', 200, 12.34, 12.34, 'K', 14.2, 14.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN'),
+          ( nextval('trkawbmst_seq'), 'AV', '020', '32200226', 15, 'AAA', 'CCC', 200, 12.34, 12.34, 'K', 14.2, 14.2, 'B', 'REGULAR', 'GEN', 'CONSOLIDATION', '2021-10-08 18:54:20', 'ICOADMIN');
+
+  - changeSet:
+      id: TEST_DML_0007
+      author: 201436
+      changes:
+        dbms: postgresql
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: INSERT INTO TRKAWBUSRNTFPII (TRKAWBSERNUM, USRIDR, NTFMILSTN, NTFEMLADR, CMPCOD, LSTUPDTIM, LSTUPDUSR)
+          VALUES
+          ( 1, '111111', '{"RCS", "DEP", "DLV"}', '{"user@domain.com", "user2@gmail.com"}', 'AV', now(), 'ICOADMIN' ),
+          ( 1, '222222', '{"ARR"}', '{"user3@domain.com", "user3@gmail.com"}', 'AV', now(), 'ICOADMIN' ),
+          ( 7, '111111', '{"RCS", "DEP", "DLV"}', '{"user@domain.com", "user2@gmail.com"}', 'AV', now(), 'ICOADMIN' );
+
+

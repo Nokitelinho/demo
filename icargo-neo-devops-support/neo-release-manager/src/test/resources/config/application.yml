@@ -1,0 +1,22 @@
+spring:
+  liquibase:
+    enabled: false
+    change-log: classpath:config/db.changelog-master.yaml
+  jpa:
+    database: h2
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        jdbc.lob.non_contextual_creation: true
+    show-sql: true
+  datasource:
+    platform: h2
+    url: 'jdbc:h2:mem:neo_relmgr_db'
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 2
+      minimum-idle: 1
+      max-lifetime: 30000
+      idle-timeout: 20000
+      connection-timeout: 5000
+      pool-name: 'release-manager-h2db-pool'

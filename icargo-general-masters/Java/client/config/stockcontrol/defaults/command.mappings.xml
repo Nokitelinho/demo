@@ -1,0 +1,791 @@
+<?xml version="1.0"?>
+<command-mappings xmlns="http://www.ibsplc.com/icargo/command/mappings" product="stockcontrol" subproduct="defaults">
+	
+	<!--*****************Added by Jens*******************-->
+			   	
+	      <screen name="MaintainStockAgentMapping" id="stockcontrol.defaults.maintainstockagentmapping">
+	   			
+	   		<action name="stockcontrol.defaults.screenloadmaintainstockagentmapping" >
+	   			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockagentmapping.ScreenLoadCommand" order="1"/>
+	   		</action>
+	   			
+	   		<action name="stockcontrol.defaults.clearmaintainstockagentmapping" >
+	   			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockagentmapping.ClearCommand" order="1"/>
+	   		</action>
+	   					
+	   		<action name="stockcontrol.defaults.addrowmaintainstockagentmapping" >
+	   			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockagentmapping.AddRowCommand" order="1"/>
+	   		</action>
+	   			
+	   		<action name="stockcontrol.defaults.deleterowmaintainstockagentmapping" >
+	   			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockagentmapping.DeleteRowCommand" order="1"/>
+	   		</action>
+	   			
+	   		<action name="stockcontrol.defaults.listmaintainstockagentmapping" >
+	   			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockagentmapping.ListCommand" order="1"/>
+	   		</action>
+	   			
+	   		<action name="stockcontrol.defaults.navigatemaintainstockagentmapping" >
+	   			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockagentmapping.NavigateCommand" order="1"/>
+	   			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockagentmapping.ListCommand" order="2"/>	
+	   		</action>
+	   				
+	   		<action name="stockcontrol.defaults.savemaintainstockagentmapping" >
+	   			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockagentmapping.SaveCommand" order="1"/>
+	   		</action>
+	   			
+	  </screen>
+	<!--*****************Added by Akhila*******************-->
+	<screen name="MaintainStockHolder" id="UISKC009">
+		<action name="stockcontrol.defaults.screenloadmaintainstockholder" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockholder.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.clearmaintainstockholder" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockholder.ClearCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.addrow" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockholder.UpdateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockholder.AddRowCommand" order="2"/>
+		</action>
+		<action name="stockcontrol.defaults.deleterow" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockholder.UpdateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockholder.DeleteRowCommand" order="2"/>
+		</action>
+		<action name="stockcontrol.defaults.save" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockholder.UpdateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockholder.SaveCommand" order="2"/>
+		</action>
+		<action name="stockcontrol.defaults.reload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.approverlov.ReloadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.update" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockholder.UpdateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.approverlov.ReloadCommand" order="2"/>
+		</action>
+		<action name="stockcontrol.defaults.viewstockholder" >
+
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockholder.ViewStockHolderCommand" order="1"/>
+		</action>
+<!-- newly added by raji starts-->
+		<action name="stockcontrol.defaults.closestockholder" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockholder.CloseCommand" order="1"/>
+		</action>
+<!--newly added by raji ends-->
+		<!-- Added by A-7364 as part of ICRD-217145 starts-->
+		<action name="stockholder.defaults.acknowledgesave" >
+			<command class="com.ibsplc.icargo.presentation.web.command.workflow.defaults.messageinbox.ProcessTaskCompletionCommand" order="1"/>
+		</action>
+		<!-- Added by A-7364 as part of ICRD-217145 ends-->
+	</screen>
+	<screen name="AllocateStock" id="stockcontrol.defaults.allocatestock">
+		<action name="stockcontrol.defaults.screenloadallocatestock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ScreenLoadCommand" order="1"/>
+		</action>
+
+		<action name="stockcontrol.defaults.liststock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ListStockRequestCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.list" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ListCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.approvestock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ApproveStockRequestCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ListCommand" order="2"/>
+		</action>
+		<action name="stockcontrol.defaults.rejectstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.RejectStockRequestCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ListCommand" order="2"/>
+		</action>
+		<action name="stockcontrol.defaults.clearstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ClearScreenCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.listranges" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ListRangesCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.onblur" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.OnblurCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.allocatestock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.AllocateStockCommand" order="1"/>
+				<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ListCommand" order="2"/>
+		</action>
+		<action name="stockcontrol.defaults.completestock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.CompleteStockCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ListCommand" order="2"/>
+		</action>
+		<action name="stockcontrol.defaults.clear" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ClearScreenCommand" order="1"/>
+		</action>
+
+		<action name="stockcontrol.defaults.screenloadmonitorallocatestock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.MonitorAllocateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ListCommand" order="2"/>
+		</action>
+
+		<action name="stockcontrol.defaults.closeallocatestock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.CloseCommand" order="1"/>
+		</action>
+
+		<action name="stockcontrol.defaults.allocatenewstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.AllocateNewStockCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reloadAllocateStock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ReloadAllocateStock" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.allocatestock.generatestockallocationreport" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.report.PrintStockAllocationReportCommand" order="1"/>
+		</action>		
+		<action name="stockcontrol.defaults.documentrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.documentrange.FindDocumentRangeCommand" order="1"/>
+		</action>		
+		<!-- Added by A-7364 as part of ICRD-227512 starts-->
+		<action name="stockholder.defaults.acknowledgerequestchange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.workflow.defaults.messageinbox.ProcessTaskCompletionCommand" order="1"/>
+		</action>
+		<!-- Added by A-7364 as part of ICRD-227512 ends-->	
+		<!-- Added by A-7534 as part of ICRD-227512 starts-->
+		<action name="stockcontrol.defaults.liststockfromworkflow" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ScreenLoadCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatestock.ListStockRequestCommand" order="2"/>
+		</action>
+		<!-- Added by A-7534 as part of ICRD-227512 ends-->	
+	</screen>
+
+
+	<screen name="CreateStock" id="stockcontrol.defaults.createstock">
+		<action name="stockcontrol.defaults.screenloadcreatestock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.createstock.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.addcreatestock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.createstock.AddCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.deletecreatestock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.createstock.DeleteCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.savecreatestock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.createstock.SaveCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.screenloadcreatestockpopup" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.createstock.ScreenLoadCommandPopUp" order="1"/>
+		</action>
+
+
+		<action name="stockcontrol.defaults.closecreatestock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.createstock.CloseCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.documentrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.documentrange.FindDocumentRangeCommand" order="1"/>
+		</action>	
+	</screen>
+	<!--*****************Added by Salish*******************-->
+	<screen name="ListStockHolder" id="stockcontrol.defaults.liststockholder">
+		<action name="stockcontrol.defaults.screenloadliststockholder" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockholder.ScreenLoadCommand"
+			order="1"/>
+
+		</action>
+		<action name="stockcontrol.defaults.clearscreen" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockholder.ClearScreenCommand"
+			order="1"/>
+		</action>
+<!-- newly added by raji start-->
+		<action name="stockcontrol.defaults.fiterdetailsstockholder" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockholder.FilterDetailScreenCommand"
+			order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.returnToListStock" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockholder.ReloadScreenCommand"
+			order="1"/>
+		</action>
+<!-- newly added by raji ends-->
+		<action name="stockcontrol.defaults.liststockholder" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockholder.ListStockHolderCommand"
+			order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.cancelstockholder" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockholder.CancelStockHolderCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockholder.ListStockHolderCommand"
+			order="2"/>
+		</action>
+
+	</screen>
+
+	<screen name="ListStockRequest" id="stockcontrol.defaults.liststockrequest">
+		<action name="stockcontrol.defaults.screenloadliststockrequest" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockrequest.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.clearliststockrequest" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockrequest.ClearScreenCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.liststockrequest" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockrequest.ListStockRequestCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.cancelliststockrequest" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockrequest.CancelStockRequestCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockrequest.ListStockRequestCommand" order="2"/>
+		</action>
+<!-- newly added by raji start-->
+		<action name="stockcontrol.defaults.fiterdetailsstockrequest" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockrequest.FilterDetailScreenCommand"
+			order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.returnToListStockRequest" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.liststockrequest.ReloadScreenCommand"
+			order="1"/>
+		</action>
+  <!-- newly added by raji ends-->
+	</screen>
+
+	<!--*****************Added by Kirupakaran*******************-->
+
+	<screen name="ApproverLov" id="UISKC021">
+		<action name="stockcontrol.defaults.screenloadapproverlov" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.approverlov.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.listLov" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.approverlov.ListLovCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.selectfromlov" >
+
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.approverlov.SelectFromLovCommand" order="1"/>
+		</action>
+
+	</screen>
+
+	<!--*****************Added by Smrithi*******************-->
+	<screen name="BlacklistStock" id="stockcontrol.defaults.blackliststock">
+		<action name="stockcontrol.defaults.screenloadblackliststock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.blackliststock.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.screenloadblackliststockpopup" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.blackliststock.PopUpScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.blackliststock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.blackliststock.BlacklistStockCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.void" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.blackliststock.VoidCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reloadblackliststock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.blackliststock.ReLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.documentrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.documentrange.FindDocumentRangeCommand" order="1"/>
+		</action>	
+	</screen>
+	<screen name="ViewRange" id="stockcontrol.defaults.viewrange">
+		<action name="stockcontrol.defaults.screenloadviewrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.viewrange.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.listawbstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.viewrange.ListAWBStockCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.utiliseddocsinfo" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.viewrange.UtilisedDocsInfoCommand" order="1"/>
+		</action>
+	</screen>
+	<screen name="TransferStockRange" id="stockcontrol.defaults.transferstockrange">
+		<action name="stockcontrol.defaults.screenloadtransferstockrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.transferstockrange.ScreenLoadCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.transferstockrange.ListStockRangeCommand" order="2"/>
+		</action>
+		<action name="stockcontrol.defaults.addtransferstockrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.transferstockrange.AddCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.deletetransferstockrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.transferstockrange.DeleteCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.transferstockrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.transferstockrange.TransferStockCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.utiliseddocsinfo" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.viewrange.UtilisedDocsInfoCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.transferliststockrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.transferstockrange.ListStockRangeCommand" order="1"/>
+		</action>
+	</screen>
+	<screen name="ReturnStockRange" id="stockcontrol.defaults.returnstockrange">
+		<action name="stockcontrol.defaults.screenloadreturnstockrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.returnstockrange.ScreenLoadCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.returnstockrange.ListStockRangeCommand" order="2"/>
+		</action>
+		<action name="stockcontrol.defaults.addreturnstockrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.returnstockrange.AddCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.deletereturnstockrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.returnstockrange.DeleteCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.returnstockrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.returnstockrange.ReturnStockCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.utiliseddocsinfo" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.viewrange.UtilisedDocsInfoCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.returnliststockrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.returnstockrange.ListStockRangeCommand" order="1"/>
+		</action>
+	</screen>
+	
+	<!-- #########added by Chippy for CR 1878 START#######-->
+	<screen name="StockDetails" id="stockcontrol.defaults.stockdetails">
+		<action name="stockcontrol.defaults.screenloadstockdetails" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockdetails.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.liststockdetails" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockdetails.ListCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.clearstockdetails" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockdetails.ClearCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.closestockdetails" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockdetails.CloseCommand" order="1"/>
+		</action>
+	</screen>
+	<!-- #########added by Chippy for CR 1878 ENDS#######-->
+	<screen name="MonitorStock" id="stockcontrol.defaults.monitorstock">
+		<action name="stockcontrol.defaults.screenloadmonitorstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.monitorstock.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.listmonitorstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.monitorstock.ListMonitorStockCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.clearmonitorstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.monitorstock.ClearMonitorStockCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.viewmonitorstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.monitorstock.ScreenLoadAllocateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.monitorstock.ListMonitorStockCommand" order="2"/>
+		</action>
+		<action name="stockcontrol.defaults.monitorallocatestock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.monitorstock.AllocateCommand" order="1"/>
+		</action>
+
+
+		<action name="stockcontrol.defaults.createstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.monitorstock.CreateStockCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reloadMonitor" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.monitorstock.ReloadCommand" order="1"/>
+		</action>
+
+		<action name="stockcontrol.defaults.createstockrequest" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.monitorstock.CreateRequestCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.generateawbstockreport" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.monitorstock.PrintCommand" order="1"/>
+		</action>
+		<!-- #########Added by A-5201 for ICRD-24963 starts #######-->
+		<action name="stockcontrol.defaults.closeMonitorStock" >
+		  	<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.monitorstock.CloseCommand" order="1"/>
+  		</action>
+		<!-- #########Added by A-5201 for ICRD-24963 end#######-->
+		
+		<action name="stockcontrol.defaults.monitorstock.generatestockallocationreport" >
+		<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.monitorstock.report.PrintStockAllocationReportCommand" order="1"/>
+		</action>		
+		<action name="stockcontrol.defaults.documentrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.documentrange.FindDocumentRangeCommand" order="1"/>
+		</action>			
+	</screen>
+
+
+	<screen name="MaintainStockRequest" id="UISKC002">
+		<action name="stockcontrol.defaults.screenloadmaintainstockreq">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockrequest.ScreenLoadCommand" order="1"/>
+		</action>
+
+		<action name="stockcontrol.defaults.savestockreq">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockrequest.SaveStockRequestCommand" order="1"/>
+		</action>
+
+		<action name="stockcontrol.defaults.modifystockreq">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockrequest.ModifyStockRequestCommand" order="1"/>
+		</action>
+
+		<action name="stockcontrol.defaults.viewstockreq">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockrequest.ScreenLoadCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockrequest.ViewStockRequestCommand" order="2"/>
+		</action>
+
+		<action name="stockcontrol.defaults.clearstockreq">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockrequest.ClearStockRequestCommand" order="1"/>
+		</action>
+	<!-- newly added by raji starts-->
+		<action name="stockcontrol.defaults.closestockrequest" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.maintainstockrequest.CloseCommand" order="1"/>
+		</action>
+	<!--newly added by raji ends-->
+
+	</screen>
+
+	<screen name="StockHolderLov" id="stockcontrol.defaults.common.stockholderlov">
+		<action name="stockcontrol.defaults.screenloadstockholderlov" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.common.stockholderlov.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.clearstockholderlov" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.common.stockholderlov.ClearStockHolderLovCommand" order="1"/>
+		</action>
+	</screen>
+
+	<!--**************Added by Kirupakaran on 19 Sep for Edit Range Screen************-->
+	<screen name="EditRange" id="stockcontrol.defaults.editrange">
+		<action name="stockcontrol.defaults.screenloadeditrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.editrange.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.addroweditrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.editrange.AddRowCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.deleteroweditrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.editrange.DeleteRowCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.listeditrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.editrange.ListRangesCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.transfereditrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.editrange.TransferRangeCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.closeeditrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.editrange.CloseCommand" order="1"/>
+		</action>
+	</screen>
+
+	<!--****************Added by Kirupakaran on 20 Sep for Allocate New Stock Screen*********************-->
+	<screen name="AllocateNewStock" id="stockcontrol.defaults.allocatenewstock">
+		<action name="stockcontrol.defaults.screenloadallocatenewstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatenewstock.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.addrowallocatenewstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatenewstock.AddRowCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.deleterowallocatenewstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatenewstock.DeleteRowCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.listallocatenewstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatenewstock.ListRangesCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.transferallocatenewstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatenewstock.TransferRangeCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.saveallocatenewstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatenewstock.SaveCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.screenloadmonitorallocatenewstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatenewstock.MonitorAllocateNewCommand" order="1"/>
+		</action>
+
+		<action name="stockcontrol.defaults.closeallocatenewstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatenewstock.CloseCommand" order="1"/>
+		</action>
+		
+	<action name="stockcontrol.defaults.allocatenewstock.generatestockallocationreport" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.allocatenewstock.report.PrintStockAllocationReportCommand" order="1"/>
+		</action>		
+		<action name="stockcontrol.defaults.documentrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.documentrange.FindDocumentRangeCommand" order="1"/>
+		</action>	
+	</screen>
+	<!--************************Added by Kirupakaran on 22 Sep for ListBlacklistedStock*************-->
+	<screen name="ListBlackListedStock" id="stockcontrol.defaults.listblacklistedstock">
+		<action name="stockcontrol.defaults.screenloadlistblacklistedstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.listblacklistedstock.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.listblacklistedstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.listblacklistedstock.ListCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.clearblacklistedstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.listblacklistedstock.ClearCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.revokeblacklistedstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.listblacklistedstock.RevokeCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.documentrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.documentrange.FindDocumentRangeCommand" order="1"/>
+		</action>
+	</screen>
+
+	<screen name="RevokeBlackListedStock" id="stockcontrol.defaults.revokeblacklistedstock">
+		<action name="stockcontrol.defaults.screenloadrevokeblacklistedstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.revokeblacklistedstock.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.revokingblacklistedstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.revokeblacklistedstock.RevokeCommand" order="1"/>
+		</action>
+	</screen>
+	<!--************************Added by Santhi for R2 on 10th feb2006*************-->
+	<screen name="StockList" id="stockcontrol.defaults.cto.stocklist">
+		<action name="stockcontrol.defaults.cto.screenloadstocklist">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stocklist.ScreenLoadCommand" order="1" />
+		</action>
+		<action name="stockcontrol.defaults.liststocks">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stocklist.ListStockDetailsCommand" order="1" />
+		</action>
+		<action name="stockcontrol.defaults.cto.reloadstockrequest">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stocklist.ReloadCommand" order="1" />
+		</action>
+		<action name="stockcontrol.defaults.clearliststocks">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stocklist.ClearCommand" order="1" />
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stocklist.ScreenLoadCommand" order="2" />
+		</action>
+		<action name="stockcontrol.defaults.cto.home">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stocklist.CloseCommand" order="1" />
+		</action>
+		<action name="stockcontrol.defaults.cto.showstockmanager">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stocklist.StockManagerCommand" order="1" />
+		</action>
+		<action name="stockcontrol.defaults.cto.stocklistreport">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stocklist.PrintCommand" order="1" />
+		</action>
+
+	</screen>
+	<screen name="ListRequest" id="stockcontrol.defaults.cto.viewstockrequest">
+		<action name="stockcontrol.defaults.cto.viewstockrequest">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stocklist.ViewRequestCommand" order="1" />
+		</action>
+
+	</screen>
+	<screen name="CreateRequest" id="stockcontrol.defaults.cto.createstockrequest">
+		<action name="stockcontrol.defaults.cto.createstockrequestscreenload">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stocklist.CreateRequestCommand" order="1" />
+		</action>
+		<action name="stockcontrol.defaults.savestockrequest">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stocklist.SaveRequestCommand" order="1" />
+		</action>
+        </screen>
+
+        <!--************************Added by Santhi Ends for R2 on 10th feb2006*************-->
+
+
+        <!--************************Added by Raji for R2 on 14th feb*************-->
+
+        <screen name="Reservationlisting" id="stockcontrol.defaults.reservationlisting">
+
+		<action name="stockcontrol.defaults.reservationlistingscreenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.ScreenLoadReservationCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reservationlisting.ListCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.ListCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reservationlisting.ClearCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.ClearCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reservationlisting.CloseCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.CloseCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reservationlisting.CancelCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.CancelCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reservationlisting.ExtendCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.ExtendCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reservationlisting.ReloadCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.ReloadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reservationlisting.OkCancelCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.OkCancelCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reservationlisting.OkExtendCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.OkExtendCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reservationlisting.NavigateCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.NavigateCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reservationlisting.ExtendNavigateCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.ExtendNavigateCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reservationlisting.CloseCancelCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.CloseCancelCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.reservationlisting.CloseExtendCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.CloseExtendCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.cto.reservationlistreport" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reservationlisting.PrintCommand" order="1"/>
+		</action>
+	</screen>
+
+        <!--************************Added by Raji for R2 on 14th feb ends*************-->
+
+        <!--************************Added by Anbumani for R2 on 16th feb starts*************-->
+	<screen name="StockManager" id="stockcontrol.defaults.stockmanager">
+
+		<action name="stockcontrol.defaults.cto.stockmanagerscreenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockmanager.ClearCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockmanager.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.cto.liststockmanager" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockmanager.ListStockCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.cto.clearstockmanager" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockmanager.ClearCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockmanager.ScreenLoadCommand" order="2"/>
+		</action>
+		<action name="stockcontrol.defaults.cto.addstockmanager" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockmanager.AddStockCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.cto.removestockmanager" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockmanager.RemoveStockCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.cto.closestockmanager" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockmanager.CloseCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.cto.addokstockmanager" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockmanager.AddOkCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.cto.removeokstockmanager" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockmanager.RemoveOkCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.cto.getnextstockdetails" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.stockmanager.GetNextStockDetailsCommand" order="1"/>
+		</action>
+	</screen>
+	<!--************************Added by Anbumani for R2 on 16th feb ends*************-->
+ 	<!--************************Added by Santhi for reservation starts*************-->
+
+
+ 	<screen name="ReserveStock" id="stockcontrol.defaults.cto.reservestock">
+ 		<action name="stockcontrol.defaults.cto.reservestockscreenload">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reserveawb.ScreenLoadCommand" order="1" />
+ 		</action>
+ 		<action name="stockcontrol.defaults.cto.reservestockaddrow">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reserveawb.AddRowCommand" order="1" />
+ 		</action>
+ 		<action name="stockcontrol.defaults.cto.reservestockdeleterow">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reserveawb.DeleteRowCommand" order="1" />
+ 		</action>
+ 		<action name="stockcontrol.defaults.cto.reserveawbstock">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reserveawb.ReserveCommand" order="1" />
+ 		</action>
+ 		<action name="stockcontrol.defaults.cto.reserveawbstocklistscreenload">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reserveawb.ViewReserveAwbsCommand" order="1" />
+ 		</action>
+ 		<action name="stockcontrol.defaults.cto.closeawblist">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reserveawb.CloseListCommand" order="1" />
+ 		</action>
+ 		<action name="stockcontrol.defaults.cto.closereservescreen">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reserveawb.CloseCommand" order="1" />
+ 		</action>
+ 		<action name="stockcontrol.defaults.cto.clearreservationscreen">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reserveawb.ClearCommand" order="1" />
+ 			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reserveawb.ScreenLoadCommand" order="2" />
+ 		</action>
+ 		<action name="stockcontrol.defaults.cto.printawblist">
+		 	<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.reserveawb.PrintCommand" order="1" />
+ 		</action>
+        </screen>
+
+ 	 <!--************************Added by Anbumani for reservation ends*************-->
+ 	<!--************************Added by Dhamu for stockhistory starts*************-->
+
+
+	<screen name="ListAwbStockHistory" id="stockcontrol.defaults.listawbstockhistory">
+		<action name="stockcontrol.defaults.screenloadlistawbstockhistory">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.listawbstockhistory.ScreenLoadCommand" order="1" />
+		</action>
+		<action name="stockcontrol.defaults.listawbstockhistory">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.listawbstockhistory.ListCommand" order="1" />
+		</action>
+		<action name="stockcontrol.defaults.clearawbstockhistory">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.listawbstockhistory.ClearCommand" order="1" />
+		</action> 
+		<action name="stockcontrol.defaults.printstockrangehistory">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.listawbstockhistory.PrintCommand" order="1" />
+		</action>
+		<action name="stockcontrol.defaults.printagentCSV">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.listawbstockhistory.PrintAgentCSVCommand" order="1" />
+		</action> 
+		<action name="stockcontrol.defaults.documentrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.documentrange.FindDocumentRangeCommand" order="1"/>
+		</action> 
+
+	</screen>
+	 <!--************************Added by Dhamu for stockhistory ends*************-->
+	 <!--************************Added by Dhamu for awbstockdetails starts*************-->
+	 	  	 
+	 <screen name="ViewAwbStock" id="stockcontrol.defaults.viewawbstock">
+		<action name="stockcontrol.defaults.screenloadviewawbstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.viewawbstock.ScreenLoadCommand" order="1" />
+		</action>
+ 	</screen>
+ 	  <!--************************Added by Dhamu for awbstockdetails ends*************-->
+ 	  <!--************************Added by Sathish for deleteAWB starts*************-->
+	 	 	  	 
+	 	 
+	<screen name="DeleteAwb" id="stockcontrol.defaults.deleteawb">
+		<action name="stockcontrol.defaults.screenloaddeleteawb">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.deleteawb.ScreenLoadCommand" order="1" />
+		</action>
+	
+		<action name="stockcontrol.defaults.deletehqstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.deleteawb.DeleteHqStock" order="1" />
+		</action>
+	</screen>
+       <!--************************Added by Sathish for deleteAWB ends*************-->
+	   <!--Added by a-4443 for icrd-3024 starts-->
+	   <screen name="ConfirmStock" id="stockcontrol.defaults.confirmstock">
+		<action name="stockcontrol.defaults.screenloadconfirmstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.confirmstock.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.closeconfirmstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.confirmstock.CloseCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.clearconfirmstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.confirmstock.ClearCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.listconfirmstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.confirmstock.ListCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.confirmtransitstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.confirmstock.ConfirmStockCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.blacklisttransitstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.confirmstock.SelectedRangeForBlackListCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.confirmstock.reloadconfirmstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.confirmstock.ReloadConfirmStockCommand" order="1"/>
+		</action>
+		</screen>
+		 	
+			
+		<screen name="MissingStock" id="stockcontrol.defaults.missingstock">
+		<action name="stockcontrol.defaults.selectedmissingtransitstock" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.confirmstock.SelectedRangeForBlackListCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.missingstockscreenloadpopup" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.missingstock.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="stockcontrol.defaults.missingstockok">
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.missingstock.MissingStockOKCommand" order="1"/>
+		</action>
+	   </screen>
+		  <!--************************Added by a-4443 for icrd-3024 ends*************-->
+		<screen name="DeleteStockRange" id="stockcontrol.defaults.deletestockrange">
+			<action name="stockcontrol.defaults.screenloaddeletestockrange" >
+				<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.deletestockrange.ScreenLoadCommand" order="1"/>
+				<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.deletestockrange.ListStockRangeCommand" order="2"/>
+			</action>
+			<action name="stockcontrol.defaults.listdeletestockrange" >
+				<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.deletestockrange.ListCommand" order="1"/>
+			</action>
+			<action name="stockcontrol.defaults.deletestockrange" >
+				<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.deletestockrange.DeleteCommand" order="1"/>
+			</action>
+			<action name="stockcontrol.defaults.utiliseddocsinfo" >
+				<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.viewrange.UtilisedDocsInfoCommand" order="1"/>
+			</action>
+			<action name="stockcontrol.defaults.deleteliststockrange" >
+			<command class="com.ibsplc.icargo.presentation.web.command.stockcontrol.defaults.deletestockrange.ListStockRangeCommand" order="1"/>
+		</action>
+		</screen>	
+	
+</command-mappings>

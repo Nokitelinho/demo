@@ -1,0 +1,134 @@
+def Stage_Name="Init"
+def ENV
+def releaseVersion
+def bom
+def tenantId = "base"
+def applicationId ="icargo-neo"
+def currentVersion
+def jiraIds
+env.argoCdRepoRUL="http://Icargo-release@bitbucket.ibsplc.com/scm/icneo/icargo-neo-argocd.git"
+env.EMAIL_SUBSCRIBERS="Sander.Joseph@ibsplc.com"
+
+
+pipeline {
+    agent any
+
+	options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '1'))
+    }
+		
+   parameters {
+        text(defaultValue: "base", description: 'Tenant of the application', name: 'tenant')
+		text(defaultValue: "icargo-neo", description: 'The Application Id ', name: 'appId')
+		text(defaultValue: "iCO_5.0.9.5800", description: 'The version we plan to deploy to the environment', name: 'buildVer')
+		text(defaultValue: "demo", description: 'Branch', name: 'commitBranch')
+    }
+	
+    stages {			
+		
+		stage("Customer Release Bom Creation") {			
+			steps {
+			
+				echo "Creating BOM for ${tenant} ${appId}   ${buildVer}    ${env.commitBranch}"
+				script { 
+					env.BOMCREATIONURL="http://10.246.12.51:5000/release-manager-service/rest/api/build-reduced?tenantId="+tenant+"&applicationId="+appId+"&buildNum="+buildVer+""
+					env.cont='Content-Type:application/json'
+					echo " --------------- BOMCREATIONURL is ${env.BOMCREATIONURL} ---------------"
+					env.releaseVersion = ["curl","-X", "POST", "-H", "Content-Type: application/json", "${env.BOMCREATIONURL}"].execute().text
+					env.BOMGENERATIONURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds/"+env.releaseVersion+"/bom"
+					echo "--------------- ${BOMGENERATIONURL}   ---------------"
+					bom= ["curl","-o","${WORKSPACE}/bom.yaml" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/yaml", "${env.BOMGENERATIONURL}"].execute().text
+					
+				}
+			}
+		}
+		
+		stage("Push to external Registry") {			
+			steps {
+				echo "Pushing the Images to External ECR registry   "
+				script {
+					sh '''
+					java -jar /opt/neo-devops-ecrsync/neo-devops-ecrsync-1.0.0-SNAPSHOT.jar --bom bom.yaml --source 141807520248.dkr.ecr.ap-south-1.amazonaws.com --target 469197385517.dkr.ecr.eu-west-1.amazonaws.com --targetImagePfx saas_icargo_neo_ --verbose
+					'''
+				}
+			}
+		}
+		
+		stage('Argo Cd Repo Checkout') {
+			steps{
+				checkout([$class           : 'GitSCM',
+				branches         : [[name: env.commitBranch]],
+				extensions: [[$class: 'CleanBeforeCheckout'],
+				            [$class: 'RelativeTargetDirectory',
+							relativeTargetDir: 'argocdRepo/']],
+				userRemoteConfigs: [[
+						credentialsId: "f60d9763-39f7-4e73-8467-258d60f1d7f6",
+						url: env.argoCdRepoRUL]]])
+				}
+		}
+		
+		stage("ENV Bom Commit to Branch") {
+			steps {
+			
+				sshagent( ['gitCommitCrendentials']) {sh '''
+				cat ${WORKSPACE}/bom.yaml > ${WORKSPACE}/argocdRepo/etc/icargo-neo-bom.yml
+				cd argocdRepo
+				pwd
+				git add --all
+				git commit -m updating_to_latest_yaml
+				git push origin HEAD:$commitBranch
+				'''}
+			}
+		}
+	}
+
+	
+	post {
+		success{
+			script {
+				emailext( 
+						recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']],
+						mimeType: 'text/html',
+						to : "${env.EMAIL_SUBSCRIBERS}",
+                        subject: "Success: Job '${env.JOB_NAME} [${env.buildVer}]'",
+                        body: """Success: Job '${env.JOB_NAME} [${env.buildVer}]':
+							<br />
+							Check console output at:  ${env.BUILD_URL}/console 
+							<br />
+							Job Name:  ${env.JOB_NAME} 
+                            Release Version: ${env.buildVer}
+							<br />
+							Jenkins Build Number: [${env.BUILD_NUMBER}]"""             
+                    )
+			}
+			
+	}
+	
+        failure {
+            script {
+				emailext(
+						mimeType: 'text/html',
+						recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+										[$class: 'RequesterRecipientProvider'],
+										[$class: 'DevelopersRecipientProvider']],
+						to : "${env.EMAIL_SUBSCRIBERS}",
+						subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+						body: """
+								<div style="color:red;font-size:20px">
+								FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+								</div>
+								Failure happened in ${Stage_Name}.
+								<br />
+								Check console output at:  ${env.BUILD_URL}/console
+								<br />
+								Job Name:  ${env.JOB_NAME} 
+								<br />
+								Build Number: [${env.BUILD_NUMBER}]"""
+						)				
+            }
+        }
+    }
+
+}

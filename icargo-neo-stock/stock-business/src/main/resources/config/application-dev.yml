@@ -1,0 +1,8 @@
+spring:
+  profiles: dev
+  cloud.config.import-check.enabled: false
+  jpa:
+    show-sql: false
+    properties.hibernate:
+      generate_statistics: true
+      session.events.log.LOG_QUERIES_SLOWER_THAN_MS: '500'

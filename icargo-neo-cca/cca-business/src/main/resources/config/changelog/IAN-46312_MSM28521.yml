@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-46312_MSM28521.yml
+  - changeSet:
+      id: 28521
+      author: A-10597
+      preConditions:
+        - tableExists:
+            tableName: ccaawb
+        - not:
+            columnExists:
+              tableName: ccaawb
+              columnName: shpdat
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccaawb ADD COLUMN shpdat date;
+          COMMENT ON COLUMN ccaawb.shpdat IS 'Shipment Date';

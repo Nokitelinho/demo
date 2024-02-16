@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-36807_MSM27337.yml
+  - changeSet:
+       id: 27337
+       author: A-10597
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: keygen
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE keygen(seqnam varchar NOT NULL, keycnd varchar NOT NULL, seqnum numeric NOT NULL, cmpcod varchar NOT NULL);

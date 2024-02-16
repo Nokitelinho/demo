@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>iCargo Deployer Dashboard</title>
+</head>
+<style>
+	.divProp{
+		min-height:25px;
+		
+	}
+	.lblProp {
+		width : 200px;
+		float :left;
+		font-size: 12px;
+	}
+	.txtProp {
+		width : 370px;
+	}
+</style>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	function init() {
+		postWebservice('getwatch').then(function(rs) {
+			$('.txtProgress').val(rs);
+		}, function(err) {
+			console.log(err);
+		});
+		postWebservice('getinvkey').then(function(rs) {
+			$('.invKey').val(rs);
+		}, function(err) {
+			console.log(err);
+		})
+		postWebservice('getmemorydetails').then(function(rs) {
+			$('.memoryconsumed').val(rs);
+		}, function(err) {
+			console.log(err);
+		})
+		getWebservice('getproperties').then(function(res){
+			$('.divPropertyList').empty();
+			Object.entries(res).forEach(item => {
+				var nod = $('<div class="divProp"><div class="lblProp">'+item[0]+'</div><input type="text" class="txtProp" value="' + item[1] + '" /></div>');
+				$('.divPropertyList').append($(nod));  
+			}); 
+		})
+	}
+
+	function postWebservice(service, data) {
+		return new Promise(function(resolve, reject) {
+			$.ajax({
+				type : "POST",
+				url : service,
+				data : data,
+				contentType : 'application/json',
+				success : function(e) {
+					resolve(e);
+				},
+				error : function(e) {
+					reject(e.responseText);
+				}
+			});
+		})
+	}
+
+	function getWebservice(service, data) {
+		return new Promise(function(resolve, reject) {
+			$.ajax({
+				type : "GET",
+				url : service,
+				data : data,
+				success : function(e) {
+					resolve(e);
+				},
+				error : function(e) {
+					reject(e);
+				}
+			});
+		})
+	}
+
+	$(document).on('click', '#btnKill', function(e) {
+		var data = new Object();
+		data["invKey"] = $('.invKey').val();
+		getWebservice('kill', data).then(function(res) {
+			window.location.reload();
+		})
+	})
+	
+	$(document).on('click', '#btnSaveProp', function(e) {
+		var properties = new Array();
+		console.log("$('.divProp').length " + $('.divProp').length);
+		for(var i=0; i<$('.divProp').length; i++){
+			var obj = $('.divProp').eq(i);
+			var prop = new Object();
+			prop["key"] = $(obj).find('.lblProp').text();
+			prop["value"] = $(obj).find('.txtProp').val();
+			properties.push(prop);
+
+		}
+		
+		var obj = new Object();
+		obj["properties"] = properties;
+		console.log(obj);
+		postWebservice('savepropertiesfile', JSON.stringify(obj)).then(function(res) {
+			alert(res.value);
+		}, function(err){
+			console.log(err);
+		})
+	})
+</script>
+<body onload="init()">
+
+	<h1>Dashboard</h1>
+
+	<div style="width: 50%">
+		<div style="height: 30px;">
+			<label>Deployment in progress:</label> <input class="txtProgress"
+				type="text" value="" disabled />
+		</div>
+		<div style="height: 50px">
+			<label>Current Process Key:</label>
+			<input type="text" class="invKey" name="invKey" value="" />
+			<button id="btnKill">Kill Process</button>
+		</div>
+
+		<div style="height: 70px">
+			<div style="height: 30px">
+				<label>Memory Consumption in idle state ~ 12 MB</label>
+			</div>
+			<div style="height: 40px">
+				<label>Current Memory Consumption:</label>
+				<input type="text" class="memoryconsumed" name="memoryconsumed" value=""  disabled/>
+			</div>
+		</div>
+
+	</div>
+	<div style="width: 50%">
+		<h4>Properties loaded</h4>
+		<div class="divPropertyList"></div>
+		<div><button id="btnSaveProp">Save Properties to deploy.properties file</button></div>
+	</div>
+
+
+</body>
+</html>

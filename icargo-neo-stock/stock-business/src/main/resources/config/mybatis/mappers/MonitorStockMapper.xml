@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ibsplc.neoicargo.stock.dao.mybatis.MonitorStockQueryMapper">
+    <select id="findMonitorStockDetailsForStockHolder" resultMap="findMonitorStockDetailsForStockHolder" parameterType="map">
+        SELECT
+            z.cmpcod,
+            z.doctyp,
+            z.docsubtyp,
+            z.stkhldcod,
+            MIN(z.stkaprcod) stkaprcod,
+            MIN(z.stkhldtyp) stkhldtyp,
+            MIN(z.stkhldnam) stkhldnam,
+            SUM(z.req_rec) req_rec,
+            SUM(z.req_place) req_place,
+            SUM(z.avail_stock) avlstk,
+            SUM(z.alloc_stock) alcstk,
+            (
+                CASE
+                    WHEN 'Y' = #{stockFilterVO.manualFlag}  THEN SUM(z.mnlalc)
+                    ELSE SUM(z.phyalc)
+                    END
+                ) alcstkcnt
+        FROM
+            (
+                SELECT
+                    stk.cmpcod,
+                    stk.doctyp,
+                    stk.docsubtyp,
+                    stk.stkhldcod,
+                    stk.stkaprcod stkaprcod,
+                    mst.stkhldtyp,
+                    mst.stkhldnam,
+                    coalesce( (
+                                  SELECT
+                                      SUM(req1.reqstkqty - req1.alcstkqty)
+                                  FROM
+                                      stkreqmst req1,stkhldstk chdstk
+                                  WHERE
+                                      stk.cmpcod = chdstk.cmpcod
+                                    AND stk.stkhldcod = chdstk.stkaprcod
+                                    AND stk.arlidr = chdstk.arlidr
+                                    AND stk.doctyp = chdstk.doctyp
+                                    AND stk.docsubtyp = chdstk.docsubtyp
+                                    AND chdstk.cmpcod = req1.cmpcod
+                                    AND chdstk.stkhldcod = req1.stkhldcod
+                                    AND chdstk.doctyp = req1.doctyp
+                                    AND chdstk.docsubtyp = req1.docsubtyp
+                                    AND req1.mnlstkflg = #{stockFilterVO.manualFlag}
+                                    AND req1.reqsta NOT IN ('C','R','M')
+                              ),0) req_rec,
+                    0 req_place,
+                    coalesce( (
+                                  SELECT
+                                      SUM(docnum)
+                                  FROM
+                                      stkrng rng
+                                  WHERE
+                                      stk.cmpcod = rng.cmpcod
+                                    AND stk.stkhldcod = rng.stkhldcod
+                                    AND stk.arlidr = rng.arlidr
+                                    AND stk.doctyp = rng.doctyp
+                                    AND stk.docsubtyp = rng.docsubtyp
+                                    AND rng.mnlflg = #{stockFilterVO.manualFlag}
+                              ),0) avail_stock,
+                    coalesce( (
+                                  SELECT
+                                      SUM(docnum)
+                                  FROM
+                                      stkrng rng,stkhldstk chdstk
+                                  WHERE
+                                      stk.cmpcod = chdstk.cmpcod
+                                    AND stk.stkhldcod = chdstk.stkaprcod
+                                    AND stk.arlidr = chdstk.arlidr
+                                    AND stk.doctyp = chdstk.doctyp
+                                    AND stk.docsubtyp = chdstk.docsubtyp
+                                    AND chdstk.cmpcod = rng.cmpcod
+                                    AND chdstk.stkhldcod = rng.stkhldcod
+                                    AND chdstk.arlidr = rng.arlidr
+                                    AND chdstk.doctyp = rng.doctyp
+                                    AND chdstk.docsubtyp = rng.docsubtyp
+                                    AND rng.mnlflg = #{stockFilterVO.manualFlag}
+                              ),0) alloc_stock,
+                    COALESCE(stk.MNLSTKQTYALC,0) mnlalc,
+                    COALESCE(stk.PHYSTKQTYALC,0) phyalc
+                FROM
+                    stkhldstk stk,
+                    stkhldmst mst
+                WHERE
+                    mst.cmpcod = stk.cmpcod
+                  AND mst.stkhldcod = stk.stkhldcod
+                  AND stk.cmpcod = #{stockFilterVO.companyCode}
+                  AND (
+                            stk.stkhldcod = #{stockFilterVO.stockHolderCode}
+                        OR stk.stkaprcod = #{stockFilterVO.stockHolderCode}
+                    )
+                  AND stk.doctyp = #{stockFilterVO.documentType}
+                  AND stk.docsubtyp = #{stockFilterVO.documentSubType}
+                  AND stk.arlidr = #{stockFilterVO.airlineIdentifier}
+                UNION ALL
+                SELECT
+                    stkhldstk.cmpcod,
+                    stkhldstk.doctyp,
+                    stkhldstk.docsubtyp,
+                    stkhldstk.stkhldcod,
+                    stkhldstk.stkaprcod stkaprcod,
+                    mst.stkhldtyp,
+                    mst.stkhldnam,
+                    0 req_rec,
+                    ( stkreqmst.reqstkqty - stkreqmst.alcstkqty ) req_place,
+                    0 avail_stock,
+                    0 alloc_stock,
+                    0 mnlalc,
+                    0 phyalc
+                FROM
+                    stkhldmst mst
+                        LEFT OUTER JOIN stkhldstk stkhldstk ON ( mst.cmpcod = stkhldstk.cmpcod
+                        AND mst.stkhldcod = stkhldstk.stkhldcod )
+                        LEFT OUTER JOIN stkreqmst stkreqmst ON ( stkhldstk.cmpcod = stkreqmst.cmpcod
+                        AND stkhldstk.stkhldcod = stkreqmst.stkhldcod
+                        AND stkhldstk.doctyp = stkreqmst.doctyp
+                        AND stkhldstk.docsubtyp = stkreqmst.docsubtyp )
+                WHERE stkhldstk.cmpcod = #{stockFilterVO.companyCode}
+                  AND (
+                            stkhldstk.stkhldcod = #{stockFilterVO.stockHolderCode}
+                        OR stkhldstk.stkaprcod = #{stockFilterVO.stockHolderCode}
+                    )
+                  AND stkhldstk.doctyp = #{stockFilterVO.documentType}
+                  AND stkhldstk.docsubtyp = #{stockFilterVO.documentSubType}
+                  AND stkhldstk.arlidr = #{stockFilterVO.airlineIdentifier}
+                  AND stkreqmst.mnlstkflg = #{stockFilterVO.manualFlag}
+                  AND stkreqmst.reqsta NOT IN ('C','R','M')
+                  AND stkreqmst.reqstkqty > stkreqmst.alcstkqty
+            ) z WHERE Z.STKHLDCOD = #{stockFilterVO.stockHolderCode}
+        <if test="stockFilterVO.getPrivilegeRule() == 'STK_HLDR_CODE'
+                    and stockFilterVO.getPrivilegeLevelType() == 'STKHLD'
+                    and privilegeLevelValueList != null">
+            AND (Z.STKHLDCOD IN
+            <foreach collection = 'privilegeLevelValueList' item= 'item' open= '(' separator= ',' close= ')'>
+                #{item}
+            </foreach>
+            OR Z.STKAPRCOD IN
+            <foreach collection = 'privilegeLevelValueList' item= 'item' open= '(' separator= ',' close= ')'>
+                #{item}
+            </foreach>)
+        </if>
+        GROUP BY Z.CMPCOD,Z.DOCTYP,Z.DOCSUBTYP,Z.STKHLDCOD
+    </select>
+    <resultMap id="findMonitorStockDetailsForStockHolder" type="com.ibsplc.neoicargo.stock.vo.MonitorStockVO">
+        <result property="documentType" column="DOCTYP" jdbcType="VARCHAR"/>
+        <result property="documentSubType" column="DOCSUBTYP" jdbcType="VARCHAR"/>
+        <result property="stockHolderCode" column="STKHLDCOD" jdbcType="VARCHAR"/>
+        <result property="approverCode" column="STKAPRCOD" jdbcType="VARCHAR"/>
+        <result property="stockHolderType" column="STKHLDTYP" jdbcType="VARCHAR"/>
+        <result property="stockHolderName" column="STKHLDNAM" jdbcType="VARCHAR"/>
+        <result property="requestsReceived" column="REQ_REC" jdbcType="NUMERIC"/>
+        <result property="requestsPlaced" column="REQ_PLACE" jdbcType="NUMERIC"/>
+        <result property="availableStock" column="AVLSTK" jdbcType="NUMERIC"/>
+        <result property="allocatedStock" column="ALCSTK" jdbcType="NUMERIC"/>
+    </resultMap>
+
+    <select id="findMonitorStock" resultMap="findMonitorStock" parameterType="map">
+        WITH cte AS (
+            SELECT
+                z.cmpcod,
+                z.doctyp,
+                z.docsubtyp,
+                z.stkhldcod,
+                MIN(z.stkaprcod) stkaprcod,
+                MIN(z.stkhldtyp) stkhldtyp,
+                MIN(z.stkhldnam) stkhldnam,
+                SUM(z.req_rec) req_rec,
+                SUM(z.req_place) req_place,
+                SUM(z.avail_stock) avlstk,
+                SUM(z.alloc_stock) alcstk,
+                (
+                    CASE
+                        WHEN 'Y' = #{stockFilterVO.manualFlag}  THEN SUM(z.mnlalc)
+                        ELSE SUM(z.phyalc)
+                        END
+                    ) alcstkcnt
+            FROM
+                (
+                    SELECT
+                        stk.cmpcod,
+                        stk.doctyp,
+                        stk.docsubtyp,
+                        stk.stkhldcod,
+                        stk.stkaprcod stkaprcod,
+                        mst.stkhldtyp,
+                        mst.stkhldnam,
+                        coalesce( (
+                                      SELECT
+                                          SUM(req1.reqstkqty - req1.alcstkqty)
+                                      FROM
+                                          stkreqmst req1, stkhldstk chdstk
+                                      WHERE
+                                          stk.cmpcod = chdstk.cmpcod
+                                        AND stk.stkhldcod = chdstk.stkaprcod
+                                        AND stk.arlidr = chdstk.arlidr
+                                        AND stk.doctyp = chdstk.doctyp
+                                        AND stk.docsubtyp = chdstk.docsubtyp
+                                        AND chdstk.cmpcod = req1.cmpcod
+                                        AND chdstk.stkhldcod = req1.stkhldcod
+                                        AND chdstk.doctyp = req1.doctyp
+                                        AND chdstk.docsubtyp = req1.docsubtyp
+                                        AND req1.mnlstkflg = #{stockFilterVO.manualFlag}
+                                        AND req1.reqsta NOT IN ('C', 'R', 'M')
+                                  ),0) req_rec,
+                        0 req_place,
+                        coalesce( (
+                                      SELECT
+                                          SUM(docnum)
+                                      FROM
+                                          stkrng rng
+                                      where
+                                          stk.stkhldstksernum = rng.stkhldstksernum
+                                        AND rng.mnlflg = #{stockFilterVO.manualFlag}
+                                  ),0) avail_stock,
+                        coalesce( (
+                                      SELECT
+                                          SUM(docnum)
+                                      FROM
+                                          stkrng rng, stkhldstk chdstk
+                                      where
+                                          stk.cmpcod = chdstk.cmpcod
+                                        AND stk.stkhldcod = chdstk.stkaprcod
+                                        AND stk.arlidr = chdstk.arlidr
+                                        AND stk.doctyp = chdstk.doctyp
+                                        AND stk.docsubtyp = chdstk.docsubtyp
+                                        AND chdstk.stkhldstksernum = rng.stkhldstksernum
+                                        AND rng.mnlflg = #{stockFilterVO.manualFlag}
+                                  ),0) alloc_stock,
+                        COALESCE(stk.MNLSTKQTYALC,0) mnlalc,
+                        COALESCE(stk.PHYSTKQTYALC,0) phyalc
+                    FROM
+                        stkhldstk stk, stkhldmst mst
+                    where
+                        mst.stkhldmstsernum = stk.stkhldmstsernum
+                      AND stk.cmpcod = #{stockFilterVO.companyCode}
+                      AND (
+                                stk.stkhldcod = #{stockFilterVO.stockHolderCode}
+                            OR stk.stkaprcod = #{stockFilterVO.stockHolderCode}
+                        )
+                      AND stk.doctyp = #{stockFilterVO.documentType}
+                      AND stk.docsubtyp = #{stockFilterVO.documentSubType}
+                      AND stk.arlidr = #{stockFilterVO.airlineIdentifier}
+                    UNION ALL
+                    SELECT
+                        stkhldstk.cmpcod,
+                        stkhldstk.doctyp,
+                        stkhldstk.docsubtyp,
+                        stkhldstk.stkhldcod,
+                        stkhldstk.stkaprcod stkaprcod,
+                        mst.stkhldtyp,
+                        mst.stkhldnam,
+                        0 req_rec,
+                        ( stkreqmst.reqstkqty - stkreqmst.alcstkqty ) req_place,
+                        0 avail_stock,
+                        0 alloc_stock,
+                        0 mnlalc,
+                        0 phyalc
+                    FROM
+                        stkhldmst mst
+                            LEFT OUTER JOIN stkhldstk stkhldstk ON mst.stkhldmstsernum = stkhldstk.stkhldmstsernum
+                            LEFT OUTER JOIN stkreqmst stkreqmst ON ( stkhldstk.cmpcod = stkreqmst.cmpcod
+                            AND stkhldstk.stkhldcod = stkreqmst.stkhldcod
+                            AND stkhldstk.doctyp = stkreqmst.doctyp
+                            AND stkhldstk.docsubtyp = stkreqmst.docsubtyp )
+                    WHERE stkhldstk.cmpcod = #{stockFilterVO.companyCode}
+                      AND (
+                                stkhldstk.stkhldcod = #{stockFilterVO.stockHolderCode}
+                            OR stkhldstk.stkaprcod = #{stockFilterVO.stockHolderCode}
+                        )
+                      AND stkhldstk.doctyp = #{stockFilterVO.documentType}
+                      AND stkhldstk.docsubtyp = #{stockFilterVO.documentSubType}
+                      AND stkhldstk.arlidr = #{stockFilterVO.airlineIdentifier}
+                      AND stkreqmst.mnlstkflg = #{stockFilterVO.manualFlag}
+                      AND stkreqmst.reqsta NOT IN ('C', 'R', 'M')
+                      AND stkreqmst.reqstkqty > stkreqmst.alcstkqty
+                ) z
+            WHERE
+                Z.STKHLDCOD != #{stockFilterVO.stockHolderCode}
+                <if test="stockFilterVO.getPrivilegeRule() == 'STK_HLDR_CODE'
+                                    and stockFilterVO.getPrivilegeLevelType() == 'STKHLD'
+                                    and privilegeLevelValueList != null">
+                    AND (Z.STKHLDCOD IN
+                    <foreach collection='privilegeLevelValueList' item='item' open='(' separator=',' close=')'>
+                        #{item}
+                    </foreach>
+                    OR Z.STKAPRCOD IN
+                    <foreach collection='privilegeLevelValueList' item='item' open='(' separator=',' close=')'>
+                        #{item}
+                    </foreach>)
+                </if>
+            GROUP BY
+                Z.CMPCOD,
+                Z.DOCTYP,
+                Z.DOCSUBTYP,
+                Z.STKHLDCOD
+            ORDER BY Z.STKHLDCOD
+        )
+        SELECT *
+        FROM  (
+                    TABLE  cte
+                    LIMIT  #{limit}
+                    OFFSET #{offset}
+              ) sub
+                    INNER JOIN (SELECT count(*) FROM cte) c(totalRecordCount) ON true;
+    </select>
+    <resultMap id="findMonitorStock" type="com.ibsplc.neoicargo.stock.vo.MonitorStockVO">
+        <result property="documentType" column="DOCTYP" jdbcType="VARCHAR"/>
+        <result property="documentSubType" column="DOCSUBTYP" jdbcType="VARCHAR"/>
+        <result property="stockHolderCode" column="STKHLDCOD" jdbcType="VARCHAR"/>
+        <result property="approverCode" column="STKAPRCOD" jdbcType="VARCHAR"/>
+        <result property="stockHolderType" column="STKHLDTYP" jdbcType="VARCHAR"/>
+        <result property="stockHolderName" column="STKHLDNAM" jdbcType="VARCHAR"/>
+        <result property="requestsReceived" column="REQ_REC" jdbcType="NUMERIC"/>
+        <result property="requestsPlaced" column="REQ_PLACE" jdbcType="NUMERIC"/>
+        <result property="availableStock" column="AVLSTK" jdbcType="NUMERIC"/>
+        <result property="allocatedStock" column="ALCSTK" jdbcType="NUMERIC"/>
+        <result property="totalRecordCount" column="totalRecordCount" jdbcType="NUMERIC"/>
+    </resultMap>
+</mapper>

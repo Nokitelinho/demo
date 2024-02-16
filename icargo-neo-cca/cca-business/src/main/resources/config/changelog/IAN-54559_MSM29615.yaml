@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - logicalFilePath:
+      classpath:/config/changelog/IAN-54559_MSM29615.yaml
+  - changeSet:
+      id: 29615
+      author: A-6055
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: ccaaud
+        - not:
+            columnExists:
+              tableName: ccaaud
+              columnName: txnzontim
+      changes:
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: ALTER TABLE ccaaud ADD COLUMN txnzontim VARCHAR(30);
+             COMMENT ON COLUMN ccaaud.txnzontim IS 'Column to stamp date time with time zone.';
+             

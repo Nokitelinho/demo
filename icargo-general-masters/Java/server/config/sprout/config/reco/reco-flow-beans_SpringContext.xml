@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<bean id="recodefaultsController"
+			class="com.ibsplc.icargo.business.reco.defaults.EmbargoRulesController">
+	</bean>
+	<!-- Added by A-8374 for ICRD-340405 starts-->
+	<bean id="reco_defaults_SAVE_EMBARGO_EVENT_MSGBROKER_CHANNEL_Mapper" 
+		class="com.ibsplc.icargo.business.qualitymanagement.defaults.adhocalert.handler.MsgBrokerEventMapper">
+    </bean>
+	<bean id="reco_defaults_UPDATE_EMBARGO_EVENT_MSGBROKER_CHANNEL_Mapper" 
+		class="com.ibsplc.icargo.business.qualitymanagement.defaults.adhocalert.handler.MsgBrokerEventMapper">
+    </bean>
+	<!-- Added by A-8374 for ICRD-340405 ends-->
+
+</beans>

@@ -1,0 +1,31 @@
+in:
+  handler:
+    correlator:
+      expiryTimeMs: 1800000
+      pruneInterval: 5000
+    logging:
+      logData: off
+  ringBuffer:
+    blockOnFull: false
+    maxQueueDepth: 8192
+    preAllocateSize: 8192
+    workerCount: -1
+out:
+  handler:
+    logging:
+      logData: off
+  ringBuffer:
+    blockOnFull: false
+    maxQueueDepth: 16384
+
+# TCP Network Server Configurations
+networkServer:
+  acceptorThreads: 1
+  channelType: nio
+  port: 10200
+
+# Http Server Configurations
+httpServer:
+  acceptorThreads: 1
+  channelType: nio
+  port: 10250

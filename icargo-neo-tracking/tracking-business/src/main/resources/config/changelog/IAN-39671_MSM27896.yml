@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-39671_MSM27896.yml
+  - changeSet:
+       id: 27896
+       author: A-4789
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              schemaName: ${SCHEMA}
+              tableName: TRKAWBPII
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: ALTER TABLE TRKAWBPII ALTER COLUMN SHPCOD DROP NOT NULL;
+              ALTER TABLE TRKAWBPII ALTER COLUMN CNSCOD DROP NOT NULL;

@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<command-mappings xmlns="http://www.ibsplc.com/icargo/command/mappings" product="reco" subproduct="defaults">
+	
+	
+	<screen name="ListEmbargo" id="reco.defaults.listembargo">
+		<action name="reco.defaults.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.showParameters" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.parameter.ShowParameterCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.listEmbargo" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.ListEmbargosCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.clearEmbargo" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.ClearScreenCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.cancelEmbargo" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.CancelEmbargoCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.ListEmbargosCommand" order="2"/>
+		</action>		
+		<action name="reco.defaults.approve">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.ApproveCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.ListEmbargosCommand" order="2"/>
+		</action>
+		<action name="reco.defaults.reject">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.RejectCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.ListEmbargosCommand" order="2"/>
+		</action>
+		<action name="reco.defaults.findParamterGroupingDetailsForListEmbargo" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.FindParamterGroupingDetailsCommand" order="1"/>
+		</action>
+	</screen>
+	<screen name="MaintainEmbargo" id="reco.defaults.maintainembargo">
+		<action name="reco.defaults.maintainscreenload">
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.ScreenloadCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.addrow" >
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.UpdateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.AddRowCommand" order="2"/>
+		</action>
+		<action name="reco.defaults.deleterow" >
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.UpdateCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.DeleteRowCommand" order="2"/>
+		</action>
+		<action name="reco.defaults.saveEmbargoDetails" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.SaveCommand" order="2"/>
+		</action>
+		<action name="reco.defaults.acknowledgeapproval" >
+			<command class="com.ibsplc.icargo.presentation.web.command.workflow.defaults.messageinbox.ProcessTaskCompletionCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.saveMultiLnguageEbmbargoDesc" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.SaveLocalLanguageEmbargoCommand" order="1"/>
+		</action>
+	    <action name="reco.defaults.modifyScreenLoad">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.ModifyCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.defaultCommand">
+			 <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.DefaultCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.closecommand">
+			 <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.CloseCommand" order="1"/>
+			 <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.ListEmbargosCommand" order="2"/>
+		</action>
+		<action name="reco.defaults.approveembargo">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.ApproveCommand" order="1"/>
+			
+		</action>
+		<action name="reco.defaults.rejectembargo">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.RejectCommand" order="1"/>
+			
+		</action>
+		<action name="reco.defaults.cancel">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.CancelCommand" order="1"/>
+			
+		</action>
+		<action name="reco.defaults.constructdesc">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.ConstructDescriptionCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.duplicatecheck">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.DuplicateCheckCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.duplicateembargos">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.ScreenLoadDuplicateEmbargosCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.embargocreationworkflow" >			
+			<command class="com.ibsplc.icargo.presentation.web.command.workflow.defaults.messageinbox.UpdateWorkFlowContextCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintainembargos.ModifyCommand" order="2"/>
+		</action>
+	</screen>	
+	
+	
+	<screen name="ShowEmbargo" id="reco.defaults.checkembargo">
+		<action name="reco.defaults.showEmbargo" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.checkembargo.ScreenLoadCommand" order="1"/>
+		</action>		
+	</screen>
+
+	
+	<screen name="MaintainCompliance" id="reco.defaults.maintaincomplianceinfo">
+		<action name="reco.defaults.compliancecreationworkflow" >			
+			<command class="com.ibsplc.icargo.presentation.web.command.workflow.defaults.messageinbox.UpdateWorkFlowContextCommand" order="1"/>
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintaincomplianceinfo.ModifyCommand" order="2"/>
+		</action>
+		<action name="reco.defaults.maintaincomplianceinfoscreenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintaincomplianceinfo.ScreenLoadCommand" order="1"/>
+		</action>	
+		<action name="reco.defaults.saveCompliance" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintaincomplianceinfo.SaveCommand" order="1"/>
+		</action>	
+		 <action name="reco.defaults.modifyComplianceScreenLoad">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintaincomplianceinfo.ModifyCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.maintaincomplianceinfoclosecommand">
+			 <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintaincomplianceinfo.CloseCommand" order="1"/>
+			 <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.listembargos.ListEmbargosCommand" order="2"/>
+		</action>
+		<action name="reco.defaults.approveCompliance">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintaincomplianceinfo.ApproveCommand" order="1"/>
+			
+		</action>
+		<action name="reco.defaults.rejectCompliance">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintaincomplianceinfo.RejectCommand" order="1"/>
+			
+		</action>
+		<action name="reco.defaults.cancelCompliance">
+		    <command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.maintaincomplianceinfo.CancelCommand" order="1"/>
+			
+		</action>
+		<action name="reco.defaults.acknowledgeapproval" >
+			<command class="com.ibsplc.icargo.presentation.web.command.workflow.defaults.messageinbox.ProcessTaskCompletionCommand" order="1"/>
+		</action>
+	</screen>
+  <screen name="SearchEmbargo" id="reco.defaults.searchembargo">
+		<action name="reco.defaults.onscreenloadsearchembargo" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.searchembargos.ScreenLoadSearchEmbargoCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.simplesearch" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.searchembargos.SearchEmbargoCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.asyncsearch" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.searchembargos.LeftPanelSearchCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.clearsearch" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.searchembargos.ClearEmbargoCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.closeembargo" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.searchembargos.CloseEmbargoCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.findParamterGroupingDetailsForSearchCompliance" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.searchembargos.FindParamterGroupingDetailsCommand" order="1"/>
+		</action>
+	</screen>
+	<screen name="ComposeMessage" id="reco.defaults.maintainregulatorycompliance">
+		<action name="reco.defaults.onscreenloadcomposemessage" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.composemessages.ScreenLoadCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.listcomposemessage">
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.composemessages.ListCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.clearcomposemessage">
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.composemessages.ClearCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.savecomposemessage">
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.composemessages.SaveCommand" order="1"/>
+		</action>
+		
+	</screen>	
+		<screen name="ExceptionAWBEmbargo" id="reco.defaults.exceptionembargo">
+		<action name="reco.defaults.onscreenloadexceptionembargo" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.exceptionembargos.ExceptionEmbargoScreenLoadCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.clearexception" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.exceptionembargos.ClearCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.expawbembsave" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.exceptionembargos.SaveCommand" order="1"/>
+		</action>
+		<action name="reco.defaults.expawbemblist" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.exceptionembargos.ListCommand" order="1"/>
+		</action>		
+	</screen>
+		<screen name="ShowEmbargo" id="reco.defaults.ux.checkembargo">
+		<action name="reco.defaults.ux.showEmbargo" >
+			<command class="com.ibsplc.icargo.presentation.web.command.reco.defaults.ux.checkembargo.ScreenLoadCommand" order="1"/>
+		</action>		
+	</screen>
+		
+</command-mappings>

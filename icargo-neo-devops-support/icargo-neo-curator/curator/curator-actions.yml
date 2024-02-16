@@ -1,0 +1,77 @@
+actions:
+  1:
+    action: delete_indices
+    description: Delete TxProbe Indices
+    options:
+      ignore_empty_list: True
+      timeout_override: 180
+      continue_if_exception: True
+      disable_action: False
+    filters:
+      - filtertype: pattern
+        kind: prefix
+        value: icargo_txprobe_index
+      - filtertype: age
+        source: name
+        direction: older
+        timestring: '-%Y%m%d%H'
+        unit: hours
+        unit_count: ${TXP_INDEX_RETENTION_HRS:48}
+  2:
+    action: delete_indices
+    description: Delete Log Indices
+    options:
+      ignore_empty_list: True
+      timeout_override: 180
+      continue_if_exception: True
+      disable_action: False
+    filters:
+      - filtertype: pattern
+        kind: prefix
+        value: icargo_log_index
+      - filtertype: age
+        source: name
+        direction: older
+        timestring: '-%Y%m%d%H'
+        unit: hours
+        unit_count: ${LOG_INDEX_RETENTION_HRS:48}
+  3:
+    action: forcemerge
+    description: Force Merging of indices for perf and space considerations
+    options:
+      max_num_segments: 5
+      delay: 5
+      ignore_empty_list: True
+      timeout_override: 600
+      continue_if_exception: True
+      disable_action: ${FORCE_MERGE_DISABLED:False}
+    filters:
+      - filtertype: pattern
+        kind: prefix
+        value: icargo_log_index
+      - filtertype: age
+        source: name
+        direction: older
+        timestring: '-%Y%m%d%H'
+        unit: hours
+        unit_count: 2
+  4:
+    action: forcemerge
+    description: Force Merging of indices for perf and space considerations
+    options:
+      max_num_segments: 5
+      delay: 5
+      ignore_empty_list: True
+      timeout_override: 600
+      continue_if_exception: True
+      disable_action: ${FORCE_MERGE_DISABLED:False}
+    filters:
+      - filtertype: pattern
+        kind: prefix
+        value: icargo_txprobe_index
+      - filtertype: age
+        source: name
+        direction: older
+        timestring: '-%Y%m%d%H'
+        unit: hours
+        unit_count: 2

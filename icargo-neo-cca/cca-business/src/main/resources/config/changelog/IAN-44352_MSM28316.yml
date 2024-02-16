@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-44352_MSM28316.yml
+  - changeSet:
+      id: 28316
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: ccacusdtl
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccacusdtl ADD COLUMN ctycod VARCHAR(50);
+
+          COMMENT ON COLUMN ccacusdtl.ctycod is 'City Code';

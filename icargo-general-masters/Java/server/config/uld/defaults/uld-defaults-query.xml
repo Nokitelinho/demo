@@ -1,0 +1,4695 @@
+<?xml version="1.0"?>
+<QRY:Definitions xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries" module="uld.defaults">
+
+	<QRY:Definition>
+		<QRY:Id>101</QRY:Id>
+		<QRY:Source Name="uld.defaults.findUldGroupDetails" Type="NATIVE">
+			<![CDATA[
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>102</QRY:Id>
+		<QRY:Source Name="uld.defaults.findUldTypesByGroup" Type="NATIVE">
+			<![CDATA[
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>103</QRY:Id>
+		<QRY:Source Name="uld.defaults.validateULD" Type="NATIVE">
+			<![CDATA[
+ 				SELECT
+    uld.cmpcod,
+    uld.ownarp,
+    uld.curarp,
+    uld.ovlsta,
+    uld.ownarlidr,
+    uld.dmgsta,
+    CASE WHEN shr.aphcoduse = 2 THEN shr.twoaphcod ELSE shr.thraphcod END owncod,
+    uld.uldnat,
+    uld.loc
+FROM
+    uldmst uld,
+    shrarlmst shr
+WHERE
+    uld.cmpcod = shr.cmpcod
+    AND uld.ownarlidr = shr.arlidr
+    AND uld.uldnum =?
+    AND uld.cmpcod =?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>104</QRY:Id>
+		<QRY:Source Name="uld.defaults.findULDTypeStructuralDetails" Type="NATIVE">
+			<![CDATA[
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>105</QRY:Id>
+		<QRY:Source Name="uld.defaults.findULDDetails" Type="NATIVE">
+			<![CDATA[
+				SELECT ULD.ULDNUM , ULD.CMPCOD , ULD.ULDCNT,ULD.DISTARWGT,ULD.DISTARWGTUNT,ULD.DISSTRWGT,ULD.DISSTRWGTUNT,
+				ULD.DISBASLEN,ULD.DISBASWID,ULD.DISBASHGT,ULD.DISDIMUNT,ULD.ULDGRPCOD,
+				ULD.OPRARLIDR,ULD.CURARP,ULD.OWNARP,ULD.OVLSTA,ULD.CLNSTA,ULD.DMGSTA,ULD.LOC,
+				ULD.MFR,ULD.ULDSERNUM,ULD.PURDAT,ULD.PURINVNUM,ULD.DISULDPRC,ULD.ULDPRC,
+				ULD.ULDPRCUNT,ULD.DISITAREPCST,ULD.ITAREPCSTUNT,ULD.ITAREPCST,ULD.CURVAL,
+				ULD.DISCURVAL,ULD.CURVALUNT,ULD.ULDRMK,ULD.VDR,ULD.ULDTYP,ULD.ULDRMK,
+				ULD.FACTYP,ULD.TRNSTA,ULD.ULDNAT,ULD.LSTUPDTIM,ULD.LSTUPDUSR,ULD.TSONUM,ULD.LIFSPN,ULD.MANDAT,
+			 	(SELECT CASE WHEN aphcoduse = 2 THEN twoaphcod ELSE thraphcod END
+			 	        FROM SHRARLMST
+			 	        WHERE  CMPCOD = ULD.CMPCOD AND
+			 	               ARLIDR=ULD.OPRARLIDR) OPRARLCOD,
+			 	(SELECT CASE WHEN aphcoduse = 2 THEN twoaphcod ELSE thraphcod END
+			 	        FROM SHRARLMST
+			 	        WHERE  CMPCOD = ULD.CMPCOD AND
+			 	               ARLIDR=ULD.OWNARLIDR) OWNARLCOD,TYP.ULDDEPPTG
+			 	FROM ULDMST ULD,SHRULDTYPMST TYP
+			 			WHERE 
+			 			ULD.CMPCOD = TYP.CMPCOD AND
+            					ULD.ULDTYP = TYP.ULDTYPCOD AND
+			 			ULD.CMPCOD = ? AND
+			 			ULD.ULDNUM = ?
+	                  ]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>106</QRY:Id>
+		<QRY:Source Name="uld.defaults.stock.findAccessoriesStockDetails" Type="NATIVE">
+			<![CDATA[
+						SELECT ULD.CMPCOD,ULD.ARLIDR,ULD.ARPCOD,
+							   ULD.ACCCOD,ULD.ACCDES,ULD.AVLACC,
+							   ULD.LNDACC,ULD.MINQTY,ULD.RMK,ULD.LSTUPDTIM,
+							   ULD.LSTUPDUSR,CASE WHEN shr.aphcoduse = 2 THEN shr.twoaphcod ELSE shr.thraphcod END  ARLCOD
+						FROM ULDACCSTKCFG ULD,SHRARLMST SHR
+						WHERE SHR.CMPCOD = ULD.CMPCOD
+						AND SHR.ARLIDR = ULD.ARLIDR
+						AND ULD.CMPCOD =?
+						AND ULD.ACCCOD =?
+						AND ULD.ARPCOD =?
+						AND ULD.ARLIDR =?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+
+
+	<QRY:Definition>
+		<QRY:Id>107</QRY:Id>
+		<QRY:Source Name="uld.defaults.checkDuplicateManufacturerNumber" Type="NATIVE">
+			<![CDATA[
+
+                                 SELECT CMPCOD
+                                 FROM ULDMST
+				 WHERE  MFR = ? AND
+                                        ULDSERNUM = ?
+	                  ]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>108</QRY:Id>
+		<QRY:Source Name="uld.defaults.checkULDInTransaction" Type="NATIVE">
+				<![CDATA[
+
+	                                 SELECT  LONREFNUM,BRWREFNUM
+					 FROM ULDMST
+					 WHERE CMPCOD = ? AND
+					       ULDNUM = ?
+
+		                  ]]>
+			</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>109</QRY:Id>
+		<QRY:Source Name="uld.defaults.finduldlist" Type="NATIVE">
+			       <![CDATA[
+		               SELECT DISTINCT ULD.CMPCOD,ULD.ULDNUM,ULD.MFR,
+							ULD.LOC,ULD.FACTYP,ULD.ULDNAT,ULD.DMGSTA,
+							ULD.OVLSTA,ULD.CURARP,ULD.OWNARP,ULD.ULDGRPCOD,ULD.ULDTYP,
+			              	COALESCE(ULD.LSTMVTDAT,ULD.PURDAT)LSTMVTDAT,ULD.LSTUPDTIM ,
+			              	ULD.LSTUPDUSR ,ULD.CNT,           	
+			              	(SELECT MIN(RTNPTYCOD) FROM ULDTXNMST TXN WHERE ULD.CMPCOD =TXN.CMPCOD  
+			              	AND ULD.ULDNUM= TXN.ULDNUM AND ULD.LONREFNUM=TXN.TXNREFNUM AND TXN.TXNSTA = 'T'
+							) BORROWEDFROM , ULD.FLTDTL,
+			              	ULD.TRNSTA, ULD.ULDOCPSTA, CASE WHEN MST.APHCODUSE = 2 
+			              	THEN  MST.TWOAPHCOD ELSE  MST.THRAPHCOD END ARLCOD,
+			              	CASE WHEN OPRARL.APHCODUSE = 2 THEN OPRARL.TWOAPHCOD ELSE OPRARL.THRAPHCOD
+							END OPRARLCOD, 
+					 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>110</QRY:Id>
+		<QRY:Source Name="uld.defaults.uldagreementalreadyexists" Type="NATIVE">
+				<![CDATA[
+	                 SELECT DISTINCT AGRMNTNUM ,AGRMNTFRMDAT,AGRMNTTOODAT FROM ULDAGRMNT WHERE
+					 CMPCOD = ? AND
+					 TXNTYP = ? AND
+					 PTYTYP = ? AND
+					 PTYCOD = ? AND
+					AGRMNTSTA = 'A'
+		                  ]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>111</QRY:Id>
+		<QRY:Source Name="uld.defaults.stock.findAccessoriesStockList" Type="NATIVE">
+			<![CDATA[
+						SELECT ULD.CMPCOD,ULD.ARLIDR,ULD.ARPCOD,
+							   ULD.ACCCOD,ULD.ACCDES,ULD.AVLACC,
+							   ULD.LNDACC,ULD.RMK,ULD.LSTUPDTIM,ULD.MINQTY,
+							   ULD.LSTUPDUSR,CASE WHEN shr.aphcoduse = 2 THEN shr.twoaphcod ELSE shr.thraphcod END ARLCOD
+						FROM ULDACCSTKCFG ULD
+						left outer join SHRARLMST SHR on (ULD.CMPCOD = SHR.CMPCOD AND ULD.ARLIDR = SHR.ARLIDR)
+						WHERE ULD.CMPCOD =?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>112</QRY:Id>
+		<QRY:Source Name="uld.defaults.stock.findULDMovementHistory" Type="NATIVE">
+			<![CDATA[
+						SELECT DTL.CMPCOD,DTL.FLTNUM,DTL.FLTDAT,DTL.LSTMVTDAT ,
+							   DTL.CNT,DTL.POL,DTL.POU,DTL.DUMMVTFLG,DTL.RMK,DTL.MVTSEQNUM,DTL.MVTSERNUM,DTL.ULDNUM,
+							   CASE WHEN shr.aphcoduse = 2 THEN shr.twoaphcod ELSE shr.thraphcod END FLTCOD,DTL.AGTCOD,DTL.AGTNAM,DTL.FLTATA
+						FROM ULDMVTDTL DTL LEFT OUTER JOIN SHRARLMST SHR
+						ON (DTL.CMPCOD = SHR.CMPCOD
+						AND DTL.FLTCARIDR = SHR.ARLIDR) WHERE 1=1
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>113</QRY:Id>
+		<QRY:Source Name="uld.defaults.misc.findCurrentULDDetails" Type="NATIVE">
+			<![CDATA[
+						SELECT ULD.CMPCOD,ULD.OWNARP,ULD.CURARP,ULD.OVLSTA,ULD.OWNARLIDR,ULD.ULDNAT,
+						CASE WHEN shr.aphcoduse = 2 THEN shr.twoaphcod ELSE shr.thraphcod ENDOWNCOD
+						FROM ULDMST ULD,SHRARLMST SHR
+						WHERE ULD.CMPCOD = SHR.CMPCOD
+						AND ULD.OWNARLIDR = SHR.ARLIDR
+						AND ULD.ULDNUM = ?
+						AND ULD.CMPCOD = ?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+<!-- Added by AG -->
+
+	<QRY:Definition>
+		<QRY:Id>114</QRY:Id>
+		<QRY:Source Name="uld.defaults.finduldagreementdetails" Type="NATIVE">
+			<![CDATA[
+						SELECT
+    a.cmpcod cmp1,
+    a.agrmntnum agr1,
+    a.txntyp,
+    a.agrmntsta,
+    a.lstupdusr,
+    a.lstupdtim,
+    a.agrmntdat,
+    a.ptycod,
+    a.ptytyp,
+    a.ptynam,
+    a.frmptycod,
+    a.frmptytyp,
+    a.frmptynam,
+    a.frelonprd flp1,
+    a.agrmntfrmdat frmdat1,
+    a.agrmnttoodat todat1,
+    a.dmrrat rat1,
+    a.dmrfqy fqy1,
+    a.taxamt tax1,
+    a.curcod cod1,
+    a.agrmntrmk rmk1,
+    b.cmpcod cmp2,
+    b.agrmntnum agr2,
+    b.seqnum,
+    b.uldtypcod,
+    b.arpcod,
+    b.frelonprd flp2,
+    b.agrmntfrmdat frmdat2,
+    b.agrmnttoodat todat2,
+    b.dmrrat rat2,
+    b.dmrfqy fqy2,
+    b.taxamt tax2,
+    b.curcod cod2,
+    b.agrmntrmk rmk2
+FROM
+    uldagrmnt a
+    LEFT OUTER JOIN uldagrmntdtl b ON ( a.cmpcod = b.cmpcod
+                                        AND a.agrmntnum = b.agrmntnum )
+WHERE
+    a.cmpcod =?
+    AND a.agrmntnum =?
+ORDER BY
+    a.agrmntnum
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+
+
+
+	<QRY:Definition>
+		<QRY:Id>115</QRY:Id>
+		<QRY:Source Name="uld.defaults.listuldstockconfig" Type="NATIVE">
+			<![CDATA[
+			 		SELECT A.CMPCOD , A.ARLIDR ,A.ARPCOD ,
+	  					    A.ULDTYPCOD , A.MAXQTY , A.MINQTY ,
+	   						A.LSTUPDUSR , A.LSTUPDTIM ,A.ULDNAT ,A.ULDGRPCOD,A.DWLTIM,A.STKRMK,
+	   				   	    CASE WHEN b.aphcoduse = 2 THEN b.twoaphcod ELSE b.thraphcod END  ARLCOD
+	    			FROM ULDSTKCFG A , SHRARLMST B
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>116</QRY:Id>
+		<QRY:Source Name="uld.defaults.listuldtransactions" Type="NATIVE">
+			<![CDATA[
+				SELECT  TXN.ULDNUM , TXN.CMPCOD, TXN.TXNREFNUM ,TXN.ORNNAM,
+						TXN.DMGFLG,TXN.DMGRMK,TXN.ODNCOD,
+						TXN.TXNTYP , TXN.TXNNAT , TXN.TXNSTA ,
+						TXN.TXNDAT , TXN.TXNARPCOD , TXN.PTYTYP ,
+						TXN.PTYCOD , TXN.PTYIDR , TXN.RTNDAT ,
+						TXN.RTNARPCOD , TXN.RTNPTYIDR , TXN.DMRAMT,
+						TXN.CURCOD , TXN.INVREFNUM , TXN.TXNRMK ,
+						TXN.CPDREFNUM , TXN.RTNRMK , TXN.RTNPTYCOD ,
+						TXN.WVRAMT , TXN.LSTUPDUSR , TXN.LSTUPDTIM,
+						TXN.DMGSTA , TXN.DSTAPTCOD , TXN.CRN ,TXN.RTNCRN, TXN.TOTAMT,TXN.CONCOD, TXN.MUCSNT, TXN.MUCREFNUM, TXN.MUCDAT,TXN.AWBRMK,TXN.EMTSTA
+				FROM ULDTXNMST TXN
+				WHERE   TXN.CMPCOD = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<!-- Added by a-3278 for QF1015 on 24Jul08 -->
+	<!-- Modified by a-3278 for Bug 18347 on 05Oct08(changed to procedure) -->
+	<QRY:Definition>
+		<QRY:Id>210</QRY:Id>
+		<QRY:Source Name="uld.defaults.findtotaldemmurage" Type="PROCEDURE">
+			<![CDATA[
+				 CALL PKG_ULD_DEMURGE.PROC_ULD_ALTDEM(
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,
+						?,						
+						?,
+						?,
+						?,
+						?
+						)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!-- Modification ends -->
+	<!-- Added by a-3278 for QF1015 on 24Jul08 ends -->
+
+	<QRY:Definition>
+		<QRY:Id>117</QRY:Id>
+		<QRY:Source Name="uld.defaults.listuldinvoice" Type="NATIVE">
+				<![CDATA[
+				SELECT INV.INVREFNUM  ,INV.TXNTYP,
+				       INV.INVCOD,INV.INVDAT, INV.INVCODNAM ,
+				       INV.TOTAMT,INV.WVRAMT,INV.NETAMT,INV.PTYTYP
+				FROM ULDTXNINV INV
+				WHERE  INV.CMPCOD = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+		<QRY:Id>118</QRY:Id>
+		<QRY:Source Name="uld.defaults.viewuldtxncharginginvoicedetails" Type="NATIVE">
+			<![CDATA[
+			SELECT ULDNUM,TXNARPCOD,PTYTYP,PTYCOD,TXNDAT,RTNDAT,CMPCOD,PTYIDR,CURCOD,
+				   DMRAMT,WVRAMT,TOTAMT,TXNRMK,RTNPTYCOD,TAXAMT, OTRCRG
+			FROM ULDTXNMST
+			WHERE CMPCOD = ? AND
+	  			  INVREFNUM = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>119</QRY:Id>
+		<QRY:Source Name="uld.defaults.finduldagreementsfortransaction" Type="NATIVE">
+			<![CDATA[
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>120</QRY:Id>
+		<QRY:Source Name="uld.defaults.listaccessorytransactions" Type="NATIVE">
+			<![CDATA[
+			SELECT TXN.CMPCOD,ACCCOD,ACCQTY,TXNTYP,PTYTYP,PTYCOD,PTYIDR,TXNARPCOD,TXNDAT,TXNRMK,TXNREFNUM,CUROWNCOD,SHR.TWOAPHCOD FRMPTYCOD
+			FROM ULDACCTXNMST TXN LEFT OUTER JOIN SHRARLMST SHR
+				ON TXN.CMPCOD = SHR.CMPCOD
+				AND TO_NUMBER(TXN.CUROWNCOD) = SHR.ARLIDR
+			WHERE TXN.CMPCOD = ?
+			AND ACCQTY > 0
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+		<QRY:Id>121</QRY:Id>
+		<QRY:Source Name="uld.defaults.listuldagreement" Type="NATIVE">
+			<![CDATA[
+					SELECT CMPCOD , AGRMNTNUM , TXNTYP , LSTUPDUSR , LSTUPDTIM,
+	   					   AGRMNTSTA , AGRMNTDAT , PTYCOD ,
+	   					   PTYTYP ,FRMPTYCOD ,
+       FRMPTYTYP , FRMPTYNAM, AGRMNTFRMDAT , AGRMNTTOODAT
+					FROM ULDAGRMNT
+					WHERE
+	  						CMPCOD = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+ <QRY:Definition>
+		<QRY:Id>122</QRY:Id>
+		<QRY:Source Name="uld.defaults.findulddamagedetails" Type="NATIVE">
+			<![CDATA[
+					SELECT
+    mst.cmpcod,
+    mst.uldnum,
+    dmg.dmgpos,
+    dmg.dmgseqnum,
+    dmg.dmgrefnum,
+    dmg.dmgsvt,
+    dmg.lstupdusr AS dmglstupdusr,
+    dmg.lstupdtim AS dmglstupdtim,
+    dmg.rmk,
+    dmg.dmgrptdat,
+    dmg.rptarp,
+    dmg.clsdat,
+    mst.ovlsta,
+    mst.dmgsta,
+    mst.spr,
+    mst.invrpt,
+    mst.rprsta,
+    dmg.picflg,
+    mst.lstupdtim AS mstlstupdtim,
+    mst.lstupdusr AS mstlstupdusr,
+    dmg.ptycod,
+    dmg.ptytyp,
+    dmg.loc,
+    dmg.factyp,
+    dmg.dmgsec,
+    dmg.dmgdes,
+    dmg.dmgpnt
+FROM
+    ulddmg dmg
+    LEFT OUTER JOIN uldmst mst ON ( dmg.cmpcod = mst.cmpcod
+                                    AND dmg.uldnum = mst.uldnum
+                                    AND dmg.clsdat IS NULL )
+WHERE
+    mst.cmpcod =?
+    AND mst.uldnum =?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>123</QRY:Id>
+		<QRY:Source Name="uld.defaults.misc.findulddamagelist" Type="NATIVE">
+			<![CDATA[
+					SELECT ULD.CMPCOD , ULD.ULDNUM , DMG.DMGREFNUM , DMG.RPTARP ,
+			 	   		   ULD.CURARP ,  ULD.DMGSTA , ULD.OVLSTA ,
+						   DMG.RMK , DMG.DMGRPTDAT , DMG.CLSDAT,DMG.DMGSEQNUM , DMG.PICFLG,
+						   DMG.PTYTYP,DMG.PTYCOD,DMG.LOC, DMG.DMGSEC, DMG.DMGDES,
+						   (select count(*) from ulddmgpic where cmpcod=DMG.CMPCOD and ULDNUM= DMG.ULDNUM and SEQNUM=DMG.DMGSEQNUM) IMGCNT
+					FROM ULDDMG DMG , ULDMST ULD
+					WHERE ULD.CMPCOD = DMG.CMPCOD AND
+						  ULD.ULDNUM = DMG.ULDNUM AND
+						  ULD.CMPCOD = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>124</QRY:Id>
+		<QRY:Source Name="uld.defaults.misc.listuldrepairdetails" Type="NATIVE">
+			<![CDATA[
+					SELECT ULD.CMPCOD , ULD.ULDNUM , RPRDTL.DMGREFNUM , ULD.CURARP , ULD.ULDPRC ,
+					    	ULD.OVLSTA , RPR.RPRARP , RPR.RPRDAT ,
+							RPR.RPRHED , RPR.RPRRMK , RPR.RPRSEQNUM ,
+							RPR.INVREFNUM , ULD.RPRSTA , RPR.LSTUPDUSR , RPR.LSTUPDTIM,RPR.RPRAMT,RPR.DISRPRCUR
+					FROM ULDMST ULD, ULDRPR RPR LEFT OUTER JOIN ULDRPRDTL RPRDTL
+								     ON  RPR.CMPCOD = RPRDTL.CMPCOD
+									 AND RPR.ULDNUM = RPRDTL.ULDNUM
+									 AND RPR.RPRSEQNUM = RPRDTL.RPRSEQNUM
+					WHERE RPR.CMPCOD = ULD.CMPCOD AND
+					      RPR.ULDNUM = ULD.ULDNUM AND
+						  ULD.CMPCOD = ?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>125</QRY:Id>
+		<QRY:Source Name="uld.defaults.misc.findulddamagedreferencenumberlov" Type="NATIVE">
+			<![CDATA[
+					 SELECT DISTINCT DMGREFNUM
+					 FROM ULDDMG
+				     WHERE CMPCOD = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+	  <QRY:Definition>
+		 <QRY:Id>126</QRY:Id>
+			<QRY:Source Name="uld.defaults.loaneduld.loaned" Type="NATIVE">
+				<![CDATA[
+
+						SELECT LONREFNUM FROM ULDMST WHERE
+						      CMPCOD= ? AND
+						      ULDNUM=?
+
+				]]>
+			</QRY:Source>
+	 </QRY:Definition>
+
+
+
+	<QRY:Definition>
+			<QRY:Id>127</QRY:Id>
+			<QRY:Source Name="uld.defaults.borroweduld.borrowed" Type="NATIVE">
+				<![CDATA[
+
+						 SELECT BRWREFNUM FROM ULDMST WHERE
+						     CMPCOD= ? AND
+                             ULDNUM=?
+				]]>
+		   </QRY:Source>
+    </QRY:Definition>
+
+
+
+	<QRY:Definition>
+	   <QRY:Id>128</QRY:Id>
+		 <QRY:Source Name="uld.defaults.borroweduld.loanedtosameparty" Type="NATIVE">
+				<![CDATA[
+						 SELECT  ULD.CMPCOD
+						 FROM    ULDMST ULD,ULDTXNMST TXN
+						 WHERE   ULD.CMPCOD=TXN.CMPCOD AND
+						         ULD.ULDNUM=TXN.ULDNUM AND
+						 	     ULD.BRWREFNUM =TXN.TXNREFNUM AND
+						 	     ULD.CMPCOD=? AND
+						 	     ULD.ULDNUM= ? AND
+						 	     TXN.RTNPTYCOD = ? AND
+	                             TXN.PTYTYP=?
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+
+
+
+	<QRY:Definition>
+			<QRY:Id>129</QRY:Id>
+			   <QRY:Source Name="uld.defaults.loaneduld.borrowedfromsameparty" Type="NATIVE">
+				<![CDATA[
+						 SELECT  ULD.CMPCOD
+						 FROM    ULDMST ULD,ULDTXNMST TXN
+						 WHERE   ULD.CMPCOD=TXN.CMPCOD AND
+						 		 ULD.ULDNUM=TXN.ULDNUM AND
+						 		 ULD.LONREFNUM =TXN.TXNREFNUM AND
+						 		 ULD.CMPCOD=? AND
+						 		 ULD.ULDNUM= ? AND
+						 		 TXN.PTYCOD= ? AND
+	                             TXN.PTYTYP=?
+	               ]]>
+			</QRY:Source>
+    </QRY:Definition>
+
+    <QRY:Definition>
+			<QRY:Id>130</QRY:Id>
+			   <QRY:Source Name="uld.defaults.populateULDAgreementLOV" Type="NATIVE">
+				<![CDATA[
+						 SELECT   AGRMNTNUM,TXNTYP,AGRMNTSTA,AGRMNTDAT,
+							      PTYCOD,PTYTYP,PTYNAM, FRELONPRD ,
+							      AGRMNTFRMDAT,AGRMNTTOODAT,DMRRAT,DMRFQY,TAXAMT ,
+							      CURCOD,AGRMNTRMK ,LSTUPDUSR,LSTUPDTIM
+						FROM ULDAGRMNT
+						WHERE
+						CMPCOD = ?
+	               ]]>
+			</QRY:Source>
+    </QRY:Definition>
+
+
+
+<QRY:Definition>
+		<QRY:Id>131</QRY:Id>
+		<QRY:Source Name="uld.defaults.findinvoicerefnumberlov" Type="NATIVE">
+			<![CDATA[
+					SELECT INVREFNUM
+					FROM ULDTXNINV
+					WHERE CMPCOD = ?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+<QRY:Definition>
+			<QRY:Id>132</QRY:Id>
+			<QRY:Source Name="uld.defaults.findinvoicedetailsforrepair" Type="NATIVE">
+				<![CDATA[
+						SELECT INVDAT, INVCOD, INVCODNAM
+						FROM ULDTXNINV
+						WHERE CMPCOD = ? AND INVREFNUM = ?
+
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+
+	<QRY:Definition>
+			<QRY:Id>133</QRY:Id>
+			<QRY:Source Name="uld.defaults.findrepairinvoicedetails" Type="NATIVE">
+				<![CDATA[
+						SELECT rpr.CMPCOD AS CMPCOD,rpr.ULDNUM AS ULDNUM,rpr.RPRSEQNUM AS RPRSEQNUM,
+							   rpr.RPRHED AS RPRHED,rpr.RPRARP AS RPRARP,rpr.RPRAMT AS RPRAMT,
+							   rpr.RPRRMK AS RPRRMK,rpr.WVDAMT AS WVDAMT,dtl.DMGREFNUM AS DMGREFNUM,
+							   rpr.LSTUPDTIM AS LSTUPDTIM
+						FROM ULDRPR rpr left outer join ULDRPRDTL dtl
+on (
+						  rpr.CMPCOD =  dtl.CMPCOD AND
+							   rpr.ULDNUM = dtl.ULDNUM AND
+							   rpr.RPRSEQNUM = dtl.RPRSEQNUM)
+							  WHERE rpr.CMPCOD = ? AND
+	  						   rpr.INVREFNUM = ?
+
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+
+
+
+		<QRY:Definition>
+			   <QRY:Id>134</QRY:Id>
+				 <QRY:Source Name="uld.defaults.finduldagreementsforreturntransaction" Type="NATIVE">
+						<![CDATA[
+								   SELECT  AGRDTL.AGRMNTNUM,AGRDTL.CURCOD,AGRDTL.TAXAMT,AGRDTL.DMRFQY,AGRDTL.DMRRAT,AGRDTL.FRELONPRD
+
+								       FROM    ULDAGRMNT AGR ,ULDAGRMNTDTL AGRDTL
+
+								 	  WHERE         AGR.CMPCOD=AGRDTL.CMPCOD AND
+								 					AGR.AGRMNTNUM=AGRDTL.AGRMNTNUM AND
+								 					AGR.CMPCOD= ? AND
+								 					AGR.PTYCOD = ? AND
+								 					AGR.TXNTYP= ? AND
+								 					AGRDTL.ULDTYPCOD = ? AND
+													AGRDTL.ARPCOD = ? AND
+								 				        AGR.PTYTYP = ? AND AGR.AGRMNTSTA = 'A'
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+<QRY:Definition>
+			   <QRY:Id>135</QRY:Id>
+				 <QRY:Source Name="uld.defaults.finduldstocklist" Type="NATIVE">
+						<![CDATA[
+				SELECT ARLCOD, ARLIDR, ARPCOD, ULDGRPCOD, ULDTYP, ULDNAT, INSTOCK, 
+				    AVASPERSYSTEM, NONOPR, OFFARP, MAXQTY, MINQTY, BALANCE,TOTAL_BALANCE
+				FROM ( SELECT DISTINCT 
+						]]>
+				 </QRY:Source>
+			</QRY:Definition>
+
+<!-- Added by AG -->
+
+
+
+<QRY:Definition>
+			   <QRY:Id>136</QRY:Id>
+				 <QRY:Source Name="uld.defaults.findgenericagreement" Type="NATIVE">
+						<![CDATA[
+								   SELECT  AGR.AGRMNTNUM,AGR.CURCOD,AGR.TAXAMT,AGR.DMRFQY,AGR.DMRRAT,AGR.FRELONPRD
+                                        FROM    ULDAGRMNT AGR
+
+								 	  WHERE    AGR.CMPCOD= ? AND
+								 			   AGR.PTYCOD = ? AND
+								 			   AGR.TXNTYP= ? AND
+								 			   AGR.PTYTYP = ? AND
+								 			   AGR.AGRMNTSTA = 'A'
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+
+
+
+<QRY:Definition>
+			<!-- Modified by A-2052 for bug 102029 on 26OCT10 starts -->
+			   <QRY:Id>137</QRY:Id>
+				 <QRY:Source Name="uld.defaults.findstationulds" Type="NATIVE">
+						<![CDATA[
+								   SELECT ULDNUM FROM ULDMST WHERE
+								          CMPCOD = ? AND
+								          CURARP = ? AND
+								          OVLSTA = 'O' AND
+								          TRNSTA = 'N'
+
+						]]>
+					</QRY:Source>
+			<!-- Modified by A-2052 for bug 102029 on 26OCT10 ends -->
+			</QRY:Definition>
+
+
+			<QRY:Definition>
+			   <QRY:Id>138</QRY:Id>
+				 <QRY:Source Name="uld.defaults.checkForInvoice" Type="NATIVE">
+						<![CDATA[
+								  SELECT 1 AS AGRNUM FROM ULDTXNMST
+									WHERE ULDTXNMST.CMPCOD =?
+									AND ULDTXNMST.AGRMNTNUM =?
+									AND ULDTXNMST.INVREFNUM IS NULL
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+
+			<QRY:Definition>
+			   <QRY:Id>139</QRY:Id>
+				 <QRY:Source Name="uld.defaults.listulddiscrepancy" Type="NATIVE">
+						<![CDATA[
+								    SELECT DIS.CMPCOD , DIS.DISCOD , DIS.LSTUPDTIM , DIS.DISDAT ,
+										   DIS.LSTUPDUSR , DIS.RMK , DIS.RPTARP , DIS.ULDNUM,DIS.LOC,DIS.FACTYP,DIS.SEQNUM
+									FROM ULDDIS DIS , ULDMST MST
+									WHERE DIS.CMPCOD = MST.CMPCOD AND
+										  DIS.ULDNUM = MST.ULDNUM AND
+										  DIS.CLSSTA = 'N' AND
+										  DIS.CMPCOD = ?
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>140</QRY:Id>
+				 <QRY:Source Name="uld.defaults.findtransactionsformucreconciliation" Type="NATIVE">
+						<![CDATA[
+								  		SELECT TXN.CMPCOD , TXN.ULDNUM ,TXN.TXNTYP ,
+											   TXN.TXNREFNUM , TXN.TXNSTA , TXN.TXNDAT ,
+											   TXN.TXNARPCOD , TXN.DMRAMT , TXN.CURCOD ,
+											   TXN.INVREFNUM , TXN.TXNRMK , TXN.PTYIDR ,
+											   TXN.CPDREFNUM , TXN.RTNRMK , TXN.PTYTYP ,
+											   TXN.PTYCOD , TXN.RTNDAT , TXN.RTNARPCOD ,
+											   TXN.TXNNAT , TXN.PTYIDR
+
+										FROM ULDTXNMST TXN , ULDMST MST
+										WHERE
+											  TXN.CMPCOD = ?
+											  AND TXN.TXNSTA = 'T'
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+		<!-- Commented as part of ICRD 21184 -->
+		<!--	<QRY:Definition>
+			   <QRY:Id>141</QRY:Id>
+				 <QRY:Source Name="uld.defaults.findAirlineCode" Type="NATIVE">
+						<![CDATA[
+								  	 SELECT THRNUMCOD
+									 FROM SHRARLMST ARLMST
+									 WHERE CMPCOD = ?
+									 AND  (CASE
+									 	   WHEN ARLMST.APHCODUSE = 2
+										  	   THEN ARLMST.TWOAPHCOD
+
+										   ELSE ARLMST.THRAPHCOD
+										   END) = ?
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition> -->
+
+			<!-- Commented as part of ICRD-21184 -->
+			<!--<QRY:Definition>
+			   <QRY:Id>142</QRY:Id>
+				 <QRY:Source Name="uld.defaults.findcarriercode" Type="NATIVE">
+						<![CDATA[
+								  	SELECT  CASE ARLMST.APHCODUSE
+										   	WHEN 2
+										    THEN ARLMST.TWOAPHCOD
+											ELSE ARLMST.THRAPHCOD
+											END ARLCOD
+									FROM SHRARLMST ARLMST
+									WHERE  ARLMST.CMPCOD = ? AND
+										   ARLMST.ARLIDR = ?
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>-->
+
+			<!--commented as part of ICRD 21184 -->
+			<!-- <QRY:Definition>
+			   <QRY:Id>143</QRY:Id>
+				 <QRY:Source Name="uld.defaults.getairlineidentifiers" Type="NATIVE">
+						<![CDATA[
+								  	SELECT  (CASE ARLMST.APHCODUSE
+											WHEN 2
+										    THEN ARLMST.TWOAPHCOD
+											ELSE ARLMST.THRAPHCOD
+											END )||'~'||ARLMST.ARLIDR AS ARLCODPLUSARLIDR
+
+									FROM SHRARLMST ARLMST
+									WHERE  ARLMST.CMPCOD = ?
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition> -->
+
+			<QRY:Definition>
+			   <QRY:Id>144</QRY:Id>
+				 <QRY:Source Name="uld.defaults.findcurrentlocation" Type="NATIVE">
+						<![CDATA[
+							SELECT CMPCOD,ARPCOD,FACTYP,SEQNUM,
+								   FACCOD,FACDES,LSTUPDUSR,DEFFLG,LSTUPDTIM,CNT
+							FROM ULDARPLOC
+
+							WHERE ULDARPLOC.CMPCOD =?
+							AND   ULDARPLOC.ARPCOD =?
+							AND   DEFFLG ='Y'
+
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>145</QRY:Id>
+				 <QRY:Source Name="uld.defaults.populatecurrentlocation" Type="NATIVE">
+						<![CDATA[
+							SELECT ULDARPLOCMST.FACTYP,FACCOD
+							FROM ULDARPLOCDTL,ULDARPLOCMST
+							WHERE ULDARPLOCMST.CMPCOD = ULDARPLOCDTL.CMPCOD
+							AND   ULDARPLOCMST.FACTYP = ULDARPLOCDTL.FACTYP
+							AND   ULDARPLOCMST.ARPCOD = ULDARPLOCDTL.ARPCOD
+
+							AND   ULDARPLOCMST.CMPCOD =?
+							AND   ULDARPLOCMST.ARPCOD =?
+
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>146</QRY:Id>
+				 <QRY:Source Name="uld.defaults.generateucmmessagevo" Type="NATIVE">
+						<![CDATA[
+
+				SELECT
+    fltmsg.fltcaridr,
+    fltmsg.fltnum,
+    fltmsg.fltseqnum,
+    fltmsg.legsernum,
+    fltmsg.arpcod,
+    fltmsg.cmpcod,
+    fltmsg.fltdat,
+    fltmsg.lstupdusr,
+    msgdtl.uldnum,
+    msgdtl.pou,
+    msgdtl.cnt,
+    CASE
+            WHEN arlmst.aphcoduse = 2 THEN arlmst.twoaphcod
+            ELSE arlmst.thraphcod
+        END
+    arlcod
+FROM
+    uldfltmsg fltmsg
+    LEFT OUTER JOIN uldfltmsgdtl msgdtl ON ( fltmsg.fltcaridr = msgdtl.fltcaridr
+                                             AND fltmsg.fltnum = msgdtl.fltnum
+                                             AND fltmsg.fltseqnum = msgdtl.fltseqnum
+                                             AND fltmsg.legsernum = msgdtl.legsernum
+                                             AND fltmsg.arpcod = msgdtl.arpcod
+                                             AND fltmsg.cmpcod = msgdtl.cmpcod )
+    LEFT OUTER JOIN shrarlmst arlmst ON ( fltmsg.cmpcod = arlmst.cmpcod
+                                          AND fltmsg.fltcaridr = arlmst.arlidr )
+WHERE
+    fltmsg.fltcaridr =?
+    AND fltmsg.fltnum =?
+    AND fltmsg.fltseqnum =?
+    AND fltmsg.legsernum =?
+    AND fltmsg.cmpcod =?
+
+
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>147</QRY:Id>
+				 <QRY:Source Name="uld.defaults.validateULDs" Type="NATIVE">
+						<![CDATA[
+						SELECT ULD.CMPCOD, ULD.ULDNUM,ULD.ULDCNT,ULD.DISTARWGT,ULD.DISTARWGTUNT,ULD.DISSTRWGT,ULD.DISSTRWGTUNT,
+				ULD.DISBASLEN,ULD.DISBASWID,ULD.DISBASHGT,ULD.DISDIMUNT,
+				ULD.OPRARLIDR,ULD.CURARP,ULD.OWNARP,ULD.OVLSTA,ULD.CLNSTA,ULD.DMGSTA,ULD.LOC,
+				ULD.MFR,ULD.ULDSERNUM,ULD.PURDAT,ULD.PURINVNUM,ULD.DISULDPRC,ULD.ULDPRC,
+				ULD.ULDPRCUNT,ULD.DISITAREPCST,ULD.ITAREPCSTUNT,ULD.ITAREPCST,ULD.CURVAL,
+				ULD.DISCURVAL,ULD.CURVALUNT,ULD.ULDRMK,ULD.VDR,ULD.ULDTYP,ULD.ULDRMK,ULD.ULDNAT ,
+			 	(SELECT CASE WHEN aphcoduse = 2 THEN twoaphcod ELSE thraphcod END
+			 	        FROM SHRARLMST
+			 	        WHERE  CMPCOD = ULD.CMPCOD AND
+			 	               ARLIDR=ULD.OPRARLIDR) OPRARLCOD,
+			 	(SELECT CASE WHEN aphcoduse = 2 THEN twoaphcod ELSE thraphcod END
+			 	        FROM SHRARLMST
+			 	        WHERE  CMPCOD = ULD.CMPCOD AND
+			 	               ARLIDR=ULD.OWNARLIDR) OWNARLCOD
+			 	FROM ULDMST ULD
+			 			WHERE CMPCOD = ?
+			 			AND  CURARP = ?
+
+				   ]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>148</QRY:Id>
+				 <QRY:Source Name="uld.defaults.findagreementforallparty" Type="NATIVE">
+						<![CDATA[ SELECT
+    agr.cmpcod agrcmpcod,
+    agr.agrmntnum agragrmntnum,
+    agr.curcod agrcurrency,
+    agr.taxamt agrtaxamt,
+    agr.dmrfqy agrdmrfqy,
+    agr.dmrrat agrdmrrat,
+    agr.frelonprd agrfrelonprd,
+    agrdtl.cmpcod,
+    agrdtl.agrmntnum,
+    agrdtl.seqnum,
+    agrdtl.curcod,
+    agrdtl.taxamt,
+    agrdtl.dmrfqy,
+    agrdtl.dmrrat,
+    agrdtl.frelonprd,
+    agrdtl.agrmntfrmdat chdfrmdat,
+    agr.agrmntfrmdat parfrmdat,
+    agrdtl.agrmnttoodat chdtoodat,
+    agr.agrmnttoodat partoodat
+FROM
+    uldagrmnt agr left outer join
+    uldagrmntdtl agrdtl
+ON (
+    agr.cmpcod = agrdtl.cmpcod
+    AND agr.agrmntnum = agrdtl.agrmntnum
+    AND agrdtl.uldtypcod  =?
+    AND agrdtl.arpcod  =?
+    )
+    WHERE agr.cmpcod =?
+    AND agr.txntyp =?
+    AND agr.ptycod =?
+    AND agr.ptytyp =?
+    AND agr.agrmntsta = 'A'
+    AND (
+        (
+            trunc(to_date(?,'yyyy-mm-dd')) >= trunc(agrdtl.agrmntfrmdat)
+            AND (
+                trunc(agrdtl.agrmnttoodat) IS NULL
+                OR trunc(to_date(?,'yyyy-mm-dd')) <= ( trunc(agrdtl.agrmnttoodat) )
+            )
+        )
+        OR (
+            trunc(to_date(?,'yyyy-mm-dd')) >= trunc(agr.agrmntfrmdat)
+            AND (
+                trunc(agr.agrmnttoodat) IS NULL
+                OR trunc(to_date(?,'yyyy-mm-dd')) <= ( trunc(agr.agrmnttoodat) )
+            )
+        )
+    )
+
+					]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+
+<QRY:Definition>
+	   <QRY:Id>149</QRY:Id>
+		 <QRY:Source Name="uld.defaults.validateULDFlightMessageDetails" Type="NATIVE">
+				<![CDATA[
+						SELECT 1 NUM
+						  FROM
+						  	   ULDFLTMSG FLT,
+							   ULDFLTMSGDTL ULD
+						 WHERE FLT.FLTCARIDR = ULD.FLTCARIDR
+							AND FLT.FLTNUM = ULD.FLTNUM
+							AND FLT.FLTSEQNUM = ULD.FLTSEQNUM
+							AND FLT.LEGSERNUM = ULD.LEGSERNUM
+							AND FLT.ARPCOD = ULD.ARPCOD
+							AND FLT.CMPCOD = ULD.CMPCOD
+							AND FLT.FLTCARIDR = ?
+							AND FLT.FLTNUM = ?
+							AND FLT.FLTSEQNUM = ?
+							AND FLT.LEGSERNUM = ?
+							AND FLT.CMPCOD = ?
+							AND ULD.ULDNUM = ?
+							AND FLT.FLTDAT = ?
+							AND ULD.POU = ?
+				]]>
+		</QRY:Source>
+</QRY:Definition>
+
+ <QRY:Definition>
+			   <QRY:Id>150</QRY:Id>
+				 <QRY:Source Name="uld.defaults.getUCMFlightDetails" Type="NATIVE">
+						<![CDATA[
+							SELECT FLTMSG.FLTCARIDR,FLTMSG.FLTNUM,FLTMSG.FLTSEQNUM,
+		       FLTMSG.LEGSERNUM,FLTMSG.ARPCOD,FLTMSG.CMPCOD,
+			   FLTMSG.FLTDAT,FLTMSG.LSTUPDUSR,
+			   MSGDTL.ULDNUM,MSGDTL.POU,MSGDTL.CNT
+
+				FROM ULDFLTMSG FLTMSG LEFT OUTER JOIN ULDFLTMSGDTL MSGDTL
+				ON ( FLTMSG.FLTCARIDR = MSGDTL.FLTCARIDR
+				AND   FLTMSG.FLTNUM   = MSGDTL.FLTNUM
+				AND   FLTMSG.FLTSEQNUM   = MSGDTL.FLTSEQNUM
+				AND   FLTMSG.LEGSERNUM   = MSGDTL.LEGSERNUM
+				AND   FLTMSG.ARPCOD   = MSGDTL.ARPCOD
+				AND   FLTMSG.CMPCOD   = MSGDTL.CMPCOD)
+
+
+
+				WHERE   FLTMSG.FLTCARIDR  =?
+				AND   FLTMSG.FLTNUM = ?
+				AND   FLTMSG.FLTSEQNUM = ?
+				AND   FLTMSG.LEGSERNUM = ?
+				AND   FLTMSG.ARPCOD = ?
+				AND   FLTMSG.CMPCOD = ?
+
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>151</QRY:Id>
+				 <QRY:Source Name="uld.defaults.listAirportLocation" Type="NATIVE">
+						<![CDATA[
+							SELECT CMPCOD,ARPCOD,FACTYP,SEQNUM,CNT,
+							       FACCOD,FACDES,LSTUPDUSR,DEFFLG,LSTUPDTIM
+							FROM ULDARPLOC
+
+							WHERE  CMPCOD =?
+							AND    ARPCOD =?
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>152</QRY:Id>
+				 <QRY:Source Name="uld.defaults.findDefaultFlag" Type="NATIVE">
+						<![CDATA[
+							SELECT CMPCOD,ARPCOD,FACTYP,SEQNUM,
+								   FACCOD,FACDES,LSTUPDUSR,DEFFLG,CNT
+							FROM ULDARPLOC
+
+							WHERE  CMPCOD =?
+							AND    ARPCOD =?
+
+							AND    DEFFLG ='Y'
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>153</QRY:Id>
+				 <QRY:Source Name="uld.defaults.checkForULDLocation" Type="NATIVE">
+						<![CDATA[
+							SELECT COUNT(CMPCOD) AS RESULT
+							FROM ULDMST
+							WHERE CMPCOD=?
+							AND LOC=?
+							AND CURARP =?
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+		<QRY:Id>154</QRY:Id>
+		<QRY:Source Name="uld.defaults.listUCMMessage" Type="NATIVE">
+			<![CDATA[
+                       SELECT   FLTMSG.FLTCARIDR,FLTMSG.FLTNUM,FLTMSG.FLTSEQNUM,
+		       FLTMSG.LEGSERNUM,FLTMSG.ARPCOD,FLTMSG.CMPCOD,
+			   FLTMSG.FLTDAT,FLTMSG.LSTUPDUSR,
+			   MSGDTL.ULDNUM,MSGDTL.POU,MSGDTL.CNT
+
+	 FROM ULDFLTMSG FLTMSG LEFT OUTER JOIN ULDFLTMSGDTL MSGDTL
+	ON (  FLTMSG.FLTCARIDR = MSGDTL.FLTCARIDR
+				AND   FLTMSG.FLTNUM   = MSGDTL.FLTNUM
+				AND   FLTMSG.FLTSEQNUM   = MSGDTL.FLTSEQNUM
+				AND   FLTMSG.LEGSERNUM   = MSGDTL.LEGSERNUM
+				AND   FLTMSG.ARPCOD   = MSGDTL.ARPCOD
+				AND   FLTMSG.CMPCOD   = MSGDTL.CMPCOD)
+
+
+
+				WHERE   FLTMSG.FLTCARIDR  =?
+				AND   FLTMSG.FLTNUM = ?
+				AND   FLTMSG.FLTSEQNUM = ?
+				AND   FLTMSG.ARPCOD = ?
+				AND   FLTMSG.CMPCOD = ?
+				AND   FLTMSG.FLTDAT = ?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+			   <QRY:Id>155</QRY:Id>
+				 <QRY:Source Name="uld.defaults.listUCMErrors" Type="NATIVE">
+						<![CDATA[
+
+				SELECT ULDFLTMSGREC.FLTCARIDR,ULDFLTMSGREC.FLTNUM,
+					   ULDFLTMSGREC.MSGSNDFLG,
+				       ULDFLTMSGREC.FLTSEQNUM,ULDFLTMSGREC.ARPCOD,ULDFLTMSGREC.CMPCOD,
+					   ULDFLTMSGREC.MSGTYP,ULDFLTMSGREC.SEQNUM,
+					   ULDFLTMSGREC.FLTDAT,ULDFLTMSGREC.ACTDAT,ULDFLTMSGREC.ERRCOD AS UCMERRCOD,
+					   ULDFLTMSGREC.LSTUPDUSR,
+					   ULDFLTMSGRECDTL.CNT,ULDFLTMSGRECDTL.POU,ULDFLTMSGRECDTL.ULDNUM,
+					   ULDFLTMSGRECDTL.ERRCOD AS ULDERRCOD,
+					   ULDFLTMSGRECDTL.DMGSTA,
+					    CASE WHEN arlmst.aphcoduse = 2 THEN arlmst.twoaphcod ELSE arlmst.thraphcod END  ARLCOD
+
+				FROM   ULDFLTMSGREC LEFT OUTER JOIN ULDFLTMSGRECDTL ON (
+
+			  ULDFLTMSGREC.FLTCARIDR = ULDFLTMSGRECDTL.FLTCARIDR
+			AND    ULDFLTMSGREC.FLTNUM =  ULDFLTMSGRECDTL.FLTNUM
+			AND    ULDFLTMSGREC.FLTSEQNUM = ULDFLTMSGRECDTL.FLTSEQNUM
+			AND    ULDFLTMSGREC.ARPCOD = ULDFLTMSGRECDTL.ARPCOD
+			AND    ULDFLTMSGREC.CMPCOD = ULDFLTMSGRECDTL.CMPCOD
+			AND    ULDFLTMSGREC.MSGTYP = ULDFLTMSGRECDTL.MSGTYP
+			AND    ULDFLTMSGREC.SEQNUM = ULDFLTMSGRECDTL.SEQNUM)
+LEFT OUTER JOIN SHRARLMST ARLMST ON
+			(    ULDFLTMSGREC.CMPCOD = ARLMST.CMPCOD
+			AND    ULDFLTMSGREC.FLTCARIDR = ARLMST.ARLIDR)
+			WHERE    ULDFLTMSGREC.CMPCOD =?
+
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>156</QRY:Id>
+				 <QRY:Source Name="uld.defaults.listUldErrors" Type="NATIVE">
+						<![CDATA[
+
+
+			SELECT ULDFLTMSGREC.FLTCARIDR,ULDFLTMSGREC.FLTNUM,
+			       ULDFLTMSGREC.FLTSEQNUM,
+				   ULDFLTMSGREC.ARPCOD,ULDFLTMSGREC.CMPCOD,
+				   ULDFLTMSGREC.MSGTYP,ULDFLTMSGREC.SEQNUM,
+				   ULDFLTMSGREC.FLTDAT,ULDFLTMSGRECDTL.ERRCOD,
+				   ULDFLTMSGREC.LSTUPDUSR,ULDFLTMSGRECDTL.ULDNUM,
+				   ULDFLTMSGRECDTL.CNT,ULDFLTMSGRECDTL.POU,ULDFLTMSGRECDTL.DMGSTA,
+				   ULDFLTMSGRECDTL.LSTUPDUSR,ULDFLTMSGRECDTL.LSTUPDTIM,ULDFLTMSGRECDTL.ULDSRC,
+				    CASE WHEN arlmst.aphcoduse = 2 THEN arlmst.twoaphcod ELSE arlmst.thraphcod END  ARLCOD
+
+			FROM   ULDFLTMSGREC LEFT OUTER JOIN ULDFLTMSGRECDTL
+
+			ON (  ULDFLTMSGREC.FLTCARIDR = ULDFLTMSGRECDTL.FLTCARIDR
+			AND    ULDFLTMSGREC.FLTNUM =  ULDFLTMSGRECDTL.FLTNUM
+			AND    ULDFLTMSGREC.FLTSEQNUM = ULDFLTMSGRECDTL.FLTSEQNUM
+			AND    ULDFLTMSGREC.ARPCOD = ULDFLTMSGRECDTL.ARPCOD
+			AND    ULDFLTMSGREC.CMPCOD = ULDFLTMSGRECDTL.CMPCOD
+			AND    ULDFLTMSGREC.MSGTYP = ULDFLTMSGRECDTL.MSGTYP
+			AND    ULDFLTMSGREC.SEQNUM = ULDFLTMSGRECDTL.SEQNUM)
+LEFT OUTER JOIN SHRARLMST ARLMST
+			ON (    ULDFLTMSGREC.CMPCOD = ARLMST.CMPCOD
+			AND    ULDFLTMSGREC.FLTCARIDR = ARLMST.ARLIDR)
+
+
+			WHERE    ULDFLTMSGRECDTL.ARPCOD =?
+			AND    ULDFLTMSGRECDTL.CMPCOD =?
+
+
+
+						]]>
+					</QRY:Source>
+		</QRY:Definition>
+
+		<QRY:Definition>
+		   <QRY:Id>157</QRY:Id>
+			 <QRY:Source Name="uld.defaults.listucmsforcomparison" Type="NATIVE">
+				<![CDATA[
+						SELECT REC.FLTCARIDR,REC.FLTNUM,REC.FLTSEQNUM,
+							   REC.ARPCOD,REC.CMPCOD,REC.MSGTYP,
+							   REC.SEQNUM,REC.FLTDAT,REC.ERRCOD AS UCMERRCOD,
+							   REC.LSTUPDUSR,REC.LSTUPDTIM,
+							   RECDTL.ULDNUM,RECDTL.CNT,RECDTL.POU,
+							   RECDTL.ERRCOD AS ULDERRCOD,RECDTL.DMGSTA,
+							   CASE WHEN arlmst.aphcoduse = 2 THEN arlmst.twoaphcod ELSE arlmst.thraphcod END ARLCOD
+
+						FROM   ULDFLTMSGREC REC LEFT OUTER JOIN ULDFLTMSGRECDTL RECDTL
+
+										    ON REC.FLTCARIDR = RECDTL.FLTCARIDR
+											AND REC.FLTNUM =  RECDTL.FLTNUM
+											AND REC.FLTSEQNUM = RECDTL.FLTSEQNUM
+											AND REC.ARPCOD = RECDTL.ARPCOD
+											AND REC.CMPCOD = RECDTL.CMPCOD
+											AND REC.MSGTYP = RECDTL.MSGTYP
+											AND REC.SEQNUM = RECDTL.SEQNUM
+
+										LEFT OUTER JOIN SHRARLMST ARLMST
+											 ON REC.CMPCOD = ARLMST.CMPCOD
+									 	   AND REC.FLTCARIDR = ARLMST.ARLIDR
+							WHERE
+							    REC.CMPCOD = ?								
+								AND REC.FLTCARIDR = ?
+								AND REC.FLTNUM = ?
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+
+		<QRY:Definition>
+			   <QRY:Id>158</QRY:Id>
+				 <QRY:Source Name="uld.defaults.findcounterucm" Type="NATIVE">
+						<![CDATA[
+							SELECT REC.FLTCARIDR,REC.FLTNUM,REC.FLTSEQNUM,
+							   REC.ARPCOD,REC.CMPCOD,REC.MSGTYP,
+							   REC.SEQNUM,REC.FLTDAT,REC.ERRCOD AS UCMERRCOD,
+							   REC.LSTUPDUSR,REC.OUTSEQNUM ,
+							   RECDTL.ULDNUM,RECDTL.CNT,RECDTL.POU,
+							   RECDTL.ERRCOD AS ULDERRCOD,RECDTL.DMGSTA	,
+							    CASE ARLMST.APHCODUSE
+									   	WHEN 2
+									    THEN ARLMST.TWOAPHCOD
+										ELSE ARLMST.THRAPHCOD
+								END ARLCOD
+
+						FROM   ULDFLTMSGREC REC LEFT OUTER JOIN ULDFLTMSGRECDTL RECDTL
+
+											    ON REC.FLTCARIDR = RECDTL.FLTCARIDR
+												AND REC.FLTNUM =  RECDTL.FLTNUM
+												AND REC.FLTSEQNUM = RECDTL.FLTSEQNUM
+												AND REC.ARPCOD = RECDTL.ARPCOD
+												AND REC.CMPCOD = RECDTL.CMPCOD
+												AND REC.MSGTYP = RECDTL.MSGTYP
+												AND REC.SEQNUM = RECDTL.SEQNUM
+
+											LEFT OUTER JOIN SHRARLMST ARLMST
+
+									ON	REC.CMPCOD = ARLMST.CMPCOD
+									AND REC.FLTCARIDR = ARLMST.ARLIDR
+
+							WHERE
+									REC.CMPCOD = ?
+								AND REC.ARPCOD = ?
+								AND REC.FLTCARIDR = ?
+								AND REC.FLTNUM = ?
+								AND REC.FLTSEQNUM = ?
+								AND REC.MSGTYP = ?
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>159</QRY:Id>
+				 <QRY:Source Name="uld.defaults.listUCMOUTMessage" Type="NATIVE">
+						<![CDATA[
+							 SELECT   FLTMSG.FLTCARIDR,FLTMSG.FLTNUM,FLTMSG.FLTSEQNUM,
+		       FLTMSG.LEGSERNUM,FLTMSG.ARPCOD,FLTMSG.CMPCOD,
+			   FLTMSG.FLTDAT,FLTMSG.LSTUPDUSR,
+			   MSGDTL.ULDNUM,MSGDTL.POU,MSGDTL.CNT,'OUT' AS MSGTYP
+
+	 FROM ULDFLTMSG FLTMSG LEFT OUTER JOIN ULDFLTMSGDTL MSGDTL ON (
+	  FLTMSG.FLTCARIDR = MSGDTL.FLTCARIDR
+				AND   FLTMSG.FLTNUM   = MSGDTL.FLTNUM
+				AND   FLTMSG.FLTSEQNUM   = MSGDTL.FLTSEQNUM
+				AND   FLTMSG.LEGSERNUM   = MSGDTL.LEGSERNUM
+				AND   FLTMSG.ARPCOD   = MSGDTL.ARPCOD
+				AND   FLTMSG.CMPCOD   = MSGDTL.CMPCOD)
+
+
+
+				WHERE   FLTMSG.FLTCARIDR  =?
+				AND   FLTMSG.FLTNUM = ?
+				AND   FLTMSG.FLTSEQNUM = ?
+				AND   FLTMSG.ARPCOD = ?
+				AND   FLTMSG.CMPCOD = ?
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>160</QRY:Id>
+				 <QRY:Source Name="uld.defaults.listUCMINMessage" Type="NATIVE">
+						<![CDATA[
+							 SELECT   FLTMSG.FLTCARIDR,FLTMSG.FLTNUM,FLTMSG.FLTSEQNUM,
+		       FLTMSG.LEGSERNUM,FLTMSG.ARPCOD,FLTMSG.CMPCOD,
+			   FLTMSG.FLTDAT,FLTMSG.LSTUPDUSR,
+			   MSGDTL.ULDNUM,MSGDTL.POU,MSGDTL.CNT,'IN' AS MSGTYP
+
+	 FROM ULDFLTMSG FLTMSG LEFT OUTER JOIN ULDFLTMSGDTL MSGDTL
+	ON (  FLTMSG.FLTCARIDR = MSGDTL.FLTCARIDR
+				AND   FLTMSG.FLTNUM   = MSGDTL.FLTNUM
+				AND   FLTMSG.FLTSEQNUM   = MSGDTL.FLTSEQNUM
+				AND   FLTMSG.LEGSERNUM   = MSGDTL.LEGSERNUM
+				AND   FLTMSG.ARPCOD   = MSGDTL.ARPCOD
+				AND   FLTMSG.CMPCOD   = MSGDTL.CMPCOD)
+
+
+
+				WHERE   FLTMSG.FLTCARIDR  =?
+				AND   FLTMSG.FLTNUM = ?
+				AND   FLTMSG.FLTSEQNUM = ?
+				AND   FLTMSG.CMPCOD = ?
+				AND   MSGDTL.POU =?
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>161</QRY:Id>
+				 <QRY:Source Name="uld.defaults.listUCMINOUTMessage" Type="NATIVE">
+						<![CDATA[
+							 SELECT   FLTMSG.FLTCARIDR,FLTMSG.FLTNUM,FLTMSG.FLTSEQNUM,
+		       FLTMSG.LEGSERNUM,FLTMSG.ARPCOD,FLTMSG.CMPCOD,
+			   FLTMSG.FLTDAT,FLTMSG.LSTUPDUSR,
+			   MSGDTL.ULDNUM,MSGDTL.POU,MSGDTL.CNT,'IN' AS MSGTYP
+
+	 FROM ULDFLTMSG FLTMSG LEFT OUTER JOIN ULDFLTMSGDTL MSGDTL
+	 ON ( FLTMSG.FLTCARIDR = MSGDTL.FLTCARIDR
+				AND   FLTMSG.FLTNUM   = MSGDTL.FLTNUM
+				AND   FLTMSG.FLTSEQNUM   = MSGDTL.FLTSEQNUM
+				AND   FLTMSG.LEGSERNUM   = MSGDTL.LEGSERNUM
+				AND   FLTMSG.ARPCOD   = MSGDTL.ARPCOD
+				AND   FLTMSG.CMPCOD   = MSGDTL.CMPCOD)
+
+
+
+				WHERE   MSGDTL.FLTCARIDR  =?
+				AND   MSGDTL.FLTNUM = ?
+				AND   MSGDTL.FLTSEQNUM =?
+
+
+				AND   MSGDTL.CMPCOD =?
+				AND   MSGDTL.POU =?
+
+				UNION ALL
+
+ SELECT   FLTMSG.FLTCARIDR,FLTMSG.FLTNUM,FLTMSG.FLTSEQNUM,
+		       FLTMSG.LEGSERNUM,FLTMSG.ARPCOD,FLTMSG.CMPCOD,
+			   FLTMSG.FLTDAT,FLTMSG.LSTUPDUSR,
+			   MSGDTL.ULDNUM,MSGDTL.POU,MSGDTL.CNT,'OUT' AS MSGTYP
+
+	 FROM ULDFLTMSG FLTMSG LEFT OUTER JOIN ULDFLTMSGDTL MSGDTL
+	 ON ( FLTMSG.FLTCARIDR = MSGDTL.FLTCARIDR
+				AND   FLTMSG.FLTNUM   = MSGDTL.FLTNUM
+				AND   FLTMSG.FLTSEQNUM   = MSGDTL.FLTSEQNUM
+				AND   FLTMSG.LEGSERNUM   = MSGDTL.LEGSERNUM
+				AND   FLTMSG.ARPCOD   = MSGDTL.ARPCOD
+				AND   FLTMSG.CMPCOD   = MSGDTL.CMPCOD)
+
+
+
+				AND   MSGDTL.FLTCARIDR  =?
+				AND   MSGDTL.FLTNUM = ?
+				AND   MSGDTL.FLTSEQNUM =?
+
+				AND   MSGDTL.ARPCOD = ?
+				AND   MSGDTL.CMPCOD =?
+
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+			<QRY:Definition>
+			   <QRY:Id>162</QRY:Id>
+				 <QRY:Source Name="uld.defaults.listUCMOUTForInOutMismatch" Type="NATIVE">
+						<![CDATA[
+							 SELECT ULDFLTMSGREC.FLTCARIDR,ULDFLTMSGREC.FLTNUM,
+			       ULDFLTMSGREC.FLTSEQNUM,
+				   ULDFLTMSGREC.ARPCOD,ULDFLTMSGREC.CMPCOD,
+				   ULDFLTMSGREC.MSGTYP,ULDFLTMSGREC.SEQNUM,
+				   ULDFLTMSGREC.FLTDAT,ULDFLTMSGRECDTL.ERRCOD,
+				   ULDFLTMSGRECDTL.ULDNUM,ULDFLTMSGRECDTL.CNT,ULDFLTMSGRECDTL.POU,ULDFLTMSGRECDTL.DMGSTA
+				   ,ULDFLTMSGREC.ERRCOD AS UCMERRCOD
+
+			FROM   ULDFLTMSGREC LEFT OUTER JOIN ULDFLTMSGRECDTL
+
+			 ON ( ULDFLTMSGREC.FLTCARIDR = ULDFLTMSGRECDTL.FLTCARIDR
+			AND    ULDFLTMSGREC.FLTNUM =  ULDFLTMSGRECDTL.FLTNUM
+			AND    ULDFLTMSGREC.FLTSEQNUM = ULDFLTMSGRECDTL.FLTSEQNUM
+			AND    ULDFLTMSGREC.ARPCOD = ULDFLTMSGRECDTL.ARPCOD
+			AND    ULDFLTMSGREC.CMPCOD = ULDFLTMSGRECDTL.CMPCOD
+			AND    ULDFLTMSGREC.MSGTYP = ULDFLTMSGRECDTL.MSGTYP
+			AND    ULDFLTMSGREC.SEQNUM = ULDFLTMSGRECDTL.SEQNUM)
+
+
+
+			WHERE    ULDFLTMSGRECDTL.FLTCARIDR = ?
+			AND    ULDFLTMSGRECDTL.FLTNUM = ?
+	        AND    ULDFLTMSGRECDTL.FLTSEQNUM = ?
+			AND    ULDFLTMSGRECDTL.CMPCOD =?
+		    AND    ULDFLTMSGRECDTL.MSGTYP =?
+			AND    ULDFLTMSGRECDTL.POU =?
+
+
+
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>163</QRY:Id>
+				 <QRY:Source Name="uld.defaults.getUldDetailsForSCM" Type="NATIVE">
+						<![CDATA[
+								SELECT Z.*,  COALESCE(REC1.MSGSNDFLG, 'X') MSGSNDFLG,SEQNUM,
+									   DENSE_RANK() OVER ( ORDER BY Z.CMPCOD,Z.ULDNUM ) AS RANK
+									  FROM 
+						(
+
+											SELECT COALESCE(ULD.CMPCOD, REC.CMPCOD) CMPCOD,
+							COALESCE(RECDTL.ULDNUM, ULD.ULDNUM) ULDNUM,
+							ULD.ULDCNT,
+							ULD.DISTARWGT,
+							ULD.DISTARWGTUNT,
+							ULD.DISSTRWGT,
+							ULD.DISSTRWGTUNT,
+							ULD.DISBASLEN,
+							ULD.DISBASWID,
+							ULD.DISBASHGT,
+							ULD.DISDIMUNT,
+							COALESCE(REC.ARPCOD, ULD.CURARP) CURARP,
+							ULD.OWNARP,
+							ULD.OVLSTA,
+							ULD.CLNSTA,
+							ULD.DMGSTA,
+							ULD.MFR,
+							ULD.ULDSERNUM,
+							ULD.PURDAT,
+							ULD.PURINVNUM,
+							ULD.DISULDPRC,
+							ULD.ULDPRC,
+							ULD.ULDPRCUNT,
+							ULD.DISITAREPCST,
+							ULD.ITAREPCSTUNT,
+							ULD.ITAREPCST,
+							ULD.CURVAL,
+							ULD.DISCURVAL,
+							ULD.CURVALUNT,
+							ULD.ULDRMK,
+							ULD.VDR,
+							ULD.ULDTYP,
+							ULD.ULDNAT ,
+							(SELECT MAX(REC.STKCHKDAT)
+							FROM ULDSCMMSGREC REC,
+							  ULDSCMMSGRECDTL DTL
+							WHERE REC.CMPCOD =DTL.CMPCOD
+							AND REC.ARPCOD   = DTL.ARPCOD
+							AND REC.ARLIDR   = DTL.ARLIDR
+							AND REC.SEQNUM   = DTL.SEQNUM
+							AND REC.MSGSNDFLG='S'
+							AND DTL.CMPCOD   = ULD.CMPCOD
+											AND DTL.ULDNUM   =ULD.ULDNUM
+							  ) STKCHKDAT,
+							COALESCE(RECDTL.LOC,ULD.LOC) LOC ,
+							COALESCE(RECDTL.FACTYP,ULD.FACTYP)  FACTYP,
+							COALESCE(REC.ARLIDR, ULD.OPRARLIDR) OPRARLIDR,
+							COALESCE(rec.stkchkdat - %s , ULD.LSTMVTDAT) LSTMVTDAT,
+							COALESCE(RECDTL.ULDSTKSTA,'S') ULDSTKSTA,
+					 	(SELECT CASE WHEN arl2.aphcoduse = 2 THEN arl2.twoaphcod ELSE arl2.thraphcod END
+					 	        FROM SHRARLMST ARL2
+							WHERE ARL2.CMPCOD = ULD.CMPCOD
+							AND ARL2.ARLIDR   =ULD.OPRARLIDR
+							) OPRARLCOD,
+					 	(SELECT CASE WHEN arl1.aphcoduse = 2 THEN arl1.twoaphcod ELSE arl1.thraphcod END
+							FROM SHRARLMST ARL1
+							WHERE ARL1.CMPCOD = ULD.CMPCOD
+							AND ARL1.ARLIDR   =ULD.OWNARLIDR
+							) ULDOWRCOD,
+						   ( SELECT ULDMST.OWNARLIDR FROM ULDMST ULDMST
+						   WHERE ULDMST.CMPCOD = COALESCE(RECDTL.CMPCOD, ULD.CMPCOD)
+						   AND ULDMST.ULDNUM = COALESCE(RECDTL.ULDNUM, ULD.ULDNUM))OWNARLIDR
+						    ,
+								CASE WHEN 	(SELECT DIS.DISCOD
+							FROM ULDDIS DIS
+							WHERE DIS.CMPCOD = ULD.CMPCOD
+							AND DIS.ULDNUM   =ULD.ULDNUM
+							AND DIS.CLSSTA  <>'Y'
+							AND to_number(DIS.SEQNUM)   =
+							  (SELECT MAX((to_NUMBER(SEQNUM)))
+							  FROM ULDDIS MAXSEQ
+							  WHERE MAXSEQ.CMPCOD = ULD.CMPCOD
+							  AND MAXSEQ.ULDNUM   =ULD.ULDNUM
+							  )
+							)='M'
+              THEN 'M'
+              when ULDSTKSTA='M'
+              THEN 'M'
+              WHEN ULDSTKSTA='N'
+              THEN 'N'
+               WHEN ULDSTKSTA='F'
+              THEN 'F'
+              ELSE 'S'
+                END DISCOD
+						  FROM ULDSCMMSGREC REC
+						  JOIN ULDSCMMSGRECDTL RECDTL
+						  ON REC.CMPCOD    =RECDTL.CMPCOD
+						  AND REC.ARPCOD   =RECDTL.ARPCOD
+						  AND REC.SEQNUM   =RECDTL.SEQNUM
+						  AND REC.ARLIDR   =RECDTL.ARLIDR
+						  AND REC.MSGSNDFLG= 'D'
+						  FULL OUTER JOIN ULDMST ULD
+						  ON ULD.CMPCOD     =RECDTL.CMPCOD
+						  AND ULD.CURARP    =RECDTL.ARPCOD
+						  AND ULD.OPRARLIDR =RECDTL.ARLIDR
+						  AND ULD.ULDNUM    = RECDTL.ULDNUM
+						  LEFT OUTER JOIN SHRULDTYPMST TYPMST
+						  ON TYPMST.CMPCOD     = COALESCE(ULD.CMPCOD, REC.CMPCOD)
+						  AND TYPMST.ULDTYPCOD = SUBSTR(COALESCE(RECDTL.ULDNUM, ULD.ULDNUM),0,3)
+						  /*DYNAPLACEHOLDER*/
+						  )Z
+						LEFT OUTER JOIN ULDSCMMSGREC REC1
+						ON Z.CMPCOD       =REC1.CMPCOD
+						AND Z.CURARP      =REC1.ARPCOD
+						AND Z.OPRARLIDR      =REC1.ARLIDR
+						AND REC1.MSGSNDFLG= 'D'
+						WHERE Z.CMPCOD    = ?
+						AND Z.CURARP      = ?
+						AND Z.OPRARLIDR   =?
+						AND Z.LSTMVTDAT  <= ?
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>164</QRY:Id>
+				 <QRY:Source Name="uld.defaults.listSCMMessage" Type="NATIVE">
+						<![CDATA[
+	            SELECT ULDSCMMSGREC.CMPCOD,ULDSCMMSGREC.ARPCOD,ULDSCMMSGREC.SEQNUM,ULDSCMMSGREC.ARLIDR,
+                       ULDSCMMSGREC.STKCHKDAT,ULDSCMMSGREC.MSGSNDFLG,ULDSCMMSGRECDTL.ERRCOD,ULDSCMMSGRECDTL.ULDNUM
+
+				FROM ULDSCMMSGREC LEFT OUTER JOIN ULDSCMMSGRECDTL
+
+				 ON ( ULDSCMMSGREC.CMPCOD = ULDSCMMSGRECDTL.CMPCOD
+				AND    ULDSCMMSGREC.ARPCOD = ULDSCMMSGRECDTL.ARPCOD
+				AND    ULDSCMMSGREC.SEQNUM = ULDSCMMSGRECDTL.SEQNUM
+				AND    ULDSCMMSGREC.ARLIDR = ULDSCMMSGRECDTL.ARLIDR)
+
+				WHERE  ULDSCMMSGREC.CMPCOD =?
+				AND  ULDSCMMSGREC.ARPCOD =?
+				AND  ULDSCMMSGREC.ARLIDR =?
+
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+
+			<QRY:Definition>
+			   <QRY:Id>165</QRY:Id>
+				 <QRY:Source Name="uld.defaults.listULDErrorsInSCM" Type="NATIVE">
+						<![CDATA[
+	                SELECT ULDSCMMSGREC.CMPCOD,ULDSCMMSGREC.ARPCOD,ULDSCMMSGREC.ARLIDR,ULDSCMMSGREC.SEQNUM,
+                       ULDSCMMSGREC.STKCHKDAT,ULDSCMMSGRECDTL.ERRCOD,ULDSCMMSGRECDTL.ULDNUM ,ULDSCMMSGRECDTL.ULDSTKSTA,
+							    CASE SHRARLMST.APHCODUSE
+									   	WHEN 2
+									    THEN SHRARLMST.TWOAPHCOD
+										ELSE SHRARLMST.THRAPHCOD
+								END ARLCOD
+
+				FROM ULDSCMMSGREC LEFT OUTER JOIN ULDSCMMSGRECDTL
+
+
+				 ON ( ULDSCMMSGREC.CMPCOD = ULDSCMMSGRECDTL.CMPCOD
+				AND    ULDSCMMSGREC.ARPCOD = ULDSCMMSGRECDTL.ARPCOD
+				AND    ULDSCMMSGREC.SEQNUM = ULDSCMMSGRECDTL.SEQNUM
+				AND    ULDSCMMSGREC.ARLIDR = ULDSCMMSGRECDTL.ARLIDR)
+LEFT OUTER JOIN SHRARLMST
+				ON (   ULDSCMMSGREC.CMPCOD = SHRARLMST.CMPCOD
+				AND   ULDSCMMSGREC.ARLIDR = SHRARLMST.ARLIDR)
+
+				WHERE  ULDSCMMSGRECDTL.CMPCOD =?
+				AND  ULDSCMMSGRECDTL.ARPCOD =?
+				AND  ULDSCMMSGRECDTL.ARLIDR =?
+
+
+
+
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>166</QRY:Id>
+				 <QRY:Source Name="uld.defaults.checkforucminout" Type="NATIVE">
+						<![CDATA[
+			             SELECT REC.FLTCARIDR,REC.FLTNUM,REC.FLTSEQNUM,
+								   REC.ARPCOD,REC.CMPCOD,REC.MSGTYP,
+								   REC.SEQNUM,REC.FLTDAT,REC.ERRCOD AS UCMERRCOD,
+								   REC.LSTUPDUSR,
+								   RECDTL.ULDNUM,RECDTL.CNT,RECDTL.POU,
+								   RECDTL.ERRCOD AS ULDERRCOD,RECDTL.DMGSTA
+
+							FROM   ULDFLTMSGREC REC LEFT OUTER JOIN ULDFLTMSGRECDTL RECDTL
+
+											    ON REC.FLTCARIDR = RECDTL.FLTCARIDR
+												AND REC.FLTNUM =  RECDTL.FLTNUM
+												AND REC.FLTSEQNUM = RECDTL.FLTSEQNUM
+												AND REC.ARPCOD = RECDTL.ARPCOD
+												AND REC.CMPCOD = RECDTL.CMPCOD
+												AND REC.MSGTYP = RECDTL.MSGTYP
+												AND REC.SEQNUM = RECDTL.SEQNUM
+								WHERE
+									REC.CMPCOD = ?
+									AND REC.ARPCOD = ?
+									AND REC.FLTCARIDR = ?
+									AND REC.FLTNUM = ?
+									AND REC.FLTSEQNUM = ?
+									AND REC.MSGTYP = ?
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+
+			<QRY:Definition>
+			   <QRY:Id>167</QRY:Id>
+				 <QRY:Source Name="uld.defaults.findInMesssageAirports" Type="NATIVE">
+						<![CDATA[
+			            SELECT ARPCOD
+
+						FROM ULDFLTMSGREC
+
+						WHERE FLTCARIDR =?
+						AND  FLTNUM=?
+						AND FLTSEQNUM =?
+						AND CMPCOD=?
+						AND MSGTYP  ='IN'
+						AND ERRCOD IS NULL
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>168</QRY:Id>
+				 <QRY:Source Name="uld.defaults.sendSCMMessage" Type="NATIVE">
+						<![CDATA[
+			            WITH ULD AS(SELECT COALESCE(REC.CMPCOD,ULD.CMPCOD) CMPCOD,
+						  COALESCE(REC.ARPCOD,ULD.CURARP) ARPCOD,
+						  COALESCE(REC.ARLIDR,ULD.OPRARLIDR) ARLIDR,
+						  ? SEQNUM,COALESCE((SELECT STKCHKDAT
+						  FROM ULDSCMMSGREC
+						  WHERE SEQNUM=?
+						  AND CMPCOD  = ?
+						  AND ARPCOD  = ? 
+						  AND ARLIDR =? ),to_date(?,'YYYY-MM-DD HH24:MI:SS')) STKCHKDAT,
+						  REC.MSGSNDFLG MSGSNDFLG,
+						  RECDTL.ERRCOD ERRCOD ,
+						  ULD.ULDNUM ULDNUM,
+						  (SELECT DIS.DISCOD
+		        FROM ULDDIS DIS
+		        WHERE DIS.CMPCOD = ULD.CMPCOD
+		        AND DIS.ULDNUM   =ULD.ULDNUM
+		        AND DIS.CLSSTA  <>'Y'
+		        AND to_NUMBER(DIS.SEQNUM)   =
+		          (SELECT MAX((to_NUMBER(SEQNUM)))
+		          FROM ULDDIS MAXSEQ
+		          WHERE MAXSEQ.CMPCOD = ULD.CMPCOD
+		          AND MAXSEQ.ULDNUM   =ULD.ULDNUM
+		          )
+        )DISCOD,
+						  ULDSTKSTA
+						FROM ULDSCMMSGREC REC
+						JOIN ULDSCMMSGRECDTL RECDTL
+						ON REC.CMPCOD    =RECDTL.CMPCOD
+						AND REC.ARPCOD   =RECDTL.ARPCOD
+						AND REC.SEQNUM   =RECDTL.SEQNUM
+						AND REC.ARLIDR   =RECDTL.ARLIDR
+						AND RECDTL.SEQNUM=?
+						FULL OUTER JOIN ULDMST ULD
+						ON ULD.CMPCOD     =RECDTL.CMPCOD
+						AND ULD.CURARP    =RECDTL.ARPCOD
+						AND ULD.OPRARLIDR =RECDTL.ARLIDR
+						AND ULD.ULDNUM    = RECDTL.ULDNUM
+						 INNER JOIN SHRULDTYPMST TYPMST
+						  ON ULD.CMPCOD=TYPMST.CMPCOD
+						  AND ULD.ULDTYP=TYPMST.ULDTYPCOD
+						WHERE ULD.CMPCOD  = ?
+						AND ULD.CURARP    = ?
+						AND ULD.OPRARLIDR =?
+						/*DYNAPLACEHOLDER*/
+						ORDER BY ULD.ULDNUM),
+						ULDCNT AS (SELECT COUNT(*) as cnt from uld where uldstksta = 'F' OR uldstksta = 'N')
+
+						SELECT * FROM ULD WHERE ULDSTKSTA = 'F' OR ULDSTKSTA = 'N' and (select cnt from ULDCNT) > 0
+							UNION
+                        SELECT * FROM ULD WHERE ULDSTKSTA NOT IN ('M','F','N') OR ULDSTKSTA IS NULL and 0 = (select cnt from ULDCNT)
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+			<QRY:Definition>
+			   <QRY:Id>169</QRY:Id>
+				 <QRY:Source Name="uld.defaults.listULDPoolOwner" Type="NATIVE">
+						<![CDATA[
+					SELECT   ULDPOLOWNMST.CMPCOD, ULDPOLOWNMST.ARLONE,
+					         ULDPOLOWNMST.ARLTWO, ULDPOLOWNMST.ARPCOD,
+					         ULDPOLOWNMST.RMK, ULDPOLOWNMST.LSTUPDUSR,
+					         ULDPOLOWNMST.LSTUPDTIM,
+					         ULDPOLSEGEXP.SEQNUM, ULDPOLSEGEXP.ORGCOD,
+					         ULDPOLSEGEXP.DSTCOD,
+							 ULDPOLOWNMST.SERNUM,
+					         ULDPOLSEGEXP.ARLONE AS ARLONEIDR,
+					         ULDPOLSEGEXP.arltwo AS ARLTWOIDR,
+					         (SELECT CASE WHEN aphcoduse = 2 THEN twoaphcod ELSE thraphcod END
+					            FROM SHRARLMST
+					           WHERE CMPCOD= ULDPOLOWNMST.CMPCOD
+					             AND ARLIDR = ULDPOLOWNMST.ARLONE)
+					                                    AIRLINEONECOD,
+					         (SELECT CASE WHEN aphcoduse = 2 THEN twoaphcod ELSE thraphcod END
+					            FROM SHRARLMST
+					           WHERE CMPCOD = ULDPOLOWNMST.CMPCOD
+					             AND ARLIDR = ULDPOLOWNMST.ARLTWO)
+					                                    AIRLINETWOCOD
+					    FROM ULDPOLOWNMST LEFT OUTER JOIN ULDPOLSEGEXP ON (
+					    ULDPOLOWNMST.CMPCOD = ULDPOLSEGEXP.CMPCOD
+					     AND ULDPOLOWNMST.ARLONE = ULDPOLSEGEXP.ARLONE
+					     AND ULDPOLOWNMST.ARLTWO = ULDPOLSEGEXP.ARLTWO
+					     AND ULDPOLOWNMST.SERNUM= ULDPOLSEGEXP.SERNUM)
+					     WHERE ULDPOLOWNMST.CMPCOD = ?
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+		<QRY:Definition>
+			   <QRY:Id>170</QRY:Id>
+				 <QRY:Source Name="uld.defaults.listSCMMessageLOV" Type="NATIVE">
+						<![CDATA[
+			            SELECT ULDSCMMSGREC.CMPCOD,ULDSCMMSGREC.ARPCOD,
+						        ULDSCMMSGREC.ARLIDR, ULDSCMMSGREC.SEQNUM,
+						        ULDSCMMSGREC.STKCHKDAT,ULDSCMMSGREC.MSGSNDFLG
+
+						FROM ULDSCMMSGREC
+
+						WHERE  ULDSCMMSGREC.CMPCOD =?
+						AND  ULDSCMMSGREC.ARPCOD =?
+						AND  ULDSCMMSGREC.ARLIDR = ?
+						AND ULDSCMMSGREC.MSGSNDFLG  <>'I'
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+		<QRY:Definition>
+			   <QRY:Id>171</QRY:Id>
+				 <QRY:Source Name="uld.defaults.findAirlineIdentifierForSCM" Type="NATIVE">
+						<![CDATA[
+			            SELECT ARLIDR
+						FROM  ULDSCMMSGRECDTL
+						WHERE CMPCOD =?
+						AND   ULDNUM = ?
+						AND   SEQNUM =?
+						AND   ARPCOD =?
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+		<QRY:Definition>
+			   <QRY:Id>172</QRY:Id>
+				 <QRY:Source Name="uld.defaults.findULDsForSCMFromMonitorULDStock" Type="NATIVE">
+						<![CDATA[
+SELECT
+    z.uldnum AS uldnum,
+    z.curarp AS curarp,
+    z.uldtyp AS uldtyp,
+    z.arlcod AS arlcod,
+    z.damaged AS damaged,
+    z.loaned AS loaned,
+    z.loanedin AS loanedin,
+    z.total AS tot,
+    z.nonopr AS nonopr,
+    z.total + loanedin AS total,
+    z.owned AS owned,
+    z.maxqty AS maxqty,
+    z.minqty AS minqty,
+    CASE
+            WHEN total = 0 THEN loaned - nonopr + loanedin
+            ELSE total + loanedin - nonopr
+        END
+    AS avlble
+FROM
+    (
+        SELECT DISTINCT
+            mst.uldnum,
+            mst.curarp,
+            mst.uldtyp,
+            CASE
+                    WHEN aphcoduse = 2 THEN twoaphcod
+                    ELSE thraphcod
+                END
+            arlcod,
+            stk.maxqty,
+            stk.minqty,
+            (
+                SELECT
+                    dis.discod
+                FROM
+                    ulddis dis
+                WHERE
+                    dis.cmpcod = mst.cmpcod
+                    AND dis.uldnum = mst.uldnum
+                    AND dis.clssta <> 'Y'
+                    AND dis.seqnum = (
+                        SELECT
+                            MAX( seqnum)
+                        FROM
+                            ulddis maxseq
+                        WHERE
+                            maxseq.cmpcod = mst.cmpcod
+                            AND maxseq.uldnum = mst.uldnum
+                    )
+            ) discod,
+            (
+                SELECT
+                    COUNT(dmgsta)
+                FROM
+                    uldmst uld
+                WHERE
+                    uld.cmpcod = mst.cmpcod
+                    AND uld.oprarlidr = mst.oprarlidr
+                    AND uld.curarp = mst.curarp
+                    AND uld.uldtyp = mst.uldtyp
+                    AND uld.dmgsta != 'N'
+            ) damaged,
+            (
+                SELECT
+                    COUNT(lonrefnum)
+                FROM
+                    uldmst uld
+                WHERE
+                    uld.cmpcod = mst.cmpcod
+                    AND uld.curarp = mst.curarp
+                    AND uld.uldtyp = mst.uldtyp
+                    AND uld.ownarlidr = ?
+                    AND uld.lonrefnum > 0
+            ) loaned,
+            (
+                SELECT
+                    COUNT(lonrefnum)
+                FROM
+                    uldmst uld
+                WHERE
+                    uld.cmpcod = mst.cmpcod
+                    AND uld.curarp = mst.curarp
+                    AND uld.uldtyp = mst.uldtyp
+                    AND uld.oprarlidr = ?
+                    AND uld.oprarlidr <> uld.ownarlidr
+                    AND uld.lonrefnum > 0
+            ) loanedin,
+            (
+                SELECT
+                    COUNT(ovlsta)
+                FROM
+                    uldmst uld
+                WHERE
+                    uld.cmpcod = mst.cmpcod
+                    AND uld.oprarlidr = mst.oprarlidr
+                    AND uld.curarp = mst.curarp
+                    AND uld.uldtyp = mst.uldtyp
+                    AND uld.ovlsta = 'N'
+            ) nonopr,
+            (
+                SELECT
+                    COUNT(*)
+                FROM
+                    uldmst uld
+                WHERE
+                    uld.cmpcod = mst.cmpcod
+                    AND uld.oprarlidr = mst.oprarlidr
+                    AND uld.curarp = mst.curarp
+                    AND uld.uldtyp = mst.uldtyp
+                    AND uld.lonrefnum = 0
+            ) total,
+            (
+                SELECT
+                    COUNT(ovlsta)
+                FROM
+                    uldmst uld
+                WHERE
+                    uld.cmpcod = mst.cmpcod
+                    AND uld.ownarlidr = mst.oprarlidr
+                    AND uld.curarp = mst.curarp
+                    AND uld.uldtyp = mst.uldtyp
+                    AND uld.ownarp = mst.curarp
+            ) as owned
+        FROM
+            uldmst mst
+            INNER JOIN shrarlmst shr ON ( mst.cmpcod = shr.cmpcod
+                                          AND mst.oprarlidr = shr.arlidr )
+            LEFT OUTER JOIN uldstkcfg stk ON ( mst.cmpcod = stk.cmpcod
+                                               AND mst.oprarlidr = stk.arlidr
+                                               AND mst.curarp = stk.arpcod
+                                               AND mst.uldtyp = stk.uldtypcod )
+        WHERE
+            mst.cmpcod = ?
+            AND mst.oprarlidr = ?
+
+
+						]]>
+					</QRY:Source>
+			</QRY:Definition>
+
+
+		<QRY:Definition>
+			   <QRY:Id>173</QRY:Id>
+				 <QRY:Source Name="uld.defaults.checkforpoolowners" Type="NATIVE">
+						<![CDATA[
+
+						SELECT 1 AS RESULT
+						FROM ULDPOLOWNMST MST,ULDPOLOWNDTL DTL
+						WHERE
+							MST.CMPCOD = DTL.CMPCOD AND
+							MST.FLTCARIDR = DTL.FLTCARIDR AND
+							MST.SEQNUM = DTL.SEQNUM AND
+
+							MST.CMPCOD = ? AND
+							MST.FLTCARIDR = ? AND
+
+							MST.ORG = ? AND
+							MST.DST = ? AND
+
+							DTL.POLARLIDR = ? AND
+							DTL.POLFLTNUM = ? AND
+
+							? BETWEEN DTL.FRMDAT AND DTL.TOODAT
+
+						]]>
+					</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+		<QRY:Id>174</QRY:Id>
+		<QRY:Source Name="uld.defaults.finduldlistforhht" Type="NATIVE">
+       <![CDATA[
+			SELECT ULD.CMPCOD, ULD.ULDNUM, ULD.LOC, ULD.DMGSTA, ULD.OVLSTA, ULD.CURARP,
+			       ULD.OWNARP, SHRULD.ULDGRPCOD, ULD.ULDTYP, ULD.LSTMVTDAT,ULD.ULDNAT,
+				   SHRULD.CTRCOD,SHRULD.TAREWGT,SHRULD.MAXGRSWGT,ULD.LSTUPDTIM ,ULD.LSTUPDUSR
+			FROM ULDMST ULD LEFT OUTER JOIN SHRULDTYPMST SHRULD ON
+				   SHRULD.CMPCOD = ULD.CMPCOD AND
+				   SHRULD.ULDTYPCOD = ULD.ULDTYP
+			WHERE  ULD.CMPCOD = ? AND
+				   ULD.ULDNUM = ?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+	<!-- Commented as part of ICRD-21184 -->
+	<!-- <QRY:Definition>
+		<QRY:Id>175</QRY:Id>
+		<QRY:Source Name="uld.defaults.findownercode" Type="NATIVE">
+       <![CDATA[
+		SELECT MST.APHCODUSE||'~'||MST.ARLIDR AS ARLDTL
+			FROM   SHRARLMST MST
+			WHERE
+				  MST.CMPCOD = ?
+					AND (   (    MST.TWOAPHCOD = ?
+						AND MST.APHCODUSE = '2'
+					   )
+					OR (MST.THRAPHCOD = ? AND MST.APHCODUSE = '3'
+					   ) )
+		   ORDER BY MST.APHCODUSE
+		]]>
+	</QRY:Source>
+	</QRY:Definition> -->
+
+	 <QRY:Definition>
+		<QRY:Id>176</QRY:Id>
+		<QRY:Source Name="uld.defaults.findexceptionflights" Type="NATIVE">
+       <![CDATA[
+
+		SELECT FLTCARIDR,FLTNUM,FLTDAT,LEGSERNUM,FLTCARCOD,FLTSEQNUM
+		FROM ULDUCMEXPFLT
+		WHERE
+			  CMPCOD = ? AND
+			  POL=?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>177</QRY:Id>
+		<QRY:Source Name="uld.defaults.findulds" Type="NATIVE">
+       <![CDATA[
+			SELECT ULDNUM
+			FROM ULDMST
+			WHERE CMPCOD = ?
+			AND (SELECT (ULDDEPDAT + numtoyminterval(1,'YEAR')) from dual) <= ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>178</QRY:Id>
+		<QRY:Source Name="uld.defaults.findmissingulds" Type="NATIVE">
+       <![CDATA[
+			SELECT ULDNUM
+ 			FROM ULDDIS
+			WHERE
+	  			CMPCOD = ? AND DISCOD = 'M'
+	  		AND DISDAT <  (select sysdate - numtoyminterval(?,'MONTH') from dual)
+
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>179</QRY:Id>
+		<QRY:Source Name="uld.defaults.finduldobjects" Type="OBJECT">
+       <![CDATA[
+			SELECT uld from
+			com.ibsplc.icargo.business.uld.defaults.ULD as uld
+			WHERE
+				uld.uldPK.companyCode = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>180</QRY:Id>
+		<QRY:Source Name="uld.defaults.findalluldobjects" Type="OBJECT">
+       <![CDATA[
+			SELECT uld from
+			com.ibsplc.icargo.business.uld.defaults.ULD as uld
+			WHERE
+				uld.uldPK.companyCode = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>181</QRY:Id>
+		<QRY:Source Name="uld.defaults.findmissinguldobjects" Type="OBJECT">
+       <![CDATA[
+			SELECT uldDiscrepancy from
+				com.ibsplc.icargo.business.uld.defaults.misc.ULDDiscrepancy as uldDiscrepancy
+			WHERE
+				uldDiscrepancy.uldDiscrepancyPK.companyCode = ?
+				AND uldDiscrepancy.discrepancyCode = 'M'
+				AND uldDiscrepancy.closeStatus = 'N'
+	  			AND uldDiscrepancy.discrepancyDate <  (select sysdate - numtoyminterval(?,'MONTH') from dual)
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+
+
+	<QRY:Definition>
+		<QRY:Id>182</QRY:Id>
+		<QRY:Source Name="uld.defaults.finducmnolov" Type="NATIVE">
+       <![CDATA[
+			SELECT SEQNUM AS UCMNO
+			FROM ULDFLTMSGREC REC
+			WHERE REC.CMPCOD = ?
+				  AND REC.FLTCARIDR = ?
+				  AND REC.FLTNUM = ?
+				  AND REC.FLTSEQNUM = ?
+				  AND REC.ARPCOD = ?
+	  			  AND REC.MSGTYP = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+		<QRY:Id>183</QRY:Id>
+		<QRY:Source Name="uld.defaults.finduldcountsformovement" Type="NATIVE">
+       <![CDATA[
+	        SELECT MVTSEQNUM||'~'||COUNT(*) AS VAL
+			FROM ULDMVTMST
+			WHERE
+			  CMPCOD = ?
+			  AND MVTSEQNUM IN
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+			<QRY:Id>184</QRY:Id>
+			<QRY:Source Name="uld.defaults.checkforduplicatefacilitycod" Type="NATIVE">
+			       <![CDATA[
+						SELECT FACCOD
+						FROM ULDARPLOC
+						WHERE CMPCOD = ?
+						AND ARPCOD = ?
+
+					]]>
+				</QRY:Source>
+	</QRY:Definition>
+
+
+        <!-- added by Kumar Prashant for ULDHistory-->
+	<QRY:Definition>
+		<QRY:Id>185</QRY:Id>
+		<QRY:Source Name="uld.defaults.listuldhistory" Type="NATIVE">
+       <![CDATA[
+			SELECT * FROM ULD_VIEW
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>186</QRY:Id>
+	<QRY:Source Name="uld.defaults.checkforduplicatecrn" Type="NATIVE">
+	       <![CDATA[
+				SELECT CRN
+				FROM ULDTXNMST
+				WHERE CMPCOD = ?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+	<!-- Added by Sreekumar S for ANA CR 1471-->
+    <QRY:Definition>
+		<QRY:Id>187</QRY:Id>
+	<QRY:Source Name="uld.defaults.getairlinecode" Type="NATIVE">
+	       <![CDATA[
+				SELECT DEFARL
+  				FROM ULDUSRMST
+ 				WHERE CMPCOD = ? AND USRCOD = ?
+
+
+			]]>
+		</QRY:Source>
+   </QRY:Definition>
+   <!-- Added by Sreekumar S for ANA CR 1471 ends-->
+
+	<!-- Added by Nisha for ULDFormat Validation starts -->
+	<!-- Commented as part of ICRD 21184 -->
+	<!-- <QRY:Definition>
+				<QRY:Id>188</QRY:Id>
+					<QRY:Source Name="uld.defaults.findalphacodeinuse" Type="NATIVE">
+					       <![CDATA[
+								SELECT MST.APHCODUSE ARLDTL
+								  FROM SHRARLMST MST
+								 WHERE CMPCOD = ?
+								   AND (   (    MST.TWOAPHCOD = ?
+								            AND MST.APHCODUSE = '2'
+								           )
+								        OR (THRAPHCOD = ? AND MST.APHCODUSE = '3'
+								           ) )
+								           ORDER BY MST.APHCODUSE
+
+							]]>
+						</QRY:Source>
+	</QRY:Definition> -->
+	<!-- Added by Nisha for ULDFormat Validation ends -->
+
+
+	<!-- Added by Sreekumar S for ANA CR 1478-->
+    <QRY:Definition>
+	<QRY:Id>189</QRY:Id>
+	<QRY:Source Name="uld.defaults.findcurrentairport" Type="NATIVE">
+	       <![CDATA[
+				SELECT CURARP
+  				FROM ULDMST
+ 				WHERE CMPCOD = ? AND ULDNUM = ?
+
+
+			]]>
+		</QRY:Source>
+   </QRY:Definition>
+   <!-- Added by Sreekumar S for ANA CR 1478 ends-->
+
+
+		<!-- Added by Tarun for HandledCarrier starts -->
+	<QRY:Definition>
+				<QRY:Id>190</QRY:Id>
+					<QRY:Source Name="uld.defaults.findhandledcarrier" Type="NATIVE">
+					       <![CDATA[
+								SELECT CMPCOD,ARLCOD,STNCOD,ARLNAM
+								FROM ULDHDLCAR
+								WHERE
+								CMPCOD = ?
+
+							]]>
+					</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by Tarun for HandledCarrier ends -->
+
+	<!-- Added by Sreekumar S for AirNZ431 -->
+	<QRY:Definition>
+				<QRY:Id>191</QRY:Id>
+					<QRY:Source Name="uld.defaults.findstockstatusforhht" Type="NATIVE">
+					       <![CDATA[
+								SELECT ULD.CURARP,ULD.ULDNUM ,DIS.DISCOD,
+								   DIS.FACTYP , DIS.LOC , ' ' AS RELTOO
+								FROM ULDMST ULD, ULDDIS DIS
+								WHERE ULD.CMPCOD = DIS.CMPCOD
+									AND ULD.ULDNUM = DIS.ULDNUM
+								    AND DIS.CLSSTA = 'N'
+
+							]]>
+					</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by Sreekumar S for AirNZ431 ends -->
+
+	<!-- Added by Sreekumar S for AirNZ434 -->
+	<QRY:Definition>
+				<QRY:Id>192</QRY:Id>
+					<QRY:Source Name="uld.defaults.populatelocationlov" Type="NATIVE">
+					       <![CDATA[
+								SELECT FACCOD||'~'||FACDES AS FAC FROM
+									ULDARPLOC WHERE
+
+							]]>
+					</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by Sreekumar S for AirNZ434 ends -->
+
+	<!-- Added by Sreekumar S for AirNZ434 -->
+	<QRY:Definition>
+		<QRY:Id>193</QRY:Id>
+		<QRY:Source Name="uld.defaults.findulddiscrepanciesobjects" Type="OBJECT">
+       <![CDATA[
+			SELECT uLDDiscrepancy from
+				com.ibsplc.icargo.business.uld.defaults.misc.ULDDiscrepancy as uLDDiscrepancy
+					WHERE uLDDiscrepancy.closeStatus = 'N'
+			    AND uLDDiscrepancy.uldDiscrepancyPK.companyCode = ?
+				AND uLDDiscrepancy.uldDiscrepancyPK.uldNumber = ?
+
+		 ]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by Sreekumar S for AirNZ434 ends-->	
+													   
+	<!-- Added by Sreekumar S for QF35952 -->
+	<QRY:Definition>
+		<QRY:Id>193</QRY:Id>
+		<QRY:Source Name="uld.defaults.findulddiscrepanciesobjectsatairport" Type="OBJECT">
+       <![CDATA[
+			SELECT uLDDiscrepancy from
+				com.ibsplc.icargo.business.uld.defaults.misc.ULDDiscrepancy as uLDDiscrepancy
+					WHERE uLDDiscrepancy.closeStatus = 'N'
+			    AND uLDDiscrepancy.uldDiscrepancyPK.companyCode = ?
+				AND uLDDiscrepancy.reportingStation = ?
+
+		 ]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by Sreekumar S for AirNZ434 ends-->
+
+
+		<QRY:Definition>
+		<QRY:Id>194</QRY:Id>
+		<QRY:Source Name="uld.defaults.findpollocation" Type="OBJECT">
+       <![CDATA[
+			SELECT LOCATION FROM ULDDIS WHERE CMPCOD = ?
+
+		 ]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<!-- Added by Tarun  for AirNZ312 -->
+	<!-- Modified by A-7359  for ICRD-224601 -->
+	<QRY:Definition>
+		<QRY:Id>195</QRY:Id>
+		<QRY:Source Name="uld.defaults.findulddamagerepairdetails" Type="NATIVE">
+			<![CDATA[
+					   SELECT  MST.ULDNUM ,MST.OVLSTA , MST.DMGSTA ,MST.SPR , MST.INVRPT , MST.RPRSTA ,
+						MST.LSTUPDTIM AS MSTLSTUPDTIM ,MST.LSTUPDUSR AS MSTLSTUPDUSR,MST.CMPCOD,
+						RPR.RPRARP, RPR.RPRDAT ,RPR.RPRHED ,
+						RPR.RPRRMK , RPR.RPRSEQNUM  ,  RPR.LSTUPDUSR ,
+						RPR.LSTUPDTIM,RPR.RPRAMT , RPR.DISRPRCUR,RPR.RPRSEQNUM,
+						RPRDTL.DMGREFNUM AS RPRDMGREFNUM,
+					    DMG.DMGPOS ,DMG.DMGSEQNUM , DMG.DMGREFNUM , DMG.DMGDES,DMG.DMGSEC,DMG.DMGSVT ,
+						DMG.LSTUPDUSR AS DMGLSTUPDUSR , DMG.LSTUPDTIM AS DMGLSTUPDTIM , DMG.RMK , DMG.DMGRPTDAT ,
+						DMG.RPTARP , DMG.CLSDAT , DMG.PTYCOD,DMG.PTYTYP,DMG.LOC,DMG.FACTYP,DMG.DMGNOTPNT, DMG.PICFLG,
+						(select count(*) from ulddmgpic where cmpcod=DMG.CMPCOD and ULDNUM= DMG.ULDNUM and SEQNUM=DMG.DMGSEQNUM) IMGCNT,DMGPIC.IMGSEQNUM 
+							FROM ULDMST MST
+								LEFT OUTER JOIN ULDRPR RPR
+								ON	MST.CMPCOD = RPR.CMPCOD AND
+							     MST.ULDNUM = RPR.ULDNUM
+									LEFT OUTER JOIN ULDRPRDTL RPRDTL
+									ON RPR.CMPCOD = RPRDTL.CMPCOD AND
+										RPR.ULDNUM = RPRDTL.ULDNUM AND
+										RPR.RPRSEQNUM = RPRDTL.RPRSEQNUM
+								
+							LEFT OUTER JOIN  ULDDMG DMG
+							ON DMG.CMPCOD = MST.CMPCOD
+							AND DMG.ULDNUM   = MST.ULDNUM
+							LEFT OUTER JOIN ULDDMGPIC DMGPIC
+                            ON DMGPIC.CMPCOD=DMG.CMPCOD
+                            AND DMGPIC.ULDNUM  = DMG.ULDNUM
+                            AND DMGPIC.SEQNUM  =DMG.DMGSEQNUM
+						WHERE
+							MST.CMPCOD = ?  AND
+							MST.ULDNUM = ?
+							ORDER BY DMG.DMGSEQNUM
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by Tarun S for AirNZ312  ends-->
+	 <!-- Added by Preet  for AirNZ519 starts-->
+           <QRY:Definition>
+			<QRY:Id>196</QRY:Id>
+			<QRY:Source Name="uld.defaults.findintuldmvthistory" Type="NATIVE">
+	       <![CDATA[
+				SELECT DTL.CMPCOD, DTL.AGTCOD, DTL.AGTNAM,
+				       DTL.MVTDAT, DTL.CNT,DTL.RTNSTA, DTL.FRMLOC, DTL.TOOLOC,
+				       (CASE
+					     WHEN DTL.MVTTYP = 'D' THEN 'DUMMY'
+					     						ELSE 'ACTUAL'
+					   	END
+						)MVTTYP, DTL.RMK, DTL.INTSEQNUM,
+				       DTL.INTSERNUM, DTL.ULDNUM  ,MST.ARPCOD
+				  FROM ULDINTMVTDTL DTL
+				  INNER JOIN ULDINTMVTMST MST
+ 				  ON MST.CMPCOD=DTL.CMPCOD
+				  AND MST.ULDNUM=DTL.ULDNUM
+				  AND MST.INTSEQNUM=DTL.INTSEQNUM
+				  WHERE DTL.CMPCOD = ?
+	              
+			 ]]>
+		 </QRY:Source>
+	    </QRY:Definition>
+
+     <!-- Added by Preet  for AirNZ519 ends-->
+
+
+
+	 <!-- Added by Sreekumar S  for AirNZ421 starts-->
+           <QRY:Definition>
+			<QRY:Id>197</QRY:Id>
+			<QRY:Source Name="uld.defaults.findauditenquirydetails" Type="NATIVE">
+	       <![CDATA[
+			   SELECT CMPCOD,ACTCOD, AUDRMK, ADLINF, STNCOD, UPDUSR,
+			   UPDTXNTIM, UPDTXNTIMUTC
+			   FROM ULDMSTAUD
+			   WHERE CMPCOD = ?
+
+			 ]]>
+		 </QRY:Source>
+	    </QRY:Definition>
+     <!-- Added by Sreekumar S  for AirNZ421 ends-->
+
+	 <!-- Added by Asharaf Binu P  for AirNZ449 starts-->
+           <QRY:Definition>
+			<QRY:Id>198</QRY:Id>
+			<QRY:Source Name="uld.defaults.finduldstockdeviation" Type="NATIVE">
+	       <![CDATA[
+			 SELECT DISTINCT MST.CURARP ,MST.ULDGRPCOD , MST.ULDTYP , MST.ULDNAT,
+				(SELECT COUNT (* ) FROM ULDMST ULD 
+				WHERE ULD.CMPCOD = MST.CMPCOD 
+				AND ULD.OPRARLIDR = MST.OPRARLIDR   
+				AND ULD.CURARP = MST.CURARP 
+				AND ULD.ULDTYP = MST.ULDTYP 
+				AND ULD.ULDNAT = MST.ULDNAT   
+				AND ULD.RELTOO IS NULL
+				AND ULD.TRNSTA <> 'Y'
+				AND ULD.OVLSTA <> 'L')-
+				(SELECT COUNT (OVLSTA ) FROM ULDMST ULD
+				 WHERE ULD.CMPCOD = MST.CMPCOD 
+				 AND ULD.OPRARLIDR = MST.OPRARLIDR   
+				 AND ULD.CURARP = MST.CURARP 
+				 AND ULD.ULDTYP = MST.ULDTYP 
+				 AND ULD.ULDNAT = MST.ULDNAT   
+				 AND ULD.OVLSTA = 'N')SYSAVAILABLE, COALESCE(CFG.MINQTY,0)MINQTY ,COALESCE(CFG.MAXQTY,0)MAXQTY
+				FROM ULDMST MST INNER  JOIN ULDSTKCFG CFG
+				ON MST.CMPCOD = CFG.CMPCOD
+				AND MST.OPRARLIDR = CFG.ARLIDR
+				AND MST.CURARP = CFG.ARPCOD
+				AND MST.ULDTYP = CFG.ULDTYPCOD
+				AND MST.ULDNAT = CFG.ULDNAT
+				WHERE
+				 
+				 MST.CMPCOD = ?
+				 ORDER BY MST.CURARP , MST.ULDGRPCOD,MST.ULDTYP
+			 ]]>
+		 </QRY:Source>
+	    </QRY:Definition>
+     <!-- Added by Asharaf Binu   for AirNZ421 ends-->
+
+	 <!-- Added by Asharaf Binu P  for AirNZ 520 starts-->
+           <QRY:Definition>
+			<QRY:Id>199</QRY:Id>
+			<QRY:Source Name="uld.defaults.findulddiscrepanciesforalert" Type="NATIVE">
+	       <![CDATA[
+				SELECT DIS.ULDNUM
+				  ||'~'
+				  ||DIS.DISCOD AS ULDNUMDISCOD
+				FROM ULDDIS DIS
+				WHERE CMPCOD = ?
+				AND DIS.DISDAT < %s
+
+			 ]]>
+		 </QRY:Source>
+	    </QRY:Definition>
+     <!-- Added by Asharaf Binu   for AirNZ520 ends-->
+
+	 <!-- Added by Tarun for CRQ_312_AirNZ  starts -->
+	<QRY:Definition>
+		<QRY:Id>200</QRY:Id>
+			<QRY:Source Name="uld.defaults.findulddamagepictures" Type="NATIVE">
+				<![CDATA[
+					SELECT DMGPIC,IMGSEQNUM,PICTYP,SEQNUM,ULDNUM,PICFILNAM FROM
+						ULDDMGPIC
+							WHERE
+								ULDDMGPIC.CMPCOD = ?  AND
+								ULDDMGPIC.ULDNUM = ?
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by Tarun for CRQ_312_AirNZ  ends -->
+
+	<!-- Added by Sreekumar S for ULD348 starts -->
+	<QRY:Definition>
+		<QRY:Id>201</QRY:Id>
+			<QRY:Source Name="uld.defaults.findcpmulddetails" Type="NATIVE">
+				<![CDATA[
+				SELECT MST.FLTCARIDR,MST.FLTNUM,MST.FLTSEQNUM,
+		        MST.LEGSERNUM,MST.ARPCOD,MST.CMPCOD,
+			    MST.FLTDAT,MST.LSTUPDUSR,
+			    DTL.ULDNUM,DTL.POU,DTL.CNT
+			    FROM ULDFLTMSG MST , ULDFLTMSGDTL DTL
+				   WHERE MST.CMPCOD = DTL.CMPCOD
+					   AND MST.FLTSEQNUM = DTL.FLTSEQNUM
+					   AND MST.FLTCARIDR = DTL.FLTCARIDR
+					   AND MST.FLTNUM = DTL.FLTNUM
+					   AND MST.LEGSERNUM = DTL.LEGSERNUM
+					   AND MST.ARPCOD = DTL.ARPCOD
+					   AND MST.CMPCOD =  ?
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by Sreekumar S for ULD348  ends -->
+
+
+
+
+	<!-- Added by Manaf for QF1009 starts -->
+	<QRY:Definition>
+	 	<QRY:Id>202</QRY:Id>
+	 		<QRY:Source Name="uld.defaults.listULDDamageChecklistMaster" Type="NATIVE">
+	 	       <![CDATA[
+	 				SELECT ULDDMGCHKLST.CMPCOD, ULDDMGCHKLST.SEC, ULDDMGCHKLST.DESCRPTIN,
+						ULDDMGCHKLST.PNT, ULDDMGCHKLST.SEQNUM, ULDDMGCHKLST.LSTUPDTIM,
+	 				       ULDDMGCHKLST.LSTUPDUSR
+	 				FROM ULDDMGCHKLST LEFT OUTER JOIN SHRONETIM SHR ON SHR.FLDVAL = ULDDMGCHKLST.SEC
+						AND SHR.CMPCOD = ULDDMGCHKLST.CMPCOD
+	 				WHERE  ULDDMGCHKLST.CMPCOD = ?
+				
+
+	 			]]>
+	 		</QRY:Source>
+		</QRY:Definition>
+
+
+	<!-- Added by A-2883 for CR AirNZ511  -->
+	<QRY:Definition>
+		<QRY:Id>89</QRY:Id>
+		<QRY:Source Name="uld.defaults.finduldinventorydetails" Type="NATIVE">
+			<![CDATA[
+				SELECT PLN.CMPCOD, PLN.ARPCOD,PLN.ULDTYP,PLN.SEQNUM,DTL.SERNUM,DTL.REQQTY,
+						DTL.DAT,DTL.RMK FROM ULDINVPLN PLN , ULDINVPLNDTL DTL
+							WHERE PLN.CMPCOD = DTL.CMPCOD
+								AND PLN.ARPCOD = DTL.ARPCOD
+								AND PLN.ULDTYP = DTL.ULDTYP
+								AND PLN.SEQNUM = DTL.SEQNUM
+								AND DTL.CMPCOD = ?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by A-3429 for CR Qf1022-->
+	<QRY:Definition>
+		<QRY:Id>90</QRY:Id>
+		<QRY:Source Name="uld.defaults.finduldhistorycounts" Type="NATIVE">
+			<![CDATA[
+				SELECT (
+						SELECT COUNT(*) FROM ULDTXNMST TXN
+						WHERE  TXN.CMPCOD =  ?
+						AND    TXN.ULDNUM = ?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!--  ADDED BY JISHA FOR QF1022 STARTS -->
+	<QRY:Definition>
+		<QRY:Id>91</QRY:Id>
+	<QRY:Source Name="uld.defaults.findULDActionHistory" Type="NATIVE">
+				<![CDATA[
+						SELECT CASE
+               WHEN UCM.MSGSNDFLG =
+                                  'O'
+                       THEN 'UCM PROCESSED'
+               ELSE 'UCM SENT'
+			       END as TRANSACTION,
+			       UCM.LSTUPDTIM AS DAT, UCM.ARPCOD,
+			       UCM.SPLINF AS RMK
+			  FROM ULDFLTMSGREC UCM, ULDFLTMSGRECDTL UCMULD
+			 WHERE UCM.CMPCOD = UCMULD.CMPCOD
+			   AND UCM.FLTCARIDR = UCMULD.FLTCARIDR
+			   AND UCM.FLTNUM = UCMULD.FLTNUM
+			   AND UCM.FLTSEQNUM = UCMULD.FLTSEQNUM
+			   AND UCM.ARPCOD = UCMULD.ARPCOD
+			   AND UCM.MSGTYP = UCMULD.MSGTYP
+			   AND UCM.SEQNUM = UCMULD.SEQNUM
+			   AND (
+				UCM.UCMMSGSRC != 'MFT'
+				OR (
+					UCM.UCMMSGSRC = 'MFT'
+					AND EXISTS (
+						SELECT
+							1
+						FROM
+							SHRMSGCFGMST
+						WHERE
+							CMPCOD = UCM.CMPCOD
+							AND MSGTYP = 'UCM'
+							AND TXNIDR IN ('OPR_SCREEN','SCREEN') 
+							AND PRFSTA = 'A'
+					)
+				)
+			)
+			   AND UCM.CMPCOD = ?
+			   AND UCMULD.ULDNUM = ?
+UNION ALL
+SELECT CASE
+			               WHEN AUD.ACTCOD =
+			                           'ULDLUCPRC'
+			                       THEN 'LUC PROCESSED'
+			               WHEN AUD.ACTCOD =
+			                           'ULDLUCGEN'
+			                       THEN 'LUC SENT'
+			               WHEN AUD.ACTCOD =
+			                           'ULDMUCGEN'
+			                       THEN 'MUC SENT'
+			               WHEN AUD.ACTCOD =
+			                           'MUCMSGPRC'
+			                       THEN 'MUC PROCESSED'
+			               WHEN AUD.ACTCOD =
+			                           'ULDSCMPRC'
+			                       THEN 'SCM PROCESSED'
+			               WHEN AUD.ACTCOD =
+			                           'ULDCPMPRC'
+			                       THEN 'CPM PROCESSED'
+			               WHEN AUD.ACTCOD ='ULDSCMSNT'
+                      				 THEN 'SCM SENT'
+			       END as TRANSACTION,
+			       AUD.UPDTXNTIM AS DAT, 
+				    CASE
+            WHEN AUD.ACTCOD IN (
+                'ULDSCMPRC'
+				) THEN SUBSTR(ADLINF,INSTR(ADLINF,'-',1,1)+2,3) 
+				ELSE  AUD.STNCOD
+				END ARPCOD,
+			       CASE WHEN AUD.ACTCOD IN ('ULDLUCPRC',
+		                'ULDLUCGEN',
+		                'ULDMUCGEN',                
+		                'ULDSCMPRC') THEN AUD.AUDRMK 
+						WHEN AUD.ACTCOD = 'ULDCPMPRC' THEN SUBSTR (ADLINF, INSTR ( ADLINF, ';', INSTR ( ADLINF,? ),1 ) - 1,1) END RMK
+			  FROM ULDCFGAUD AUD
+			 WHERE AUD.CMPCOD = ?
+			   AND INSTR ( AUD.ADLINF, ?) > 0
+			   AND AUD.ACTCOD IN
+			               ('ULDLUCPRC',
+			                'ULDLUCGEN',
+			                'ULDMUCGEN',                
+			                'ULDSCMPRC',
+			                'ULDCPMPRC',
+			                'ULDSCMSNT'
+               				)
+               		ORDER BY DAT DESC
+				]]>
+			</QRY:Source>
+			</QRY:Definition>
+			<!-- ADDED BY JISHA FOR QF1022 ENDS -->
+
+
+	<QRY:Definition>
+	 	<QRY:Id>203</QRY:Id>
+	 		<QRY:Source Name="uld.defaults.listtransactions" Type="NATIVE">
+	 	       <![CDATA[
+	 				SELECT  T.ULDNUM , T.CMPCOD, T.TXNREFNUM ,T.TXNTYP , T.TXNNAT , T.TXNSTA ,T.AWBRMK AS AWBRMK,T.EMTSTA AS EMTSTA,
+						T.TXNDAT , T.TXNARPCOD , T.PTYTYP ,T.PTYCOD ,T.PTYNAM, T.PTYIDR , T.RTNDAT ,
+						T.RTNARPCOD , T.RTNPTYIDR ,T.CURCOD , T.INVREFNUM , T.TXNRMK ,
+						T.RTNRMK , T.RTNPTYCOD ,T.LSTUPDUSR , T.LSTUPDTIM,
+						T.DMGSTA , T.DSTAPTCOD , T.CRN , T.RTNCRN, T.CONCOD , T.POLOWN, T.MUCDAT, T.MUCREFNUM, T.MUCSNT ,T.WVRAMT,
+						0 AS DMRRAT,T.TAXAMT,T.DMRAMT AS DMRAMT , T.TOTAMT AS RAT
+					FROM ULDTXNMST T
+					WHERE   T.CMPCOD = ? AND T.TXNSTA IN('R','I','D')
+
+	 			]]>
+	 		</QRY:Source>
+		</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>204</QRY:Id>
+				<QRY:Source Name="uld.defaults.checkpoolowners" Type="NATIVE">
+			       <![CDATA[
+					SELECT 1 RESULT FROM  ULDPOLOWNMST MST
+						WHERE MST.CMPCOD = ?
+					AND ( ARLONE = ? AND ARLTWO = ? AND (ARPCOD = ? or ARPCOD is null ) OR ARLONE = ? AND ARLTWO = ? AND (ARPCOD     = ? or ARPCOD is null ) ) 						
+						AND NOT EXISTS (SELECT EXP.ORGCOD FROM ULDPOLSEGEXP EXP WHERE  CMPCOD = ?
+						AND ( ARLONE = ? AND ARLTWO = ? AND (ARPCOD     = ? or ARPCOD is null ) OR ARLONE = ? AND ARLTWO = ? AND (ARPCOD     = ? or ARPCOD is null )) 
+						AND (EXP.ORGCOD = ? AND EXP.DSTCOD = ?
+
+					]]>
+				</QRY:Source>
+</QRY:Definition>
+	<QRY:Definition>
+					<QRY:Id>205</QRY:Id>
+					<QRY:Source Name="uld.defaults.findlostuldobjects" Type="OBJECT">
+			       <![CDATA[
+						SELECT uld from
+							com.ibsplc.icargo.business.uld.defaults.ULD as uld
+							WHERE
+							uld.uldPK.companyCode = ?
+							AND uld.lastUpdateTime < %s
+					]]>
+				</QRY:Source>
+			</QRY:Definition>
+
+
+		<QRY:Definition>
+		<QRY:Id>206</QRY:Id>
+		<QRY:Source Name="uld.defaults.listdamagerepairdetails" Type="NATIVE">
+			<![CDATA[
+					SELECT ULD.CMPCOD, ULD.ULDNUM, ULD.DMGSTA,
+					       ULD.RPRSTA, DMG.DMGPOS,DMG.DMGSEC,DMG.DMGDES,
+					       DMG.DMGRPTDAT, DMG.RMK, RPR.RPRHED,
+					       RPR.RPRAMT,RPR.RPRDAT, ULDTXN.NETAMT, ULDTXN.PAYSTA,ULDTXN.INVREFNUM
+					  FROM ULDMST ULD INNER  JOIN ULDDMG DMG
+					       ON ULD.ULDNUM = DMG.ULDNUM
+					     AND ULD.CMPCOD = DMG.CMPCOD
+					      LEFT OUTER JOIN ULDRPRDTL RPRDTL
+					ON DMG.DMGREFNUM = RPRDTL.DMGREFNUM
+					AND DMG.ULDNUM   = RPRDTL.ULDNUM
+					AND DMG.CMPCOD   = RPRDTL.CMPCOD
+					       LEFT OUTER JOIN ULDRPR RPR
+						ON RPRDTL.RPRSEQNUM = RPR.RPRSEQNUM
+						AND RPRDTL.ULDNUM   = RPR.ULDNUM
+						AND RPRDTL.CMPCOD   = RPR.CMPCOD
+					       LEFT OUTER JOIN ULDTXNINV ULDTXN
+					       ON RPR.INVREFNUM = ULDTXN.INVREFNUM
+					     AND RPR.CMPCOD = ULDTXN.CMPCOD
+					 WHERE ULD.CMPCOD = ?
+					   AND ULD.ULDNUM = ?
+					   
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		 	<QRY:Id>207</QRY:Id>
+		 		<QRY:Source Name="uld.defaults.missingucmlist" Type="NATIVE">
+		 	       <![CDATA[
+		 				SELECT A.FLTCARCOD||'  '||A.FLTNUM AS FLTNUM ,A.FLTDAT,A.ORG,A.DST,A.UCMOUT,A.UCMIN
+						FROM(
+						SELECT  FLT.CMPCOD,FLT.FLTCARCOD,FLT.FLTCARIDR,FLT.FLTNUM ,FLT.FLTSEQNUM ,FLT.FLTDAT,FLT.ORG,FLT.DST,
+						CASE WHEN ( SELECT COUNT(*)
+						  FROM ULDFLTMSGREC ULD
+						  WHERE ULD.CMPCOD = FLT.CMPCOD
+						AND  ULD.FLTCARIDR = FLT.FLTCARIDR
+						AND ULD.FLTNUM = FLT.FLTNUM
+						AND ULD.FLTSEQNUM = FLT.FLTSEQNUM
+						AND ULD.ARPCOD = FLT.ORG
+						AND ULD.MSGSNDFLG = 'O'
+						AND ULD.MSGTYP = 'OUT'
+						) = 0 THEN 'N' ELSE 'Y' END UCMOUT,
+						CASE
+						WHEN (
+						SELECT COUNT(*)
+						  FROM ULDFLTMSGREC ULD
+						  WHERE  ULD.CMPCOD = FLT.CMPCOD
+						  AND  ULD.FLTCARIDR = FLT.FLTCARIDR
+						  AND ULD.FLTNUM = FLT.FLTNUM
+						  AND ULD.FLTSEQNUM = FLT.FLTSEQNUM
+						  AND ULD.ARPCOD = FLT.DST
+						  AND ULD.MSGSNDFLG = 'O'
+						  AND ULD.MSGTYP = 'IN') = 0 THEN 'N' ELSE 'Y' END UCMIN
+						FROM(
+						SELECT COALESCE(EXPFLT.CMPCOD,IMPFLT.CMPCOD) CMPCOD, COALESCE(EXPFLT.FLTCARCOD,IMPFLT.FLTCARCOD) FLTCARCOD,
+						COALESCE(EXPFLT.FLTCARIDR,IMPFLT.FLTCARIDR) FLTCARIDR ,COALESCE(EXPFLT.FLTSEQNUM,IMPFLT.FLTSEQNUM) FLTSEQNUM,
+						 COALESCE(EXPFLT.FLTNUM,IMPFLT.FLTNUM) FLTNUM ,
+						COALESCE(EXPFLT.FLTDAT,IMPFLT.FLTDAT) FLTDAT,EXPFLT.ARPCOD AS ORG,IMPFLT.ARPCOD AS DST
+						FROM OPRARPEXPFLT EXPFLT FULL OUTER JOIN OPRARPIMPFLT IMPFLT
+						ON EXPFLT.CMPCOD = IMPFLT.CMPCOD
+						AND EXPFLT.LEGSERNUM = IMPFLT.LEGSERNUM
+						AND EXPFLT.FLTCARIDR = IMPFLT.FLTCARIDR
+						AND EXPFLT.FLTNUM = IMPFLT.FLTNUM
+						AND EXPFLT.FLTSEQNUM = IMPFLT.FLTSEQNUM
+						AND IMPFLT.CMPCOD = ?
+						WHERE EXPFLT.CMPCOD = ?
+						AND (COALESCE(EXPFLT.FINFLG,'F') = 'F' OR COALESCE(IMPFLT.CLSFLG,'Y') = 'Y')
+
+
+		 			]]>
+		 		</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+		<QRY:Id>208</QRY:Id>
+		<QRY:Source Name="uld.defaults.findmucrefnumberlov" Type="NATIVE">
+			<![CDATA[
+					SELECT DISTINCT TXN.MUCREFNUM
+					FROM ULDTXNMST TXN
+					WHERE TXN.CMPCOD = ?
+					AND to_number(TXN.MUCREFNUM) > 0
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>209</QRY:Id>
+		<QRY:Source Name="uld.defaults.findmucauditdetails" Type="NATIVE">
+			<![CDATA[
+				SELECT AUD.CMPCOD, CASE WHEN AUD.ACTCOD = 'ULDMUCUPD' THEN 'MUC UPDATED'
+				WHEN AUD.ACTCOD = 'ULDMUCGEN' THEN 'MUC GENERATED'
+				WHEN AUD.ACTCOD = 'ULDMUCRNT' THEN 'MUC RESENT'
+				ELSE ''
+				END ACTCOD,
+				CASE WHEN AUD.ACTCOD = 'ULDMUCUPD' THEN AUD.ADLINF
+				WHEN AUD.ACTCOD IN('ULDMUCGEN','ULDMUCRNT') 
+				THEN SUBSTR(AUD.ADLINF,0,(INSTR(AUD.ADLINF,'ULDNUM')-2))
+				ELSE '' END ADLINF,AUD.UPDTXNTIM
+				FROM ULDCFGAUD AUD WHERE AUD.CMPCOD=? AND AUD.ACTCOD IN('ULDMUCGEN','ULDMUCRNT','ULDMUCUPD')
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	   <QRY:Id>210</QRY:Id>
+		 <QRY:Source Name="uld.defaults.findlocationforfacility" Type="NATIVE">
+				<![CDATA[
+					SELECT MIN(CMPCOD)CMPCOD ,
+  MIN(ARPCOD)ARPCOD,
+  MIN(FACTYP)FACTYP,
+  MIN(DEFFLG)DEFFLG,
+  MIN(SEQNUM)SEQNUM,
+  MIN(FACCOD)FACCOD,
+ MIN (FACDES)FACDES,
+ MIN( LSTUPDUSR)LSTUPDUSR,
+ MIN(LSTUPDTIM)LSTUPDTIM,
+MIN  (CNT)CNT
+FROM
+  (SELECT CMPCOD,
+    ARPCOD,
+    FACTYP,
+    DEFFLG,
+    SEQNUM,
+    FACCOD,
+    FACDES,
+    LSTUPDUSR,
+    LSTUPDTIM,
+    CNT
+							FROM ULDARPLOC
+							WHERE ULDARPLOC.CMPCOD = ?
+							AND   ULDARPLOC.ARPCOD = ?
+							AND   ULDARPLOC.FACTYP = ?
+  ORDER BY DEFFLG DESC
+  ) ARPLOC
+
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	   <QRY:Id>211</QRY:Id>
+		 <QRY:Source Name="uld.defaults.checkuldinuse" Type="NATIVE">
+				<![CDATA[
+					SELECT MST.ULDNUM FROM ULDMST MST WHERE MST.CMPCOD = ? AND MST.TRNSTA = 'Y'
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	   <QRY:Id>212</QRY:Id>
+		 <QRY:Source Name="uld.defaults.listucmsforflightmovement" Type="NATIVE">
+				<![CDATA[
+					select MST.FLTCARIDR, MST.FLTNUM, MST.ARPCOD , MST.CMPCOD ,RECDTL.POU , RECDTL.CNT , RECDTL.ULDNUM ,MST.FLTDAT ,RECDTL.FLTSEQNUM,RECDTL.SEQNUM,RECDTL.MSGTYP from 
+					(SELECT MAX(REC.SEQNUM) SEQ , REC.FLTCARIDR, REC.FLTNUM, REC.FLTSEQNUM, REC.ARPCOD, REC.CMPCOD, REC.MSGTYP ,REC.FLTDAT FROM ULDFLTMSGREC REC
+					WHERE 
+						 REC.CMPCOD = ?							
+						AND REC.FLTCARIDR = ?
+						AND REC.FLTNUM = ?
+						AND REC.FLTSEQNUM = ?
+						AND REC.MSGTYP = ?
+						
+										
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	   <QRY:Id>213</QRY:Id>
+		 <QRY:Source Name="uld.defaults.updatescmstatusforpendingulds" Type="NATIVE">
+				<![CDATA[
+					UPDATE ULDMST SET SCMDAT = ? ,SCMFLG = 'N' WHERE SCMFLG IS NULL
+					AND CMPCOD = ? AND OPRARLIDR = ? AND CURARP = ?
+
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+	
+		<QRY:Definition>
+		   <QRY:Id>214</QRY:Id>
+			 <QRY:Source Name="uld.defaults.checkforsingleduplicatecrn" Type="NATIVE">
+				<![CDATA[
+					SELECT MAX(TXN.CRN) AS CRN
+						FROM ULDTXNMST TXN 
+						WHERE  TXN.CMPCOD = ?
+						AND CRN LIKE ?
+
+				]]>
+		 </QRY:Source>
+	 </QRY:Definition>
+	
+	<QRY:Definition>
+		   <QRY:Id>215</QRY:Id>
+			 <QRY:Source Name="uld.defaults.findtransactionhistory" Type="NATIVE">
+				<![CDATA[
+					SELECT A.TXNSTA,A.ULDNUM, 'B' AS ORD, A.CMPCOD, A.CRN , A.TXNDAT, A.TXNARPCOD, A.PTYCOD,
+					A.PTYIDR, A.RTNDAT, A.RTNARPCOD, A.RTNPTYIDR,A.TXNRMK, A.RTNRMK,
+					A.RTNPTYCOD, A.LSTUPDUSR, A.LSTUPDTIM, A.DSTAPTCOD, A.TXNREFNUM
+					FROM (SELECT  DISTINCT TXNSTA,T.ULDNUM, 'B' AS ORD, T.CMPCOD,
+					CASE WHEN TXNSTA = 'T' THEN T.CRN WHEN TXNSTA = 'D' THEN T.CRN ELSE T.RTNCRN END AS CRN,
+					T.TXNDAT, T.TXNARPCOD, CASE WHEN TXNSTA IN ( 'D' ,'R') THEN T.RTNPTYCOD ELSE T.PTYCOD END PTYCOD, T.PTYIDR, T.RTNDAT, T.RTNARPCOD, T.RTNPTYIDR, 
+					T.TXNRMK, T.RTNRMK,CASE WHEN TXNSTA IN ( 'D' ,'R') THEN T.PTYCOD ELSE T.RTNPTYCOD END RTNPTYCOD,
+					T.LSTUPDUSR, T.LSTUPDTIM, T.DSTAPTCOD, T.TXNREFNUM, ROW_NUMBER() 
+					OVER (PARTITION BY ULDNUM,CRN ORDER BY ULDNUM,CRN,TXNSTA )RANK FROM ULDTXNMST T 
+					WHERE T.CMPCOD = ? AND T.ULDNUM = ?
+
+				]]>
+		 </QRY:Source>
+	 </QRY:Definition>
+
+	 	<QRY:Definition>
+	 	<QRY:Id>216</QRY:Id>
+	 		<QRY:Source Name="uld.defaults.listloanborrowenquiry" Type="NATIVE">
+	 	       <![CDATA[
+			     SELECT RESULT_TABLE.* ,
+						  ROW_NUMBER () OVER (ORDER BY NULL) AS RANK FROM
+						(SELECT DISTINCT  RNK.ULDNUM, RNK.CMPCOD, RNK.TXNREFNUM, RNK.TXNTYP, RNK.TXNNAT, RNK.TXNSTA,
+				         RNK.AWBRMK, RNK.EMTSTA, RNK.TXNDAT, RNK.TXNARPCOD,
+				         RNK.PTYTYP, RNK.PTYCOD, RNK.PTYNAM, RNK.PTYIDR, RNK.RTNDAT, RNK.RTNARPCOD,
+				         RNK.RTNPTYIDR, RNK.CURCOD, RNK.INVREFNUM, RNK.TXNRMK, RNK.RTNRMK, RNK.RTNPTYCOD,
+				         RNK.LSTUPDUSR, RNK.LSTUPDTIM, RNK.DMGSTA, RNK.DSTAPTCOD, RNK.CRN, RNK.RTNCRN, RNK.CONCOD,
+				         RNK.POLOWN, RNK.MUCDAT, RNK.MUCREFNUM, RNK.MUCSNT, RNK.WVRAMT,DMRRAT,
+				         RNK.TAXAMT, RNK.DMRAMT AS DMRAMT, RNK.dayrem, RNK.RAT, RNK.ENDLSEDAT
+							FROM (	
+				 				SELECT  T.ULDNUM , T.CMPCOD, T.TXNREFNUM ,T.TXNTYP , T.TXNNAT , T.TXNSTA ,T.AWBRMK AS AWBRMK,T.EMTSTA AS EMTSTA,
+									T.TXNDAT , T.TXNARPCOD , T.PTYTYP ,T.PTYCOD ,T.PTYNAM, T.PTYIDR , T.RTNDAT ,
+									T.RTNARPCOD , T.RTNPTYIDR ,T.CURCOD , T.INVREFNUM , T.TXNRMK ,
+									T.RTNRMK , T.RTNPTYCOD ,T.LSTUPDUSR , T.LSTUPDTIM,
+									T.DMGSTA , T.DSTAPTCOD , T.CRN , T.RTNCRN, T.CONCOD , T.POLOWN, T.MUCDAT, T.MUCREFNUM, T.MUCSNT ,T.WVRAMT,
+									0 AS DMRRAT,CASE WHEN T.CONCOD = 'ZZZ' THEN 0 ELSE T.TAXAMT END TAXAMT,CASE WHEN T.CONCOD = 'ZZZ' THEN 0 ELSE T.DMRAMT END DMRAMT , 0 as  dayrem,
+									CASE WHEN T.CONCOD = 'ZZZ' THEN 0 ELSE T.TOTAMT END RAT, T.ENDLSEDAT
+								FROM ULDTXNMST T LEFT OUTER JOIN SHRSYSPAR SYSTEMPAR
+								ON T.CMPCOD = SYSTEMPAR.CMPCOD  
+								AND SYSTEMPAR.PARCOD='uld.default.hideloanTXNforpoolairline'
+								WHERE   T.CMPCOD = ? AND T.TXNSTA IN('R','I')
+
+				]]>
+		 </QRY:Source>
+	 </QRY:Definition>
+	 <QRY:Definition>
+	 	<QRY:Id>216</QRY:Id>
+	 		<QRY:Source Name="uld.defaults.listloanborrowenquirywithagrdtl" Type="NATIVE">
+	 	       <![CDATA[
+	 
+
+select
+	ULDNUM ,
+	CMPCOD,
+	TXNREFNUM ,
+	TXNTYP ,
+	TXNNAT ,
+	TXNSTA ,
+	AWBRMK as AWBNUM,
+	EMTSTA as EMTSTA ,
+	TXNDAT,
+	TXNARPCOD,
+	PTYTYP,
+	PTYCOD,
+	PTYNAM,
+	PTYIDR,
+	RTNDAT ,
+	RTNARPCOD ,
+	RTNPTYIDR ,
+	AGRCURCOD ,
+	INVREFNUM ,
+	TXNRMK ,
+	RTNRMK ,
+	RTNPTYCOD ,
+	LSTUPDUSR ,
+	LSTUPDTIM,
+	DMGSTA ,
+	DSTAPTCOD ,
+	CRN ,
+	RTNCRN,
+	CONCOD,
+	POLOWN,
+	MUCDAT,
+	MUCREFNUM,
+	MUCSNT ,
+	0 as WVRAMT,
+	DMRRAT,
+	case
+		when POLOWN = 'N'
+		and coalesce(CONCOD, 'AAA') <> 'ZZZ' then TAXAMT
+		else 0
+	end TAXAMT ,
+	case
+		when POLOWN = 'N'
+		and coalesce(CONCOD, 'AAA') <> 'ZZZ' then
+		case
+			when DMRFQY = 'D' then
+			case
+				when FRELONPRD = 0
+				and DATDIF = 0 then DMRRAT
+				when FRELONPRD = 0
+				and DATDIF > 0 then DATDIF * dmrrat
+				when DATDIF >= frelonprd then DATDIF * dmrrat
+				else 0
+			end
+			when DMRFQY = 'W' then
+			case
+				when DATDIF >= frelonprd then ( ceil( ( (  DATDIF  - frelonprd) / 7) ) ) * dmrrat
+				else 0
+			end
+			when DMRFQY = 'F' then
+			case
+				when DATDIF >= frelonprd then ( ceil( ( ( DATDIF - frelonprd) / 14) ) ) * dmrrat
+				else 0
+			end
+			when DMRFQY = 'M' then
+			case
+				when DATDIF >= frelonprd %s
+				else 0
+			end
+		end
+		when POLOWN <> 'N' then 0
+	end DMRAMT ,
+	TRUNC(( frelonprd - DATDIF ), 0) as dayrem,
+	0 as RAT,
+	ENDLSEDAT
+from
+	(
+	select
+		MIN(PRI) over(partition by A.ULDNUM,
+		A.TXNREFNUM)MINPRI, A.*
+	from
+		(
+		select
+			case
+				when AGRDTL.PTYTYP = TXN.PTYTYP
+				and AGRDTL.PTYCOD = TXN.PTYCOD
+				and AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD
+				and AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM, 1, 3)
+				and AGRDTL.ARPCOD = TXN.TXNARPCOD then 1
+				when AGRDTL.PTYTYP = TXN.PTYTYP
+				and AGRDTL.PTYCOD = TXN.PTYCOD
+				and AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD
+				and AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM, 1, 3)
+				and AGRDTL.ARPCOD = 'HDQ' then 2
+				when AGRDTL.PTYTYP = TXN.PTYTYP
+				and AGRDTL.PTYCOD = TXN.PTYCOD
+				and AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD then 3
+				when AGRDTL.PTYTYP = TXN.PTYTYP
+				and AGRDTL.PTYCOD in( 'ALL AIRLINES', 'ALL AGENTS', 'ALL CUSTOMERS', 'ALL OTHERS')
+				and AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD
+				and AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM, 1, 3)
+				and AGRDTL.ARPCOD = TXN.TXNARPCOD then 4
+				when AGRDTL.PTYTYP = TXN.PTYTYP
+				and AGRDTL.PTYCOD in( 'ALL AIRLINES', 'ALL AGENTS', 'ALL CUSTOMERS', 'ALL OTHERS')
+				and AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD
+				and TXN.TXNTYP = 'L'
+				and AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM, 1, 3)
+				and AGRDTL.ARPCOD = 'HDQ' then 5
+				when AGRDTL.PTYTYP = TXN.PTYTYP
+				and AGRDTL.PTYCOD in( 'ALL AIRLINES', 'ALL AGENTS', 'ALL CUSTOMERS', 'ALL OTHERS')
+				and AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD then 6
+				when AGRDTL.PTYTYP = TXN.PTYTYP
+				and AGRDTL.PTYCOD in(TXN.PTYCOD, 'ALL AIRLINES', 'ALL AGENTS', 'ALL CUSTOMERS', 'ALL OTHERS')
+				and AGRDTL.FRMPTYCOD in( 'ALL AIRLINES', 'ALL OTHERS')
+				and AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM, 1, 3)
+				and AGRDTL.ARPCOD = TXN.TXNARPCOD then 7
+				when AGRDTL.PTYTYP = TXN.PTYTYP
+				and AGRDTL.PTYCOD in( TXN.PTYCOD, 'ALL AIRLINES', 'ALL AGENTS', 'ALL CUSTOMERS', 'ALL OTHERS')
+				and AGRDTL.FRMPTYCOD in( 'ALL AIRLINES', 'ALL OTHERS')
+				and TXN.TXNTYP = 'L'
+				and AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM, 1, 3)
+				and AGRDTL.ARPCOD = 'HDQ' then 8
+				when AGRDTL.PTYTYP = TXN.PTYTYP
+				and AGRDTL.PTYCOD in( TXN.PTYCOD, 'ALL AIRLINES', 'ALL AGENTS', 'ALL CUSTOMERS', 'ALL OTHERS')
+				and AGRDTL.FRMPTYCOD in('ALL AIRLINES', 'ALL OTHERS') then 9
+				when AGRDTL.PTYTYP = TXN.PTYTYP
+				and AGRDTL.PTYCOD = 'ALL'
+				and AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM, 1, 3)
+				and AGRDTL.ARPCOD = TXN.TXNARPCOD then 10
+				when AGRDTL.PTYTYP = TXN.PTYTYP
+				and AGRDTL.PTYCOD = 'ALL'
+				and AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM, 1, 3)
+				and AGRDTL.ARPCOD = 'HDQ' then 11
+				when agrdtl.FRMPTYCOD = 'ALL' then 12
+				when agrdtl.ptycod = 'ALL' then 13
+			end PRI , TXN.TXNREFNUM, TXN.ULDNUM, TXN.CMPCOD, TXN.TXNTYP as TXNTXNTYP, TXN.TXNNAT, TXN.TXNSTA, TXN.AWBRMK, TXN.EMTSTA , TXN.TXNDAT, TXN.TXNARPCOD, TXN.PTYTYP as TXNPTYTYP, TXN.PTYCOD as TXNPTYCOD, TXN.PTYNAM as TXN, PTYNAM, TXN.PTYIDR as TXNPTYIDR, TXN.RTNDAT , TXN.RTNARPCOD, TXN.RTNPTYIDR, AGRDTL.CURCOD , TXN.INVREFNUM, TXN.TXNRMK, TXN.RTNRMK, TXN.PTYIDR, TXN.PTYCOD, TXN.PTYTYP, TXN.TXNTYP, TXN.RTNPTYCOD , TXN.LSTUPDUSR , TXN.LSTUPDTIM , TXN.DMGSTA , TXN.DSTAPTCOD , TXN.CRN , TXN.RTNCRN, TXN.CONCOD, TXN.POLOWN, TXN.MUCDAT, TXN.MUCREFNUM, TXN.MUCSNT , 0 as WVRAMT, SUBSTR(TXN.ULDNUM,1,3) as ULDTYPCOD, TXN.TOTAMT as TOTAMT, TO_NUMBER(FUN_GET_ULD_DEMURAGE_RATE(TXN.CMPCOD, TXN.ULDTYP, TXN.TXNARPCOD, TRUNC(CURDAT), 'A', TXN.RTNPTYCOD, TXN.PTYTYP, TXN.PTYCOD, 'DMRRAT'))DMRRAT, FUN_GET_ULD_DEMURAGE_RATE(TXN.CMPCOD,
+			TXN.ULDTYP,
+			TXN.TXNARPCOD,
+			TRUNC(CURDAT),
+			'A',
+			TXN.RTNPTYCOD,
+			TXN.PTYTYP,
+			TXN.PTYCOD,
+			'DMRFQY') DMRFQY, TO_NUMBER(FUN_GET_ULD_DEMURAGE_RATE(TXN.CMPCOD, TXN.ULDTYP, TXN.TXNARPCOD, TRUNC(CURDAT), 'A', TXN.RTNPTYCOD, TXN.PTYTYP, TXN.PTYCOD, 'DMRTAXAMT'))TAXAMT, TO_NUMBER(FUN_GET_ULD_DEMURAGE_RATE(TXN.CMPCOD, TXN.ULDTYP, TXN.TXNARPCOD, TRUNC(CURDAT), 'A', TXN.RTNPTYCOD, TXN.PTYTYP, TXN.PTYCOD, 'DMRFRELONPRD'))FRELONPRD, FUN_GET_ULD_DEMURAGE_RATE(TXN.CMPCOD,
+			TXN.ULDTYP,
+			TXN.TXNARPCOD,
+			TRUNC(CURDAT),
+			'A',
+			TXN.RTNPTYCOD,
+			TXN.PTYTYP,
+			TXN.PTYCOD,
+			'DMRCURCOD')AGRCURCOD, TXN.ENDLSEDAT,
+			to_number(TO_CHAR(CURDAT, 'ddmmyyyy')) - to_number(TO_CHAR(txndat, 'ddmmyyyy')) as DATDIF			
+		from
+			(
+			select
+				AGR.CMPCOD, AGR.AGRMNTNUM , AGR.PTYTYP , AGR.TXNTYP , AGR.PTYCOD , AGR.FRMPTYTYP , AGR.FRMPTYCOD, AGR.FRELONPRD, AGR.CURCOD , AGR.DMRRAT , AGR.TAXAMT , AGR.DMRFQY, DTL.DMRFQY DTLDMRFQY , DTL.DMRRAT as DTLDMRRAT , AGR.AGRMNTFRMDAT, AGR.AGRMNTTOODAT, DTL.AGRMNTFRMDAT DTLAGRMNTFRMDAT, DTL.AGRMNTTOODAT DTLAGRMNTTOODAT, DTL.FRELONPRD as DTLFRELONPRD, DTL.TAXAMT DTLTAXAMT, DTL.CURCOD as DTLCURCOD, DTL.ARPCOD as ARPCOD, DTL.ULDTYPCOD
+			from
+				ULDAGRMNT AGR
+			left outer join ULDAGRMNTDTL DTL on
+				AGR.CMPCOD = DTL.CMPCOD
+				and AGR.AGRMNTNUM = DTL.AGRMNTNUM
+			where
+				AGR.AGRMNTSTA = 'A'
+				and AGR.CMPCOD = ? )AGRDTL , ULDTXNMST TXN
+		left outer join SHRSYSPAR SYSPAR on
+			TXN.CMPCOD = SYSPAR.CMPCOD
+			and SYSPAR.PARCOD = 'uld.default.hideloanTXNforpoolairline'
+		where
+			TXN.CMPCOD = AGRDTL.CMPCOD
+			and AGRDTL.TXNTYP = TXN.TXNTYP
+			and (AGRDTL.PTYCOD = TXN.PTYCOD
+			and AGRDTL.PTYTYP = TXN.PTYTYP
+			and AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD
+			or TXN.PTYTYP = 'A'
+			and AGRDTL.FRMPTYCOD = 'ALL AIRLINES'
+			or TXN.PTYTYP = 'A'
+			and AGRDTL.PTYCOD = 'ALL AIRLINES'
+			or TXN.PTYTYP = 'G'
+			and AGRDTL.PTYCOD = 'ALL AGENTS'
+			or TXN.PTYTYP = 'C'
+			and AGRDTL.PTYCOD = 'ALL CUSTOMERS'
+			or TXN.PTYTYP = 'O'
+			and AGRDTL.PTYCOD = 'ALL OTHERS'
+			or AGRDTL.PTYTYP = 'L'
+			and AGRDTL.PTYCOD = 'ALL'
+			and SUBSTR(TXN.ULDNUM, 1, 3) = coalesce(AGRDTL.ULDTYPCOD, SUBSTR(TXN.ULDNUM, 1, 3))
+			or AGRDTL.FRMPTYTYP = 'L'
+			and AGRDTL.FRMPTYCOD = 'ALL'
+			and SUBSTR(TXN.ULDNUM, 1, 3) = coalesce(AGRDTL.ULDTYPCOD, SUBSTR(TXN.ULDNUM, 1, 3)) )
+			and TO_NUMBER(TO_CHAR(TXN.TXNDAT, 'YYYYMMDD')) between coalesce(TO_NUMBER(TO_CHAR(AGRDTL.AGRMNTFRMDAT, 'YYYYMMDD')), 00010101) and coalesce(TO_NUMBER(TO_CHAR(AGRDTL.AGRMNTTOODAT, 'YYYYMMDD')), 20991231)
+			and TXN.TXNSTA = 'T'
+			and txn.cmpcod = ?
+
+	 	]]>
+		 </QRY:Source>
+	 </QRY:Definition>
+	 
+	<QRY:Definition>
+	 	<QRY:Id>216</QRY:Id>
+	 		<QRY:Source Name="uld.defaults.listloandemurageenq" Type="NATIVE">
+			<![CDATA[
+				SELECT
+				uldnum,
+				cmpcod,
+				txnrefnum,
+				txntyp,
+				txnnat,
+				txnsta,
+				awbrmk   AS awbnum,
+				emtsta   AS emtsta,
+				txndat,
+				txnarpcod,
+				ptytyp,
+				ptycod,
+				ptynam,
+				ptyidr,
+				rtndat,
+				rtnarpcod,
+				rtnptyidr,
+				curcod,
+				invrefnum,
+				txnrmk,
+				rtnrmk,
+				rtnptycod,
+				lstupdusr,
+				lstupdtim,
+				dmgsta,
+				dstaptcod,
+				crn,
+				rtncrn,
+				concod,
+				polown,
+				mucdat,
+				mucrefnum,
+				mucsnt,
+				0 AS wvramt,
+				dmrrat,
+				CASE
+					WHEN polown = 'N'
+						 AND coalesce(concod, 'AAA') <> 'ZZZ' THEN
+						taxamt
+					ELSE
+						0
+				END taxamt,
+				CASE
+					WHEN polown = 'N'
+						 AND coalesce(concod, 'AAA') <> 'ZZZ' THEN
+						case
+					WHEN dmrfqy = 'D' THEN
+						case
+					WHEN frelonprd = 0
+						 AND DATDIF = 0 THEN dmrrat
+					WHEN frelonprd = 0
+						 AND DATDIF > 0 THEN DATDIF * dmrrat
+					WHEN DATDIF >= frelonprd THEN ( DATDIF - frelonprd ) * dmrrat
+					ELSE 0
+				END   WHEN DMRFQY = 'W' THEN    
+				CASE  WHEN DATDIF >= frelonprd  THEN  ceil( (DATDIF - frelonprd) / 7)   * dmrrat 
+				ELSE 0 END
+				WHEN DMRFQY = 'F' THEN   CASE  WHEN DATDIF >= frelonprd
+				THEN ( ceil( ( ( ( (DATDIF) ) - frelonprd) / 14) ) ) * dmrrat
+				ELSE 0 END  WHEN DMRFQY = 'M' 
+				THEN  CASE WHEN (DATDIF) >= frelonprd   
+				%s  ELSE 0 END 
+				END   WHEN POLOWN <> 'N' THEN 0  END DMRAMT , 
+				TRUNC(( frelonprd - (DATDIF) ), 0) AS dayrem, 
+				0 AS RAT, 
+				ENDLSEDAT 
+				FROM(   
+				SELECT 
+
+				TXN.TXNREFNUM,  TXN.ULDNUM,TXN.CMPCOD,TXN.TXNTYP AS TXNTXNTYP,
+				TXN.TXNNAT,TXN.TXNSTA,TXN.AWBRMK,TXN.EMTSTA ,TXN.TXNDAT,TXN.TXNARPCOD,TXN.PTYTYP AS TXNPTYTYP,  TXN.PTYCOD AS TXNPTYCOD,TXN.PTYNAM AS TXN,PTYNAM,TXN.PTYIDR AS TXNPTYIDR,TXN.RTNDAT , TXN.RTNARPCOD,
+				TXN.RTNPTYIDR,
+				TXN.CURCOD ,TXN.INVREFNUM,TXN.TXNRMK,TXN.RTNRMK,TXN.PTYIDR, TXN.PTYCOD,TXN.PTYTYP,TXN.TXNTYP,TXN.RTNPTYCOD ,TXN.LSTUPDUSR ,TXN.LSTUPDTIM ,TXN.DMGSTA ,   TXN.DSTAPTCOD , TXN.CRN , TXN.RTNCRN, TXN.CONCOD,
+				TXN.POLOWN, TXN.MUCDAT, TXN.MUCREFNUM,   TXN.MUCSNT ,0 AS WVRAMT,SUBSTR(TXN.ULDNUM,1,3) AS ULDTYPCOD,TXN.TOTAMT AS TOTAMT,    	
+				DMRRAT,
+				DMRFQY,
+				TAXAMT,
+				FRELONPRD,				
+				TXN.ENDLSEDAT,
+				 TO_DATE(TO_CHAR(trunc( %s ), 'DD-MM-YY'), 'DD-MM-YY') - TO_DATE(TO_CHAR(trunc(txndat), 'DD-MM-YY'), 'DD-MM-YY' ) as DATDIF
+				FROM 
+				ULDTXNMST txn left outer
+			JOIN shrsyspar syspar ON txn.cmpcod = syspar.cmpcod
+									 AND syspar.parcod = 'uld.default.hideloanTXNforpoolairline'
+			WHERE  txn.cmpcod = ?
+					]]>
+	 </QRY:Source>
+	 </QRY:Definition>				
+	
+	<QRY:Definition>
+	 	 		   <QRY:Id>217</QRY:Id>
+	 	 			 <QRY:Source Name="uld.defaults.findscmvalidationlist" Type="NATIVE">
+	 	 				<![CDATA[
+	 						WITH prevscm AS
+								  (SELECT REC.seqnum,
+									rec.cmpcod,
+									rec.arpcod,
+									rec.arlidr arlidr,
+									rec.MSGSNDFLG
+								  FROM ULDSCMMSGREC REC
+								  WHERE rec.CMPCOD =?
+								  AND rec.arpcod   =?
+								  AND rec.ARLIDR   =?
+								  AND to_number(REC.SEQNUM)   =
+									(SELECT COALESCE(MAX(to_NUMBER(SEQNUM)-1),0)
+									FROM ULDSCMMSGREC temp
+									WHERE temp.CMPCOD  =?
+									AND temp.arpcod    =?
+									AND temp.ARLIDR    =?
+									AND temp.MSGSNDFLG<>'D'
+									)
+								  ),
+								  curscm AS
+								  (SELECT REC.seqnum,
+									rec.cmpcod,
+									rec.arpcod,
+									rec.arlidr arlidr,
+									rec.MSGSNDFLG
+								  FROM ULDSCMMSGREC REC
+								  WHERE rec.CMPCOD =?
+								  AND rec.arpcod   =?
+								  AND rec.ARLIDR   =?
+								  AND to_number(REC.SEQNUM)  =
+									(SELECT COALESCE(MAX(to_NUMBER(SEQNUM)),0)
+									FROM ULDSCMMSGREC temp
+									WHERE temp.CMPCOD  =?
+									AND temp.arpcod    =?
+									AND temp.ARLIDR    =?
+									AND temp.MSGSNDFLG<>'D'
+									)
+								  )
+								SELECT *
+								FROM
+								  (SELECT MST.CMPCOD,
+							  MST.CURARP,
+							  MST.FACTYP,
+							  MST.LOC,
+							  MST.ULDNUM,
+							    (SELECT DIS.DISCOD
+		        FROM ULDDIS DIS
+		        WHERE DIS.CMPCOD = MST.CMPCOD
+		        AND DIS.ULDNUM   =MST.ULDNUM
+		        AND DIS.CLSSTA  <>'Y'
+		        AND to_number(DIS.SEQNUM)   =
+		          (SELECT MAX((to_NUMBER(SEQNUM)))
+		          FROM ULDDIS MAXSEQ
+		          WHERE MAXSEQ.CMPCOD = MST.CMPCOD
+		          AND MAXSEQ.ULDNUM   =MST.ULDNUM
+		          )
+		        )DISCOD,
+							  COUNT (MST.ULDNUM) OVER () COUNT,
+									COUNT (CASE 
+										  WHEN CURSCMDTL.FOUNDULDNUM IS NOT NULL 
+										  THEN null 
+										  ELSE 'Y' 
+										END) OVER () MSNCOUNT ,
+									CASE
+									  WHEN CURSCMDTL.FOUNDULDNUM IS NOT NULL
+									  THEN 'Y'
+									  ELSE 'N'
+									END SCMFLG,
+							  MST.SCMDAT,
+									CASE
+									  WHEN PREVSCMDTL.MISULDNUM IS NOT NULL
+									  THEN 'Y'
+									  ELSE 'N'
+									END PREVMISSING,
+									MST.LSTMVTDTL
+								  FROM ULDMST MST
+								  
+								  LEFT JOIN
+									(SELECT (
+									  CASE
+										WHEN (missing.MISNUM = 0
+										AND missing.FNDNUM   = 0)
+										THEN NULL
+										WHEN ( missing.MISNUM > 0
+										AND recdtl.ULDSTKSTA  = 'M')
+										THEN recdtl.uldnum
+										WHEN ( missing.FNDNUM > 0
+										AND recdtl.ULDSTKSTA IS NULL)
+										THEN MISSING.ULDNUM
+									  END) misuldnum, missing.uldnum, recdtl.ULDSTKSTA,missing.FNDNUM,missing.MISNUM,  missing.cmpcod,
+										missing.OPRARLIDR,
+										missing.CURARP,
+										missing.SEQNUM     
+									FROM
+									  (SELECT mst.cmpcod,
+										mst.ULDNUM,
+										mst.OPRARLIDR,
+										mst.curarp,
+										SCM.SEQNUM,       
+										(SELECT COUNT(misdtl.uldnum)
+										FROM ULDSCMMSGRECDTL misdtl
+										WHERE misdtl.cmpcod = scm.cmpcod
+										AND MISDTL.SEQNUM   = scm.seqnum
+										AND misdtl.arlidr   = scm.arlidr
+										AND misdtl.arpcod   = scm.arpcod
+										AND misdtl.ULDSTKSTA= 'M'
+										AND scm.MSGSNDFLG  <> 'I'
+										) MISNUM,
+										(SELECT COUNT(misdtl.uldnum)
+										FROM ULDSCMMSGRECDTL misdtl
+										WHERE misdtl.cmpcod   = scm.cmpcod
+										AND MISDTL.SEQNUM     = scm.seqnum
+										AND misdtl.arlidr     = scm.arlidr
+										AND misdtl.arpcod     = scm.arpcod
+										AND misdtl.ULDSTKSTA IN ( 'F','N')
+										AND scm.MSGSNDFLG    <> 'I'
+										) FNDNUM
+									  FROM ULDMST mst,
+										prevscm scm
+									  WHERE mst.cmpcod  = scm.cmpcod
+									  AND mst.oprarlidr = scm.arlidr
+									  AND mst.curarp    = scm.arpcod
+									  AND mst.CMPCOD    =?
+									  AND mst.curarp    =?
+									  AND mst.OPRARLIDR =?
+									  )missing
+									LEFT OUTER JOIN ULDSCMMSGRECDTL recdtl
+									ON missing.cmpcod         = recdtl.cmpcod
+									AND missing.oprarlidr     = recdtl.arlidr
+									AND missing.curarp        = recdtl.arpcod
+									AND missing.uldnum        = recdtl.uldnum
+									AND MISSING.SEQNUM        = RECDTL.SEQNUM
+									) PREVSCMDTL ON PREVSCMDTL.ULDNUM =MST.ULDNUM
+								  AND mst.cmpcod    = PREVSCMDTL.CMPCOD
+								  AND MST.CURARP    = PREVSCMDTL.CURARP
+								  AND MST.OPRARLIDR    = PREVSCMDTL.OPRARLIDR
+								  LEFT JOIN
+									(SELECT  (
+									  CASE
+										WHEN (missing.MISNUM = 0
+										AND missing.FNDNUM   = 0)
+										THEN MISSING.ULDNUM
+										WHEN ( MISSING.MISNUM > 0
+										AND RECDTL.ULDSTKSTA  = 'M')
+										THEN NULL
+										WHEN ( MISSING.FNDNUM > 0
+										AND RECDTL.ULDSTKSTA IN ('F','N'))
+										THEN RECDTL.ULDNUM
+										 WHEN ( missing.MISNUM > 0
+										AND RECDTL.ULDSTKSTA IS NULL)
+										THEN MISSING.ULDNUM
+									  END)founduldnum, missing.uldnum, recdtl.ULDSTKSTA,missing.FNDNUM,missing.MISNUM,  missing.cmpcod,
+										missing.OPRARLIDR,
+										missing.CURARP,
+										missing.SEQNUM     
+									FROM
+									  (SELECT mst.cmpcod,
+										mst.ULDNUM,
+										mst.OPRARLIDR,
+										mst.curarp,
+										SCM.SEQNUM,       
+										(SELECT COUNT(misdtl.uldnum)
+										FROM ULDSCMMSGRECDTL misdtl
+										WHERE misdtl.cmpcod = scm.cmpcod
+										AND MISDTL.SEQNUM   = scm.seqnum
+										AND misdtl.arlidr   = scm.arlidr
+										AND misdtl.arpcod   = scm.arpcod
+										AND misdtl.ULDSTKSTA= 'M'
+										AND scm.MSGSNDFLG  <> 'I'
+										) MISNUM,
+										(SELECT COUNT(misdtl.uldnum)
+										FROM ULDSCMMSGRECDTL misdtl
+										WHERE misdtl.cmpcod   = scm.cmpcod
+										AND MISDTL.SEQNUM     = scm.seqnum
+										AND misdtl.arlidr     = scm.arlidr
+										AND misdtl.arpcod     = scm.arpcod
+										AND misdtl.ULDSTKSTA IN ( 'F','N')
+										AND scm.MSGSNDFLG    <> 'I'
+										) FNDNUM
+									  FROM ULDMST mst,
+										curscm scm
+									  WHERE mst.cmpcod  = scm.cmpcod
+									  AND mst.oprarlidr = scm.arlidr
+									  AND mst.curarp    = scm.arpcod
+									  AND mst.CMPCOD    =?
+									  AND mst.curarp    =?
+									  AND mst.OPRARLIDR =?
+									  )missing
+									LEFT OUTER JOIN ULDSCMMSGRECDTL recdtl
+									ON missing.cmpcod         = recdtl.cmpcod
+									AND missing.oprarlidr     = recdtl.arlidr
+									AND missing.curarp        = recdtl.arpcod
+									AND missing.uldnum        = recdtl.uldnum
+									AND MISSING.SEQNUM        = RECDTL.SEQNUM
+									) CURSCMDTL ON CURSCMDTL.ULDNUM =MST.ULDNUM
+								  AND mst.cmpcod    = CURSCMDTL.CMPCOD
+								  AND MST.CURARP    = CURSCMDTL.CURARP
+								  AND MST.OPRARLIDR    = CURSCMDTL.OPRARLIDR
+							 WHERE MST.CMPCOD  = ?
+							AND MST.CURARP    = ?
+							AND MST.OPRARLIDR = ?
+							AND MST.OWNARLIDR = ?
+								  AND EXISTS
+									(SELECT 1
+									FROM ULDSCMMSGREC rec
+							 WHERE MST.CMPCOD  = REC.CMPCOD
+							AND MST.CURARP    = REC.ARPCOD
+									AND rec.MSGSNDFLG<>'I'
+							)
+							
+	 	 				]]>
+	 	 		 </QRY:Source>
+	 </QRY:Definition>
+		<QRY:Definition>
+	 	 		   <QRY:Id>257</QRY:Id>
+	 	 			 <QRY:Source Name="uld.defaults.findscmvalidationlist.part2" Type="NATIVE">
+	 	 				<![CDATA[
+							UNION ALL
+								    SELECT MST.CMPCOD,
+										MST.CURARP,
+										MST.FACTYP,
+										MST.LOC,
+										MST.ULDNUM,
+										(SELECT DIS.DISCOD
+		        FROM ULDDIS DIS
+		        WHERE DIS.CMPCOD = MST.CMPCOD
+		        AND DIS.ULDNUM   =MST.ULDNUM
+		        AND DIS.CLSSTA  <>'Y'
+		        AND to_number(DIS.SEQNUM)   =
+		          (SELECT MAX((to_NUMBER(SEQNUM)))
+		          FROM ULDDIS MAXSEQ
+		          WHERE MAXSEQ.CMPCOD = MST.CMPCOD
+		          AND MAXSEQ.ULDNUM   =MST.ULDNUM
+		          )
+		        )DISCOD,
+                       COUNT (MST.ULDNUM) OVER () COUNT, 
+										COUNT  (
+											CASE WHEN (FNDSCMDTL.ULDNUM IS  NULL) 
+											THEN 'Y' 
+											ELSE NULL
+											end ) OVER () MSNCOUNT,
+										(
+										CASE WHEN (FNDSCMDTL.ULDNUM IS NOT NULL) 
+										THEN 'Y' 
+										ELSE 'N' 
+										end ) SCMFLG,
+										MST.SCMDAT,
+										CASE
+										  WHEN misscmdtl.ULDNUM IS NOT NULL
+										  THEN 'Y'
+										  ELSE 'N'
+										END PREVMISSING,
+										MST.LSTMVTDTL
+									  FROM ULDMST MST
+									  LEFT JOIN
+										(SELECT uld.ULDNUM,
+										  uld.CMPCOD,
+										  uld.CURARP,
+										  uld.FACTYP,
+										  uld.LOC,
+										  uld.OPRARLIDR
+										FROM ULDMST uld
+										WHERE uld.CMPCOD    =?
+										AND uld.CURARP      =?
+										AND uld.OPRARLIDR   =?
+										AND uld.uldnum NOT IN
+										  (SELECT ULDNUM
+										  FROM ULDSCMMSGRECDTL recdtl, prevscm rec
+										  WHERE rec.SEQNUM     =recdtl.SEQNUM
+										AND REC.CMPCOD    = RECDTL.CMPCOD
+										AND REC.ARPCOD    = RECDTL.ARPCOD
+										AND rec.ARLIDR = recdtl.ARLIDR
+										  )
+										) misscmdtl
+									  ON mst.ULDNUM     =misscmdtl.ULDNUM
+									  AND mst.cmpcod    = misscmdtl.CMPCOD
+									  AND mst.curarp    = misscmdtl.CURARP
+									  AND MST.OPRARLIDR = MISSCMDTL.OPRARLIDR
+									  LEFT JOIN
+										(SELECT RECDTL.ULDNUM,
+										  RECDTL.CMPCOD,
+										  RECDTL.ARPCOD,
+										  RECDTL.FACTYP,
+										  RECDTL.LOC,
+										  RECDTL.ARLIDR
+										FROM ULDSCMMSGRECDTL RECDTL, curscm REC
+										  WHERE  rec.SEQNUM     =recdtl.SEQNUM
+										AND REC.CMPCOD    = RECDTL.CMPCOD
+										AND rec.ARPCOD    = recdtl.ARPCOD
+										AND rec.ARLIDR = recdtl.ARLIDR
+										) fndscmdtl
+									  ON mst.ULDNUM     =fndscmdtl.ULDNUM
+									  AND MST.CMPCOD    = FNDSCMDTL.CMPCOD
+									  AND mst.curarp    = fndscmdtl.ARPCOD
+									  AND mst.OPRARLIDR = fndscmdtl.ARLIDR
+							 WHERE MST.CMPCOD  = ?
+							AND MST.CURARP    = ?
+							AND MST.OPRARLIDR = ?
+							AND MST.OWNARLIDR = ?
+									  AND NOT EXISTS
+										(SELECT 1
+										FROM ULDSCMMSGREC rec
+										WHERE REC.CMPCOD  =?
+										AND REC.arpcod    =?
+										 AND( REC.MSGSNDFLG ='S'
+											OR REC.MSGSNDFLG ='D'
+											OR REC.MSGSNDFLG = 'P')
+										)
+	 	 				]]>
+	 	 		 </QRY:Source>
+	 </QRY:Definition>
+
+	<!-- Added by a-3278 for bug 34185 starts -->
+	<QRY:Definition>
+		<QRY:Id>218</QRY:Id>
+		<QRY:Source Name="uld.defaults.findulddiscrepancies" Type="OBJECT">
+       <![CDATA[
+			SELECT uLDDiscrepancy from
+				com.ibsplc.icargo.business.uld.defaults.misc.ULDDiscrepancy as uLDDiscrepancy
+					WHERE uLDDiscrepancy.closeStatus = 'N'
+					   AND uLDDiscrepancy.uldDiscrepancyPK.companyCode = ?				
+
+		 ]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by a-3278 for bug 34185 ends-->
+	
+		<!-- Added by A-1950 for bug 35952 starts -->
+	<QRY:Definition>
+		<QRY:Id>218</QRY:Id>
+		<QRY:Source Name="uld.defaults.updateulddiscrepancy" Type="NATIVE">
+       <![CDATA[
+			UPDATE ULDDIS SET CLSSTA = 'Y' WHERE CLSSTA = 'N' AND CMPCOD = ? AND RPTARP = ? 			
+		 ]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by A-1950 for bug 35952 ends-->
+	
+	<!-- Added by A-3278 for bug 41910 on 20Mar09 starts -->
+	<QRY:Definition>
+		<QRY:Id>219</QRY:Id>
+		<QRY:Source Name="uld.defaults.findULDsForSCM" Type="NATIVE">
+			<![CDATA[
+				SELECT DISTINCT ULD.CMPCOD, ULD.ULDNUM, ULD.CURARP,
+			        	ULD.LSTMVTDAT, ULD.LSTUPDTIM ,ULD.LSTUPDUSR
+					FROM ULDMST ULD
+					WHERE ULD.CMPCOD = ?
+					AND ULD.CURARP = ?
+					AND ULD.OPRARLIDR = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by A-3278 for bug 41910 on 20Mar09 ends -->
+	
+	<!-- Added by a-3278 for QF1015 on 24Jul08 -->
+	<!-- Modified by a-3278 for Bug 18347 on 05Oct08(changed to procedure) -->
+	<QRY:Definition>
+		<QRY:Id>220</QRY:Id>
+		<QRY:Source Name="uld.defaults.updatescmstatusforuld" Type="PROCEDURE">
+			<![CDATA[
+				 CALL PKG_ULD_SCM_STATUS.PROC_ULD_SCM_STATUS(
+						?,
+						?,
+						?						
+						)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!-- Modification ends -->
+	<!-- Added by a-3278 for QF1015 on 24Jul08 ends -->
+	
+	<QRY:Definition>
+	<QRY:Id>221</QRY:Id>
+	<QRY:Source Name="uld.defaults.listuldserviceabilitymaster" Type="NATIVE">
+		<![CDATA[
+			SELECT CMPCOD,SRVCOD,SRVDES,SEQNUM,PTYTYP,
+			       LSTUPDUSR,LSTUPDTIM
+			FROM ULDSRVMST
+			WHERE  CMPCOD =?
+
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+<QRY:Definition>
+	<QRY:Id>222</QRY:Id>
+	<QRY:Source Name="uld.defaults.ulddetailsfordemurrage" Type="NATIVE">
+		<![CDATA[
+			     
+					    SELECT ULDNUM     ,
+			      CMPCOD           ,
+			      TXNREFNUM        ,
+			      TXNTYP           ,
+			      CURCOD           ,
+			      TXNNAT           ,
+			      TXNSTA           ,
+			      AWBRMK AS AWBRMK ,
+			      EMTSTA AS EMTSTA ,
+			      TXNDAT           ,
+			      TXNARPCOD        ,
+			      PTYTYP           ,
+			      PTYCOD           ,
+			      PTYNAM           ,
+			      PTYIDR           ,
+			      RTNDAT           ,
+			      RTNARPCOD        ,
+			      RTNPTYIDR        ,
+			      AGRCURCOD        ,
+			      INVREFNUM        ,
+			      TXNRMK           ,
+			      RTNRMK           ,
+			      RTNPTYCOD        ,
+			      LSTUPDUSR        ,
+			      LSTUPDTIM        ,
+			      DMGSTA           ,
+			      DSTAPTCOD        ,
+			      CRN              ,
+			      RTNCRN           ,
+			      CONCOD           ,
+			      POLOWN           ,
+			      MUCDAT           ,
+			      MUCREFNUM        ,
+			      MUCSNT           ,
+			      0 AS WVRAMT,
+			      DMRRAT           ,
+			      CASE
+			        WHEN POLOWN = 'N'
+			        AND COALESCE(CONCOD,'AAA') <> 'ZZZ'
+			        THEN TAXAMT
+			        ELSE 0
+			      END TAXAMT ,
+			      CASE
+			        WHEN POLOWN = 'N'
+			        AND COALESCE(CONCOD,'AAA') <> 'ZZZ'
+			        THEN
+			          CASE
+			            WHEN DMRFQY = 'D'
+			            THEN
+			              CASE
+						WHEN FRELONPRD                     = 0
+						AND TRUNC(current_date)  =  TRUNC(TXNDAT)
+						THEN DMRRAT
+						WHEN FRELONPRD                     = 0
+						AND TRUNC(current_date)   >  TRUNC(TXNDAT)
+						THEN (placeholder1)*DMRRAT
+						WHEN (TRUNC(current_date)) > interval '1' day*FRELONPRD+TRUNC(TXNDAT)
+						THEN (placeholder1- FRELONPRD) * DMRRAT
+						ELSE 0
+						END
+						WHEN DMRFQY = 'W'
+						THEN
+					CASE
+						WHEN TRUNC (current_date)  >= interval '1' day*FRELONPRD+TRUNC(TXNDAT)
+						THEN (FLOOR(((placeholder1)/ 7))+1 - FRELONPRD)* DMRRAT
+						ELSE 0
+						END
+						WHEN DMRFQY = 'F'
+						THEN
+					CASE
+						WHEN TRUNC (current_date)  >=interval '1' day*FRELONPRD+TRUNC(TXNDAT)
+						THEN (CEIL(((placeholder1)/ 14))+1- FRELONPRD)* DMRRAT
+						ELSE 0
+						END
+						WHEN DMRFQY = 'M'
+						THEN
+					CASE
+						WHEN TRUNC (current_date)  >= interval '1' day*FRELONPRD+TRUNC(TXNDAT)
+						THEN (TRUNC (MONTHS_BETWEEN (TRUNC(current_date), TRUNC(TXNDAT) - (interval '1' day*FRELONPRD)) )+1) * DMRRAT
+						ELSE 0
+			              END
+			          END
+			        WHEN POLOWN <> 'N'
+			        THEN 0
+			      END DMRAMT ,
+			      0 AS RAT
+			       FROM
+			      (SELECT MIN(PRI) OVER(PARTITION BY A.ULDNUM,A.TXNREFNUM)MINPRI,
+			        A.*
+			         FROM
+			        (SELECT
+      CASE
+        WHEN AGRDTL.PTYTYP   = TXN.PTYTYP
+        AND AGRDTL.PTYCOD    = TXN.PTYCOD
+        AND AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD
+        AND AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM,1,3)
+        AND AGRDTL.ARPCOD    = TXN.TXNARPCOD
+        THEN 1
+        WHEN AGRDTL.PTYTYP   = TXN.PTYTYP
+        AND AGRDTL.PTYCOD    = TXN.PTYCOD
+        AND AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD
+        AND AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM,1,3)
+        AND AGRDTL.ARPCOD    = 'HDQ'
+        THEN 2
+        WHEN AGRDTL.PTYTYP   = TXN.PTYTYP
+        AND AGRDTL.PTYCOD    = TXN.PTYCOD
+        AND AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD
+        THEN 3
+        WHEN AGRDTL.PTYTYP   = TXN.PTYTYP
+        AND AGRDTL.PTYCOD   IN( 'ALL AIRLINES','ALL AGENTS','ALL OTHERS')
+        AND AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD
+        AND AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM,1,3)
+        AND AGRDTL.ARPCOD    = TXN.TXNARPCOD
+        THEN 4
+        WHEN AGRDTL.PTYTYP   = TXN.PTYTYP
+        AND AGRDTL.PTYCOD   IN( 'ALL AIRLINES','ALL AGENTS','ALL OTHERS')
+        AND AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD
+        AND TXN.TXNTYP       = 'L'
+        AND AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM,1,3)
+        AND AGRDTL.ARPCOD    = 'HDQ'
+        THEN 5
+        WHEN AGRDTL.PTYTYP   = TXN.PTYTYP
+        AND AGRDTL.PTYCOD   IN( 'ALL AIRLINES','ALL AGENTS','ALL OTHERS')
+        AND AGRDTL.FRMPTYCOD = TXN.RTNPTYCOD
+        THEN 6
+        WHEN AGRDTL.PTYTYP    = TXN.PTYTYP
+        AND AGRDTL.PTYCOD    IN(TXN.PTYCOD, 'ALL AIRLINES','ALL AGENTS','ALL OTHERS')
+        AND AGRDTL.FRMPTYCOD IN( 'ALL AIRLINES','ALL OTHERS')
+        AND AGRDTL.ULDTYPCOD  = SUBSTR(TXN.ULDNUM,1,3)
+        AND AGRDTL.ARPCOD     = TXN.TXNARPCOD
+        THEN 7
+        WHEN AGRDTL.PTYTYP    = TXN.PTYTYP
+        AND AGRDTL.PTYCOD    IN( TXN.PTYCOD,'ALL AIRLINES','ALL AGENTS','ALL OTHERS')
+        AND AGRDTL.FRMPTYCOD IN( 'ALL AIRLINES','ALL OTHERS')
+        AND TXN.TXNTYP        = 'L'
+        AND AGRDTL.ULDTYPCOD  = SUBSTR(TXN.ULDNUM,1,3)
+        AND AGRDTL.ARPCOD     = 'HDQ'
+        THEN 8
+        WHEN AGRDTL.PTYTYP    = TXN.PTYTYP
+        AND AGRDTL.PTYCOD    IN( TXN.PTYCOD,'ALL AIRLINES','ALL AGENTS','ALL OTHERS')
+        AND AGRDTL.FRMPTYCOD IN('ALL AIRLINES','ALL OTHERS')
+        THEN 9
+        WHEN AGRDTL.PTYTYP   = TXN.PTYTYP
+        AND AGRDTL.PTYCOD    = 'ALL'
+        AND AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM,1,3)
+        AND AGRDTL.ARPCOD    = TXN.TXNARPCOD
+        THEN 10
+        WHEN AGRDTL.PTYTYP   = TXN.PTYTYP
+        AND AGRDTL.PTYCOD    = 'ALL'
+        AND AGRDTL.ULDTYPCOD = SUBSTR(TXN.ULDNUM,1,3)
+        AND AGRDTL.ARPCOD    = 'HDQ'
+        THEN 11
+        WHEN agrdtl.FRMPTYCOD = 'ALL'
+        THEN 12
+        WHEN agrdtl.ptycod = 'ALL'
+        THEN 13
+			          END PRI                ,
+			          TXN.TXNREFNUM          ,
+			          TXN.ULDNUM             ,
+			          TXN.CMPCOD             ,
+			          TXN.TXNTYP AS TXNTXNTYP,
+			          TXN.TXNNAT             ,
+			          TXN.TXNSTA             ,
+			          TXN.AWBRMK             ,
+			          TXN.EMTSTA             ,
+			          TXN.TXNDAT             ,
+			          TXN.TXNARPCOD          ,
+			          TXN.PTYTYP AS TXNPTYTYP,
+			          TXN.PTYCOD AS TXNPTYCOD,
+			          TXN.PTYNAM AS TXN      ,
+			          PTYNAM                 ,
+			          TXN.PTYIDR AS TXNPTYIDR,
+			          TXN.RTNDAT             ,
+			          TXN.RTNARPCOD          ,
+			          TXN.RTNPTYIDR          ,
+			          AGRDTL.CURCOD          ,
+			          TXN.INVREFNUM          ,
+			          TXN.TXNRMK             ,
+			          TXN.RTNRMK             ,
+			          TXN.PTYIDR             ,
+			          TXN.PTYCOD             ,
+			          TXN.PTYTYP             ,
+			          TXN.TXNTYP             ,
+			          TXN.RTNPTYCOD          ,
+			          TXN.LSTUPDUSR          ,
+			          TXN.LSTUPDTIM          ,
+			          TXN.DMGSTA             ,
+			          TXN.DSTAPTCOD          ,
+			          TXN.CRN                ,
+			          TXN.RTNCRN             ,
+			          TXN.CONCOD             ,
+			          TXN.POLOWN             ,
+			          TXN.MUCDAT             ,
+			          TXN.MUCREFNUM          ,
+			          TXN.MUCSNT             ,
+			          0                      AS WVRAMT,
+			          SUBSTR(TXN.ULDNUM,1,3) AS ULDTYPCOD         ,
+			          TXN.TOTAMT             AS TOTAMT            ,
+						TO_NUMBER(FUN_GET_ULD_DEMURAGE_RATE(TXN.CMPCOD,TXN.ULDTYP,TXN.TXNARPCOD,TRUNC(current_date),'A',TXN.RTNPTYCOD,TXN.PTYTYP,TXN.PTYCOD,'DMRRAT'))DMRRAT,
+						FUN_GET_ULD_DEMURAGE_RATE(TXN.CMPCOD,TXN.ULDTYP,TXN.TXNARPCOD,TRUNC(current_date),'A',TXN.RTNPTYCOD,TXN.PTYTYP,TXN.PTYCOD,'DMRFQY') DMRFQY,
+						TO_NUMBER(FUN_GET_ULD_DEMURAGE_RATE(TXN.CMPCOD,TXN.ULDTYP,TXN.TXNARPCOD,TRUNC(current_date),'A',TXN.RTNPTYCOD,TXN.PTYTYP,TXN.PTYCOD,'DMRTAXAMT'))TAXAMT,
+						TO_NUMBER(FUN_GET_ULD_DEMURAGE_RATE(TXN.CMPCOD,TXN.ULDTYP,TXN.TXNARPCOD,TRUNC(current_date),'A',TXN.RTNPTYCOD,TXN.PTYTYP,TXN.PTYCOD,'DMRFRELONPRD'))FRELONPRD,
+						FUN_GET_ULD_DEMURAGE_RATE(TXN.CMPCOD,TXN.ULDTYP,TXN.TXNARPCOD,TRUNC(current_date),'A',TXN.RTNPTYCOD,TXN.PTYTYP,TXN.PTYCOD,'DMRCURCOD')AGRCURCOD
+			           FROM
+			          (SELECT AGR.CMPCOD ,
+							AGR.PTYTYP ,
+							AGR.TXNTYP ,
+							AGR.PTYCOD ,
+							AGR.FRELONPRD ,
+							AGR.FRMPTYTYP ,
+							AGR.FRMPTYCOD,
+							AGR.CURCOD ,
+							AGR.DMRRAT ,
+							AGR.TAXAMT ,
+							AGR.DMRFQY ,
+							DTL.DMRFQY DTLDMRFQY ,
+							DTL.DMRRAT AS DTLDMRRAT ,
+							AGR.AGRMNTFRMDAT ,
+							AGR.AGRMNTTOODAT ,
+							DTL.AGRMNTFRMDAT DTLAGRMNTFRMDAT,
+							DTL.AGRMNTTOODAT DTLAGRMNTTOODAT,
+							DTL.FRELONPRD AS DTLFRELONPRD ,
+							DTL.TAXAMT DTLTAXAMT ,
+							DTL.CURCOD AS DTLCURCOD ,
+							DTL.ARPCOD AS ARPCOD ,
+							DTL.ULDTYPCOD
+			             FROM ULDAGRMNT AGR
+			          LEFT OUTER JOIN ULDAGRMNTDTL DTL
+			               ON AGR.CMPCOD    = DTL.CMPCOD
+			          AND AGR.AGRMNTNUM     = DTL.AGRMNTNUM
+			            WHERE AGR.AGRMNTSTA = 'A'
+							AND AGR.CMPCOD      = ?
+			          )AGRDTL ,
+			          ULDTXNMST TXN
+			          WHERE  TXN.CMPCOD           = AGRDTL.CMPCOD
+    AND AGRDTL.TXNTYP          = TXN.TXNTYP
+    AND (AGRDTL.PTYCOD         = TXN.PTYCOD
+    AND AGRDTL.PTYTYP          = TXN.PTYTYP
+    AND AGRDTL.FRMPTYCOD       = TXN.RTNPTYCOD
+    OR TXN.PTYTYP              = 'A'
+    AND AGRDTL.FRMPTYCOD       = 'ALL AIRLINES'
+    OR TXN.PTYTYP              = 'A'
+    AND AGRDTL.PTYCOD          = 'ALL AIRLINES'
+    OR TXN.PTYTYP              = 'G'
+    AND AGRDTL.PTYCOD          = 'ALL AGENTS'
+    OR TXN.PTYTYP              = 'O'
+    AND AGRDTL.PTYCOD          = 'ALL OTHERS'
+    OR AGRDTL.PTYTYP           = 'L'
+    AND AGRDTL.PTYCOD          = 'ALL'
+    AND SUBSTR(TXN.ULDNUM,1,3) = COALESCE(AGRDTL.ULDTYPCOD,SUBSTR(TXN.ULDNUM,1,3))
+    OR AGRDTL.FRMPTYTYP        = 'L'
+    AND AGRDTL.FRMPTYCOD       = 'ALL'
+    AND SUBSTR(TXN.ULDNUM,1,3) = COALESCE(AGRDTL.ULDTYPCOD,SUBSTR(TXN.ULDNUM,1,3)) )
+    AND (TRUNC(TXN.TXNDAT) BETWEEN TRUNC(AGRDTL.AGRMNTFRMDAT) AND COALESCE(TRUNC(AGRDTL.AGRMNTTOODAT),TO_DATE('01-DEC-2999','DD-MON-RRRR')))
+			        AND TXN.TXNSTA             = 'T'
+			        AND TXN.CMPCOD             = ?
+			        AND TXN.TXNARPCOD          = ?
+			        AND TXN.ULDNUM = ?
+			        
+			        
+
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+			<QRY:Definition>
+				   <QRY:Id>223</QRY:Id>
+					 <QRY:Source Name="uld.defaults.findflightarrival" Type="NATIVE">
+							<![CDATA[
+								
+							SELECT  ATA
+							FROM FLTOPRLEG
+							WHERE CMPCOD = ? AND
+							FLTCARIDR = ? AND
+							FLTNUM = ? AND
+							FLTSEQNUM = ?
+							]]>
+						</QRY:Source>
+			</QRY:Definition>
+			<QRY:Definition>
+				   <QRY:Id>224</QRY:Id>
+					 <QRY:Source Name="uld.defaults.finducmin" Type="NATIVE">
+							<![CDATA[
+
+							SELECT  FLTNUM
+							FROM ULDFLTMSGREC
+							WHERE MSGTYP='IN' AND 
+							CMPCOD = ? AND
+							FLTCARIDR = ? AND
+							FLTNUM = ? AND
+							FLTSEQNUM = ?
+							
+							]]>
+						</QRY:Source>
+			</QRY:Definition>
+			<QRY:Definition>
+				   <QRY:Id>225</QRY:Id>
+					 <QRY:Source Name="uld.defaults.findestimateduldstocklist" Type="NATIVE">
+							<![CDATA[
+SELECT Z.ULDTYP,
+  Z.CURRENTAVAILABILITY,
+  Z.ULDSOUT,
+  Z.ULDSIN,
+  Z.CURRENTAVAILABILITY-Z.ULDSOUT+Z.ULDSIN PROJECTED,
+  COALESCE(Z.MAXIMUMQTY,0) MAXIMUMQTY,
+  Z.CURRENTAVAILABILITY-Z.ULDSOUT+Z.ULDSIN-COALESCE(Z.MAXIMUMQTY,0) STOCKDEVIATION,
+  COALESCE(Z.MINIMUMQTY,0) MINIMUMQTY,
+  Z.CURRENTAVAILABILITY-Z.ULDSOUT+Z.ULDSIN-COALESCE(Z.MINIMUMQTY,0) MINSTOCKDEVIATION
+FROM
+  (SELECT MST.ULDTYP,
+    COUNT(        *) CURRENTAVAILABILITY,
+    (SELECT COUNT(*) ULDSOUT
+    FROM ULDMST ULD
+    WHERE ULD.CURARP = ?
+    AND ULD.TRNSTA   ='Y'
+    AND ULD.CMPCOD   = ?
+    AND ULD.OPRARLIDR = ?
+    AND ULD.ULDTYP   =MST.ULDTYP
+    ) ULDSOUT,
+    (SELECT COUNT(*)
+    FROM ULDMST ULD,
+      (select fltnum , fltseqnum , arpcod , fltcaridr,msgtyp, uldnum , POU from ULDFLTMSGRECDTL where CMPCOD =? AND ULDFLTSTA='T' group by fltnum , fltseqnum , arpcod , fltcaridr,msgtyp, uldnum,POU  
+) FLT
+    WHERE ULD.ULDNUM=FLT.ULDNUM
+    AND FLT.POU     =?
+    AND ULD.OPRARLIDR = ?
+    AND ULD.ULDTYP  =MST.ULDTYP
+    ) ULDSIN,
+    (
+    CASE
+      WHEN (SELECT SUM(STK.MAXQTY)
+        FROM ULDSTKCFG STK
+        WHERE STK.ARPCOD =?
+        AND STK.CMPCOD   =?
+        AND STK.ARLIDR   =?
+        AND STK.ULDTYPCOD=MST.ULDTYP)=0
+      THEN 0
+      ELSE
+        (SELECT SUM(STK.MAXQTY)
+        FROM ULDSTKCFG STK
+        WHERE STK.ARPCOD =?
+        AND STK.CMPCOD   =?
+        AND STK.ARLIDR   =?
+        AND STK.ULDTYPCOD=MST.ULDTYP
+        )
+    END) MAXIMUMQTY,
+    (
+    CASE
+      WHEN (SELECT SUM(STK.MINQTY)
+        FROM ULDSTKCFG STK
+        WHERE STK.ARPCOD =?
+        AND STK.CMPCOD   =?
+        AND STK.ARLIDR   =?
+        AND STK.ULDTYPCOD=MST.ULDTYP)=0
+      THEN 0
+      ELSE
+        (SELECT SUM(STK.MINQTY)
+        FROM ULDSTKCFG STK
+        WHERE STK.ARPCOD =?
+        AND STK.CMPCOD   =?
+        AND STK.ARLIDR   =?
+        AND STK.ULDTYPCOD=MST.ULDTYP
+        )
+    END) MINIMUMQTY
+  FROM ULDMST MST
+  WHERE CURARP=? AND
+  OVLSTA = 'O'
+  	AND MST.OPRARLIDR = ?					
+							
+					 
+							]]>
+						</QRY:Source>
+			</QRY:Definition>		
+		<QRY:Definition>
+				   <QRY:Id>225</QRY:Id>
+					 <QRY:Source Name="uld.defaults.findexcessstockairportlist" Type="NATIVE">
+							<![CDATA[
+SELECT ARPCOD,
+  CURAVL CURRENTAVAILABILITY,
+  ULDSOUT,
+  ULDSIN,
+  CURAVL-ULDSOUT+ULDSIN PROJECTED,
+  MAXQTY MAXIMUMQTY,
+  COALESCE(CURAVL-ULDSOUT+ULDSIN-MAXQTY,0) STOCKDEVIATION
+FROM
+  (SELECT ULD.CURARP ARPCOD,
+    COUNT(ULD.CURARP) CURAVL,
+    SUM(
+    CASE ULD.TRNSTA
+      WHEN 'Y'
+      THEN 1
+      ELSE 0
+    END) ULDSOUT,
+    COALESCE(
+    (SELECT SUM(STK.MAXQTY)
+        FROM ULDSTKCFG STK
+    WHERE STK.ARPCOD  = ULD.CURARP
+    AND STK.CMPCOD    = ULD.CMPCOD
+    AND STK.ULDTYPCOD = ULD.ULDTYP
+    AND STK.ARLIDR    = ULD.OPRARLIDR
+    ),0) MAXQTY,
+    (SELECT COUNT(*)
+    FROM ULDMST ULDMST
+    WHERE ULDMST.OPRARLIDR = ULD.OPRARLIDR
+    AND ULDMST.ULDTYP    =ULD.ULDTYP
+    AND ULDMST.CMPCOD    =ULD.CMPCOD
+	AND EXISTS (
+          SELECT 1 FROM ULDFLTMSGRECDTL FLT 
+    WHERE ULDMST.ULDNUM  =FLT.ULDNUM
+    AND FLT.POU       = ULD.CURARP
+          AND FLT.ULDFLTSTA = 'T'
+          )
+    ) ULDSIN
+  FROM ULDMST ULD
+  WHERE ULD.OVLSTA    = 'O'
+  AND ULD.OPRARLIDR   = ?
+  AND ULD.ULDTYP      = ?
+  AND ULD.CMPCOD      = ?
+  GROUP BY ULD.CMPCOD,
+    ULD.CURARP,
+    ULD.ULDTYP,
+    ULD.OPRARLIDR
+  )
+WHERE COALESCE(CURAVL-ULDSOUT+ULDSIN-MAXQTY,0) > 0
+
+							]]>
+						</QRY:Source>
+			</QRY:Definition>	
+<QRY:Definition>
+				   <QRY:Id>225</QRY:Id>
+					 <QRY:Source Name="uld.defaults.message.findAllUldFltMsgRecDtls" Type="NATIVE">
+							<![CDATA[
+							SELECT * FROM ULDFLTMSGRECDTL WHERE    CMPCOD = ? AND ARPCOD= ?  
+
+							]]>
+						</QRY:Source>
+			</QRY:Definition>					
+<QRY:Definition>
+<QRY:Id>226</QRY:Id>
+	<QRY:Source Name="uld.defaults.message.findULDsInTransitStatus" Type="NATIVE">
+		<![CDATA[
+			SELECT    DTL.CMPCOD,
+					  REC.FLTNUM,
+					  REC.FLTDAT,
+					  DTL.FLTCARIDR,
+					  DTL.FLTSEQNUM,
+					  DTL.ARPCOD,
+					  DTL.MSGTYP,
+					  DTL.SEQNUM,
+					  DTL.ULDNUM,
+					  DTL.ULDFLTSTA
+					FROM ULDFLTMSGRECDTL DTL
+							INNER JOIN ULDFLTMSGREC REC
+							ON 
+								REC.CMPCOD =DTL.CMPCOD
+							AND REC.FLTNUM=DTL.FLTNUM
+							and REC.FLTSEQNUM=DTL.FLTSEQNUM
+							and REC.FLTCARIDR=DTL.FLTCARIDR
+							AND REC.SEQNUM=DTL.SEQNUM
+							and REC.ARPCOD=DTL.ARPCOD
+						WHERE 
+							DTL.CMPCOD   =? 
+							AND REC.FLTDAT   = to_date(?, 'dd-MM-yyyy')
+							AND REC.FLTNUM =?
+							AND DTL.ULDFLTSTA='T'
+		]]>
+	</QRY:Source>
+</QRY:Definition>	
+<QRY:Definition>
+<QRY:Id>227</QRY:Id>
+	<QRY:Source Name="uld.defaults.findsequencenumber" Type="NATIVE">
+		<![CDATA[
+			select SEQNUM from ULDSCMMSGREC where CMPCOD=? and ARPCOD=? and ARLIDR=? and MSGSNDFLG in('D','N')
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+<QRY:Definition>
+<QRY:Id>228</QRY:Id>
+	<QRY:Source Name="uld.defaults.DummyULDMovementPresent" Type="NATIVE">
+		<![CDATA[
+			SELECT COUNT(*) MOVCOUNT FROM ULDMVTDTL WHERE CMPCOD=? AND FLTCARIDR=? AND FLTNUM=?
+			AND FLTDAT=? AND ULDNUM=?  AND POL=? AND POU=?
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>229</QRY:Id>
+		<QRY:Source Name="uld.defaults.finduldtransaction.opentransactions" Type="OBJECT">
+       <![CDATA[
+			SELECT uLDTransaction from
+			com.ibsplc.icargo.business.uld.defaults.transaction.ULDTransaction as uLDTransaction
+			WHERE
+				uLDTransaction.uldTransactionPK.companyCode = ?
+				AND uLDTransaction.uldTransactionPK.uldNumber = ?
+				AND uLDTransaction.transactionType = 'L'
+				AND uLDTransaction.transactionStatus = 'T'
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>230</QRY:Id>
+	<QRY:Source Name="uld.defaults.findLastTransactionsForUld" Type="NATIVE">
+		<![CDATA[
+		 SELECT RTNPTYCOD, RTNPTYIDR , ULDNUM, PTYCOD , PTYIDR ,TXNDAT  ,TXNTYP,TXNARPCOD ,TXNSTA , TXNREFNUM , PTYTYP, uldtyp, CMPCOD, RTNARPCOD  ,RTNDAT
+		FROM  ( SELECT RTNPTYCOD, RTNPTYIDR , ULDNUM , PTYCOD , PTYIDR ,TXNDAT ,TXNTYP  ,TXNARPCOD  ,TXNSTA  , TXNREFNUM, PTYTYP, uldtyp, CMPCOD,
+		RTNARPCOD ,RTNDAT , MAX(TXNDAT) OVER (PARTITION BY CMPCOD, ULDNUM) MAXTXNDAT
+   FROM ULDTXNMST 
+   WHERE CMPCOD=?
+    AND ULDNUM =?) TXN 
+		WHERE TXNDAT = MAXTXNDAT
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+<QRY:Definition>
+		<QRY:Id>231</QRY:Id>
+	<QRY:Source Name="uld.defaults.findOprULDAuditDetails" Type="NATIVE">
+		<![CDATA[
+		 SELECT CASE
+					WHEN OPR.ACTCOD = 'BDPCRT'
+						 THEN 'BUILD-UP'
+						 ELSE 'BREAK-DOWN'
+					END STA , OPR.ULDNUM ,FLT.TALNUM ,OPR.UPDTXNTIM,OPR.ADLINF, OPR.AUDRMK,OPR.STNCOD,OPR.FLTNUM,OPR.ARPCOD,OPR.FLTCARIDR,MST.FLTOWN,MST.FLTDAT
+			FROM OPRULDAUD OPR INNER JOIN FLTOPRLEG FLT 
+			ON FLT.CMPCOD = OPR.CMPCOD
+					AND FLT.FLTCARIDR = OPR.FLTCARIDR
+					AND FLT.FLTSEQNUM = OPR.FLTSEQNUM
+					AND FLT.FLTNUM = OPR.FLTNUM
+			AND (FLT.LEGORG = OPR.ARPCOD AND OPR.ACTCOD = 'BDPCRT' OR FLT.LEGDST = OPR.ARPCOD 
+			AND OPR.ACTCOD = 'BDNCRT')
+			INNER JOIN FLTOPRMST MST 
+			ON FLT.FLTCARIDR = MST.FLTCARIDR
+					AND FLT.FLTSEQNUM = MST.FLTSEQNUM
+					AND FLT.CMPCOD = MST.CMPCOD
+					AND FLT.FLTNUM = MST.FLTNUM
+					AND (FLT.LEGORG = OPR.ARPCOD AND OPR.ACTCOD = 'BDPCRT' OR FLT.LEGDST = OPR.ARPCOD 
+          AND OPR.ACTCOD = 'BDNCRT')
+			WHERE OPR.CMPCOD = ?
+					AND OPR.ULDNUM = ?
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+<QRY:Definition>
+		<QRY:Id>232</QRY:Id>
+	<QRY:Source Name="uld.defaults.findOprAndMaiULDAuditDetails" Type="NATIVE">
+		<![CDATA[
+		 SELECT CASE
+    WHEN OPR.ACTCOD = 'CONCREATASGN' OR OPR.ACTCOD='CONCREATRSGN'
+    THEN 'BUILD-UP'
+    WHEN OPR.ACTCOD='CREATE' OR OPR.ACTCOD='CONTRA' 
+    THEN 'BREAK-DOWN'
+  END STA ,
+  OPR.CONNUM ,
+  FLT.TALNUM ,
+  OPR.UPDTXNTIM,
+  OPR.ADLINF,
+  OPR.AUDRMK,
+  OPR.STNCOD,
+  OPR.FLTNUM,
+  OPR.ASGPRT,
+  OPR.FLTCARIDR,
+  MST.FLTOWN,
+  MST.FLTDAT
+FROM MALFLTCONAUD OPR ,
+  FLTOPRLEG FLT,
+  FLTOPRMST MST
+WHERE FLT.CMPCOD  = OPR.CMPCOD
+AND FLT.FLTCARIDR = OPR.FLTCARIDR
+AND FLT.FLTSEQNUM = OPR.FLTSEQNUM
+AND FLT.FLTNUM    = OPR.FLTNUM
+AND FLT.FLTCARIDR = MST.FLTCARIDR
+AND FLT.FLTSEQNUM = MST.FLTSEQNUM
+AND FLT.CMPCOD    = MST.CMPCOD
+AND FLT.FLTNUM    = MST.FLTNUM
+AND (FLT.LEGORG   = OPR.ASGPRT
+AND OPR.ACTCOD    = 'CONCREATASGN'
+OR FLT.LEGDST    = OPR.STNCOD
+AND OPR.ACTCOD    = 'CREATE'
+OR FLT.LEGDST    = OPR.STNCOD
+AND OPR.ACTCOD    = 'CONTRA'
+OR FLT.LEGORG   = OPR.ASGPRT
+AND OPR.ACTCOD    = 'CONCREATRSGN')
+AND OPR.CMPCOD    = ?
+AND OPR.CONNUM    = ?
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+
+
+<QRY:Definition>
+		<QRY:Id>235</QRY:Id>
+	<QRY:Source Name="uld.defaults.finduldstocklistfornotification" Type="NATIVE">
+		<![CDATA[
+		 SELECT * FROM (
+		 SELECT Z.CURARP,Z.ULDTYP,
+		   Z.CURRENTAVAILABILITY,
+		   Z.CURRENTAVAILABILITY-Z.ULDSOUT+Z.ULDSIN PROJECTED,
+		   COALESCE(Z.MAXIMUMQTY,0) MAXIMUMQTY,
+		   Z.CURRENTAVAILABILITY-Z.ULDSOUT+Z.ULDSIN-COALESCE(Z.MAXIMUMQTY,0) STOCKDEVIATION,
+		   COALESCE(Z.MINIMUMQTY,0) MINIMUMQTY,
+		   Z.CURRENTAVAILABILITY-Z.ULDSOUT+Z.ULDSIN-COALESCE(Z.MINIMUMQTY,0) MINSTOCKDEVIATION
+		 FROM
+		   (SELECT MST.ULDTYP,
+		     COUNT(        *) CURRENTAVAILABILITY,
+		     (SELECT COUNT(*) ULDSOUT
+		     FROM ULDMST ULD
+		     WHERE ULD.CURARP  = MST.CURARP
+		     AND ULD.TRNSTA    ='Y'
+		     AND ULD.CMPCOD    = ?
+		     AND ULD.OPRARLIDR = ?
+		     AND ULD.ULDTYP    =MST.ULDTYP
+		     ) ULDSOUT,MST.CURARP,
+		     (SELECT COUNT(*)
+		     FROM ULDMST ULD,
+		       (SELECT fltnum ,
+		         fltseqnum ,
+		         arpcod ,
+		         fltcaridr,
+		         msgtyp,
+		         uldnum ,
+		         POU
+		       FROM ULDFLTMSGRECDTL
+		       WHERE CMPCOD =?
+		       AND ULDFLTSTA='T'
+		       GROUP BY fltnum ,
+		         fltseqnum ,
+		         arpcod ,
+		         fltcaridr,
+		         msgtyp,
+		         uldnum,
+		         POU
+		       ) FLT
+		     WHERE ULD.ULDNUM  =FLT.ULDNUM
+		     AND FLT.POU       =MST.CURARP
+		     AND ULD.OPRARLIDR = ?
+		     AND ULD.ULDTYP    =MST.ULDTYP
+		     ) ULDSIN,
+		     (
+		     CASE
+		       WHEN (SELECT SUM(STK.MAXQTY)
+		         FROM ULDSTKCFG STK
+		         WHERE STK.ARPCOD =MST.CURARP
+		         AND STK.CMPCOD   =?
+		         AND STK.ARLIDR   =?
+		         AND STK.ULDTYPCOD=MST.ULDTYP)=0
+		       THEN 0
+		       ELSE
+		         (SELECT SUM(STK.MAXQTY)
+		         FROM ULDSTKCFG STK
+		         WHERE STK.ARPCOD =MST.CURARP
+		         AND STK.CMPCOD   =?
+		         AND STK.ARLIDR   =?
+		         AND STK.ULDTYPCOD=MST.ULDTYP
+		         )
+		     END) MAXIMUMQTY,
+		     (
+		     CASE
+		       WHEN (SELECT SUM(STK.MINQTY)
+		         FROM ULDSTKCFG STK
+		         WHERE STK.ARPCOD =MST.CURARP
+		         AND STK.CMPCOD   =?
+		         AND STK.ARLIDR   =?
+		         AND STK.ULDTYPCOD=MST.ULDTYP)=0
+		       THEN 0
+		       ELSE
+		         (SELECT SUM(STK.MINQTY)
+		         FROM ULDSTKCFG STK
+		         WHERE STK.ARPCOD =MST.CURARP
+		         AND STK.CMPCOD   =?
+		         AND STK.ARLIDR   =?
+		         AND STK.ULDTYPCOD=MST.ULDTYP
+		         )
+		     END) MINIMUMQTY
+		   FROM ULDMST MST
+		   WHERE OVLSTA        = 'O'
+		   AND MST.OPRARLIDR = ?
+		   AND MST.CMPCOD = ?
+		   GROUP BY ULDTYP, CURARP
+		   ) Z) STKLSTNTFY
+		   WHERE (maximumqty >0 and STOCKDEVIATION > 0) OR (minimumqty >0 and  MINSTOCKDEVIATION < 0)
+		ORDER BY CURARP, ULDTYP ASC
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>236</QRY:Id>
+	<QRY:Source Name="uld.defaults.findSCMMissingAirports" Type="NATIVE">
+	<![CDATA[
+		SELECT DISTINCT MST.ARPCOD, 
+		CASE WHEN SCMREC.ARPCOD IS NOT NULL THEN 'Y' ELSE 'N' END SCMFLG
+		FROM SHRARPMST MST, ULDSCMMSGREC SCMREC
+		WHERE MST.CMPCOD = SCMREC.CMPCOD(+)
+		AND MST.ARPCOD = SCMREC.ARPCOD(+)
+		AND MST.CNTCOD = 'IN'
+		AND TRUNC(SCMREC.STKCHKDAT(+)) > TRUNC(SYSDATE-7)
+    		ORDER BY SCMFLG
+	]]>
+	</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>237</QRY:Id>
+	<QRY:Source Name="uld.defaults.findUCMMissingFlights" Type="NATIVE">
+	<![CDATA[
+		SELECT EXPFLT.ARPCOD, EXPFLT.FLTCARCOD, MST.FLTNUM, MST.FLTDAT, LEG.ATD, MST.FLTROU 
+		FROM FLTOPRMST MST, FLTOPRLEG LEG, OPRARPEXPFLT EXPFLT
+		WHERE MST.CMPCOD = LEG.CMPCOD
+		AND MST.FLTNUM = LEG.FLTNUM
+		AND MST.FLTSEQNUM = LEG.FLTSEQNUM
+		AND LEG.CMPCOD = EXPFLT.CMPCOD
+		AND LEG.FLTNUM = EXPFLT.FLTNUM
+		AND LEG.FLTSEQNUM = EXPFLT.FLTSEQNUM
+		AND LEG.LEGORG = EXPFLT.ARPCOD
+		AND MST.CMPCOD = ?
+		AND MST.FLTCARIDR = ?
+		AND (LEG.ATDUTC + %s) < (pkg_frmwrk_date.fun_get_sysdateutc())
+		AND LEG.ATDUTC > ((pkg_frmwrk_date.fun_get_sysdateutc())-%s )
+		AND NOT EXISTS (
+		SELECT 1 FROM ULDFLTMSGREC WHERE CMPCOD = EXPFLT.CMPCOD
+		AND FLTNUM = EXPFLT.FLTNUM
+		AND FLTSEQNUM = EXPFLT.FLTSEQNUM
+		AND ARPCOD = EXPFLT.ARPCOD
+		AND MSGTYP = 'OUT'
+		AND MSGSNDFLG = 'O'
+		)
+		ORDER BY EXPFLT.ARPCOD, MST.FLTDAT, MST.FLTNUM
+	]]>
+	</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>234</QRY:Id>
+	<QRY:Source Name="uld.defaults.findlatestUCMsFromAllSources" Type="NATIVE">
+	<![CDATA[
+	WITH ucmsnduld AS (
+    SELECT DISTINCT
+        rec.cmpcod,
+        uldnum,
+        recdtl.arpcod,
+        recdtl.fltcaridr,
+        recdtl.fltseqnum,
+        recdtl.fltnum,
+        recdtl.uldsta
+    FROM
+        uldfltmsgrec rec,
+        uldfltmsgrecdtl recdtl
+    WHERE
+        rec.fltcaridr = recdtl.fltcaridr
+        AND rec.fltnum = recdtl.fltnum
+        AND rec.fltseqnum = recdtl.fltseqnum
+        AND rec.arpcod = recdtl.arpcod
+        AND rec.cmpcod = recdtl.cmpcod
+        AND rec.msgtyp = recdtl.msgtyp
+        AND rec.seqnum = recdtl.seqnum
+        AND recdtl.uldsta = 'S'
+        AND ( ucmmsgsrc != 'MFT'
+              OR ( ucmmsgsrc = 'MFT'
+                   AND EXISTS (
+            SELECT
+                1
+            FROM
+                shrmsgcfgmst
+            WHERE
+                cmpcod = cmpcod
+                AND msgtyp = 'UCM'
+                AND txnidr = 'OPR_SCREEN'
+                AND prfsta = 'A'
+        ) ) )
+)
+		SELECT REC.FLTCARIDR,
+  REC.FLTNUM,
+  REC.FLTSEQNUM,
+  REC.ARPCOD,
+  REC.CMPCOD,
+  REC.MSGTYP,
+  REC.UCMMSGSRC,
+  REC.SEQNUM,
+  REC.FLTDAT,
+  RECDTL.ULDNUM,
+  RECDTL.CNT,
+  RECDTL.POU,
+  RECDTL.ERRCOD AS ULDERRCOD,
+  RECDTL.DMGSTA ,
+  COALESCE(snduld.uldsta,'N') uldsta,
+  RECDTL.ULDSRC,
+  REC.SPLINF,
+  CASE ARLMST.APHCODUSE
+    WHEN 2
+    THEN ARLMST.TWOAPHCOD
+    ELSE ARLMST.THRAPHCOD
+  END ARLCOD
+FROM (
+SELECT MST.CMPCOD,MST.FLTCARIDR,MST.FLTNUM,MST.FLTSEQNUM,MST.ARPCOD,MST.MSGTYP,MST.FLTDAT,ERRCOD,MST.SEQNUM,MST.UCMMSGSRC,MST.SPLINF FROM
+(SELECT CMPCOD,FLTCARIDR,FLTNUM,FLTSEQNUM,ARPCOD,MSGTYP,FLTDAT,ERRCOD,SEQNUM,SPLINF,
+MAX(SEQNUM) OVER (PARTITION BY  CMPCOD,
+  FLTCARIDR,
+  FLTNUM,
+  FLTSEQNUM,
+  FLTDAT,
+  ARPCOD,
+  MSGTYP,
+  UCMMSGSRC) AS MAXSEQNUM,
+  UCMMSGSRC
+FROM ULDFLTMSGREC WHERE CMPCOD  = ?
+AND ARPCOD    = ?
+AND FLTCARIDR = ?
+AND FLTNUM    = ?
+AND FLTSEQNUM = ?
+AND MSGTYP    = ?
+)MST WHERE MST.SEQNUM = MST.MAXSEQNUM ) REC
+LEFT OUTER JOIN ULDFLTMSGRECDTL RECDTL
+ON REC.FLTCARIDR  = RECDTL.FLTCARIDR
+AND REC.FLTNUM    = RECDTL.FLTNUM
+AND REC.FLTSEQNUM = RECDTL.FLTSEQNUM
+AND REC.ARPCOD    = RECDTL.ARPCOD
+AND REC.CMPCOD    = RECDTL.CMPCOD
+AND REC.MSGTYP    = RECDTL.MSGTYP
+AND REC.SEQNUM    = RECDTL.SEQNUM
+AND (
+        UCMMSGSRC != 'MFT'
+        OR (
+            UCMMSGSRC = 'MFT'
+            AND EXISTS (
+                SELECT
+                    1
+                FROM
+                    SHRMSGCFGMST
+                WHERE
+                    CMPCOD = CMPCOD
+                    AND MSGTYP = 'UCM'
+                    AND TXNIDR = 'OPR_SCREEN'
+                    AND PRFSTA = 'A'
+            )
+        )
+    ) 
+LEFT OUTER JOIN SHRARLMST ARLMST
+ON REC.CMPCOD     = ARLMST.CMPCOD
+AND REC.FLTCARIDR = ARLMST.ARLIDR
+LEFT OUTER JOIN ucmsnduld snduld ON recdtl.cmpcod = snduld.cmpcod
+                                        AND recdtl.uldnum = snduld.uldnum
+                                        AND recdtl.arpcod = snduld.arpcod
+                                        AND recdtl.fltcaridr = snduld.fltcaridr
+                                        AND recdtl.fltnum = snduld.fltnum
+                                        AND recdtl.fltseqnum = snduld.fltseqnum
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+<QRY:Definition>
+		<QRY:Id>235</QRY:Id>
+		<QRY:Source Name="uld.defaults.finduldobjectsfordepreciation" Type="OBJECT">
+       <![CDATA[
+			SELECT uld
+				FROM com.ibsplc.icargo.business.uld.defaults.ULD as uld
+				WHERE uld.uldPK.companyCode =? AND 
+				uld.purchaseDate is NOT NULL
+				AND COALESCE(uld.currentValue,uld.uldPrice) > 0
+                AND COALESCE(uld.depreciationDate,uld.purchaseDate) <= %s
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>238</QRY:Id>
+		<QRY:Source Name="uld.defaults.removeDamageImages" Type="NATIVE">
+			<![CDATA[
+				DELETE FROM ULDDMGPIC WHERE CMPCOD = ? AND
+					ULDNUM = ? AND SEQNUM = ?				
+	 	   	]]>
+		  </QRY:Source>
+	    </QRY:Definition>
+<!-- Added by A-8612 for ICRD- 327096 on 24Apr19  -->		
+	<QRY:Definition>
+      <QRY:Id>239</QRY:Id>
+            <QRY:Source Name="uld.defaults.findOprAndMaiULDAuditDetailsForOALCarrier" Type="NATIVE">
+                        <![CDATA[
+								SELECT
+			  CASE
+				WHEN OPR.ACTCOD = 'CONCREATASGN' OR OPR.ACTCOD='CONCREATRSGN'
+				THEN 'BUILD-UP'
+				WHEN OPR.ACTCOD='CREATE' OR OPR.ACTCOD='CONTRA'
+				THEN 'BREAK-DOWN'
+				WHEN OPR.ACTCOD = 'CONCREATOFL'
+				THEN 'OFFLOAD'
+			  END STA ,
+			  OPR.CONNUM ,
+			  NULL,
+			  OPR.UPDTXNTIM,
+			  OPR.ADLINF,
+			  OPR.AUDRMK,
+			  OPR.STNCOD,
+			  OPR.FLTNUM,
+			  OPR.ASGPRT,
+			  OPR.FLTCARIDR,
+			  ARL.TWOAPHCOD FLTOWN,
+			  NULL
+			FROM MALFLTCONAUD OPR
+			LEFT OUTER JOIN SHRARLMST ARL ON
+            OPR.CMPCOD  = ARL.CMPCOD
+            AND OPR.FLTCARIDR = ARL.ARLIDR
+			WHERE OPR.CMPCOD         = ?
+			AND OPR.FLTNUM         = '-1'
+			AND OPR.FLTSEQNUM               = '-1'
+			AND OPR.CONNUM         = ?
+			AND (
+			]]>
+ </QRY:Source>
+</QRY:Definition>
+	<QRY:Definition>
+      <QRY:Id>240</QRY:Id>
+		<QRY:Source Name="uld.defaults.validateUldAirportLocation" Type="NATIVE">
+			<![CDATA[
+				SELECT 1 AS RESULT
+						FROM ULDARPLOC
+						WHERE CMPCOD = ?
+						AND ARPCOD = ?
+            AND FACCOD = ?
+            AND FACTYP = ?
+			]]>
+ </QRY:Source>
+</QRY:Definition>
+	<QRY:Definition>
+      <QRY:Id>240</QRY:Id>
+            <QRY:Source Name="uld.defaults.findUldsForMarkMovement" Type="NATIVE">
+                        <![CDATA[
+						SELECT DISTINCT
+ULD.CMPCOD,
+ULD.FLTCARIDR,
+ULD.FLTNUM,
+ULD.FLTSEQNUM,
+ULD.ULDNUM,
+SEG.SEGORG,
+SEG.SEGDST,
+LEG.STA
+FROM 
+OPRSEGULD ULD,
+FLTOPRSEG SEG,
+FLTOPRLEG LEG,
+OPRARPEXPFLT EXP
+WHERE
+ULD.CMPCOD=SEG.CMPCOD AND
+ULD.FLTCARIDR=SEG.FLTCARIDR AND
+ULD.FLTNUM=SEG.FLTNUM AND
+ULD.FLTSEQNUM=SEG.FLTSEQNUM AND
+ULD.SEGSERNUM=SEG.SEGSERNUM AND
+ULD.BARROWFLG = 'N' AND
+ULD.ULDNUM <>'BULK' AND
+SEG.CMPCOD=EXP.CMPCOD AND
+SEG.FLTCARIDR=EXP.FLTCARIDR AND
+SEG.FLTNUM=EXP.FLTNUM AND
+SEG.FLTSEQNUM=EXP.FLTSEQNUM AND
+SEG.SEGORG=EXP.ARPCOD AND
+EXP.FINFLG = 'F' AND
+EXP.CMPCOD=LEG.CMPCOD AND
+EXP.FLTCARIDR=LEG.FLTCARIDR AND
+EXP.FLTNUM=LEG.FLTNUM AND
+EXP.FLTSEQNUM=LEG.FLTSEQNUM AND
+LEG.ATA IS NULL AND
+LEG.legdst = SEG.segdst AND
+(LEG.STA IS NOT NULL 
+      AND (LEG.STAUTC + (COALESCE(TO_NUMBER((SELECT PARVAL FROM SHRUSEARPPAR ARPPAR
+      WHERE ARPPAR.PARCOD='uld.defaults.buffertimtomarkuldmovement' AND ARPPAR.ARPCOD = SEG.SEGDST)),0)/24) < SYS_EXTRACT_UTC(SYSTIMESTAMP) ) 
+      AND LEG.STA > SYSDATE - 1
+      AND LEG.LEGSTA NOT IN ('CAN','TBC') )
+AND NOT EXISTS
+(
+SELECT 1 FROM
+ULDFLTMSGREC MSG
+WHERE MSG.CMPCOD=SEG.CMPCOD AND
+MSG.FLTCARIDR=SEG.FLTCARIDR AND
+MSG.FLTNUM=SEG.FLTNUM AND
+MSG.FLTSEQNUM=SEG.FLTSEQNUM AND
+MSG.ARPCOD=SEG.SEGORG AND
+MSG.MSGTYP='OUT' AND
+MSG.UCMMSGSRC='ULDMVTJOB'
+)
+AND ULD.CMPCOD = ?
+AND ROWNUM < ?
+			]]>
+ </QRY:Source>
+</QRY:Definition>
+<QRY:Definition>
+      <QRY:Id>243</QRY:Id>
+            <QRY:Source Name="postgres.uld.defaults.findUldsForMarkMovement" Type="NATIVE">
+			  <![CDATA[
+			SELECT * FROM (SELECT DISTINCT ULD.CMPCOD,
+  ULD.FLTCARIDR,
+  ULD.FLTNUM,
+  ULD.FLTSEQNUM,
+  ULD.ULDNUM,
+  SEG.SEGORG,
+  SEG.SEGDST,
+  LEG.STA,
+  ROW_NUMBER() OVER (ORDER BY NULL) AS RANK
+FROM OPRSEGULD ULD,
+  FLTOPRSEG SEG,
+  FLTOPRLEG LEG,
+  OPRARPEXPFLT EXP
+WHERE ULD.CMPCOD  =SEG.CMPCOD
+AND ULD.FLTCARIDR =SEG.FLTCARIDR
+AND ULD.FLTNUM    =SEG.FLTNUM
+AND ULD.FLTSEQNUM =SEG.FLTSEQNUM
+AND ULD.SEGSERNUM =SEG.SEGSERNUM
+AND ULD.BARROWFLG = 'N'
+AND ULD.ULDNUM   <>'BULK'
+AND SEG.CMPCOD    =EXP.CMPCOD
+AND SEG.FLTCARIDR =EXP.FLTCARIDR
+AND SEG.FLTNUM    =EXP.FLTNUM
+AND SEG.FLTSEQNUM =EXP.FLTSEQNUM
+AND SEG.SEGORG    =EXP.ARPCOD
+AND EXP.FINFLG    = 'F'
+AND EXP.CMPCOD    =LEG.CMPCOD
+AND EXP.FLTCARIDR =LEG.FLTCARIDR
+AND EXP.FLTNUM    =LEG.FLTNUM
+AND EXP.FLTSEQNUM =LEG.FLTSEQNUM
+AND LEG.ATA      IS NULL
+AND LEG.legdst    = SEG.segdst
+AND (LEG.STA     IS NOT NULL
+AND (LEG.STAUTC + 
+( (COALESCE(to_NUMBER((SELECT PARVAL FROM SHRUSEARPPAR ARPPAR
+  WHERE ARPPAR.PARCOD='uld.defaults.buffertimtomarkuldmovement' )),0)/24)  :: NUMERIC || 'hours'):: INTERVAL
+  < pkg_frmwrk_date.fun_get_sysdateutc() )
+AND LEG.STA          > SYSDATE() - interval '1' day
+AND LEG.LEGSTA NOT            IN ('CAN','TBC') )
+AND NOT EXISTS
+  (SELECT 1
+  FROM ULDFLTMSGREC MSG
+  WHERE MSG.CMPCOD =SEG.CMPCOD
+  AND MSG.FLTCARIDR=SEG.FLTCARIDR
+  AND MSG.FLTNUM   =SEG.FLTNUM
+  AND MSG.FLTSEQNUM=SEG.FLTSEQNUM
+  AND MSG.ARPCOD   =SEG.SEGORG
+  AND MSG.MSGTYP   ='OUT'
+  AND MSG.UCMMSGSRC='ULDMVTJOB'
+  )
+AND ULD.CMPCOD = ?) mst 
+WHERE RANK < ?
+]]>
+ </QRY:Source>
+</QRY:Definition>
+<QRY:Definition>
+		<QRY:Id>241</QRY:Id>
+		<QRY:Source Name="uld.defaults.finduldagreementfilterdetails" Type="NATIVE">
+			<![CDATA[
+						SELECT
+    a.cmpcod cmp1,
+    a.agrmntnum agr1,
+    a.txntyp,
+    a.agrmntsta,
+    a.lstupdusr,
+    a.lstupdtim,
+    a.agrmntdat,
+    a.ptycod,
+    a.ptytyp,
+    a.ptynam,
+    a.frmptycod,
+    a.frmptytyp,
+    a.frmptynam,
+    a.frelonprd flp1,
+    a.agrmntfrmdat frmdat1,
+    a.agrmnttoodat todat1,
+    a.dmrrat rat1,
+    a.dmrfqy fqy1,
+    a.taxamt tax1,
+    a.curcod cod1,
+    a.agrmntrmk rmk1,
+    b.cmpcod cmp2,
+    b.agrmntnum agr2,
+    b.seqnum,
+    b.uldtypcod,
+    b.arpcod,
+    b.frelonprd flp2,
+    b.agrmntfrmdat frmdat2,
+    b.agrmnttoodat todat2,
+    b.dmrrat rat2,
+    b.dmrfqy fqy2,
+    b.taxamt tax2,
+    b.curcod cod2,
+    b.agrmntrmk rmk2
+FROM
+    uldagrmnt a
+    LEFT OUTER JOIN uldagrmntdtl b ON ( a.cmpcod = b.cmpcod
+                                        AND a.agrmntnum = b.agrmntnum )
+WHERE
+    a.cmpcod =?
+    AND a.agrmntnum =?
+    AND b.uldtypcod =?
+ORDER BY
+    a.agrmntnum
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>242</QRY:Id>
+		<QRY:Source Name="uld.defaults.findDuplicatePoolOwnerConfig" Type="NATIVE">
+			<![CDATA[
+				SELECT 1 AS RESULT FROM ULDPOLOWNMST WHERE CMPCOD = ? and ARLONE = ? and ARLTWO = ?				
+	 	   	]]>
+		  </QRY:Source>
+	    </QRY:Definition>
+<!--	<QRY:Definition>
+		<QRY:Id>243</QRY:Id>
+		<QRY:Source Name="uld.defaults.validateUldAirportLocation" Type="NATIVE">
+			<![CDATA[
+				SELECT 1 AS RESULT
+						FROM ULDARPLOC
+						WHERE CMPCOD = ?
+						AND ARPCOD = ?
+            AND FACCOD = ?
+            AND FACTYP = ?
+	 	   	]]>
+		  </QRY:Source>
+	    </QRY:Definition> -->
+	<QRY:Definition>
+		<QRY:Id>243</QRY:Id>
+		<QRY:Source Name="uld.defaults.findairportsforscmjob" Type="NATIVE">
+			<![CDATA[
+						SELECT DISTINCT mst.arpcod AS AIRPORT
+FROM shrarpmst mst
+inner JOIN uldscmmsgrec scmrec
+ON mst.cmpcod = scmrec.cmpcod
+AND mst.arpcod = scmrec.arpcod
+AND mst.cmpcod= ?
+AND TRUNC(scmrec.stkchkdat ) > TRUNC(current_date - ?)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+</QRY:Definitions>

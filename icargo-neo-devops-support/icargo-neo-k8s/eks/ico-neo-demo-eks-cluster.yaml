@@ -1,0 +1,61 @@
+apiVersion: "eksctl.io/v1alpha5"
+kind: "ClusterConfig"
+metadata:
+  name: "ico-neo-demo2"
+  region: "ap-south-1"
+  version: "1.20"
+  tags:
+    Project: "iCargo-Neo-development"
+    CostCenter: "iCargo"
+    Owner: "Krishna Kumar M"
+    Environment: "IT-DEV"
+    Name: "ico-neo-demo2"
+vpc:
+  id: "vpc-0b1cb5b6452d1117b"
+  cidr: "10.246.0.0/16"
+  subnets:
+    private:
+      ap-south-1a:
+        id: "subnet-0ae97c52167edbb19"
+      ap-south-1b:
+        id: "subnet-0f5520d17d73d24f6"
+  securityGroup: "sg-02050173c5f6218c5"
+  sharedNodeSecurityGroup: "sg-02050173c5f6218c5"
+  clusterEndpoints:
+    publicAccess: true
+    privateAccess: true
+iam:
+  serviceRoleARN: "arn:aws:iam::141807520248:role/IBS_eks_cluster_Role"
+managedNodeGroups:
+  - name: "ico-neo-demo-ng"
+    instancePrefix: "ico-neo-demo-ng-"
+    instanceType: "m5.xlarge"
+    minSize: 1
+    desiredCapacity: 1
+    maxSize: 8
+    availabilityZones: [ "ap-south-1a", "ap-south-1b" ]
+    volumeSize: 60
+    privateNetworking: true
+    preBootstrapCommands:
+      # Add IBS insecure docker registries 
+      - 'echo { \"bridge\": \"none\", \"log-driver\": \"json-file\", \"log-opts\": { \"max-size\": \"10m\", \"max-file\": \"5\" }, \"live-restore\": true, \"max-concurrent-downloads\": 6, \"insecure-registries\" : [\"192.168.49.43\"] } > /etc/docker/daemon.json'
+      - |
+        cat << EOD >> /etc/sysconfig/docker
+        HTTP_PROXY=http://10.246.8.59:3128/
+        HTTPS_PROXY=http://10.246.8.59:3128/
+        NO_PROXY=192.168.49.43,*.ap-south-1.amazonaws.com,13.232.222.26
+        EOD
+        curl http://10.246.8.59/ca.crt > /etc/pki/ca-trust/source/anchors/docker_registry_proxy.crt
+        curl http://10.246.8.59/star_IBS-ROOT-CA.crt > /etc/pki/ca-trust/source/anchors/IBS-ROOT-CA.crt
+      - 'update-ca-trust force-enable'
+      - 'systemctl daemon-reload'
+      - 'systemctl restart docker'
+    labels: { role: worker }
+    tags:
+      Project: 'iCargo-Neo-Development'
+      CostCenter: 'iCargo'
+      Owner: 'Krishna Kumar M'
+      Environment: 'IT-DEV'
+      Name: 'ico-neo-demo-ng'
+    iam:
+      instanceRoleARN: "arn:aws:iam::141807520248:role/IBS_eks_node_group_Role"

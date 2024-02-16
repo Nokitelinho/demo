@@ -1,0 +1,3066 @@
+<?xml version="1.0"?>
+<QRY:Definitions xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries" module="stockcontrol.defaults">
+	<QRY:Definition>
+		<QRY:Id>1</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findStockRequestDetails" Type="NATIVE">
+		<![CDATA[
+	SELECT
+    stkreqmst.cmpcod AS cmpcod,
+    stkreqmst.reqrefnum AS reqrefnum,
+    stkreqmst.stkhldcod AS stkhldcod,
+    stkreqmst.reqdat AS reqdat,
+    stkreqmst.doctyp AS doctyp,
+    stkreqmst.docsubtyp AS docsubtyp,
+    stkreqmst.mnlstkflg AS mnlstkflg,
+    stkreqmst.reqstkqty AS reqstkqty,
+    stkreqmst.aprstkqty AS aprstkqty,
+    stkreqmst.alcstkqty AS alcstkqty,
+    stkreqmst.reqrmk AS reqrmk,
+    stkreqmst.aprrejrem AS aprrejrem,
+    stkreqmst.reqsta AS reqsta,
+    stkreqmst.lstupddat AS lstupddat,
+    stkreqmst.lstupdusr AS lstupdusr,
+    stkhldmst.stkhldtyp AS stkhldtyp
+FROM
+    stkreqmst stkreqmst,
+    stkhldmst stkhldmst,
+    stkhldstk stkhldstk
+WHERE
+    stkreqmst.cmpcod = stkhldmst.cmpcod
+    AND stkreqmst.stkhldcod = stkhldmst.stkhldcod
+    AND stkreqmst.cmpcod = stkhldstk.cmpcod
+    AND stkreqmst.stkhldcod = stkhldstk.stkhldcod
+    AND stkreqmst.doctyp = stkhldstk.doctyp
+    AND stkreqmst.docsubtyp = stkhldstk.docsubtyp
+    AND stkreqmst.cmpcod =?
+    AND stkreqmst.reqrefnum =?
+            ]]>
+        </QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>2</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.findStockHolderDetails" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    cmpcod,
+    stkhldcod,
+    stkhldtyp,
+    stkhldnam,
+    stkhlddes,
+    ctlpvg,
+    cntadr,
+    lstupdusr,
+    lstupdtim
+FROM
+    stkhldmst
+WHERE
+    cmpcod =?
+    AND stkhldcod =?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>3</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findStock" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    cmpcod,
+    stkhldcod,
+    doctyp,
+    docsubtyp,
+    ordlvl,
+    ordqty,
+    stkaprcmpcod,
+    stkaprcod,
+    ordalt,
+    autreqflg,
+    autgenflg,
+    stkrmk,
+    atoprcqty,
+    arlidr
+FROM
+    stkhldstk
+WHERE
+    cmpcod =?
+    AND stkhldcod =?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>4</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findStockHolderTypes" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    cmpcod,
+    stkhldtyp,
+    stkhldpry
+FROM
+    stkhldtyppry
+WHERE
+    cmpcod =?
+ORDER BY
+    stkhldpry
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>5</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.validateStockHolder" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    stkhldcod
+FROM
+    stkhldmst
+WHERE
+    cmpcod =?
+AND stkhldcod
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>6</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findStockRequests" Type="NATIVE">
+		<![CDATA[
+		SELECT distinct
+    stkreqmst.cmpcod AS cmpcod,
+    stkreqmst.reqrefnum AS reqrefnum,
+    stkreqmst.arlidr AS arlidr,
+    stkreqmst.stkhldcod AS stkhldcod,
+    stkreqmst.reqdat AS reqdat,
+    stkreqmst.doctyp AS doctyp,
+    stkreqmst.docsubtyp AS docsubtyp,
+    stkreqmst.reqstkqty AS reqstkqty,
+    stkreqmst.reqsta AS reqsta,
+    stkhldmst.stkhldtyp AS stkhldtyp,
+    stkreqmst.aprstkqty AS aprstkqty,
+    stkreqmst.alcstkqty AS alcstkqty,
+    stkreqmst.mnlstkflg AS mnlstkflg,
+    stkreqmst.lstupddat,
+    stkhldmst.lstupdtim,
+    stkreqmst.reqrmk,
+       ROW_NUMBER () OVER (ORDER BY NULL) AS rank
+FROM
+    stkreqmst stkreqmst,
+    stkhldmst stkhldmst,
+    stkhldstk stkhldstk
+WHERE
+    stkreqmst.cmpcod = stkhldmst.cmpcod
+    AND stkreqmst.stkhldcod = stkhldmst.stkhldcod
+    AND stkreqmst.cmpcod = stkhldstk.cmpcod
+    AND stkreqmst.stkhldcod = stkhldstk.stkhldcod
+    AND stkreqmst.doctyp = stkhldstk.doctyp
+    AND stkreqmst.docsubtyp = stkhldstk.docsubtyp
+  	AND stkreqmst.arlidr     = stkhldstk.arlidr
+
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>7</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findStockLov" Type="NATIVE">
+		<![CDATA[
+		SELECT distinct
+    stockholder.stkhldcod stkhldcod,
+    stockholder.stkhldtyp stkhldtyp,
+    upper(stockholder.stkhldnam) stkhldnam,
+    stockholder.stkhlddes stkhlddes
+FROM
+    stkhldmst stockholder,
+    stkhldstk stock
+WHERE
+    stockholder.cmpcod = stock.cmpcod
+    AND stockholder.stkhldcod = stock.stkhldcod
+    AND stockholder.cmpcod =?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>8</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.validateStockHolderTypeCode" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    stkhldnam
+FROM
+    stkhldmst stkhldmst,
+    stkhldstk stkhldstk
+WHERE
+    stkhldmst.cmpcod = stkhldstk.cmpcod
+    AND stkhldmst.stkhldcod = stkhldstk.stkhldcod
+    AND stkhldmst.cmpcod =?
+    AND stkhldmst.stkhldcod =?
+    AND stkhldmst.stkhldtyp =?
+
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>9</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.findStockHolders" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    stkhldmst.cmpcod AS cmpcod,
+    stkhldmst.stkhldtyp AS stkhldtyp,
+    stkhldmst.stkhldcod AS stkhldcod,
+    stkhldstk.doctyp AS doctyp,
+    stkhldstk.docsubtyp AS docsubtyp,
+    arl.thrnumcod AS thrnumcod,
+    stkhldstk.ordlvl AS ordlvl,
+    stkhldstk.ordqty AS ordqty,
+    stkhldstk.ordalt AS ordalt,
+    stkhldstk.autreqflg AS autreqflg,
+    stkhldstk.stkaprcod AS stkaprcod,
+    stkhldmst.lstupdtim AS lstupdtim,
+    stkhldmst.lstupdusr AS lstupdusr
+FROM
+    stkhldstk stkhldstk,
+    stkhldmst stkhldmst,
+    stkhldtyppry stkhldtyppry,
+    shrarlmst arl
+WHERE
+    stkhldstk.cmpcod = stkhldmst.cmpcod
+    AND stkhldstk.stkhldcod = stkhldmst.stkhldcod
+    AND stkhldtyppry.cmpcod = stkhldmst.cmpcod
+    AND stkhldtyppry.stkhldtyp = stkhldmst.stkhldtyp
+    AND stkhldstk.cmpcod = arl.cmpcod
+    AND stkhldstk.arlidr = arl.arlidr
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>10</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findAllocatedRanges" Type="NATIVE">
+		<![CDATA[
+		SELECT
+        CASE
+            WHEN stkrng.doctyp = 'AWB'   THEN stkrng.starng
+                                            || MOD(TO_NUMBER(stkrng.starng),7)
+            ELSE starng
+        END
+    starng,
+        CASE
+            WHEN stkrng.doctyp = 'AWB'   THEN stkrng.endrng
+                                            || MOD(TO_NUMBER(stkrng.endrng),7)
+            ELSE endrng
+        END
+    endrng,
+        stkrng.docnum AS docnum,
+        stkrng.stkhldcod AS tostkhldcod,
+        stkrng.rngacpdat AS altdat
+FROM
+    stkhldstk stkhldstk,
+    stkrng stkrng
+WHERE
+    stkhldstk.cmpcod = stkrng.cmpcod
+    AND stkhldstk.stkhldcod = stkrng.stkhldcod
+    AND stkhldstk.doctyp = stkrng.doctyp
+    AND stkhldstk.docsubtyp = stkrng.docsubtyp
+    AND stkhldstk.arlidr = stkrng.arlidr
+    AND stkhldstk.cmpcod =?
+    AND stkhldstk.stkaprcod =?
+    AND stkhldstk.doctyp =?
+    AND stkhldstk.docsubtyp =?
+    AND stkrng.mnlflg =?
+    AND stkhldstk.arlidr =?
+    
+	  	]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>11</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.checkDuplicateRange" Type="NATIVE">
+		<![CDATA[
+				SELECT
+    rngseqnum,
+    starng,
+    endrng
+FROM
+    stkrng
+
+WHERE
+    cmpcod =?
+    AND arlidr =?
+        AND doctyp =?
+            AND (
+        (
+            ( starng BETWEEN ? AND ?)
+            OR ( endrng BETWEEN ? AND ?)
+        )
+        OR (
+            (? BETWEEN starng AND endrng )
+            OR (? BETWEEN starng AND endrng )
+        )
+    )
+UNION ALL SELECT
+    NULL rngseqnum,
+    actstarng,
+    actendrng
+          FROM
+    stktrsrng
+          WHERE
+    cmpcod =?
+    AND arlidr =?
+        AND doctyp =?
+            AND (
+        (
+            ( actstarng BETWEEN ? AND ?)
+            OR ( actendrng BETWEEN ? AND ?)
+        )
+        OR (
+            (? BETWEEN actstarng AND actendrng )
+            OR (? BETWEEN actstarng AND actendrng )
+        )
+    )
+    ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>12</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findRanges" Type="NATIVE">
+		<![CDATA[
+	 	  SELECT
+    stkrng.starng AS starng,
+    stkrng.endrng AS endrng,
+    stkrng.docnum AS docnum,
+    stkhldmst.lstupdtim,
+    stkrng.stkhldcod AS stkhldcod,
+    stkrng.doctyp AS doctyp,
+    stkrng.arlidr AS arlidr,
+    stkrng.docsubtyp AS docsubtyp,
+    stkrng.rngseqnum AS rngseqnum,
+    stkrng.cmpcod AS cmpcod
+FROM
+    stkrng stkrng
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>13</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findStockHolderCodes" Type="NATIVE">
+		<![CDATA[
+	 	 SELECT
+    stkhldcod
+FROM
+    stkhldmst
+WHERE
+    cmpcod =?
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>14</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findBlacklistRanges" Type="NATIVE">
+		<![CDATA[
+       SELECT
+    cmpcod,
+    stkhldcod,
+    starng,
+    endrng,
+    ascstarng,
+    ascendrng,
+    mnlflg
+FROM
+    stkrng
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND (
+        (? BETWEEN ascstarng AND ascendrng )
+        OR (? BETWEEN ascstarng AND ascendrng )
+        OR (
+            ?<= ascstarng
+            AND ?>= ascendrng
+        )
+    )
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>49</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findBlacklistRangesForRevoke" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    cmpcod,
+    doctyp,
+    docsubtyp,
+    arlidr,
+    starng,
+    endrng,
+    ascstarng,
+    ascendrng,
+    mnlflg
+FROM
+    stkblklstrng
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND (
+        (? BETWEEN ascstarng AND ascendrng )
+        OR (? BETWEEN ascstarng AND ascendrng )
+        OR (
+            ?<= ascstarng
+            AND ?>= ascendrng
+        )
+    )
+    AND blksta = 'D'
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>22</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findRangesDelete" Type="NATIVE">
+		<![CDATA[
+SELECT
+    stkhldcod,
+    docsubtyp,
+    mnlflg
+FROM
+    stkrng
+WHERE
+    cmpcod =?
+    AND doctyp =?
+    AND (
+        ascstarng <=?
+        AND ascendrng >=?
+    )
+	 	 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>15</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.checkBlacklistRanges" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    cmpcod
+FROM
+    stkblklstrng
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND (
+        ( ascstarng BETWEEN ? AND ?)
+        OR ( ascendrng BETWEEN ? AND ?)
+        OR (? BETWEEN ascstarng AND ascendrng )
+        OR (? BETWEEN ascstarng AND ascendrng )
+    )
+            ]]>
+        </QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>16</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findBlacklistedStock" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    rng.cmpcod,
+    rng.doctyp,
+    rng.docsubtyp,
+    rng.starng,
+    rng.endrng,
+    coalesce(rng.blklstrmk,' ') AS blklstrmk,
+    rng.blksta,
+    rng.stkhldcod,
+    rng.frtlvlstkhldcod AS frtstkhldcod,
+    stk.stkaprcod AS seclvlstkhldcod,
+    rng.blklstdat,
+    rng.lstupdtim,
+    rng.lstupdusr,
+	rng.arlidr
+FROM
+    stkblklstrng rng
+    LEFT OUTER JOIN stkhldstk stk ON ( rng.cmpcod = stk.cmpcod
+                                       AND rng.doctyp = stk.doctyp
+                                       AND rng.docsubtyp = stk.docsubtyp
+                                       AND rng.arlidr = stk.arlidr
+                                       AND rng.frtlvlstkhldcod = stk.stkhldcod )
+									   WHERE 1=1 AND  
+	 	 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+		<QRY:Definition>
+		<QRY:Id>17</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.allocatedStock" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    common.stkhldcod AS stkhldcod,
+    common.docsubtyp AS docsubtyp,
+    MAX(common.man_avail_stock) man_avail_stock,
+    MAX(common.phy_avail_stock) phy_avail_stock,
+    MAX(common.man_alloc_stock) man_alloc_stock,
+    MAX(common.phy_alloc_stock) phy_alloc_stock,
+    MIN(common.stkhldtyp) stkhldtyp
+FROM
+    (
+        SELECT
+            stkhldstk.cmpcod,
+            stkhldstk.stkhldcod,
+            stkhldstk.doctyp,
+            stkhldstk.docsubtyp,
+            stkhldstk.mnlstkqtyavl man_avail_stock,
+            stkhldstk.phystkqtyavl phy_avail_stock,
+            stkhldstk.mnlstkqtyalc man_alloc_stock,
+            stkhldstk.phystkqtyalc phy_alloc_stock,
+            mst.stkhldtyp
+        FROM
+            stkhldstk stkhldstk,
+            stkhldmst mst
+        WHERE
+            mst.cmpcod = stkhldstk.cmpcod
+            AND mst.stkhldcod = stkhldstk.stkhldcod
+            AND stkhldstk.cmpcod =?
+            AND (
+                stkhldstk.stkhldcod =?
+                OR stkhldstk.stkaprcod =?
+            )
+            AND stkhldstk.doctyp =?
+            AND stkhldstk.docsubtyp =?
+        UNION ALL
+        SELECT
+            stkhldstk.cmpcod,
+            ? stkhldcod,
+            stkhldstk.doctyp,
+            stkhldstk.docsubtyp,
+            0 man_avail_stock,
+            0 phy_avail_stock,
+            0 man_alloc_stock,
+            0 phy_alloc_stock,
+            'ZZZZZ' stkhldtyp
+        FROM
+            stkhldstk stkhldstk
+        WHERE
+            stkhldstk.cmpcod =?
+            AND stkhldstk.stkaprcod =?
+            AND stkhldstk.doctyp =?
+            AND stkhldstk.docsubtyp =?
+        UNION ALL
+        SELECT
+            stkhldstk.cmpcod,
+            stkhldstk.stkaprcod stkhldcod,
+            stkhldstk.doctyp,
+            stkhldstk.docsubtyp,
+            0 man_avail_stock,
+            0 phy_avail_stock,
+            0 man_alloc_stock,
+            0 phy_alloc_stock,
+            mst.stkhldtyp
+        FROM
+            stkhldstk stkhldstk,
+            stkhldmst mst
+        WHERE
+            mst.cmpcod = stkhldstk.cmpcod
+            AND mst.stkhldcod = stkhldstk.stkhldcod
+            AND stkhldstk.cmpcod =?
+            AND stkhldstk.doctyp =?
+            AND stkhldstk.docsubtyp =?
+            AND EXISTS (
+                SELECT
+                    stkhldstkx.stkhldcod
+                FROM
+                    stkhldstk stkhldstkx
+                WHERE
+                    stkhldstkx.cmpcod = stkhldstk.cmpcod
+                    AND stkhldstkx.stkhldcod = stkhldstk.stkaprcod
+                    AND stkhldstkx.doctyp = stkhldstk.doctyp
+                    AND stkhldstkx.docsubtyp = stkhldstk.docsubtyp
+                    AND stkhldstkx.stkaprcod =?
+            )
+    ) common
+GROUP BY
+    common.cmpcod,
+    common.stkhldcod,
+    common.doctyp,
+    common.docsubtyp
+            ]]>
+        </QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>18</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.checkTypeCode" Type="NATIVE">
+		<![CDATA[
+	SELECT
+    cmpcod
+FROM
+    stkhldmst
+WHERE
+    cmpcod =?
+    AND stkhldcod =?
+    AND stkhldtyp =?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>19</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findPriorities" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    mst.stkhldcod AS stkhldcod,
+    mst.stkhldtyp AS stkhldtyp,
+    pry.stkhldpry AS stkhldpry
+FROM
+    stkhldmst mst,
+    stkhldtyppry pry
+WHERE
+    mst.cmpcod = pry.cmpcod
+    AND mst.stkhldtyp = pry.stkhldtyp
+    AND mst.cmpcod =? AND mst.stkhldcod
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>20</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findApproverCode" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    stkaprcod
+FROM
+    stkhldstk
+WHERE
+    cmpcod =?
+    AND stkhldcod =?
+    AND doctyp =?
+    AND docsubtyp =?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>21</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.stockExists" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    stkaprcod
+FROM
+    stkhldstk
+WHERE
+    cmpcod =?
+    AND stkhldcod =?
+    AND doctyp =?
+    AND docsubtyp =?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>23</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.checkForBlacklistedDocument" Type="NATIVE">
+	<![CDATA[
+		SELECT
+    cmpcod
+FROM
+    stkblklstrng
+WHERE
+    cmpcod =?
+    AND doctyp =?
+    AND blksta = 'A'
+    AND to_number(lpad(?,7)) BETWEEN ascstarng AND ascendrng
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>24</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.alreadyBlackListed" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    cmpcod
+FROM
+    stkblklstrng
+WHERE
+    cmpcod =?
+    AND doctyp =?
+	AND arlidr =?
+    AND (
+        ( starng BETWEEN ? AND ?)
+        OR ( endrng BETWEEN ? AND ?)
+    )
+	 	 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>25</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.placedStock" Type="NATIVE">
+	<![CDATA[
+		SELECT
+    common.stkhldcod AS stkhldcod,
+    common.docsubtyp AS docsubtyp,
+    SUM(common.req_rec) req_rec,
+    SUM(common.req_place) req_place,
+    MIN(common.stkhldtyp) stkhldtyp
+FROM
+    (
+        SELECT
+            stkhldstk.cmpcod,
+            stkhldstk.stkhldcod,
+            stkhldstk.doctyp,
+            stkhldstk.docsubtyp,
+            0 req_rec,
+            ( stkreqmst.reqstkqty - stkreqmst.alcstkqty ) req_place,
+            mst.stkhldtyp stkhldtyp
+        FROM
+            stkhldmst mst
+            LEFT OUTER JOIN stkhldstk stkhldstk ON ( mst.cmpcod = stkhldstk.cmpcod
+                                                     AND mst.stkhldcod = stkhldstk.stkhldcod )
+            LEFT OUTER JOIN stkreqmst stkreqmst ON ( stkhldstk.cmpcod = stkreqmst.cmpcod
+                                                     AND stkhldstk.stkhldcod = stkreqmst.stkhldcod
+                                                     AND stkhldstk.doctyp = stkreqmst.doctyp
+                                                     AND stkhldstk.docsubtyp = stkreqmst.docsubtyp )
+        WHERE
+            stkhldstk.cmpcod =?
+            AND (
+                stkhldstk.stkhldcod =?
+                OR stkhldstk.stkaprcod =?
+            )
+            AND stkhldstk.doctyp =?
+            AND stkhldstk.docsubtyp =?
+            AND stkreqmst.mnlstkflg  =?
+            AND stkreqmst.reqsta != 'C'
+            AND stkreqmst.reqsta != 'R'
+            AND stkreqmst.reqsta != 'M'
+            AND stkreqmst.reqstkqty > stkreqmst.alcstkqty
+        UNION ALL
+        SELECT
+            stkhldstk.cmpcod,
+            ? stkhldcod,
+            stkhldstk.doctyp,
+            stkhldstk.docsubtyp,
+            ( stkreqmst.reqstkqty - stkreqmst.alcstkqty ) req_rec,
+            0 req_place,
+            'ZZZZZ' stkhldtyp
+        FROM
+            stkhldstk stkhldstk
+            LEFT OUTER JOIN stkreqmst stkreqmst ON ( stkhldstk.cmpcod = stkreqmst.cmpcod
+                                                     AND stkhldstk.stkhldcod = stkreqmst.stkhldcod
+                                                     AND stkhldstk.doctyp = stkreqmst.doctyp
+                                                     AND stkhldstk.docsubtyp = stkreqmst.docsubtyp )
+        WHERE
+            stkhldstk.cmpcod =?
+            AND stkhldstk.stkaprcod =?
+            AND stkhldstk.doctyp =?
+            AND stkhldstk.docsubtyp =?
+            AND stkreqmst.mnlstkflg =?
+            AND stkreqmst.reqsta != 'C'
+            AND stkreqmst.reqsta != 'R'
+            AND stkreqmst.reqsta != 'M'
+            AND stkreqmst.reqstkqty > stkreqmst.alcstkqty
+        UNION ALL
+        SELECT
+            stkhldstk.cmpcod,
+            stkhldstk.stkaprcod stkhldcod,
+            stkhldstk.doctyp,
+            stkhldstk.docsubtyp,
+            ( stkreqmst.reqstkqty - stkreqmst.alcstkqty ) req_rec,
+            0 req_place,
+            mst.stkhldtyp stkhldtyp
+        FROM
+            stkhldmst mst
+            LEFT OUTER JOIN stkhldstk stkhldstk ON ( mst.cmpcod = stkhldstk.cmpcod
+                                                     AND mst.stkhldcod = stkhldstk.stkhldcod )
+            LEFT OUTER JOIN stkreqmst stkreqmst ON (
+                stkhldstk.cmpcod = stkreqmst.cmpcod
+                AND stkhldstk.stkhldcod = stkreqmst.stkhldcod
+                AND stkhldstk.doctyp = stkreqmst.doctyp
+                AND stkhldstk.docsubtyp = stkreqmst.docsubtyp
+            )
+                                                   AND stkhldstk.cmpcod =?
+                                                   AND stkreqmst.mnlstkflg  =?
+                                                   AND stkhldstk.doctyp =?
+                                                   AND stkhldstk.docsubtyp =?
+                                                   AND stkreqmst.reqsta != 'C'
+                                                   AND stkreqmst.reqsta != 'R'
+                                                   AND stkreqmst.reqsta != 'M'
+                                                   AND stkreqmst.reqstkqty > stkreqmst.alcstkqty
+                                                   AND EXISTS (
+                SELECT
+                    stkhldstkx.stkhldcod
+                FROM
+                    stkhldstk stkhldstkx
+                WHERE
+                    stkhldstkx.cmpcod = stkhldstk.cmpcod
+                    AND stkhldstkx.stkhldcod = stkhldstk.stkaprcod
+                    AND stkhldstkx.doctyp = stkhldstk.doctyp
+                    AND stkhldstkx.docsubtyp = stkhldstk.docsubtyp
+                    AND stkhldstkx.stkaprcod =?
+            )
+    ) common
+GROUP BY
+    common.cmpcod,
+    common.stkhldcod,
+    common.doctyp,
+    common.docsubtyp
+            ]]>
+        </QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>26</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findStockList" Type="NATIVE">
+			<![CDATA[
+				SELECT
+    stk.arlidr,
+    rng.doctyp,
+    rng.docsubtyp,
+    SUM(rng.ascendrng - rng.ascstarng + 1) AS total,
+    coalesce(to_number(arl.parval),0) AS reolvl
+FROM
+    stkrng  rng LEFT OUTER JOIN stkhldstk  stk ON
+    (stk.cmpcod = rng.cmpcod 
+AND stk.stkhldcod = rng.stkhldcod
+AND stk.doctyp = rng.doctyp
+AND stk.docsubtyp = rng.docsubtyp
+AND stk.arlidr = rng.arlidr)
+    LEFT OUTER JOIN shrarlarppar  arl ON ( stk.cmpcod = arl.cmpcod
+AND stk.arlidr = arl.arlidr
+    AND arl.parcod = 'shared.airline.stockreorderlevel' %s)
+    WHERE stk.cmpcod = ?
+			 ]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>27</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findStockRequestForOAL" Type="NATIVE">
+			<![CDATA[
+			 SELECT
+    modcom,
+    reqcnt,
+    reqdat,
+    acttim,
+    reqadr,
+    sernum,
+    arpcod
+FROM
+    stkreqoal
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND reqcmpflg = 'N'
+			 ]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>28</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findStockForAirline" Type="NATIVE">
+			<![CDATA[
+						SELECT
+    stk.cmpcod stkcmpcod,
+    stk.arlidr stkarlidr,
+    stk.stkhldcod stkstkhldcod,
+    stk.doctyp stkdoctyp,
+    stk.docsubtyp stkdocsubtyp,
+    stk.stkrmk stkstkrmk,
+    rng.docnum stkdocnum,
+    rng.rngseqnum rngrngseqnum,
+    rng.starng rngstarng,
+    rng.endrng rngendrng,
+    rng.rngacpdat rngrngacpdat,
+    ( rng.ascendrng - rng.ascstarng + 1 ) rngcount
+FROM
+    stkhldstk stk
+    LEFT OUTER JOIN stkrng rng ON ( stk.cmpcod = rng.cmpcod
+                                    AND stk.stkhldcod = rng.stkhldcod
+                                    AND stk.doctyp = rng.doctyp
+                                    AND stk.docsubtyp = rng.docsubtyp
+                                    AND stk.arlidr = rng.arlidr )
+WHERE
+    stk.cmpcod =?
+    AND stk.arlidr =?
+            ]]>
+        </QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+		      <QRY:Id>29</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findReservationListing" Type="NATIVE">
+				<![CDATA[
+
+					SELECT
+    awb.cmpcod,
+    awb.cuscod,
+    shr.twoaphcod,
+    awb.arpcod,
+    awb.docnum,
+    awb.docsta,
+    awb.doctyp,
+    awb.arlidr,
+    awb.expdat,
+    awb.resdat,
+    awb.resrmk,
+    awb.shppfx,
+    awb.lstupdtim,
+    awb.lstupdusr
+FROM
+    stkresawb awb,
+    shrarlmst shr
+WHERE
+    awb.cmpcod = shr.cmpcod
+    AND awb.arlidr = shr.arlidr
+    AND awb.cmpcod =?
+	                          ]]>
+			</QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>29</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.findExpiredReserveAwbs" Type="NATIVE">
+		<![CDATA[
+				SELECT
+    awb.cmpcod awbcmpcod,
+    awb.arpcod awbarpcod,
+    awb.arlidr awbarlidr,
+    awb.docnum awbdocnum,
+    awb.expdat awbexpdat,
+    awb.docsta awbdocsta
+FROM
+    stkresawb awb
+WHERE
+    awb.cmpcod =?
+    AND awb.arpcod =?
+    AND awb.expdat +?=?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>26</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findStockForStockHolder" Type="NATIVE">
+			<![CDATA[
+		SELECT
+    stk.arlidr,
+    rng.doctyp,
+    rng.docsubtyp,
+    SUM(rng.ascendrng - rng.ascstarng + 1) AS total,
+    arl.parval reolvl
+FROM
+    stkhldstk stk,
+    stkrng rng,
+    shrarlarppar arl
+WHERE
+    stk.cmpcod = rng.cmpcod
+    AND stk.stkhldcod = rng.stkhldcod
+    AND stk.doctyp = rng.doctyp
+    AND stk.docsubtyp = rng.docsubtyp
+    AND stk.arlidr = rng.arlidr
+    AND stk.cmpcod = arl.cmpcod
+    AND stk.arlidr = arl.arlidr
+    AND arl.parcod ='shared.airline.stockreorderlevel'
+    AND stk.cmpcod =?
+    AND arl.arpcod =?
+    AND stk.arlidr =?
+    AND stk.stkhldcod =?
+    AND stk.doctyp =?
+    AND stk.docsubtyp =?
+GROUP BY
+    stk.arlidr,
+    rng.doctyp,
+    rng.docsubtyp,
+    arl.parval
+			 ]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>30</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.findDocumentDetails" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    mst.stkhldcod stkhldcod,
+    mst.stkhldnam stkhldnam,
+    mst.stkhldtyp stkhldtyp,
+    stk.doctyp doctyp,
+    stk.docsubtyp docsubtyp,
+    shr.prdcod prdcod,
+    agt.agtcod agtcod,
+    agtdtl.agtnam agtnam
+FROM
+    stkhldmst mst
+    INNER JOIN stkhldstk stk ON ( mst.cmpcod = stk.cmpcod
+                                  AND mst.stkhldcod = stk.stkhldcod )
+    LEFT OUTER JOIN stkrng rng ON ( stk.arlidr = rng.arlidr
+                                    AND stk.stkhldcod = rng.stkhldcod
+                                    AND stk.doctyp = rng.doctyp
+                                    AND stk.docsubtyp = rng.docsubtyp )
+    LEFT OUTER JOIN stkhldagt agt ON ( rng.cmpcod = agt.cmpcod
+                                       AND rng.stkhldcod = agt.stkhldcod )
+    LEFT OUTER JOIN shragtmst agtdtl ON ( agt.cmpcod = agtdtl.cmpcod
+                                          AND agt.agtcod = agtdtl.agtcod )
+    LEFT OUTER JOIN shrdocmst shr ON ( stk.cmpcod = shr.cmpcod
+                                       AND stk.doctyp = shr.doccod
+                                       AND stk.docsubtyp = shr.docsubtyp
+                                       AND stk.cmpcod = shr.cmpcod )
+WHERE
+    rng.cmpcod =?
+    AND rng.arlidr =?
+    AND ?>= rng.ascstarng
+    AND ?<= rng.ascendrng
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>31</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.findAllStockHolderDetails" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    stk.cmpcod cmpcod,
+    stk.doctyp doctyp,
+    stk.docsubtyp docsubtyp,
+    stk.stkhldcod stkhldcod,
+    stk.stkaprcod stkaprcod,
+    mst.cntadr cntadr,
+    stk.atoprcqty atoprcqty,
+    stk.autreqflg autreqflg,
+    stk.ordalt ordalt,
+    stk.ordlvl ordlvl,
+    stk.ordqty ordqty,
+    stk.arlidr arlidr,
+    COALESCE( (
+        SELECT
+            SUM(docnum)
+        FROM
+            stkrng rng
+        WHERE
+            stk.cmpcod = rng.cmpcod
+            AND stk.stkhldcod = rng.stkhldcod
+            AND stk.arlidr = rng.arlidr
+            AND stk.doctyp = rng.doctyp
+            AND stk.docsubtyp = rng.docsubtyp
+            AND rng.mnlflg = 'N'
+    ),0) phtstkqtyavl,
+    coalesce( (
+        SELECT
+            SUM(docnum)
+        FROM
+            stkrng rng
+        WHERE
+            stk.cmpcod = rng.cmpcod
+            AND stk.stkhldcod = rng.stkhldcod
+            AND stk.arlidr = rng.arlidr
+            AND stk.doctyp = rng.doctyp
+            AND stk.docsubtyp = rng.docsubtyp
+            AND rng.mnlflg = 'Y'
+    ),0) mnlstkqtyavl
+FROM
+    stkhldstk stk,
+    stkhldmst mst
+WHERE
+    mst.cmpcod = stk.cmpcod
+    AND mst.stkhldcod = stk.stkhldcod
+    AND mst.cmpcod =?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>32</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.checkApprover" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    COUNT(*) count
+FROM
+    stkhldstk
+WHERE
+    cmpcod =?
+    AND stkaprcod =?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>33</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.findRangeForTransfer" Type="NATIVE">
+	<![CDATA[
+	SELECT
+    rng.starng starng,
+    rng.endrng endrng,
+    rng.ascstarng ascstarng,
+    rng.ascendrng asendrng,
+    SUM(rng.docnum) docnum
+FROM
+    stkrng rng
+WHERE
+    rng.cmpcod =?
+    AND rng.arlidr =?
+    AND rng.stkhldcod =?
+    AND rng.doctyp =?
+    AND rng.docsubtyp =?
+    AND (
+        rng.ascstarng >=?
+        OR (? BETWEEN rng.ascstarng AND rng.ascendrng )
+    )
+GROUP BY
+    rng.starng,
+    rng.endrng,
+    rng.ascstarng,
+    rng.ascendrng
+ORDER BY
+    rng.starng
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>34</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findStockAgentMappings" Type="NATIVE">
+			<![CDATA[
+						SELECT
+    agt.agtcod agtagtcod,
+    agt.stkhldcod agtstkhldcod,
+    agt.lstupdtim lstupdtim
+FROM
+    stkhldagt agt
+WHERE
+    agt.cmpcod =?
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>35</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.checkDocumentExistsInAnyStock" Type="NATIVE">
+			<![CDATA[
+					 SELECT
+    stkhldcod,
+    docsubtyp
+FROM
+    stkrng
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND ? BETWEEN ascstarng AND ascendrng
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>36</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findSubTypeForDocument" Type="NATIVE">
+			<![CDATA[
+					SELECT
+    stkhldcod,
+    docsubtyp
+FROM
+    stkrng
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND ? BETWEEN ascstarng AND ascendrng
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>37</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findAgentsForStockHolder" Type="NATIVE">
+			<![CDATA[
+					SELECT
+    agtcod
+FROM
+    stkhldagt
+WHERE
+    cmpcod =?
+    AND stkhldcod =?
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>38</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.findAutoProcessingQuantity" Type="NATIVE">
+	<![CDATA[
+		SELECT
+    stk.stkhldcod stkhldcod
+FROM
+    stkhldstk stk
+WHERE
+    stk.atoprcqty > 0
+    AND stk.cmpcod =?
+    AND stk.stkhldcod =?
+    AND stk.doctyp =?
+    AND stk.docsubtyp =?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>39</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.findStockTypePriority" Type="NATIVE">
+	<![CDATA[
+		SELECT
+    pry.stkhldpry
+FROM
+    stkhldtyppry pry
+WHERE
+    pry.cmpcod =?
+    AND pry.stkhldtyp =?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>40</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.checkForDuplicateHeadQuarters" Type="NATIVE">
+	<![CDATA[
+		SELECT
+    mst.stkhldcod
+FROM
+    stkhldmst mst,
+    stkhldstk stk
+WHERE
+    mst.cmpcod = stk.cmpcod
+    AND mst.stkhldcod = stk.stkhldcod
+    AND mst.stkhldtyp = 'H'
+    AND stk.cmpcod =?
+    AND stk.arlidr =?
+    AND stk.doctyp =?
+    AND stk.docsubtyp =?
+
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>41</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.checkReservedDocumentExists" Type="NATIVE">
+	<![CDATA[
+			SELECT
+    awb.docnum mstdocnum
+FROM
+    stkresawb awb,
+    shrarlmst arl
+WHERE
+    awb.cmpcod = arl.cmpcod
+    AND awb.arlidr = arl.arlidr
+    AND awb.cmpcod =?
+    AND awb.arpcod =?
+    AND awb.arlidr =?
+    AND awb.docnum BETWEEN ?
+                           || TO_CHAR(mod(to_number(?),arl.awbchkdgt) ) AND ?
+                                                                                  || TO_CHAR(mod(to_number(?),arl.awbchkdgt) )
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>42</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.findReservationDetails" Type="NATIVE">
+	<![CDATA[
+			SELECT
+    res.arpcod resarpcod,
+    res.cuscod cuscod,
+    res.docnum,
+    par.parval stkhldcod,
+    agt.agtcod agtcod
+FROM
+    stkresawb res,
+    shrusearppar par,
+    stkhldagt agt
+WHERE
+    res.cmpcod = par.cmpcod
+    AND res.arpcod = par.arpcod
+    AND par.cmpcod = agt.cmpcod
+    AND par.parval = agt.stkhldcod
+    AND par.parcod =?
+    AND res.cmpcod =?
+    AND res.arlidr =?
+    AND res.docnum =?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>43</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.findStockRangeUtilisation" Type="NATIVE">
+	<![CDATA[
+SELECT
+    cmpcod,
+    arlidr,
+    stkhldcod,
+    doctyp,
+    docsubtyp,
+    seqnum,
+    mstdocnum,
+    ascdocnum
+FROM
+    stkrngutl stk
+WHERE
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>44</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.deleteStockRangeUtilisation" Type="PROCEDURE">
+	<![CDATA[
+
+		CALL stk_cnt_dep.spr_stk_rng_del (
+						?,
+						?,
+						?,
+						?,
+						?
+		)
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>45</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.findStockRangeUtilisationExists" Type="NATIVE">
+	<![CDATA[
+SELECT
+    seqnum
+FROM
+    stkrngutl stk
+WHERE
+    cmpcod =?
+    AND stkhldcod =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND arlidr =?
+    AND mstdocnum =?
+
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>46</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.checkStockRangeUtilised" Type="NATIVE">
+	<![CDATA[
+SELECT
+    cmpcod
+FROM
+    stkrngutl stk
+WHERE
+    cmpcod =?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>47</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.monitorStockForAStockHolder" Type="NATIVE">
+	<![CDATA[
+SELECT
+    z.cmpcod,
+    z.doctyp,
+    z.docsubtyp,
+    z.stkhldcod,
+    MIN(z.stkaprcod) stkaprcod,
+    MIN(z.stkhldtyp) stkhldtyp,
+    MIN(z.stkhldnam) stkhldnam,
+    SUM(z.req_rec) req_rec,
+    SUM(z.req_place) req_place,
+    SUM(z.avail_stock) avlstk,
+    SUM(z.alloc_stock) alcstk,
+    (
+        CASE
+            WHEN 'Y' = ?  THEN SUM(z.mnlalc)
+            ELSE SUM(z.phyalc)
+        END
+    ) alcstkcnt
+FROM
+    (
+        SELECT
+            stk.cmpcod,
+            stk.doctyp,
+            stk.docsubtyp,
+            stk.stkhldcod,
+            stk.stkaprcod stkaprcod,
+            mst.stkhldtyp,
+            mst.stkhldnam,
+            coalesce( (
+                SELECT
+                    SUM(req1.reqstkqty - req1.alcstkqty)
+                FROM
+                    stkreqmst req1,stkhldstk chdstk
+                WHERE
+                    stk.cmpcod = chdstk.cmpcod
+                    AND stk.stkhldcod = chdstk.stkaprcod
+                    AND stk.arlidr = chdstk.arlidr
+                    AND stk.doctyp = chdstk.doctyp
+                    AND stk.docsubtyp = chdstk.docsubtyp
+                    AND chdstk.cmpcod = req1.cmpcod
+                    AND chdstk.stkhldcod = req1.stkhldcod
+                    AND chdstk.doctyp = req1.doctyp
+                    AND chdstk.docsubtyp = req1.docsubtyp
+                    AND req1.mnlstkflg =?
+                    AND req1.reqsta != 'C'
+                    AND req1.reqsta != 'R'
+                    AND req1.reqsta != 'M'
+            ),0) req_rec,
+            0 req_place,
+            coalesce( (
+                SELECT
+                    SUM(docnum)
+                FROM
+                    stkrng rng
+                WHERE
+                    stk.cmpcod = rng.cmpcod
+                    AND stk.stkhldcod = rng.stkhldcod
+                    AND stk.arlidr = rng.arlidr
+                    AND stk.doctyp = rng.doctyp
+                    AND stk.docsubtyp = rng.docsubtyp
+                    AND rng.mnlflg =?
+            ),0) avail_stock,
+            coalesce( (
+                SELECT
+                    SUM(docnum)
+                FROM
+                    stkrng rng,stkhldstk chdstk
+                WHERE
+                    stk.cmpcod = chdstk.cmpcod
+                    AND stk.stkhldcod = chdstk.stkaprcod
+                    AND stk.arlidr = chdstk.arlidr
+                    AND stk.doctyp = chdstk.doctyp
+                    AND stk.docsubtyp = chdstk.docsubtyp
+                    AND chdstk.cmpcod = rng.cmpcod
+                    AND chdstk.stkhldcod = rng.stkhldcod
+                    AND chdstk.arlidr = rng.arlidr
+                    AND chdstk.doctyp = rng.doctyp
+                    AND chdstk.docsubtyp = rng.docsubtyp
+                    AND rng.mnlflg =?
+            ),0) alloc_stock,
+				COALESCE(stk.MNLSTKQTYALC,0) mnlalc,
+                COALESCE(stk.PHYSTKQTYALC,0) phyalc
+        FROM
+            stkhldstk stk,
+            stkhldmst mst
+        WHERE
+            mst.cmpcod = stk.cmpcod
+            AND mst.stkhldcod = stk.stkhldcod
+            AND stk.cmpcod =?
+            AND (
+                stk.stkhldcod =?
+                OR stk.stkaprcod =?
+            )
+            AND stk.doctyp =?
+            AND stk.docsubtyp =?
+            AND stk.arlidr =?
+        UNION ALL
+        SELECT
+            stkhldstk.cmpcod,
+            stkhldstk.doctyp,
+            stkhldstk.docsubtyp,
+            stkhldstk.stkhldcod,
+            stkhldstk.stkaprcod stkaprcod,
+            mst.stkhldtyp,
+            mst.stkhldnam,
+            0 req_rec,
+            ( stkreqmst.reqstkqty - stkreqmst.alcstkqty ) req_place,
+            0 avail_stock,
+            0 alloc_stock,
+            0 mnlalc,
+            0 phyalc
+        FROM
+            stkhldmst mst
+            LEFT OUTER JOIN stkhldstk stkhldstk ON ( mst.cmpcod = stkhldstk.cmpcod
+                                                     AND mst.stkhldcod = stkhldstk.stkhldcod )
+            LEFT OUTER JOIN stkreqmst stkreqmst ON ( stkhldstk.cmpcod = stkreqmst.cmpcod
+                                                     AND stkhldstk.stkhldcod = stkreqmst.stkhldcod
+                                                     AND stkhldstk.doctyp = stkreqmst.doctyp
+                                                     AND stkhldstk.docsubtyp = stkreqmst.docsubtyp )
+            WHERE stkhldstk.cmpcod =?
+            AND (
+                stkhldstk.stkhldcod =?
+                OR stkhldstk.stkaprcod =?
+            )
+            AND stkhldstk.doctyp =?
+            AND stkhldstk.docsubtyp =?
+            AND stkhldstk.arlidr =?
+            AND stkreqmst.mnlstkflg =?
+            AND stkreqmst.reqsta != 'C'
+            AND stkreqmst.reqsta != 'R'
+            AND stkreqmst.reqsta != 'M'
+            AND stkreqmst.reqstkqty > stkreqmst.alcstkqty
+    ) z
+            ]]>
+        </QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>48</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findPrivileage" Type="NATIVE">
+			<![CDATA[
+			SELECT
+    ctlpvg
+FROM
+    stkhldmst
+WHERE
+    stkhldcod =?
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>49</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findRangesToBeDeletedForBlacklisting" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    cmpcod,
+    doctyp,
+    docsubtyp,
+    arlidr,
+    starng,
+    endrng,
+    ascstarng,
+    ascendrng
+FROM
+    stkblklstrng
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND (? BETWEEN ascstarng AND ascendrng )
+    AND (? BETWEEN ascstarng AND ascendrng )
+    AND blksta = 'D'
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>50</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findRangesForViewRange" Type="NATIVE">
+		<![CDATA[
+			SELECT
+        CASE
+            WHEN doctyp = 'AWB' THEN starng
+                                     || mod(to_number(starng),7)
+            ELSE starng
+        END
+    starng,
+        CASE
+            WHEN doctyp = 'AWB' THEN endrng
+                                     || mod(to_number(endrng),7)
+            ELSE endrng
+        END
+    endrng,
+        docnum,
+        rngacpdat,
+        LISTAGG(mstdocnum,',') WITHIN GROUP(
+        ORDER BY
+            mstdocnum
+    ) AS mstdocnum
+FROM
+    (
+        SELECT
+            stkrng.starng AS starng,
+            stkrng.endrng AS endrng,
+            stkrng.docnum AS docnum,
+            stkrng.rngacpdat,
+            utl.mstdocnum,
+            stkrng.doctyp AS doctyp
+        FROM
+            stkrng stkrng
+            LEFT OUTER JOIN stkrngutl utl ON ( stkrng.cmpcod = utl.cmpcod
+                                               AND stkrng.arlidr = utl.arlidr
+                                               AND stkrng.doctyp = utl.doctyp
+                                               AND stkrng.docsubtyp = utl.docsubtyp
+                                               AND utl.status = 'U'
+                                               AND utl.ascdocnum BETWEEN stkrng.ascstarng AND stkrng.ascendrng )
+        WHERE
+            stkrng.cmpcod =?
+            AND stkrng.arlidr =?
+            AND stkrng.doctyp =?
+            AND stkrng.docsubtyp =?
+            AND stkrng.stkhldcod =?
+            AND stkrng.mnlflg =?
+            AND NOT EXISTS (
+                SELECT
+                    1
+                FROM
+                    stkrngutl
+                WHERE
+                    cmpcod = utl.cmpcod
+                    AND arlidr = utl.arlidr
+                    AND stkhldcod = utl.stkhldcod
+                    AND doctyp = utl.doctyp
+                    AND docsubtyp = utl.docsubtyp
+                    AND mstdocnum = utl.mstdocnum
+                    AND seqnum > utl.seqnum
+                    AND status = 'D'
+            )
+        ORDER BY
+            stkrng.ascstarng
+    ) mst
+GROUP BY
+    starng,
+    endrng,
+    docnum,
+    doctyp,
+    rngacpdat
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>51</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findAvailableStockQuantity" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    rng.stkhldcod,
+    SUM(rng.docnum) docnum
+FROM
+    stkrng rng
+WHERE
+    rng.cmpcod =?
+    AND rng.arlidr =?
+        AND rng.doctyp =?
+            AND rng.docsubtyp =?
+AND rng.stkhldcod IN
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>52</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findrangesformerge" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    cmpcod,
+    arlidr,
+    doctyp,
+    docsubtyp,
+    stkhldcod,
+    rngseqnum,
+    starng,
+    endrng,
+    ascstarng,
+    ascendrng,
+    mnlflg
+FROM
+    stkrng
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND stkhldcod =?
+    AND mnlflg =?
+	AND (
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>53</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findawbstockdetailsforprint" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    rng.starng AS starng,
+    rng.endrng AS endrng,
+    rng.docnum AS docnum,
+    rng.doctyp AS doctype,
+    mst.stkhldnam,
+    mst.stkhldcod,
+    arl.awbchkdgt,
+    arl.thrnumcod AS awbpfx
+FROM
+    stkhldstk stk,
+    stkrng rng,
+    stkhldmst mst,
+    shrarlmst arl
+WHERE
+    stk.cmpcod = rng.cmpcod
+    AND stk.stkhldcod = rng.stkhldcod
+    AND stk.doctyp = rng.doctyp
+    AND stk.docsubtyp = rng.docsubtyp
+    AND stk.arlidr = rng.arlidr
+    AND stk.cmpcod = mst.cmpcod
+    AND stk.stkhldcod = mst.stkhldcod
+    AND stk.cmpcod = arl.cmpcod
+    AND rng.arlidr = arl.arlidr
+    AND rng.doctyp = 'AWB'
+    AND stk.cmpcod =?
+    AND (
+        stk.stkaprcod =?
+        OR rng.stkhldcod =?
+    )
+ORDER BY
+    starng,
+    endrng,
+    stkhldcod
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+		<QRY:Definition>
+			<QRY:Id>54</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.checkAWBExistsInOperation" Type="NATIVE">
+			<![CDATA[
+				SELECT
+    mstdocnum
+FROM
+    oprshpmst
+WHERE
+    cmpcod =?
+    AND docowridr =?
+    AND mstdocnum =?
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>55</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.checkStockRangeUtilisedLog" Type="NATIVE">
+		<![CDATA[
+SELECT
+    mstdocnum
+FROM
+    stkrngutllog
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND mstdocnum =?
+    AND doctyp =?
+    AND docsubtyp =?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>56</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findStockDetailsForCustomer" Type="NATIVE">
+		<![CDATA[
+SELECT
+    z.cmpcod,
+    z.stkhldcod,
+    MIN(z.stkaprcod) stkaprcod,
+    MIN(mst.stkhldnam) stkaprnam,
+    MIN(z.stkhldtyp) stkhldtyp,
+    MIN(z.stkhldnam) stkhldnam,
+    SUM(z.req_rec) req_rec,
+    SUM(z.req_place) req_place,
+    SUM(z.avail_stock) avlstk
+FROM
+    (
+        SELECT
+            stk.cmpcod,
+            stk.doctyp,
+            stk.docsubtyp,
+            stk.stkhldcod,
+            stk.stkaprcod stkaprcod,
+            mst.stkhldtyp,
+            mst.stkhldnam,
+            coalesce( (
+                SELECT
+                    SUM(req1.reqstkqty - req1.alcstkqty)
+                FROM
+                    stkreqmst req1,stkhldstk chdstk
+                WHERE
+                    stk.cmpcod = chdstk.cmpcod
+                    AND stk.stkhldcod = chdstk.stkaprcod
+                    AND stk.arlidr = chdstk.arlidr
+                    AND stk.doctyp = chdstk.doctyp
+                    AND stk.docsubtyp = chdstk.docsubtyp
+                    AND chdstk.cmpcod = req1.cmpcod
+                    AND chdstk.stkhldcod = req1.stkhldcod
+                    AND chdstk.arlidr = req1.arlidr
+                    AND chdstk.doctyp = req1.doctyp
+                    AND chdstk.docsubtyp = req1.docsubtyp
+                    AND req1.reqsta != 'C'
+                    AND req1.reqsta != 'R'
+                    AND req1.reqsta != 'M'
+            ),0) req_rec,
+            0 req_place,
+            coalesce( (
+                SELECT
+                    SUM(docnum)
+                FROM
+                    stkrng rng
+                WHERE
+                    stk.cmpcod = rng.cmpcod
+                    AND stk.stkhldcod = rng.stkhldcod
+                    AND stk.arlidr = rng.arlidr
+                    AND stk.doctyp = rng.doctyp
+                    AND stk.docsubtyp = rng.docsubtyp
+            ),0) avail_stock
+        FROM
+            stkhldstk stk,
+            stkhldmst mst
+        WHERE
+            mst.cmpcod = stk.cmpcod
+            AND mst.stkhldcod = stk.stkhldcod
+            AND stk.cmpcod =?
+            AND stk.stkhldcod =?
+        UNION ALL
+        SELECT
+            stk.cmpcod,
+            stk.doctyp,
+            stk.docsubtyp,
+            stk.stkhldcod,
+            stk.stkaprcod stkaprcod,
+            mst.stkhldtyp,
+            mst.stkhldnam,
+            0 req_rec,
+            ( req.reqstkqty - req.alcstkqty ) req_place,
+            0 avail_stock
+        FROM
+            stkhldstk stk
+            INNER JOIN stkhldmst mst ON ( mst.cmpcod = stk.cmpcod
+                                          AND mst.stkhldcod = stk.stkhldcod )
+            LEFT OUTER JOIN stkreqmst req ON ( stk.cmpcod = req.cmpcod
+                                               AND stk.stkhldcod = req.stkhldcod
+                                               AND stk.arlidr = req.arlidr
+                                               AND stk.doctyp = req.doctyp
+                                               AND stk.docsubtyp = req.docsubtyp )
+        WHERE
+            stk.cmpcod =?
+            AND stk.stkhldcod =?
+            AND req.reqsta != 'C'
+            AND req.reqsta != 'R'
+            AND req.reqsta != 'M'
+            AND req.reqstkqty > req.alcstkqty
+    ) z,
+    stkhldmst mst
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>57</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findAvailableRangeForCustomer" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    stkrng.starng AS avlstarng,
+    stkrng.endrng AS avlendrng,
+    stkrng.docnum AS avldocnum,
+    stkrng.arlidr AS arldir,
+    arlmst.thrnumcod AS awbprefix
+FROM
+    stkrng stkrng,
+    shrarlmst arlmst
+WHERE
+    stkrng.cmpcod = arlmst.cmpcod
+    AND stkrng.arlidr = arlmst.arlidr
+    AND stkrng.cmpcod =?
+    AND stkrng.stkhldcod =?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>58</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findAllocatedRangeForCustomer" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    txn.starng AS allcstarng,
+    txn.endrng AS allcendrng,
+    txn.numdoc AS allcdocnum,
+    txn.frmstkhldcod AS frmstkhldcod,
+    txn.arlidr AS arlidr,
+    arlmst.thrnumcod AS awbprefix
+FROM
+    stkrngtxnhis txn,
+    shrarlmst arlmst
+WHERE
+    txn.cmpcod = arlmst.cmpcod
+    AND txn.arlidr = arlmst.arlidr
+    AND txn.cmpcod =?
+    AND txn.tostkhldcod =?
+    AND txn.status = 'A'
+	  	]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>60</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findUsedRangeForCustomer" Type="NATIVE">
+		<![CDATA[
+SELECT
+    txn.starng AS usedstarng,
+    txn.endrng AS usedendrng,
+    txn.numdoc AS useddocnum,
+    txn.arlidr,
+    arlmst.thrnumcod AS awbprefix
+FROM
+    stkrngtxnhis txn,
+    shrarlvlddtl arlmst
+WHERE
+    txn.cmpcod = arlmst.cmpcod
+    AND txn.arlidr = arlmst.arlidr
+    AND txn.cmpcod =?
+    AND txn.frmstkhldcod =?
+    AND txn.status = 'U'
+    AND trunc(txn.txndat) BETWEEN arlmst.vldfrmdat AND arlmst.vldtoodat
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>61</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findStockHolderForCustomer" Type="NATIVE">
+		<![CDATA[	
+SELECT
+    stk.stkhldcod
+FROM
+    stkhldagt stk,
+    shragtmst agt
+WHERE
+    agt.cmpcod = stk.cmpcod
+    AND agt.agtcod = stk.agtcod
+    AND stk.cmpcod =?
+    AND agt.cuscod =?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!-- Added by Chippy STARTS for CR1878-->
+	<QRY:Definition>
+	<QRY:Id>62</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.listStockDetails" Type="NATIVE">
+	<![CDATA[
+		 SELECT
+    stk.cmpcod,
+    stk.stkhldcod,
+    stk.doctyp,
+    stk.docsubtyp,
+    stk.txndatstr,
+    stk.txndatutc,
+    stk.opgbal,
+    stk.rcvstk,
+    stk.alcstk,
+    stk.tfdstk,
+    stk.rtnstk,
+    stk.rtnutlstk,
+    stk.blklststk,
+    stk.utlstk,
+    stk.clsbal
+FROM
+    stkhldstkdtl stk,
+    stkhldmst mst
+WHERE
+    stk.cmpcod =?
+    AND stk.doctyp =?
+    AND txndatutc <=TO_DATE(?,'yyyy-mm-dd')
+    AND txndatutc >=TO_DATE(?,'yyyy-mm-dd')
+    AND mst.stkhldtyp =?
+    AND mst.stkhldcod = stk.stkhldcod
+    AND mst.cmpcod = stk.cmpcod
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+		<QRY:Definition>
+	<QRY:Id>63</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.listStockSummaryDetails" Type="NATIVE">
+	<![CDATA[
+		SELECT
+    a.*,
+    b.opgbal,
+    b.clsbal
+FROM ( SELECT
+    stk.cmpcod,
+    stk.stkhldcod,
+    stk.doctyp,
+    stk.docsubtyp,
+    MIN(txndatutc) txndatutc,
+    SUM(rcvstk) rcvstk,
+    SUM(alcstk) alcstk,
+    SUM(tfdstk) tfdstk,
+    SUM(rtnstk) rtnstk,
+    SUM(rtnutlstk) rtnutlstk,
+    SUM(blklststk) blklststk,
+    SUM(utlstk) utlstk
+FROM
+    stkhldstkdtl stk,
+    stkhldmst mst
+WHERE
+    stk.cmpcod =?
+    AND stk.doctyp =?
+    AND txndatutc <=TO_DATE(?,'yyyy-mm-dd')
+    AND txndatutc >=TO_DATE(?,'yyyy-mm-dd')
+    AND mst.stkhldtyp =?
+    AND mst.cmpcod = stk.cmpcod
+    AND mst.stkhldcod = stk.stkhldcod
+            ]]>
+        </QRY:Source>
+    </QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>64</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.listStockSummaryDetailsProcedure" Type="PROCEDURE">  <!-- modified by A-5196 for ICRD-219403-->
+	<![CDATA[
+	CALL pkg_updstkdtl.spr_updstk(?,?,?,?)
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+		<!-- Added by Chippy ENDS for CR1878-->
+	<QRY:Definition> 
+   		<QRY:Id>62</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findStockRangeHistory" Type="NATIVE">
+			<![CDATA[
+				SELECT DISTINCT
+    hist.frmstkhldcod AS stkhldcod,
+    hist.rngtyp AS mnlflg,
+    hist.doctyp,
+    hist.docsubtyp,
+    hist.starng,
+    hist.endrng,
+    hist.numdoc AS docnum,
+    hist.txndat AS stkdat,
+    hist.status,
+    hist.tostkhldcod,
+    hist.txnrmk,
+    hist.vodchg,
+    hist.curcod,
+    arlmst.awbchkdgt,
+    docmst.chkdgtflg
+FROM
+    shrarlmst arlmst,
+    shrdocmst docmst,stkrngtxnhis hist
+    LEFT OUTER JOIN stkhldstk stk ON stk.arlidr = hist.arlidr
+                                     AND stk.cmpcod = hist.cmpcod
+                                     AND stk.stkhldcod = hist.frmstkhldcod
+                                     AND stk.docsubtyp = hist.docsubtyp
+                                     AND stk.doctyp = hist.doctyp
+WHERE
+    arlmst.cmpcod = hist.cmpcod
+    AND docmst.cmpcod = hist.cmpcod
+    AND docmst.doccod = hist.doctyp
+    AND docmst.docsubtyp = hist.docsubtyp
+    AND arlmst.arlidr = hist.arlidr
+    AND hist.cmpcod =?
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>58</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findAwbStockDetails" Type="NATIVE">
+			<![CDATA[
+			SELECT
+    z.*
+FROM
+    (
+        SELECT
+            hist.txndat,
+            hist.status,
+            hist.tostkhldcod,
+            hist.lstupdusr,
+            hist.frmstkhldcod,
+            hist.txnrmk,
+            hist.vodchg,
+            hist.curcod,
+            arlmst.awbchkdgt,
+            stk.stkhldcod,
+            stk.stkaprcod
+        FROM
+            shrarlmst arlmst,stkrngtxnhis hist
+            LEFT OUTER JOIN stkhldstk stk ON stk.arlidr = hist.arlidr
+                                             AND stk.cmpcod = hist.cmpcod
+                                             AND stk.stkhldcod = hist.frmstkhldcod
+                                             AND stk.docsubtyp = hist.docsubtyp
+                                             AND stk.doctyp = hist.doctyp
+        WHERE
+            arlmst.cmpcod = hist.cmpcod
+            AND arlmst.arlidr = hist.arlidr
+            AND hist.cmpcod =?
+            AND hist.arlidr =?
+            AND hist.status <> 'U'
+            AND hist.doctyp = 'AWB'
+            AND (
+                hist.ascstarng <=?
+                AND hist.ascendrng >=?
+            )
+        UNION ALL
+        SELECT DISTINCT
+            utlhist.txndat,
+            utlhist.status,
+            utlhist.stkhldcod,
+            utlhist.lstupdusr,
+            NULL,
+            NULL,
+            0,
+            NULL,
+            arlmst.awbchkdgt,
+            stk.stkhldcod,
+            stk.stkaprcod
+        FROM
+            shrarlmst arlmst,stkrngutlhis utlhist
+            LEFT OUTER JOIN stkhldstk stk ON stk.arlidr = utlhist.arlidr
+                                             AND stk.cmpcod = utlhist.cmpcod
+                                             AND stk.stkhldcod = utlhist.stkhldcod
+                                             AND stk.docsubtyp = utlhist.docsubtyp
+                                             AND stk.doctyp = utlhist.doctyp
+        WHERE
+            arlmst.cmpcod = utlhist.cmpcod
+            AND arlmst.arlidr = utlhist.arlidr
+            AND utlhist.doctyp = 'AWB'
+            AND utlhist.cmpcod =?
+            AND utlhist.arlidr =?
+            AND (
+                utlhist.ascstarng <=?
+                AND utlhist.ascendrng >=?
+            )
+    ) z
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+				<QRY:Id>59</QRY:Id>
+				<QRY:Source Name="stockcontrol.defaults.findStockUtilisationDetails" Type="NATIVE">
+				<![CDATA[
+SELECT
+    rng.stkhldcod,
+    rng.mnlflg,
+    rng.doctyp,
+    rng.docsubtyp,
+    rng.starng,
+    rng.endrng,
+    rng.docnum,
+    rng.rngacpdat AS stkdat,
+    'F' AS status,
+    arlmst.awbchkdgt
+FROM
+    stkrng rng,
+    shrarlmst arlmst,
+    stkhldstk stk
+WHERE
+    rng.cmpcod = arlmst.cmpcod
+    AND rng.arlidr = arlmst.arlidr
+    AND stk.arlidr = rng.arlidr
+    AND stk.cmpcod = rng.cmpcod
+    AND stk.stkhldcod = rng.stkhldcod
+    AND stk.docsubtyp = rng.docsubtyp
+    AND stk.doctyp = rng.doctyp
+				AND RNG.CMPCOD=?
+
+				]]>
+				</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>60</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findStockUtilisationDetailsUsed" Type="NATIVE">
+			<![CDATA[
+SELECT DISTINCT
+    utlhist.frmstkhldcod AS stkhldcod,
+    utlhist.rngtyp AS mnlflg,
+    utlhist.doctyp,
+    utlhist.docsubtyp,
+    utlhist.starng,
+    utlhist.endrng,
+    utlhist.numdoc AS docnum,
+    utlhist.txndat AS stkdat,
+    coalesce(utlhist.status,'U') AS status,
+    arlmst.awbchkdgt
+FROM
+    shrarlmst arlmst,stkrngtxnhis utlhist
+    LEFT OUTER JOIN stkhldstk stk ON stk.arlidr = utlhist.arlidr
+                                     AND stk.cmpcod = utlhist.cmpcod
+                                     AND stk.stkhldcod = utlhist.frmstkhldcod
+                                     AND stk.docsubtyp = utlhist.docsubtyp
+                                     AND stk.doctyp = utlhist.doctyp
+WHERE
+    arlmst.cmpcod = utlhist.cmpcod
+    AND arlmst.arlidr = utlhist.arlidr
+    AND utlhist.cmpcod =?
+    AND utlhist.arlidr =?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>62</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.validatestockperiod" Type="NATIVE">
+			<![CDATA[
+				SELECT
+    txn.ascstarng
+FROM
+    stkrngutlhis txn
+WHERE
+    txn.cmpcod =?
+    AND txn.arlidr =?
+    AND txn.doctyp =?
+    AND (
+        ( txn.ascstarng BETWEEN ? AND ?)
+        OR ( txn.ascendrng BETWEEN ? AND ?)
+    )
+    AND txn.status = 'U'
+    AND txn.txndat +%s
+ORDER BY
+    ascstarng
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>63</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findDistributedRangesForHQ" Type="NATIVE">
+			<![CDATA[
+				SELECT
+    COUNT(*) count
+FROM
+    stkrng rng
+WHERE
+    rng.cmpcod =?
+    AND rng.arlidr =?
+    AND rng.doctyp =?
+    AND rng.docsubtyp =?
+    AND rng.stkhldcod <>?
+    AND (
+        ( rng.ascstarng BETWEEN ? AND ?)
+        OR ( rng.ascendrng BETWEEN ? AND ?)
+    )
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>64</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findAllocatedQty" Type="NATIVE">
+			<![CDATA[
+				SELECT
+    SUM(stkrng.docnum) AS docnum,
+    stkhldstk.stkaprcod AS stkhldcod
+FROM
+    stkhldstk stkhldstk,
+    stkrng stkrng
+WHERE
+    stkhldstk.cmpcod = stkrng.cmpcod
+    AND stkhldstk.arlidr = stkrng.arlidr
+    AND stkhldstk.stkhldcod = stkrng.stkhldcod
+    AND stkhldstk.doctyp = stkrng.doctyp
+    AND stkhldstk.docsubtyp = stkrng.docsubtyp
+    AND stkhldstk.cmpcod =?
+    AND stkhldstk.arlidr =?
+    AND stkhldstk.doctyp =?
+    AND stkhldstk.docsubtyp =?
+    AND stkhldstk.stkaprcod in
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>65</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findUsedRangesForMerge" Type="NATIVE">
+			<![CDATA[
+SELECT
+    cmpcod,
+    arlidr,
+    hisseqnum,
+    doctyp,
+    docsubtyp,
+    frmstkhldcod,
+    ascstarng,
+    ascendrng,
+    starng,
+    endrng,
+    rngtyp
+FROM
+    stkrngtxnhis
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND frmstkhldcod =?
+    AND status =?
+	AND (
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>66</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findUsedRangesInHis" Type="NATIVE">
+			<![CDATA[
+SELECT
+    cmpcod,
+    arlidr,
+    hisseqnum,
+    doctyp,
+    docsubtyp,
+    frmstkhldcod,
+    ascstarng,
+    ascendrng,
+    starng,
+    endrng,
+    rngtyp
+FROM
+    stkrngtxnhis
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND status =?
+    AND (
+        (? BETWEEN ascstarng AND ascendrng )
+        OR (? BETWEEN ascstarng AND ascendrng )
+    )
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>67</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findSubTypeForReopenDocument" Type="NATIVE">
+			<![CDATA[
+					 SELECT DISTINCT
+    stkhldcod,
+    docsubtyp,
+    txndat
+FROM
+    stkrngutlhis
+WHERE
+    cmpcod =?
+    AND status = 'U'
+    AND arlidr =?
+    AND doctyp =?
+    AND ? BETWEEN ascstarng AND ascendrng
+ORDER BY
+    txndat DESC
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>68</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findAgentCSVDetails" Type="NATIVE">
+			<![CDATA[
+				SELECT
+    mst.stkhldcod,
+    his.numdoc,
+    his.starng,
+    his.endrng,
+    arlmst.awbchkdgt
+FROM
+    stkhldmst mst,
+    stkrngtxnhis his,
+    shrarlmst arlmst
+WHERE
+    mst.cmpcod = his.cmpcod
+    AND mst.stkhldcod = his.tostkhldcod
+    AND arlmst.cmpcod = his.cmpcod
+    AND arlmst.arlidr = his.arlidr
+    AND mst.cmpcod =?
+    AND mst.stkhldtyp = 'A'
+    AND his.txndat >=?
+    AND his.txndat <=?
+    AND his.status = 'A'
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+<QRY:Definition>
+			<QRY:Id>69</QRY:Id>
+				<QRY:Source Name="stockcontrol.defaults.checkDocumentStatus" Type="NATIVE">
+				<![CDATA[
+					SELECT
+    docsta
+FROM
+    shrdocmst
+WHERE
+    cmpcod =?
+    AND doccod =?
+    AND docsubtyp =?
+				]]>
+				</QRY:Source>
+</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>70</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findsubtypesforstockholder" Type="NATIVE">
+			<![CDATA[
+			SELECT
+    docsubtyp
+FROM
+    stkhldstk
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND stkhldcod =?
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>71</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findusedstocksfromutilisation" Type="NATIVE">
+			<![CDATA[
+			SELECT
+    mstdocnum
+FROM
+    stkrngutl
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND status = 'U'
+ORDER BY
+    mstdocnum
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>72</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.checkforapproverstock" Type="NATIVE">
+			<![CDATA[
+				SELECT
+    stk.cmpcod
+FROM
+    stkhldmst mst,
+    stkhldstk stk
+WHERE
+    mst.cmpcod = stk.cmpcod
+    AND mst.stkhldcod = stk.stkhldcod
+    AND stk.cmpcod =?
+    AND stk.arlidr =?
+    AND stk.doctyp =?
+    AND stk.docsubtyp =?
+    AND stk.stkhldcod =?
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>73</QRY:Id>
+			<QRY:Source Name="stockcontrol.defaults.findonlyusedstockfromutl" Type="NATIVE">
+			<![CDATA[
+				SELECT
+    COUNT(1) AS count
+FROM
+    stkrngutl stk
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND stkhldcod =?
+    AND mstdocnum =?
+    AND status IN (
+        'U',
+        'E'
+    )
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>74</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.checkUsedRangesInHis" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    cmpcod,
+    arlidr,
+    hisseqnum,
+    doctyp,
+    docsubtyp,
+    frmstkhldcod,
+    ascstarng,
+    ascendrng,
+    starng,
+    endrng,
+    rngtyp
+FROM
+    stkrngtxnhis his
+WHERE
+    his.cmpcod =?
+    AND his.arlidr =?
+    AND his.doctyp =?
+    AND his.docsubtyp =?
+    AND his.status = 'U'
+    AND (
+        (? BETWEEN ascstarng AND ascendrng )
+        OR (? BETWEEN ascstarng AND ascendrng )
+        OR (
+            ?<= ascstarng
+            AND ?>= ascendrng
+        )
+    )
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>75</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.checkRangesInStockUtilisation" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    cmpcod,
+    stkhldcod,
+    ascdocnum,
+    mstdocnum
+FROM
+    stkrngutl utl
+WHERE
+    utl.cmpcod =?
+    AND utl.arlidr =?
+    AND utl.doctyp =?
+    AND utl.docsubtyp =?
+    AND (
+        ( ascdocnum BETWEEN ? AND ?)
+        OR (
+            ?<= ascdocnum
+            AND ?>= ascdocnum
+        )
+    )
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>76</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.returnfirstlevelstockholder" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    MIN(tostkhldcod)
+FROM
+    (
+        SELECT
+            *
+        FROM
+            stkrngtxnhis his
+        WHERE
+            his.cmpcod =?
+            AND his.arlidr =?
+            AND his.doctyp =?
+            AND his.docsubtyp =?
+            AND his.frmstkhldcod = 'TYOAU'
+            AND his.status = 'A'
+            AND his.tostkhldcod <> 'TYOAU'
+            AND (
+                his.ascstarng <=?
+                AND his.ascendrng >=?
+            )
+            AND (
+                his.ascendrng >=?
+                AND his.ascendrng >=?
+            )
+        ORDER BY
+            cmpcod,
+            arlidr,
+            frmstkhldcod,
+            doctyp,
+            docsubtyp,
+            txndat
+    )
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>77</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.checkUsedRangesInUTLHis" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    *
+FROM
+    (
+        SELECT
+            cmpcod,
+            arlidr,
+            hisseqnum,
+            doctyp,
+            docsubtyp,
+            stkhldcod,
+            ascstarng,
+            ascendrng,
+            starng,
+            endrng,
+            rngtyp,
+            txndat,
+            ROW_NUMBER () OVER (ORDER BY NULL) rank
+        FROM
+            stkrngutlhis utlhis
+        WHERE
+            utlhis.cmpcod =?
+            AND utlhis.arlidr =?
+            AND utlhis.doctyp =?
+            AND utlhis.docsubtyp =?
+            AND utlhis.status = 'U'
+            AND (
+                (? BETWEEN ascstarng AND ascendrng )
+                OR (? BETWEEN ascstarng AND ascendrng )
+                OR (
+                    ?<= ascstarng
+                    AND ?>= ascendrng
+                )
+            )
+            AND NOT EXISTS (
+                SELECT
+                    1
+                FROM
+                    stkrng rng
+                WHERE
+                    rng.cmpcod = utlhis.cmpcod
+                    AND rng.arlidr = utlhis.arlidr
+                    AND rng.doctyp = utlhis.doctyp
+                    AND rng.docsubtyp = utlhis.docsubtyp
+                    AND (
+                        ( utlhis.ascstarng BETWEEN rng.ascstarng AND rng.ascendrng )
+                        OR ( utlhis.ascendrng BETWEEN rng.ascstarng AND rng.ascendrng )
+                    )
+            )
+            AND NOT EXISTS (
+                SELECT
+                    1
+                FROM
+                    stkrngutl utl
+                WHERE
+                    utl.cmpcod = utlhis.cmpcod
+                    AND utl.arlidr = utlhis.arlidr
+                    AND utl.doctyp = utlhis.doctyp
+                    AND utl.docsubtyp = utlhis.docsubtyp
+                    AND (
+                        ( utl.ascdocnum BETWEEN utlhis.ascstarng AND utlhis.ascendrng )
+                        OR (
+                            utlhis.ascstarng <= ascdocnum
+                            AND utlhis.ascendrng >= ascdocnum
+                        )
+                    )
+            )
+        ORDER BY
+            txndat DESC
+    ) mst
+WHERE
+    rank = 1
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>78</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.finddocsubtypefromutl" Type="NATIVE">
+		<![CDATA[
+			SELECT
+    docsubtyp,
+    stkhldcod
+FROM
+    stkrngutl
+WHERE
+    cmpcod =?
+    AND doctyp =?
+    AND ascdocnum =?
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>79</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findTransitStocks" Type="NATIVE">
+		<![CDATA[
+				SELECT
+    trs.cmpcod,
+    trs.arlidr,
+    trs.doctyp,
+    trs.docsubtyp,
+    trs.actendrng,
+    trs.actstarng,
+    trs.cfrsta,
+    trs.lstupdtim,
+    trs.lstupdusr,
+    trs.misnumdoc,
+    trs.misstarng,
+    trs.misendrng,
+    trs.ascmisendrng,
+    trs.ascmisstarng,
+    trs.numdoc,
+    trs.seqnum,
+    trs.frmstkhldcod,
+    trs.txncod,
+    trs.txndat,
+    trs.misrmk,
+    trs.txnrmk,
+    mst.stkhldtyp,
+    trs.stkhldcod
+FROM
+    stkhldmst mst,
+    stktrsrng trs
+WHERE
+    trs.cmpcod = mst.cmpcod
+    AND trs.stkhldcod = mst.stkhldcod
+    AND trs.cmpcod =?
+    AND trs.arlidr =?
+    AND trs.doctyp =?
+    AND trs.docsubtyp =?
+    AND trs.stkhldcod =?
+    AND mst.stkhldtyp =?
+		 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>80</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findBlackListRangesFromTransit" Type="NATIVE">
+		<![CDATA[
+				 SELECT
+    *
+FROM
+    stktrsrng
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND (
+        (? BETWEEN ascmisstarng AND ascmisendrng )
+        OR (? BETWEEN ascmisstarng AND ascmisendrng )
+        OR (
+            ?<= ascmisstarng
+            AND ?>= ascmisendrng
+        )
+    )
+    AND cfrsta = 'M'
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>81</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.autodepletestock" Type="PROCEDURE">
+			<![CDATA[
+				CALL pkg_stkdep.spr_utl(?)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>82</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.checkUtilisationForRange" Type="NATIVE">
+			<![CDATA[
+				SELECT
+    LISTAGG(mstdocnum,',') WITHIN GROUP(
+        ORDER BY
+            mstdocnum
+    ) AS mstdocnum
+FROM
+    stkrngutl
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND status <> 'B'
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>83</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findBlacklistedStockFromUTL" Type="NATIVE">
+			<![CDATA[
+	SELECT * FROM (SELECT
+    cmpcod,
+    arlidr,
+    stkhldcod,
+    doctyp,
+    docsubtyp,
+    mstdocnum,
+    ascdocnum,
+    lstupdtimutc lstupdtim,
+    lstupdtimutc blklstdat,
+    ROW_NUMBER () OVER (ORDER BY NULL) rank
+FROM
+    stkrngutl
+WHERE
+    status = 'B'
+    AND cmpcod =?
+	%s
+    ) mst WHERE RANK < 75	
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>84</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.deleteBlacklistedStockFromUTL" Type="NATIVE">
+			<![CDATA[
+			DELETE FROM stkrngutl
+WHERE
+    status = 'B'
+    AND cmpcod =?
+AND mstdocnum IN (
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>85</QRY:Id>
+	<QRY:Source Name="stockcontrol.defaults.findAutoPopulateSubtype" Type="NATIVE">
+	<![CDATA[
+		SELECT
+    stk.docsubtyp docsubtyp
+FROM
+    stkhldstk stk
+WHERE
+    stk.autgenflg = 'Y'
+    AND stk.cmpcod =?
+    AND stk.stkhldcod =?
+    AND stk.doctyp =?
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>86</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findawbusagedetails" Type="NATIVE">
+			<![CDATA[
+			WITH IDX AS
+			  (SELECT IDX.CMPCOD AS CMPCOD,
+				IDX.SHPPFX       AS SHPPFX,
+				IDX.DOCOWRIDR    AS DOCOWRIDR,
+				IDX.MSTDOCNUM    AS MSTDOCNUM,
+				IDX.LSTUPDTIM    AS LSTUPDTIM ,
+				IDX.SHPSTA       AS SHPSTA,
+                ROW_NUMBER () OVER (ORDER BY NULL) rnk 
+			  FROM OPRSHPIDX IDX
+			  WHERE IDX.CMPCOD = ?
+			  AND IDX.DOCOWRIDR= ?
+			  AND IDX.MSTDOCNUM= ?
+			  AND EXISTS
+
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>87</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.saveStockDetails" Type="PROCEDURE">
+			<![CDATA[
+				CALL pkg_stk_stock_check_tmp.spr_save_stock_details(?,?,?,?,?,?,?,?,?,?)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	
+				<QRY:Definition>
+	<QRY:Id>88</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findStockDetails" Type="NATIVE">
+			<![CDATA[
+			SELECT
+    mstdocnum
+FROM
+    stkrngmsgtmp
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND mstdocnum =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND skpstkchkflg = 'Y'
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>89</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findBlacklistRangesForBlacklist" Type="NATIVE">
+			<![CDATA[
+			SELECT
+    cmpcod,
+    stkhldcod,
+    starng,
+    endrng,
+    ascstarng,
+    ascendrng,
+    mnlflg
+FROM
+    stkrng
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND (
+        (? BETWEEN ascstarng AND ascendrng )
+        OR (? BETWEEN ascstarng AND ascendrng )
+        OR (
+            ?<= ascstarng
+            AND ?>= ascendrng
+        )
+    )
+UNION
+SELECT
+    mst.cmpcod,
+    mst.stkhldcod,
+    substr(mst.mstdocnum,0,7) starng,
+    substr(mst.mstdocnum,0,7) endrng,
+    to_number(substr(mst.mstdocnum,0,7) ) ascstarng,
+    to_number(substr(mst.mstdocnum,0,7) ) ascendrng,
+    'N' mnlflg
+FROM
+    oprshpmst mst,
+    oprshpmstmis mis
+WHERE
+    mst.cmpcod = mis.cmpcod
+    AND mst.mstdocnum = mis.mstdocnum
+    AND mst.docowridr = mis.docowridr
+    AND mst.seqnum = mis.seqnum
+    AND mst.dupnum = mis.dupnum
+    AND mst.cmpcod =?
+    AND mst.doctyp =?
+    AND coalesce(mis.docsubtyp,'~') =?
+    AND mst.seqnum = 1
+    AND to_number(
+        CASE
+            WHEN mst.mstdocnum > 'A' THEN '0'
+            ELSE substr(mst.mstdocnum,0,7)
+        END
+    ) BETWEEN ? AND ? 
+			--AND TO_NUMBER(SUBSTR(MST.MSTDOCNUM, 0, 7)) BETWEEN ? AND ?
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            stkrng
+        WHERE
+            mst.cmpcod = cmpcod
+            AND to_number(substr(mst.mstdocnum,0,7) ) BETWEEN ascstarng AND ascendrng
+    )
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>87</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findTotalNoOfDocuments" Type="NATIVE">
+		<![CDATA[
+		SELECT
+    SUM(docnumsum) AS totdocs
+FROM
+    (
+        SELECT
+            SUM(docnum) AS docnumsum
+        FROM
+            (
+                SELECT
+                    stkrng.starng AS starng,
+                    stkrng.endrng AS endrng,
+                    stkrng.docnum AS docnum,
+                    stkrng.rngacpdat,
+                    stkrng.doctyp AS doctyp
+                FROM
+                    stkrng stkrng
+                    LEFT OUTER JOIN stkrngutl utl ON ( stkrng.cmpcod = utl.cmpcod
+                                                       AND stkrng.arlidr = utl.arlidr
+                                                       AND stkrng.doctyp = utl.doctyp
+                                                       AND stkrng.docsubtyp = utl.docsubtyp
+                                                       AND utl.status = 'U'
+                                                       AND utl.ascdocnum BETWEEN stkrng.ascstarng AND stkrng.ascendrng )
+                WHERE
+                    stkrng.cmpcod =?
+                    AND stkrng.arlidr =?
+                    AND stkrng.doctyp =?
+                    AND stkrng.docsubtyp =?
+                    AND stkrng.stkhldcod =?
+                    AND stkrng.mnlflg =?
+                    AND NOT EXISTS (
+                        SELECT
+                            1
+                        FROM
+                            stkrngutl
+                        WHERE
+                            cmpcod = utl.cmpcod
+                            AND arlidr = utl.arlidr
+                            AND stkhldcod = utl.stkhldcod
+                            AND doctyp = utl.doctyp
+                            AND docsubtyp = utl.docsubtyp
+                            AND mstdocnum = utl.mstdocnum
+                            AND seqnum > utl.seqnum
+                            AND status = 'D'
+                    )
+                ORDER BY
+                    stkrng.ascstarng
+            ) mst
+        GROUP BY
+            starng,
+            endrng,
+            docnum,
+            doctyp,
+            rngacpdat
+    ) mst
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>87</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.saveStockRangeUtilisationLog" Type="PROCEDURE">
+			<![CDATA[
+				CALL pkg_stk_stock_range_utl.spr_save_stock_range_utl_log(?,?,?,?,?,?,?,?)
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+<QRY:Definition>
+		<QRY:Id>88</QRY:Id>
+		<QRY:Source Name="postgres.stockcontrol.defaults.findRangesForViewRange" Type="NATIVE">
+		<![CDATA[
+			SELECT
+        CASE
+            WHEN doctyp = 'AWB' THEN starng
+                                     || mod(to_number(starng),7)
+            ELSE starng
+        END
+    starng,
+        CASE
+            WHEN doctyp = 'AWB' THEN endrng
+                                     || mod(to_number(endrng),7)
+            ELSE endrng
+        END
+    endrng,
+        docnum,
+        rngacpdat,
+        STRING_AGG (mstdocnum,','
+        ORDER BY
+            mstdocnum
+    ) AS mstdocnum
+FROM
+    (
+        SELECT
+            stkrng.starng AS starng,
+            stkrng.endrng AS endrng,
+            stkrng.docnum AS docnum,
+            stkrng.rngacpdat,
+            utl.mstdocnum,
+            stkrng.doctyp AS doctyp
+        FROM
+            stkrng stkrng
+            LEFT OUTER JOIN stkrngutl utl ON ( stkrng.cmpcod = utl.cmpcod
+                                               AND stkrng.arlidr = utl.arlidr
+                                               AND stkrng.doctyp = utl.doctyp
+                                               AND stkrng.docsubtyp = utl.docsubtyp
+                                               AND utl.status = 'U'
+                                               AND utl.ascdocnum BETWEEN stkrng.ascstarng AND stkrng.ascendrng )
+        WHERE
+            stkrng.cmpcod =?
+            AND stkrng.arlidr =?
+            AND stkrng.doctyp =?
+            AND stkrng.docsubtyp =?
+            AND stkrng.stkhldcod =?
+            AND stkrng.mnlflg =?
+            AND NOT EXISTS (
+                SELECT
+                    1
+                FROM
+                    stkrngutl
+                WHERE
+                    cmpcod = utl.cmpcod
+                    AND arlidr = utl.arlidr
+                    AND stkhldcod = utl.stkhldcod
+                    AND doctyp = utl.doctyp
+                    AND docsubtyp = utl.docsubtyp
+                    AND mstdocnum = utl.mstdocnum
+                    AND seqnum > utl.seqnum
+                    AND status = 'D'
+            )
+        ORDER BY
+            stkrng.ascstarng
+    ) mst
+GROUP BY
+    starng,
+    endrng,
+    docnum,
+    doctyp,
+    rngacpdat
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>90</QRY:Id>
+		<QRY:Source Name="postgres.stockcontrol.defaults.checkUtilisationForRange" Type="NATIVE">
+			<![CDATA[
+				SELECT
+    STRING_AGG(mstdocnum,','
+        ORDER BY
+            mstdocnum
+    ) AS mstdocnum
+FROM
+    stkrngutl
+WHERE
+    cmpcod =?
+    AND arlidr =?
+    AND doctyp =?
+    AND docsubtyp =?
+    AND status <> 'B'
+		]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>91</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.checkIfDocNumberBlackListed" Type="NATIVE">
+			<![CDATA[SELECT
+			BLKSTA
+			FROM
+			stkblklstrng
+			WHERE
+			cmpcod =?
+			AND doctyp =?
+			AND (
+			( starng BETWEEN lpad(?,7) AND lpad(?,7))
+			OR ( endrng BETWEEN lpad(?,7) AND lpad(?,7))
+			)]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>92</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.checkIfDocNumberIsVoid" Type="NATIVE">
+			<![CDATA[select * from (SELECT row_number() over (order by null) as rnk,
+			vodrng.status
+			FROM
+			STKRNGTXNHIS vodrng
+			WHERE
+			cmpcod =?
+			AND doctyp =?
+			AND (
+			( starng BETWEEN lpad(?,7) AND lpad(?,7))
+			OR ( endrng BETWEEN lpad(?,7) AND lpad(?,7))
+			%s) order by hisseqnum desc ) a where rnk=1 ]]>
+		</QRY:Source>
+	</QRY:Definition>
+		<QRY:Definition>
+	<QRY:Id>93</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.removeStockReuseHistory" Type="NATIVE">
+			<![CDATA[
+				SELECT SERNUM FROM STKRUSHIS WHERE CMPCOD = ? AND MSTDOCNUM= ? AND DOCOWRIDR= ? AND DUPNUM= ? AND SEQNUM= ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+			<QRY:Definition>
+	<QRY:Id>94</QRY:Id>
+		<QRY:Source Name="stockcontrol.defaults.findStockReuseHistory" Type="NATIVE">
+			<![CDATA[
+				select MAX(CAPDAT) CAPDAT from STKRUSHIS WHERE CMPCOD =? AND DOCOWRIDR=? AND MSTDOCNUM=?  AND CNTCOD=?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	</QRY:Definitions>

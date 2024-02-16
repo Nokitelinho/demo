@@ -1,0 +1,77 @@
+query:
+  definitions:
+    findTenantCatalogue: select art.*, tnt.tntidr, tnt.depgrp
+      from tntctg tnt, artmst art
+      where tnt.artidr = art.artidr
+      and tnt.tntidr = ?
+    findTenantCatalogueForApplication: select art.*, tnt.tntidr, tnt.depgrp
+      from tntctg tnt, artmst art
+      where tnt.artidr = art.artidr
+      and tnt.tntidr = ?
+      and tnt.appidr = ?
+    findTenantDeploymentBom: select art.artidr, art.domnam, art.srvtch, art.srvtyp, art.dsc artdsc, art.hltenp,
+      art.port, art.ctxpth, art.prvapi, art.pubapi, art.entapi, rel.reltim, rel.artver, rel.reldsc,rel.relbrh, tnt.depgrp
+      from tntctg tnt, artmst art,(
+      select rtmp.artidr, max(rtmp.reltim) latreltim
+      from relctg rtmp
+      where rtmp.relsta = 'ALPHA'
+      and rtmp.relbrh = ?
+      group by rtmp.artidr
+      ) rellat, relctg rel
+      where tnt.artidr = art.artidr
+      and tnt.artidr = rel.artidr
+      and rel.artidr = rellat.artidr
+      and rel.reltim = rellat.latreltim
+      and tnt.tntidr = ?
+      and tnt.appidr = ?
+    findAllLatestReleases: select cat1.artver,cat1.relbrh,cat1.reldsc,cat1.reltim,
+      art.artidr, art.domnam, art.srvtch, art.srvtyp, art.dsc artdsc, art.hltenp,
+      art.port, art.ctxpth, art.prvapi, art.pubapi, art.entapi
+      from relctg cat1,(
+      select rtmp.artidr artidr, max(rtmp.reltim)- interval {0} latreltim
+      from relctg rtmp
+      group by rtmp.artidr) cat2,
+      artmst art
+      where cat1.reltim  >= cat2.latreltim
+      and cat1.artidr = cat2.artidr
+      and art.artidr = cat1.artidr
+      {1}
+      order by cat1.reltim desc
+    findNextBuildNum:  select COALESCE(max(b.bldnum)+100,100) from bldctg b where b.appidr = ? and b.relnum= ?
+    findNextPatchBuildNum: select max(b.bldnum)+1 bld_max_nxt,(?/100)*100+99 bld_max_abs
+      from bldctg b
+      where b.bldnum >= (?/100)*100 and b.bldnum < (?/100)*100+100 and b.relnum = ?      
+    findBuilds: select b.bldnum,b.relnum,b.bldsta,b.bldqly,b.bldstrtim,b.appidr,b.tntidr,b.bldstrtim,b.bldendtim,
+      (select count(1)  from relpkg r where r.bldnum =  concat_ws('.', b.relnum, b.bldnum) and r.pkgsta='Complete') relcnt
+      from bldctg b
+      where b.bldstrtim >= ?
+      order by b.bldstrtim desc
+    findApplicationIds: SELECT appidr, appdsc, tntidr
+      FROM appctg  where tntidr = ?
+    findArtReleaseBom: select cat1.artver,cat1.relbrh,cat1.reldsc,cat1.reltim,
+      art.artidr, art.domnam, art.srvtch, art.srvtyp, art.dsc artdsc, art.hltenp,
+      art.port, art.ctxpth, art.prvapi, art.pubapi, art.entapi
+      from relctg cat1,
+      artmst art
+      where art.artidr = cat1.artidr
+      and cat1.artidr = ?
+      and cat1.artver = ?
+
+    findArtVerForBom: select bld.relnum ,bld.bldnum from bldctg  bld
+      where bld.bldstrtim = ( select  max (bldstrtim)  FROM bldctg where bldqly=? and appidr =? and tntidr=?)
+
+    findAggregatedJiraId: select rel.artidr, string_agg(ACTVTYREF, ',') as ACTVTYREF 
+      from relctg rel group by rel.artidr;
+
+    findAggregatedActivity: select rel.artidr, string_agg(ACTVTYREF, ',') as ACTVTYREF 
+      from relctg rel where rel.artidr in (select tntctg.artidr from tntctg where tntctg.tntidr=? and tntctg.appidr=?) and rel.reltim>? group by artidr;
+
+
+    findAggregatedActivityJIRA: select bld.depctg from bldctg  bld where bld.appidr =? and bld.tntidr=? and bld.bldnum between ?  and ? and bld.relnum = ?;
+
+    findAggregatedActivityJIRAAcrossRelese: select bld.depctg from bldctg  bld where bld.appidr =? and bld.tntidr=? and bld.bldnum > ? and bld.relnum = ?
+      union select bld.depctg from bldctg  bld where bld.appidr =? and bld.tntidr=? and bld.bldnum <= ? and bld.relnum = ? ;
+
+    findMinAndMaxReleaseTime: select max (rel.reltim) as max, min(rel.reltim) as min from relctg rel where rel.artidr=? and rel.artver in (
+
+    findActiveRefMinAndMaxReleaseTime: select rel.artidr, string_agg(ACTVTYREF, ',') as ACTVTYREF   from relctg  rel where rel.artidr =? and rel.reltim between ? and ? group by artidr  ;

@@ -1,0 +1,4480 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN "
+	"http://struts.apache.org/dtds/struts-config_1_2.dtd " >
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="maintainULDGroupForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.shared.defaults.uld.MaintainULDGroupForm"/>
+		<form-bean name="maintainULDForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.MaintainULDForm"/>
+		<form-bean name="multipleULDForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.MultipleULDForm"/>
+		<form-bean name="listULDForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.ListULDForm"/>
+		<form-bean name="maintainAccessoriesStockForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.stock.MaintainAccessoriesStockForm"/>
+		<form-bean name="listAccessoriesStockForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.stock.ListAccessoriesStockForm"/>
+		<form-bean name="AccessoryStockLovForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.stock.AccessoryStockLovForm" />	
+		<form-bean name="recordULDMovementForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.RecordULDMovementForm"/>
+		<form-bean name="listULDMovementForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.ListULDMovementForm"/>
+		<form-bean name="ListDamageReportForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.ListDamageReportForm"/>
+		<!-- Added by Anitha -->
+		<form-bean name="agreementNoLovForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.AgreementNoLovForm"/>
+		<form-bean name="maintainDamageReportForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.MaintainDamageReportForm"/>
+		<form-bean name="maintainDamageReportRevampForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.ux.misc.MaintainDamageReportForm"/>		
+		<form-bean name="ListRepairReportForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.ListRepairReportForm"/>
+		<form-bean name="FacilityCodeLOVForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.FacilityCodeLOVForm"/>
+		<form-bean name="FacilityCodeLOVFormUX" 
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.ux.FacilityCodeLOVForm"/>
+		<form-bean name="UCMErrorLogForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.messaging.UCMErrorLogForm"/>
+		<form-bean name="ULDErrorLogForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.messaging.ULDErrorLogForm"/>
+		<form-bean name="GenerateSCMForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.messaging.GenerateSCMForm"/>
+		<form-bean name="SCMReconcileForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.messaging.SCMReconcileForm"/>
+		<form-bean name="SCMULDErrorLogForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.messaging.SCMULDErrorLogForm"/>
+		<form-bean name="UCMFlightExceptionListForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.messaging.UCMFlightExceptionListForm"/>
+
+		<!-- Added by Kumar Prashant -->
+		<form-bean name="ULDHistoryForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.ULDHistoryForm"
+			scope="request"/>
+		<!-- Added by AG -->
+		<form-bean name="maintainULDAgreementForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.MaintainULDAgreementForm"/>
+		<form-bean name="addULDAgreementForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.AddULDAgreementForm"/>
+		<form-bean name="maintainULDStockForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.stock.MaintainULDStockForm"/>
+		<form-bean name="monitorULDStockForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.stock.MonitorULDStockForm"/>
+		<form-bean name="listUldAgreementForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.ListULDAgreementForm"/>
+		<form-bean name="maintainULDTransactionForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.transaction.MaintainULDTransactionForm"/>
+		<form-bean name="listULDTransactionForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.transaction.ListULDTransactionForm"/>
+		<form-bean name="returnULDTransactionForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.transaction.ReturnULDTransactionForm"/>
+		<form-bean name="listULDTransactionHistoryForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.transaction.ListULDTransactionHistoryForm"/>
+		<form-bean name="listInvoiceForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.transaction.ListInvoiceForm"/>
+		<form-bean name="generateInvoiceForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.transaction.GenerateInvoiceForm"/>
+		<form-bean name="generateTransactionInvoiceForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.transaction.GenerateTransactionInvoiceForm"/>
+		<form-bean name="viewInvoiceForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.transaction.ViewInvoiceForm"/>
+		<form-bean name="repairInvoiceForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.transaction.RepairInvoiceForm"/>
+		<form-bean name="uldNumberLovForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.transaction.ULDNumberLovForm"/>
+		<!-- Added by AG -->
+		<!-- ADDED BY AYSWARYA - Mappings for LOV -->
+		<form-bean name="DamageRefNoLovForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.DamageRefNoLovForm"/>
+		<form-bean name="ListULDDiscrepanciesForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.ListULDDiscrepanciesForm"/>
+		<form-bean name="ManufacturerLovForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.ManufacturerLovForm"/>
+		<!-- Added by Ruby for ReloteULDPopupScreen -->
+		<form-bean name="relocateULDForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.RelocateULDForm"/>
+		<form-bean name="AirportFacilityMasterForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.AirportFacilityMasterForm"/>
+		<form-bean name="ucmInOutForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.messaging.UCMINOUTForm"/>
+		<form-bean name="ULDPoolOwnersForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.ULDPoolOwnersForm"/>
+		<form-bean name="SegmentExceptionsForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.SegmentExceptionsForm"/>
+		<form-bean name="SCMSequenceNoLovForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.messaging.SCMSequenceNoLovForm"/>
+		<!-- Added by Tarun For Carrier Setup-->
+		<form-bean name="HandledCarrierSetupForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.HandledCarrierSetupForm"/>
+		<!-- Added by Preet For ULD Internal Movement History Screen-->
+		<form-bean name="uldIntMvtHistoryForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.ULDIntMvtHistoryForm"/>
+		<!-- Added by Nishanth For ULD Discrepancy Report-->
+		<form-bean name="ULDDiscrepancyReportForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.ULDDiscrepancyReportForm"/>
+		<!-- Added by Sowmya For ULD Availability Report-->
+		<form-bean name="uldAvailabilityForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.transaction.ULDAvailabilityForm"/>
+		<!--Added By Sreekumar S-->
+        <form-bean name="ULDAuditEnquiryForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.ULDAuditEnquiryForm" />
+		<!-- Added by Manaf For ULD Damage Checklist Master-->
+		<form-bean name="DamageChecklistMasterForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.DamageChecklistMasterForm" />
+		<!-- Added by Manaf For QF CR1021-->
+		<form-bean name="MissingUCMListForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.messaging.MissingUCMListForm" />
+		<!-- Added by a-3045 for CR starts -->
+		<form-bean name="MUCTrackingForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.messaging.MUCTrackingForm" />
+		<!-- Added by a-3045 for CR ends -->
+		<form-bean name="SCMValidationForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.messaging.SCMValidationForm"/>
+		<!-- Added by a-2052 for CR QF1502 starts -->
+		<form-bean name="ULDServiceabilityForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.ULDServiceabilityForm"/>
+		<!-- Added by a-2052 for CR QF1502 ends -->
+		<form-bean name="ULDAuditForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.ULDAuditForm"/>
+		<form-bean name="MaintainUldDiscrepanciesForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.MaintainUldDiscrepanciesForm"/>	
+	<form-bean name="ListEstimatedULDStockForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.stock.ListEstimatedULDStockForm"/>
+	<form-bean name="ListExcessStockAirportsForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.stock.ListExcessStockAirportsForm"/>
+	<form-bean name="UpdateMultipleULDDetailsForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.uld.defaults.misc.UpdateMultipleULDDetailsForm">
+	</form-bean>
+	</form-beans>
+	<global-forwards>
+
+		<forward name="error_fwd" path="/jsp/icargo_logon.jsp"/>
+		<forward name="normal-report-viewer"
+			path="/jsp/includes/reports/NormalReportViewer.jsp"/>
+		<forward name="normal-report-printer"
+			path="/jsp/includes/reports/NormalReportPrinter.jsp"/>
+		<forward name="special-report-printer"
+			path="/jsp/includes/reports/SpecialReportPrinter.jsp"/>
+		<forward name="normal-report-error-jsp"
+			path="/jsp/includes/reports/NormalReportErrorHandler.jsp"/>
+
+	</global-forwards>
+
+	<action-mappings>
+
+		<!-- ULD Group actions -->
+
+		<action name="maintainULDGroupForm"
+			path="/shared.defaults.uld.screenloaduldgroup" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainULDGroup.jsp"/>
+		</action>
+
+		<action name="maintainULDGroupForm"
+			path="/shared.defaults.uld.finduldgroupdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/MaintainULDGroup.jsp"/>
+		</action>
+
+		<action name="maintainULDGroupForm"
+			path="/shared.defaults.uld.deleteULDGroup" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="deleteuldgroup_success"
+				path="/jsp/uld/defaults/MaintainULDGroup.jsp"/>
+		</action>
+
+		<action name="maintainULDGroupForm"
+			path="/shared.defaults.uld.createuldgroup" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="saveuldgroup_success"
+				path="/jsp/uld/defaults/MaintainULDGroup.jsp"/>
+		</action>
+
+		<action name="maintainULDGroupForm"
+			path="/shared.defaults.uld.modifyuldgroup" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="saveuldgroup_success"
+				path="/jsp/uld/defaults/MaintainULDGroup.jsp"/>
+		</action>
+
+		<action name="FacilityCodeLOVForm"
+			path="/uld.defaults.lov.screenloadfacilitycodelov" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/FacilityCodeLOV.jsp"/>
+		</action>
+
+		<!-- Maintain ULD actions -->
+
+		<action name="multipleULDForm" path="/uld.defaults.screenloadmultipleulds"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MultipleULD_Range.jsp"/>
+		</action>
+
+		<!-- Action code for calling listmntainuldlock -->
+		<action path="/uld.defaults.lockonlistmaintainuld"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainULDForm" scope="request" validate="false">
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.screenloadmaintainuld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.listulddetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="listuld_success"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+			<forward name="listuld_failure"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.clearulddetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.createnewuld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="createuld_success"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+			<forward name="createuld_failure"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.saveuld" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+
+			<!--  <forward name="saveuld_success" path="/jsp/uld/defaults/MaintainULD.jsp"/> -->
+
+			<forward name="saveuld_success"
+				path="/uld.defaults.clearulddetails.do?saveIndFlag=SAVE_ULD_SUCCESS"/>
+			<forward name="saveuld_failure"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+			<forward name="save_listcreate" path="/uld.defaults.listuld.do"/>
+			<forward name="save_listdetail" path="/uld.defaults.listuld.do"/>
+			<forward name="save_listrepair"
+				path="/uld.defaults.listrepairreport.do"/>
+			<forward name="save_listdamage"
+				path="/uld.defaults.listdamagereportcommand.do"/>
+			<forward name="save_loanborrow"
+				path="/uld.defaults.transaction.refreshulddetailstxn.do"/>
+			<forward name="save_ulderrorlog"
+				path="/uld.defaults.messaging.listulderrorlog.do"/>
+			<forward name="save_scmerrorlog"
+				path="/uld.defaults.messaging.listscmulderrorlog.do"/>
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.deleteuld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="deleteuld_success"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+			<forward name="deleteuld_failure"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+			<forward name="delete_listcreate" path="/uld.defaults.listuld.do"/>
+			<forward name="delete_listdetail" path="/uld.defaults.listuld.do"/>
+			<forward name="delete_listrepair"
+				path="/uld.defaults.listrepairreport.do"/>
+			<forward name="delete_listdamage"
+				path="/uld.defaults.listdamagereportcommand.do"/>
+			<forward name="delete_loanborrow"
+				path="/uld.defaults.transaction.refreshulddetailstxn.do"/>
+
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.closeuld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_matersuccess" path="/home.jsp"/>
+			<forward name="close_materfailure"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+			<forward name="close_listcreate" path="/uld.defaults.listuld.do"/>
+			<forward name="close_listdetail" path="/uld.defaults.listuld.do"/>
+			<forward name="close_listrepair"
+				path="/uld.defaults.listrepairreport.do"/>
+			<forward name="close_listdamage"
+				path="/uld.defaults.listdamagereportcommand.do"/>
+			<forward name="close_loanborrow"
+				path="/uld.defaults.transaction.refreshulddetailstxn.do?listStatus=N"/>
+			<forward name="close_ulderrorlog"
+				path="/uld.defaults.messaging.listulderrorlog.do"/>
+			<forward name="close_scmulderrorlog"
+				path="/uld.defaults.messaging.listscmulderrorlog.do"/>
+
+		</action>
+
+		<action name="multipleULDForm" path="/uld.defaults.generateuldnumbers"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="generateuldnumbers_success"
+				path="/jsp/uld/defaults/MultipleULD_Range.jsp"/>
+			<forward name="generateuldnumbers_failure"
+				path="/jsp/uld/defaults/MultipleULD_Range.jsp"/>
+		</action>
+
+		<action name="multipleULDForm" path="/uld.defaults.adduldnumbers"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="adduld_success"
+				path="/jsp/uld/defaults/MultipleULD_Range.jsp"/>
+			<forward name="adduld_failure"
+				path="/jsp/uld/defaults/MultipleULD_Range.jsp"/>
+		</action>
+
+		<action name="multipleULDForm" path="/uld.defaults.deleteuldnumbers"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="deletemultipleuld_success"
+				path="/jsp/uld/defaults/MultipleULD_Range.jsp"/>
+			<forward name="deletemultipleuld_failure"
+				path="/jsp/uld/defaults/MultipleULD_Range.jsp"/>
+		</action>
+
+		<action name="multipleULDForm" path="/uld.defaults.savemultipleulds"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/MultipleULD_Range.jsp"/>
+			<forward name="save_error" path="/jsp/uld/defaults/MultipleULD_Range.jsp"/>
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.refreshmaintainuld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="refresh_success"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.validatebeforepopup"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="validate_success"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+			<forward name="validate_failure"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.detailuldinfo"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="detailsscreenload_success"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+			<forward name="detailsscreenload_failure"
+				path="/uld.defaults.listuld.do"/>
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.navigateuld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="navigation_success"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+			<forward name="navigation_failure"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.tomvthystoryscreenload"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="movementlist_success"
+				path="/uld.defaults.misc.screenloadlistuldmovement.do"/>
+			<forward name="movementcreate_success"
+				path="/uld.defaults.misc.screenloadlistuldmovement.do"/>
+
+		</action>
+
+		<action name="maintainULDForm" path="/uld.defaults.returnfrommvthystory"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="retun_success"
+				path="/jsp/uld/defaults/MaintainULD.jsp"/>
+		</action>
+		<!-- List ULD actions -->
+
+		<action name="listULDForm"
+			path="/uld.defaults.listulddiscrepancies.ulddiscrepancy"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/uld.defaults.maintainulddiscrepancies.refreshcommand.do"/>
+		</action>
+
+		<action name="listULDForm" path="/uld.defaults.screenloadlistuld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ListULD.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/ListULD.jsp"/>
+		</action>
+
+		<action name="listULDForm" path="/uld.defaults.listuld" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/uld/defaults/ListULD.jsp"/>
+			<forward name="list_failure" path="/jsp/uld/defaults/ListULD.jsp"/>
+		</action>
+
+		<action name="listULDForm" path="/uld.defaults.deletelistuld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success" path="/uld.defaults.listuld.do"/>
+			<forward name="delete_failure" path="/jsp/uld/defaults/ListULD.jsp"/>
+		</action>
+		
+		
+		<action name="listULDForm" path="/uld.defaults.listuld.offloaduld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="offload_failure" path="/jsp/uld/defaults/ListULD.jsp"/>
+			<forward name="offload_success" path="/uld.defaults.listuld.do"/>
+		</action>
+
+		<action name="listULDForm" path="/uld.defaults.clearlistuld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/uld/defaults/ListULD.jsp"/>
+
+		</action>
+
+		<action path="/uld.defaults.listuld.doReport" name="listULDForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+		<action path="/uld.defaults.printListUld.doReport" name="listULDForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+		<action path="/uld.defaults.listuld.printUldInventory" name="listULDForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<action name="listULDForm" path="/uld.defaults.closelistuld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success" path="/home.jsp"/>
+			<forward name="close_monitorstock"
+				path="/uld.defaults.listuldstockdetails.do"/>
+		</action>
+		<action name="listULDForm" path="/uld.defaults.listuld.generatescm"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="send_success" path="/uld.defaults.messaging.listgeneratescm.do"/>
+
+		</action>
+		<!-- Relocate ULD Actions -->
+
+		<action name="relocateULDForm"
+			path="/uld.defaults.listuld.screenloadrelocateuld" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/RelocateULD.jsp"/>
+		</action>
+
+		<action name="relocateULDForm"
+			path="/uld.defaults.listuld.saverelocateuld" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/RelocateULD.jsp"/>
+		</action>
+
+		<!-- Maintain Accessories actions -->
+
+		<action name="maintainAccessoriesStockForm"
+			path="/uld.defaults.stock.screenloadmaintainaccessoriesstock"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+			<forward name="screenload_error"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+		</action>
+
+		<action name="maintainAccessoriesStockForm"
+			path="/uld.defaults.stock.findaccessoriesstockdetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+		</action>
+
+		<action name="maintainAccessoriesStockForm"
+			path="/uld.defaults.stock.saveaccessoriesstock" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+			<forward name="list_forward"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+		</action>
+
+		<action name="maintainAccessoriesStockForm"
+			path="/uld.defaults.stock.createaccessoriesstock" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="create_success"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+			<forward name="create_failure"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+		</action>
+
+		<action name="maintainAccessoriesStockForm"
+			path="/uld.defaults.stock.clearaccessoriesstock" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+			<forward name="clear_error"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+		</action>
+
+		<action name="maintainAccessoriesStockForm"
+			path="/uld.defaults.stock.detailslistaccessories" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="details_error"
+				path="/uld.defaults.stock.findaccessoriesstocklist.do"/>
+			<forward name="details_success"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+		</action>
+
+		<action name="maintainAccessoriesStockForm"
+			path="/uld.defaults.navigateacsrs" scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="navigation_success"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+			<forward name="navigation_failure"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+		</action>
+
+		<action name="maintainAccessoriesStockForm"
+			path="/uld.defaults.stock.closeaccessoriesstock" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success" path="/home.jsp"/>
+			<forward name="list_forward"
+				path="/uld.defaults.stock.findaccessoriesstocklist.do"/>
+		</action>
+
+		<!-- Maintain Accessories Ends -->
+
+		<!-- List Accessories actions Starts-->
+
+		<action name="listAccessoriesStockForm"
+			path="/uld.defaults.stock.screenloadlistaccessoriesstock"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ListAccessoryStock.jsp"/>
+			<forward name="screenload_error"
+				path="/jsp/uld/defaults/ListAccessoryStock.jsp"/>
+		</action>
+
+		<action name="listAccessoriesStockForm"
+			path="/uld.defaults.stock.findaccessoriesstocklist" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ListAccessoryStock.jsp"/>
+			<forward name="list_error"
+				path="/jsp/uld/defaults/ListAccessoryStock.jsp"/>
+		</action>
+
+		<action name="listAccessoriesStockForm"
+			path="/uld.defaults.stock.clearaccessoriesstocklist" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/ListAccessoryStock.jsp"/>
+			<forward name="clear_error"
+				path="/jsp/uld/defaults/ListAccessoryStock.jsp"/>
+		</action>
+
+		<action name="listAccessoriesStockForm"
+			path="/uld.defaults.stock.detailaccessoriesstocklist" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="details_success"
+				path="/jsp/uld/defaults/MaintainAccessoriesStock.jsp"/>
+			<forward name="details_error"
+				path="/jsp/uld/defaults/ListAccessoryStock.jsp"/>
+		</action>
+
+		<action name="listAccessoriesStockForm"
+			path="/uld.defaults.stock.deletelistaccessoriess" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/ListAccessoryStock.jsp"/>
+			<forward name="delete_failure"
+				path="/jsp/uld/defaults/ListAccessoryStock.jsp"/>
+		</action>
+
+		<action name="listAccessoriesStockForm"
+			path="/uld.defaults.stock.closeaccessoriesstocklist" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<!--Modified by A-5493 for ICRD-48129-->
+			<forward name="close_success" path="/home.jsp"/>
+			<!--Modified by A-5493 ends-->
+			<forward name="close_error" path="/home.jsp"/>
+		</action>
+		<!-- List Accessories actions Ends-->
+		<!--Mappings for AccessoryStockSetup Lov-->
+		<action
+			name="AccessoryStockLovForm"
+			path="/uld.defaults.stock.accessorystocksetup.screenloadaccessorylov"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/uld/defaults/AccessoryStockLov.jsp" />			
+		</action>
+		<action
+			name="AccessoryStockLovForm"
+			path="/uld.defaults.stock.accessorystocksetup.clearaccessorylov"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/uld/defaults/AccessoryStockLov.jsp" />			
+		</action>
+		<!--Mappings for AccessoryStockSetup Lov ends-->
+		<!-- List ULD Movement actions -->
+
+		<action name="listULDMovementForm"
+			path="/uld.defaults.misc.screenloadlistuldmovement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ListULDMovement.jsp"/>
+			<forward name="screenload_error"
+				path="/jsp/uld/defaults/ListULDMovement.jsp"/>
+		</action>
+//added by jisha for QF1022 starts
+
+		<action
+				name="listULDMovementForm"
+				path="/uld.defaults.misc.externallistuldmovement"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="screen_success" path="/jsp/uld/defaults/ListULDMovement.jsp" />
+				<forward name="screen_failure" path="/jsp/uld/defaults/ListULDMovement.jsp" />
+			</action>
+
+		<action
+				name="listULDMovementForm"
+				path="/uld.defaults.misc.listuldmovement"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="list_success" path="/jsp/uld/defaults/ULDExtrAjaxTable.jsp" />
+				<forward name="list_failure" path="/jsp/uld/defaults/ULDExtrAjaxTable.jsp" />
+			</action>
+
+
+		<action name="listULDMovementForm"
+			path="/uld.defaults.misc.clearuldmovement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/ListULDMovement.jsp"/>
+		</action>
+
+	      <action
+				name="listULDMovementForm"
+				path="/uld.defaults.misc.listintuldmovement"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="list_success" path="/jsp/uld/defaults/ULDIntMvmtAjaxTable.jsp" />
+				<forward name="list_failure" path="/jsp/uld/defaults/ULDIntMvmtAjaxTable.jsp" />
+
+			</action>
+			<action
+				name="listULDMovementForm"
+				path="/uld.defaults.misc.listuldtrns"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="list_success" path="/jsp/uld/defaults/ULDTxnAjaxTable.jsp" />
+				<forward name="list_failure" path="/jsp/uld/defaults/ULDTxnAjaxTable.jsp" />
+			</action>
+			<action
+				name="listULDMovementForm"
+				path="/uld.defaults.listdamagerepairdetails"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="list_success" path="/jsp/uld/defaults/ULDDmgRprAjaxTable.jsp" />
+				<forward name="list_failure" path="/jsp/uld/defaults/ULDDmgRprAjaxTable.jsp" />
+			</action>
+
+			<action
+				name="listULDMovementForm"
+				path="/uld.defaults.listbuildupbreakdowndetails"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="list_success" path="/jsp/uld/defaults/ULDBuildAjaxTable.jsp" />
+				<forward name="list_failure" path="/jsp/uld/defaults/ULDBuildAjaxTable.jsp" />
+			</action>
+
+			<action
+				name="listULDMovementForm"
+				path="/uld.defaults.findULDActionHistory"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="list_success" path="/jsp/uld/defaults/ULDActionHistory.jsp" />
+				<forward name="list_failure" path="/jsp/uld/defaults/ULDActionHistory.jsp" />
+
+			</action>
+
+		    <action path="/uld.defaults.misc.uldmvthistory.generatetxndetails"
+				name="listULDMovementForm"
+				scope="request"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				validate="false">
+				
+			</action>
+
+
+	//added by jisha for QF1022 ends
+			<action
+				name="listULDMovementForm"
+				path="/uld.defaults.uldmvthistory.generateintmvtreport"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			</action>
+		<action name="listULDMovementForm"
+			path="/uld.defaults.misc.closeuldmovement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success" path="/home.jsp"/>
+			<forward name="close_maintain"
+				path="/uld.defaults.returnfrommvthystory.do"/>
+			<forward name="close_listuld"
+				path="/uld.defaults.returnfrommvthystory.do"/>
+		</action>
+
+		<action name="listULDMovementForm"
+			path="/uld.defaults.misc.deleteuldmovementhistory" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/ListULDMovement.jsp"/>
+			<forward name="delete_failure"
+				path="/jsp/uld/defaults/ListULDMovement.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.uldmvthistory.doReport"
+			name="listULDMovementForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<action path="/uld.defaults.uldmvthistory.generateextmvtreport"
+					name="listULDMovementForm"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+					
+		</action>
+		<action path="/uld.defaults.uldmvthistory.buildUpReport"
+			name="listULDMovementForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+		<!-- Record ULD Movement actions -->
+
+		<action name="recordULDMovementForm"
+			path="/uld.defaults.misc.screenloadrecorduldmovement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/RecordULDMovement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/RecordULDMovement.jsp"/>
+		</action>
+
+		<action name="recordULDMovementForm"
+			path="/uld.defaults.misc.adduldmovement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/RecordULDMovement.jsp"/>
+		</action>
+
+		<action name="recordULDMovementForm"
+			path="/uld.defaults.misc.deleteuldmovement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/RecordULDMovement.jsp"/>
+		</action>
+
+		<action name="recordULDMovementForm"
+			path="/uld.defaults.misc.adduldnumber" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/RecordULDMovement.jsp"/>
+		</action>
+
+		<action name="recordULDMovementForm"
+			path="/uld.defaults.misc.deleteuldnumber" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/RecordULDMovement.jsp"/>
+		</action>
+
+		<action name="recordULDMovementForm"
+			path="/uld.defaults.misc.saveuldmovement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/RecordULDMovement.jsp"/>
+			<forward name="save_uldmovement_failure"
+				path="/jsp/uld/defaults/RecordULDMovement.jsp"/>
+			<forward name="save_ulderrorlog"
+				path="/jsp/uld/defaults/RecordULDMovement.jsp"/>
+			<forward name="save_scmerrorlog"
+				path="/jsp/uld/defaults/RecordULDMovement.jsp"/>
+		</action>
+		<action name="recordULDMovementForm"
+			path="/uld.defaults.recorduld.closerecorduld" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_ulderrorlog"
+				path="/jsp/uld/defaults/RecordULDMovement.jsp"/>
+			<forward name="close_scmerrorlog"
+				path="/jsp/uld/defaults/RecordULDMovement.jsp"/>
+
+		</action>
+
+		<!-- Record ULD Movement actions -->
+
+		<!-- Added by AG ULDAgreement-->
+		<action name="maintainULDAgreementForm"
+			path="/uld.defaults.screenloaduldagreement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+			<forward name="screenload_error"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+		</action>
+
+		<action name="maintainULDAgreementForm"
+			path="/uld.defaults.refreshtestuldagreement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			forward="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+
+		<action name="addULDAgreementForm"
+			path="/uld.defaults.screenloadadduldagreement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AddAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/AddAgreement.jsp"/>
+		</action>
+
+		<action name="addULDAgreementForm" path="/uld.defaults.modifyuldagreement"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AddAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/AddAgreement.jsp"/>
+		</action>
+
+		<action name="addULDAgreementForm"
+			path="/uld.defaults.selectagreementdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AddAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/AddAgreement.jsp"/>
+		</action>
+
+		<action name="maintainULDAgreementForm"
+			path="/uld.defaults.finduldagreementdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+		</action>
+
+		<action name="maintainULDAgreementForm"
+			path="/uld.defaults.refreshUldAgreement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+		</action>
+
+		<action name="maintainULDAgreementForm"
+			path="/uld.defaults.createuldagreement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+			<forward name="screenload_list"
+				path="/uld.defaults.finduldagreementdetails.do?&amp;isDataSaved=Y"/>
+		</action>
+
+		<action name="maintainULDAgreementForm"
+			path="/uld.defaults.deleteuldagreement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+			<forward name="save_error"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+		</action>
+
+		<action name="maintainULDAgreementForm"
+			path="/uld.defaults.clearuldagreement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+			<forward name="save_error"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+		</action>
+
+		<action name="maintainULDAgreementForm"
+			path="/uld.defaults.loanborrowagreementdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/uld.defaults.finduldagreementdetails.do"/>
+		</action>
+
+		<action name="addULDAgreementForm"
+			path="/uld.defaults.addagreementdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AddAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/AddAgreement.jsp"/>
+		</action>
+
+		<action name="addULDAgreementForm"
+			path="/uld.defaults.deleteagreementdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AddAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/AddAgreement.jsp"/>
+		</action>
+
+		<action name="addULDAgreementForm"
+			path="/uld.defaults.selectnextagreementdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AddAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/AddAgreement.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.screenloadlistuldagreement"
+			name="listUldAgreementForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ListUldAgreement.jsp"/>
+		</action>
+
+		<action name="listUldAgreementForm"
+			path="/uld.defaults.refreshlistuldagreement" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			forward="/jsp/uld/defaults/ListUldAgreement.jsp"/>
+
+		<action path="/uld.defaults.listuldagreements" name="listUldAgreementForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ListUldAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/ListUldAgreement.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.updatestatusuldagreements"
+			name="listUldAgreementForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success"
+				path="/uld.defaults.listuldagreements.do"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/ListUldAgreement.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.deleteuldagreements"
+			name="listUldAgreementForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ListUldAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/ListUldAgreement.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.createuldagreements"
+			name="listUldAgreementForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success"
+				path="/uld.defaults.screenloaduldagreement.do?createFlag=Y"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.clearuldagreements"
+			name="listUldAgreementForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ListUldAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/ListUldAgreement.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.viewuldagreements"
+			name="maintainULDAgreementForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.navigateuldagreements"
+			name="maintainULDAgreementForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/MaintainULDAgreement.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.printuldagreements"
+			name="maintainULDAgreementForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<action path="/uld.defaults.listuldagreement.doReport"
+			name="listUldAgreementForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+		
+		<!-- Added by a-3278 for populating party name on tab out -->
+		<action name="maintainULDAgreementForm"
+			path="/uld.defaults.uldagreement.populate" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainULDAgreement_AjaxPartyName.jsp"/>
+		</action>
+
+		<!-- Set UP ULD Stock -->
+		<action name="maintainULDStockForm"
+			path="/uld.defaults.closeuldstocksetup" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success" path="/home.jsp"/>
+			<forward name="close_failure"
+				path="/jsp/uld/defaults/MaintainULDStock.jsp"/>
+			<forward name="close_monitorstock"
+				path="/uld.defaults.listuldstockdetails.do"/>
+		</action>
+
+		<action name="maintainULDStockForm"
+			path="/uld.defaults.screenloaduldsetupstock" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainULDStock.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/MaintainULDStock.jsp"/>
+		</action>
+
+		<action name="maintainULDStockForm"
+			path="/uld.defaults.screenloadcreateuldsetupstock" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AddStock.jsp"/>
+
+		</action>
+
+		<action name="maintainULDStockForm"
+			path="/uld.defaults.screenloadmodifyuldsetupstock" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AddStock.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/MaintainULDStock.jsp"/>
+		</action>
+
+		<action name="maintainULDStockForm"
+			path="/uld.defaults.validateuldsetupstock" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="create_success"
+				path="/jsp/uld/defaults/MaintainULDStock.jsp"/>
+
+		</action>
+
+		<action name="maintainULDStockForm"
+			path="/uld.defaults.createuldsetupstock" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="action_success" path="/jsp/uld/defaults/AddStock.jsp"/>
+
+		</action>
+
+		<action name="maintainULDStockForm"
+			path="/uld.defaults.deletestockdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="action_success"
+				path="/uld.defaults.finduldstocksetup.do"/>
+
+		</action>
+
+		<action name="maintainULDStockForm" path="/uld.defaults.reload"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="reload_success"
+				path="/jsp/uld/defaults/MaintainULDStock.jsp"/>
+
+		</action>
+
+		<action name="maintainULDStockForm" path="/uld.defaults.finduldstocksetup"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/MaintainULDStock.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/MaintainULDStock.jsp"/>
+		</action>
+
+		<action name="maintainULDStockForm" path="/uld.defaults.saveuldstocksetup"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/MaintainULDStock.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/MaintainULDStock.jsp"/>
+		</action>
+
+		<action name="maintainULDStockForm"
+			path="/uld.defaults.clearuldstocksetup" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/MaintainULDStock.jsp"/>
+			<forward name="clear_failure"
+				path="/jsp/uld/defaults/MaintainULDStock.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.maintainuldstock.doReport"
+			name="maintainULDStockForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<!-- Stock SetUp  ULD -->
+
+		<action path="/uld.defaults.stock.maintainstocksetup.adddmg"
+			name="maintainULDStockForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="adddmg_success" path="/jsp/uld/defaults/AddStock.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.stock.maintainstocksetup.deletedmg"
+			name="maintainULDStockForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="deletedmg_success"
+				path="/jsp/uld/defaults/AddStock.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.stock.maintainstocksetup.selectnext"
+			name="maintainULDStockForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="uld.defaults.maintaindmg"
+				path="/jsp/uld/defaults/AddStock.jsp"/>
+		</action>
+		<!-- Added by Preet on 1 st Apr for AirNZ 448 starts-->
+		<action path="/uld.defaults.stock.maintainstocksetup.findULDGroupCode"
+			name="maintainULDStockForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="find_success"
+				path="/jsp/uld/defaults/AddStock_AjaxUldGroupCode.jsp"/>
+		</action>
+		<!-- Added by Preet on 1 st Apr for AirNZ 448 ends-->
+		<!-- Monitor ULD Stock-->
+		<action name="monitorULDStockForm"
+			path="/uld.defaults.screenloadmonitoruldstock" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MonitorULDStock.jsp"/>
+
+		</action>
+
+		<action name="monitorULDStockForm"
+			path="/uld.defaults.monitoruldstock.sendscmmessage" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="send_success"
+				path="/jsp/uld/defaults/MonitorULDStock.jsp"/>
+		</action>
+
+		<action name="monitorULDStockForm"
+			path="/uld.defaults.listuldstockdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/MonitorULDStock.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/MonitorULDStock.jsp"/>
+		</action>
+
+		<action name="monitorULDStockForm"
+			path="/uld.defaults.navigatefrombuildupplanning" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/MonitorULDStock.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/MonitorULDStock.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.listuldstockdetails.doReport"
+			name="monitorULDStockForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<action name="monitorULDStockForm" path="/uld.defaults.viewuld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="view_success" path="/uld.defaults.listuld.do"/>
+		</action>
+		<!--Added by A-7930 -->
+		<action name="maintainDamageReportForm" path="/uld.defaults.ux.closecommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success" path="/uld.defaults.listdamagereportcommand.do"/>
+		</action>
+		<!-- added by nisha for AirNZ CR -->
+		<action
+					path="/uld.defaults.listuldstockdetails.printstock"
+					name="monitorULDStockForm"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+		</action>
+		<!-- List ULD Agreement -->
+
+		<!-- Loan / Borrow ULD-->
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.screenloadloanborrowuld"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/LoanBorrowULD.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/LoanBorrowULD.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.updateloanborrowuld" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="update_success"
+				path="/jsp/uld/defaults/LoanBorrowULD_Details.jsp"/>
+
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.refreshloanborrowuld" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="refresh_success"
+				path="/jsp/uld/defaults/LoanBorrowULD_Details.jsp"/>
+
+		</action>
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.refreshloanborrowuldfromdamage"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="refresh_success"
+				path="/jsp/uld/defaults/LoanBorrowULD.jsp"/>
+		</action>
+
+		<action name="returnULDTransactionForm"
+			path="/uld.defaults.refreshreturnloanborrowuld" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			forward="/jsp/uld/defaults/ReturnLoanBorrowULD.jsp"/>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.screenloadaddloandetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AddUldLoanDetails.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.screenloadaddborrowdetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AddUldBorrowDetails.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.screenloadaddaccessorydetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/LoanBorrowULD_AjaxULDDetails.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.addaccessorydetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="add_success"
+				path="/jsp/uld/defaults/AddAccessoryDetails.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.adduldloandetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="add_success"
+				path="/jsp/uld/defaults/AddUldLoanDetails.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.adduldborrowdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="add_success"
+				path="/jsp/uld/defaults/AddUldBorrowDetails.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.deleteulddetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/LoanBorrowULD_AjaxULDDetails.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.deleteaccessorydetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/LoanBorrowULD_Details.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.saveuldtransaction" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/LoanBorrowULD.jsp"/>
+			<forward name="save_error"
+				path="/jsp/uld/defaults/LoanBorrowULD.jsp"/>
+			<forward name="save_message" path="/uld.defaults.generateluc.do"/>
+			<forward name="saveborrow_success"
+				path="/jsp/uld/defaults/LoanBorrowULD.jsp"/>
+			<forward name="print_loan_ucr"
+				path="/uld.defaults.transaction.printloanucr.do"/>
+		</action>
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.printloanucr" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		</action>
+		<action name="maintainULDTransactionForm" path="/uld.defaults.generateluc"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="luc_success"
+				path="/jsp/uld/defaults/LoanBorrowULD.jsp"/>
+			<forward name="luc_failure"
+				path="/jsp/uld/defaults/LoanBorrowULD.jsp"/>
+			<forward name="save_ulderrorlog"
+				path="/jsp/uld/defaults/LoanBorrowULD.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.agreementloanborrowdetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="agreement_success"
+				path="/jsp/uld/defaults/LoanBorrowULD.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.finduldagreementsfortransaction" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/MaintainULDTransaction.jsp"/>
+			<forward name="save_error"
+				path="/jsp/uld/defaults/MaintainULDTransaction.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.closeloanborrowdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_listuld" path="/uld.defaults.listuld.do"/>
+			<forward name="close_muctracking" path="/uld.defaults.messaging.muctracking.listcommand.do"/>
+			<forward name="close_ulderrorlog"
+				path="/uld.defaults.messaging.listulderrorlog.do"/>
+			<forward name="close_scmulderrorlog"
+				path="/uld.defaults.messaging.listscmulderrorlog.do"/>
+
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.txnchanged" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/LoanBorrowULD_Details.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.viewLUCMessageCommand" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/LUCMessage.jsp"/>
+		</action>
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.listuldborrowdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/AddUldBorrowDetails.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.deluldborrowdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/AddUldBorrowDetails.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.newuldborrowdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="add_success"
+				path="/jsp/uld/defaults/AddUldBorrowDetails.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.listuldloandetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/AddUldLoanDetails.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.deluldloandetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/AddUldLoanDetails.jsp"/>
+		</action>
+
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.newuldloandetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="add_success"
+				path="/jsp/uld/defaults/AddUldLoanDetails.jsp"/>
+		</action>
+		<action name="maintainULDTransactionForm"
+			path="/uld.defaults.transaction.populate" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/LoanBorrowULD_AjaxPartyName.jsp"/>
+		</action>
+		<action name="recordULDMovementForm"
+			path="/uld.defaults.transaction.dummymovementtxn" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/uld.defaults.transaction.saveuldtransaction.do"/>
+		</action>
+
+		<!-- ULD Number LOV -->
+
+		<action name="uldNumberLovForm"
+			path="/uld.defaults.transaction.finduldnumberlov" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="uldNumberLov_success"
+				path="/jsp/uld/defaults/ULDNumberLOV.jsp"/>
+		</action>
+
+		<action name="uldNumberLovForm" path="/uld.defaults.uldnumberlovclear"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="uldNumberLovClear_success"
+				path="/jsp/uld/defaults/ULDNumberLOV.jsp"/>
+		</action>
+
+		<!-- Loan / Borrow Details Enquiry -->
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.showtotaldemmurage" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry_AjaxTotal.jsp"/>
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.screenloadloanborrowdetailsenquiry"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.listuldtransactions" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.clearlistuldtransactions"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.deletelistuldtransactions"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.updatelistuldtransactions"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="update_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+
+		</action>
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.navigatemodifyuldtxns"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="update_success"
+				path="/uld.defaults.transaction.screenloadmodifyuldtransactions.do"/>
+			<forward name="update_failure"
+				path="/jsp/uld/defaults/ModifyLoanDetails.jsp"/>
+
+		</action>
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.screenloadmodifyuldtransactions"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ModifyLoanDetails.jsp"/>
+
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.closelistuldtransactions"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+			<forward name="close_muctracking" path="/uld.defaults.messaging.muctracking.listcommand.do"/>
+
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.refreshlistuldtransactions"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="refresh_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.modifyuldtransaction" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="modify_success"
+				path="/jsp/uld/defaults/ModifyLoanDetails.jsp"/>
+
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.savemodifyuldtransaction"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/ModifyLoanDetails.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/ModifyLoanDetails.jsp"/>
+
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.returnuldtransactiondetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="update_success"
+				path="/uld.defaults.transaction.saveuldtransaction.do"/>
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.returnuldtransaction" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/uld.defaults.transaction.refreshlistuldtransactions.do"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+			<forward name="save_scmerrorlog"
+				path="/uld.defaults.messaging.listscmulderrorlog.do"/>
+			<forward name="save_ulderrorlog"
+				path="/uld.defaults.messaging.listulderrorlog.do"/>
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.updateenquirygenerateinvoice"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="update_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.refreshlistgenerateinvoice"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="refresh_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.refreshulddetailstxn" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="refresh_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+
+		</action>
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.deletelistaccessorydetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+			</action>
+		<action path="/uld.defaults.loanborrowulddetails.doReport"
+			name="listULDTransactionForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+		<action path="/uld.defaults.loanborrowulddetailsforpage.doReport"
+			name="listULDTransactionForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<action path="/uld.defaults.loanborrowulddetails.doUCRReport"
+			name="listULDTransactionForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transactionenquiry.txnchanged" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+		</action>
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.generatelucmessage" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="luc_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+			<forward name="luc_failure"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+		</action>
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.generatemucmessage" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="muc_success"
+				path="/uld.defaults.transaction.listuldtransactions.do"/>
+			<forward name="muc_failure"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+		</action>
+		<!--Added By Sreekumar S-->
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.validatetransactionstatus"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+		</action>
+		<!--Added By Sreekumar S ends-->
+
+		<!-- Return ULD Transaction-->
+
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.calculatedemurragecharges"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="calculate_failure"
+				path="/jsp/uld/defaults/ModifyLoanDetails.jsp"/>
+			<forward name="calculate_success" path="/uld.defaults.transaction.screenloadmodifyuldtransactions.do" />
+		</action>
+
+		<action name="returnULDTransactionForm"
+			path="/uld.defaults.transaction.showtotalreturntransactions"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="total_success"
+				path="/jsp/uld/defaults/ReturnLoanBorrowULD.jsp"/>
+		</action>
+		<action name="listULDTransactionForm"
+			path="/uld.defaults.transaction.savereturnuldtransaction"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+			<forward name="save_ulderrorlog"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+			<forward name="save_scmerrorlog"
+				path="/jsp/uld/defaults/LoanBorrowDetailsEnquiry.jsp"/>
+			<forward name="print_borrow_ucr"
+				path="/uld.defaults.printreturnborrowucr.do"/>
+		</action>
+		<action path="/uld.defaults.printreturnborrowucr"
+			name="returnULDTransactionForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+		<action name="returnULDTransactionForm"
+			path="/uld.defaults.transaction.closereturntxn" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_ulderrorlog"
+				path="/jsp/uld/defaults/ReturnLoanBorrowULD.jsp"/>
+			<forward name="close_scmulderrorlog"
+				path="/jsp/uld/defaults/ReturnLoanBorrowULD.jsp"/>
+		</action>
+		<!-- List ULD Transaction History-->
+		<action name="listULDTransactionHistoryForm"
+			path="/uld.defaults.screenloadlistuldtransactionhistory"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/ListULDTransactionHistory.jsp"/>
+			<forward name="save_error"
+				path="/jsp/uld/defaults/ListULDTransactionHistory.jsp"/>
+		</action>
+		<action name="listULDTransactionHistoryForm"
+			path="/uld.defaults.listuldtransactionhistory" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/ListULDTransactionHistory.jsp"/>
+			<forward name="save_error"
+				path="/jsp/uld/defaults/ListULDTransactionHistory.jsp"/>
+		</action>
+		<!-- Added by Sowmya for ULD Availability Report -->
+		<action name="uldAvailabilityForm"
+			path="/uld.defaults.screenloaduldavailability" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ULDAvailability.jsp"/>
+		</action>
+
+		<action name="uldAvailabilityForm"
+			path="/uld.defaults.clearuldavailability" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear" path="/jsp/uld/defaults/ULDAvailability.jsp"/>
+		</action>
+
+		<action name="uldAvailabilityForm"
+			path="/uld.defaults.closeuldavailability" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close" path="/home.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.uldavailabilityreport.printscreen"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="uldAvailabilityForm" scope="request" validate="false">
+			<forward name="PRINT_UNSUCCESSFUL"
+				path="/jsp/uld/defaults/ULDAvailability.jsp"/>
+		</action>
+		<!-- Added by Sowmya for ULD Availability Report ends -->
+
+		<!-- List Invoice -->
+		<action name="listInvoiceForm" path="/uld.defaults.screenloaduldinvoice"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ListInvoice.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/ListInvoice.jsp"/>
+		</action>
+		<action name="listInvoiceForm" path="/uld.defaults.viewuldinvoicedetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/ListInvoice.jsp"/>
+			<forward name="save_error" path="/jsp/uld/defaults/ListInvoice.jsp"/>
+		</action>
+
+		<action name="listInvoiceForm" path="/uld.defaults.listuldinvoice"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ListInvoice.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ListInvoice.jsp"/>
+		</action>
+
+		<action name="listInvoiceForm"
+			path="/uld.defaults.invoicerefnolovscreenload" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="lovScreenload_success"
+				path="/jsp/uld/defaults/InvoiceRefNumLov.jsp"/>
+			<forward name="lovScreenload_failure"
+				path="/jsp/uld/defaults/InvoiceRefNumLov.jsp"/>
+		</action>
+
+		<!-- Added by Saritha -->
+		<action name="listInvoiceForm" path="/uld.defaults.invoicerefnolovclear"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/InvoiceRefNumLov.jsp"/>
+			<forward name="clear_failure"
+				path="/jsp/uld/defaults/InvoiceRefNumLov.jsp"/>
+		</action>
+		<action name="listInvoiceForm" path="/uld.defaults.okinvoicerfnolov"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="lovOk_success"
+				path="/jsp/uld/defaults/InvoiceRefNumLov.jsp"/>
+		</action>
+
+		<action name="listInvoiceForm" path="/uld.defaults.refreshlistinvoice"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			forward="/jsp/uld/defaults/ListInvoice.jsp"/>
+
+		<action path="/uld.defaults.listinvoice.doReport" name="listInvoiceForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<!-- Generate Invoice -->
+		<action name="generateInvoiceForm" path="/uld.defaults.generateinvoice"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="generate_success"
+				path="/jsp/uld/defaults/GenerateInvoice.jsp"/>
+			<forward name="generate_failure"
+				path="/jsp/uld/defaults/GenerateInvoice.jsp"/>
+		</action>
+
+		<action name="generateInvoiceForm"
+			path="/uld.defaults.generateinvoicescreenload" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/GenerateInvoice.jsp"/>
+		</action>
+
+		<!-- Generate Transaction Invoice -->
+		<action name="generateTransactionInvoiceForm"
+			path="/uld.defaults.generatetransactioninvoice" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="generate_success"
+				path="/jsp/uld/defaults/GenerateTransactionInvoice.jsp"/>
+			<forward name="generate_failure"
+				path="/jsp/uld/defaults/GenerateTransactionInvoice.jsp"/>
+		</action>
+
+		<action name="generateTransactionInvoiceForm"
+			path="/uld.defaults.generatetransactioninvoicescreenload"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/GenerateTransactionInvoice.jsp"/>
+		</action>
+
+		<action name="generateTransactionInvoiceForm"
+			path="/uld.defaults.updatetransactioninvoicedemerage" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="update_success"
+				path="/jsp/uld/defaults/GenerateTransactionInvoice.jsp"/>
+		</action>
+		<action name="generateTransactionInvoiceForm"
+			path="/uld.defaults.transaction.populateinvoicetoname" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/PopulateInvoiceToName_Ajax.jsp"/>
+		</action>
+		<!-- View Invoice -->
+
+		<action name="viewInvoiceForm" path="/uld.defaults.viewinvoice"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="viewinvoice_success"
+				path="/jsp/uld/defaults/ViewInvoice.jsp"/>
+			<forward name="viewinvoice_failure"
+				path="/jsp/uld/defaults/ViewInvoice.jsp"/>
+		</action>
+
+		<action name="viewInvoiceForm" path="/uld.defaults.navigateinvoice"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="navigation_success"
+				path="/jsp/uld/defaults/ViewInvoice.jsp"/>
+			<forward name="navigation_failure"
+				path="/jsp/uld/defaults/ViewInvoice.jsp"/>
+		</action>
+
+		<!-- Repair Invoice -->
+
+		<action name="repairInvoiceForm" path="/uld.defaults.viewrepairinvoice"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="repairinvoice_success"
+				path="/jsp/uld/defaults/RepairInvoice.jsp"/>
+			<forward name="repairinvoice_failure"
+				path="/jsp/uld/defaults/RepairInvoice.jsp"/>
+		</action>
+
+		<action name="repairInvoiceForm"
+			path="/uld.defaults.navigaterepairinvoice" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="navigation_success"
+				path="/jsp/uld/defaults/RepairInvoice.jsp"/>
+			<forward name="navigation_failure"
+				path="/jsp/uld/defaults/RepairInvoice.jsp"/>
+		</action>
+
+		<action name="repairInvoiceForm" path="/uld.defaults.repairshowsummary"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="showsummary_success"
+				path="/jsp/uld/defaults/RepairInvoice.jsp"/>
+			<forward name="showsummary_failure"
+				path="/jsp/uld/defaults/RepairInvoice.jsp"/>
+		</action>
+
+		<action name="repairInvoiceForm" path="/uld.defaults.saverepairinvoice"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success" path="/uld.defaults.listuldinvoice.do"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/RepairInvoice.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.repairinvoice.doReport"
+			name="repairInvoiceForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+
+		<action name="repairInvoiceForm" path="/uld.defaults.closerepairinvoice"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success"
+				path="/uld.defaults.refreshlistinvoice.do"/>
+			<forward name="close_failure"
+				path="/jsp/uld/defaults/RepairInvoice.jsp"/>
+		</action>
+		<!-- Added by AG -->
+
+		<!-- Added for Agreement No LOV-->
+
+		<action path="/uld.defaults.screenloadagreementnolov"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="agreementNoLovForm" scope="request" validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AgreementNoLov.jsp"/>
+		</action>
+
+		<!-- Added by saritha -->
+		<action path="/uld.defaults.clearloadagreementnolov"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="agreementNoLovForm" scope="request" validate="false">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/AgreementNoLov.jsp"/>
+		</action>
+
+		<!--for Close action -->
+		<action path="/uld.defaults.closeaction"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			scope="request" validate="false" forward="/home.jsp"/>
+
+		<!-- Added for Maintain Damage Report-->
+
+		<action name="maintainDamageReportForm"
+			path="/uld.defaults.screenloadmaintaindamagereport" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+			<forward name="list_success"
+				path="/uld.defaults.listulddmgdetails.do?screenMode=uldacceptance"/>
+		</action>
+
+		<action name="maintainDamageReportForm"
+			path="/uld.defaults.maintaindamageprint" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+
+		</action>
+		<action name="maintainDamageReportForm"
+			path="/uld.defaults.listulddmgdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+		</action>
+		<action name="maintainDamageReportForm"
+			path="/uld.defaults.clearulddmgdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+		</action>
+
+		<action name="maintainDamageReportForm"
+			path="/uld.defaults.damageDetailsScreenLoadCommand" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AddDamageDetails.jsp"/>
+		</action>
+		<action name="maintainDamageReportForm"
+			path="/uld.defaults.damageDetailsListCommand" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/AddDamageDetails.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/AddDamageDetails.jsp"/>
+		</action>
+
+		<action name="maintainDamageReportForm"
+			path="/uld.defaults.savedmgdetails" scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="action_success"
+				path="/jsp/uld/defaults/AddDamageDetails.jsp"/>
+
+		</action>
+		<action name="maintainDamageReportForm" path="/uld.defaults.deldmgdetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="action_success"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+
+		</action>
+		<action name="maintainDamageReportForm"
+			path="/uld.defaults.repairDetailsScreenLoadCommand" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AddRepairDetails.jsp"/>
+		</action>
+
+		<action name="maintainDamageReportForm"
+			path="/uld.defaults.saverepdetails" scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="action_success"
+				path="/jsp/uld/defaults/AddRepairDetails.jsp"/>
+
+		</action>
+		<action name="maintainDamageReportForm" path="/uld.defaults.delrepdetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="action_success"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+
+		</action>
+
+		<action name="maintainDamageReportForm"
+			path="/uld.defaults.saveulddmgdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/uld.defaults.listulddmgdetails.do?fromScreen=SAVE"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+			<forward name="save_ulderrorlog"
+				path="/uld.defaults.messaging.listulderrorlog.do"/>
+		</action>
+
+		<action path="/uld.defaults.adddmg"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="adddmg_success"
+				path="/jsp/uld/defaults/AddDamageDetails.jsp"/>
+
+		</action>
+		<action path="/uld.defaults.selectnextdmgcommand"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="uld.defaults.maintaindmg"
+				path="/jsp/uld/defaults/AddDamageDetails.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.deletedmg"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="deletedmg_success"
+				path="/jsp/uld/defaults/AddDamageDetails.jsp"/>
+			<forward name="deletedmg_failure"
+				path="/jsp/uld/defaults/AddDamageDetails.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.addrep"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="addrep_success"
+				path="/jsp/uld/defaults/AddRepairDetails.jsp"/>
+
+		</action>
+		<action path="/uld.defaults.selectnextrepcommand"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="uld.defaults.maintainrep"
+				path="/jsp/uld/defaults/AddRepairDetails.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.deleterep"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="deleterep_success"
+				path="/jsp/uld/defaults/AddRepairDetails.jsp"/>
+			<forward name="deleterep_failure"
+				path="/jsp/uld/defaults/AddRepairDetails.jsp"/>
+		</action>
+		<action path="/uld.defaults.totaldmgdetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="display_success"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+
+		</action>
+
+		<action path="/uld.defaults.showdmgreflov"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="lov_success" path="/uld.defaults.lov.listscreen.do"/>
+
+		</action>
+
+		<action path="/uld.defaults.closecommand"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="close_success" path="/uld.defaults.closeaction.do"/>
+			<forward name="close_failure"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+			<forward name="close_tolistdamage"
+				path="/uld.defaults.listdamagereportcommand.do"/>
+			<forward name="close_tolistuld" path="/uld.defaults.listuld.do"/>
+			<forward name="close_loanborrow"
+				path="/uld.defaults.transaction.saveuldtransaction.do?saveStatus=fromDamageReport"/>
+			<forward name="close_midloanborrow"
+				path="/uld.defaults.transaction.refreshloanborrowuldfromdamage.do"/>
+			<forward name="close_returnloanborrow"
+				path="/uld.defaults.transaction.refreshulddetailstxn.do"/>
+			<forward name="close_ulderrorlog"
+				path="/uld.defaults.messaging.listulderrorlog.do"/>
+			<!-- Added By SREEJITH .P.C for MAILTRACKING ANZ401-->
+			<forward name="close_to_mail_acceptancefo"
+				path="/mailtracking.defaults.mailacceptance.refreshmailacceptance.do?assignToFlight=FLIGHTO"/>
+			<forward name="close_to_mail_acceptancefc"
+				path="/mailtracking.defaults.mailacceptance.refreshmailacceptance.do?assignToFlight=FLIGHTC"/>
+			<forward name="close_to_mail_acceptanceco"
+				path="/mailtracking.defaults.mailacceptance.refreshmailacceptance.do?assignToFlight=CARRIERO"/>
+			<forward name="close_to_mail_acceptancecc"
+				path="/mailtracking.defaults.mailacceptance.refreshmailacceptance.do?assignToFlight=CARRIERC"/>
+		</action>
+
+		<action path="/uld.defaults.navigateulddamage"
+			name="maintainDamageReportForm" scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.viewulddamage" name="maintainDamageReportForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+
+		</action>
+		
+		<!--Added by A-7924 as part of ICRD-287579 starts-->
+		<action path="/uld.defaults.ux.viewulddamage" name="maintainDamageReportRevampForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+
+		</action>
+        <!--Added by A-7924 as part of ICRD-287579 ends-->
+		
+		<action path="/uld.defaults.showdamage" name="maintainDamageReportForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+
+		</action>
+		<!--Added by A-7924 as part of ICRD-304117 starts-->
+		<action path="/uld.defaults.ux.showdamage" name="maintainDamageReportRevampForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+
+		</action>
+        <!--Added by A-7924 as part of ICRD-304117 ends-->
+		<action path="/uld.defaults.viewPicScreenLoadCommand"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/DamagePicture.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.showimage"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/DamagePicture.jsp"/>
+
+		</action>
+
+		<action path="/uld.defaults.viewpicture"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="viewpic_success"
+				path="/jsp/uld/defaults/DamagePicture.jsp"/>
+		</action>
+
+		<action name="maintainDamageReportForm" path="/uld.defaults.updatedmg"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="update_success"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+		</action>
+		<action name="maintainDamageReportForm" path="/uld.defaults.adddmgpic"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="action_success"
+				path="/jsp/uld/defaults/MaintainDamageReport.jsp"/>
+		</action>
+
+       <!--Added By A-7627 as part of CRQ_ICRD-223665 starts-->	
+		<action path="/uld.defaults.ux.screenloadmaintaindamagereport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportRevampForm"
+			scope="request"
+			validate="false">
+				<forward name="screenload_success" path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp" />
+				<forward name="screenload_failure" path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp" />				
+				<forward name="list_success" path="/uld.defaults.ux.listulddmgdetails.do?screenMode=uldacceptance"/>	
+                <forward name="uld_list_success" path="/uld.defaults.ux.listulddmgdetails.do"/>			
+	    </action>	
+	    <action name="maintainDamageReportRevampForm"
+			path="/uld.defaults.ux.listulddmgdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+		</action>
+        <action name="maintainDamageReportRevampForm"
+			path="/uld.defaults.ux.clearulddmgdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+		</action>		
+		<action name="maintainDamageReportRevampForm"
+			path="/uld.defaults.ux.maintaindamageprint" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		</action>
+		<action name="maintainDamageReportRevampForm"
+			path="/uld.defaults.ux.saveulddmgdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+			<forward name="save_ulderrorlog"
+				path="/uld.defaults.messaging.listulderrorlog.do"/>
+		</action>
+		<action path="/uld.defaults.ux.closecommand"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportRevampForm" scope="request" validate="false">
+			<forward name="close_success" path="/uld.defaults.closeaction.do"/>
+			<forward name="close_failure"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+			<forward name="close_tolistdamage"
+				path="/uld.defaults.listdamagereportcommand.do"/>
+			<forward name="close_tolistuld" path="/uld.defaults.listuld.do"/>
+			<forward name="close_loanborrow"
+				path="/uld.defaults.transaction.saveuldtransaction.do?saveStatus=fromDamageReport"/>
+			<forward name="close_midloanborrow"
+				path="/uld.defaults.transaction.refreshloanborrowuldfromdamage.do"/>
+			<forward name="close_returnloanborrow"
+				path="/uld.defaults.transaction.refreshulddetailstxn.do"/>
+			<forward name="close_ulderrorlog"
+				path="/uld.defaults.messaging.listulderrorlog.do"/>
+			<!-- Added By SREEJITH .P.C for MAILTRACKING ANZ401-->
+			<forward name="close_to_mail_acceptancefo"
+				path="/mailtracking.defaults.mailacceptance.refreshmailacceptance.do?assignToFlight=FLIGHTO"/>
+			<forward name="close_to_mail_acceptancefc"
+				path="/mailtracking.defaults.mailacceptance.refreshmailacceptance.do?assignToFlight=FLIGHTC"/>
+			<forward name="close_to_mail_acceptanceco"
+				path="/mailtracking.defaults.mailacceptance.refreshmailacceptance.do?assignToFlight=CARRIERO"/>
+			<forward name="close_to_mail_acceptancecc"
+				path="/mailtracking.defaults.mailacceptance.refreshmailacceptance.do?assignToFlight=CARRIERC"/>
+		</action>
+		<action path="/uld.defaults.ux.totaldmgdetails"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportRevampForm" scope="request" validate="false">
+			<forward name="display_success"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+		</action>		
+	
+		<action name="maintainDamageReportRevampForm" path="/uld.defaults.ux.deldmgdetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="action_success"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+		</action>
+		<action name="maintainDamageReportRevampForm" path="/uld.defaults.ux.delrepdetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="action_success"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+		</action>		
+		<action name="maintainDamageReportRevampForm"
+			path="/uld.defaults.ux.damageDetailsListCommand" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ux/MaintainDamage_DamageDetails_Ajax.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ux/MaintainDamage_DamageDetails_Ajax.jsp"/>
+		</action>	
+        <action path="/uld.defaults.ux.showdmgreflov"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportRevampForm" scope="request" validate="false">
+			<forward name="lov_success" path="/uld.defaults.lov.listscreen.do"/>
+		</action>
+        <action name="maintainDamageReportRevampForm" path="/uld.defaults.ux.adddmgpic"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="action_success"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+		</action>
+        <action path="/uld.defaults.ux.viewpicture"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportRevampForm" scope="request" validate="false">
+			<forward name="viewpic_success"
+				path="/jsp/uld/defaults/ux/DamagePicture.jsp"/>
+		</action>	
+        <action path="/uld.defaults.ux.viewPicScreenLoadCommand"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportRevampForm" scope="request" validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ux/DamagePicture.jsp"/>
+		</action>	
+        <action path="/uld.defaults.ux.showimage"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportRevampForm" scope="request" validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ux/DamagePicture.jsp"/>
+		</action>
+		<action path="/uld.defaults.ux.lov.screenloadfacilitycodelov" 
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				scope="request"	name="FacilityCodeLOVFormUX" validate="false">
+				<forward name="screenload_success" path="/jsp/uld/defaults/ux/FacilityCodeLOV.jsp"/>
+		</action>
+		<!--Added By A-7627 as part of CRQ_ICRD-223665 ends-->
+		
+		<!-- List Damage Report -->
+
+		<action name="ListDamageReportForm"
+			path="/uld.defaults.screenloadlistdamagereport" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ListDamageReport.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/ListDamageReport.jsp"/>
+		</action>
+
+		<action name="ListDamageReportForm" path="/uld.defaults.deletescreen"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/uld.defaults.listdamagereportcommand.do"/>
+			<forward name="delete_failure"
+				path="/jsp/uld/defaults/ListDamageReport.jsp"/>
+		</action>
+
+		<action name="ListDamageReportForm"
+			path="/uld.defaults.listdamagereportcommand" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ListDamageReport.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ListDamageReport.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.clearscreen"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListDamageReportForm" scope="request" validate="false">
+			<forward name="Clear_success"
+				path="/jsp/uld/defaults/ListDamageReport.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.printscreen" name="ListDamageReportForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+			<forward name="print_failure"
+				path="/jsp/includes/reports/NormalReportErrorHandler.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.listdamage.viewpicture"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="viewpic_success"
+				path="/jsp/uld/defaults/DamagePicture.jsp"/>
+		</action>
+
+		<action name="ListRepairReportForm"
+			path="/uld.defaults.screenloadlistrepairreport" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ListRepairReport.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/ListRepairReport.jsp"/>
+		</action>
+
+		<action name="ListRepairReportForm" path="/uld.defaults.listrepairreport"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ListRepairReport.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ListRepairReport.jsp"/>
+		</action>
+
+		<action path="/uld.defaults.clearrepairreports"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListRepairReportForm" scope="request" validate="false">
+			<forward name="Clear_success"
+				path="/jsp/uld/defaults/ListRepairReport.jsp"/>
+		</action>
+		<!-- Added by A-2883-->
+		<action path="/uld.defaults.listrepairreport.printscreen"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListRepairReportForm" scope="request" validate="false">
+			<forward name="PRINT_UNSUCCESSFUL"
+				path="/jsp/uld/defaults/ListRepairReport.jsp"/>
+		</action>
+
+		<!-- ADDED BY AYSWARYA - Mappings for LOV -->
+		<action name="DamageRefNoLovForm" path="/uld.defaults.lov.screenloadlov"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/DamageRefNoLov.jsp"/>
+		</action>
+		<action name="DamageRefNoLovForm" path="/uld.defaults.lov.listscreen"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/DamageRefNoLov.jsp"/>
+		</action>
+		<action name="DamageRefNoLovForm" path="/uld.defaults.lov.clearscreen"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/DamageRefNoLov.jsp"/>
+		</action>
+
+		<!-- ADDED BY AYSWARYA - Mappings for discrepancy -->
+		<action name="ListULDDiscrepanciesForm"
+			path="/uld.defaults.listulddiscrepancies.screenloadulddiscrepancies"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ListUldDiscrepancies.jsp"/>
+		</action>
+		<action name="ListULDDiscrepanciesForm"
+			path="/uld.defaults.listulddiscrepancies.listulddiscrepancies"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ListUldDiscrepancies.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ListUldDiscrepancies.jsp"/>
+		</action>
+		<action name="ListULDDiscrepanciesForm"
+			path="/uld.defaults.listulddiscrepancies.clearulddiscrepancies"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/ListUldDiscrepancies.jsp"/>
+		</action>
+		<action name="MaintainUldDiscrepanciesForm"
+			path="/uld.defaults.listulddiscrepancies.detailsulddiscrepancies"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="view_success"
+				path="/jsp/uld/defaults/MaintainDiscrepancy.jsp"/>
+		</action>
+
+		<action name="ListULDDiscrepanciesForm"
+			path="/uld.defaults.listulddiscrepancies.createulddiscrepancies"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="createDiscrepancy_success"
+				path="/jsp/uld/defaults/ListUldDiscrepancies.jsp"/>
+			<forward name="createDiscrepancy_success"
+				path="/jsp/uld/defaults/ListUldDiscrepancies.jsp"/>
+		</action>
+		<action name="MaintainUldDiscrepanciesForm"
+			path="/uld.defaults.listulddiscrepancies.creatediscrepancy"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="create_success"
+				path="/jsp/uld/defaults/MaintainDiscrepancy.jsp"/>
+			<forward name="create_success"
+				path="/jsp/uld/defaults/MaintainDiscrepancy.jsp"/>
+		</action>
+		<action name="MaintainUldDiscrepanciesForm"
+			path="/uld.defaults.maintainulddiscrepancies.save" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="savemaintain_success"
+				path="/jsp/uld/defaults/MaintainDiscrepancy.jsp"/>
+			<forward name="save_success"
+				path="/uld.defaults.listulddiscrepancies.listulddiscrepancies.do"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/MaintainDiscrepancy.jsp"/>
+			<forward name="closescm_success"
+				path="/uld.defaults.messaging.listscmulderrorlog.do"/>
+		</action>
+		<!--Added By Sreekumar S as a part of AirNZ434-->
+		<action name="ListULDDiscrepanciesForm"
+			path="/uld.defaults.listulddiscrepancies.screenloadlocationlov"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/FacilityLocationLov.jsp"/>
+		</action>
+		<!--Added By Sreekumar S as a part of AirNZ434 ends-->
+		<action name="ListULDDiscrepanciesForm"
+			path="/uld.defaults.listulddiscrepancies.closediscrepancyulddiscrepancies"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success"
+				path="/jsp/uld/defaults/ListUldDiscrepancies.jsp"/>
+			<forward name="close_success"
+				path="/jsp/uld/defaults/ListUldDiscrepancies.jsp"/>
+		</action>
+
+		<action name="MaintainUldDiscrepanciesForm"
+			path="/uld.defaults.maintainulddiscrepancies.closeaction"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_maintain_success"
+				path="/uld.defaults.listulddiscrepancies.listulddiscrepancies.do"/>
+			<forward name="close_maintain_list_success"
+				path="/uld.defaults.listuld.do"/>
+			<forward name="close_success" path="/uld.defaults.closeaction.do"/>
+			<forward name="list_success"
+				path="/uld.defaults.messaging.listscmulderrorlog.do"/>
+		</action>
+
+		<action name="ListULDDiscrepanciesForm"
+			path="/uld.defaults.listulddiscrepancies.navigatediscrepancy"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="navigate_success"
+				path="/jsp/uld/defaults/MaintainDiscrepancy.jsp"/>
+		</action>
+		
+				
+		<action name="MaintainUldDiscrepanciesForm"
+			path="/uld.defaults.maintainulddiscrepancies.refreshcommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="reload_success"
+				path="/jsp/uld/defaults/MaintainDiscrepancy.jsp"/>					
+		</action>
+
+		<action name="ListULDDiscrepanciesForm"
+			path="/uld.defaults.listulddiscrepancies.refreshcommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="refresh_success"
+				path="/jsp/uld/defaults/MaintainDiscrepancy.jsp"/>
+		</action>
+		
+		<!--Added By a-3278 as a part of Bug 19635 on 29Sep08 -->
+		<action name="MaintainUldDiscrepanciesForm"
+			path="/uld.defaults.maintainulddiscrepancies.updatediscrepency"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="update_failure"
+				path="/jsp/uld/defaults/MaintainDiscrepancy.jsp"/>
+			<forward name="update_success"
+				path="/jsp/uld/defaults/MaintainDiscrepancy.jsp"/>			
+		</action>
+		<!--Added By a-3278 as a part of Bug 19635 on 29Sep08 ends-->
+
+		<!-- ADDED BY AYSWARYA - Mappings for discrepancy ends -->
+
+		<action name="ManufacturerLovForm"
+			path="/uld.defaults.findmanufacturerlov" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="manufaturer_success"
+				path="/jsp/uld/defaults/ManufacturerLOV.jsp"/>
+		</action>
+
+		<action name="AirportFacilityMasterForm"
+			path="/uld.defaults.airportfacilitymaster.screenloadcommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/AirportFacilityMaster.jsp"/>
+		</action>
+
+		<action name="AirportFacilityMasterForm"
+			path="/uld.defaults.airportfacilitymaster.listcommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/AirportFacilityMaster.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/AirportFacilityMaster.jsp"/>
+		</action>
+
+		<action name="AirportFacilityMasterForm"
+			path="/uld.defaults.airportfacilitymaster.clearcommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="Clear_success"
+				path="/jsp/uld/defaults/AirportFacilityMaster.jsp"/>
+		</action>
+
+		<action name="AirportFacilityMasterForm"
+			path="/uld.defaults.airportfacilitymaster.addcommand" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="addRow_success"
+				path="/jsp/uld/defaults/AirportFacilityMaster.jsp"/>
+		</action>
+
+		<action name="AirportFacilityMasterForm"
+			path="/uld.defaults.airportfacilitymaster.deletecommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="deleteRow_success"
+				path="/jsp/uld/defaults/AirportFacilityMaster.jsp"/>
+		</action>
+
+		<action name="AirportFacilityMasterForm"
+			path="/uld.defaults.airportfacilitymaster.savecommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/AirportFacilityMaster.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/AirportFacilityMaster.jsp"/>
+		</action>
+		<!--ADDED FOR UCM MESSAGING STARTS-->
+		<action name="ucmInOutForm"
+			path="/uld.defaults.ucminout.screenloaducminoutmessaging"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/UCMINOUTMessaging.jsp"/>
+		</action>
+
+		<action name="ucmInOutForm"
+			path="/uld.defaults.ucminout.listucminoutmessaging" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/UCMINOUTMessaging.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/UCMINOUTMessaging.jsp"/>
+			<forward name="duplicate_success"
+				path="/jsp/uld/defaults/UCMINOUTMessaging.jsp"/>
+		</action>
+
+		<action name="ucmInOutForm"
+			path="/uld.defaults.ucminout.selectflightdetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="select_success"
+				path="/jsp/uld/defaults/UCMINOUTMessaging.jsp"/>
+
+		</action>
+
+		<action name="ucmInOutForm"
+			path="/uld.defaults.ucminout.clearucminoutmessaging" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/UCMINOUTMessaging.jsp"/>
+
+		</action>
+
+		<action name="ucmInOutForm" path="/uld.defaults.ucminout.viewulds"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/UCMINOUTMessaging.jsp"/>
+
+		</action>
+
+		<action name="ucmInOutForm" path="/uld.defaults.ucminout.addulddetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="add_success"
+				path="/jsp/uld/defaults/UCMINOUTMessaging.jsp"/>
+			<forward name="add_failure"
+				path="/jsp/uld/defaults/UCMINOUTMessaging.jsp"/>
+
+		</action>
+
+		<action name="ucmInOutForm" path="/uld.defaults.ucminout.deleteulddetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/UCMINOUTMessaging.jsp"/>
+
+		</action>
+		<action name="ucmInOutForm" path="/uld.defaults.ucminout.senducmmessage"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/UCMINOUTMessaging.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/UCMINOUTMessaging.jsp"/>
+
+		</action>
+
+		<!-- UCM Error Log -->
+
+		<action name="UCMErrorLogForm"
+			path="/uld.defaults.messaging.screenloaducmerrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/UCMErrorLog.jsp"/>
+		</action>
+		<action name="UCMErrorLogForm"
+			path="/uld.defaults.messaging.listucmerrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/UCMErrorLog.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/UCMErrorLog.jsp"/>
+			<forward name="duplicate_success"
+				path="/jsp/uld/defaults/UCMErrorLog.jsp"/>
+		</action>
+		<action name="UCMErrorLogForm"
+			path="/uld.defaults.messaging.reloadlistucmerrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/UCMErrorLog.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/UCMErrorLog.jsp"/>
+		</action>
+		<action name="UCMErrorLogForm"
+			path="/uld.defaults.messaging.clearucmerrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/UCMErrorLog.jsp"/>
+		</action>
+		<action name="UCMErrorLogForm"
+			path="/uld.defaults.messaging.showulderrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/uld.defaults.messaging.listulderrorlog.do"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/UCMErrorLog.jsp"/>
+		</action>
+		<action name="UCMErrorLogForm"
+			path="/uld.defaults.messaging.selectduplicateucmreconcile"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/UCMErrorLog.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/UCMErrorLog.jsp"/>
+		</action>
+		<action name="UCMErrorLogForm"
+			path="/uld.defaults.messaging.screenloadduplicateucmreconcile"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/DuplicateUCMReconcile.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/DuplicateUCMReconcile.jsp"/>
+		</action>
+		<action name="UCMErrorLogForm"
+			path="/uld.defaults.messaging.duplicateucmreconcilesave"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/DuplicateUCMReconcile.jsp"/>
+		</action>
+		<action name="UCMErrorLogForm" path="/uld.defaults.messaging.senducmmsg"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="send_success"
+				path="/uld.defaults.messaging.listucmerrorlog.do"/>
+		</action>
+		<!--Added by A-7359 fro ICRD-225848 starts here-->
+		<action name="UCMErrorLogForm" path="/uld.defaults.ucmerrorlogcloseaction"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success"
+				path="/uld.defaults.closeaction.do"/>
+			<forward name="senducm_success"
+				path="/uld.defaults.ucminout.screenloaducminoutmessaging.do"/>
+		</action>
+		<!--Added by A-7359 fro ICRD-225848 ends here-->
+
+		<!-- ULD Error Log -->
+
+		<action name="ULDErrorLogForm"
+			path="/uld.defaults.messaging.screenloadulderrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ULDErrorLog.jsp"/>
+		</action>
+		<action name="ULDErrorLogForm"
+			path="/uld.defaults.messaging.listulderrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ULDErrorLog.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ULDErrorLog.jsp"/>
+			<forward name="duplicate_success"
+				path="/jsp/uld/defaults/ULDErrorLog.jsp"/>
+		</action>
+		<action name="ULDErrorLogForm"
+			path="/uld.defaults.messaging.reloadlistulderrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ULDErrorLog.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ULDErrorLog.jsp"/>
+		</action>
+		<action name="ULDErrorLogForm"
+			path="/uld.defaults.messaging.clearulderrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/ULDErrorLog.jsp"/>
+		</action>
+		<action name="ULDErrorLogForm" path="/uld.defaults.ulderrorlogcloseaction"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success" path="/uld.defaults.closeaction.do"/>
+			<forward name="ucmerrorlog_success"
+				path="/uld.defaults.messaging.listucmerrorlog.do"/>
+		</action>
+		<action name="ULDErrorLogForm"
+			path="/uld.defaults.messaging.reconcileulderror" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="reconcile_fail"
+				path="/jsp/uld/defaults/ULDErrorLog.jsp"/>
+			<forward name="maintainULD_success"
+				path="/uld.defaults.listulddetails.do"/>
+			<forward name="borrow_success"
+				path="/uld.defaults.transaction.screenloadloanborrowuld.do"/>
+			<forward name="damagerep_success"
+				path="/uld.defaults.ux.listulddmgdetails.do"/>
+			<forward name="returntxn_success"
+				path="/uld.defaults.transaction.returnuldtransaction.do"/>
+			<forward name="recorduld_success"
+				path="/jsp/uld/defaults/ULDErrorLog.jsp"/>
+			<forward name="reconcile_success"
+				path="/uld.defaults.messaging.listulderrorlog.do"/>
+		</action>
+		<action name="ULDErrorLogForm"
+			path="/uld.defaults.messaging.deleteulderrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/ULDErrorLog_Ajax.jsp"/>
+		</action>
+		<action name="ULDErrorLogForm"
+			path="/uld.defaults.messaging.updatetransit" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="transit_success"
+				path="/uld.defaults.messaging.listulderrorlog.do"/>
+		</action>
+		<action name="ULDErrorLogForm"
+			path="/uld.defaults.messaging.addulderrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="add_success"
+				path="/jsp/uld/defaults/ULDErrorLog_Ajax.jsp"/>
+		</action>
+		<action name="ULDErrorLogForm"
+			path="/uld.defaults.messaging.saveulderrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/ULDErrorLog.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/ULDErrorLog.jsp"/>
+		</action>
+		<!-- Generate SCM -->
+
+		<action name="GenerateSCMForm"
+			path="/uld.defaults.messaging.screenloadgeneratescm" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+		</action>
+		<action name="GenerateSCMForm"
+			path="/uld.defaults.messaging.listgeneratescm" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+		</action>
+		<action name="GenerateSCMForm"
+			path="/uld.defaults.messaging.cleargeneratescm" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+		</action>
+		<action path="/uld.defaults.messaging.listgeneratescmstock"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="GenerateSCMForm"
+		scope="request"
+		validate="false">
+			<forward name="list_success" path="/jsp/uld/defaults/GenerateSCM_Ajax.jsp"  />
+			<forward name="list_failure" path="/jsp/uld/defaults/GenerateSCM_Ajax.jsp"  />
+		</action>	
+		<action name="GenerateSCMForm"
+			path="/uld.defaults.messaging.stockcleargeneratescm" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+		</action>
+		<action name="GenerateSCMForm"
+			path="/uld.defaults.messaging.addgeneratescm" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="addRow_success"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+		</action>
+		<action name="GenerateSCMForm"
+			path="/uld.defaults.messaging.deletegeneratescm" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="deleteRow_success"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+		</action>
+		<action name="GenerateSCMForm"
+			path="/uld.defaults.messaging.sendgeneratescm" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="send_failed"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+			<forward name="send_success"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+			<forward name="sending_success"
+				path="/uld.defaults.messaging.cleargeneratescm.do"/>	
+			<forward name="finalize_success"
+				path="/uld.defaults.messaging.listgeneratescm.do"/>	
+		</action>
+
+		<action name="GenerateSCMForm"
+			path="/uld.defaults.messaging.SaveAsDraftgeneratescm" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="SaveAsDraftSuccess"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+			<forward name="SaveAsDraftFailed"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+		</action>
+		<action name="GenerateSCMForm"
+			path="/uld.defaults.messsaging.refreshscmulddetails" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="refresh_success"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+		</action>
+
+		<action name="GenerateSCMForm"
+			path="/uld.defaults.messaging.markmissingulds" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="change_success"
+				path="/jsp/uld/defaults/GenerateSCM.jsp"/>
+		</action>
+
+		<!--ADDED FOR UCM MESSAGING ENDS-->
+
+		<!--MAPPINGS FOR SCM RECONCILE START-->
+		<action name="SCMReconcileForm"
+			path="/uld.defaults.messaging.screenloadscmreconcile" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/SCMReconcile.jsp"/>
+		</action>
+
+		<action name="SCMReconcileForm"
+			path="/uld.defaults.messaging.listscmerrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/SCMReconcile.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/SCMReconcile.jsp"/>
+		</action>
+
+		<action name="SCMReconcileForm"
+			path="/uld.defaults.messaging.clearscmreoncile" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/SCMReconcile.jsp"/>
+
+		</action>
+
+		<action name="SCMReconcileForm"
+			path="/uld.defaults.messaging.showscmulderrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/uld.defaults.messaging.listscmulderrorlog.do"/>
+
+		</action>
+		<action name="SCMReconcileForm" path="/uld.defaults.messaging.viewscmulds"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/uld.defaults.messaging.listscmulderrorlog.do"/>
+
+		</action>
+		<action name="SCMReconcileForm"
+			path="/uld.defaults.messaging.sendscmmessagefromscmerr"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="send_success"
+				path="/jsp/uld/defaults/SCMReconcile.jsp"/>
+
+		</action>
+
+		<!--MAPPINGS FOR SCM RECONCILE END-->
+		<!--MAPPINGS FOR SCM ULD RECONCILE START-->
+		<action name="SCMULDErrorLogForm"
+			path="/uld.defaults.messaging.screenloadscmulderrorlog"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/SCMULDErrorLog.jsp"/>
+		</action>
+
+		<action name="SCMULDErrorLogForm"
+			path="/uld.defaults.messaging.listscmulderrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/SCMULDErrorLog.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/SCMULDErrorLog.jsp"/>
+		</action>
+
+		<action name="SCMULDErrorLogForm"
+			path="/uld.defaults.messaging.clearscmulderrorlog" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/SCMULDErrorLog.jsp"/>
+
+		</action>
+
+		<action name="SCMULDErrorLogForm"
+			path="/uld.defaults.messaging.reconcilescmulderror" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="recorduld_success"
+				path="/jsp/uld/defaults/SCMULDErrorLog.jsp"/>
+			<forward name="maintainULD_success"
+				path="/uld.defaults.listulddetails.do"/>
+			<forward name="maintaindiscrepancy_success"
+				path="/uld.defaults.listulddiscrepancies.creatediscrepancy.do"/>
+			<forward name="returntxn_success"
+				path="/uld.defaults.transaction.returnuldtransaction.do"/>
+			<forward name="borrow_success"
+				path="/uld.defaults.transaction.screenloadloanborrowuld.do"/>
+
+		</action>
+
+		<action name="SCMULDErrorLogForm" path="/uld.defaults.closescmerrorlog"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="scmreconcile_success"
+				path="/uld.defaults.messaging.listscmerrorlog.do"/>
+			<forward name="close_success" path="/uld.defaults.closeaction.do"/>
+
+		</action>
+
+		<action name="SCMULDErrorLogForm"
+			path="/uld.defaults.messaging.deletescmulds" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/SCMULDErrorLog.jsp"/>
+		</action>
+
+		<!--MAPPINGS FOR SCM ULD RECONCILE END-->
+
+		<!--MAPPINGS FOR ULD POOL OWNERS START-->
+
+		<action name="ULDPoolOwnersForm"
+			path="/uld.defaults.screenloaduldpoolowners" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ULDPoolOwners.jsp"/>
+		</action>
+		<action name="ULDPoolOwnersForm"
+			path="/uld.defaults.updateuldpoolowners" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/ULDPoolOwners.jsp"/>
+			<forward name="save_success"
+				path="/uld.defaults.uldpoolowners.saveuldpoolowners.do"/>
+			<forward name="add_success"
+				path="/uld.defaults.misc.adduldpoolowners.do"/>
+			<forward name="delete_success"
+				path="/uld.defaults.misc.deleteuldpoolowners.do"/>
+			<forward name="popup_success"
+				path="/jsp/uld/defaults/ULDPoolOwners.jsp"/>
+		</action>
+		<action name="ULDPoolOwnersForm"
+			path="/uld.defaults.misc.adduldpoolowners" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/ULDPoolOwners_Ajax.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/ULDPoolOwners_Ajax.jsp"/>
+		</action>
+		<action name="ULDPoolOwnersForm"
+			path="/uld.defaults.misc.deleteuldpoolowners" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/ULDPoolOwners_Ajax.jsp"/>
+		</action>
+
+		<action name="ULDPoolOwnersForm"
+			path="/uld.defaults.uldpoolowners.listuldpoolowners" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ULDPoolOwners.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ULDPoolOwners.jsp"/>
+		</action>
+
+		<action name="ULDPoolOwnersForm"
+			path="/uld.defaults.uldpoolowners.clearuldpoolowners" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/ULDPoolOwners.jsp"/>
+		</action>
+		<action name="ULDPoolOwnersForm"
+			path="/uld.defaults.uldpoolowners.selectflightdetails"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ULDPoolOwners.jsp"/>
+		</action>
+
+		<action name="ULDPoolOwnersForm"
+			path="/uld.defaults.uldpoolowners.adduldpoolowners" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="add_success"
+				path="/jsp/uld/defaults/ULDPoolOwners_Ajax.jsp"/>
+			<forward name="add_failure"
+				path="/jsp/uld/defaults/ULDPoolOwners_Ajax.jsp"/>
+		</action>
+
+		<action name="ULDPoolOwnersForm"
+			path="/uld.defaults.uldpoolowners.deleteuldpoolowners"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/ULDPoolOwners_Ajax.jsp"/>
+
+		</action>
+
+		<action name="ULDPoolOwnersForm"
+			path="/uld.defaults.uldpoolowners.saveuldpoolowners" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/ULDPoolOwners.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/ULDPoolOwners.jsp"/>
+
+		</action>
+		<action name="SegmentExceptionsForm"
+			path="/uld.defaults.screenloadsegmentexceptions" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+			    path="/jsp/uld/defaults/SegmentExceptions.jsp"/>
+			<forward name="screenload_failure"
+			    path="/jsp/uld/defaults/SegmentExceptions.jsp"/>
+		</action>
+
+		<action name="SegmentExceptionsForm"
+			path="/uld.defaults.savesegmentexceptions" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/SegmentExceptions.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/SegmentExceptions.jsp"/>
+		</action>
+
+
+		<!--MAPPINGS FOR ULD POOL OWNERS END-->
+
+		<!--Mappings for scm sequence number lov-->
+		<action name="SCMSequenceNoLovForm"
+			path="/uld.defaults.messaging.screenloadscmseqnolov" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/SCMSequenceNoLOV.jsp"/>
+
+		</action>
+
+		<action name="SCMSequenceNoLovForm"
+			path="/uld.defaults.messaging.clearscmseqnolov" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/SCMSequenceNoLOV.jsp"/>
+
+		</action>
+
+		<!--Mappings for ucm flight exception list-->
+
+		<action name="UCMFlightExceptionListForm"
+			path="/uld.defaults.messaging.screenloaducmflightexceptionlist"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/UCMFlightExceptionList.jsp"/>
+
+		</action>
+
+		<action name="UCMFlightExceptionListForm"
+			path="/uld.defaults.messaging.listucmflightexceptionlist"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/UCMFlightExceptionList.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/UCMFlightExceptionList.jsp"/>
+
+		</action>
+
+		<action name="UCMFlightExceptionListForm"
+			path="/uld.defaults.messaging.clearucmflightexceptionlist"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/UCMFlightExceptionList.jsp"/>
+
+		</action>
+
+		<action name="UCMFlightExceptionListForm"
+			path="/uld.defaults.messaging.adducmflightexceptionlist"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="add_success"
+				path="/jsp/uld/defaults/UCMFlightExceptionAjaxTable.jsp"/>
+			<forward name="add_failure"
+				path="/jsp/uld/defaults/UCMFlightExceptionAjaxTable.jsp"/>
+
+		</action>
+
+		<action name="UCMFlightExceptionListForm"
+			path="/uld.defaults.messaging.deleteucmflightexceptionlist"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success"
+				path="/jsp/uld/defaults/UCMFlightExceptionAjaxTable.jsp"/>
+			<forward name="delete_failure"
+				path="/jsp/uld/defaults/UCMFlightExceptionAjaxTable.jsp"/>
+
+		</action>
+
+		<action name="UCMFlightExceptionListForm"
+			path="/uld.defaults.messaging.saveucmflightexceptionlist"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/UCMFlightExceptionList.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/UCMFlightExceptionList.jsp"/>
+
+		</action>
+
+		<action name="UCMFlightExceptionListForm"
+			path="/uld.defaults.messaging.updateafterflightduplidcte"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="update_add_success"
+				path="/uld.defaults.messaging.adducmflightexceptionlist.do"/>
+			<forward name="update_save_success"
+				path="/uld.defaults.messaging.saveucmflightexceptionlist.do"/>
+
+		</action>
+		<!-- Added by Tarun For Carrier Setup-->
+		<action name="HandledCarrierSetupForm"
+			path="/uld.defaults.misc.handledcarrier.screenloadhandledcarriersetup"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/HandledCarrierSetup.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/HandledCarrierSetup.jsp"/>
+		</action>
+
+		<action name="HandledCarrierSetupForm"
+			path="/uld.defaults.misc.handledcarrier.listhandledcarriersetup"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/HandledCarrierSetup.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/HandledCarrierSetup.jsp"/>
+		</action>
+
+		<action name="HandledCarrierSetupForm"
+			path="/uld.defaults.misc.handledcarrier.savehandledcarriersetup"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/HandledCarrierSetup.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/HandledCarrierSetup.jsp"/>
+		</action>
+
+		<action name="HandledCarrierSetupForm"
+			path="/uld.defaults.misc.handledcarrier.clearhandledcarriersetup"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/HandledCarrierSetup.jsp"/>
+			<forward name="screenload_failure"
+				path="/jsp/uld/defaults/HandledCarrierSetup.jsp"/>
+		</action>
+
+		<action name="HandledCarrierSetupForm"
+			path="/uld.defaults.misc.handledcarrier.populateairlinename"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/HandledCarrierSetup_Ajax.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/HandledCarrierSetup_Ajax.jsp"/>
+		</action>
+		<!-- Added by Tarun For ULD Inventory-->
+			<action
+				name="InventoryULDForm"
+				path="/uld.defaults.stock.inventory.screenloadlistinventoryuld"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="success" path="/jsp/uld/defaults/ListInventory.jsp" />
+				<forward name="failure" path="/jsp/uld/defaults/ListInventory.jsp" />
+			</action>
+
+			<action
+				name="InventoryULDForm"
+				path="/uld.defaults.stock.inventory.listinventorycommand"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="success" path="/jsp/uld/defaults/ListInventory.jsp" />
+				<forward name="failure" path="/jsp/uld/defaults/ListInventory.jsp" />
+			</action>
+
+			<action
+				name="InventoryULDForm"
+				path="/uld.defaults.stock.inventory.screenloadinventorydetails"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="success" path="/jsp/uld/defaults/ULDInventoryDetails.jsp" />
+				<forward name="failure" path="/jsp/uld/defaults/ULDInventoryDetails.jsp" />
+			</action>
+
+
+			<action
+				name="InventoryULDForm"
+				path="/uld.defaults.stock.inventory.updateinventorydetails"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="success" path="/jsp/uld/defaults/ULDInventoryDetails.jsp" />
+				<forward name="failure" path="/jsp/uld/defaults/ULDInventoryDetails.jsp" />
+				<forward name="forward" path="/jsp/uld/defaults/ULDInventoryDetails.jsp" />
+			</action>
+
+			<action
+				name="InventoryULDForm"
+				path="/uld.defaults.stock.inventory.clearlistinventory"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="success" path="/jsp/uld/defaults/ListInventory.jsp" />
+				<forward name="failure" path="/jsp/uld/defaults/ListInventory.jsp" />
+			</action>
+
+			<action
+				name="InventoryULDForm"
+				path="/uld.defaults.stock.inventory.saveinventory"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="success" path="/jsp/uld/defaults/ListInventory.jsp" />
+				<forward name="failure" path="/jsp/uld/defaults/ListInventory.jsp" />
+			</action>
+
+			<action
+				name="InventoryULDForm"
+				path="/uld.defaults.stock.inventory.paginationinventory"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="success" path="/uld.defaults.stock.inventory.screenloadlistinventoryuld.do?inventoryFromScreen=inventorypagination" />
+			</action>
+
+			<action
+				name="InventoryULDForm"
+				path="/uld.defaults.stock.inventory.closeinventory"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="success" path="/home.jsp"/>
+			</action>
+		<!-- Tarun ends -->
+
+
+		<!--Mappings for ULD History by Kumar Prashant Begins-->
+		<action name="ULDHistoryForm"
+			path="/uld.defaults.misc.screenloaduldhistory" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="uldhistory_screenload_success"
+				path="/jsp/uld/defaults/ULDHistory.jsp"/>
+
+		</action>
+		<action name="ULDHistoryForm" path="/uld.defaults.misc.listuldhistory"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="uldhistory_list_success"
+				path="/jsp/uld/defaults/ULDHistory.jsp"/>
+			<forward name="uldhistory_list_failure"
+				path="/jsp/uld/defaults/ULDHistory.jsp"/>
+
+		</action>
+		<action name="ULDHistoryForm" path="/uld.defaults.misc.clearuldhistory"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="uldhistory_clear_success"
+				path="/jsp/uld/defaults/ULDHistory.jsp"/>
+
+		</action>
+
+		<action name="ULDHistoryForm" path="/uld.defaults.misc.closeuldhistory"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="uldhistory_close_success" path="/home.jsp"/>
+
+		</action>
+		<action name="ULDHistoryForm"
+			path="/uld.defaults.misc.printuldhistory.doReport" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="uldhistory_print_success"
+				path="/jsp/uld/defaults/ULDHistory.jsp"/>
+		</action>
+
+		<!--Mappings for ULD History by Kumar Prashant ends-->
+
+		<!--Mappings for ULD Internal Movement History by Preet Begins-->
+		<action name="uldIntMvtHistoryForm"
+			path="/uld.defaults.misc.uldIntMvtHistory.screenload" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ULDIntMvtHistory.jsp"/>
+		</action>
+		<action name="uldIntMvtHistoryForm"
+			path="/uld.defaults.misc.listULDIntMvtHistory" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ULDIntMvtHistory.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ULDIntMvtHistory.jsp"/>
+		</action>
+		<action name="uldIntMvtHistoryForm"
+			path="/uld.defaults.misc.closeULDIntMvtHistory" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success" path="/home.jsp"/>
+		</action>
+		<action name="uldIntMvtHistoryForm"
+			path="/uld.defaults.misc.clearULDIntMvtHistory" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/ULDIntMvtHistory.jsp"/>
+		</action>
+		<action name="uldIntMvtHistoryForm"
+			path="/uld.defaults.misc.printULDIntMvtHistory" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		</action>
+
+		<!--Mappings for ULD Internal Movement History by Preet ends-->
+
+		<!--Mappings for ULD Discrepancy Report by Nishanth Begins-->
+		<action name="ULDDiscrepancyReportForm"
+			path="/uld.defaults.ulddiscrepancyreport.creatediscrepancyreport"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ULDDiscrepancyReport.jsp"/>
+		</action>
+		<action name="ULDDiscrepancyReportForm"
+			path="/uld.defaults.ulddiscrepancyreport.clearulddiscrepancyreport"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/ULDDiscrepancyReport.jsp"/>
+		</action>
+		<action name="ULDDiscrepancyReportForm"
+			path="/uld.defaults.ulddiscrepancyreport.generateulddiscrepancyreport"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+
+		</action>
+		<action name="ULDDiscrepancyReportForm"
+			path="/uld.defaults.ulddiscrepancyreport.printulddiscrepancyreport"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+
+		</action>
+		<!--Mappings for ULD Discrepancy Report by Nishanth ends-->
+
+		         <!--Mappings for ULD Audit Enquiry by Sreekumar S -->
+		   		 <action
+					name="ULDAuditEnquiryForm"
+					path="/uld.defaults.misc.screenloadauditenquiry"
+					scope="request"
+					validate="false"
+    				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+                    <forward name="screenload_success" path="/jsp/uld/defaults/AuditEnquiry.jsp" />
+				</action>
+
+		   		 <action
+					name="ULDAuditEnquiryForm"
+					path="/uld.defaults.misc.listauditenquiry"
+					scope="request"
+					validate="false"
+    				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+                    <forward name="screenload_success" path="/jsp/shared/audit/AuditEnquiryTable.jsp" />
+				</action>
+
+				<action
+					name="ULDAuditEnquiryForm"
+					path="/uld.defaults.misc.clearauditenquiry"
+					scope="request"
+					validate="false"
+    				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+                    <forward name="screenload_success" path="/jsp/uld/defaults/AuditEnquiry.jsp" />
+				</action>
+				<action
+					name="ULDAuditEnquiryForm"
+					path="/uld.defaults.uldauditenquiry.print"
+					scope="request"
+					validate="false"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				</action>
+		        <!--Mappings for ULD Audit Enquiry by Sreekumar S ends-->
+				<!--Modifeid by A-5116 for ICRD-48135 -->
+				<action name="maintainULDTransactionForm"
+					path="/uld.defaults.transaction.generatecrn" scope="request"
+					validate="false"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+					<forward name="crn_success"
+					path="/jsp/uld/defaults/LoanBorrowULD_AjaxULDDetails.jsp"/>
+					<forward name="crn_failure"
+					path="/jsp/uld/defaults/LoanBorrowULD_AjaxULDDetails.jsp"/>
+				</action>
+				<action name="maintainULDTransactionForm"
+					path="/uld.defaults.transaction.updateloanborrowsession" scope="request"
+					validate="false"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+					<forward name="update_success"
+					path="/jsp/uld/defaults/LoanBorrowULD.jsp"/>
+				</action>
+				<action name="maintainULDTransactionForm"
+					path="/uld.defaults.transaction.fetchulddetails" scope="request"
+					validate="false"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+					<forward name="list_success"
+					path="/jsp/uld/defaults/LoanBorrowULD_AjaxULDDetails.jsp"/>
+				</action>
+
+		<!--Mappings for ULD Damage Checklist Master by Manaf Begins-->
+		<action
+			name="DamageChecklistMasterForm"
+			path="/uld.defaults.screenloaddamagechecklistmaster"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/uld/defaults/DamageChecklistMaster.jsp" />
+		</action>
+		<action
+			name="DamageChecklistMasterForm"
+			path="/uld.defaults.displaydetails"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/uld/defaults/DamageChecklistMaster.jsp" />
+			<forward name="list_failure" path="/jsp/uld/defaults/DamageChecklistMaster.jsp" />
+		</action>
+
+		<action
+			name="DamageChecklistMasterForm"
+			path="/uld.defaults.savedetails"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success" path="/uld.defaults.cleardetails.do?statusFlag=save_success"/>
+			<forward name="save_failure" path="/jsp/uld/defaults/DamageChecklistMaster.jsp" />
+		</action>
+		<action
+			name="DamageChecklistMasterForm"
+			path="/uld.defaults.cleardetails"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/uld/defaults/DamageChecklistMaster.jsp" />
+		</action>
+		<!--Mappings for ULD Damage Checklist Master by Manaf ends-->
+		<!--Mappings for QF CR1021 by Manaf Begins-->
+		<action
+			name="MissingUCMListForm"
+			path="/uld.defaults.screenloaddmissingucmlist"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/uld/defaults/MissingUCMList.jsp" />
+		</action>
+		<action
+			name="MissingUCMListForm"
+			path="/uld.defaults.listmissingucms"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/uld/defaults/MissingUCMList.jsp" />
+			<forward name="list_failure" path="/jsp/uld/defaults/MissingUCMList.jsp" />
+		</action>
+
+		<action
+			name="MissingUCMListForm"
+			path="/uld.defaults.clearmissingucms"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/uld/defaults/MissingUCMList.jsp" />
+
+		</action>
+		<!--Mappings for QF CR1021 by Manaf ends-->
+
+		<!--added by a-3045 for CR starts-->
+		<action
+			name="MUCTrackingForm"
+			path="/uld.defaults.messaging.muctracking.screenload"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/uld/defaults/MUCTracking.jsp" />
+		</action>
+		<action
+			name="MUCTrackingForm"
+			path="/uld.defaults.messaging.muctracking.listcommand"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/uld/defaults/MUCTracking.jsp" />
+		</action>
+		<action
+			name="MUCTrackingForm"
+			path="/uld.defaults.messaging.muctracking.sendcommand"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="send_success" path="/uld.defaults.messaging.muctracking.listcommand.do" />
+			<forward name="send_failure" path="/jsp/uld/defaults/MUCTracking.jsp" />
+		</action>
+		<action
+			name="MUCTrackingForm"
+			path="/uld.defaults.messaging.muctracking.clearcommand"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/uld/defaults/MUCTracking.jsp" />
+		</action>
+		<action
+			name="MUCTrackingForm"
+			path="/uld.defaults.messaging.muctracking.savecommand"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success" path="/jsp/uld/defaults/MUCTracking.jsp" />
+			<forward name="save_failure" path="/jsp/uld/defaults/MUCTracking.jsp" />
+		</action>
+		<action
+			name="MUCTrackingForm"
+			path="/uld.defaults.messaging.mucrefnolov.screenload"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="lovScreenload_success"
+				path="/jsp/uld/defaults/MUCRefNumLov.jsp"/>
+			<forward name="lovScreenload_failure"
+				path="/jsp/uld/defaults/MUCRefNumLov.jsp"/>
+		</action>
+		<action name="MUCTrackingForm" path="/uld.defaults.messaging.mucrefnolov.okcommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="lovOk_success"
+				path="/jsp/uld/defaults/MUCRefNumLov.jsp"/>
+		</action>
+		<action name="MUCTrackingForm" path="/uld.defaults.messaging.mucrefnolov.clear"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/MUCRefNumLov.jsp"/>
+		</action>
+		<action
+			name="MUCTrackingForm"
+			path="/uld.defaults.messaging.muctracking.actions.screenload"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="actionsScreenload_success"
+				path="/jsp/uld/defaults/MUCActions.jsp"/>
+		</action>
+		<!--added by a-3045 for CR ends-->
+		<!--added by a-3045 for CR QF1142 starts-->
+		<action
+			name="listULDTransactionForm"
+			path="/uld.defaults.transaction.ignorereinstatemuc"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="action_success"
+				path="/uld.defaults.transaction.listuldtransactions.do"/>
+		</action>
+		<!--added by a-3045 for CR QF1142 ends-->
+
+		<action
+			name="listULDMovementForm"
+			path="/uld.defaults.misc.mvthistory.report.printdamagerepairdetails"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/uld/defaults/ListULDMovement.jsp" />
+		</action>
+		
+		<action
+			name="SCMValidationForm"
+			path="/uld.defaults.screenloaddscmvalidation"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/uld/defaults/SCMValidation.jsp" />
+		</action>
+		<action
+			name="SCMValidationForm"
+			path="/uld.defaults.scmvalidationlist"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/uld/defaults/SCMValidation.jsp" />
+			<forward name="list_failure" path="/jsp/uld/defaults/SCMValidation.jsp" />
+		</action>
+		<action
+			name="SCMValidationForm"
+			path="/uld.defaults.clearscmvalidation"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/uld/defaults/SCMValidation.jsp" />
+		</action>
+		<action
+			name="SCMValidationForm"
+			path="/uld.defaults.printscmvalidationlist"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+
+		</action>
+
+		<!--added by a-2052 for CR QF1502 starts-->
+		<action name="ULDServiceabilityForm"
+			path="/uld.defaults.uldserviceability.screenloadcommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ULDServiceabilityCodeMaster.jsp"/>
+		</action>
+
+		<action name="ULDServiceabilityForm"
+			path="/uld.defaults.uldserviceability.listcommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ULDServiceabilityCodeMaster.jsp"/>
+			<forward name="list_failure"
+				path="/jsp/uld/defaults/ULDServiceabilityCodeMaster.jsp"/>
+		</action>
+
+		<action name="ULDServiceabilityForm"
+			path="/uld.defaults.uldserviceability.clearcommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="Clear_success"
+				path="/jsp/uld/defaults/ULDServiceabilityCodeMaster.jsp"/>
+		</action>
+
+		<action name="ULDServiceabilityForm"
+			path="/uld.defaults.uldserviceability.addcommand" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="addRow_success"
+				path="/jsp/uld/defaults/ULDServiceabilityCodeMaster.jsp"/>
+		</action>
+
+		<action name="ULDServiceabilityForm"
+			path="/uld.defaults.uldserviceability.deletecommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="deleteRow_success"
+				path="/jsp/uld/defaults/ULDServiceabilityCodeMaster.jsp"/>
+		</action>
+
+		<action name="ULDServiceabilityForm"
+			path="/uld.defaults.uldserviceability.savecommand"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success"
+				path="/jsp/uld/defaults/ULDServiceabilityCodeMaster.jsp"/>
+			<forward name="save_failure"
+				path="/jsp/uld/defaults/ULDServiceabilityCodeMaster.jsp"/>
+		</action>
+		<!--added by a-2052 for CR QF1502 ends-->
+		<!--added by a-1883 for CR QF1506 ends-->
+		<action path="/uld.defaults.transaction.listcustomerdetails"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="maintainULDTransactionForm"
+				scope="request"
+				validate="false">
+				<forward name="action_success" path="/jsp/uld/defaults/LoanBorrowULD_AjaxShortCode.jsp" />
+	   	 </action>
+		 <action path="/uld.defaults.screenload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ULDAuditForm"
+				scope="request"
+				validate="false">
+				<forward name="action_success" path="/jsp/uld/defaults/ULDAudit.jsp" />
+	   	 </action>
+		<action path="/uld.defaults.uldauditlist"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ULDAuditForm"
+				scope="request"
+				validate="false">
+				<forward name="action_success" path="/jsp/shared/audit/AuditEnquiryTable.jsp" />
+	   	 </action>
+		<!-- List Estimated Stock Count Starts -->
+		<action name="ListEstimatedULDStockForm"
+			path="/uld.defaults.stock.screenloadlistestimateduldstock"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/ListEstimatedULDStock.jsp"/>
+			<forward name="screenload_error"
+				path="/jsp/uld/defaults/ListEstimatedULDStock.jsp"/>
+		</action>
+
+		<action name="ListEstimatedULDStockForm"
+			path="/uld.defaults.stock.findlistestimateduldstockcount" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ListEstimatedULDStock.jsp"/>
+			<forward name="list_error"
+				path="/jsp/uld/defaults/ListEstimatedULDStock.jsp"/>
+		</action>
+
+		<action name="ListEstimatedULDStockForm"
+			path="/uld.defaults.stock.closeestimatedULDstock" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success"
+				 path="/home.jsp"/>
+	</action>
+		<action name="ListEstimatedULDStockForm"
+			path="/uld.defaults.stock.clearlistestimateduldstockcount" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success"
+				path="/jsp/uld/defaults/ListEstimatedULDStock.jsp"/>
+			<forward name="clear_error"
+				path="/jsp/uld/defaults/ListEstimatedULDStock.jsp"/>
+		</action>
+		<action name="ListExcessStockAirportsForm"
+			path="/uld.defaults.stock.findairportswithexcessstock"	scope="request" 
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success"
+				path="/jsp/uld/defaults/ListExcessStockAirports.jsp"/>
+			<forward name="list_error"
+				path="/jsp/uld/defaults/ListExcessStockAirports.jsp"/>
+		</action>
+		<action name="ListExcessStockAirportsForm"
+			path="/uld.defaults.stock.showFlightDetails"	scope="request" 
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="listFlightSuccess"
+				path="/jsp/uld/defaults/ListExcessStockAirports.jsp"/>
+			<forward name="listFailure"
+				path="/jsp/uld/defaults/ListExcessStockAirports.jsp"/>
+		</action>
+		<action name="ListEstimatedULDStockForm"
+			path="/uld.defaults.stock.closeexcesstockairportlist" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success"
+				path="/uld.defaults.stock.findlistestimateduldstockcount.do"/>
+		</action>
+		<!--List Estimated Stock Count Ends-->
+		<action name="UpdateMultipleULDDetailsForm"
+			path="/uld.defaults.misc.updatemultipleulddamage" scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/UpdateMultipleULDDetails.jsp"/>
+			<forward name="list_success"
+				path="/jsp/uld/defaults/UpdateMultipleULDDetails.jsp"/>
+		</action>
+		<action path="/uld.defaults.misc.validateuldDetails"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="UpdateMultipleULDDetailsForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/uld/defaults/CaptureULDDetails_Ajax.jsp" />
+					<forward name="failure" path="/jsp/uld/defaults/UpdateMultipleULDDetails.jsp"/>
+    </action>
+	<action path="/uld.defaults.misc.showDamageDetails"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="UpdateMultipleULDDetailsForm"
+					scope="request"
+					validate="false">
+					<forward name="action_savesuccess" path="/jsp/uld/defaults/UpdateMultipleULDDetails.jsp" />
+    </action>
+	<action path="/uld.defaults.misc.openDamagePopup"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="UpdateMultipleULDDetailsForm"
+					scope="request"
+					validate="false">
+					<forward name="popupscreenload_success" path="/jsp/uld/defaults/CaptureDamageDetails_PopUp.jsp" />
+    </action>
+	<action path="/uld.defaults.misc.addDamageDetails"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="UpdateMultipleULDDetailsForm"
+					scope="request"
+					validate="false">
+			        <forward name="action_failure" path="/jsp/uld/defaults/CaptureDamageDetails_PopUp.jsp" />
+					<forward name="action_uldsuccess" path="/jsp/uld/defaults/CaptureDamageDetails_PopUp.jsp" />
+    </action>
+	<action path="/uld.defaults.misc.saveDamageDetails"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="UpdateMultipleULDDetailsForm"
+					scope="request"
+					validate="false">
+					<forward name="save_success" path="/jsp/uld/defaults/UpdateMultipleULDDetails.jsp" />
+					<forward name="save_failure" path="/jsp/uld/defaults/UpdateMultipleULDDetails.jsp" />
+    </action>
+	<action path="/uld.defaults.misc.updatesessiondetails"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="UpdateMultipleULDDetailsForm"
+					scope="request"
+					validate="false">
+					<forward name="action_savesuccess" path="/jsp/uld/defaults/UpdateMultipleULDDetails.jsp" />
+    </action>
+	<action path="/uld.defaults.misc.listDamageDescription"
+			        type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="UpdateMultipleULDDetailsForm"
+					scope="request"
+					validate="false">
+					<forward name="damagelist_success" path="/jsp/uld/defaults/PopulateDamageDesc_Ajax.jsp" />
+	</action>
+	<action name="UpdateMultipleULDDetailsForm" path="/uld.defaults.misc.adddmgpic"
+			scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="action_success"
+				path="/jsp/uld/defaults/CaptureDamageDetails_PopUp.jsp"/>
+		</action>
+		<action path="/uld.defaults.misc.viewpicture"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UpdateMultipleULDDetailsForm" scope="request" validate="false">
+			<forward name="viewpic_success"
+				path="/jsp/uld/defaults/MultipleULDDamagePicture.jsp"/>
+		</action>
+		<action path="/uld.defaults.misc.viewPicScreenLoadCommand"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UpdateMultipleULDDetailsForm" scope="request" validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MultipleULDDamagePicture.jsp"/>
+		</action>
+		<action path="/uld.defaults.misc.closecommand"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UpdateMultipleULDDetailsForm" scope="request" validate="false">
+			<forward name="close_success" path="/uld.defaults.closeaction.do"/>
+			<forward name="close_failure" path="/jsp/uld/defaults/UpdateMultipleULDDetails.jsp"/>
+		</action>
+		<action path="/uld.defaults.misc.populateTotalPoints"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="UpdateMultipleULDDetailsForm"
+					scope="request"
+					validate="false">
+					<forward name="damagelist_success" path="/jsp/uld/defaults/PopulateTotalPoints_Ajax.jsp" />
+					<forward name="failure" path="/jsp/uld/defaults/CaptureDamageDetails_PopUp.jsp"/>
+       </action>
+	   <action path="/uld.defaults.misc.showimage"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportForm" scope="request" validate="false">
+			<forward name="screenload_success"
+				path="/jsp/uld/defaults/MultipleULDDamagePicture.jsp"/>
+		</action>
+		<!-- Start: Added by A-7636 as part of ICRD-245031-->
+		<action path="/uld.defaults.ux.damageImageUploadScreenLoad"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportRevampForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/uld/defaults/ux/DamageImageUpload.jsp" />
+		</action>
+		<!-- For upload file action -->
+		<action path="/uld.defaults.ux.maintaindamagereport.fileupload"
+			name="maintainDamageReportRevampForm"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		</action>
+		<!-- For delete file action -->
+		<action path="/uld.defaults.ux.maintaindamagereport.filedelete"
+			name="maintainDamageReportRevampForm"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		</action>
+		<!-- Remove image from session-->
+		<action path="/uld.defaults.ux.maintaindamagereport.removeImage"
+			name="maintainDamageReportRevampForm"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="remove_success" path="/jsp/uld/defaults/ux/DamageImageUpload.jsp" />
+		</action>
+		<!-- For upload ok action -->
+		<action path="/uld.defaults.ux.damageImageUpload.ok"
+			name="maintainDamageReportRevampForm"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="ok_success" path="/jsp/uld/defaults/ux/DamageImageUpload.jsp"/>
+			<forward name="ok_failure" path="/jsp/uld/defaults/ux/DamageImageUpload.jsp"/>
+		</action>
+		<!-- While closing the upload popup form kept untouch -->
+		<action path="/uld.defaults.ux.damageImageUpload.close"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="maintainDamageReportRevampForm" scope="request" validate="false">
+			<forward name="display_success"
+				path="/jsp/uld/defaults/ux/MaintainDamageReport.jsp"/>
+		</action>
+		<!-- For download image to view in screenload-->
+		<action path="/uld.defaults.ux.damageImageDownload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="maintainDamageReportRevampForm"
+				scope="request"
+				validate="false">
+		</action>
+		<!-- For download image to view in list damage reports screenload-->
+		<action path="/uld.defaults.listdamageImagesDownload"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListDamageReportForm"
+				scope="request"
+				validate="false">
+		</action>
+		<!-- View image on click filename in upload popup-->
+		<action path="/uld.defaults.ux.maintaindamagereport.displayimage"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="maintainDamageReportRevampForm"
+				scope="request"
+				validate="false">
+		</action>
+		<!-- End: Added by A-7636 as part of ICRD-245031-->
+	</action-mappings>
+
+	<message-resources key="listDamageReportResources"
+		parameter="resources.uld.defaults.ListDamageReport" null="false"/>
+	<message-resources key="listRepairReportResources"
+		parameter="resources.uld.defaults.ListRepairReport" null="false"/>
+
+	<message-resources key="listinvoice"
+		parameter="resources.uld.defaults.ListInvoice" null="false"/>
+
+	<message-resources key="listuldResources"
+		parameter="resources.uld.defaults.ListULD" null="false"/>
+	<message-resources key="maintainuldgroup"
+		parameter="resources.shared.defaults.uld.MaintainULDGroup"
+		null="false"/>
+	<message-resources key="maintainuldResources"
+		parameter="resources.uld.defaults.MaintainULD" null="false"/>
+	<message-resources key="maintainuldResourcesUX"
+		parameter="resources.uld.defaults.ux.MaintainULD" null="false"/>	
+	<message-resources key="recordULDMovementResources"
+		parameter="resources.uld.defaults.ULDMovement" null="false"/>
+	<message-resources key="loanBorrowULDResources"
+		parameter="resources.uld.defaults.LoanBorrowULD" null="false"/>
+	<message-resources key="loanBorrowDetailsEnquiryResources"
+		parameter="resources.uld.defaults.LoanBorrowDetailsEnquiry"
+		null="false"/>
+
+	<!-- Added by AG -->
+	<message-resources key="maintainuldstock"
+		parameter="resources.uld.defaults.MaintainULDStock" null="false"/>
+	<message-resources key="maintainuldagreement"
+		parameter="resources.uld.defaults.MaintainULDAgreement"
+		null="false"/>
+	<message-resources key="listuldagreement"
+		parameter="resources.uld.defaults.ListUldAgreement" null="false"/>
+	<message-resources key="maintainaccessoriesstockResources"
+		parameter="resources.uld.defaults.MaintainAccessoriesStock"
+		null="false"/>
+	<message-resources key="listuldmovementResources"
+		parameter="resources.uld.defaults.ListULDMovement" null="false"/>
+	<message-resources key="listaccessoriesstockResources"
+		parameter="resources.uld.defaults.ListAccessoriesStock"
+		null="false"/>
+	<message-resources key="generateinvoice"
+		parameter="resources.uld.defaults.GenerateInvoice" null="false"/>
+	<message-resources key="generatetransactioninvoice"
+		parameter="resources.uld.defaults.GenerateTransactionInvoice"
+		null="false"/>
+	<message-resources key="viewinvoice"
+		parameter="resources.uld.defaults.ViewInvoice" null="false"/>
+	<message-resources key="repairinvoice"
+		parameter="resources.uld.defaults.RepairInvoice" null="false"/>
+	<message-resources key="monitoruldstock"
+		parameter="resources.uld.defaults.MonitorULDStock" null="false"/>
+
+	<!-- Added by AG -->
+
+	<message-resources key="agreementnolov"
+		parameter="resources.uld.defaults.AgreementNoLov" null="false"/>
+	<message-resources key="maintainDamageReportResources"
+		parameter="resources.uld.defaults.MaintainDamageReport"
+		null="false"/>
+	<message-resources key="maintainDamageReportUXResources"
+		parameter="resources.uld.defaults.ux.MaintainDamageReport"
+		null="false"/>	
+	<message-resources key="damageRefNoLovResources"
+		parameter="resources.uld.defaults.DamageRefNoLov" null="false"/>
+
+	<message-resources key="listulddiscrepancies"
+		parameter="resources.uld.defaults.ListUldDiscrepancies"
+		null="false"/>
+	<message-resources key="maintainulddiscrepancies"
+		parameter="resources.uld.defaults.MaintainUldDiscrepancies" null="false"/>
+	<message-resources key="relocateuldResources"
+		parameter="resources.uld.defaults.RelocateULD" null="false"/>
+	<message-resources key="airportfacilitymaster"
+		parameter="resources.uld.defaults.AirportFacilityMaster"
+		null="false"/>
+	<message-resources key="ucminoutResources"
+		parameter="resources.uld.defaults.UCMINOUT" null="false"/>
+	<message-resources key="ucmflightexceptionlistResources"
+		parameter="resources.uld.defaults.UCMFlightExceptionList"
+		null="false"/>
+
+	<message-resources key="ucmerrorlogResources"
+		parameter="resources.uld.defaults.UCMErrorLog" null="false"/>
+	<message-resources key="ulderrorlogResources"
+		parameter="resources.uld.defaults.ULDErrorLog" null="false"/>
+	<message-resources key="generatescmResources"
+		parameter="resources.uld.defaults.GenerateSCM" null="false"/>
+	<message-resources key="scmReconcileResources"
+		parameter="resources.uld.defaults.SCMReconcile" null="false"/>
+	<message-resources key="scmUldReconcileResources"
+		parameter="resources.uld.defaults.SCMULDErrorLog" null="false"/>
+	<message-resources key="uldPoolOwnersResources"
+		parameter="resources.uld.defaults.ULDPoolOwners" null="false"/>
+	<message-resources key="scmReconcileLovResources"
+		parameter="resources.uld.defaults.SCMSequenceNo" null="false"/>
+	<message-resources key="uldlovResources"
+		parameter="resources.uld.defaults.ULDNumberLov" null="false"/>
+	<!-- Added by Tarun For Carrier Setup-->
+	<message-resources key="carrierSetupResources"
+		parameter="resources.uld.defaults.HandledCarrierSetup"
+		null="false"/>
+	<!-- Added by Kumar Prashant -->
+
+	<message-resources key="uldHistory"
+		parameter="resources.uld.defaults.ULDHistory" null="false"/>
+	<message-resources key="uldIntMvtResources"
+		parameter="resources.uld.defaults.ULDIntMvtHistory" null="false"/>
+	<!-- Added by Nishanth -->
+	<message-resources key="ulddiscrepancyreport"
+		parameter="resources.uld.defaults.ULDDiscrepancyReport"
+		null="false"/>
+	<!-- Added by Sowmya -->
+	<message-resources key="uldAvailabilityResources"
+		parameter="resources.uld.defaults.ULDAvailability" null="false"/>
+	<!--Added by Sreekumar S-->
+     <message-resources key="uldAuditEnquiry"
+		 parameter="resources.uld.defaults.ULDAuditEnquiry" null="false"/>
+	<!-- Added by Manaf -->
+	<message-resources key="DamageChkMaster"
+		 parameter="resources.uld.defaults.DamageChecklistMaster" null="false"/>
+	<!-- Added by a-3045 for CR starts -->
+	<message-resources key="MUCTrackingResources"
+		 parameter="resources.uld.defaults.MUCTracking" null="false"/>
+	<!-- Added by a-3045 for CR starts -->
+
+	<!-- Added by Manaf for QF CR1021 starts -->
+	<message-resources key="UCMMissingResources"
+		 parameter="resources.uld.defaults.MissingUCMList" null="false"/>
+	<!-- Added by Manaf for QF CR1021 ends -->
+	<message-resources key="SCMValidationResources"
+		 parameter="resources.uld.defaults.SCMValidation" null="false"/>
+	<!-- Added by Ayswarya for QF QF1502 starts -->
+	<message-resources key="uldserviceability"
+		parameter="resources.uld.defaults.ULDServiceabilityCodeMaster"
+		null="false"/>
+	<message-resources key="uldaudit"
+		parameter="resources.uld.defaults.ULDAudit"
+		null="false"/>
+	<!-- Added by Ayswarya for QF QF1502 ends -->
+	<message-resources key="listestimateduldstock"
+		parameter="resources.uld.defaults.ListEstimatedULDStock"
+		null="false"/>
+	<message-resources key="listexcessstockairports"
+		parameter="resources.uld.defaults.ListExcessStockAirports"
+		null="false"/>
+	<message-resources key="accessorystocklov" parameter="resources.uld.defaults.AccessoryStockLov" null="false"/>	
+	<message-resources key="updatemultipledamageuldresources"
+		parameter="resources.uld.defaults.UpdateMultipleULDDetails" null="false"/>
+	<plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+		<set-property property="configFileName"
+			value="/WEB-INF/errortags/uld/defaults/errortags.xml"/>
+	</plug-in>
+	<plug-in className="com.ibsplc.icargo.framework.plugin.CustomTagsPlugin">
+		<set-property property="configFileName" value="/WEB-INF/customtags.xml"/>
+	</plug-in>
+
+</struts-config>

@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: "infra-alert-config"
+  namespace: {{ .Values.defaultAlertManagerConfigOverrides.namespaceOverride | default "prometheus" }}
+spec:
+  route:
+    groupBy: ['alertname']
+    receiver: 'neo-snow-adapter'
+  receivers:
+    - name: 'neo-snow-adapter'
+      webhookConfigs:
+        - sendResolved: true
+          url: {{ printf "http://%s.%s.svc.cluster.local/snow-adapter/api/alertmanager/receive" (include "neo-snow-adapter.name" .) (.Values.namespaceOverride | default "icargo-system") | quote }}
+          maxAlerts: 1
+    # - name: 'ibsheldesk-email'
+    #   Refer https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/crds/crd-alertmanagerconfigs.yaml
+    #   For the email configuration attributes available
+    #   emailConfigs:
+    #     - requireTLS: false
+    #       sendResolved: true
+    #       smarthost: 'UNKOWN_HOST:25'
+    #       to: 'changeme@ibsplc.com' 
+    #       authIdentity:
+    #       authPassword:
+    #       authSecret:
+    #       authUsername:

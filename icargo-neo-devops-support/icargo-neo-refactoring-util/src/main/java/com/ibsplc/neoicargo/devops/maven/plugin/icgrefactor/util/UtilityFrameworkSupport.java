@@ -1,0 +1,144 @@
+package com.ibsplc.neoicargo.devops.maven.plugin.icgrefactor.util;
+
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.ibsplc.neoicargo.framework.core.lang.BusinessException;
+import com.ibsplc.neoicargo.framework.core.lang.SystemException;
+import com.ibsplc.neoicargo.framework.core.lang.error.ErrorType;
+import com.ibsplc.neoicargo.framework.core.lang.error.ErrorUtils;
+import com.ibsplc.neoicargo.framework.core.lang.error.ErrorVO;
+import com.ibsplc.neoicargo.framework.core.security.LoginProfile;
+import com.ibsplc.neoicargo.framework.core.util.ContextUtil;
+import com.ibsplc.neoicargo.framework.orchestration.AbstractFeature;
+import com.ibsplc.neoicargo.framework.orchestration.AbstractQueryFeature;
+import com.ibsplc.neoicargo.framework.orchestration.Enricher;
+import com.ibsplc.neoicargo.framework.orchestration.FeatureContextUtilThreadArray;
+import com.ibsplc.neoicargo.framework.orchestration.Invoker;
+import com.ibsplc.neoicargo.framework.orchestration.Validator;
+import com.ibsplc.neoicargo.framework.orchestration.vo.AbstractVO;
+import com.ibsplc.neoicargo.framework.util.currency.Money;
+import com.ibsplc.neoicargo.framework.util.unit.Quantity;
+
+public class UtilityFrameworkSupport {
+
+	private static final Map<String, UtilitySupport> utilityClassMap;
+
+	static {
+		Map<String, UtilitySupport> map = new HashMap<>();
+		UtilitySupport support = new UtilitySupport();
+		support.setName("Measure");
+		support.setIcgClazz("com.ibsplc.icargo.framework.util.unit.Measure");
+		support.setNeoClazz(Quantity.class);
+		map.put("Measure", support);
+		support = new UtilitySupport();
+		support.setName("ContextUtils");
+		support.setIcgClazz("com.ibsplc.xibase.server.framework.util.ContextUtils");
+		support.setNeoClazz(ContextUtil.class);
+		map.put("ContextUtils", support);
+		support = new UtilitySupport();
+		support.setName("LogonAttributes");
+		support.setIcgClazz("com.ibsplc.icargo.framework.security.vo.LogonAttributes");
+		support.setNeoClazz(LoginProfile.class);
+		map.put("LogonAttributes", support);
+		support = new UtilitySupport();
+		support.setName("LocalDate");
+		support.setIcgClazz("com.ibsplc.icargo.framework.util.time.LocalDate");
+		support.setNeoClazz(ZonedDateTime.class);
+		map.put("LocalDate", support);
+		support = new UtilitySupport();
+		support.setName("GMTDate");
+		support.setIcgClazz("com.ibsplc.icargo.framework.util.time.GMTDate");
+		support.setNeoClazz(ZonedDateTime.class);
+		map.put("GMTDate", support);
+		support = new UtilitySupport();
+		support.setName("SystemException");
+		support.setIcgClazz("com.ibsplc.xibase.server.framework.exceptions.SystemException");
+		support.setNeoClazz(SystemException.class);
+		map.put("SystemException", support);
+		support = new UtilitySupport();
+		support.setName("Calendar");
+		support.setIcgClazz("java.util.Calendar");
+		support.setNeoClazz(LocalDateTime.class);
+		map.put("Calendar", support);
+		support = new UtilitySupport();
+		support.setName("AbstractVO");
+		support.setIcgClazz("com.ibsplc.xibase.server.framework.vo.AbstractVO");
+		support.setNeoClazz(AbstractVO.class);
+		map.put("AbstractVO", support);
+		support = new UtilitySupport();
+		support.setName("ErrorVO");
+		support.setIcgClazz("com.ibsplc.xibase.server.framework.vo.ErrorVO");
+		support.setNeoClazz(ErrorVO.class);
+		map.put("ErrorVO", support);
+		support = new UtilitySupport();
+		support.setName("ErrorDisplayType");
+		support.setIcgClazz("com.ibsplc.xibase.server.framework.vo.ErrorDisplayType");
+		support.setNeoClazz(ErrorType.class);
+		map.put("ErrorDisplayType", support);		
+		support = new UtilitySupport();
+		support.setName("AbstractFeature");
+		support.setIcgClazz("com.ibsplc.icargo.framework.feature.AbstractFeature");
+		support.setNeoClazz(AbstractFeature.class);
+		map.put("AbstractFeature", support);
+		support = new UtilitySupport();
+		support.setName("AbstractQueryFeature");
+		support.setIcgClazz("com.ibsplc.icargo.framework.feature.AbstractQueryFeature");
+		support.setNeoClazz(AbstractQueryFeature.class);
+		map.put("AbstractQueryFeature", support);
+		support = new UtilitySupport();
+		support.setName("Validator");
+		support.setIcgClazz("com.ibsplc.icargo.framework.feature.Validator");
+		support.setNeoClazz(Validator.class);
+		map.put("Validator", support);
+		support = new UtilitySupport();
+		support.setName("Enricher");
+		support.setIcgClazz("com.ibsplc.icargo.framework.feature.Enricher");
+		support.setNeoClazz(Enricher.class);
+		map.put("Enricher", support);
+		support = new UtilitySupport();
+		support.setName("Invoker");
+		support.setIcgClazz("com.ibsplc.icargo.framework.feature.Invoker");
+		support.setNeoClazz(Invoker.class);
+		map.put("Invoker", support);
+		support = new UtilitySupport();
+		support.setName("BusinessException");
+		support.setIcgClazz("com.ibsplc.xibase.server.framework.exceptions.BusinessException");
+		support.setNeoClazz(BusinessException.class);
+		map.put("BusinessException", support);
+		support = new UtilitySupport();
+		support.setName("Money");
+		support.setIcgClazz("com.ibsplc.icargo.framework.util.currency.Money");
+		support.setNeoClazz(Money.class);
+		map.put("Money", support);
+		support = new UtilitySupport();
+		support.setName("CurrencyHelper");
+		support.setIcgClazz("com.ibsplc.icargo.framework.util.currency.CurrencyHelper");
+		support.setNeoClazz(Money.class);
+		map.put("CurrencyHelper", support);		
+		support = new UtilitySupport();
+		support.setName("FeatureContextUtil");
+		support.setIcgClazz("com.ibsplc.icargo.framework.feature.FeatureContextUtil");
+		support.setNeoClazz(FeatureContextUtilThreadArray.class);
+		map.put("FeatureContextUtil", support);		
+		support = new UtilitySupport();
+		support.setName("ProxyException");
+		support.setIcgClazz("com.ibsplc.icargo.framework.proxy.ProxyException");
+		support.setNeoClazz(BusinessException.class);
+		map.put("ProxyException", support);		
+		support = new UtilitySupport();
+		support.setName("ErrorUtils");
+		support.setIcgClazz("com.ibsplc.xibase.server.framework.util.error.ErrorUtils");
+		support.setNeoClazz(ErrorUtils.class);
+		map.put("ErrorUtils", support);		
+		utilityClassMap = Collections.unmodifiableMap(map);
+	}
+
+	public static Map<String, UtilitySupport> getUtilityclassmap() {
+		return utilityClassMap;
+	}
+
+}

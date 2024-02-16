@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<settings>
+		<!-- Allows or disallows multiple ResultSets to be returned from a singlestatement -->
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<!-- Configures the default executor. SIMPLEexecutor does nothing special.
+			REUSEexecutor reuses prepared statements. BATCHexecutor reuses statements
+			and batches updates -->
+		<setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor"/>
+	</plugins>
+
+	<!-- Define a aliases for easy use of them inside the mapper -->
+
+
+</configuration>

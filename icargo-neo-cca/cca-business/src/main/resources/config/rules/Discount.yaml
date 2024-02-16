@@ -1,0 +1,162 @@
+name: Discount
+description: Discount
+params:
+    - name: awbOriginAirport
+      type: STRING
+      description: AWB Origin
+      qualifier: AIRPORT
+      score: 24
+    - name: awbOriginCity
+      type: STRING
+      description: Origin City
+      resolver: qualityAuditDataResolver.originCityCode
+      qualifier: CITY
+      score: 121
+    - name: awbOriginCountry
+      type: STRING
+      description: Origin Country
+      qualifier: COUNTRY
+      resolver: qualityAuditDataResolver.originCountryCode
+      score: 23
+    - name: awbOriginRegion
+      type: STRING
+      description: Origin Region
+      resolver: qualityAuditDataResolver.originRegionCode
+      qualifier: REGION
+      score: 22
+    - name: awbDestinationAirport
+      type: STRING
+      description: AWB Destination
+      qualifier: AIRPORT
+      score: 20
+    - name: awbDestinationCity
+      type: STRING
+      description: Destination City
+      resolver: qualityAuditDataResolver.destinationCityCode
+      qualifier: CITY
+      score: 17
+    - name : awbDestinationCountry
+      type: STRING 
+      description: Destination Country
+      qualifier: COUNTRY
+      resolver: qualityAuditDataResolver.destinationCountryCode
+      score: 19
+    - name : awbDestinationRegion
+      type: STRING 
+      description: Destination Region
+      resolver: qualityAuditDataResolver.destinationRegionCode
+      qualifier: REGION
+      score: 18
+    - name : paymentType
+      type: STRING
+      description: Payment Type
+      qualifier: ONETIME
+      data: "cra.defaults.awbmop"
+      score: 9
+    - name : inboundCustomerCode
+      type: STRING
+      description: Inbound Customer Code
+      qualifier: CUSTOMER
+      score: 5
+    - name : outboundCustomerCode
+      type: STRING
+      description: Outbound Customer Code
+      qualifier: CUSTOMER
+      score: 4
+    - name : awbOwner
+      type: STRING
+      description: AWB Type
+      qualifier: ONETIME
+      data: "cra.agentbilling.documentsource"
+      resolver: qualityAuditDataResolver.awbOwner
+      score: 8
+    - name : agentCode
+      type: STRING
+      description: Agent Code
+      qualifier: AGENT
+      score: 16
+    - name : agentStationCode
+      type: STRING 
+      description: Agent Airport
+      resolver: qualityAuditDataResolver.agentAirportCode
+      qualifier: AIRPORT
+      score: 15
+    - name: agentCity
+      type: STRING
+      description: Agent City
+      resolver: qualityAuditDataResolver.agentCityCode
+      qualifier: CITY
+      score: 12
+    - name : agentCountry
+      type: STRING 
+      description: Agent Country
+      qualifier: COUNTRY
+      resolver: qualityAuditDataResolver.agentCountryCode
+      score: 14
+    - name : agentRegion
+      type: STRING 
+      description: Agent Region
+      resolver: qualityAuditDataResolver.agentRegionCode
+      qualifier: REGION
+      score: 13
+    - name : productCodes
+      type: STRING_ARRAY
+      description: Product Code
+      qualifier: PRODUCT
+      score: 10
+    - name : sccCodes
+      type:  STRING_ARRAY 
+      description: SCC Code
+      qualifier: SCC
+      score: 11
+    - name : isContractRateExists
+      type: STRING
+      qualifier: FREE_TEXT
+      description: Contract Rate Exists(Y/N)
+      derivedExpression:  (netCharge == weightCharge )?"Y":"N"
+      score: 3 
+    - name : customerType
+      type: STRING 
+      description: Customer Type
+      resolver: qualityAuditDataResolver.customerType
+      qualifier: HARDCODED
+      data: "[AG-Agent,CU-Customer,CC-CC Collector]"
+      score: 6
+    - name : customerCode
+      type: STRING
+      description: Customer Code
+      qualifier: CUSTOMER
+      resolver: taxDataResolver.customerCode 
+      score: 7
+    - name : rateClassIATA
+      type: STRING 
+      description: Rate Class IATA
+      resolver: taxDataResolver.rateClassIata
+      qualifier: ONETIME
+      data: "tariff.freight.rateclass"
+      score: 2
+    - name : rateClassMarket
+      type: STRING 
+      description: Rate Class Market
+      resolver: taxDataResolver.rateClassMarket
+      qualifier: ONETIME
+      data: "tariff.freight.rateclass"
+      score: 1
+output:  
+   - name: discount
+     description: Discount
+     params:
+       - name: weightCharge
+         description: Weight Charge
+         parameterType: FACT
+       - name: valuationCharge
+         description: Valuation Charge
+         parameterType: FACT
+       - name: commissionAmount 
+         description: Commission Amount
+         parameterType: FACT
+       - name: netCharge
+         description: Market Charge
+         parameterType: FACT
+categoryType: FORMULA
+ruleNameFormat: CATNAM-RULIDR

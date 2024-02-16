@@ -1,0 +1,287 @@
+#
+# Kubernetes descriptor for stubs runner
+#
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: "mock"
+---
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/dockerconfigjson
+metadata:
+  name: icargo-docker-creds
+  namespace: "mock"
+data:
+  .dockerconfigjson: "eyJhdXRocyI6eyJoYXJib3IuaWJzcGxjLmNvbSI6eyJhdXRoIjoiY205aWIzUWthV05oY21kdksybGpZWEpuYjE5c2FGOWpkbU02VTBrd1JEaFFiV0puUld4cGNVNUhaMGRVY2pOd2FIQXpXV013VG5KTmJXST0iLCJwYXNzd29yZCI6IlNJMEQ4UG1iZ0VsaXFOR2dHVHIzcGhwM1ljME5yTW1iIiwidXNlcm5hbWUiOiJyb2JvdCRpY2FyZ28raWNhcmdvX2xoX2N2YyJ9fX0="
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "stub-runner"
+  namespace: "mock"
+  labels:
+    app: "stub-runner"
+spec:
+  type: ClusterIP
+  sessionAffinity: None
+  selector:
+    app: "stub-runner"
+  ports:
+    - name: container
+      port: 5000
+    - name: auth
+      port: 5010
+    - name: admin
+      port: 5050
+    - name: booking
+      port: 5060
+    - name: bussfrwk
+      port: 5070
+    - name: bussrules
+      port: 5080
+    - name: capacity
+      port: 5090
+    - name: flight
+      port: 6000
+    - name: framework
+      port: 6010
+    - name: masters
+      port: 6020
+    - name: msgbroker-rt
+      port: 6030
+    - name: pricing
+      port: 6040
+    - name: qf-efreights
+      port: 6050
+    - name: stock
+      port: 6060
+    - name: trkmgmt
+      port: 6070
+    - name: ebl-nbrg-bse
+      port: 6080
+    - name: awb
+      port: 6090
+    - name: comnship
+      port: 6110
+    - name: cca
+      port: 6120
+    - name: quality-audit
+      port: 6130
+---
+# Source: icargo-neo-helm/templates/deployments.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "stub-runner"
+  namespace: "mock"
+  labels:
+    app: "stub-runner"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  progressDeadlineSeconds: 300
+  strategy:
+    type: "RollingUpdate"
+  selector:
+    matchLabels:
+      app: "stub-runner"
+  template:
+    metadata:
+      labels:
+        app: "stub-runner"
+    spec:
+      dnsPolicy: "ClusterFirst"
+      terminationGracePeriodSeconds: 10
+      imagePullSecrets:
+        - name: "icargo-docker-creds"
+      containers:
+        - name: "stub-runner"
+          image: "harbor.ibsplc.com/icargo/icargo-neo-stubs-runner:1.2.8"
+          imagePullPolicy: "IfNotPresent"
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xms512M -Xmx512M -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=60 -XX:+UseG1GC -XX:+ExitOnOutOfMemoryError -Djava.security-egd=/dev/./urandom"
+          ports:
+            - name: container
+              containerPort: 5000
+              protocol: TCP
+            - name: admin
+              containerPort: 5050
+              protocol: TCP
+            - name: booking
+              containerPort: 5060
+              protocol: TCP
+            - name: bussfrwk
+              containerPort: 5070
+              protocol: TCP
+            - name: bussrules
+              containerPort: 5080
+              protocol: TCP
+            - name: capacity
+              containerPort: 5090
+              protocol: TCP
+            - name: flight
+              containerPort: 6000
+              protocol: TCP
+            - name: framework
+              containerPort: 6010
+              protocol: TCP
+            - name: masters
+              containerPort: 6020
+              protocol: TCP
+            - name: msgbroker-rt
+              containerPort: 6030
+              protocol: TCP
+            - name: pricing
+              containerPort: 6040
+              protocol: TCP
+            - name: qf-efreights
+              containerPort: 6050
+              protocol: TCP
+            - name: stock
+              containerPort: 6060
+              protocol: TCP
+            - name: trkmgmt
+              containerPort: 6070
+              protocol: TCP
+            - name: ebl-nbrg-bse
+              containerPort: 6080
+              protocol: TCP
+            - name: awb
+              containerPort: 6090
+              protocol: TCP
+            - name: comnship
+              containerPort: 6110
+              protocol: TCP
+            - name: cca
+              containerPort: 6120
+              protocol: TCP
+            - name: quality-audit
+              containerPort: 6130
+              protocol: TCP
+          startupProbe:
+            initialDelaySeconds: 90
+            periodSeconds: 10
+            failureThreshold: 18
+            httpGet:
+              port: container
+              path: '/stubs'
+          livenessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+            httpGet:
+              port: container
+              path: '/stubs'
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: icargo-mock
+  namespace: mock
+  labels:
+    release: icargo-mock
+    type: app
+spec:
+  ingressClassName: nginx-mock
+  rules:
+    - host: '*.elb.ap-south-1.amazonaws.com'
+      http:
+        paths:
+        - backend:
+            serviceName: stub-runner
+            servicePort: 5010
+          path: /auth
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 5050
+          path: /admin
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 5060
+          path: /awb-booking
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 5070
+          path: /business-framework
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 5080
+          path: /businessrules
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 5090
+          path: /capacity
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6000
+          path: /flight
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6010
+          path: /framework
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6020
+          path: /masters
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6030
+          path: /msgbroker
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6040
+          path: /pricing
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6050
+          path: /efreights
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6060
+          path: /stock
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6070
+          path: /truckanddock
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6080
+          path: /ebl-nbridge
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6090
+          path: /awb
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6110
+          path: /common-shipment
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6120
+          path: /cca
+          pathType: Prefix
+        - backend:
+            serviceName: stub-runner
+            servicePort: 6130
+          path: /awb-qualityaudit
+          pathType: Prefix

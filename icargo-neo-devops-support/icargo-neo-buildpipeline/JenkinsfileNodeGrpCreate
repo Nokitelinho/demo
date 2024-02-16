@@ -1,0 +1,90 @@
+def Stage_Name
+def ENV
+def releaseVersion
+def bom
+def tenantId = "base"
+def applicationId ="icargo-neo"
+def currentVersion
+def jiraIds
+pipeline {
+    agent any
+
+	options {
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '1'))
+    }
+	
+    stages {			
+		
+		stage("Create Node Group to Scale Down") {			
+			steps {
+				echo "${env.cluster} in ${env.eksClusterYaml} namespace "
+				
+					sh"pwd"
+					sh '''
+						/usr/local/bin/eksctl create nodegroup --config-file=icargo-neo-k8s/eks/$eksClusterYaml
+					'''	
+				
+			}
+		}
+	
+		
+	}
+
+	
+	post {
+		success{
+			script {
+				recipientProvidersForQADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForQADeploy   ->  ${recipientProvidersForQADeploy}"
+			
+				
+				emailext(   subject: "Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+Check console output at:  ${env.BUILD_URL} 
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'jens.parappallil@ibsplc.com,sander.joseph@ibsplc.com,bejoy.kunjumon@ibsplc.com, Aswathy.Parameswaran@ibsplc.com,sinoob.saithumuhammed@ibsplc.com'
+                    )                
+			}
+			
+	}
+	
+        failure {
+            script {
+				recipientProvidersForQADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForQADeploy   ->  ${recipientProvidersForQADeploy}"			
+				emailext(
+							attachmentsPattern: "icargo-neo-cli/qa.zip",
+                            subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+Failure happened in ${Stage_Name}.
+										
+Check console output at:  ${env.BUILD_URL}  
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'jens.parappallil@ibsplc.com,sander.joseph@ibsplc.com,bejoy.kunjumon@ibsplc.com, Aswathy.Parameswaran@ibsplc.com,sinoob.saithumuhammed@ibsplc.com'
+						)				
+            }
+        }
+    }
+
+}

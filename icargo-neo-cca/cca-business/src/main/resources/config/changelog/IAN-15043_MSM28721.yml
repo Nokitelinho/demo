@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-15043_MSM28721.yml
+  - changeSet:
+      id: 28721
+      author: A-201345
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: ccamst
+        - columnExists:
+            tableName: ccamst
+            columnName: ccaasgnee
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: alter table ccamst alter column ccaasgnee type varchar(100);

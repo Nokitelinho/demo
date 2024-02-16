@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-57689_MSM013.yml
+  - changeSet:
+      id: STK_023
+      author: 204083
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: STKHLDTYPPRY_SEQ
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE STKHLDTYPPRY_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;
+
+  - changeSet:
+      id: STK_024
+      author: 204083
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE STKHLDTYPPRY(
+          STKHLDTYPPRYSERNUM BIGINT NOT NULL,
+          CMPCOD VARCHAR(6) NOT NULL,
+          STKHLDTYP VARCHAR(15) NOT NULL,
+          STKHLDPRY NUMERIC NOT NULL,
+          TAGIDX NUMERIC(1,0) DEFAULT 0 NOT NULL,
+          CONSTRAINT "stkhldtyppry_pk" PRIMARY KEY (STKHLDTYPPRYSERNUM),
+          CONSTRAINT "stkhldtyppry_cmpcod_stkhldtyp_stkhldpry_unique" UNIQUE (CMPCOD, STKHLDTYP, STKHLDPRY));
+  
+          COMMENT ON COLUMN STKHLDTYPPRY.STKHLDTYPPRYSERNUM is 'Stock serial number';
+          COMMENT ON COLUMN STKHLDTYPPRY.CMPCOD IS 'Company Code.The company code that uniquely identifies the company for which the application is hosted';
+          COMMENT ON COLUMN STKHLDTYPPRY.STKHLDTYP IS 'Stockhodler type';
+          COMMENT ON COLUMN STKHLDTYPPRY.STKHLDPRY IS 'Stockhodler priority';
+          COMMENT ON COLUMN STKHLDTYPPRY.TAGIDX IS 'This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment';
+          COMMENT ON TABLE STKHLDTYPPRY  IS 'Table for defining priority for stockhodler types';
+
+

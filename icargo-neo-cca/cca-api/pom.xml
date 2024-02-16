@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>neo-cca-api</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<url>http://maven.apache.org</url>
+
+	<parent>
+		<groupId>com.ibsplc.neoicargo</groupId>
+		<artifactId>neo-api-support</artifactId>
+		<version>2.0.2-SNAPSHOT</version>
+		<relativePath/>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<neo.framework.version>2.0.2-SNAPSHOT</neo.framework.version>
+		<jaxb-api.version>2.3.0</jaxb-api.version>
+		<neo-masters-api.version>1.0.0-SNAPSHOT</neo-masters-api.version>
+		<neo-qualityaudit-api.version>1.0.0-SNAPSHOT</neo-qualityaudit-api.version>
+		<sonar.skip>true</sonar.skip>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb-api.version}</version>
+		</dependency>
+
+		<dependency>
+            <groupId>com.ibsplc.neoicargo</groupId>
+            <artifactId>neo-framework-cxf-jaxrs-client</artifactId>
+            <version>${neo.framework.version}</version>
+        </dependency>
+
+        <dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>${jaxb-api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibsplc.neoicargo</groupId>
+			<artifactId>neo-masters-api</artifactId>
+			<version>${neo-masters-api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibsplc.neoicargo</groupId>
+			<artifactId>neo-qualityaudit-api</artifactId>
+			<version>${neo-qualityaudit-api.version}</version>
+		</dependency>
+
+	</dependencies>
+</project>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+   	
+	<bean id="businessBeanFactory" class="com.ibsplc.icargo.framework.floworchestration.context.CompanyCodeAwareApplicationContext">
+		<property name="locations">
+			<list>								
+				<value>file:${service.properties}/sprout/sprout-beans.xml</value>	
+				<value>file:${service.properties}/sprout/config/businessApplicationContext.xml</value>	
+				<value>file:${service.properties}/sprout/config/*/*_SpringContext.xml</value>					
+				<!--value>file:${service.properties}/sprout/processdef-context.xml</value-->	
+				<value>file:${service.properties}/sprout/*_SproutContext.xml</value>
+			</list>
+		</property>
+		<property name="filteredLocations">
+			<list>
+				<value>file:/${service.properties}/sprout/config/*/*/*_SpringContext.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+</beans>

@@ -1,0 +1,42 @@
+<%@ taglib uri="/WEB-INF/icargo-common.tld" prefix="common" %>
+<html>
+    <head>
+        <jsp:include page="/jsp/includes/app/appheader.jsp" />
+        <title>Customer Console</title>
+        <script>
+            var fromScreen = '<%=request.getParameter("fromScreen")%>'
+            var screenAction = "customermanagement.defaults.ux.customerconsolescreenload.do";
+            function getScreenConfig() {
+                var newobj = window.__extends({}, screenCfg, {
+                    __rehydrate: screenCfg.fromScreen === 'cra.agentbilling.defaults.reminderlist' || screenCfg.fromScreen === 'customermanagement.defaults.maintainregcustomer'
+                        || fromScreen === "cra.agentbilling.noncass.ux.listsettlementbatches" || screenCfg.fromScreen === "cra.agentbilling.noncass.exportbillinginvoiceenquiry" ||
+                        screenCfg.fromScreen === "cra.agentbilling.noncass.ccbillinginvoiceenquiry" || screenCfg.fromScreen === "cra.agentbilling.cass.viewcassbillingfile" ? true : false,
+                    fromScreen: fromScreen,
+                    screenAction: screenAction
+                });
+                return newobj
+            }
+            function navigateToScreen(path, params, method) {
+                window.location.href = 'dest.html'
+            }
+        </script>
+        <common:include type="css" src="/css/app/app.css" />
+        {{#each htmlWebpackPlugin.files.css}}
+            <common:include type="css" src='{{csshelper this}}' /> 
+        {{/each}}
+    </head>
+
+    <body>
+        <div id="container" class="container-fluid main-container footer-height-scroll"></div>
+        <jsp:include page="/jsp/includes/app/appfooter.jsp" /> 
+        {{#each htmlWebpackPlugin.files.js}}
+            <common:include type="script" src="{{jshelper this}}" />
+        {{/each}}
+
+        <jsp:include page="/jsp/includes/app/pagescripts.jsp" />
+        <%@include file="/jsp/includes/reports/printFrame.jsp"%>
+            <script>
+                appBridge.renderApp();
+            </script>
+    </body>
+</html>

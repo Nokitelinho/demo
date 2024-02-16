@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<pomVersion>3</pomVersion>
+	<extend>../../../../../../../project.xml</extend>
+	<groupId>icargo-uld</groupId>
+	<id>business-uld-defaults</id>
+	<artifactId>business-uld-defaults</artifactId>
+	<name>uld defaults business</name>
+	<currentVersion>${uld.version}</currentVersion>
+	<dependencies>
+	
+	<!-- SHARED DEPENDENCY -->
+		<dependency>
+			<groupId>icargo-shared</groupId>
+			<artifactId>shared-airline-vo</artifactId>
+			<version>${shared.defaults.version}</version>
+		</dependency>
+	    <dependency>
+			<groupId>icargo-shared</groupId>
+			<artifactId>business-shared-airline</artifactId>
+			<version>${shared.defaults.version}</version>
+	    </dependency>
+	    <dependency>
+			<groupId>icargo-shared</groupId>
+			<artifactId>shared-currency-vo</artifactId>
+			<version>${shared.defaults.version}</version>
+	    </dependency>
+	    <dependency>
+			<groupId>icargo-shared</groupId>
+			<artifactId>shared-defaults-unit-vo</artifactId>
+			<version>${shared.defaults.version}</version>
+	    </dependency>
+	    <dependency>
+			<groupId>icargo-shared</groupId>
+			<artifactId>shared-uld-vo</artifactId>
+			<version>${shared.defaults.version}</version>
+	    </dependency>
+		
+		
+	<!-- ULD DEPENDENCY -->	
+		<dependency>
+			<groupId>icargo-uld</groupId>
+			<artifactId>persistence-uld-defaults</artifactId>
+			<version>${uld.defaults.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>icargo-uld</groupId>
+			<artifactId>uld-defaults-proxy</artifactId>
+			<version>${uld.defaults.version}</version>
+		</dependency>
+		
+    	<dependency>
+			<groupId>icargo-uld</groupId>
+			<artifactId>uld-defaults-message-vo</artifactId>
+			<version>${uld.defaults.version}</version>
+		</dependency>
+		
+		
+	<!-- Message Dependency -->
+		<dependency>
+			<groupId>icargo-msgbroker</groupId>
+			<artifactId>msgbroker-message-vo</artifactId>
+			<version>${msgbroker.version}</version>
+		</dependency>
+		
+<!-- Flight dependency -->
+
+		<dependency>
+			<groupId>icargo-flight</groupId>
+			<artifactId>flight-operation-vo</artifactId>
+			<version>${uld.snapshot.version}</version>
+		</dependency>	
+		
+	
+	<!-- WareHouse Dependency -->
+		<dependency>
+			<groupId>icargo-warehouse</groupId>
+			<artifactId>warehouse-defaults-storageunit-vo</artifactId>
+			<version>${warehouse.defaults.version}</version>
+		</dependency>	
+		
+	</dependencies>
+    <build>
+        <sourceDirectory>.</sourceDirectory>
+	<sourceModifications>
+		<sourceModification>
+			<className>NoClass</className>
+			<excludes>
+				<exclude>**/micro/**/*.java</exclude>
+			</excludes>
+		</sourceModification>
+         </sourceModifications>
+    </build>
+</project>
+

@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-41664_MSM28155.yml
+  - changeSet:
+       id: 28155
+       author: A-8227
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              schemaName: ${SCHEMA}
+              tableName: TRKMILSTNMST
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: ALTER TABLE TRKMILSTNMST ADD COLUMN ACTVIWFLG BOOLEAN DEFAULT FALSE;
+              COMMENT ON COLUMN TRKMILSTNMST.ACTVIWFLG IS 'Is milestone enabled for activity view';
+              ALTER TABLE TRKMILSTNMST ADD COLUMN NTFSNDFLG BOOLEAN DEFAULT FALSE;
+              COMMENT ON COLUMN TRKMILSTNMST.NTFSNDFLG IS 'Is milestone enabled for the email notification subscription';
+              ALTER TABLE TRKMILSTNMST DROP COLUMN MILSTNSTA;

@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-35824_MSM27283.yml
+  - changeSet:
+       id: 27283
+       author: A-10597
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            indexExists:
+              indexName: CCAMST_IND1
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE INDEX CCAMST_IND1 ON CCAMST(CCAREFNUM);

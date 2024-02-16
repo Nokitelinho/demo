@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-46178_MSM28517.yml
+  - changeSet:
+      id: 28517
+      author: A-201345
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: ccamst
+        - columnExists:
+            tableName: ccamst
+            columnName: impduearl
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccamst DROP COLUMN impduearl;

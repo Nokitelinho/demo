@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ibsplc.neoicargo.stock.dao.mybatis.RangeQueryMapper">
+  <select id="findRangeForTransfer" resultMap="findRangeForTransfer" parameterType="map">
+    SELECT
+    rng.starng starng,
+    rng.endrng endrng,
+    rng.ascstarng ascstarng,
+    rng.ascendrng ascendrng,
+    SUM(rng.docnum) docnum
+    FROM
+    stkrng rng
+    WHERE
+    rng.cmpcod = #{stockAllocationFilterVO.companyCode}
+    AND rng.arlidr = #{stockAllocationFilterVO.airlineIdentifier}
+    AND rng.stkhldcod = #{stockAllocationFilterVO.stockHolderCode}
+    AND rng.doctyp = #{stockAllocationFilterVO.documentType}
+    AND rng.docsubtyp = #{stockAllocationFilterVO.documentSubType}
+    AND rng.ascstarng >= #{stockAllocationFilterVO.startRange}
+    GROUP BY
+    rng.starng,
+    rng.endrng,
+    rng.ascstarng,
+    rng.ascendrng
+    ORDER BY
+    rng.starng
+  </select>
+  <resultMap id="findRangeForTransfer" type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="startRange" column="STARNG" jdbcType="VARCHAR"/>
+    <result property="endRange" column="ENDRNG" jdbcType="VARCHAR"/>
+    <result property="asciiStartRange" column="ASCSTARNG" jdbcType="NUMERIC"/>
+    <result property="asciiEndRange" column="ASCENDRNG" jdbcType="NUMERIC"/>
+    <result property="numberOfDocuments" column="DOCNUM" jdbcType="NUMERIC"/>
+  </resultMap>
+  <select id="checkBlacklistRanges" parameterType="map" resultType="java.lang.String">
+    SELECT
+    cmpcod
+    FROM
+    stkblklstrng
+    WHERE
+    cmpcod = #{blackListFilterVO.companyCode}
+    AND arlidr = #{blackListFilterVO.airlineIdentifier}
+    AND doctyp = #{blackListFilterVO.documentType}
+    AND ( ( ascstarng BETWEEN #{blackListFilterVO.asciiStartRange} AND
+    #{blackListFilterVO.asciiEndRange})
+    OR ( ascendrng BETWEEN #{blackListFilterVO.asciiStartRange} AND
+    #{blackListFilterVO.asciiEndRange})
+    OR (#{blackListFilterVO.asciiStartRange} BETWEEN ascstarng AND ascendrng )
+    OR (#{blackListFilterVO.asciiEndRange} BETWEEN ascstarng AND ascendrng )
+    )
+  </select>
+
+  <select id="findBlacklistRangesForValidateStockVoiding" parameterType="map" resultMap="findBlacklistRangesForValidateStockVoiding">
+    SELECT
+      cmpcod,
+      stkhldcod,
+      starng,
+      endrng,
+      ascstarng,
+      ascendrng,
+      (
+        CASE
+          WHEN 'Y' = stkrng.mnlflg THEN true ELSE false
+          END
+      ) isManual
+    FROM
+      stkrng
+    WHERE
+      cmpcod = #{blacklistStockVO.companyCode}
+      AND arlidr = #{blacklistStockVO.airlineIdentifier}
+      AND doctyp = #{blacklistStockVO.documentType}
+      AND docsubtyp = #{blacklistStockVO.documentSubType}
+      AND (
+        (
+          #{startRange} BETWEEN ascstarng AND ascendrng
+        )
+        OR (
+          #{endRange} BETWEEN ascstarng AND ascendrng
+        )
+        OR (
+          #{startRange} <![CDATA[ <= ]]> ascstarng AND #{endRange} <![CDATA[ >= ]]> ascendrng
+        )
+      )
+  </select>
+  <resultMap id="findBlacklistRangesForValidateStockVoiding" type="com.ibsplc.neoicargo.stock.vo.StockVO">
+    <result property="companyCode" column="cmpcod" jdbcType="VARCHAR"/>
+    <result property="stockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <collection property="ranges" javaType="ArrayList" ofType="com.ibsplc.neoicargo.stock.vo.RangeVO">
+      <result property="startRange" column="starng" jdbcType="VARCHAR"/>
+      <result property="endRange" column="endrng" jdbcType="VARCHAR"/>
+      <result property="asciiStartRange" column="ascstarng" jdbcType="NUMERIC"/>
+      <result property="asciiEndRange" column="ascendrng" jdbcType="NUMERIC"/>
+      <result property="isManual" column="isManual" jdbcType="BOOLEAN"/>
+    </collection>
+  </resultMap>
+
+  <select id="findDuplicateRanges" resultMap="findDuplicateRanges" parameterType="map">
+    SELECT
+    starng,
+    endrng
+    FROM
+    stkrng
+    WHERE
+    cmpcod = #{duplicateRangeFilterVO.companyCode}
+    AND arlidr = #{duplicateRangeFilterVO.airlineIdentifier}
+    AND doctyp = #{duplicateRangeFilterVO.documentType}
+    AND (
+    starng BETWEEN #{duplicateRangeFilterVO.startRange} AND #{duplicateRangeFilterVO.endRange} OR
+    endrng BETWEEN #{duplicateRangeFilterVO.startRange} AND #{duplicateRangeFilterVO.endRange} OR
+    #{duplicateRangeFilterVO.startRange} BETWEEN starng AND endrng OR
+    #{duplicateRangeFilterVO.endRange} BETWEEN starng AND endrng
+    )
+  </select>
+  <resultMap id="findDuplicateRanges" type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="startRange" column="STARNG" jdbcType="VARCHAR"/>
+    <result property="endRange" column="ENDRNG" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <select id="findRangesForMerge" resultMap="findRangesForMerge" parameterType="map">
+    SELECT
+    cmpcod,
+    arlidr,
+    doctyp,
+    docsubtyp,
+    stkhldcod,
+    starng,
+    endrng,
+    ascstarng,
+    ascendrng,
+    mnlflg
+    FROM
+    stkrng
+    WHERE
+    cmpcod = #{rangesForMergeFilterVO.companyCode}
+    AND arlidr = #{rangesForMergeFilterVO.airlineIdentifier}
+    AND doctyp = #{rangesForMergeFilterVO.documentType}
+    AND docsubtyp = #{rangesForMergeFilterVO.documentSubType}
+    AND stkhldcod = #{rangesForMergeFilterVO.stockHolderCode}
+    AND mnlflg = #{rangesForMergeFilterVO.manualFlag}
+    AND (
+    <if
+      test='rangesForMergeFilterVO.operationFlag == null or !"S".equals(rangesForMergeFilterVO.operationFlag)'>
+      ASCSTARNG = #{rangesForMergeFilterVO.asciiStartRange} OR ASCSTARNG =
+      #{rangesForMergeFilterVO.asciiEndRange})
+    </if>
+    <if
+      test='rangesForMergeFilterVO.operationFlag != null and "S".equals(rangesForMergeFilterVO.operationFlag)'>
+      ASCENDRNG = #{rangesForMergeFilterVO.asciiEndRange})
+    </if>
+  </select>
+  <resultMap id="findRangesForMerge" type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="companyCode" column="CMPCOD" jdbcType="VARCHAR"/>
+    <result property="airlineIdentifier" column="ARLIDR" jdbcType="NUMERIC"/>
+    <result property="documentType" column="DOCTYP" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="DOCSUBTYP" jdbcType="VARCHAR"/>
+    <result property="stockHolderCode" column="STKHLDCOD" jdbcType="VARCHAR"/>
+    <result property="startRange" column="STARNG" jdbcType="VARCHAR"/>
+    <result property="endRange" column="ENDRNG" jdbcType="VARCHAR"/>
+    <result property="asciiStartRange" column="ASCSTARNG" jdbcType="NUMERIC"/>
+    <result property="asciiEndRange" column="ASCENDRNG" jdbcType="NUMERIC"/>
+    <result property="isManual" column="MNLFLG" jdbcType="VARCHAR"/>
+  </resultMap>
+  <select id="findRangesForViewRange" resultMap="findRangesForViewRange" parameterType="map">
+    SELECT
+    CASE
+    WHEN doctyp = 'AWB' THEN starng
+    || MOD(TO_NUMBER(starng,'9999999'),7)
+    ELSE starng
+    END
+    starng,
+    CASE
+    WHEN doctyp = 'AWB' THEN endrng
+    || MOD(TO_NUMBER(starng,'9999999'),7)
+    ELSE endrng
+    END
+    endrng,
+    docnum,
+    rngacpdat,
+    STRING_AGG (mstdocnum, ',' ORDER BY mstdocnum ) AS mstdocnum
+    FROM (
+    SELECT
+    stkrng.starng AS starng,
+    stkrng.endrng AS endrng,
+    stkrng.docnum AS docnum,
+    stkrng.rngacpdat,
+    utl.mstdocnum,
+    stkrng.doctyp AS doctyp
+    FROM
+    stkrng stkrng
+    LEFT OUTER JOIN stkrngutl utl ON ( stkrng.cmpcod = utl.cmpcod
+    AND stkrng.arlidr = utl.arlidr
+    AND stkrng.doctyp = utl.doctyp
+    AND stkrng.docsubtyp = utl.docsubtyp
+    AND utl.status = 'U'
+    AND utl.ascdocnum BETWEEN stkrng.ascstarng
+    AND stkrng.ascendrng )
+    WHERE
+    stkrng.cmpcod = #{stockFilterVO.companyCode}
+    AND stkrng.arlidr = #{stockFilterVO.airlineIdentifier}
+    AND stkrng.doctyp = #{stockFilterVO.documentType}
+    AND stkrng.docsubtyp = #{stockFilterVO.documentSubType}
+    AND stkrng.stkhldcod = #{stockFilterVO.stockHolderCode}
+    AND stkrng.mnlflg = #{stockFilterVO.manualFlag}
+    AND NOT EXISTS ( SELECT
+    1
+    FROM
+    stkrngutl
+    WHERE
+    cmpcod = utl.cmpcod
+    AND arlidr = utl.arlidr
+    AND stkhldcod = utl.stkhldcod
+    AND doctyp = utl.doctyp
+    AND docsubtyp = utl.docsubtyp
+    AND mstdocnum = utl.mstdocnum
+    AND seqnum > utl.seqnum
+    AND status = 'D'
+    )
+    ORDER BY
+    stkrng.ascstarng ) mst
+    GROUP BY
+    starng,
+    endrng,
+    docnum,
+    doctyp,
+    rngacpdat
+  </select>
+  <resultMap id="findRangesForViewRange" type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="startRange" column="STARNG" jdbcType="VARCHAR"/>
+    <result property="endRange" column="ENDRNG" jdbcType="VARCHAR"/>
+    <result property="numberOfDocuments" column="DOCNUM" jdbcType="NUMERIC"/>
+    <result property="masterDocumentNumbers" column="MSTDOCNUM" jdbcType="VARCHAR"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.MasterDocumentNumberHandler"/>
+    <result property="stockAcceptanceDate" column="RNGACPDAT" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+  </resultMap>
+  <select id="findAllocatedRanges" resultMap="findAllocatedRanges" parameterType="map">
+    SELECT
+    CASE
+    WHEN stkrng.doctyp = 'AWB' THEN stkrng.starng
+    || MOD(TO_NUMBER(stkrng.starng,'9999999'),7)
+    ELSE starng
+    END
+    starng,
+    CASE
+    WHEN stkrng.doctyp = 'AWB' THEN stkrng.endrng
+    || MOD(TO_NUMBER(stkrng.starng,'9999999'),7)
+    ELSE endrng
+    END
+    endrng,
+    stkrng.docnum AS docnum,
+    stkrng.stkhldcod AS tostkhldcod,
+    stkrng.rngacpdat AS altdat
+    FROM
+    stkhldstk stkhldstk
+    INNER JOIN stkrng stkrng on stkrng.stkhldstksernum = stkhldstk.stkhldstksernum
+    WHERE
+    stkhldstk.cmpcod = #{stockFilterVO.companyCode}
+    AND stkhldstk.stkaprcod = #{stockFilterVO.stockHolderCode}
+    AND stkhldstk.doctyp = #{stockFilterVO.documentType}
+    AND stkhldstk.docsubtyp = #{stockFilterVO.documentSubType}
+    AND stkrng.mnlflg = #{stockFilterVO.manualFlag}
+    AND stkhldstk.arlidr = #{stockFilterVO.airlineIdentifier}
+  </select>
+  <resultMap id="findAllocatedRanges" type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="startRange" column="STARNG" jdbcType="VARCHAR"/>
+    <result property="endRange" column="ENDRNG" jdbcType="VARCHAR"/>
+    <result property="numberOfDocuments" column="DOCNUM" jdbcType="NUMERIC"/>
+    <result property="stockHolderCode" column="TOSTKHLDCOD" jdbcType="VARCHAR"/>
+    <result property="stockAcceptanceDate" column="ALTDAT" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+  </resultMap>
+
+  <select id="findRanges" resultMap="findRanges" parameterType="map">
+    SELECT
+      stkrng.starng AS starng,
+      stkrng.endrng AS endrng,
+      stkrng.docnum AS docnum,
+      stkhldmst.lstupdtim AS lstupdtim,
+      stkrng.stkhldcod AS stkhldcod,
+      stkrng.doctyp AS doctyp,
+      stkrng.arlidr AS arlidr,
+      stkrng.docsubtyp AS docsubtyp,
+      stkrng.cmpcod AS cmpcod,
+      stkrng.mnlflg AS mnlflg,
+      (
+        CASE
+          WHEN 'Y' = stkrng.mnlflg THEN true ELSE false
+        END
+      ) isManual
+    FROM
+      stkrng stkrng
+    <choose>
+        <when test='startRange != null and endRange == null and numberOfDocuments != null'>
+                ,STKHLDMST stkhldmst , STKRNG stkrng1
+              WHERE stkrng.CMPCOD = stkrng1.CMPCOD
+                AND stkrng.STKHLDCOD = stkrng1.STKHLDCOD
+                AND stkrng.DOCTYP = stkrng1.DOCTYP
+                AND stkrng.DOCSUBTYP = stkrng1.DOCSUBTYP
+                AND stkrng.CMPCOD = stkhldmst.CMPCOD
+                AND stkrng.STKHLDCOD = stkhldmst.STKHLDCOD
+                AND stkrng.ARLIDR = stkrng1.ARLIDR
+                <if test='rangeFilterVO.companyCode != null'>
+                  AND  stkrng.CMPCOD = #{rangeFilterVO.companyCode}
+                </if>
+                <if test='rangeFilterVO.stockHolderCode != null'>
+                  AND stkrng.STKHLDCOD = #{rangeFilterVO.stockHolderCode}
+                </if>
+                <if test='rangeFilterVO.documentType != null'>
+                  AND stkrng.DOCTYP = #{rangeFilterVO.documentType}
+                </if>
+                <if test='rangeFilterVO.documentSubType != null'>
+                  AND stkrng.DOCSUBTYP = #{rangeFilterVO.documentSubType}
+                </if>
+                <if test='rangeFilterVO.manualFlag != null'>
+                  AND stkrng.MNLFLG = #{rangeFilterVO.manualFlag}
+                  AND stkrng1.MNLFLG = #{rangeFilterVO.manualFlag}
+                </if>
+                <if test='rangeFilterVO.airlineIdentifier != null and rangeFilterVO.airlineIdentifier > 0'>
+                  AND stkrng.ARLIDR = #{rangeFilterVO.airlineIdentifier}
+                </if>
+
+                AND	stkrng1.ASCSTARNG <![CDATA[ <= ]]> stkrng.ASCSTARNG
+                AND ((stkrng1.ASCSTARNG > #{startRange} OR stkrng1.ASCENDRNG > #{startRange} )
+                OR (( #{startRange} BETWEEN STKRNG1.ASCSTARNG AND STKRNG1.ASCENDRNG )) )
+              GROUP BY stkrng.CMPCOD, stkrng.STKHLDCOD, stkrng.DOCTYP,stkrng.DOCSUBTYP,stkrng.STARNG,stkrng.ENDRNG,
+                       stkrng.DOCNUM,stkrng.ascstarng,stkhldmst.lstupdtim,stkrng.ARLIDR,stkrng.mnlflg
+              HAVING SUM(LEAST(stkrng1.ASCENDRNG - stkrng1.ASCSTARNG + 1, stkrng1.ASCENDRNG - #{startRange} + 1)) <![CDATA[ < ]]> #{numberOfDocuments} + stkrng.DOCNUM
+        </when>
+        <otherwise>
+                    ,STKHLDMST stkhldmst
+                WHERE
+                    stkrng.CMPCOD = stkhldmst.CMPCOD
+                    AND  stkrng.STKHLDCOD = stkhldmst.STKHLDCOD
+                <if test='rangeFilterVO.companyCode != null'>
+                  AND  stkrng.CMPCOD = #{rangeFilterVO.companyCode}
+                </if>
+                <if test='rangeFilterVO.stockHolderCode != null'>
+                  AND stkrng.STKHLDCOD = #{rangeFilterVO.stockHolderCode}
+                </if>
+                <if test='rangeFilterVO.documentType != null'>
+                  AND stkrng.DOCTYP = #{rangeFilterVO.documentType}
+                </if>
+                <if test='rangeFilterVO.documentSubType != null'>
+                  AND stkrng.DOCSUBTYP = #{rangeFilterVO.documentSubType}
+                </if>
+                <if test='rangeFilterVO.manualFlag != null'>
+                  AND stkrng.MNLFLG = #{rangeFilterVO.manualFlag}
+                </if>
+                <if test='rangeFilterVO.airlineIdentifier != null and rangeFilterVO.airlineIdentifier > 0'>
+                  AND stkrng.ARLIDR = #{rangeFilterVO.airlineIdentifier}
+                </if>
+
+                <choose>
+                    <when test='startRange != null and endRange == null and numberOfDocuments == null'>
+                      AND stkrng.ASCSTARNG <![CDATA[ >= ]]> #{startRange}
+                    </when>
+                    <otherwise>
+                      <if test='startRange != null and endRange != null'>
+                          AND( (( stkrng.ascstarng  <![CDATA[ >= ]]> #{startRange} ) and (stkrng.ascendrng <![CDATA[ <= ]]> #{endRange} ))
+                          OR ((#{startRange} BETWEEN stkrng.ascstarng  AND stkrng.ascendrng) OR #{endRange} BETWEEN stkrng.ascstarng  AND stkrng.ascendrng))
+                      </if>
+                    </otherwise>
+                </choose>
+
+        </otherwise>
+    </choose>
+    ORDER BY stkrng.ascstarng ASC
+  </select>
+  <resultMap id="findRanges" type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="companyCode" column="CMPCOD" jdbcType="VARCHAR"/>
+    <result property="startRange" column="STARNG" jdbcType="VARCHAR"/>
+    <result property="endRange" column="ENDRNG" jdbcType="VARCHAR"/>
+    <result property="numberOfDocuments" column="DOCNUM" jdbcType="NUMERIC"/>
+    <result property="lastUpdateTime" column="LSTUPDTIM" jdbcType="DATE"
+            typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="stockHolderCode" column="STKHLDCOD" jdbcType="VARCHAR"/>
+    <result property="documentType" column="DOCTYP" jdbcType="VARCHAR"/>
+    <result property="airlineIdentifier" column="ARLIDR" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="DOCSUBTYP" jdbcType="VARCHAR"/>
+    <result property="isManual" column="isManual" jdbcType="BOOLEAN"/>
+  </resultMap>
+
+  <select id="findAvailableRanges" resultMap="findAvailableRanges" parameterType="map">
+    WITH cte AS (SELECT CASE
+             WHEN doctyp = 'AWB' THEN starng
+               || MOD(TO_NUMBER(starng, '9999999'), 7)
+             ELSE starng
+             END,
+           CASE
+             WHEN doctyp = 'AWB' THEN endrng
+               || MOD(TO_NUMBER(starng, '9999999'), 7)
+             ELSE endrng
+             END,
+           docnum,
+           rngacpdat,
+           STRING_AGG(mstdocnum, ',' ORDER BY mstdocnum) AS mstdocnum
+    FROM (SELECT stkrng.starng AS starng,
+                 stkrng.endrng AS endrng,
+                 stkrng.docnum AS docnum,
+                 stkrng.rngacpdat,
+                 utl.mstdocnum,
+                 stkrng.doctyp AS doctyp
+          FROM stkrng
+                 LEFT JOIN stkrngutl utl
+                           ON (stkrng.cmpcod = utl.cmpcod
+                             AND stkrng.arlidr = utl.arlidr
+                             AND stkrng.doctyp = utl.doctyp
+                             AND stkrng.docsubtyp = utl.docsubtyp
+                             AND utl.status = 'U'
+                             AND utl.ascdocnum BETWEEN stkrng.ascstarng AND stkrng.ascendrng)
+          WHERE stkrng.cmpcod = #{stockFilterVO.companyCode}
+            AND stkrng.arlidr = #{stockFilterVO.airlineIdentifier}
+            AND stkrng.doctyp = #{stockFilterVO.documentType}
+            AND stkrng.docsubtyp = #{stockFilterVO.documentSubType}
+            AND stkrng.stkhldcod = #{stockFilterVO.stockHolderCode}
+            AND stkrng.mnlflg = #{stockFilterVO.manualFlag}
+            AND NOT EXISTS(
+            SELECT 1
+            FROM stkrngutl
+            WHERE cmpcod = utl.cmpcod
+              AND arlidr = utl.arlidr
+              AND stkhldcod = utl.stkhldcod
+              AND doctyp = utl.doctyp
+              AND docsubtyp = utl.docsubtyp
+              AND mstdocnum = utl.mstdocnum
+              AND seqnum > utl.seqnum
+              AND status = 'D'
+            )
+          ORDER BY stkrng.ascstarng) mst
+    GROUP BY starng,
+             endrng,
+             docnum,
+             doctyp,
+             rngacpdat)
+    SELECT *
+    FROM (
+           TABLE cte
+             LIMIT #{limit}
+             OFFSET #{offset}) sub
+           INNER JOIN (SELECT count(*) FROM cte) c(totalRecordCount) ON true;
+  </select>
+  <resultMap id="findAvailableRanges" type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="numberOfDocuments" column="docnum" jdbcType="NUMERIC"/>
+    <result property="masterDocumentNumbers" column="MSTDOCNUM" jdbcType="VARCHAR"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.MasterDocumentNumberHandler"/>
+    <result property="stockAcceptanceDate" column="RNGACPDAT" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="startRange" column="STARNG" jdbcType="VARCHAR"/>
+    <result property="endRange" column="ENDRNG" jdbcType="VARCHAR"/>
+    <result property="totalRecordCount" column="totalRecordCount" jdbcType="NUMERIC"/>
+  </resultMap>
+  <select id="findTotalNoOfDocuments" parameterType="map" resultType="java.lang.Integer">
+    SELECT
+    SUM(docnumsum) AS totdocs
+    FROM
+    (
+    SELECT
+    SUM(docnum) AS docnumsum
+    FROM
+    (
+    SELECT
+    stkrng.starng AS starng,
+    stkrng.endrng AS endrng,
+    stkrng.docnum AS docnum,
+    stkrng.rngacpdat,
+    stkrng.doctyp AS doctyp
+    FROM
+    stkrng stkrng
+    LEFT OUTER JOIN stkrngutl utl ON ( stkrng.cmpcod = utl.cmpcod
+    AND stkrng.arlidr = utl.arlidr
+    AND stkrng.doctyp = utl.doctyp
+    AND stkrng.docsubtyp = utl.docsubtyp
+    AND utl.status = 'U'
+    AND utl.ascdocnum BETWEEN stkrng.ascstarng AND stkrng.ascendrng )
+    WHERE
+    stkrng.cmpcod = #{stockFilterVO.companyCode}
+    AND stkrng.arlidr = #{stockFilterVO.airlineIdentifier}
+    AND stkrng.doctyp = #{stockFilterVO.documentType}
+    AND stkrng.docsubtyp = #{stockFilterVO.documentSubType}
+    AND stkrng.stkhldcod = #{stockFilterVO.stockHolderCode}
+    AND stkrng.mnlflg = #{stockFilterVO.manualFlag}
+    AND NOT EXISTS (
+    SELECT
+    1
+    FROM
+    stkrngutl
+    WHERE
+    cmpcod = utl.cmpcod
+    AND arlidr = utl.arlidr
+    AND stkhldcod = utl.stkhldcod
+    AND doctyp = utl.doctyp
+    AND docsubtyp = utl.docsubtyp
+    AND mstdocnum = utl.mstdocnum
+    AND seqnum > utl.seqnum
+    AND status = 'D'
+    )
+    ORDER BY
+    stkrng.ascstarng
+    ) mst
+    GROUP BY
+    starng,
+    endrng,
+    docnum,
+    doctyp,
+    rngacpdat
+    ) mst
+  </select>
+
+  <select id="checkForBlacklistedDocument" parameterType="map" resultType="java.lang.String">
+    SELECT
+      cmpcod
+    FROM
+      stkblklstrng
+    WHERE
+      cmpcod = #{companyCode}
+      AND doctyp = #{doctype}
+      AND blksta = 'A'
+      AND #{documentNumber} BETWEEN ascstarng AND ascendrng
+
+    <if test='airlineIdentifier != null and airlineIdentifier > 0'>
+      AND stkblklstrng.ARLIDR = #{airlineIdentifier}
+    </if>
+  </select>
+
+  <select id="findBlacklistRanges" resultMap="findBlacklistRanges" parameterType="map">
+    SELECT
+    cmpcod,
+    stkhldcod,
+    starng,
+    endrng,
+    ascstarng,
+    ascendrng,
+    mnlflg
+    FROM
+    stkrng
+    WHERE
+    cmpcod = #{companyCode}
+    AND arlidr = #{airlineId}
+    AND doctyp = #{docType}
+    AND docsubtyp = #{docSubType}
+    AND (
+    (#{startRange} BETWEEN ascstarng AND ascendrng )
+    OR (#{endRange} BETWEEN ascstarng AND ascendrng )
+    OR ( #{startRange} <![CDATA[ <= ]]> ascstarng AND #{endRange} <![CDATA[ >= ]]> ascendrng ))
+  </select>
+  <resultMap id="findBlacklistRanges"
+    type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="companyCode" column="cmpcod" jdbcType="VARCHAR"/>
+    <result property="stockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="startRange" column="starng" jdbcType="VARCHAR"/>
+    <result property="endRange" column="endrng" jdbcType="VARCHAR"/>
+    <result property="asciiStartRange" column="ascstarng" jdbcType="NUMERIC"/>
+    <result property="asciiEndRange" column="ascendrng" jdbcType="NUMERIC"/>
+  </resultMap>
+  
+  <select id="findAvailableRangesForCustomer" resultMap="availableRangesForCustomer" parameterType="map">
+	select
+		stkrng.starng as avlstarng,
+		stkrng.endrng as avlendrng,
+		stkrng.docnum as avldocnum,
+		stkrng.arlidr as arlidr
+	from
+		stkrng stkrng
+	where
+		stkrng.cmpcod =#{stockDetailsFilterVO.companyCode}
+		and stkrng.stkhldcod =#{stockDetailsFilterVO.stockHolderCode}
+		
+	<if test="stockDetailsFilterVO.startDate != null">
+			AND STKRNG.RNGACPDAT &gt;= to_date(#{stockDetailsFilterVO.startDate},'dd-mm-yyyy')
+	</if>
+	<if test="stockDetailsFilterVO.endDate != null">
+			AND STKRNG.RNGACPDAT &lt;= to_date(#{stockDetailsFilterVO.endDate},'dd-mm-yyyy')
+	</if>
+	ORDER BY STARNG		
+  </select>
+  <resultMap id="availableRangesForCustomer"
+    type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="avlStartRange" column="AVLSTARNG" jdbcType="VARCHAR"/>
+    <result property="avlEndRange" column="AVLENDRNG" jdbcType="VARCHAR"/>
+    <result property="avlNumberOfDocuments" column="AVLDOCNUM" jdbcType="NUMERIC"/>
+    <result property="airlineIdentifier" column="ARLIDR" jdbcType="NUMERIC"/>
+  </resultMap>
+  
+  <select id="findAllocatedRangesForCustomer" resultMap="allocatedRangesForCustomer" parameterType="map">
+	select
+		txn.starng as allcstarng,
+		txn.endrng as allcendrng,
+		txn.numdoc as allcdocnum,
+		txn.frmstkhldcod as frmstkhldcod,
+		txn.arlidr as arlidr
+	from
+		stkrngtxnhis txn
+	where
+		txn.cmpcod =#{stockDetailsFilterVO.companyCode}
+		and txn.tostkhldcod =#{stockDetailsFilterVO.stockHolderCode}
+		and txn.status = 'A'
+	<if test="stockDetailsFilterVO.startDate != null">
+		AND TXN.TXNDAT &gt;=  to_date(#{stockDetailsFilterVO.startDate},'dd-mm-yyyy')
+	</if>
+	<if test="stockDetailsFilterVO.endDate != null">
+		AND TXN.TXNDAT &lt;= to_date(#{stockDetailsFilterVO.endDate},'dd-mm-yyyy')
+	</if>
+	ORDER BY STARNG	
+  </select>
+  <resultMap id="allocatedRangesForCustomer"
+    type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="allocStartRange" column="ALLCSTARNG" jdbcType="VARCHAR"/>
+    <result property="fromStockHolderCode" column="FRMSTKHLDCOD" jdbcType="VARCHAR"/>
+    <result property="allocEndRange" column="ALLCENDRNG" jdbcType="VARCHAR"/>
+    <result property="allocNumberOfDocuments" column="ALLCDOCNUM" jdbcType="NUMERIC"/>
+    <result property="airlineIdentifier" column="ARLIDR" jdbcType="NUMERIC"/>
+  </resultMap>
+  
+  <select id="findUsedRangesForCustomer" resultMap="usedRangesForCustomer" parameterType="map">
+	select
+		txn.starng as usedstarng,
+		txn.endrng as usedendrng,
+		txn.numdoc as useddocnum,
+		txn.arlidr,
+		txn.txndat
+	from
+		stkrngtxnhis txn
+	where
+		txn.cmpcod =#{stockDetailsFilterVO.companyCode}
+		and txn.frmstkhldcod =#{stockDetailsFilterVO.stockHolderCode}
+		and txn.status = 'U'
+	<if test="stockDetailsFilterVO.startDate != null">
+		AND TXN.TXNDAT &gt;= to_date(#{stockDetailsFilterVO.startDate},'dd-mm-yyyy')
+	</if>
+	<if test="stockDetailsFilterVO.endDate != null">
+		AND TXN.TXNDAT &lt;= to_date(#{stockDetailsFilterVO.endDate},'dd-mm-yyyy')
+	</if>
+  </select>
+  <resultMap id="usedRangesForCustomer"
+    type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="usedStartRange" column="USEDSTARNG" jdbcType="VARCHAR"/>
+    <result property="usedEndRange" column="USEDENDRNG" jdbcType="VARCHAR"/>
+    <result property="usedNumberOfDocuments" column="USEDDOCNUM" jdbcType="NUMERIC"/>
+    <result property="airlineIdentifier" column="ARLIDR" jdbcType="NUMERIC"/>
+    <result property="transactionDate" column="TXNDAT" jdbcType="DATE"/>
+  </resultMap>
+</mapper>

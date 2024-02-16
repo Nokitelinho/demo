@@ -1,0 +1,16 @@
+{{- range $deployName, $deployDefn := .Values.deployments }}
+  {{/* Dont deploy INTERNAL_SERVICES as they need to have custom deployment flows */}}
+  {{- if and $deployDefn.serviceName $deployDefn.image (ne (default "X" $deployDefn.serviceType) "INTERNAL_SERVICE") }}
+    {{/* Check if groupedDeployment is enabled, a group configured for the deploymentDefn(from bom) and configured in the deploymentGroups */}}
+    {{- $deployPodName := ternary $deployDefn.deploymentGroup $deployName (and $.Values.enableGroupedDeployment $deployDefn.deploymentGroup (has $deployDefn.deploymentGroup $.Values.deploymentGroups)) }}
+    {{- if or (eq $deployDefn.processType "NODE") (eq $deployDefn.serviceType "EBL") (eq $deployDefn.serviceType "WEB_FE") }}
+      {{ range $tenant := $.Values.tenants }}
+---
+{{- include "neo.services" (dict "deployName" $deployPodName "deployDefn" $deployDefn "global"  $ "tenants" (list $tenant) "multitenant" "false") }}
+      {{- end }}
+   {{- else }}
+---
+{{- include "neo.services" (dict "deployName" $deployPodName "deployDefn" $deployDefn "global"  $ "tenants" $.Values.tenants "multitenant" "true") }}
+   {{- end }} {{/* End of  node and ebl check */}}
+  {{- end }} {{/* End of internal_service check */}}
+{{- end }} {{/* End of range */}}

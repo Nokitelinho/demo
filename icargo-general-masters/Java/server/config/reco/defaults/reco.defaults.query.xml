@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<QRY:Definitions xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries" module="reco.defaults">
+
+<QRY:Definition>
+	<QRY:Id>1</QRY:Id>
+	<QRY:Source Name="reco.defaults.checkforduplicates" Type="NATIVE">
+		<![CDATA[
+SELECT REFNUM FROM RCOEMBMST MST WHERE
+MST.EMBSTA <> 'C'
+
+
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+
+
+<QRY:Definition>
+	<QRY:Id>2</QRY:Id>
+	<QRY:Source Name="reco.defaults.findembargoglobalparameters" Type="NATIVE">
+		<![CDATA[
+			SELECT PARCOD,PARDES,PARREFENT FROM RCOEMBPARMST WHERE CMPCOD=?
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+
+
+<QRY:Definition>
+	<QRY:Id>3</QRY:Id>
+	<QRY:Source Name="reco.defaults.findembargodetails" Type="NATIVE">
+		<![CDATA[
+			SELECT MST.RECDES, MST.RECTYP, MST.RECRMK,
+			MST.RECSTA, MST.APPTXN, MST.CATTYP,MST.CMPTYP,MST.VERNUM,
+			MST.ENDDAT, MST.LSTUPDTIM, MST.LSTUPDUSR,MST.RULTYP,MST.SUSFLG,
+				MST.STRDAT,  MST.CMPCOD, MST.REFNUM,PAR.PARCOD,PAR.PARVAL,PAR.PARCND ,PAR.APPONN,PAR.PARTYP, LNG.RECDES LCLLNGDES, LNG.RECLCLLNG
+				 FROM RECMST MST 
+				LEFT OUTER JOIN RECPAR PAR 
+				ON MST.CMPCOD=PAR.CMPCOD 
+				AND MST.REFNUM=PAR.REFNUM
+				AND MST.VERNUM = PAR.VERNUM
+				LEFT OUTER JOIN RECLCLLNGMST LNG
+				ON MST.CMPCOD =LNG.CMPCOD
+				AND MST.REFNUM =LNG.REFNUM
+				AND MST.VERNUM = LNG.VERNUM
+				WHERE MST.CMPCOD= ? 
+				AND MST.REFNUM=?
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+
+
+<QRY:Definition>
+	<QRY:Id>4</QRY:Id>
+	<QRY:Source Name="reco.defaults.findembargos" Type="NATIVE">
+		<![CDATA[
+			
+			SELECT MST.CMPCOD,
+			  MST.RECDES,
+			  MST.REFNUM,
+			  MST.ENDDAT,
+			  MST.RECRMK,
+			  MST.STRDAT,
+			  MST.RULTYP,
+			  MST.APPTXN,
+			  MST.CATTYP,
+			  MST.CMPTYP,
+			  MST.VERNUM,
+			  MST.SUSFLG,
+			  MST.RECSTA,
+			  MST.RECTYP,
+			  MST.LSTUPDTIM,
+			  MST.USRSTNCOD,
+			  MST.LSTUPDUSR,
+			  PAR.PARCOD,
+			  PAR.PARVAL,
+			  PAR.PARCND,
+			  PAR.PARTYP,
+			  PAR.APPONN
+		FROM RECMST MST
+		LEFT OUTER JOIN RECPAR PAR 
+      ON MST.CMPCOD=PAR.CMPCOD
+      AND MST.REFNUM=PAR.REFNUM
+		AND MST.VERNUM = PAR.VERNUM
+ WHERE
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+
+
+<QRY:Definition>
+		<QRY:Id>10</QRY:Id>
+		<QRY:Source Name="reco.defaults.checkembargos" Type="PROCEDURE">
+			<![CDATA[
+			SELECT * FROM (SELECT REC.*,'' LCLDES FROM REC_MVW REC WHERE REC.CMPCOD = ? AND REC.ORGARPCODINC  ='-' AND REC.DSTARPCODINC  ='-' AND REC.VIAARPCODINC  ='-'
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+	<QRY:Id>5</QRY:Id>
+	<QRY:Source Name="reco.defaults.checkcoolfrozenembargos" Type="NATIVE">
+		<![CDATA[
+			SELECT MST.CMPCOD,EMBDST,DSTTYP,EMBDES,MST.REFNUM,ENDDAT,EMBORG,
+			ORGTYP,EMBRMK,STRDAT,EMBSTA,EMBLVL,
+			MST.CCFLG, MST.COOLFLG, MST.FROFLG
+			FROM RCOEMBMST MST
+			WHERE
+			MST.CMPCOD=? AND MST.EMBSTA<>'C' AND MST.SUSFLG='N'  
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+	<QRY:Id>7</QRY:Id>
+	<QRY:Source Name="reco.defaults.searchembargos" Type="NATIVE">
+		<![CDATA[
+	SELECT * FROM (
+	SELECT REC.* FROM REC_MVW REC WHERE 
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+	<QRY:Id>8</QRY:Id>
+	<QRY:Source Name="reco.defaults.findcomposemessages" Type="NATIVE">
+		<![CDATA[
+SELECT CMPMSG.* FROM RECMSG CMPMSG WHERE
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+<QRY:Definition>
+	<QRY:Id>9</QRY:Id>
+	<QRY:Source Name="reco.defaults.findduplicateembargos" Type="NATIVE">
+		<![CDATA[
+	SELECT REC.* FROM REC_MVW REC WHERE 
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>10</QRY:Id>
+		<QRY:Source Name="reco.defaults.updateEmbargoView" Type="PROCEDURE">
+			<![CDATA[
+			CALL PKG_REC_REFRESH_VIEW.REFRESH_REC_VIEW()
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+	<QRY:Id>11</QRY:Id>
+	<QRY:Source Name="reco.defaults.searchexceptionembargos" Type="NATIVE">
+		<![CDATA[
+			SELECT CMPCOD,SHPPFX,MSTDOCNUM,STRDAT,ENDDAT,RMK,SERNUM FROM RECEXPMST WHERE
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+<QRY:Definition>
+	<QRY:Id>12</QRY:Id>
+	<QRY:Source Name="reco.defaults.checkanyembargoexists" Type="NATIVE">
+		<![CDATA[
+	SELECT max('Y') RESULT FROM REC_MVW REC WHERE
+	REC.CMPCOD = ? AND RULTYP='E'
+	AND(pkg_frmwrk.fun_check_string_common (?,APPTXN,',') >0)
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+<QRY:Definition>
+	<QRY:Id>13</QRY:Id>
+	<QRY:Source Name="reco.defaults.findexceptionembargos" Type="NATIVE">
+		<![CDATA[
+			SELECT MST.SHPPFX||'-'||MST.MSTDOCNUM MSTAWB FROM RECEXPMST MST
+			WHERE MST.CMPCOD = ?
+			AND (to_date(?,'yyyy-mm-dd') BETWEEN trunc(MST.STRDAT) AND trunc(MST.ENDDAT))
+			AND MST.SHPPFX||'-'||MST.MSTDOCNUM in(
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+<QRY:Definition>
+	<QRY:Id>14</QRY:Id>
+	<QRY:Source Name="reco.defaults.parameterselectivesearch" Type="NATIVE">
+		<![CDATA[
+			SELECT REC.*
+		FROM REC_MVW REC
+		WHERE RULTYP='E' 
+		AND (REFNUM, VERNUM) IN
+		(SELECT REFNUM, VERNUM
+	FROM RECMST a
+	WHERE a.RULTYP='E' AND
+	 a.RECSTA = 'A' AND
+      a.RECTYP = 'E' AND
+      a.CMPTYP = 'EMB' AND
+      (pkg_frmwrk.fun_string_check ('BKG', APPTXN, ',')   > 0) AND
+      a.SUSFLG <> 'Y' AND
+      NOT EXISTS
+    (SELECT 1
+    FROM RECPAR b
+    WHERE a.REFNUM    =b.REFNUM
+    AND a.VERNUM      =b.VERNUM
+    AND ((b.PARCOD NOT IN (?,?,?) AND b.PARTYP ='P') OR (b.PARTYP='V' and b.PARVAL <> '-'))
+	AND b.CMPCOD=?
+	AND a.RULTYP            = 'E'
+    )
+	AND ((EXISTS
+    (SELECT 1
+    FROM RECPAR b
+    WHERE a.REFNUM    =b.REFNUM
+    AND a.VERNUM      =b.VERNUM
+    AND b.PARVAL <>'-'
+	AND b.PARCOD IN('A','C')
+    AND b.PARTYP IN('O','D')
+	AND b.CMPCOD= ?
+	AND a.RULTYP            = 'E'
+	    ))
+  OR (NOT EXISTS
+    (SELECT 1
+    FROM RECPAR b
+    WHERE a.REFNUM =b.REFNUM
+    AND a.VERNUM   =b.VERNUM
+    AND b.PARVAL  <>'-'
+    AND b.PARCOD  IN('ARPGRP','CNTGRP')
+    AND b.PARTYP  IN('O','D')
+    AND b.CMPCOD   = ?
+    AND a.RULTYP   = 'E'
+    ))
+    )
+	)
+		]]>
+	</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>15</QRY:Id>
+		<QRY:Source Name="reco.defaults.checkembargosenhanced" Type="PROCEDURE">
+			<![CDATA[
+ SELECT DISTINCT * FROM ( SELECT REC.* FROM (SELECT  
+    REC.*
+  FROM  REC_MVW REC 
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+<QRY:Definition>
+		<QRY:Id>16</QRY:Id>
+		<QRY:Source Name="reco.defaults.checkembargosforODpairenhanced" Type="PROCEDURE">
+			<![CDATA[
+			SELECT REC.REFNUM FROM REC_MVW REC  WHERE REC.CMPCOD = ?
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+</QRY:Definitions>

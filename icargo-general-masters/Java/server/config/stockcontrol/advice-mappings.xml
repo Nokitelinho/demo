@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adv:advice-mappings xmlns:xs="http://www.w3.org/2001/XMLSchema"
+					 xmlns:adv="http://www.ibsplc.com/icargo/business/advice"
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					 xsi:schemaLocation="http://www.ibsplc.com/icargo/business/advice xibase/java/server/config/framework/xsd/advice-mappings.xsd"
+					 product="stockcontrol">
+	<adv:advice name="stockcontrol.defaults.blacklistStock">
+		<adv:action name="blacklistStock" type="WORKFLOW" 
+			builder="com.ibsplc.icargo.business.stockcontrol.defaults.builder.WorkflowBuilder"
+			method="notificationForBlacklistStockAndRevokeBlacklistStock" async="true" />	 	
+	</adv:advice>
+	<adv:advice name="stockcontrol.defaults.stockutilisation">
+		<adv:action name="auditForStockUtilisation" type="AUDIT" 
+			builder="com.ibsplc.icargo.business.stockcontrol.defaults.builder.StockDefaultsAuditBuilder"
+			method="auditForStockUtilisation" async="true" />	 	
+	</adv:advice>
+	<adv:advice name="stockcontrol.defaults.findBlacklistedStockFromUTL">
+		<adv:action name="findBlacklistedStockFromUTL" type="STKLST" 
+			builder="com.ibsplc.icargo.business.stockcontrol.defaults.builder.StockDefaultsBuilder"
+			method="findBlacklistedStockFromUTL" async="true" />	 	
+	</adv:advice>
+	<adv:advice name="stockcontrol.defaults.saveStockRequestDetails">
+		<adv:action name="generateNotificationForStockRequest" type="WORKFLOW" 
+			builder="com.ibsplc.icargo.business.stockcontrol.defaults.builder.WorkflowBuilder"
+			method="generateNotificationForStockRequest" async="true" />	
+	</adv:advice>
+</adv:advice-mappings>
+
+

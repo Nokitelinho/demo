@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dyn:DynamicSearch companyCode="4ALL"  xmlns:dyn="http://www.ibsplc.com/icargo/business/dynamicsearch" >
+  <dyn:Mapping screenId="OPR030">
+		<dyn:properties key="AGENT" mapping="SHPMST.AGTCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="ORGSTN" mapping="SHPMST.ORGCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="DESTSTN" mapping="SHPMST.DSTCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+    <dyn:properties key="SCC" mapping="SHPMST.SCCCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="AWBPRE" mapping="SHPMST.SHPPFX" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="N"/>
+		<dyn:properties key="CONSIGNEE" mapping="SHPMST.CNSCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="PRODUCT" mapping="SHPMST.PRDNAM" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="COMMODITY" mapping="BKGDTL.COMCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="SHIPDESC" mapping="UPPER(SHPMST.SHPDES)"  format="A"/>
+		<dyn:properties key="SHIPPER" mapping="SHPMST.SHPCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<!--<dyn:properties key="ORGCOU" mapping="BKGMST.CUSCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>-->
+		<!--<dyn:properties key="DESTCOU" mapping="BKGMST.STNCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>-->
+		<!--<dyn:properties key="ZIPCONSIGNEE" mapping="BKGMST.ORGCOD" format="N"/>-->
+		<!--<dyn:properties key="ZIPSHIPPER" mapping="BKGMST.DSTCOD" format="N"/>-->
+		<dyn:properties key="SERCARGO" mapping="BKGMST.SRVCRGCLS" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="SCI" mapping="SHPMIS.SCICOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="DIMCPT" mapping="SHPDTL.DIMCPTSTA" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+    </dyn:Mapping>
+	
+	<dyn:Mapping screenId="OPR043">
+		<dyn:properties key="AGENT" mapping="MST.AGTCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="ORGSTN" mapping="MST.ORGCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="DESTSTN" mapping="MST.DSTCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="SCC" mapping="MST.SCCCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="AWBPRE" mapping="MST.SHPPFX" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="N"/>
+		<dyn:properties key="CONSIGNEE" mapping="MST.CNSCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="PRODUCT" mapping="MST.PRDNAM" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="COMMODITY" mapping="BKGDTL.COMCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="SHIPDESC" mapping="UPPER(MST.SHPDES)"  format="A"/>
+		<dyn:properties key="SHIPPER" mapping="MST.SHPCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<!--<dyn:properties key="ORGCOU" mapping="BKGMST.CUSCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>-->
+		<!--<dyn:properties key="DESTCOU" mapping="BKGMST.STNCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>-->
+		<!--<dyn:properties key="ZIPCONSIGNEE" mapping="BKGMST.ORGCOD" format="N"/>-->
+		<!--<dyn:properties key="ZIPSHIPPER" mapping="BKGMST.DSTCOD" format="N"/>-->
+		<dyn:properties key="SERCARGO" mapping="BKGMST.SRVCRGCLS" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+    </dyn:Mapping>
+	<dyn:Mapping screenId="OPR075">
+		<dyn:properties key="SCC" mapping="MST.SCCCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+		<dyn:properties key="PRODUCT" mapping="MST.PRDNAM" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+	</dyn:Mapping>
+</dyn:DynamicSearch>

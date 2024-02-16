@@ -1,0 +1,101 @@
+namespace: "qa"
+tenants: ["AV"]
+envName: "qa"
+# This would be applied to all the java m/s and node m/s
+applicationProfile: "qa"
+environmentProfile: "INT" # STAG, DEV, PROD
+#dockerRegistry: "ibsbox:5000/icargo-docker-local"
+#dockerRegistry: "192.168.49.43/icargo-docker-local"
+dockerRegistry: "141807520248.dkr.ecr.ap-south-1.amazonaws.com"
+cloudConfigServerUrl: "http://neo-config-server/config-service"
+configServerArtifactId: "neo-config-server"
+enableGroupedDeployment: true
+# Some Defaults
+default:
+  containerPort: 8080
+  processType: "JAVA"
+  javaMemoryProfile: "JavaDefaultMemArgs" 
+  cpuProfile: "Default"
+  healthEndpoint: "/health"
+
+# Smart Loadbalacer to proxy requests based on application versions for blue-green deployment
+smartLoadbalancer:
+  enabled: false
+  image: "icargo-neo-slb:v1.1.7"
+  port: 2080
+
+crashDumps:
+  enabled: true
+  mountPath: "/icargo-crash-dumps" # Mount path of the volume inside the pod
+  hostPath: "/icargo-crash-dumps"  # The directory in the node which is mounted ( will be created if not present )
+
+# The options can be overriden at a service level as well.
+environment:
+  INT:
+    upgradeStrategy: "Recreate"
+    numberOfReplicas: 1
+    autoScalingEnabled: false
+    replicaEnabled: false
+    JavaSmallMemArgs: "-Xverify:none -Xms128M -Xmx128M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=60 -XX:+ExitOnOutOfMemoryError"
+    JavaDefaultMemArgs: "-Xverify:none -Xms256M -Xmx256M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=60 -XX:+ExitOnOutOfMemoryError"
+    JavaHugeMemArgs: "-Xverify:none -Xms1G -Xmx1G -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=60 -XX:+ExitOnOutOfMemoryError"
+
+# Separate ingress for web and webservice
+ingress:
+  AV:
+    devIngress: true # Should a separate ingress be created for private API and bff endpoints for dev testing
+    ingressClassName: "nginx-qa"
+    host: "*.elb.ap-south-1.amazonaws.com"
+
+# custom deployments properties
+deployments:
+  neo-config-server:
+    javaMemoryProfile: 'JavaSmallMemArgs'
+    serviceName: 'neo-config-server'
+  neo-booking-business:
+    javaMemoryProfile: 'JavaHugeMemArgs'
+  ebl-nbridge-base-rt:
+    javaMemoryProfile: 'JavaHugeMemArgs'
+
+# Object creation flags, used during incremental deployments with single entry boms
+disable:
+  ns: false # for incremental deployment ns is created offline
+  ingress: false
+  ingressMaster: false # for incremental deployment master resource is created offline
+  prometheus: true
+  serviceaccounts: false
+
+# Enable prometheus
+prometheus:
+  enabled: true
+  alertRules:
+    jdbcPool: true
+    kafkaConsumer: true
+    jvmHeap: true
+    jvmThreads: true
+    k8sWorkerNode: true
+    pod: true
+  alertManagerConfigOverrides:
+    snowReceiver:
+      enabled: false
+      url: "http://neo-snow-adapter.icargo-system/snow-adapter/api/alertmanager/receive"
+
+initDependencies:
+  enabled: true
+  image: "icargo-neo-init-controller:1.0.5"
+  dependencies:
+    #Deployment Name: Dependant Deployment Name
+    neo-admin-business: "ebl-nbridge-base-rt,nbridge-base-security-rt"
+    auth-service-business: "neo-admin-business"
+    neo-msgbroker-eai-base-rt: "neo-admin-business"
+    neo-msgbroker-rt: "neo-admin-business"
+    neo-booking-business: "neo-admin-business, neo-businessrules-business"
+    icargo-neo-customs-business: "neo-admin-business"
+
+#-------------- Values which are required for icargo-helm-monitoring charts -------------------#
+elasticSearchUrl:
+  - ip: "10.246.12.112"
+    httpPort: 9020
+    transportPort: 9030
+crashCollector:
+  remoteS3Directory: "/icargo-crash-dumps_qa"

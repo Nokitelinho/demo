@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-44968_MSM28410.yml
+  - changeSet:
+      id: 28410
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: ccaawb
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccaawb ADD COLUMN distaxdtl JSON;
+
+          COMMENT ON COLUMN ccaawb.distaxdtl IS 'Details as a JSON of all taxes that compose the Total tax';

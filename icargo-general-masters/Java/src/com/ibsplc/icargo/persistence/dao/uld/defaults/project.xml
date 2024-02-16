@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <extend>../../../../../../../../project.xml</extend>
+    <pomVersion>3</pomVersion>
+    <groupId>icargo-uld</groupId>
+    <id>persistence-uld-defaults</id>
+    <artifactId>persistence-uld-defaults</artifactId>
+    <name>uld defaults persistence</name>
+    <currentVersion>${uld.version}</currentVersion>
+    <shortDescription>persistence uld defaults</shortDescription>
+    
+    <dependencies>
+    
+		<dependency>
+				<groupId>icargo-uld</groupId>
+				<artifactId>uld-defaults-vo</artifactId>
+				<version>${uld.defaults.version}</version>
+		</dependency>
+		<dependency>
+				<groupId>icargo-uld</groupId>
+				<artifactId>uld-defaults-stock-vo</artifactId>
+				<version>${uld.defaults.version}</version>
+		</dependency>		
+		<dependency>
+				<groupId>icargo-uld</groupId>
+				<artifactId>uld-defaults-misc-vo</artifactId>
+				<version>${uld.defaults.version}</version>
+		</dependency>		
+		<dependency>
+				<groupId>icargo-uld</groupId>
+				<artifactId>uld-defaults-transaction-vo</artifactId>
+				<version>${uld.defaults.version}</version>
+		</dependency>	
+		
+    	<dependency>
+			<groupId>icargo-uld</groupId>
+			<artifactId>uld-defaults-message-vo</artifactId>
+			<version>${uld.defaults.version}</version>
+		</dependency>
+		
+	<!-- Message Dependency -->
+		<dependency>
+			<groupId>icargo-msgbroker</groupId>
+			<artifactId>msgbroker-message-vo</artifactId>
+			<version>${msgbroker.version}</version>
+		</dependency>
+		
+<!-- Flight dependency -->
+
+		<dependency>
+			<groupId>icargo-flight</groupId>
+			<artifactId>flight-operation-vo</artifactId>
+			<version>${uld.snapshot.version}</version>
+		</dependency>	
+		
+		
+		
+		
+		
+    </dependencies>
+    
+    <build>
+        <sourceDirectory>.</sourceDirectory>
+		<resources>
+			<resource>
+				<targetPath>com/ibsplc/icargo/persistence/dao/uld/defaults</targetPath>
+				<directory>.</directory>
+				<includes>
+					 <include>*query.xml</include>
+				</includes>
+			</resource>
+    	</resources>
+    </build>
+
+</project>
+

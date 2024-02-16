@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-4605_MSM28447.yml
+  - changeSet:
+      id: 28447
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: ccaawbuld
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE ccaawbuld (
+          uldsernum BIGINT ,
+          ccaawbdtlsernum BIGINT ,
+          cmpcod varchar(6) NOT NULL,
+          uldtyp varchar(12) ,
+          numuld INTEGER ,
+          uldcon varchar(5) ,
+          uldwgt numeric(16,4) ,
+          disuldwgt numeric(16,4) ,
+          diswgtunt varchar(6) NOT NULL,
+          uldvol numeric(16,4) ,
+          disuldvol numeric(16,4) ,
+          disvolunt varchar(6) NOT NULL,
+          lstupdtim timestamp NOT NULL,
+          lstupdusr varchar(50) NOT NULL,
+          tagidx numeric(1)  DEFAULT 0 NOT NULL,
+          CONSTRAINT "ccaawbuld_pkey" PRIMARY KEY (uldsernum,ccaawbdtlsernum)
+          );
+          COMMENT ON TABLE ccaawbuld IS 'Table To Store ULD Details. Child Table of CCAAWBDTL';
+
+          COMMENT ON COLUMN ccaawbuld.uldsernum IS 'Uld Serial Number';
+          COMMENT ON COLUMN ccaawbuld.ccaawbdtlsernum IS 'AWB detail serial number';
+          COMMENT ON COLUMN ccaawbuld.cmpcod IS 'The code that uniquely identifies the company for which the application is hosted';
+          COMMENT ON COLUMN ccaawbuld.uldtyp IS 'ULD type';
+          COMMENT ON COLUMN ccaawbuld.numuld IS 'Number of ulds';
+          COMMENT ON COLUMN ccaawbuld.uldcon IS 'ULD Countour';
+          COMMENT ON COLUMN ccaawbuld.uldwgt IS 'Uld Weight';
+          COMMENT ON COLUMN ccaawbuld.disuldwgt IS 'Uld Weigt in display unit';
+          COMMENT ON COLUMN ccaawbuld.diswgtunt IS 'Display weight unit';
+          COMMENT ON COLUMN ccaawbuld.uldvol IS 'Uld Volume';
+          COMMENT ON COLUMN ccaawbuld.disuldvol IS 'Uld Volume in display unit';
+          COMMENT ON COLUMN ccaawbuld.disvolunt IS 'Display volume unit';
+          COMMENT ON COLUMN ccaawbuld.lstupdtim IS 'The date and time at which record was last updated';
+          COMMENT ON COLUMN ccaawbuld.lstupdusr IS 'Last Update User.The application user code who performed the operation on the record';
+          COMMENT ON COLUMN ccaawbuld.tagidx IS 'This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment';

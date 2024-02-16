@@ -1,0 +1,89 @@
+import groovy.json.JsonSlurper
+def Stage_Name="Init"
+def ENV
+def releaseVersion
+def bom_beta
+def tenantId = "base"
+def applicationId ="icargo-neo"
+def currentVersion
+def jiraIds
+//env.EMAIL_SUBSCRIBERS="sinoob.saithumuhammed@ibsplc.com, Sander.Joseph@ibsplc.com, Tibin.Kuriackose@ibsplc.com, Vinu.Venu@ibsplc.com, iCargoNeoDesign@ibsplc.com, iCargoNeoSMs@ibsplc.com, iCargoNeoQA@ibsplc.com"
+
+env.EMAIL_SUBSCRIBERS="Sander.Joseph@ibsplc.com"
+
+
+pipeline {
+    agent any
+
+	options {
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '1'))
+    }
+	
+    stages {
+		stage("JIRA Status Update") {			
+			steps {
+				echo "JIRA Status Update"
+				script {
+              		env.getJiraListURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds/base/icargo-neo/activity/list?currentVersion="+env.currentVersion+"&newVersion="+env.releaseVersion
+                    echo "getJiraListURL  -> is ${env.getJiraListURL}"
+                    jiraIds = ["curl","-o","${WORKSPACE}/jiraIds.txt" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/json", "${env.getJiraListURL}"].execute().text
+					def map = readJSON file: 'jiraIds.txt'
+					def valuesJIRA
+                    def arrayVlaue
+						map.each { key, value ->
+						  valuesJIRA=value
+						}
+					valuesJIRA.each { key1, value1 ->
+					    arrayVlaue=value1
+						String actual = arrayVlaue.replaceAll('\\[', "")
+						actual = actual.replaceAll('\\]', "")
+						String[] str;
+						str = actual.split(',');
+
+						for( String values : str ){
+                            
+							values =values.replaceAll("\\s","")
+							def jira="https://jira.ibsplc.com/jira/rest/api/2/issue/"+values
+							env.jiraforsh=jira
+							response = sh(script: 'curl -XGET -s -o /dev/null -w %{http_code} -H "Authorization:Basic YS00MjY2Omlic0AxMjM0NTY3OA=="  $jiraforsh', returnStdout: true)
+							echo "response    "+response
+						
+							if (response == '200') {
+						
+								jiraReponse = ["curl", "-X", "GET", "-H", "Content-Type: application/json", "-H" ,"Authorization: Basic YS00MjY2Omlic0AxMjM0NTY3OA==","${jira}"].execute().text
+								def jsonSlurper = new JsonSlurper()
+								Object lst = jsonSlurper.parseText(jiraReponse)
+								def fields =lst.fields
+								def issuetype =fields.issuetype
+								def status =fields.status
+								def issuetypename =issuetype.name
+								def statusname =status.name
+								def resolutionStatus =  (fields.resolution == null) ? "null" : fields.resolution.name
+								echo "Value ->     ${issuetypename} ->    ${issuetypename} ->    ${statusname}  -> ${resolutionStatus}"
+								if(issuetypename.equalsIgnoreCase('Bug') && statusname.equalsIgnoreCase('RESOLVED') && resolutionStatus.equalsIgnoreCase('Fixed') ){
+									echo "Updated to this values ->   ${issuetypename} ->    ${statusname}"
+									env.TransitionId="111"
+									env.comment="Ready for Release"
+									env.dataForPost = '{"update": {"comment": [{ "add": {"body": "'+env.comment+'" }}]},"transition": {"id": "'+env.TransitionId+'"}}'
+									bitbucketURL="https://jira.ibsplc.com/jira/rest/api/2/issue/"+values+"/transitions?expand=transitions.fields"
+									echo "bitbucketURL  ${bitbucketURL}"
+								
+									bitbucketresponse = ["curl", "-X", "POST", "-H", "Content-Type: application/json", "-H" ,"Authorization: Basic YS00MjY2Omlic0AxMjM0NTY3OA==", "-d", "${dataForPost}" ,"${bitbucketURL}"].execute().text
+							    
+								}
+							
+							}
+						}
+
+					}
+                     
+				}
+			}
+		}
+	
+		
+	}
+
+
+}
+

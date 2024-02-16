@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-40939_MSM28105.yml
+  - changeSet:
+      id: 28022
+      author: 201884
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: ccamst
+        - not:
+            columnExists:
+               tableName: ccamst
+               columnName: attfilnam
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: ALTER TABLE ccamst ADD COLUMN attfilnam JSONB;
+
+          COMMENT ON COLUMN ccamst.attfilnam IS 'File path of all CCA attachments will be saved in json format';

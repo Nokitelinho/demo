@@ -1,0 +1,493 @@
+<?xml version="1.0"?>
+<QRY:Definitions
+	xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries"
+	module="customermanagement.defaults">
+
+	<!-- <QRY:Definition>
+		<QRY:Id>1</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.findAllLoyaltyProgrammes"
+			Type="NATIVE">
+			<![CDATA[
+				SELECT cmpcod,ltyprgcod,ltyprgdes,frmdat,toodat
+				FROM CUSLTYPRGMST
+				WHERE cmpcod = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition> -->
+
+	<QRY:Definition>
+		<QRY:Id>2</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.listLoyaltyProgramme"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT prgmst.cmpcod AS CMPCOD,prgmst.ltyprgcod AS LTYPRGCOD,
+						   prgmst.actsta AS ACTSTA,prgmst.entpts AS ENTPTS,
+						   prgmst.expdur AS EXPDUR,prgmst.expper AS EXPPER,
+						   prgmst.atr AS ATR,prgmst.unt AS UNT,prgmst.amt AS AMT,
+						   prgmst.pts AS PTS,prgmst.frmdat AS FRMDAT,prgmst.toodat AS TOODAT,
+						   prgmst.ltyprgdes AS LTYPRGDES,prgmst.lstupdusr AS LSTUPDUSR,
+						   prgmst.lstupdtim AS LSTUPDTIM,parmst.ltyprgpar AS LTYPRGPAR,
+						   parmst.SEQNUM AS SEQNUM,parmst.PARVAL AS PARVAL
+					FROM CUSLTYPRGMST prgmst LEFT OUTER JOIN CUSLTYPARMST parmst ON
+						  prgmst.CMPCOD =  parmst.CMPCOD AND
+						  prgmst.LTYPRGCOD = parmst.LTYPRGCOD
+	 				WHERE  prgmst.cmpcod = ?
+
+				]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>3</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.listLoyaltyAttributeDetails"
+			Type="NATIVE">
+			<![CDATA[
+				SELECT atr,unt,untdes
+				FROM CUSLTYATRMST
+				WHERE cmpcod = ? ORDER BY atr
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+<!-- Query not being used. Commented as part of DB review activity
+	<QRY:Definition>
+		<QRY:Id>4</QRY:Id>
+		<QRY:Source Name="customermanagement.defaults.listCustomerGroup"
+			Type="NATIVE">
+			<![CDATA[
+				SELECT CMPCOD,GRPCOD,GRPNAM,GRPRMK,LSTUPDUSR
+				FROM   CUSGRPMST
+				WHERE  CMPCOD=?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+		<QRY:Id>5</QRY:Id>
+		<QRY:Source Name="customermanagement.defaults.customerGroupLOV"
+			Type="NATIVE">
+			<![CDATA[
+				SELECT CMPCOD,GRPCOD,GRPNAM,GRPRMK,LSTUPDUSR
+				FROM   CUSGRPMST
+				WHERE  CMPCOD=?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>6</QRY:Id>
+		<QRY:Source Name="customermanagement.defaults.listTempCustomer"
+			Type="NATIVE">
+			<![CDATA[
+				
+				SELECT CMPCOD,CUSCOD,ACTSTA,ADDRES,CUSNAM,
+				       EMLADR,LSTUPDUSR,PHNNUM,RMK,STNCOD,CRTDAT
+				FROM CUSTMPMST
+				WHERE  CMPCOD =?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+		<QRY:Id>6</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.listTempCustomerDetails"
+			Type="NATIVE">
+			<![CDATA[
+				
+				SELECT CMPCOD,CUSCOD,ACTSTA,ADDRES,CUSNAM,
+				       EMLADR,LSTUPDUSR,PHNNUM,RMK,STNCOD,CRTDAT
+				FROM CUSTMPMST
+				WHERE  CMPCOD =?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	
+	 -->
+
+	<QRY:Definition>
+		<QRY:Id>7</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.listGroupLoyaltyPgm"
+			Type="NATIVE">
+			<![CDATA[
+				
+				 
+				SELECT CUSGRPLTYPRG.CMPCOD,CUSGRPLTYPRG.GRPCOD,CUSGRPLTYPRG.LTYPRGCOD,CUSGRPLTYPRG.SEQNUM,
+			       '' AS PTSARD,CUSGRPLTYPRG.FRMDAT,CUSGRPLTYPRG.TOODAT,CUSGRPLTYPRG.LSTUPDUSR,CUSGRPLTYPRG.LSTUPDTIM,
+				   CUSLTYPRGMST.FRMDAT AS LTYFRMDAT,CUSLTYPRGMST.TOODAT AS LTYTOODAT
+ 				FROM CUSGRPLTYPRG,CUSLTYPRGMST
+				
+				WHERE  CUSGRPLTYPRG.CMPCOD =CUSLTYPRGMST.CMPCOD
+				AND    CUSGRPLTYPRG.LTYPRGCOD = CUSLTYPRGMST.LTYPRGCOD
+				AND    CUSGRPLTYPRG.CMPCOD = ?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>8</QRY:Id>
+		<QRY:Source Name="customermanagement.defaults.validateParameter"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT UNIQUE prgmst.ltyprgcod AS LTYPRGCOD,
+	 					   frmdat AS FRMDAT,prgmst.toodat AS TOODAT
+					FROM CUSLTYPRGMST prgmst LEFT OUTER JOIN CUSLTYPARMST parmst ON
+						 prgmst.CMPCOD =  parmst.CMPCOD AND
+						 prgmst.LTYPRGCOD = parmst.LTYPRGCOD
+					WHERE  prgmst.cmpcod = ?
+				]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>9</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.checkCustomerAttached"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT cuscod AS code
+					  FROM cusltyprg
+					 WHERE cmpcod = ?
+					   AND ltyprgcod = ?
+					   AND ( ? > frmdat  OR ? < toodat
+							 OR  ( ?  > frmdat AND ? < toodat) )
+					UNION ALL
+					SELECT grpcod AS code
+					  FROM cusgrpltyprg
+					 WHERE cmpcod = ?
+					   AND ltyprgcod = ? 
+					   AND ( ? > frmdat  OR ? < toodat
+							 OR  ( ?  > frmdat AND ? < toodat) )
+
+				]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>10</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.checkLoyaltyProgrammeAttached"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT cuscod code
+					FROM CUSLTYPRG
+					WHERE cmpcod = ?  AND ltyprgcod = ?  
+					UNION ALL
+					SELECT grpcod code 
+					FROM CUSGRPLTYPRG
+					WHERE cmpcod = ? AND ltyprgcod = ? 
+				]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>11</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.listAllLoyaltyProgrammes"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT cmpcod,ltyprgcod,actsta,entpts,
+						   expdur,expper,atr,unt,amt,pts ,
+						   frmdat ,toodat,ltyprgdes ,
+						   lstupdusr ,lstupdtim
+					FROM CUSLTYPRGMST
+					WHERE cmpcod = ?
+			]]>
+			</QRY:Source>
+	</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>12</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.findCustomerGorup"
+			Type="NATIVE">
+			<![CDATA[
+				SELECT CUSGRP 
+				FROM SHRCUSMST 
+				WHERE 	cmpcod = ?   AND  cuscod = ?
+			]]>
+			</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>13</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.findAttachedLoyaltyProgrammes"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT cmpcod,ltyprgcod
+					FROM CUSLTYPRG
+					WHERE cmpcod = ? AND cuscod = ? AND
+						  ?  BETWEEN frmdat AND toodat
+			]]>
+			</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>14</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.checkForCustomer"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT DISTINCT CUSGRP FROM SHRCUSMST 
+				WHERE SHRCUSMST.CMPCOD = ?
+				AND SHRCUSMST.CUSGRP = ? 
+			]]>
+			</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>14</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.listLoyaltyPgmToCustomers"
+			Type="NATIVE">
+			<![CDATA[
+				SELECT CUSLTYPRG.CMPCOD AS CMPCOD,'N' AS GROUPFLAG,CUSLTYPRG.FRMDAT AS FRMDAT,
+				       CUSLTYPRG.TOODAT AS TOODAT,CUSLTYPRG.LTYPRGCOD AS LTYPRGCOD,
+					   CUSLTYPRGMST.FRMDAT AS LTYFRMDAT,CUSLTYPRGMST.TOODAT AS LTYTOODAT,
+					   CUSLTYPRG.SEQNUM AS SEQNUM,CUSLTYPRG.CUSCOD AS CUSCOD,CUSLTYPRG.LSTUPDTIM AS LSTUPDTIM 
+				FROM CUSLTYPRG ,CUSLTYPRGMST
+				WHERE CUSLTYPRG.CMPCOD = CUSLTYPRGMST.CMPCOD
+				AND    CUSLTYPRG.LTYPRGCOD = CUSLTYPRGMST.LTYPRGCOD
+				AND    CUSLTYPRG.CMPCOD =?
+				AND   CUSLTYPRG.CUSCOD =?
+				 
+				
+				
+
+
+					
+			]]>
+			</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>15</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.listLoyaltyPointsForAwb"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT  cmpcod,cuscod,ltyprgcod,mstawbnum,docowridr,awbnum,ltyatr, ptsard,lstupdtim
+					FROM CUSAWBLTYPRG
+					WHERE   cmpcod = ?  
+			]]>
+			</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>16</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.findParameterDetails"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT prm,defunt,chknumfld,prmdes
+					FROM CUSLTYPRM
+					WHERE cmpcod = ?
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>17</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.listPointAccumulated"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT DISTINCT LTYPRGCOD FROM
+					CUSAWBLTYPRG
+					WHERE CMPCOD=?
+					AND CUSCOD= ?
+					
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>18</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.showPoints"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT LTYPRGCOD,LTYATR,LTYUNT,PTSARD
+					FROM CUSAWBLTYPRG
+					WHERE CMPCOD=?
+					AND CUSCOD= ?
+					
+					
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>19</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.findParameterUnit"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT DEFUNTCOD
+					FROM CUSLTYPRM
+					WHERE CMPCOD = ? AND PRM = ?
+
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+
+
+<QRY:Definition>
+		<QRY:Id>19</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.findEntryPoints"
+			Type="NATIVE">
+			<![CDATA[
+					SELECT SUM(CUSLTYPRGMST.ENTPTS) AS POINTS
+
+					FROM CUSLTYPRGMST
+					
+					WHERE  CUSLTYPRGMST.CMPCOD =?
+
+  
+
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>20</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.validateCustomerForPointsRedemption"
+			Type="NATIVE">
+			<![CDATA[
+		SELECT UNIQUE ltymst.LTYPRGCOD ltyprgcod,ltymst.EXPDUR  expdur,
+				ltymst.EXPPER expper,ltymst.TOODAT toodat
+		FROM SHRCUSMST cus,CUSLTYPRG ltycus,CUSLTYPRGMST ltymst
+		WHERE cus.CMPCOD =  ltycus.CMPCOD AND
+			  cus.CUSCOD = ltycus.CUSCOD AND
+			  ltycus.CMPCOD = ltymst.CMPCOD AND
+			  ltycus.LTYPRGCOD = ltymst.LTYPRGCOD AND
+			  cus.CMPCOD = ? AND
+			  cus.CUSCOD = ? AND
+			  ltymst.ACTSTA = 'A'
+		UNION ALL
+		SELECT UNIQUE ltymst.LTYPRGCOD ltyprgcod,ltymst.EXPDUR  expdur,
+				ltymst.EXPPER expper,ltymst.TOODAT toodat
+		FROM SHRCUSMST cus,CUSGRPLTYPRG ltygrp,CUSLTYPRGMST ltymst
+		WHERE cus.CMPCOD =  ltygrp.CMPCOD AND
+			  cus.CUSGRP = ltygrp.GRPCOD AND
+			  ltygrp.CMPCOD = ltymst.CMPCOD AND
+			  ltygrp.LTYPRGCOD = ltymst.LTYPRGCOD AND
+			  cus.CMPCOD = ? AND
+			  cus.CUSCOD = ? AND
+			  ltymst.ACTSTA = 'A'
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+
+
+<QRY:Definition>
+		<QRY:Id>21</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.checkForCustomerLoyalty"
+			Type="NATIVE">
+			<![CDATA[
+			 SELECT DISTINCT 1 AS RESULT
+
+			FROM SHRCUSMST,CUSLTYPRG,SHRCUSGRP
+			
+			WHERE 
+			
+			      SHRCUSMST.CMPCOD = SHRCUSGRP.CMPCOD
+			AND   SHRCUSMST.CUSGRP = SHRCUSGRP.GRPCOD
+			
+			AND   SHRCUSMST.CMPCOD = CUSLTYPRG.CMPCOD
+			AND   SHRCUSMST.CUSCOD = CUSLTYPRG.CUSCOD
+				
+			 
+			AND   SHRCUSMST.CMPCOD = ?
+			AND   SHRCUSGRP.GRPCOD = ?
+			AND   CUSLTYPRG.LTYPRGCOD = ?
+			
+			AND  ( (CUSLTYPRG.FRMDAT BETWEEN ? AND ?)
+			       OR (CUSLTYPRG.TOODAT BETWEEN ? AND ?)
+			       OR ( CUSLTYPRG.FRMDAT < ? AND CUSLTYPRG.TOODAT > ? ))   
+
+ 		
+						]]>
+		</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>22</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.runningLoyaltyProgrammeLOV"
+			Type="NATIVE">
+			<![CDATA[
+		SELECT cmpcod,ltyprgcod,ltyprgdes,frmdat,toodat
+		FROM CUSLTYPRGMST
+		WHERE cmpcod = ? AND (  ( ?  BETWEEN frmdat AND toodat) OR ( ? < frmdat ) )
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>22</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.checkforservices"
+			Type="NATIVE">
+			<![CDATA[
+		        SELECT 1 AS RESULT
+				FROM SHRCUSCNTPNT
+				WHERE CMPCOD = ?
+				AND SRV = ?
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>22</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.listcustomerservices"
+			Type="NATIVE">
+			<![CDATA[
+		       SELECT CMPCOD,SRVCOD,PNT,SRVDES,KEYCNTFLG,LSTUPDUSR, LSTUPDTIM
+
+				FROM CUSSRVMST
+				
+				WHERE CMPCOD =?
+				AND SRVCOD =?
+		       
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+
+<QRY:Definition>
+		<QRY:Id>22</QRY:Id>
+		<QRY:Source
+			Name="customermanagement.defaults.customerserviceslov"
+			Type="NATIVE">
+			<![CDATA[
+		       SELECT CMPCOD,SRVCOD,PNT,SRVDES,KEYCNTFLG,LSTUPDUSR,LSTUPDTIM
+
+				FROM CUSSRVMST
+				
+				WHERE CMPCOD =?
+				
+		       
+			]]>
+		</QRY:Source>
+</QRY:Definition>
+
+
+
+</QRY:Definitions>

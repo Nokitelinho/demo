@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-15043_MSM28674.yml
+  - changeSet:
+      id: 28674_1
+      author: A-201345
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: ccawrkflwdtl
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE ccawrkflwdtl (
+              ccawrkflwdtlsernum integer,
+              ccasernum integer,
+              cmpcod varchar(6) not null,
+
+              usrid varchar(50),
+              usrnam varchar(30),
+              ccasta varchar(1),
+              reqdat timestamp,
+
+              lstupdtim timestamp not null,
+              lstupdusr varchar(50) not null,
+
+              CONSTRAINT ccawrkflwdtl_pkey PRIMARY KEY (ccawrkflwdtlsernum, ccasernum)
+            );
+
+            comment on table ccawrkflwdtl is 'CCA Workflow details';
+
+            comment on column ccawrkflwdtl.ccasernum is 'CCA Serial Number';
+            comment on column ccawrkflwdtl.cmpcod is 'The code that uniquely identifies the company for which the application is hosted';
+            comment on column ccawrkflwdtl.usrid is 'The application user code who performed the operation';
+            comment on column ccawrkflwdtl.usrnam is 'First and Last name of user invoked the CCA status change';
+            comment on column ccawrkflwdtl.ccasta is 'CCA status';
+            comment on column ccawrkflwdtl.reqdat is 'The date of status applying';
+            comment on column ccawrkflwdtl.lstupdtim is 'The date and time at which record was last updated';
+            comment on column ccawrkflwdtl.lstupdusr is 'Last update user. The application user code who performed the operation on the record';

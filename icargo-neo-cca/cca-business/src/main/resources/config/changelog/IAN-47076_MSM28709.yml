@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-47076_MSM38516.yml
+  - changeSet:
+      id: 38516
+      author: A-201345
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: ccaawbrtg
+        - columnExists:
+            tableName: ccaawbrtg
+            columnName: fstcar
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccaawbrtg DROP COLUMN fstcar;
+          ALTER TABLE ccaawbrtg ADD COLUMN fstcar VARCHAR(10);
+
+          COMMENT ON COLUMN ccaawbrtg.fstcar IS 'First Carrier code to identify the starting sector';

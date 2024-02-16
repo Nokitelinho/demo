@@ -1,0 +1,84 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-54540_MSM002.yml
+  - changeSet:
+      id: STK_003
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: STKHLDSTK_SEQ
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE STKHLDSTK_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;
+
+  - changeSet:
+      id: STK_004
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: STKHLDSTK
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE STKHLDSTK(
+          STKHLDSTKSERNUM BIGINT,
+          STKHLDMSTSERNUM BIGINT NOT NULL,
+          CMPCOD VARCHAR(6) NOT NULL,
+          ARLIDR NUMERIC(5,0) NOT NULL,
+          STKHLDCOD VARCHAR(15) NOT NULL,
+          DOCTYP VARCHAR(10) NOT NULL,
+          DOCSUBTYP VARCHAR(15) NOT NULL,
+          ORDLVL NUMERIC(10,0) DEFAULT 0,
+          ORDQTY NUMERIC(10,0) DEFAULT 0,
+          STKAPRCMPCOD VARCHAR(6),
+          STKAPRCOD VARCHAR(12),
+          ORDALT VARCHAR(1),
+          AUTREQFLG VARCHAR(1),
+          STKRMK VARCHAR(100),
+          MNLSTKQTYAVL NUMERIC DEFAULT 0,
+          MNLSTKQTYALC NUMERIC DEFAULT 0,
+          PHYSTKQTYAVL NUMERIC DEFAULT 0,
+          PHYSTKQTYALC NUMERIC DEFAULT 0,
+          LSTUPDUSR VARCHAR(50) NOT NULL,
+          LSTUPDTIM TIMESTAMP NOT NULL,
+          ATOPRCQTY NUMERIC(10,0) DEFAULT 0 NOT NULL,
+          TAGIDX NUMERIC(1,0) DEFAULT 0 NOT NULL,
+          AUTGENFLG VARCHAR(1) DEFAULT 'N' NOT NULL,
+          CONSTRAINT "stkhldstk_pk" PRIMARY KEY (STKHLDSTKSERNUM),
+          CONSTRAINT "stkhldstk_cmpcod_stkhldcod_arlidr_doctyp_docsubtyp_unique" UNIQUE (CMPCOD, STKHLDCOD, ARLIDR, DOCTYP, DOCSUBTYP));
+
+          COMMENT ON COLUMN STKHLDSTK.STKHLDSTKSERNUM is 'Stock serial number';
+          COMMENT ON COLUMN STKHLDSTK.STKHLDMSTSERNUM is 'Stockholder serial number';
+          COMMENT ON COLUMN STKHLDSTK.CMPCOD IS 'Company Code.The company code that uniquely identifies the company for which the application is hosted';
+          COMMENT ON COLUMN STKHLDSTK.ARLIDR IS 'Airline Identifier';
+          COMMENT ON COLUMN STKHLDSTK.STKHLDCOD IS 'Stockholder Code';
+          COMMENT ON COLUMN STKHLDSTK.DOCTYP IS 'Document Type';
+          COMMENT ON COLUMN STKHLDSTK.DOCSUBTYP IS 'Document Subtype';
+          COMMENT ON COLUMN STKHLDSTK.ORDLVL IS 'Reorder level';
+          COMMENT ON COLUMN STKHLDSTK.ORDQTY IS 'Reorder quantity';
+          COMMENT ON COLUMN STKHLDSTK.STKAPRCMPCOD IS 'Approver company code';
+          COMMENT ON COLUMN STKHLDSTK.STKAPRCOD IS 'Approver code';
+          COMMENT ON COLUMN STKHLDSTK.ORDALT IS 'Flag for reorder alert';
+          COMMENT ON COLUMN STKHLDSTK.AUTREQFLG IS 'Flag for auto request';
+          COMMENT ON COLUMN STKHLDSTK.LSTUPDUSR IS 'Last Update User.The application user code who performed the operation on the record';
+          COMMENT ON COLUMN STKHLDSTK.LSTUPDTIM IS 'The date and time at which record was last updated';
+          COMMENT ON COLUMN STKHLDSTK.STKRMK IS 'Remarks';
+          COMMENT ON COLUMN STKHLDSTK.MNLSTKQTYAVL IS 'Manual stock quantity available';
+          COMMENT ON COLUMN STKHLDSTK.MNLSTKQTYALC IS 'Manual Stock quantity allocated';
+          COMMENT ON COLUMN STKHLDSTK.PHYSTKQTYAVL IS 'Physical stock quantity available';
+          COMMENT ON COLUMN STKHLDSTK.PHYSTKQTYALC IS 'Physical stock quantity allocated';
+          COMMENT ON COLUMN STKHLDSTK.ATOPRCQTY IS 'The quantity of stock that can be auto-processed. This is used for automatically allocating the stock as and when the request is made.';
+          COMMENT ON COLUMN STKHLDSTK.TAGIDX IS 'This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment';
+          COMMENT ON COLUMN STKHLDSTK.AUTGENFLG IS 'Flag to identify DOCSUBTYP to Auto Populate. Possbile values are Y/N';
+          COMMENT ON TABLE STKHLDSTK IS 'Stock on hand for the Holder';

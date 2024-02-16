@@ -1,0 +1,34 @@
+<cache-mappings xmlns="http://www.ibsplc.com/xibase/cache/mappings" product="test" subproduct="test">
+	<cache name="framework.security.session.usersession" class="com.ibsplc.icargo.framework.security.session.cache.UserSessionCache">
+		<property name="maxEntriesOnHeap" value="2000"/>		
+		<property name="replicatePuts" value="false"/>
+		<property name="replicateRemovals" value="true"/>
+	</cache>	
+	<cache name="framework.security.privilege" class="com.ibsplc.icargo.framework.security.privilege.cache.PrivilegeCache"/>
+	<cache name="framework.util.currency" class="com.ibsplc.icargo.framework.util.currency.cache.CurrencyCache"/>
+	<cache name="framework.util.unit" class="com.ibsplc.icargo.framework.util.unit.cache.UnitCache"/>
+	<cache name="framework.util.uld" class="com.ibsplc.icargo.framework.util.uld.cache.AirlineCache"/>
+	<cache name="framework.security.transactionprivilege" class="com.ibsplc.icargo.framework.security.privilege.cache.TransactionPrivilegeCache"/>
+	<cache name="shared.airport" class="com.ibsplc.icargo.business.shared.area.airport.cache.AirportCache"/>
+	<cache name="shared.station" class="com.ibsplc.icargo.business.shared.area.station.cache.StationCache"/>
+	<cache name="shared.airline" class="com.ibsplc.icargo.business.shared.airline.cache.AirlineCache"/>
+	<cache name="shared.agent" class="com.ibsplc.icargo.business.shared.agent.cache.AgentCache"/>
+	<cache name="shared.generalmastergrouping" class="com.ibsplc.icargo.business.shared.generalmastergrouping.cache.GeneralMasterGroupCache"/>
+	<cache name="shared.GeneralParameterConfigurationCache" class="com.ibsplc.icargo.business.shared.defaults.generalparameters.cache.GeneralParameterConfigurationCache"/>
+	<cache name="shared.systemparameter" class="com.ibsplc.icargo.business.shared.defaults.systemparameter.cache.SystemParameterCache"/>
+	<cache name="shared.onetime" class="com.ibsplc.icargo.business.shared.defaults.onetime.cache.OneTimeCache"/>
+	<cache name="framework.util.timezonemapping" class="com.ibsplc.icargo.framework.util.time.cache.TimeZoneMappingCache"/>
+	<cache name="framework.grouptag" class="com.ibsplc.icargo.framework.client.orchestration.grouptag.cache.GroupTagConfigCache"/>
+	<cache name="framework.grouptag.handler" class="com.ibsplc.icargo.framework.client.orchestration.grouptag.cache.GroupTagHandlerCache"/>
+    <cache name="refresh.defaults.messagecache" class="com.ibsplc.icargo.framework.refresh.cache.MessageCache"/>
+    <cache name="framework.util.daterange" class="com.ibsplc.icargo.framework.util.daterange.cache.DateRangeCache"/>
+	<cache name="xibase.persistence.page" class="com.ibsplc.xibase.server.framework.persistence.query.PageCache" >
+		<property name="maxEntriesOnHeap" value="100"/>
+		<property name="memoryStoreEvictionPolicy" value="FIFO"/>
+		<property name="replicatePuts" value="false"/>
+		<property name="replicateRemovals" value="false"/>
+		<property name="timeToLiveSeconds" value="120"/>
+	</cache>
+	<cache name="framework.security.dataprivilege.script" class="com.ibsplc.icargo.framework.security.privilege.cache.DataPrivilegeScriptCache"/>
+	<cache name="framework.util.miscreportcache" class="com.ibsplc.icargo.framework.util.miscreport.cache.MiscReportCache"/>
+</cache-mappings>

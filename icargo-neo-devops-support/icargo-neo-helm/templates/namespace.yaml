@@ -1,0 +1,18 @@
+{{- if not .Values.disable.ns }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.namespace | quote }}
+  labels:
+    release: {{ $.Release.Name | quote }}
+    tenant: {{ $.Values.tenants | join "-" | lower | quote }}
+    {{- if not .Values.disable.prometheus }}
+    #Labels for prometheus operator namespace selector
+    alertmonitor: enabled
+    podmonitor: enabled
+    probemonitor: enabled
+    rulemonitor: enabled
+    servicemonitor: enabled
+    {{- end }}
+{{- end }}
+

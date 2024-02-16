@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--The file contains mapping information for request URI and to its corresponding handler
+and  screen. There will be entries for each request URI which need to be mapped.
+This file is used to build request mapping objects.-->
+
+<request-mappings>
+
+    <url-mapping url="reco">
+		
+	<submodule-mapping submodule="defaults">
+	     <request-service-name>RECO_DEFAULTS</request-service-name>
+	     <request-action actionName="saveEmbargoDetails" methodName="saveEmbargoDetails" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.EmbargoRulesVO" permissionCheck="false"/>
+	     <request-action actionName="cancelEmbargo" methodName="cancelEmbargo" parameterTypes="java.util.Collection" permissionCheck="false"/>
+	     <request-action actionName="findEmbargoDetails" methodName="findEmbargoDetails" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.EmbargoFilterVO" permissionCheck="false"/>
+	     <request-action actionName="findEmbargos" methodName="findEmbargos" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.EmbargoFilterVO,int" permissionCheck="false"/>
+	     <request-action actionName="checkForEmbargo" methodName="checkForEmbargo" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		 <request-action actionName="alertEmbargoExpiry" methodName="alertEmbargoExpiry" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.EmbargoJobSchedulerVO" permissionCheck="false" />
+		 <request-action actionName="approveEmbargo" methodName="approveEmbargo" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		 <request-action actionName="rejectEmbargo" methodName="rejectEmbargo" parameterTypes="java.util.Collection" permissionCheck="false"/>
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+		<request-action actionName="searchEmbargos" methodName="searchEmbargos" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.EmbargoFilterVO" permissionCheck="false"/>
+		<request-action actionName="findDuplicateEmbargos" methodName="findDuplicateEmbargos" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.EmbargoFilterVO" permissionCheck="false"/>
+		<request-action actionName="findRegulatoryMessages" methodName="findRegulatoryMessages" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.RegulatoryMessageFilterVO" permissionCheck="false"/>
+		<request-action actionName="findAllRegulatoryMessages" methodName="findAllRegulatoryMessages" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.RegulatoryMessageFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveRegulatoryMessages" methodName="saveRegulatoryMessages" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="validateRoleGroup" methodName="validateRoleGroup" parameterTypes="java.util.Collection,java.lang.String" permissionCheck="false" />	
+		<request-action actionName="findRegulatoryComplianceRules" methodName="findRegulatoryComplianceRules" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.EmbargoFilterVO,int" permissionCheck="false"/>		
+		<request-action actionName="validateProduct" methodName="validateProduct" parameterTypes="java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate,com.ibsplc.icargo.framework.util.time.LocalDate" permissionCheck="false"/>
+		<request-action actionName="findExceptionEmbargoDetails" methodName="findExceptionEmbargoDetails" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.ExceptionEmbargoFilterVO" permissionCheck="false"/>
+		<request-action actionName="saveExceptionEmbargoDetails" methodName="saveExceptionEmbargoDetails" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		 <request-action actionName="updateEmbargoView" methodName="updateEmbargoView" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.RECORefreshJobScheduleVO" permissionCheck="false" />
+		 <request-action actionName="checkAnyEmbargoExists" methodName="checkAnyEmbargoExists" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.EmbargoFilterVO" permissionCheck="false"/>
+	     <request-action actionName="findExceptionEmbargos" methodName="findExceptionEmbargos" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="getEmbargoEnquiryDetails" methodName="getEmbargoEnquiryDetails" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.EmbargoFilterVO" permissionCheck="false"/>
+		  <request-action actionName="parameterSelectiveEmbargoSearch" methodName="parameterSelectiveEmbargoSearch" parameterTypes="com.ibsplc.icargo.business.reco.defaults.vo.EmbargoFilterVO" permissionCheck="false"/>
+		  <request-action actionName="validateProductNames" methodName="validateProductNames" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+	</submodule-mapping>
+		
+	
+
+    </url-mapping>
+
+</request-mappings>

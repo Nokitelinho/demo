@@ -1,0 +1,149 @@
+def Stage_Name="Init"
+def ENV
+def releaseVersion
+def bom_beta
+def tenantId = "cvc"
+def applicationId ="cvc"
+def currentVersion
+def jiraIds
+env.EMAIL_SUBSCRIBERS="Vikas.Ramachandran@ibsplc.com, kiran.rajendran@ibsplc.com, Shinju.Shaji@ibsplc.com, Abin.Kuriakose@ibsplc.com, Suman.Behera@ibsplc.com"
+
+
+pipeline {
+    agent any
+
+	options {
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '1'))
+    }
+	
+    stages {			
+		
+		stage("BETA Deploy Phase") {			
+			steps {
+				echo "BETA Deploy Phase"
+				sh '''
+					if [ -e ${WORKSPACE}/bom_beta.yaml ]; then
+							echo "---- >Deleting bom_beta ---  "
+							rm  ${WORKSPACE}/bom_beta.yaml
+					fi
+				'''
+				dir("icargo-neo-cli"){
+					sh"pwd"
+					sh '''
+						export ENABLE_COLOR=false
+						./iconctl.sh app-version cvcqabeta full >${WORKSPACE}/version
+					'''	
+					
+				}
+				script {
+                	env.HELM_TMOUT_DEFAULT="600s"
+					Stage_Name='BETA_Deploy'
+					currentVersion = readFile ("${env.WORKSPACE}/version").trim()
+					echo "Current Version Running is ${currentVersion}"
+					env.POSTURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds?tenantId="+tenantId+"&applicationId="+applicationId
+					echo "POSTURL is ${env.POSTURL}"
+					releaseVersion = ["curl","-X", "POST", "-H", "Content-Type: application/json", "${env.POSTURL}"].execute().text
+                    env.RELVER=releaseVersion
+                    echo "ReleaseVersion is ${releaseVersion}"
+					env.GETURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds/"+releaseVersion+"/bom"
+					bom_beta = ["curl","-o","${WORKSPACE}/bom_beta.yaml" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/yaml", "${env.GETURL}"].execute().text
+                    env.JIRAURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds/base/icargo-neo/activity/list?currentVersion="+currentVersion+"&newVersion="+releaseVersion
+                    echo "JIRAURL  -> is ${env.JIRAURL}"
+                    jiraIds = ["curl","-o","${WORKSPACE}/jiraIds.txt" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/json", "${env.JIRAURL}"].execute().text
+				}
+				dir("icargo-neo-cli"){
+					sh"pwd"
+					sh '''
+						export ENABLE_COLOR=false
+						./iconctl.sh deploy-full cvcqabeta ${WORKSPACE}/bom_beta.yaml
+					'''					
+				}
+			}
+		}
+	
+		
+	}
+
+	
+	post {
+		success{
+			script {
+				recipientProvidersForBETADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForBETADeploy   ->  ${recipientProvidersForBETADeploy}"
+			
+            	echo "Triggering the regression build asynchronously"
+                build job : "neo-beta-regression-job", parameters: [[$class: 'StringParameterValue', name: 'releaseVersion', value: releaseVersion]], propagate: false, wait : false
+				
+				emailext( 
+						attachmentsPattern: "icargo-neo-cli/cvcqabeta.zip,bom_beta.yaml,jiraIds.txt",
+						recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']],
+						mimeType: 'text/html',
+						to : "${env.EMAIL_SUBSCRIBERS}",
+                        subject: "Success: Job '${env.JOB_NAME} [${env.RELVER}]'",
+                        body: """Success: Job '${env.JOB_NAME} [${env.RELVER}]':
+							<br />
+							Check console output at:  ${env.BUILD_URL}/console 
+							<br />
+							Job Name:  ${env.JOB_NAME} 
+                            Release Version: ${env.RELVER}
+							<br />
+							Jenkins Build Number: [${env.BUILD_NUMBER}]"""             
+                    )      
+                    
+                    try {
+                        build job: "Jira Update", parameters: [[$class: 'StringParameterValue', name: 'currentVersion', value: currentVersion ], [$class: 'StringParameterValue', name: 'releaseVersion', value: releaseVersion]],wait: false , propagate: true
+                        sleep(20)
+                    }
+                    catch (Exception e) {
+                        echo "WARNING: ${e.message}"
+                    }	
+			}
+			
+			sh '''
+				if [ -e ${WORKSPACE}/bom_beta.yaml ]; then
+					rm  ${WORKSPACE}/bom_beta.yaml
+				fi
+				
+				if [ -e ${WORKSPACE}/icargo-neo-cli/cvcqabeta.zip ]; then
+					rm  ${WORKSPACE}/icargo-neo-cli/cvcqabeta.zip
+				fi
+				
+				'''
+			
+	}
+	
+        failure {
+            script {
+				recipientProvidersForBETADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForBETADeploy   ->  ${recipientProvidersForBETADeploy}"			
+				emailext(
+						attachmentsPattern: "icargo-neo-cli/cvcqabeta.zip",
+						mimeType: 'text/html',
+						recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+										[$class: 'RequesterRecipientProvider'],
+										[$class: 'DevelopersRecipientProvider']],
+						to : "${env.EMAIL_SUBSCRIBERS}",
+						subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+						body: """
+								<div style="color:red;font-size:20px">
+								FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+								</div>
+								Failure happened in ${Stage_Name}.
+								<br />
+								Check console output at:  ${env.BUILD_URL}/console
+								<br />
+								Job Name:  ${env.JOB_NAME} 
+								<br />
+								Build Number: [${env.BUILD_NUMBER}]"""
+						)				
+            }
+        }
+    }
+
+}

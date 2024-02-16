@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-35824_MSM27197.yml
+  - changeSet:
+       id: 27197
+       author: A-10597
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            sequenceExists:
+              sequenceName: CCAAWBCHGDTL_SEQ
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE SEQUENCE CCAAWBCHGDTL_SEQ START WITH 1 INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;

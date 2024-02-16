@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <pomVersion>3</pomVersion>
+    <extend>../../../../../../../../project.xml</extend>
+    <groupId>icargo-customermanagement</groupId>
+    <id>delegate-customermanagement-defaults</id>
+    <artifactId>delegate-customermanagement-defaults</artifactId>
+    <name>customermanagement defaults delegate</name>    
+    <currentVersion>${customermanagement.defaults.version}</currentVersion>
+    <inceptionYear>2005</inceptionYear>
+    <logo>/images/logo.gif</logo>
+    <shortDescription>CustomerManagement Subsystem Delegate</shortDescription>
+    <dependencies>
+    
+    <!-- CUSTOMER MANAGEMENT DEPENDENCY -->
+    		<dependency>
+			<groupId>icargo-customermanagement</groupId>
+			<artifactId>customermanagement-defaults-loyalty-vo</artifactId>
+			<version>${customermanagement.defaults.version}</version>
+		</dependency>
+	    	<dependency>
+			<groupId>icargo-customermanagement</groupId>
+			<artifactId>customermanagement-defaults-profile-vo</artifactId>
+			<version>${customermanagement.defaults.version}</version>
+		</dependency>
+	<!-- SHARED DEPENDENCY -->			
+		<dependency>
+			<groupId>icargo-shared</groupId>
+			<artifactId>shared-customer-vo</artifactId>
+			<version>${shared.defaults.version}</version>
+		</dependency>
+
+	    
+    </dependencies>
+    <build>
+        <sourceDirectory>.</sourceDirectory>
+    </build>
+</project>
+

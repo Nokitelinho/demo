@@ -1,0 +1,104 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-35824_MSM27200.yml
+  - changeSet:
+       id: 27200
+       author: A-10597
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: ccaawb
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE ccaawb (	
+                ccasernum integer,	
+                rectyp varchar(1),	
+                cmpcod varchar(6) NOT NULL,	
+                curcod varchar(3),	
+                paytyp varchar(2),	
+                volwgt numeric(16,4),	
+                disvolwgt numeric(16,4),	
+                adjwgt numeric(16,4),	
+                disadjwgt numeric(16,4),	
+                chgwgt numeric(16,4),	
+                dischgwgt numeric(16,4),	
+                pcs numeric(6),	
+                wgt numeric(16,4),	
+                diswgt numeric(16,4),	
+                vol numeric(16,4),	
+                disvol numeric(16,4),	
+                orgcod varchar(4),	
+                dstcod varchar(4),	
+                inbcuscod varchar(15),	
+                outcuscod varchar(15),	
+                prdcod varchar(5),	
+                srvcrgcls varchar(1),	
+                iatrat numeric(16,4),	
+                awbwgtchg numeric(16,4),	
+                awbvalchg numeric(16,4),	
+                mktrat numeric(16,4),	
+                awbnetchg numeric(16,4),	
+                awbdueagtccfchg numeric(16,4),	
+                awbdueagtppdchg numeric(16,4),	
+                awbduecarccfchg numeric(16,4),	
+                awbduecarppdchg numeric(16,4),	
+                awbnonawbchg numeric(16,4),	
+                chgcolfee numeric(16,4),	
+                chgcolfeecur varchar(3),	
+                awbdisamt numeric(16,4),	
+                awbcmsamt numeric(16,4),	
+                awbtaxppd numeric(16,4),	
+                awbtaxccf numeric(16,4),	
+                diswgtunt varchar(6) NOT NULL,	
+                disvolunt varchar(6) NOT NULL,	
+                lstupdtim timestamp(3) NOT NULL,	
+                lstupdusr varchar(50) NOT NULL,	
+                CONSTRAINT "CCAAWB_pkey" PRIMARY KEY (ccasernum, rectyp)
+              );
+              
+                comment on table ccaawb is 'CCA Awb table';
+                
+                comment on column ccaawb.ccasernum is 'CCA serial number';
+                comment on column ccaawb.rectyp is 'CCA Record Type Original-O, Revised-R';
+                comment on column ccaawb.cmpcod is 'The code that uniquely identifies the company for which the application is hosted';
+                comment on column ccaawb.curcod is 'Currency Code';
+                comment on column ccaawb.paytyp is 'Payment Type';
+                comment on column ccaawb.volwgt is 'Volumetric weight for the shipment';
+                comment on column ccaawb.disvolwgt is 'Dispaly volumetric weight for the shipment';
+                comment on column ccaawb.adjwgt is 'Adjustable weight for the shipment';
+                comment on column ccaawb.disadjwgt is 'Display Adjusted weight for the shipment';
+                comment on column ccaawb.chgwgt is 'Chargeable weight';
+                comment on column ccaawb.dischgwgt is 'Display chargeable weight';
+                comment on column ccaawb.pcs is 'Pieces for the AWB';
+                comment on column ccaawb.wgt is 'Weight for the awb';
+                comment on column ccaawb.diswgt is 'Display weight for the awb';
+                comment on column ccaawb.vol is 'Volume for the awb';
+                comment on column ccaawb.disvol is 'Display volume for the awb';
+                comment on column ccaawb.orgcod is 'Origin Code of the awb';
+                comment on column ccaawb.dstcod is 'Destination code of the awb';
+                comment on column ccaawb.inbcuscod is 'Inbound customer code';
+                comment on column ccaawb.outcuscod is 'Outbound customer code';
+                comment on column ccaawb.prdcod is 'Product code';
+                comment on column ccaawb.srvcrgcls is 'Service cargo class';
+                comment on column ccaawb.iatrat is 'iata rate';
+                comment on column ccaawb.awbwgtchg is 'iata charge';
+                comment on column ccaawb.awbvalchg is 'valuation charge';
+                comment on column ccaawb.mktrat is 'Market rate';
+                comment on column ccaawb.awbnetchg is 'Market Charge';
+                comment on column ccaawb.awbdueagtccfchg is 'Total Due Agent CCF charge';
+                comment on column ccaawb.awbdueagtppdchg is 'Total Due Agennt PPD charge';
+                comment on column ccaawb.awbduecarccfchg is 'Total Due Carrier ppd charge';
+                comment on column ccaawb.awbduecarppdchg is 'Total due carrier ccf charge';
+                comment on column ccaawb.awbnonawbchg is 'Total nonawbcharge';
+                comment on column ccaawb.chgcolfee is 'Charge collect fee in ccfeecurrency';
+                comment on column ccaawb.chgcolfeecur is 'Charge collect fee currency';
+                comment on column ccaawb.awbdisamt is 'awb discount amount';
+                comment on column ccaawb.awbcmsamt is 'awb commission amountt';
+                comment on column ccaawb.awbtaxppd is 'awb pptax amount';
+                comment on column ccaawb.awbtaxccf is 'awb cc tax amount';
+                comment on column ccaawb.diswgtunt is 'Display weight unit';
+                comment on column ccaawb.disvolunt is 'Display volume unit';
+                comment on column ccaawb.lstupdtim is 'The date and time at which record was last updated';
+                comment on column ccaawb.lstupdusr is 'Last Update User.The application user code who performed the operation on the record';

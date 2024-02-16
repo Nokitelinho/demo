@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-49435_MSM28997.yml
+  - changeSet:
+      id: 28997
+      author: A-9883
+      preConditions:
+        - tableExists:
+            tableName: ccamst
+        - not:
+            columnExists:
+              tableName: ccamst
+              columnName: ccaissdattimutc
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccamst ADD COLUMN ccaissdattimutc timestamp NOT NULL default now();
+          COMMENT ON COLUMN ccamst.ccaissdattimutc IS 'CCA Issued Date and Time in UTC Time zone';

@@ -1,0 +1,146 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: TEST_DML_0001
+      author: 201112
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-holder.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkhldmst
+
+  - changeSet:
+      id: TEST_DML_0002
+      author: 201112
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkhldstk
+
+  - changeSet:
+      id: TEST_DML_0003
+      author: 201112
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/range.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkrng
+
+  - changeSet:
+      id: TEST_DML_0004
+      author: 201112
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-range-history.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkrngtxnhis
+
+  - changeSet:
+      id: TEST_DML_0005
+      author: 201112
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-agent.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkhldagt
+  - changeSet:
+      id: TEST_DML_0006
+      author: 201132
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-range-utilization.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkrngutl
+  - changeSet:
+      id: TEST_DML_0007
+      author: 201132
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-black-list-range.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkblklstrng
+  - changeSet:
+      id: TEST_DML_0008
+      author: 201132
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-range-utilization-history.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkrngutlhis
+  - changeSet:
+      id: TEST_DML_0009
+      author: 201132
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-request.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkreqmst
+  - changeSet:
+      id: TEST_DML_0010
+      author: 201132
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-request-for-other-airline.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkreqoal
+  - changeSet:
+      id: TEST_DML_0011
+      author: 204083
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-holder-priority.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkhldtyppry
+  - changeSet:
+      id: TEST_DML_0012
+      author: 201132
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-transit-range.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stktrsrng
+  - changeSet:
+      id: TEST_DML_0013
+      author: 203855
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stkrngmsgtmp.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkrngmsgtmp
+  - changeSet:
+      id: TEST_DML_0014
+      author: 203130
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-range-utilization-IAN-65356.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkrngutl 

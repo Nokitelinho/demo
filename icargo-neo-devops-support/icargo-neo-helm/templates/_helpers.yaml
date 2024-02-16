@@ -1,0 +1,371 @@
+{{/* 
+ Function to generate the env variables for pods 
+*/}}
+{{- define "neo.container.env" -}}
+{{- $tenants := $.tenants | join "," }}
+{{- $tenantsLower := lower $tenants }}
+env:
+  - name: "NEO_HOSTED_TENANTS"
+    value: {{ $tenants | quote }}
+{{- if eq ( $.deployDefn.processType | default $.global.Values.default.processType ) "JAVA" -}}
+{{- $javaMemProfile := $.deployDefn.javaMemoryProfile | default $.global.Values.default.javaMemoryProfile -}}
+{{- $javaMemArgsBase := get (get $.global.Values.environment $.global.Values.environmentProfile) $javaMemProfile }}
+{{- $javaMemArgs := $.global.Values.crashDumps.enabled | ternary (cat $javaMemArgsBase (printf "-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=%s/%s_%s.hprof" $.global.Values.crashDumps.mountPath $.deployName $.deployDefn.artifactVersion)) $javaMemArgsBase }}
+{{- if ne $.deployDefn.serviceType "EBL" }}
+  - name: "JAVA_TOOL_OPTIONS"
+    value: {{ printf "-Dnetworkaddress.cache.ttl=1 -Dnetworkaddress.cache.negative.ttl=3 -Dspring.application.name=%s -Dspring.cloud.config.uri=%s -DhostedTenants=%s %s" $.deployName $.global.Values.cloudConfigServerUrl $tenants $javaMemArgs | quote }}
+{{- else }}
+  - name: "JAVA_TOOL_OPTIONS"
+    value: {{ printf "-Dnetworkaddress.cache.ttl=1 -Dnetworkaddress.cache.negative.ttl=3 -Dspring.cloud.config.uri=%s -Dicargo.companyCode=%s -Dicargo.companyCode.lowercase=%s -Dspring.cloud.config.label=%s %s" $.global.Values.cloudConfigServerUrl $tenants $tenantsLower $tenantsLower $javaMemArgs | quote }}
+{{- end }}
+{{- else if eq ( $.deployDefn.processType | default $.global.Values.default.processType ) "NODE" }}
+  - name: "SPRING_CONFIG_COMPANYCODE"
+    value: {{ $tenantsLower | quote }}
+  - name: "SPRING_CONFIG_PROFILE"
+    value: {{ $.global.Values.applicationProfile | quote }}
+  - name: "SPRING_CONFIG_ENDPOINT"
+    value: {{ $.global.Values.cloudConfigServerUrl | quote }}
+  - name: "APPLICATION_JSON"
+    value: {{ printf "{ \"server\": {\"port\": \"%s\"} }" ($.deployDefn.port | toString) | squote }}
+  - name: "NODE_ENV"
+    value: {{ ternary "development" "production" (get $.global.Values.ingress $tenants).devIngress | quote }}
+{{- end }}
+{{- end -}}
+
+{{/*
+ Function to generate the container`s argument
+*/}}
+{{- define "neo.container.args" -}}
+{{- if eq ( $.deployDefn.processType | default $.global.Values.default.processType ) "JAVA" -}}
+{{- $containerPort := $.deployDefn.port | default $.global.Values.default.containerPort | toString -}}
+{{- $javaArgs := list (printf "--server.port=%s" $containerPort) -}}
+{{- $javaArgs := append $javaArgs "--spring.cloud.config.fail-fast=true" }}
+{{- $springProfiles := $.global.Values.applicationProfile }}
+{{- $javaArgs := append $javaArgs (printf "--spring.profiles.active=%s" $springProfiles) }}
+{{- $javaArgs := append $javaArgs (printf "--spring.cloud.config.profile=%s" $springProfiles) }}
+{{- $javaArgs := append $javaArgs (printf "--server.tomcat.logback.accesslog.enabled=%s" $.accessLog) }}
+args: {{ $javaArgs | toJson }}
+
+{{- end -}}
+{{- end -}}
+
+
+{{/*
+ Function to generate an init container if required
+*/}}
+{{- define "neo.init.container" -}}
+{{- $depKey := (get $.global.Values.initDependencies.dependencies $.deployName) | default (get $.global.Values.initDependencies.dependencies "default") }}
+initContainers:
+- name: {{ printf "init-%s" $.deployName | lower | quote }}
+  image: {{ printf "%s/%s" $.global.Values.dockerRegistry $.global.Values.initDependencies.image | quote }}
+  args: [ "--depctrl.action=init-container" ]
+  env:
+    - name: "DEPCTRL_HOSTED_TENANTS"
+      value: {{ $.tenants | join "," | quote }}
+    - name: "DEPCTRL_DEPLOYMENT_DEFN"
+      value: {{ $.deployDefn | toJson | b64enc | quote  }}
+    - name: "DEPCTRL_APPLICATION_PROFILE"
+      value: {{ $.global.Values.applicationProfile | quote }}
+    - name: "DEPCTRL_APPLICATION_NAMESPACE"
+      value: {{ $.global.Values.namespace | quote }}
+    - name: "DEPCTRL_CONFIG_SERVER_NAMESPACE"
+      value: {{ $.global.Values.configServerNamespace | default $.global.Values.namespace | quote }}            
+    - name: "DEPCTRL_CONFIG_SERVER_URL"
+      value: {{ $.global.Values.cloudConfigServerUrl | quote }}
+    - name: "DEPCTRL_INIT_DEPENDENCIES"
+      value: {{ (get $.global.Values.initDependencies.dependencies $.deployName) | default "" | quote }}
+    - name: "DEPCTRL_CONFIG_SERVER_ARTIFACT_ID"
+      value: {{ $.global.Values.configServerArtifactId | quote }}
+{{- end }}
+
+{{/* Container resource limits and request limits */}}
+{{- define "neo.container.resources"}}
+  {{- if eq $.deployDefn.serviceType "WEB_FE" }}
+resources:
+  requests:
+    memory: {{ coalesce $.deployDefn.memoryRequest $.global.Values.default.memoryRequestWebFe "16Mi" | quote }}
+  limits:
+    memory: {{ coalesce $.deployDefn.memoryLimit $.global.Values.default.memoryLimitWebFe "256Mi" | quote }}
+  {{- else if eq $.deployDefn.serviceType "WEB_GW" }}
+resources:
+  requests:
+    memory: {{ coalesce $.deployDefn.memoryRequest $.global.Values.default.memoryRequestWebGw "64Mi" | quote }}
+  limits:
+    memory: {{ coalesce $.deployDefn.memoryLimit $.global.Values.default.memoryLimitWebGw "512Mi"| quote }}
+  {{- else if eq $.deployDefn.serviceType "WEB_BFF" }}
+resources:
+  requests:
+    memory: {{ coalesce $.deployDefn.memoryRequest $.global.Values.default.memoryRequestWebBff "64Mi"| quote }}
+  limits:
+    memory: {{ coalesce $.deployDefn.memoryLimit $.global.Values.default.memoryLimitWebBff "256Mi" | quote }}
+  {{- else if or (eq $.deployDefn.serviceType "DOMAIN_SERVICE") (eq $.deployDefn.serviceType "EAI") }}
+resources:
+  requests:
+    memory: {{ coalesce $.deployDefn.memoryRequest $.global.Values.default.memoryRequestDomainService "512Mi" | quote }}
+  limits:
+    memory: {{ coalesce $.deployDefn.memoryLimit $.global.Values.default.memoryLimitDomainService "2560Mi" | quote }}
+  {{- else }}
+resources:
+  requests:
+    memory: {{ coalesce $.deployDefn.memoryRequest "128Mi" | quote }}
+  limits:
+    memory: {{ coalesce $.deployDefn.memoryLimit "2560Mi" | quote }}
+  {{- end }}
+{{- end }}
+
+{{/*
+  Function to generate the container descriptor for smart loadbalancer
+*/}}
+{{- define "neo.slb" -}}
+{{- $portName := printf "%s-%s" "slb" ($.global.Values.smartLoadbalancer.port | toString) }}
+- name: "icargo-neo-slb"
+  image: {{ printf "%s/%s" $.global.Values.dockerRegistry $.global.Values.smartLoadbalancer.image | quote }}
+  imagePullPolicy: "IfNotPresent"
+  ports:
+    - name: {{ $portName | quote }}
+      containerPort: {{ $.global.Values.smartLoadbalancer.port }}
+      protocol: "TCP"
+    - name: "slb-stats"
+      containerPort: 2090
+      protocol: "TCP"
+  env:
+    - name: "NEO_HOSTED_TENANTS"
+      value: {{ $.tenants | join "," | quote }}
+    - name: "RUST_LOG"
+      value: "info"
+    - name: "SELF_POD_NAME"
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.name
+    - name: "SELF_POD_IP"
+      valueFrom:
+        fieldRef:
+          fieldPath: status.podIP
+  args: {{ list (printf "--k8s=%s" $.deployName) (printf "--hosted-tenants=%s" ($.tenants | join ",") ) (print "--listen-address=0.0.0.0:" $.global.Values.smartLoadbalancer.port) (printf "--namespace=%s" $.global.Values.namespace) | toJson }}
+  resources:
+    requests:
+      memory: "16Mi"
+    limits:
+      memory: "64Mi"
+  livenessProbe:
+    periodSeconds: 30
+    failureThreshold: 2
+    initialDelaySeconds: 10
+    tcpSocket:
+      port: {{ $portName | quote }}
+  startupProbe:
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    failureThreshold: 5
+    tcpSocket:
+      port: "slb-stats"
+  readinessProbe:
+    periodSeconds: 10
+    httpGet:
+     path: "/healthz"
+     port: "slb-stats"
+{{- end -}}
+
+  {{/*
+  Function to generate a grouped deployment (aka multiple containers in a pod) descriptor object
+*/}}
+{{- define "neo.deployment" -}}
+{{- $volumeMounts := or $.global.Values.crashDumps.enabled $.global.Values.accessLog.enabled }}
+{{- $deployDefn := first $.deployList }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ printf "%s-%s" $.deployGroup ($.tenants | join "-" ) | lower | quote }}
+  namespace: "{{ $.global.Values.namespace }}"
+  labels:
+    app: {{ $.deployGroup | quote }}
+    tenant: {{ $.tenants | join "-" | lower | quote }}
+    release: {{ $.global.Release.Name | quote }}
+    srvtyp: {{ $deployDefn.serviceType | lower | quote }}
+    prctyp: {{ $deployDefn.processType | lower | quote }}
+spec:
+  replicas: {{ $deployDefn.numberOfReplicas | default (get $.global.Values.environment $.global.Values.environmentProfile).numberOfReplicas }}
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 300
+  strategy:
+    type: {{ $deployDefn.upgradeStrategy | default (get $.global.Values.environment $.global.Values.environmentProfile).upgradeStrategy | quote }}
+  selector:
+    matchLabels:
+      app: {{ $.deployGroup | quote }}
+      tenant: {{ $.tenants | join "-" | lower | quote }}
+  template:
+    metadata:
+      labels:
+        app: {{ $.deployGroup | quote }}
+        tenant: {{ $.tenants | join "-" | lower | quote }}
+        release: {{ $.global.Release.Name | quote }}
+        srvtyp: {{ $deployDefn.serviceType | lower | quote }}
+        prctyp: {{ $deployDefn.processType | lower | quote }}
+    spec:
+      dnsPolicy: "ClusterFirst"
+      terminationGracePeriodSeconds: 30
+      serviceAccountName: "icargo-app-sa"
+      containers:
+        {{- if ((hasKey $.global.Values "smartLoadbalancer") | ternary $.global.Values.smartLoadbalancer.enabled false) }}
+        {{- include "neo.slb" (dict "deployName" $deployDefn.artifactId "deployDefn" $deployDefn "global" $.global "tenants" $.tenants) | indent 8 }}
+        {{- end }}
+        {{- range $deployCont := $.deployList }}
+        {{- $httpPort := print "http-" $deployCont.port }}
+        - name: {{ $deployCont.artifactId | lower | quote }}
+          image: {{ printf "%s/%s" ((get $.global.Values.dockerRegistryOverrides $deployCont.artifactId) | default $.global.Values.dockerRegistry) $deployCont.image | quote }}
+          imagePullPolicy: {{ $deployCont.imagePullPolicy | default (get $.global.Values.environment $.global.Values.environmentProfile).imagePullPolicy | quote }}
+          {{- if eq $deployCont.processType "NGINX" }}
+          command: {{ printf "[ \"/bin/sh\", \"-c\", \"sed -i s/8080/%s/g /etc/nginx/nginx.conf && nginx -g 'daemon off;'\" ]" ($deployCont.port | toString) }}
+          {{- end }}
+          ports:
+            - name: {{ $httpPort | quote }}
+              containerPort: {{ $deployCont.port | default $.global.Values.default.containerPort }}
+              protocol: "TCP"
+          {{- include "neo.container.env" (dict "deployName" $deployCont.artifactId "deployDefn" $deployCont "global" $.global "tenants" $.tenants) | indent 10 }}
+          {{- include "neo.container.args" (dict "deployName" $deployCont.artifactId "deployDefn" $deployCont "global" $.global "tenants" $.tenants "accessLog" (ternary "true" "false" $.global.Values.accessLog.enabled)) | indent 10 }}
+          {{- include "neo.container.resources" (dict "deployName" $deployCont.artifactId "deployDefn" $deployCont "global" $.global "tenants" $.tenants) | indent 10 }}
+          {{- if not $deployCont.disableReadinessProbe }}
+          livenessProbe:
+            periodSeconds: 10
+            initialDelaySeconds: {{ ternary 60 10 (eq $deployCont.processType "JAVA") }}
+            httpGet:
+              path: {{ $deployCont.healthEndpoint | default $.global.Values.default.healthEndpoint | quote }}
+              port: {{ $httpPort | quote }}
+          readinessProbe:
+            periodSeconds: 10
+            httpGet:
+              path: {{ $deployCont.healthEndpoint | default $.global.Values.default.healthEndpoint | quote }}
+              port: {{ $httpPort | quote }}
+          startupProbe:
+            initialDelaySeconds: {{ ternary 60 10 (eq $deployCont.processType "JAVA") }}
+            periodSeconds: 10
+            failureThreshold: 15
+            httpGet:
+              path: {{ $deployCont.healthEndpoint | default $.global.Values.default.healthEndpoint | quote }}
+              port: {{ $httpPort | quote }}
+          {{- end }}
+          {{- if $volumeMounts}}
+          volumeMounts:
+            {{- if $.global.Values.crashDumps.enabled }}
+            - mountPath: {{ $.global.Values.crashDumps.mountPath | quote }}
+              name: "icargo-crash-dumps-volume"
+            {{- end }}
+            {{- if $.global.Values.accessLog.enabled }}
+            - name: config-volume
+              mountPath: {{ printf "%s/%s" $.global.Values.accessLog.mountPath $.global.Values.accessLog.config }}
+              subPath: {{ $.global.Values.accessLog.config }}
+      {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- if  $.global.Values.initDependencies.enabled }}
+      {{- include "neo.init.container" (dict "deployName" $deployDefn.artifactId "deployDefn" $deployDefn "global" $.global "tenants" $.tenants) | indent 6 }}
+      {{- end }}
+      {{- if $volumeMounts}}
+      volumes:
+        {{- if $.global.Values.crashDumps.enabled }}
+        - name: "icargo-crash-dumps-volume"
+          hostPath:
+            path: {{ $.global.Values.crashDumps.hostPath | quote }}
+            type: "DirectoryOrCreate"
+        {{- end }}
+        {{- if $.global.Values.accessLog.enabled }}
+        - name: config-volume
+          configMap:
+            name: logback-accesslog-configmap
+            items:
+              - key: logback-access.xml
+                path: {{ $.global.Values.accessLog.config }}
+  {{- end }}
+  {{- end }}
+  {{- end -}}
+
+{{/*
+  Function to generate a service descriptor object
+*/}}
+{{- define "neo.services" -}}
+apiVersion: v1
+kind: Service
+metadata:
+  {{- if eq $.multitenant "true" }}
+  name: {{ $.deployDefn.serviceName | lower | quote }}
+  {{- else }}
+  name: {{ printf "%s-%s" $.deployDefn.serviceName ($.tenants | join "-" ) | lower | quote }}
+  {{- end }}
+  namespace: {{ $.global.Values.namespace | quote }}
+  labels:
+    app: {{ $.deployDefn.artifactId | quote }}
+    tenant: {{ $.tenants | join "-" | lower | quote }}
+    release: {{ $.global.Release.Name | quote }}
+    srvtyp: {{ $.deployDefn.serviceType | lower | quote }}
+    prctyp: {{ $.deployDefn.processType | lower | quote }}
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ $.deployName | quote }}
+    tenant: {{ $.tenants | join "-" | lower | quote }}
+  ports:
+{{- if ((hasKey $.global.Values "smartLoadbalancer") | ternary $.global.Values.smartLoadbalancer.enabled false) }}
+    - name: {{ print "slb-" $.global.Values.smartLoadbalancer.port | quote }}
+      protocol: "TCP"
+      port: 80
+      targetPort: {{ $.global.Values.smartLoadbalancer.port }}
+{{- else }}
+    - name: {{ print "http-" $.deployDefn.port | quote }}
+      protocol: "TCP"
+      port: 80
+      targetPort: {{ $.deployDefn.port }}
+  {{- end }}
+{{- end }}
+{{/*
+  Function to generate a prometheus operator podmonitor object
+*/}}
+{{- define "neo.podmonitor" -}}
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ printf "%s-podmonitor-%s" $.deployDefn.serviceName ($.tenants | join "-" ) | lower | quote }}
+  namespace: {{ $.global.Values.namespace | quote }}
+  labels:
+    app: {{ $.deployName | quote }}
+    tenant: {{ $.tenants | join "-" | lower | quote }}
+    release: {{ $.global.Release.Name | quote }}
+spec:
+  selector:
+    matchLabels:  
+      app: {{ ternary $.deployDefn.deploymentGroup $.deployName (and $.global.Values.enableGroupedDeployment $.deployDefn.deploymentGroup (has $.deployDefn.deploymentGroup $.global.Values.deploymentGroups)) | quote }}
+      tenant: {{ $.tenants | join "-" | lower | quote }}
+      release: {{ $.global.Release.Name | quote }}
+  podMetricsEndpoints:
+  - port: {{ print "http-" $.deployDefn.port | quote }}
+    path: {{ printf "%s/web/actuator/prometheus" $.deployDefn.contextPath | lower | quote }}
+    scheme: http
+    honorLabels: true
+    #interval: 10
+{{- end }}
+
+{{/*
+Function to check if ingress resource is to be created
+*/}}
+{{- define "isIngressResourceRequired" -}}
+  {{- range $deployName, $deployDefn := $.global.Values.deployments -}}
+    {{- if and $deployDefn.serviceName $deployDefn.image $deployDefn.contextPath (ne (default "X" $deployDefn.serviceType) "INTERNAL_SERVICE") -}}
+      {{- if and (eq $deployDefn.serviceType "DOMAIN_SERVICE") (or $deployDefn.hostsPublicApi $deployDefn.hostsEnterpriseApi) -}}
+        {{- printf "true" -}}
+      {{- end -}}
+      {{- if or (eq $deployDefn.serviceType "WEB_FE") (eq $deployDefn.serviceType "WEB_GW") -}}
+        {{- printf "true" -}}
+      {{- end -}}
+      {{- if $.tenantIngress.devIngress -}}
+        {{- if and (eq $deployDefn.serviceType "DOMAIN_SERVICE") $deployDefn.hostsPrivateApi -}}
+          {{- printf "true" -}}
+        {{- end -}}
+        {{- if and (eq $deployDefn.serviceType "WEB_BFF") -}}
+        {{- printf "true" -}}
+        {{- end -}}
+        {{- if and (eq $deployDefn.serviceType "EBL") $deployDefn.hostsPrivateApi -}}
+          {{- printf "true" -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

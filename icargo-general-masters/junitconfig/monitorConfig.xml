@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<monitorConfig>
+
+	<timerTasks>
+	
+		<!--timerTask>
+			<className>com.orbitz.monitoring.lib.timertask.VMStatTimerTask</className>
+			<interval>60</interval>
+		</timerTask-->
+		
+		<!--<timerTask>
+			<className>com.ibsplc.xibase.server.framework.monitoring.erma.HeartBeatTxnTimerTask</className>
+			<interval>60</interval>
+			<properties>
+				  <property name="classNames" value="com.ibsplc.xibase.server.framework.monitoring.erma.AdminUserMonitorTask"/>
+			</properties>
+		</timerTask>-->
+		
+		<timerTask>
+			<className>com.ibsplc.xibase.server.framework.monitoring.erma.task.WLSJDBCPoolMonitorTask</className>
+			<interval>60</interval>	
+		</timerTask>				
+
+		
+		<timerTask>		
+			<className>com.ibsplc.xibase.server.framework.monitoring.erma.task.jmsqueue.wls.WLSJMSQueueMonitorTask</className>
+			<interval>60</interval>				
+		</timerTask>
+		
+	</timerTasks>
+	
+	
+
+	
+	<monitorAgents>
+		
+		<monitorAgent agentType="web" enabled="true">
+			<agentName>com.ibsplc.xibase.server.framework.monitoring.erma.agent.WebMonitorInitializer</agentName>
+		</monitorAgent>
+		
+		<monitorAgent agentType="jobsch" enabled="true">
+			<agentName>com.ibsplc.xibase.server.framework.monitoring.erma.agent.JobScheduleERMAMonitorAgent</agentName>
+		</monitorAgent>
+			
+	</monitorAgents>
+	
+</monitorConfig> 

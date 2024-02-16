@@ -1,0 +1,34 @@
+snowAdapter:
+  # Spring profile to be used. Appended to the config map mounted application.yml
+  springProfile: dev
+
+  ##Values to be over-ridden in the config map mounted application.yml
+  configOverrides:
+    #Example shown below.Edit as required
+    notify:
+      snow:
+        enabled: false
+        #Instance name of SNOW url https://<instance-name>.service-now.com
+        instanceName: ibsplcdev 
+        #Source name to be set in the SNOW event
+        sourceName: 
+        #Basic Auth for the SNOW Rest Ednpoing https://<instance-name>.service-now.com/api/global/em/jsonv2
+        basic-auth:
+          userId: 
+          password: 
+      aws:
+        sns:
+          enabled: true
+          email:
+            active:
+              #AlphaEnvAlerts - iCargo Neo Dev Support <8f517fef.ibsplc.com@in.teams.ms>
+              default: 8f517fef.ibsplc.com@in.teams.ms
+              #<prom-alert-severity>:<emails as csv>
+              #critical:
+              #error:
+              #warning:
+              #info:
+            inactive:
+            # - list of alert names that should not be alerted
+            # - <alert-name>
+            # - <alert-name>  

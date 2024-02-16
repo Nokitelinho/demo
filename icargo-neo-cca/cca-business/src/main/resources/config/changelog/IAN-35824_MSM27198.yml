@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-35824_MSM27198.yml
+  - changeSet:
+       id: 27198
+       author: A-10597
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: ccaawbdtl
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE ccaawbdtl (	
+                ccaawbdtlsernum integer,	
+                ccasernum integer,	
+                rectyp varchar(1),	
+                cmpcod varchar(6) NOT NULL,	
+                pcs integer,	
+                comcod varchar(10),	
+                wgt numeric(16,4),	
+                diswgt numeric(16,4),	
+                diswgtunt varchar(6) NOT NULL,	
+                vol numeric(16,4),	
+                disvol numeric(16,4),	
+                disvolunt varchar(6) NOT NULL,	
+                chgwgt numeric(16,4),	
+                dischgwgt numeric(16,4),	
+                comdes varchar(1000),	
+                volwgt numeric(16,4),	
+                disvolwgt numeric(16,4),	
+                adjwgt numeric(16,4),	
+                disadjwgt numeric(16,4),	
+                lstupdtim timestamp(3) NOT NULL,	
+                lstupdusr varchar(50) NOT NULL,	
+                CONSTRAINT "CCAAWBDTL_pkey" PRIMARY KEY (ccaawbdtlsernum, ccasernum)
+             );
+             
+             comment on table ccaawbdtl is 'CCA Shipment details table which contains commodity information. Child Table of CCAAWB';
+             
+             comment on column ccaawbdtl.cmpcod is 'The code that uniquely identifies the company for which the application is hosted';
+             comment on column ccaawbdtl.ccaawbdtlsernum is 'AWB details serial number';
+             comment on column ccaawbdtl.ccasernum is 'AWB serial number';
+             comment on column ccaawbdtl.rectyp is 'CCA Record Type Original-O, Revised-R';
+             comment on column ccaawbdtl.pcs is 'Number of shipment pieces';
+             comment on column ccaawbdtl.comcod is 'Commodity Code';
+             comment on column ccaawbdtl.wgt is 'Weight (in default unit) of the shipment pieces to be carried on the flight';
+             comment on column ccaawbdtl.diswgt is 'Weight in display unit';
+             comment on column ccaawbdtl.diswgtunt is 'Display weight unit';
+             comment on column ccaawbdtl.vol is 'Volume (in default unit) of the shipment pieces to be carried on the flight';
+             comment on column ccaawbdtl.disvol is 'Volume in display unit';
+             comment on column ccaawbdtl.disvolunt is 'Display volume unit';
+             comment on column ccaawbdtl.chgwgt is 'Chargeable Weight';
+             comment on column ccaawbdtl.chgwgt is 'Chargeable weight for the shipment';
+             comment on column ccaawbdtl.dischgwgt is 'Chargeable Weight in display unit';
+             comment on column ccaawbdtl.comdes is 'Commodity description';
+             comment on column ccaawbdtl.volwgt is 'Volumetric Weight (in default unit) of the shipment';
+             comment on column ccaawbdtl.disvolwgt is 'Volumetric Weight in display unit';
+             comment on column ccaawbdtl.adjwgt is 'Adjusted Weight (in default unit) of the shipment';
+             comment on column ccaawbdtl.disadjwgt is 'Adjusted Weight in display unit';
+             comment on column ccaawbdtl.lstupdtim is 'The date and time at which record was last updated';
+             comment on column ccaawbdtl.lstupdusr is 'Last Update User.The application user code who performed the operation on the record';

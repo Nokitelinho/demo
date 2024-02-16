@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-44968_MSM28403.yml
+  - changeSet:
+      id: 28403
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: ccaawb
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccaawb ADD COLUMN tottaxamt NUMERIC(16,4) NOT NULL DEFAULT 0;
+
+          COMMENT ON COLUMN ccaawb.tottaxamt is 'The Total Tax amount';

@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-41664_MSM28181.yml
+  - changeSet:
+       id: 28181
+       author: A-8227
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              schemaName: ${SCHEMA}
+              tableName: TRKMILSTNMST
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: DELETE FROM TRKMILSTNMST;
+              INSERT INTO TRKMILSTNMST (TRKMILSTNSERNUM, MILSTNCOD, MILSTNDES, MILSTNTYP, MILSTNSHPTYP, ACTVIWFLG, NTFSNDFLG, CMPCOD)
+              VALUES  
+              ( nextval('TRKMILSTNMST_SEQ'),'ARR', 'Arrival', 'I','A',TRUE,TRUE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'AWD', 'Documents Delivered', 'I','A',FALSE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'AWR', 'Documents Arrived', 'I','A',FALSE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'BKD', 'Booked', 'E','A',TRUE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'CPT', 'AWB Data Capture', 'E','A',FALSE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'DEP', 'Departure', 'E','A',TRUE,TRUE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'DIS', 'Offloaded', 'I','A',TRUE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'DLV', 'Delivered', 'I','A',TRUE,TRUE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'DRN', 'Delivery return', 'I','A',TRUE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'FOH', 'Freight On Hand', 'E','A',TRUE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'MAN', 'Manifest', 'E','A',TRUE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'NFD', 'Notified To Customer', 'I','A',FALSE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'PRE', 'Build up', 'E','A',TRUE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'RCF', 'Check in', 'I','A',TRUE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'RCS', 'Received from Agent', 'E','A',TRUE,TRUE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'RCT', 'Received from OAL', 'E','A',TRUE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'TFD', 'Transferred', 'E','A',TRUE,FALSE,'${tenant}'),
+              ( nextval('TRKMILSTNMST_SEQ'),'TRM', 'Transfer Manifest', 'T','A',FALSE,FALSE,'${tenant}');

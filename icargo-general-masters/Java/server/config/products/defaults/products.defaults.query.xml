@@ -1,0 +1,849 @@
+<?xml version="1.0"?>
+<QRY:Definitions xmlns:QRY="http://www.ibsplc.com/xibase/persistence/queries" module="products.defaults">
+	<QRY:Definition>
+		<QRY:Id>1</QRY:Id>
+		<QRY:Source Name="product.defaults.findProducts" Type="NATIVE">
+		<![CDATA[
+		SELECT DISTINCT
+    a.prdcod,
+    a.prdnam,
+    a.prddes,
+    a.prdsta,
+    a.cmpcod,
+    a.ratdef,
+    a.prdctg,
+    a.prdstrdat,
+    a.prdenddat,
+    a.lstupdtim,
+    a.lstupdusr,A.PRTDSP,A.PRDPTY
+FROM
+    prdmst a
+    LEFT OUTER JOIN prdtramod b ON ( a.cmpcod = b.cmpcod
+                                     AND a.prdcod = b.prdcod )
+    LEFT OUTER JOIN prdpry c ON ( a.cmpcod = c.cmpcod
+                                  AND a.prdcod = c.prdcod )
+    LEFT OUTER JOIN prdscc d ON ( a.cmpcod = d.cmpcod
+                                  AND a.prdcod = d.prdcod )
+WHERE
+    1 = 1
+		]]>
+		</QRY:Source>
+		</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>2</QRY:Id>
+	<QRY:Source Name="product.defaults.validateProductName" Type="NATIVE">
+		<![CDATA[
+		SELECT PRDCOD FROM PRDMST
+		WHERE CMPCOD = ? AND PRDSTA='A' AND UPPER(PRDNAM) = ? AND PRDSTRDAT <= ? AND PRDENDDAT >= ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>3</QRY:Id>
+		<QRY:Source Name="product.defaults.findSubProducts" Type="NATIVE">
+		<![CDATA[
+		SELECT TRAMOD, PRYCOD, SCCCOD,SUBPRDSTA,PRDCOD,CMPCOD,SUBPRDCOD, VERNUM,LSTUPDTIM,LSTUPDUSR
+		FROM PRDSUBMST
+		WHERE
+		]]>
+		</QRY:Source>
+		</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>4</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductDetails" Type="NATIVE">
+		<![CDATA[
+		SELECT CMPCOD,PRDCOD,PRDDES,PRDADLRES,PRDRMK,PRDDETDES,DISVOLCODRES,
+		DISWGTCODRES,MAXVOLRES,MINVOLRES,MAXWGTRES,MINWGTRES,MAXDISVOLRES,
+		MINDISVOLRES,MAXDISWGTRES,MINDISWGTRES,PRDHDLINF,LSTUPDUSR,
+		PRDNAM,PRDSTA,PRDSTRDAT,PRDENDDAT,LSTUPDTIM,RATDEF,BKGIND,
+		DOCTYP, DOCSUBTYP, MILMGTFLG,PRDCTG,ISSOVRCAP,MINDIMRES,MAXDIMRES,MAXDISDIMRES,MINDISDIMRES,DISDIMCODRES,PRTDSP,PRDPTY
+		FROM PRDMST
+		WHERE CMPCOD = ? AND PRDCOD = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>5</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductScc" Type="NATIVE">
+		<![CDATA[
+		SELECT CMPCOD,PRDCOD,PRDSCC FROM PRDSCC
+		WHERE CMPCOD = ? AND PRDCOD = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>6</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductPriority" Type="NATIVE">
+		<![CDATA[
+		SELECT CMPCOD,PRDCOD,PRDPRY FROM PRDPRY
+		WHERE CMPCOD = ? AND PRDCOD = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>7</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductTransportMode" Type="NATIVE">
+		<![CDATA[
+		SELECT CMPCOD,PRDCOD,PRDTRAMOD FROM PRDTRAMOD
+		WHERE CMPCOD = ? AND PRDCOD = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>8</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductService" Type="NATIVE">
+		<![CDATA[
+		SELECT prser.CMPCOD,prser.PRDCOD,prser.PRDSERCOD AS SERCODE,prshr.SRVNAM AS SERNAME,prshr.TRAPLNDSP AS TRANSPLAN FROM PRDSER prser,SHRSRVMST prshr
+		WHERE prser.CMPCOD = ? AND prser.PRDCOD = ? AND prser.CMPCOD = prshr.CMPCOD AND prser.PRDSERCOD = prshr.SRVCOD
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>9</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductRestrictionCommodity" Type="NATIVE">
+		<![CDATA[
+		SELECT CMPCOD,PRDCOD,CMDCOD,RSTFLG FROM PRDRSTCMD
+		WHERE CMPCOD = ? AND PRDCOD = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>10</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductRestrictionCustomerGroup" Type="NATIVE">
+		<![CDATA[
+		SELECT CMPCOD,PRDCOD,CUSGRP,RSTFLG FROM PRDRSTCUSGRP
+		WHERE CMPCOD = ? AND PRDCOD = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>11</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductRestrictionPaymentTerms" Type="NATIVE">
+		<![CDATA[
+		SELECT CMPCOD,PRDCOD,PMTTRM,RSTFLG FROM PRDRSTPMTTRM
+		WHERE CMPCOD = ? AND PRDCOD = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>12</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductRestrictionSegment" Type="NATIVE">
+		<![CDATA[
+		SELECT CMPCOD,PRDCOD,ORGCOD,RSTFLG,DSTCOD FROM PRDRSTSEG
+		WHERE CMPCOD = ? AND PRDCOD = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>13</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductRestrictionStation" Type="NATIVE">
+		<![CDATA[
+		SELECT CMPCOD,PRDCOD,STNCOD,RSTFLG,ORGFLG FROM PRDRSTSTN
+		WHERE CMPCOD = ? AND PRDCOD = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>14</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductEvent" Type="NATIVE">
+		<![CDATA[
+		SELECT CMPCOD,PRDCOD,MINTIM,MAXTIM,EVTDUR,EXTFLG,EXPFLG,
+		EVTALTTIM,EVTCHRTIM,EVTCOD,EVTTYP,INTFLG,EVTCHRFRQ,EVTMAXCHR,TRNFLG FROM PRDEVT
+		WHERE CMPCOD = ? AND PRDCOD = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>15</QRY:Id>
+	<QRY:Source Name="product.defaults.checkDuplicate" Type="NATIVE">
+		<![CDATA[
+		 SELECT PRDCOD FROM prdmst WHERE UPPER(PRDNAM) = ? AND CMPCOD = ? AND
+		(PRDSTRDAT <= ? AND prdmst.PRDENDDAT >= ? OR
+		(PRDSTRDAT BETWEEN  ? AND ? ) OR
+		(PRDENDDAT BETWEEN  ? AND ? ))
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>16</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductsByName" Type="NATIVE">
+		<![CDATA[
+		SELECT PRDCOD,PRDNAM,PRDSTRDAT,PRDENDDAT
+		FROM PRDMST WHERE CMPCOD = ? AND UPPER(PRDNAM) = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>17</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductLov" Type="NATIVE">
+		<![CDATA[
+		SELECT DISTINCT MST.PRDCOD,MST.PRDNAM,MST.PRDSTRDAT,MST.PRDENDDAT
+		FROM PRDMST MST
+		WHERE MST.PRDSTA='A' AND 
+		  MST.CMPCOD = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>18</QRY:Id>
+	<QRY:Source Name="product.defaults.findSubProductDetails" Type="NATIVE">
+	<![CDATA[
+		SELECT 	A.PRDCOD PRDCOD,A.SUBPRDCOD SUBPRDCOD,A.SUBPRDSTA SUBPRDSTA,A.TRAMOD TRAMOD,A.SCCCOD SCCCOD,A.PRYCOD PRYCOD,
+		A.MODFLG MODFLG,A.PRDHDLINF PRDHDLINF,A.PRDRMK PRDRMK,A.MINWGTRES MINWGTRES,A.MAXWGTRES MAXWGTRES,
+		A.MINVOLRES MINVOLRES,A.MAXVOLRES MAXVOLRES,A.PRDADLRES PRDADLRES,B.LSTUPDTIM LSTUPDTIM,B.LSTUPDUSR LSTUPDUSR,
+		A.CMPCOD CMPCOD,A.VERNUM VERNUM,A.MAXDISVOLRES MAXDISVOLRES,A.MAXDISWGTRES MAXDISWGTRES,A.MINDISVOLRES MINDISVOLRES,
+		A.MINDISWGTRES MINDISWGTRES,A.DISVOLCODRES DISVOLCODRES,A.DISWGTCODRES DISWGTCODRES,A.MINDIMRES,A.MAXDIMRES,A.MAXDISDIMRES,A.MINDISDIMRES,A.DISDIMCODRES
+		FROM 	PRDSUBMST A,PRDMST B
+		WHERE 
+		A.CMPCOD = B.CMPCOD AND
+		A.PRDCOD = B.PRDCOD AND
+		A.CMPCOD = ? AND A.PRDCOD= ? AND A.SUBPRDCOD = ? AND A.VERNUM = ?	
+		]]>
+		
+	</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+	<QRY:Id>19</QRY:Id>
+	<QRY:Source Name="product.defaults.findSubProductServices" Type="NATIVE">
+	<![CDATA[
+	SELECT 	subprdser.PRDSERCOD AS SERCOD,shrsrvmst.SRVDES AS SERDES,shrsrvmst.TRAPLNDSP AS TRANSPLAN
+	FROM 	PRDSUBSER subprdser,SHRSRVMST shrsrvmst
+	WHERE 	subprdser.CMPCOD = shrsrvmst.CMPCOD
+	AND	subprdser.PRDSERCOD = shrsrvmst.SRVCOD
+	 AND subprdser.CMPCOD = ? AND subprdser.PRDCOD= ?
+			AND subprdser.SUBPRDCOD = ? AND subprdser.VERNUM = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>20</QRY:Id>
+	<QRY:Source Name="product.defaults.findSubProductRestrictionStation" Type="NATIVE">
+	<![CDATA[
+	SELECT 	STNCOD,ORGFLG,RSTFLG
+	FROM 	PRDSUBRSTSTN
+	WHERE 	CMPCOD = ? AND PRDCOD= ? AND SUBPRDCOD = ? AND VERNUM = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>21</QRY:Id>
+	<QRY:Source Name="product.defaults.findSubProductRestrictionSegment" Type="NATIVE">
+	<![CDATA[
+	SELECT 	ORGCOD,DSTCOD,RSTFLG
+	FROM 	PRDSUBRSTSEG
+	WHERE 	CMPCOD = ? AND PRDCOD= ? AND SUBPRDCOD = ? AND VERNUM = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>22</QRY:Id>
+	<QRY:Source Name="product.defaults.findSubProductRestrictionPaymentTerms" Type="NATIVE">
+	<![CDATA[
+	SELECT 	PMTTRM,RSTFLG
+	FROM 	PRDSUBRSTPMTTRM
+	WHERE 	CMPCOD = ? AND PRDCOD= ? AND SUBPRDCOD = ? AND VERNUM = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>23</QRY:Id>
+	<QRY:Source Name="product.defaults.findSubproductRestrictionCustomerGroup" Type="NATIVE">
+	<![CDATA[
+	SELECT 	CUSGRP,RSTFLG
+	FROM 	PRDSUBRSTCUSGRP
+	WHERE 	CMPCOD = ? AND PRDCOD= ? AND SUBPRDCOD = ? AND VERNUM = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>24</QRY:Id>
+	<QRY:Source Name="product.defaults.findSubproductRestrictionCommodity" Type="NATIVE">
+	<![CDATA[
+	SELECT 	CMDCOD,RSTFLG
+	FROM 	PRDSUBRSTCMD
+	WHERE 	CMPCOD = ? AND PRDCOD= ? AND SUBPRDCOD = ? AND VERNUM = ?
+	]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>25</QRY:Id>
+	<QRY:Source Name="product.defaults.checkDuplicateForModify" Type="NATIVE">
+		<![CDATA[
+		 SELECT PRDCOD FROM prdmst WHERE UPPER(PRDNAM) = ? AND CMPCOD = ? AND
+		(PRDSTRDAT <= ? AND PRDENDDAT >= ? OR
+		(PRDSTRDAT BETWEEN  ? AND ? ) OR
+		(PRDENDDAT BETWEEN  ? AND ? )) AND PRDCOD <> ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>26</QRY:Id>
+	<QRY:Source Name="product.defaults.findSubProductEvent" Type="NATIVE">
+		<![CDATA[
+		SELECT CMPCOD,PRDCOD,MINTIM,MAXTIM,EVTDUR,EXTFLG,EXPFLG,
+		EVTALTTIM,EVTCHRTIM,EVTCOD,EVTTYP,INTFLG,EVTCHRFRQ,EVTMAXCHR FROM PRDSUBEVT
+		WHERE CMPCOD = ? AND PRDCOD = ? AND SUBPRDCOD = ? AND VERNUM = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition> <!-- Added by A-1648 -->
+		<QRY:Id>27</QRY:Id>
+		<QRY:Source Name="product.defaults.findProductServices" Type="NATIVE">
+			<![CDATA[
+				SELECT
+    mst.prdcod prdcod,
+    srv.srvcod srvcod,
+    srv.srvnam srvnam,
+    srv.srvdes srvdes
+FROM
+    prdmst prd
+    LEFT OUTER JOIN prdsubmst mst ON ( prd.cmpcod = mst.cmpcod
+                                       AND prd.prdcod = mst.prdcod )
+    LEFT OUTER JOIN prdsubser ser ON ( mst.cmpcod = ser.cmpcod
+                                       AND mst.prdcod = ser.prdcod
+                                       AND mst.subprdcod = ser.subprdcod
+                                       AND mst.vernum = ser.vernum )
+    LEFT OUTER JOIN shrsrvmst srv ON ( ser.cmpcod = srv.cmpcod
+                                       AND ser.prdsercod = srv.srvcod )
+WHERE
+    mst.cmpcod =?
+    AND mst.prdcod =?
+    AND mst.tramod =?
+    AND mst.prycod =?
+    AND mst.scccod =?
+    AND mst.vernum = (
+        SELECT
+            MAX(vernum)
+        FROM
+            prdsubmst mst
+        WHERE
+            mst.cmpcod =?
+            AND mst.prdcod =?
+            AND mst.tramod =?
+            AND mst.prycod =?
+            AND mst.scccod =?
+    )
+    			-- AND PRD.PRDSTRDAT <= SYSDATE
+				-- AND PRD.PRDENDDAT >= SYSDATE
+				AND ? between TO_NUMBER (to_char ( PRD.PRDSTRDAT , 'YYYYMMDD'))  AND TO_NUMBER (to_char ( PRD.PRDENDDAT , 'YYYYMMDD'))
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition> <!-- Added by A-1648 -->
+		<QRY:Id>28</QRY:Id>
+		<QRY:Source Name="product.defaults.validatesubproduct" Type="NATIVE">
+			<![CDATA[
+				SELECT
+    mst.cmpcod cmpcod,
+    mst.prdcod prdcod,
+    sub.subprdcod subprdcod,
+    sub.vernum vernum
+FROM
+    prdmst mst
+    LEFT OUTER JOIN prdsubmst sub
+ON ( mst.cmpcod = sub.cmpcod AND mst.prdcod = sub.prdcod)
+WHERE
+    mst.cmpcod =?
+    AND mst.prdcod =?
+        AND sub.tramod =?
+            AND sub.prycod =?
+                AND sub.scccod =?
+                   -- AND mst.prdstrdat <= SYSDATE
+                      --  AND mst.prdenddat >= SYSDATE
+						AND ? between TO_NUMBER (to_char (mst.PRDSTRDAT , 'YYYYMMDD'))  AND TO_NUMBER (to_char (mst.PRDENDDAT , 'YYYYMMDD'))
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>29</QRY:Id>
+		<QRY:Source Name="product.defaults.validateProductForAPeriod" Type="NATIVE">
+			<![CDATA[
+			SELECT MST.CMPCOD,MST.PRDCOD,MST.PRDNAM,MST.PRDSTRDAT,
+			MST.PRDENDDAT,MST.PRDDES,MST.BKGIND FROM PRDMST MST 
+			WHERE CMPCOD = ? AND MST.PRDSTA='A' AND UPPER(PRDNAM) = ? AND PRDSTRDAT <= ? AND PRDENDDAT >= ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+			<QRY:Id>30</QRY:Id>
+			<QRY:Source Name="product.defaults.findProductIcon" Type="NATIVE">
+			<![CDATA[
+				SELECT PRDCOD FROM PRDICO WHERE CMPCOD = ? AND PRDCOD = ?
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+
+<QRY:Definition>
+			<QRY:Id>31</QRY:Id>
+			<QRY:Source Name="product.defaults.listProductFeedback" Type="NATIVE">
+			<![CDATA[
+	SELECT fedbck.CMPCOD AS CMPCOD,fedbck.PRDCOD AS PRDCOD,fedbck.FEDBCKIDR AS FEDBCKIDR,
+			fedbck.SNDNAME AS SNDNAME,fedbck.SNDEMLADR AS SNDEMLADR,fedbck.SNDADR AS SNDADR,
+			fedbck.RMK AS RMK,fedbck.LSTUPDUSR AS LSTUPDUSR, fedbck.LSTUPDTIM AS LSTUPDTIM,
+			fedbck.FEDBCKDAT AS FEDBCKDAT,prdmst.PRDNAM AS PRDNAM
+
+	FROM PRDFEDBCK fedbck,PRDMST prdmst
+	WHERE    fedbck.CMPCOD = prdmst.CMPCOD
+			AND fedbck.PRDCOD  = prdmst.PRDCOD
+			AND fedbck.CMPCOD = ?
+				]]>
+			</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+	<QRY:Id>32</QRY:Id>
+	<QRY:Source Name="product.defaults.checkStationAvailability" Type="NATIVE">
+	<![CDATA[
+		SELECT  'Commodity Restricted' STATUS
+		FROM PRDRSTCMD
+		WHERE CMPCOD = ?  AND
+			  PRDCOD = ?  AND
+			  ((UPPER(CMDCOD) = ? AND rstflg = ? ) OR
+			  (UPPER(CMDCOD) <> ?  AND RSTFLG = ?  AND
+			   NOT EXISTS ( SELECT 'x'
+			   	   	FROM PRDRSTCMD
+					WHERE CMPCOD = ?  AND
+					     PRDCOD = ?  AND
+					     UPPER(CMDCOD) = ?
+	   )))
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>33</QRY:Id>
+		<QRY:Source Name="product.defaults.findImage" Type="NATIVE">
+		<![CDATA[
+			SELECT PRDICO
+			FROM PRDICO
+			WHERE PRDCOD=?
+			AND CMPCOD=?
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+
+	<QRY:Definition>
+		<QRY:Id>34</QRY:Id>
+		<QRY:Source Name="product.defaults.validateProducts" Type="NATIVE">
+		<![CDATA[
+		
+				SELECT PRD.PRDCOD, 
+					   PRD.PRDNAM, 
+					   PRD.PRDSTRDAT, 
+					   PRD.PRDENDDAT
+				  FROM PRDMST PRD
+				 WHERE PRDSTA='A' AND PRD.CMPCOD = ?
+				   AND PRD.PRDCOD IN			
+
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+
+	<QRY:Definition>
+		<QRY:Id>35</QRY:Id>
+		<QRY:Source Name="product.defaults.findSccCodesForProduct" Type="NATIVE">
+		<![CDATA[
+			SELECT SCC.PRDSCC FROM PRDSCC SCC, PRDMST MST WHERE MST.CMPCOD = SCC.CMPCOD 
+				   AND MST.PRDCOD = SCC.PRDCOD
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+		<QRY:Id>36</QRY:Id>
+		<QRY:Source Name="product.defaults.validateProduct" Type="NATIVE">
+		<![CDATA[
+			SELECT PRDCOD FROM PRDMST MST WHERE MST.CMPCOD = ? 
+				   AND UPPER(MST.PRDNAM) = UPPER(?)
+				   AND  ?  >=  MST.PRDSTRDAT  AND
+				   ? <=  MST.PRDENDDAT AND PRDSTA = 'A'
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>37</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductsForStock" Type="NATIVE">
+	<![CDATA[
+		SELECT MST.PRDCOD PRDCOD,MST.PRDNAM PRDNAM,MST.PRDDES PRDDES,
+			   MST.PRDDETDES PRDDETDES,MST.PRDSTRDAT PRDSTRDAT,
+			   MST.PRDENDDAT PRDENDDAT,MST.PRDSTA PRDSTA,TRAMOD.
+			   PRDTRAMOD MOD,SCC.PRDSCC SCC,PRY.PRDPRY PRY
+		FROM PRDMST MST,PRDTRAMOD TRAMOD,PRDSCC SCC,PRDPRY PRY
+		WHERE PRY.CMPCOD = MST.CMPCOD AND
+			  PRY.PRDCOD = MST.PRDCOD AND
+			  SCC.CMPCOD = MST.CMPCOD AND
+			  SCC.PRDCOD = MST.PRDCOD AND
+			  TRAMOD.CMPCOD = MST.CMPCOD AND
+			  TRAMOD.PRDCOD = MST.PRDCOD AND
+			  MST.CMPCOD = ? AND
+			  MST.DOCTYP = ? AND
+			  MST.DOCSUBTYP = ? AND
+			  MST.PRDSTA = 'A'
+	  
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>38</QRY:Id>
+	<QRY:Source Name="product.defaults.findSubproductEventsForTracking" Type="NATIVE">
+	<![CDATA[
+		SELECT MINTIM,MAXTIM,EXTFLG,EXPFLG,
+		       EVTCOD,EVTTYP,INTFLG,TRNFLG 
+		FROM PRDSUBEVT
+		WHERE 	CMPCOD = ? 
+			AND PRDCOD = ?
+			AND SUBPRDCOD = ?
+
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>39</QRY:Id>
+	<QRY:Source Name="product.defaults.validateProductForDocType" Type="NATIVE">
+	<![CDATA[
+		SELECT MST.DOCTYP,MST.DOCSUBTYP
+		FROM PRDMST MST
+		WHERE MST.CMPCOD = ? AND MST.PRDSTA='A' AND
+	  	      MST.PRDCOD = ? 
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+	
+	<QRY:Definition>
+	<QRY:Id>40</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductPkForProductName" Type="NATIVE">
+	<![CDATA[
+		SELECT MST.PRDCOD,MST.ISSOVRCAP,TRA.PRDTRAMOD,SCC.PRDSCC,PRY.PRDPRY
+		FROM PRDMST MST,PRDTRAMOD TRA,PRDSCC SCC,PRDPRY PRY
+		WHERE TRA.CMPCOD = MST.CMPCOD AND
+		  TRA.PRDCOD = MST.PRDCOD AND
+		  SCC.CMPCOD = MST.CMPCOD AND
+		  SCC.PRDCOD = MST.PRDCOD AND
+		  PRY.CMPCOD = MST.CMPCOD AND
+		  PRY.PRDCOD = MST.PRDCOD AND
+		  MST.CMPCOD = ? AND
+		  UPPER(MST.PRDNAM) = UPPER(?) AND
+		  ? >= MST.PRDSTRDAT AND
+		  ? <= MST.PRDENDDAT
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+<!--added for ICRD-9619-->
+	<QRY:Definition>
+		<QRY:Id>41</QRY:Id>
+		<QRY:Source Name="product.defaults.validateproductnames" Type="NATIVE">
+			<![CDATA[
+			SELECT CMPCOD,PRDCOD,PRDNAM,PRDSTRDAT,PRDENDDAT,PRDDES,PRDSTA FROM PRDMST
+			WHERE CMPCOD = ? AND PRDSTA='A' AND PRDNAM IN
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!--added for ICRD-20450-->
+	<QRY:Definition>
+		<QRY:Id>42</QRY:Id>
+		<QRY:Source Name="product.defaults.findPriorityForProduct" Type="NATIVE">
+			<![CDATA[SELECT MST.CMPCOD,MST.PRDCOD,MST.PRDNAM,PRY.PRDPRY  FROM PRDMST MST ,PRDPRY PRY 
+				WHERE  MST.CMPCOD = PRY.CMPCOD  AND 
+				MST.PRDCOD=PRY.PRDCOD				
+				AND MST.CMPCOD = ?				
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	  <QRY:Definition>
+			<QRY:Id>43</QRY:Id>
+			<QRY:Source Name="product.defaults.deleteProductSuggestConfigurations" Type="NATIVE">
+				<![CDATA[
+				DELETE FROM PRDSUGCFGMST WHERE  CMPCOD= ?
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+		 <QRY:Definition>
+			<QRY:Id>43</QRY:Id>
+			<QRY:Source Name="product.defaults.findProductMappings" Type="NATIVE">
+				<![CDATA[
+					SELECT MST.PRDNAM,
+					CFGMST.PARVAL,CFGMST.PRDCNDSTR
+					FROM PRDMST MST,
+					PRDSUGCFGMST CFGMST
+					WHERE CFGMST.CMPCOD = MST.CMPCOD
+					AND CFGMST.PRDNAM   = MST.PRDNAM
+					AND MST.CMPCOD      =  ?
+					AND MST.PRDSTA      = 'A'
+					AND ((CFGMST.PARCOD ='SCC'
+					AND CFGMST.PARVAL  IN(?))
+					OR PARCOD          IS NULL)
+					ORDER BY
+					CASE
+					WHEN PARVAL IS NULL
+					THEN 1
+					ELSE 0
+					END,
+					PARPRY ASC
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+		<QRY:Id>44</QRY:Id>
+		<QRY:Source Name="product.defaults.findBookableProducts" Type="NATIVE">
+			<![CDATA[
+			SELECT
+    mst.cmpcod,
+    mst.prdcod,
+    mst.prdnam,
+    pry.prdpry,
+    mst.prddes,
+    mst.prdsta,
+    mst.ratdef,
+    sub.subprdcod,
+    ser.prdsercod,
+    srvmst.srvnam
+FROM
+    prdmst mst
+    JOIN prdscc scc ON ( mst.cmpcod = scc.cmpcod
+                         AND mst.prdcod = scc.prdcod )
+    JOIN prdsubmst sub ON ( mst.cmpcod = sub.cmpcod
+                            AND mst.prdcod = sub.prdcod )
+    JOIN prdpry pry ON ( mst.cmpcod = pry.cmpcod
+                         AND mst.prdcod = pry.prdcod
+                         AND sub.prycod = pry.prdpry )
+    LEFT OUTER JOIN prdser ser ON ( mst.cmpcod = ser.cmpcod
+                                    AND mst.prdcod = ser.prdcod )
+    LEFT OUTER JOIN shrsrvmst srvmst ON ( ser.cmpcod = srvmst.cmpcod
+                                          AND ser.prdsercod = srvmst.srvcod )
+WHERE
+    mst.cmpcod =?
+			]]>
+		</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+			<QRY:Id>45</QRY:Id>
+			<QRY:Source Name="product.defaults.findSuggestedProducts" Type="NATIVE">
+				<![CDATA[
+					SELECT MST.PRDNAM,CFGMST.PARVAL 
+					FROM PRDMST MST, PRDSUGCFGMST CFGMST 
+					WHERE  CFGMST.CMPCOD= MST.CMPCOD
+					AND CFGMST.PRDNAM= MST.PRDNAM
+					AND MST.PRDSTA= 'A'
+					AND MST.CMPCOD= ?
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+			<QRY:Id>46</QRY:Id>
+			<QRY:Source Name="product.defaults.getProductModelMapping" Type="NATIVE">
+				<![CDATA[
+						SELECT  COMGRP.CMPCOD,COMGRP.GRPNAM COMGRP,COMGRPDTL.GRPENT COMNAM,MPG.PRDNAM,RECMND.EDIMSG COMEDI,RECMND.PORBKG COMPOR,RECMND.SOLCFG COMSOC,
+MST.PRDSTRDAT,MST.PRDENDDAT,PRY.PRDPRY,PRDGRPMST.GRPNAM PRDGRP,PRDATR.ATRNAM,ATRPRY.ATRPRY,PRDATR.EDIMSG PRDEDI,PRDATR.PORBKG PRDBKG,PRDATR.SOLCFG PRDSOCO,PRDATR.UPSPRDNAM,
+COMGRP.GRPDES COMGRPDES,COMMST.COMDES COMDES,RECMND.PRDGRP RECPRD,RECMND.PRDPRY RECPRY,PRDGRPMST.GRPDES PRDGRPDES,RECMND.POSBKGTYP,RECMND.CONSOL
+FROM SHRGENMSTGRP COMGRP
+INNER JOIN SHRGENMSTGRPDTL COMGRPDTL ON COMGRP.CMPCOD=COMGRPDTL.CMPCOD AND COMGRP.GRPNAM=COMGRPDTL.GRPNAM
+      and COMGRP.GRPTYP=COMGRPDTL.GRPTYP AND COMGRP.GRPCATCOD=COMGRPDTL.GRPCATCOD
+LEFT OUTER JOIN PRDCOMGRPMPG MPG ON COMGRP.CMPCOD=MPG.CMPCOD AND COMGRP.GRPNAM=MPG.COMGRP
+INNER JOIN PRDMST MST ON MPG.CMPCOD=MST.CMPCOD AND MPG.PRDNAM=MST.PRDNAM
+INNER JOIN PRDPRY PRY ON MST.CMPCOD=PRY.CMPCOD AND MST.PRDCOD=PRY.PRDCOD
+INNER JOIN SHRGENMSTGRPDTL PRDGRPDTL ON MPG.CMPCOD=PRDGRPDTL.CMPCOD AND MPG.PRDNAM=PRDGRPDTL.GRPENT
+INNER JOIN SHRGENMSTGRP PRDGRPMST ON PRDGRPDTL.CMPCOD=PRDGRPMST.CMPCOD AND PRDGRPDTL.GRPNAM=PRDGRPMST.GRPNAM
+      and PRDGRPDTL.GRPTYP=PRDGRPMST.GRPTYP AND PRDGRPDTL.GRPCATCOD=PRDGRPMST.GRPCATCOD
+LEFT OUTER JOIN PRDATRMPG PRDATR ON MST.CMPCOD=PRDATR.CMPCOD AND MST.PRDNAM=PRDATR.PRDNAM
+LEFT OUTER JOIN PRDATRPRY ATRPRY ON PRDATR.CMPCOD=ATRPRY.CMPCOD AND PRDATR.ATRNAM=ATRPRY.ATRNAM
+LEFT OUTER JOIN PRDGRPRMDMPG RECMND ON COMGRPDTL.CMPCOD=RECMND.CMPCOD AND COMGRPDTL.GRPENT=RECMND.COMCOD
+INNER JOIN SHRCOMMST COMMST ON COMGRPDTL.CMPCOD=COMMST.CMPCOD AND COMGRPDTL.GRPENT=COMMST.COMCOD
+WHERE COMGRP.CMPCOD = ? 
+AND COMGRP.GRPTYP='CMYGRP' AND COMGRP.GRPCATCOD='RES' 
+AND PRDGRPDTL.GRPTYP='PRDCODGRP' AND PRDGRPDTL.GRPCATCOD='RES'  
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+		<!--added for ICRD-160333-->
+		<QRY:Definition>
+			<QRY:Id>47</QRY:Id>
+			<QRY:Source Name="product.defaults.deleteProductCommodityGroupMappings" Type="NATIVE">
+				<![CDATA[
+				DELETE FROM PRDCOMGRPMPG WHERE CMPCOD = ?
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+			<QRY:Id>48</QRY:Id>
+			<QRY:Source Name="product.defaults.deleteProductAttributePriorities" Type="NATIVE">
+				<![CDATA[
+				DELETE FROM PRDATRPRY WHERE CMPCOD = ?
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+			<QRY:Id>49</QRY:Id>
+			<QRY:Source Name="product.defaults.deleteProductAttributeMappings" Type="NATIVE">
+				<![CDATA[
+				DELETE FROM PRDATRMPG WHERE CMPCOD = ?
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+			<QRY:Id>50</QRY:Id>
+			<QRY:Source Name="product.defaults.deleteProductGroupRecommendations" Type="NATIVE">
+				<![CDATA[
+				DELETE FROM PRDGRPRMDMPG WHERE CMPCOD = ?
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+	<QRY:Definition>
+	<QRY:Id>51</QRY:Id>
+	<QRY:Source Name="product.defaults.productsformaster" Type="NATIVE">
+		<![CDATA[
+		SELECT DISTINCT MST.PRDCOD,MST.PRDNAM,MST.PRDSTRDAT,MST.PRDENDDAT
+		FROM PRDMST MST
+		WHERE MST.PRDSTA='A' AND 
+		  MST.CMPCOD = ?
+		]]>
+	</QRY:Source>
+	</QRY:Definition>		
+		<QRY:Definition>
+			<QRY:Id>51</QRY:Id>
+			<QRY:Source Name="product.defaults.deleteProductODMappings" Type="NATIVE">
+				<![CDATA[
+				DELETE FROM PRDODTMPG WHERE CMPCOD = ?
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+			<QRY:Id>52</QRY:Id>
+			<QRY:Source Name="product.defaults.getProductODMapping" Type="NATIVE">
+				<![CDATA[
+				SELECT PRDNAM,ORGCOD,DSTCOD,CMPCOD FROM PRDODTMPG
+				WHERE CMPCOD = ? 
+				]]>
+			</QRY:Source>
+	</QRY:Definition>	
+	<QRY:Definition>
+		<QRY:Id>53</QRY:Id>
+		<QRY:Source Name="product.defaults.validateProductsForListing" Type="NATIVE">
+			<![CDATA[
+			SELECT CMPCOD,PRDCOD,PRDNAM,PRDSTRDAT,PRDENDDAT,PRDDES,PRDSTA FROM PRDMST
+			WHERE CMPCOD = ?
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<QRY:Definition>
+			<QRY:Id>54</QRY:Id>
+			<QRY:Source Name="product.defaults.suggestProductsForService" Type="NATIVE">
+				<![CDATA[
+					SELECT MST.PRDNAM,CFGMST.PARVAL,CFGMST.PRDCNDSTR
+					FROM PRDMST MST, PRDSUGCFGMST CFGMST 
+					WHERE  CFGMST.CMPCOD= MST.CMPCOD
+					AND CFGMST.PRDNAM= MST.PRDNAM
+					AND MST.CMPCOD= ?
+					AND MST.PRDSTA= 'A'
+					AND (
+					(CFGMST.PARCOD  IS NULL AND CFGMST.PARVAL IS NULL )
+					 OR (CFGMST.PARCOD  ='SCC' AND CFGMST.PARVAL IN
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+
+			<QRY:Id>55</QRY:Id>
+			<QRY:Source Name="product.defaults.findProductParameters" Type="NATIVE">
+				<![CDATA[
+					SELECT
+    mst.cmpcod,
+    mst.parcod,
+    mst.pardes,
+    mst.posval,
+    prddtl.parval
+FROM
+    prdparmst mst
+    LEFT OUTER JOIN prdpardtl prddtl ON ( mst.cmpcod = prddtl.cmpcod
+                                          AND mst.parcod = prddtl.parcod )
+WHERE
+    mst.cmpcod =?
+    AND (
+        prddtl.prdcod =?
+        OR prddtl.prdcod IS NULL
+    )
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+			<QRY:Definition>
+			
+	<QRY:Id>56</QRY:Id>
+	<QRY:Source Name="product.defaults.findProductParametersbycode" Type="NATIVE">
+		<![CDATA[
+			SELECT PARCOD,PARVAL FROM PRDPARDTL 
+			WHERE CMPCOD = ? AND PRDCOD = ? AND PARCOD IN
+		]]>
+	</QRY:Source>
+	</QRY:Definition>
+
+		<QRY:Definition>
+			<QRY:Id>57</QRY:Id>
+			<QRY:Source Name="product.defaults.findProductsByParameters" Type="NATIVE">
+				<![CDATA[
+				SELECT MST.CMPCOD,MST.PRDCOD,MST.PRDNAM,MST.PRDDES,PAR.PARCOD,PAR.PARVAL,SCC.PRDSCC FROM PRDMST MST 
+          LEFT OUTER JOIN PRDPARDTL PAR ON MST.CMPCOD= PAR.CMPCOD AND MST.PRDCOD= PAR.PRDCOD 
+          LEFT OUTER JOIN PRDSCC SCC ON MST.CMPCOD= SCC.CMPCOD AND MST.PRDCOD= SCC.PRDCOD 
+          WHERE  MST.CMPCOD= ? AND MST.PRDSTA= ? 
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+<!--added by A-9025 -->
+	<QRY:Definition>
+		<QRY:Id>58</QRY:Id>
+		<QRY:Source Name="product.defaults.validateProductsByNames" Type="NATIVE">
+			<![CDATA[
+			SELECT CMPCOD,PRDCOD,PRDNAM,PRDSTRDAT,PRDENDDAT,PRDDES,PRDSTA FROM PRDMST
+			WHERE CMPCOD = ? AND PRDSTA='A' AND PRDNAM IN
+			]]>
+		</QRY:Source>
+	</QRY:Definition>
+	<!--added by A-9025-->
+			<QRY:Definition>
+			<QRY:Id>58</QRY:Id>
+			<QRY:Source Name="product.defaults.findAllProductParameters" Type="NATIVE">
+				<![CDATA[
+					SELECT MST.CMPCOD,MST.PARCOD,MST.PARDES,MST.POSVAL FROM PRDPARMST MST WHERE MST.CMPCOD =?
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+			<QRY:Id>59</QRY:Id>
+			<QRY:Source Name="product.defaults.checkIfDuplicatePrdPriorityExists" Type="NATIVE">
+				<![CDATA[
+					SELECT LISTAGG(MST.PRDNAM,',')
+					WITHIN GROUP (ORDER BY MST.PRDNAM) AS PRDNAM FROM PRDMST MST WHERE CMPCOD = ? AND PRDSTA='A' AND PRDPTY = ? AND
+					PRDNAM != ?
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+		<QRY:Definition>
+		<QRY:Id>60</QRY:Id>
+			<QRY:Source Name="product.defaults.checkIfDuplicatePrdPriorityExistsPostgres" Type="NATIVE">
+				<![CDATA[
+					SELECT STRING_AGG(MST.PRDNAM,','
+					ORDER BY MST.PRDNAM) AS PRDNAM FROM PRDMST MST WHERE CMPCOD = ? AND PRDSTA='A' AND PRDPTY = ? AND
+					PRDNAM != ?
+				]]>
+			</QRY:Source>
+		</QRY:Definition>
+</QRY:Definitions>
+

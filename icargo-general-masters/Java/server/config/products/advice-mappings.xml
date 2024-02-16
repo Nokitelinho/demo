@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adv:advice-mappings xmlns:xs="http://www.w3.org/2001/XMLSchema"
+					 xmlns:adv="http://www.ibsplc.com/icargo/business/advice"
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					 xsi:schemaLocation="http://www.ibsplc.com/icargo/business/advice xibase/java/server/config/framework/xsd/advice-mappings.xsd"
+					 product="products">
+	<adv:advice name="products.defaults.saveProductDetails">
+		<adv:action name="saveProductDetails" type="PUBLISH"
+			builder="com.ibsplc.icargo.business.products.defaults.builder.ProductPublishBuilder"
+			method="saveProductDetails" async="true" />	 	
+	</adv:advice>
+	<adv:advice name="products.defaults.updateProductStatus"> 	
+		<adv:action name="updateProductStatus" type="PUBLISH" 
+			builder="com.ibsplc.icargo.business.products.defaults.builder.ProductPublishBuilder" 
+			method="updateProductStatus" async="true" />	 
+	</adv:advice>
+</adv:advice-mappings>
+
+

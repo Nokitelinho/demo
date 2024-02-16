@@ -1,0 +1,68 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ printf "icargo-neo-logstash-aws-%s" .Values.environmentProfile | lower | quote }} 
+  namespace: {{ .Values.namespace | quote }}
+  labels:
+    app: {{ printf "icargo-neo-logstash-aws-%s" .Values.environmentProfile | lower | quote }} 
+    srvtyp: "monitoring_service"
+    prctyp: "jruby"
+spec:
+  replicas: {{ .Values.logstash.replicas }}
+  selector:
+    matchLabels:
+      app: {{ printf "icargo-neo-logstash-aws-%s" .Values.environmentProfile | lower | quote }} 
+  template:
+    metadata:
+      labels:
+        app: {{ printf "icargo-neo-logstash-aws-%s" .Values.environmentProfile | lower | quote }} 
+    spec:
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ printf "logstash-configmap-%s" .Values.environmentProfile | lower | quote }}
+            items:
+              - key: logstash.yml
+                path: logstash.yml
+              - key: jvm.options
+                path: jvm.options    
+              - key: template.json
+                path: template.json  
+              - key: pipelines.yml
+                path: pipelines.yml                               
+        - name: pipeline-volume
+          configMap:
+            name: {{ printf "logstash-configmap-%s" .Values.environmentProfile | lower | quote }}
+            items:
+              - key: applogs.conf
+                path: applogs.conf      
+              - key: accesslogs.conf
+                path: accesslogs.conf                            
+      containers:
+        - name: "icargo-neo-logstash"
+          image: {{ printf "%s/%s" .Values.dockerRegistry .Values.logstash.image | quote }}
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 25826
+              protocol: TCP
+            - containerPort: 5044
+              protocol: TCP          
+            - name: "udp-appender"
+              containerPort: {{ .Values.logstash.udpPort }}
+              protocol: "UDP"
+            - name: "udp-appender-2"
+              containerPort: {{ .Values.logstash.accesslog.udpPort }}
+              protocol: "UDP"              
+          volumeMounts:
+            - name: config-volume
+              mountPath: /usr/share/logstash/config
+            - name: pipeline-volume
+              mountPath: /usr/share/logstash/pipeline          
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 60
+      dnsPolicy: ClusterFirst
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 300
+

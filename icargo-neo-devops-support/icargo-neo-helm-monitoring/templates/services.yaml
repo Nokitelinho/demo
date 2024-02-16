@@ -1,0 +1,109 @@
+{{/*
+ Elasticsearch headless service
+*/}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "elasticsearch"
+  namespace: {{ .Values.monitoringNamespace | quote }}
+  labels:
+    app: "elasticsearch"
+    srvtyp: "monitoring_service"
+spec:
+{{- if hasKey (first .Values.elasticSearchUrl) "externalDNSName" }}
+  type: ExternalName
+  externalName: {{ (first .Values.elasticSearchUrl).externalDNSName }}
+{{- else }}
+  ports:
+    - name: "http"
+      protocol: "TCP"
+      #port: 9200
+      port: 80
+      targetPort: {{ (first .Values.elasticSearchUrl).httpPort }}
+    - name: "transport"
+      protocol: "TCP"
+      port: 9300
+      targetPort: {{ (first .Values.elasticSearchUrl).transportPort }}
+{{- end }}      
+{{/*
+ The external elasticsearch endpoints
+*/}}
+{{- if not (hasKey (first .Values.elasticSearchUrl) "externalDNSName") }}
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: "elasticsearch"
+  namespace: {{ .Values.monitoringNamespace | quote }}
+  labels:
+    app: "elasticsearch"
+    srvtyp: "monitoring_service"
+subsets:
+  {{- range $elasticIp := .Values.elasticSearchUrl }}
+  - addresses:
+      - ip: {{ $elasticIp.ip | quote }}
+    ports:
+      - name: "http"
+        port: {{ $elasticIp.httpPort }}
+      - name: "transport"
+        port: {{ $elasticIp.transportPort }}
+  {{- end }}
+{{- end }}
+{{/*
+ TxProbe aggregator service object
+*/}}
+{{- if .Values.txProbe.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "neo-txprobe-aggregator"
+  namespace: {{ .Values.monitoringNamespace | quote }}
+  labels:
+    app: "neo-txprobe-aggregator"
+    srvtyp: "monitoring_services"
+    prctyp: "java"
+spec:
+  type: ClusterIP
+  sessionAffinity: ClientIP
+  selector:
+    app: "neo-txprobe-aggregator"
+  ports:
+    - name: "probe-transport"
+      protocol: "TCP"
+      port: {{ .Values.txProbe.transportPort }}
+    - name: "probe-http"
+      protocol: "TCP"
+      port: {{ .Values.txProbe.httpPort }}
+  topologyKeys: # Prefer same host or external
+    - "kubernetes.io/hostname"
+#    - "*"
+{{- end }}
+
+{{/*
+ Logstash udp service object
+*/}}
+{{- if .Values.logstash.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "icargo-neo-logstash"
+  namespace: {{ .Values.monitoringNamespace | quote }}
+  labels:
+    app: "icargo-neo-logstash"
+    srvtyp: "monitoring_services"
+    prctyp: "java"
+spec:
+  type: ClusterIP
+  selector:
+    app: "icargo-neo-logstash"
+  ports:
+    - name: "udp-appender"
+      protocol: "UDP"
+      port: {{ .Values.logstash.udpPort }}
+  topologyKeys: # Prefer same host or external
+    - "kubernetes.io/hostname"
+    - "*"
+{{- end }}

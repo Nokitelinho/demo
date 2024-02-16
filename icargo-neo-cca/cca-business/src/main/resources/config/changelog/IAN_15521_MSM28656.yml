@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN_15521_MSM28656.yml
+  - changeSet:
+      id: 28502
+      author: A-10597
+      preConditions:
+        - tableExists:
+            tableName: ccamst
+        - not:
+            columnExists:
+              tableName: ccamst
+              columnName: exestn
+
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccamst ADD COLUMN exestn varchar(4);
+
+          COMMENT ON COLUMN ccamst.exestn IS 'Execution station';

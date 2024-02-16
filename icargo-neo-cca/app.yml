@@ -1,0 +1,26 @@
+APP: 
+  - 
+    JAVA_HOME: /usr/lib/jvm/java-11-amazon-corretto
+    M2: /opt/apache-maven-3.6.2/bin
+    M2_HOME: /opt/apache-maven-3.6.2
+    repo: "http://Icargo-release@bitbucket.ibsplc.com/scm/icneo/icargo-neo-cca.git"
+    token: "f60d9763-39f7-4e73-8467-258d60f1d7f6"
+    project_name: "icargo-neo-cca"
+    sonar_host_url: "http://10.250.3.242:9000"
+    sonar_projectkey_dev: "com.ibsplc.icargo:icargo-neo-cca-dev"
+    sonar_projectkey_master: "com.ibsplc.icargo:icargo-neo-cca-master"
+    sonar_password: "admin"
+    sonar_user: "admin"
+    sonar_project_name_dev: "icargo-neo-cca-dev"
+    sonar_project_name_master: "icargo-neo-cca-master"
+    stop_script: "icargoadm@10.250.3.192 /home/icargoadm/deploy/deployCca/stop.sh"
+    copy_script: "cca-business/target/neo-cca*.jar icargoadm@10.250.3.192:/home/icargoadm/deploy/deployCca"
+    start_script: "icargoadm@10.250.3.192 /home/icargoadm/deploy/deployCCa/start.sh"
+    sonar_project_name_integrationtest: "icago-neo-cca-integrationTest"
+    sonar_project_name_integrationtest_dev: "icago-neo-cca-integrationTest-Dev"
+    sonar_projectkey_integrationtest: "com.ibsplc.icargo:icargo-neo-cca-integrationTest"
+    sonar_projectkey_integrationtest_dev: "com.ibsplc.icargo:icargo-neo-cca-integrationTest-dev"
+    integration_test_stage: true
+    deploy_stage: true
+    service_name: neo-cca-business
+    release_url: http://10.250.3.242:5000/release-manager-service/rest/api/release/

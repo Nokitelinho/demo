@@ -1,0 +1,167 @@
+def Stage_Name="Init"
+def ENV
+def releaseVersion
+def bom_env
+def tenantId = "base"
+def applicationId ="icargo-neo"
+def currentVersion
+def jiraIds
+//env.EMAIL_SUBSCRIBERS="sinoob.saithumuhammed@ibsplc.com, Sander.Joseph@ibsplc.com, Tibin.Kuriackose@ibsplc.com, Vinu.Venu@ibsplc.com, iCargoNeoDesign@ibsplc.com, iCargoNeoSMs@ibsplc.com, iCargoNeoQA@ibsplc.com"
+env.argoCdRepoRUL="http://Icargo-release@bitbucket.ibsplc.com/scm/icneo/icargo-neo-argocd.git"
+env.EMAIL_SUBSCRIBERS=""
+
+
+pipeline {
+    agent any
+
+	options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '1'))
+    }
+	  parameters {
+        text(defaultValue: "beta", description: '', name: 'branchname')
+		text(defaultValue: "icargo-neo-bom.yml", description: 'The yaml file to be uploaded', name: 'bomyaml')
+    }
+    stages {			
+		
+		
+		
+		stage('Checkout Branch for Argo CD') {
+			steps{
+				script {
+					env.branchname=branchname
+					echo "branchname   --${branchname}"
+				
+					
+				}
+				checkout([$class           : 'GitSCM',
+				branches         : [[name: env.branchname]],
+				extensions: [[$class: 'CleanBeforeCheckout'],
+				            [$class: 'RelativeTargetDirectory',
+							relativeTargetDir: 'service/']],
+				userRemoteConfigs: [[
+						credentialsId: "f60d9763-39f7-4e73-8467-258d60f1d7f6",
+						url: env.argoCdRepoRUL]]])
+				script {
+					dir("service"){
+					}
+				
+					
+				}
+			}
+				
+		}
+		
+		stage("Commit to SaaS PHASE") {			
+			steps {
+				echo "Saas Commit  PHASE"
+				sh '''
+                set +e
+				cd service
+                pwd
+                CURRDIR=$(pwd)
+                git ls-remote saas-mgmt-argocd
+				typeset -i RANS=${?}
+				if [[ ${RANS} -ne 0 ]]; then
+					git remote add saas-mgmt-argocd ssh://APKAW2PSX54W42K3E3IT@git-codecommit.eu-west-1.amazonaws.com/v1/repos/iCargo-gitops-cd
+				fi
+				git remote -v
+				git fetch --all
+                #git pull saas-mgmt-argocd HEAD:${branchname}
+                # Get the lastest change from the remote origin/master -- bitbucket repo ->origin
+                git show-branch master                                     
+				typeset -i BANS=${?}
+				[[ ${BANS} -eq 0 ]] && git checkout master || git checkout --track origin/master
+                # Gettgin latest from the master branch of bitbucket master branch
+                git pull origin master
+                # Checkout the local repo to the branch -- bitbucket --> local 
+				git show-branch "origin/${branchname}"
+				typeset -i BANS=${?}
+				[[ ${BANS} -eq 0 ]] && git checkout ${branchname} || git checkout --track origin/${branchname}
+                #merge the latest change from bitbucket branch 
+                git pull origin ${branchname}
+                # Adding the image to SAAS REPO
+                /data/utils/ecr-sync-saas.sh "${CURRDIR}/etc/${bomyaml}"
+                # merge the bitbucket master branch changes to branch
+                git merge origin/master --commit -m "Merging master to the ${branchname} from SAAS SYNC "
+                #assuming a changed in saass repo  
+                git ls-remote --exit-code --quiet saas-mgmt-argocd ${branchname} && git pull saas-mgmt-argocd ${branchname}
+                set -e
+				git push origin ${branchname}
+                git push saas-mgmt-argocd ${branchname}
+                '''
+			}
+		}
+		
+	}
+
+	
+	post {
+		success{
+			script {
+				recipientProvidersEmail= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersEmail   ->  ${recipientProvidersEmail}"
+				emailext( 
+						attachmentsPattern: "icargo-neo-cli/beta.zip,bom_env.yaml,jiraIds.txt",
+						recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']],
+						mimeType: 'text/html',
+						to : "${env.EMAIL_SUBSCRIBERS}",
+                        subject: "Success: Job '${env.JOB_NAME} [${env.RELVER}]'",
+                        body: """Success: Job '${env.JOB_NAME} [${env.RELVER}]':
+							<br />
+							Check console output at:  ${env.BUILD_URL}/console 
+							<br />
+							Job Name:  ${env.JOB_NAME} 
+                            Release Version: ${env.RELVER}
+							<br />
+							Jenkins Build Number: [${env.BUILD_NUMBER}]"""             
+                    )      
+            }
+			
+			sh '''
+				if [ -e ${WORKSPACE}/bom_env.yaml ]; then
+					rm  ${WORKSPACE}/bom_env.yaml
+				fi
+				
+				if [ -e ${WORKSPACE}/icargo-neo-cli/beta.zip ]; then
+					rm  ${WORKSPACE}/icargo-neo-cli/beta.zip
+				fi
+				
+				'''
+			
+	}
+	
+        failure {
+            script {
+				recipientProvidersEmail= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersEmail   ->  ${recipientProvidersEmail}"			
+				emailext(
+						attachmentsPattern: "icargo-neo-cli/beta.zip",
+						mimeType: 'text/html',
+						recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+										[$class: 'RequesterRecipientProvider'],
+										[$class: 'DevelopersRecipientProvider']],
+						to : "${env.EMAIL_SUBSCRIBERS}",
+						subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+						body: """
+								<div style="color:red;font-size:20px">
+								FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+								</div>
+								Failure happened in ${Stage_Name}.
+								<br />
+								Check console output at:  ${env.BUILD_URL}/console
+								<br />
+								Job Name:  ${env.JOB_NAME} 
+								<br />
+								Build Number: [${env.BUILD_NUMBER}]"""
+						)				
+            }
+        }
+    }
+
+}

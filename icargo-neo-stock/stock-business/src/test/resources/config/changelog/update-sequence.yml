@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/update-sequence.yml
+  - changeSet:
+      id: UPDATE_SEQUENCE
+      author: 201132
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: SELECT setval('stkhldmst_seq', (SELECT MAX(stkhldmstsernum) FROM stkhldmst));
+             SELECT setval('stkhldstk_seq', (SELECT MAX(stkhldstksernum) FROM stkhldstk));
+             SELECT setval('stkrng_seq', (SELECT MAX(stkrngsernum) FROM stkrng));
+             SELECT setval('stkrngutl_seq', (SELECT MAX(stkrngutlsernum) FROM stkrngutl));
+             SELECT setval('stkrngutlhis_seq', (SELECT MAX(stkrngutlhissernum) FROM stkrngutlhis));
+             SELECT setval('stkblklstrng_seq', (SELECT MAX(stkblklstrngsernum) FROM stkblklstrng));
+             SELECT setval('stkreqoal_seq', (SELECT MAX(stkreqoalsernum) FROM stkreqoal));
+             SELECT setval('stkreqmst_seq', (SELECT MAX(stkreqmstsernum) FROM stkreqmst));
+             SELECT setval('stkhldagt_seq', (SELECT MAX(stkhldagtsernum) FROM stkhldagt));
+             SELECT setval('stktrsrng_seq', (SELECT MAX(stktrsrngsernum) FROM stktrsrng));
+             SELECT setval('stkrngmsgtmp_seq', (SELECT MAX(stkrngmsgtmpsernum) FROM stkrngmsgtmp));
+

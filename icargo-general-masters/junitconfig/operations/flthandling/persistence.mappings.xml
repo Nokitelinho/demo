@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<PER:Mappings xmlns:PER="http://www.ibsplc.com/xibase/persistence/mappings" product="OPERATIONS">
+
+<PER:Mapping>
+<PER:MappingId>1</PER:MappingId>
+<PER:ModuleName>operations.flthandling</PER:ModuleName>
+<PER:Dao>com.ibsplc.icargo.persistence.dao.operations.flthandling.FltHandlingSqlDAO</PER:Dao>
+<PER:ObjectDao>com.ibsplc.icargo.business.operations.flthandling.FltHandlingObjectDAO</PER:ObjectDao>
+<PER:QueryXML>operations-flthandling-query.xml</PER:QueryXML>
+<PER:Entities>
+	<PER:Package Name="com.ibsplc.icargo.business.operations.flthandling.interline">	
+		<PER:Entity>CTM</PER:Entity>
+		<PER:Entity>ShipmentInCTM</PER:Entity>
+	</PER:Package>
+	<PER:Package Name="com.ibsplc.icargo.business.operations.flthandling">
+		<PER:Entity>ExportFlightAtAirport</PER:Entity>
+		<PER:Entity>ExportFlightHistory</PER:Entity>
+		<PER:Entity>OperationalFlightSegment</PER:Entity>
+		<PER:Entity>OperationalUldForSegment</PER:Entity>
+		<PER:Entity>OperationalShipmentForSegment</PER:Entity>
+		<PER:Entity>OperationalShipmentInUldForSegment</PER:Entity>
+		<PER:Entity>ThruRouting</PER:Entity>		
+		<PER:Entity>ManifestedUld</PER:Entity>
+		<PER:Entity>ManifestedShipmentInUld</PER:Entity>
+		<PER:Entity>ManifestedThruRouting</PER:Entity>
+		<PER:Entity>ManifestVersion</PER:Entity>
+		<PER:Entity>ImportFlightHistory</PER:Entity>
+		<PER:Entity>ImportFlightAtAirport</PER:Entity>
+		<PER:Entity>OffloadDetail</PER:Entity>
+		<PER:Entity>ULDOnwardFlight</PER:Entity>
+		<PER:Entity>OperationalFlightAudit</PER:Entity>
+		<PER:Entity>OperationalULDAudit</PER:Entity>
+		<PER:Entity>OperationalULD</PER:Entity>
+		<PER:Entity>ExternalMessageHistory</PER:Entity>
+		<PER:Entity>BulkUnitMapping</PER:Entity>
+		<PER:Entity>BulkUnitMappingDetails</PER:Entity>
+		<PER:Entity>OperationalSegmentSelectShipment</PER:Entity>
+		<PER:Entity>OperationalSegmentSelectUld</PER:Entity>
+		<PER:Entity>ULDBuildupDetail</PER:Entity>
+		<PER:Entity>ULDBuildupAccessories</PER:Entity>		
+		<PER:Entity>FlightDocumentDetails</PER:Entity>
+		<PER:Entity>OperationalULDWeighingDetails</PER:Entity>
+		<PER:Entity>OperationalFlightLoadDetails</PER:Entity>
+		<PER:Entity>FlightMaintenance</PER:Entity>
+	</PER:Package>
+	<PER:Package Name="com.ibsplc.icargo.business.operations.flthandling.notoc">	
+		<PER:Entity>NotocForDGR</PER:Entity>
+		<PER:Entity>NotocForSpecialLoad</PER:Entity>
+		<PER:Entity>NotocDryIce</PER:Entity>
+		<PER:Entity>NotocDryIceHistory</PER:Entity>
+		<PER:Entity>NotocForDGRHistory</PER:Entity>
+		<PER:Entity>NotocForSpecialLoadHistory</PER:Entity>
+		<PER:Entity>NotocFlight</PER:Entity>
+		<PER:Entity>NotocFlightHistory</PER:Entity>
+	</PER:Package>
+	<PER:Package Name="com.ibsplc.icargo.business.operations.flthandling.cto">	
+			<PER:Entity>ULDLoadingInstructionDetails</PER:Entity>
+			<PER:Entity>ULDLoadingInstructionShipmentDetails</PER:Entity>
+			<PER:Entity>ULDTag</PER:Entity>
+			<PER:Entity>ULDTagTransferDetail</PER:Entity>
+			<PER:Entity>ShipmentBreakdownDetails</PER:Entity>
+			<PER:Entity>ULDBreakdownDetails</PER:Entity>
+			<PER:Entity>BreakdownHistory</PER:Entity>
+			<PER:Entity>DWSMaster</PER:Entity>
+			<PER:Entity>DWSULDDetail</PER:Entity>
+			<PER:Entity>DWSBulkDetail</PER:Entity>
+			<PER:Entity>DamageDetail</PER:Entity>
+			<PER:Entity>XrayShipment</PER:Entity>
+			<PER:Entity>TransitStorage</PER:Entity>
+			<PER:Entity>ShipmentLocationDetails</PER:Entity>
+			<PER:Entity>FlightFinalServiceDetail</PER:Entity>
+			<PER:Entity>FlightFinalSummary</PER:Entity>
+			<PER:Entity>GeneralManifestConfig</PER:Entity>
+			<PER:Entity>GeneralManifestVersion</PER:Entity>
+			<PER:Entity>GeneralManifestedShipment</PER:Entity>
+			<PER:Entity>RawMaterial</PER:Entity>						
+			<PER:Entity>PriorityShipmentDetail</PER:Entity>
+			<PER:Entity>ULDData</PER:Entity>
+			<PER:Entity>ShipmentData</PER:Entity>
+			<PER:Entity>ULDDeliverySheet</PER:Entity>
+			<PER:Entity>TSAFlight</PER:Entity>
+			<PER:Entity>ULDTagConfigurations</PER:Entity>
+			<PER:Entity>ULDLoadingDetails</PER:Entity>
+			<PER:Entity>ULDLoadingAccessoryDetails</PER:Entity>
+			<PER:Entity>ULDLoadingLinkageDetails</PER:Entity>
+			<PER:Entity>ULDTagDCSConfigurations</PER:Entity>
+	</PER:Package>
+	<PER:Package Name="com.ibsplc.icargo.business.operations.flthandling.cto.ramp">	
+				<PER:Entity>RampHandlingULDDetails</PER:Entity>
+				<PER:Entity>RampHandlingAWBDetail</PER:Entity>
+	</PER:Package>
+	<PER:Package Name="com.ibsplc.icargo.business.operations.flthandling.truck">	
+				<PER:Entity>TruckAssignment</PER:Entity>
+				<PER:Entity>TruckConfiguration</PER:Entity>
+				<PER:Entity>ShipmentInTruck</PER:Entity>
+				<PER:Entity>Trucker</PER:Entity>
+	</PER:Package>
+	<!-- commented as part of ICRD-144071 -->
+	<!--PER:Package Name="com.ibsplc.icargo.business.operations.flthandling.jto.loadplan">	
+		<PER:Entity>LoadPlan</PER:Entity>		
+		<PER:Entity>LoadPlanPOL</PER:Entity>
+		<PER:Entity>LoadPlanShipment</PER:Entity>		
+		<PER:Entity>LoadPlanULD</PER:Entity>
+		<PER:Entity>LoadPlanVersion</PER:Entity>
+		<PER:Entity>LoadPlanPositionDetails</PER:Entity>
+		<PER:Entity>LoadPlanBookingSummary</PER:Entity>
+		<PER:Entity>LoadPlanLyingListShipment</PER:Entity>
+		<PER:Entity>LoadPlanShipmentPieces</PER:Entity>
+		<PER:Entity>LoadPlanConfig</PER:Entity>
+	</PER:Package-->
+	<PER:Package Name="com.ibsplc.icargo.business.operations.flthandling.cto.tk">
+		<PER:Entity>Ordino</PER:Entity>
+	</PER:Package>
+</PER:Entities>
+</PER:Mapping>
+</PER:Mappings>
+

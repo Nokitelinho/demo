@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<PER:Mappings xmlns:PER="http://www.ibsplc.com/xibase/persistence/mappings" product="OPERATIONS">
+
+<PER:Mapping>
+<PER:MappingId>1</PER:MappingId>
+<PER:ModuleName>operations.shipment</PER:ModuleName>
+<PER:Dao>com.ibsplc.icargo.persistence.dao.operations.shipment.ShipmentSqlDAO</PER:Dao>
+<PER:ObjectDao>com.ibsplc.icargo.business.operations.shipment.ShipmentObjectDAO</PER:ObjectDao>
+<PER:QueryXML>operations-shipment-query.xml</PER:QueryXML>
+<PER:Entities>
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment">
+		<PER:Entity>Shipment</PER:Entity>
+		<PER:Entity>ShipmentAcceptanceDetails</PER:Entity>
+		<PER:Entity>ShipmentAcceptanceDetailsHistory</PER:Entity>
+		<PER:Entity>AcceptanceFlightDetailHistory</PER:Entity>		
+		<PER:Entity>ULDAcceptanceHistory</PER:Entity>
+		<PER:Entity>ULDAcceptanceDetailsHistory</PER:Entity>
+		<PER:Entity>ShipmentIndex</PER:Entity>
+		<PER:Entity>ShipmentInULD</PER:Entity>
+		<PER:Entity>OperationalShipment</PER:Entity>
+		<PER:Entity>OperationalShipmentAtAirport</PER:Entity>
+		<PER:Entity>ULDAcceptance</PER:Entity>
+		<PER:Entity>ULDAcceptanceDetails</PER:Entity>
+		<PER:Entity>AdditionalNotification</PER:Entity>
+		<PER:Entity>DimensionDetail</PER:Entity>
+		<PER:Entity>OtherChargesDetail</PER:Entity>
+		<PER:Entity>RatingDetail</PER:Entity>
+		<PER:Entity>RoutingDetail</PER:Entity>
+		<PER:Entity>ShipmentDeclaration</PER:Entity>
+		<PER:Entity>ShipmentHouse</PER:Entity>		
+		<PER:Entity>DGRDetail</PER:Entity>
+		<PER:Entity>CCA</PER:Entity>
+		<PER:Entity>CCAHistory</PER:Entity>
+		<PER:Entity>UldAtAirport</PER:Entity>
+		<PER:Entity>UldLoadingDetailsAtAirport</PER:Entity>
+		<PER:Entity>UldLoadingAccessoryDetailsAtAirport</PER:Entity>
+		<PER:Entity>ThruRoutingAtAirport</PER:Entity>		
+		<PER:Entity>OperationalPreCarriageShipment</PER:Entity>
+		<PER:Entity>OperationalUldPrecarriageShipment</PER:Entity>
+		<PER:Entity>OperationalShipmentDetailsAtAirport</PER:Entity>
+		<PER:Entity>ShipmentCustomsInformation</PER:Entity>
+		<PER:Entity>OtherCustomsInfomationHistory</PER:Entity>
+		<PER:Entity>ShipmentCustomsInformationHistory</PER:Entity>
+		<PER:Entity>AccountDetail</PER:Entity>
+		<PER:Entity>ContactDetail</PER:Entity>
+		<PER:Entity>OtherParticipant</PER:Entity>
+		<PER:Entity>OtherService</PER:Entity>
+		<PER:Entity>SpecialServiceRequest</PER:Entity>
+		<PER:Entity>FlightBookingDetail</PER:Entity>
+		<PER:Entity>ShipmentService</PER:Entity>
+		<PER:Entity>ShipmentOnwardFlight</PER:Entity>		
+		<PER:Entity>OperationalShipmentAudit</PER:Entity>
+		<PER:Entity>ShipmentNotes</PER:Entity>
+		<PER:Entity>TransactionHouse</PER:Entity>
+		<PER:Entity>AcceptanceFlightDetail</PER:Entity>
+		<PER:Entity>AWBBarcodeLabel</PER:Entity>
+		<PER:Entity>ShipmentAccounting</PER:Entity>
+		<PER:Entity>ShipmentContact</PER:Entity>
+		<PER:Entity>ShipmentMiscellaneous</PER:Entity>
+		<PER:Entity>ShipmentHistory</PER:Entity>
+		<PER:Entity>ConsignmentAMSDetails</PER:Entity>		
+		<PER:Entity>AWBHistory</PER:Entity>
+		<PER:Entity>OtherCustomsInfomation</PER:Entity>		
+		<PER:Entity>DangerousGoodsAtAirport</PER:Entity>
+		<PER:Entity>AirportDWSUldDetail</PER:Entity>
+		<PER:Entity>ShipmentEmailReg</PER:Entity>
+		<PER:Entity>TransactionHouseSummary</PER:Entity>
+		<PER:Entity>ShipmentDocumentDetails</PER:Entity>
+		<PER:Entity>ShipmentAuditHistory</PER:Entity>
+		<PER:Entity>ShipmentCheckSheet</PER:Entity>
+		<PER:Entity>ShipmentCheckSheetDetails</PER:Entity>
+		<PER:Entity>ShipmentMasterHistory</PER:Entity>
+		<PER:Entity>ShipmentAccountingHistory</PER:Entity>
+		<PER:Entity>ShipmentContactHistory</PER:Entity>
+		<PER:Entity>ShipmentMiscellaneousHistory</PER:Entity>
+		<PER:Entity>RoutingDetailHistory</PER:Entity>
+		<PER:Entity>RatingDetailHistory</PER:Entity>
+		<PER:Entity>OtherChargesDetailHistory</PER:Entity>
+		<PER:Entity>DimensionDetailHistory</PER:Entity>
+		<PER:Entity>DGRDetailHistory</PER:Entity>
+		<PER:Entity>DangerousGoodsOccurrence</PER:Entity>
+		<PER:Entity>DGOccurenceDocuments</PER:Entity>
+		<PER:Entity>AccountDetailHistory</PER:Entity>
+		<PER:Entity>ContactDetailHistory</PER:Entity>
+		<PER:Entity>FlightBookingDetailHistory</PER:Entity>
+		<PER:Entity>OtherParticipantHistory</PER:Entity>
+		<PER:Entity>OtherServiceHistory</PER:Entity>
+		<PER:Entity>SpecialServiceRequestHistory</PER:Entity>
+		<PER:Entity>ShipmentServiceHistory</PER:Entity>
+		<PER:Entity>DGRNuclideDetail</PER:Entity>
+		<PER:Entity>ShipperDeclaration</PER:Entity>
+		<PER:Entity>ShipmentAdditionalContact</PER:Entity>
+		<PER:Entity>ShipmentScreeningDetails</PER:Entity>
+		<PER:Entity>ShipmentAdditionalContactHistory</PER:Entity>
+		<PER:Entity>BuildUpCheckDetailsForULD</PER:Entity>
+		<PER:Entity>ShipmentPieceSummary</PER:Entity>
+		<PER:Entity>CCAOtherChargeDetails</PER:Entity>
+		<PER:Entity>SpecialLoadDetailsAtAirport</PER:Entity>
+		<PER:Entity>DryIceDetailsAtAirport</PER:Entity>
+		<PER:Entity>ShipperDeclarationHistory</PER:Entity>
+		<PER:Entity>ShipmentDeclarationHistory</PER:Entity>
+		<PER:Entity>AdditionalNotificationHistory</PER:Entity>
+		<PER:Entity>GroupExecution</PER:Entity>
+		<PER:Entity>ShipmentInGroup</PER:Entity>
+		<PER:Entity>RatingULDDetailHistory</PER:Entity>
+		<PER:Entity>RatingULDDetail</PER:Entity>
+		<PER:Entity>ShipmentHandlingAttributes</PER:Entity>
+		<PER:Entity>ShipmentPrecheckDetails</PER:Entity>
+		<PER:Entity>ShipperDeclarationEmergencyContact</PER:Entity>
+		<PER:Entity>ShipperDeclarationEmergencyContactHistory</PER:Entity>
+		<PER:Entity>DGRNuclideDetailHistory</PER:Entity>	
+		<PER:Entity>UldPalletStackAtAirport</PER:Entity>
+	</PER:Package>
+
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.awb">
+		<PER:Entity>AWB</PER:Entity>
+	</PER:Package>	
+	
+
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.delivery">
+		<PER:Entity>DeliveryNote</PER:Entity>
+		<!--PER:Entity>Delivery</PER:Entity-->
+		<PER:Entity>DeliveryDetails</PER:Entity>
+		<PER:Entity>DNCharge</PER:Entity>
+		<PER:Entity>DNAudit</PER:Entity>
+		<PER:Entity>DeliveryNoteCustomer</PER:Entity>
+		<PER:Entity>DeliveryNoteLocationDetail</PER:Entity>
+		<PER:Entity>DeliveryCustomerSignature</PER:Entity>
+		<PER:Entity>DeliveryNoteULD</PER:Entity>
+		<PER:Entity>DeliveryNoteFlightDetails</PER:Entity>
+	</PER:Package>
+	
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.discrepancy">
+		<PER:Entity>ShipmentDiscrepancy</PER:Entity>
+		<PER:Entity>FoundShipment</PER:Entity>
+		<PER:Entity>AttachedAWB</PER:Entity>
+		<PER:Entity>FoundShipmentDetail</PER:Entity>
+		<PER:Entity>FoundShipmentDimension</PER:Entity>	
+		<PER:Entity>FoundShipmentDamage</PER:Entity>
+		<PER:Entity>FoundShipmentResolution</PER:Entity> 		
+		<PER:Entity>FoundShipmentAudit</PER:Entity>
+		<PER:Entity>DamageDiscrepancy</PER:Entity>
+		<PER:Entity>DiscrepancyResolution</PER:Entity>
+		<PER:Entity>ShipmentFlightDiscrepancy</PER:Entity>
+		<PER:Entity>DamageDiscrepancyBlob</PER:Entity>
+		<PER:Entity>FoundShipmentBlob</PER:Entity>
+		<PER:Entity>CargoDamageSurveyDetail</PER:Entity>
+		<PER:Entity>StatementOfFactsDetail</PER:Entity>
+		<PER:Entity>ContentDamageReport</PER:Entity>
+	</PER:Package>
+	
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.notification">
+		<PER:Entity>Notification</PER:Entity>			
+	</PER:Package>
+	
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.cto">
+		<PER:Entity>CTOAcceptanceHistory</PER:Entity>
+		<PER:Entity>ShipmentDimensionHistory</PER:Entity>		
+		<PER:Entity>ShipmentDimension</PER:Entity>		
+		<PER:Entity>IRPDetails</PER:Entity>
+		<PER:Entity>IdentityInformation</PER:Entity>
+		<PER:Entity>AWBHandlingDetails</PER:Entity>
+		<PER:Entity>HandlingULDType</PER:Entity>
+		<PER:Entity>HandlingSkidDetails</PER:Entity>
+		
+		<PER:Entity>AdditionalHandlingRegistration</PER:Entity>
+			
+		<PER:Entity>HandlingInstruction</PER:Entity>
+		<PER:Entity>HandlingInsructionRemarks</PER:Entity>
+		<PER:Entity>HandlingInsructionHistory</PER:Entity>	
+		<PER:Entity>HandlingInstructionStorageDetails</PER:Entity>			
+		<PER:Entity>ULDConditionAtAirport</PER:Entity>		
+		<PER:Entity>CargoHandling</PER:Entity>
+		<PER:Entity>OperationalShipmentAreaAtAirport</PER:Entity>	
+        <PER:Entity>Handling</PER:Entity>	  
+       <PER:Entity>ShipmentIrregularity</PER:Entity>		
+		<PER:Entity>CollectionList</PER:Entity>
+		<PER:Entity>DeliveryCustomerIDDetails</PER:Entity>
+		<PER:Entity>ShipmentsInCollectionList</PER:Entity>	   
+       <PER:Entity>ShipmentDimensionHistory</PER:Entity>	   
+		<PER:Entity>ShipmentsInCollectionListSplit</PER:Entity>	   
+	</PER:Package>
+	
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.jto">
+		<PER:Entity>AcceptanceTruckDetails</PER:Entity>
+		<PER:Entity>AcceptanceTruckDriverDetails</PER:Entity>	
+		<PER:Entity>CollectionShipmentAtAirport</PER:Entity>
+		<PER:Entity>CollectionInstruction</PER:Entity>
+		<PER:Entity>CollectionInstructionShipment</PER:Entity>
+		<PER:Entity>OperationalSkid</PER:Entity>
+		<PER:Entity>OperationalSkidDamage</PER:Entity>
+		<PER:Entity>LDR</PER:Entity>
+		<PER:Entity>LDRShipment</PER:Entity>
+		<PER:Entity>TruckShipmentAcceptance</PER:Entity>
+		<PER:Entity>TruckULDAcceptance</PER:Entity>
+		<PER:Entity>WebPortalLog</PER:Entity>
+		<PER:Entity>WarehouseServiceRegistration</PER:Entity>
+		<PER:Entity>WarehouseServiceDetails</PER:Entity>
+		<PER:Entity>ETDSExclusionReason</PER:Entity>
+		<PER:Entity>AcceptanceTruckDetails</PER:Entity>
+		<PER:Entity>AcceptanceTruckDriverDetails</PER:Entity>
+		<PER:Entity>LDRInTruck</PER:Entity>
+		<PER:Entity>AcceptanceTruckDetails</PER:Entity>
+		
+	</PER:Package>
+	
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.cto.clearance">
+		<PER:Entity>ShipmentClearance</PER:Entity>
+		<PER:Entity>ShipmentPreBlock</PER:Entity>	
+		<PER:Entity>TransactionBlockLevel</PER:Entity>				
+		<PER:Entity>AutoBlockDetails</PER:Entity>
+		<PER:Entity>AutoBlockParameterDetails</PER:Entity>
+		<PER:Entity>BlockReleaseDetails</PER:Entity>
+		<PER:Entity>BlockReleaseParameterDetails</PER:Entity>
+		<PER:Entity>ShipmentFlightClearance</PER:Entity>
+		<PER:Entity>ShipmentFlightClearancePK</PER:Entity>
+		<PER:Entity>BlockAuthority</PER:Entity>
+	</PER:Package>
+	
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.cto.delivery">
+		<PER:Entity>ShipperReturnNote</PER:Entity>
+		<PER:Entity>DeliveryReturn</PER:Entity>
+	</PER:Package>
+	
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.cto.delivery.jto">
+		<PER:Entity>AcceptanceSlipShipments</PER:Entity>
+		<PER:Entity>AcceptanceGroupImportNumber</PER:Entity>
+		<PER:Entity>DeliveryRequestDetail</PER:Entity>
+		<PER:Entity>DeliveryRequestMaster</PER:Entity>
+		<PER:Entity>AcceptanceSlipDeliveredSkids</PER:Entity>
+	</PER:Package>
+	
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.transfers">
+		<PER:Entity>CTMHistory</PER:Entity>
+		<PER:Entity>ShipmentTransferHistory</PER:Entity>
+		<PER:Entity>ULDTransferHistory</PER:Entity>
+		<PER:Entity>ShipmentTransferAdvice</PER:Entity>
+		<PER:Entity>ULDTransferAdvice</PER:Entity>		
+		<PER:Entity>ShipmentTransferRouting</PER:Entity>
+		<PER:Entity>ShipmentsInULDTransferHistory</PER:Entity>
+	</PER:Package>
+	
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.work">
+		<PER:Entity>ShipmentWork</PER:Entity>
+		<PER:Entity>ShipmentWorkDetail</PER:Entity>
+		<PER:Entity>ShipmentWorkParameter</PER:Entity>
+	</PER:Package>
+	
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.plt">
+		<PER:Entity>ShipmentPieceGroup</PER:Entity>
+		<PER:Entity>ShipmentPiece</PER:Entity>
+		<PER:Entity>ShipmentPieceGroupDimension</PER:Entity>
+		<PER:Entity>ShipmentPieceDimension</PER:Entity>
+		<PER:Entity>TransactionPiecesGroupHistory</PER:Entity>
+		<PER:Entity>TransactionPiecesGroup</PER:Entity>	
+		<PER:Entity>ShipmentPieceGroupAudit</PER:Entity>	
+		<PER:Entity>DGRPieceGroupDetail</PER:Entity>
+	</PER:Package>
+	
+	<PER:Package Name="com.ibsplc.icargo.business.operations.shipment.dangerousgoods">
+		<PER:Entity>DGShipmentMiscellaneous</PER:Entity>
+		<PER:Entity>DGShipmentMiscellaneousHistory</PER:Entity>
+	</PER:Package>
+</PER:Entities>
+</PER:Mapping>
+
+
+</PER:Mappings>

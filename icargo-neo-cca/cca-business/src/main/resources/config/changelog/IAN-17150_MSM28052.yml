@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-17150_MSM28052.yml
+  - changeSet:
+      id: 28052
+      author: Taras Kutselia
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: ccaaud
+      changes:
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE ccaaud (
+          audsernum integer,
+          txnactn varchar(50),
+          usr varchar(50),
+          usrrol varchar(50),
+          txntim timestamp(3),
+          txntimstn timestamp(3),
+          addinf text,
+          adtnam varchar(50),
+          stn varchar(50),
+          trgpnt varchar(50),
+          actn varchar(50),
+          chggrpdet json,
+          txntimutc timestamp(3),
+          adtver json,
+          chggrps varchar(255),
+
+          CONSTRAINT "ccaaud_pkey" PRIMARY KEY (audsernum)
+          );
+
+          COMMENT ON TABLE ccaaud IS 'CCA Audit Logs table';
+
+          COMMENT ON COLUMN ccaaud.audsernum IS 'Serial number of CcaAudit';
+          COMMENT ON COLUMN ccaaud.txnactn IS 'The transaction that was perfomed to audit creation';
+          COMMENT ON COLUMN ccaaud.usr IS 'The application user code who performed the transaction';
+          COMMENT ON COLUMN ccaaud.usrrol IS 'The role code of the application user who performed the transaction';
+          COMMENT ON COLUMN ccaaud.txntim IS 'Time when the transaction is perfomed';
+          COMMENT ON COLUMN ccaaud.txntimstn IS 'Station local time when the transaction is perfomed';
+          COMMENT ON COLUMN ccaaud.addinf IS 'Additional information about perfomed transaction and updates';
+          COMMENT ON COLUMN ccaaud.adtnam IS 'Audit name, type of the audit (Created / Updated / Deleted)';
+          COMMENT ON COLUMN ccaaud.stn IS 'The station code where transaction was perfomed';
+          COMMENT ON COLUMN ccaaud.trgpnt IS 'Trigger point, scenario that called to audit creation';
+          COMMENT ON COLUMN ccaaud.actn IS 'Action name that contains the audit event name and the audit type';
+          COMMENT ON COLUMN ccaaud.chggrpdet IS 'Change Group Detail, difference between current and previous version of the audited filds';
+          COMMENT ON COLUMN ccaaud.txntimutc IS 'UTC time when the transaction is perfomed';
+          COMMENT ON COLUMN ccaaud.adtver IS 'Audit version, CcaMasterVO stamp of type json';
+          COMMENT ON COLUMN ccaaud.chggrps IS 'Audit groups that was changed during the transaction';

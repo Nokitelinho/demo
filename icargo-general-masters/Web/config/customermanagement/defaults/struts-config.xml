@@ -1,0 +1,1365 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN "
+	"http://struts.apache.org/dtds/struts-config_1_2.dtd " >
+
+<struts-config>
+
+	<form-beans>	
+    	
+		<form-bean name="maintainLoyaltyForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.loyalty.MaintainLoyaltyForm" />	
+		<form-bean name="loyaltyProgrammeLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.loyalty.LoyaltyProgrammeLovForm" />	
+		<form-bean name="listLoyaltyForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.loyalty.ListLoyaltyForm"  />	
+		<form-bean name="MaintainTempCustomerForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.profile.MaintainTempCustomerForm"  />
+		<form-bean name="ListTempCustomerForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.profile.ListTempCustomerForm"  />
+		<form-bean name="TempIDForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.profile.TempIDForm" />
+		<form-bean name="MaintainCustomerRegistrationForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.profile.MaintainRegCustomerForm"  />
+		<form-bean name="ListCustomerPointsForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.loyalty.ListCustomerPointsForm" />
+		<form-bean name="ListCustomerForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.profile.ListCustomerForm"  />
+		<form-bean name="listCustomerGroupForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.customergroup.ListCustomerGroupForm"  />
+		<form-bean name="customerGroupForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.customergroup.CustomerGroupForm" />	
+		<form-bean name="runningLoyaltyProgrammeLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.loyalty.RunningLoyaltyProgrammeLovForm"  />	
+		<form-bean name="ServiceMasterForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.loyalty.ServiceMasterForm"  />	
+		<form-bean name="CustomerServiceLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.loyalty.ServiceLovForm"  />
+		<form-bean name="UploadTSAForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.profile.UploadTSAForm"  />		
+		<form-bean name="CustomerEnquiryForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.profile.CustomerEnquiryForm"  />
+		<form-bean name="ListGroupDetailsForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.profile.ListGroupDetailsForm"  />
+		<form-bean name="BrokerMappingForm" type="com.ibsplc.icargo.presentation.web.struts.form.customermanagement.defaults.ux.brokermapping.BrokerMappingForm"  />
+		
+	</form-beans> 
+	
+	
+	<global-forwards>				
+		 <forward name="error_fwd" path="/jsp/icargo_logon.jsp" />
+		 <forward name="normal-report-preview-jsp" path="/jsp/includes/reports/NormalReportViewer.jsp"/>
+		 <forward name="normal-report-print-jsp" path="/jsp/includes/reports/NormalReportPrinter.jsp"/>
+		 <forward name="normal-report-error-jsp" path="/jsp/includes/reports/NormalReportErrorHandler.jsp"/>						
+	</global-forwards>
+
+	
+	<action-mappings>
+	
+	<!--for Close action -->
+		<action
+			name="ListCustomerForm"
+			path="/customermanagement.defaults.closeaction"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="success" path="/home.jsp" />
+			<forward name="return_workflow" path="/workflow.defaults.messageinbox.listmessageinbox.do?listStatus=fromAnotherScreen" />
+		</action>
+		<!--for customer listing start-->
+		
+		<!--for customer listing report start-->
+		<action
+			path="/customermanagement.defaults.listcustomerprint"
+			name="ListCustomerForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>
+		
+		<!--for customer listing report ends-->
+		
+		<action
+			name="ListCustomerForm"
+			path="/customermanagement.defaults.screenloadlistcustomer"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/customermanagement/defaults/ListCustomer.jsp" />
+		</action>
+		<!-- Added by A-7534 as part of ICRD-227236 starts-->
+		<action
+			name="ListCustomerForm"
+			path="/customermanagement.defaults.listcustomerfromworkflow"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/ListCustomer.jsp" />
+		</action>
+		<!-- Added by A-7534 as part of ICRD-227236 ends-->
+		<action
+			name="ListCustomerForm"
+			path="/customermanagement.defaults.screenloadpointaccumulation"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/customermanagement/defaults/PointAccumulation.jsp" />
+		</action>
+		
+		
+	<action
+			name="ListCustomerForm"
+			path="/customermanagement.defaults.screenloadattachloyaltyprogram"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/customermanagement/defaults/AttachLoyaltyProgram.jsp" />
+		</action>
+
+		<action
+				name="ListCustomerForm"
+				path="/customermanagement.defaults.pointaccumulationlistcommand"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="list_success" path="/jsp/customermanagement/defaults/PointAccumulation.jsp" />
+				<forward name="list_failure" path="/jsp/customermanagement/defaults/PointAccumulation.jsp" />
+				<forward name="dupawb_success" path="/jsp/customermanagement/defaults/PointAccumulation.jsp" />
+
+				</action>
+
+
+				<action
+					name="ListCustomerForm"
+					path="/customermanagement.defaults.showpointscommand"
+					scope="request"
+					validate="false"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+
+					<forward name="show_success" path="/jsp/customermanagement/defaults/PointAccumulation.jsp" />
+
+				</action>
+
+			<action
+				name="ListCustomerForm"
+				path="/customermanagement.defaults.listcustomerdetails"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="list_success" path="/jsp/customermanagement/defaults/ListCustomer.jsp" />
+				<forward name="list_failure" path="/jsp/customermanagement/defaults/ListCustomer.jsp" />
+			</action>
+
+			<action
+				name="ListCustomerForm"
+				path="/customermanagement.defaults.attachloyaltydetails"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="add_success" path="/jsp/customermanagement/defaults/AttachLoyaltyProgram.jsp" />
+				<forward name="add_failure" path="/jsp/customermanagement/defaults/AttachLoyaltyProgram.jsp" />
+			</action>
+
+
+			<action
+					name="ListCustomerForm"
+					path="/customermanagement.defaults.deleteloyaltydetails"
+					scope="request"
+					validate="false"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+					<forward name="delete_success" path="/jsp/customermanagement/defaults/AttachLoyaltyProgram.jsp" />
+					<forward name="delete_failure" path="/jsp/customermanagement/defaults/AttachLoyaltyProgram.jsp" />
+			</action>
+
+			<action
+					name="ListCustomerForm"
+					path="/customermanagement.defaults.saveloyaltydetails"
+					scope="request"
+					validate="false"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+					<forward name="list_success" path="/customermanagement.defaults.listloyaltydetails.do?saveLoyaltyFlag=Y" />
+					<forward name="save_failure" path="/jsp/customermanagement/defaults/AttachLoyaltyProgram.jsp" />
+			</action>
+
+		<action
+			name="ListCustomerForm"
+			path="/customermanagement.defaults.listloyaltydetails"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/AttachLoyaltyProgram.jsp" />
+			</action>
+
+			
+			<action
+				name="ListCustomerForm"
+				path="/customermanagement.defaults.clearcustomerlisting"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="clear_success" path="/jsp/customermanagement/defaults/ListCustomer.jsp" />
+		</action>
+		
+		<action
+			name="ListCustomerForm"
+			path="/customermanagement.defaults.refreshcustdetails"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			forward="/jsp/customermanagement/defaults/ListCustomer.jsp"/>
+
+		<action
+			name="ListCustomerForm"
+			path="/customermanagement.defaults.clearpointsaccumulated"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/customermanagement/defaults/PointAccumulation.jsp" />
+		</action>
+
+		<action
+				name="ListCustomerForm"
+				path="/customermanagement.defaults.updatestatusforcustomers"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="list_success" path="/jsp/customermanagement/defaults/ListCustomer.jsp" />
+				<forward name="changestatus_success" path="/customermanagement.defaults.acknowledgecustomeractivation.do" />
+		</action>
+		<!-- Added by A-7534 as part of ICRD-227236 starts-->
+		<action path="/customermanagement.defaults.acknowledgecustomeractivation" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListCustomerForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/workflow.defaults.messageinbox.listmessageinbox.do?listStatus=fromAnotherScreen" />
+		</action>
+		<!-- Added by A-7534 as part of ICRD-227236 ends-->
+
+		
+<!--customer listing AYSWARYA-->
+	
+	<action
+				name="ListCustomerForm"
+				path="/customermanagement.defaults.screenloadpointredemption"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="screenload_success" path="/jsp/customermanagement/defaults/ListCustomer.jsp" />
+				<forward name="screenload_failure" path="/jsp/customermanagement/defaults/ListCustomer.jsp" />
+	</action>
+
+	<action
+		name="ListCustomerForm"
+		path="/customermanagement.defaults.customerlisting.listpointredemption"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/PointRedemption.jsp" />
+	</action>
+
+	<action
+		name="ListCustomerForm"
+		path="/customermanagement.defaults.customerlisting.addpointredemption"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/PointRedemption.jsp" />
+	</action>
+	
+	<action
+		name="ListCustomerForm"
+		path="/customermanagement.defaults.customerlisting.deletepointredemption"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/PointRedemption.jsp" />
+	</action>
+	
+	<action
+		name="ListCustomerForm"
+		path="/customermanagement.defaults.customerlisting.navigatepointredemption"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/customermanagement.defaults.customerlisting.listpointredemption.do" />
+	</action>
+	
+	<action
+		name="ListCustomerForm"
+		path="/customermanagement.defaults.customerlisting.screenloadcustcontactlov"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/CustomerContactLOV.jsp" />
+	</action>
+
+	<action
+		name="ListCustomerForm"
+		path="/customermanagement.defaults.customerlisting.savepointredemption"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/PointRedemption.jsp" />
+	</action>
+	
+	
+	<action
+			name="MaintainCustomerRegistrationForm"
+			path="/customermanagement.defaults.viewcustomerlistingdetails"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+		</action>
+
+	<action
+			name="MaintainCustomerRegistrationForm"
+			path="/customermanagement.defaults.navigatecustomerdetails"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+		</action>
+
+		<!-- Added for ICRD-67442 by A-5163 starts -->	
+		<action
+			name="MaintainCustomerRegistrationForm"
+			path="/customermanagement.defaults.listcustomerdetailshistory"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration_Ajax.jsp" />
+		</action>
+		<action
+			name="MaintainCustomerRegistrationForm"
+			path="/customermanagement.defaults.relistcustomerdetailshistory"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+		</action>
+		<action
+			name="MaintainCustomerRegistrationForm"
+			path="/customermanagement.defaults.onscreenloadcustomerauditversions"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+		</action>
+		<!-- Added for ICRD-67442 by A-5163 ends -->	
+
+		<action
+			name="ListCustomerPointsForm"
+			path="/customermanagement.defaults.viewloyaltydetailsofcustomer"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/ListCustomerPoints.jsp" />
+			<forward name="list_failure" path="/jsp/customermanagement/defaults/ListCustomerPoints.jsp" />
+		</action>
+
+		<action
+					name="ListCustomerPointsForm"
+					path="/customermanagement.defaults.navigatecustomerloyaltydetails"
+					scope="request"
+					validate="false"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+					<forward name="list_success" path="/jsp/customermanagement/defaults/ListCustomerPoints.jsp" />
+					<forward name="list_failure" path="/jsp/customermanagement/defaults/ListCustomerPoints.jsp" />
+		</action>
+	
+
+		<!--for customer listing end-->
+	<!--for Maintain Loyalty -->				
+			
+		<action path="/customermanagement.defaults.maintainloyalty.reloadmaintainloyalty"
+			name="maintainLoyaltyForm"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+			scope="request"
+			validate="false"
+			forward="/jsp/customermanagement/defaults/MaintainLoyalty.jsp" />	
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.screenloadmaintainloyalty"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/customermanagement/defaults/MaintainLoyalty.jsp" />
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.listmaintainloyalty"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/MaintainLoyalty.jsp" />
+			<forward name="list_failure" path="/jsp/customermanagement/defaults/MaintainLoyalty.jsp" />
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.addparammaintainloyalty"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="addRow_success" path="/jsp/customermanagement/defaults/MaintainLoyalty.jsp" />
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.delparammaintainloyalty"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="deleteRow_success" path="/jsp/customermanagement/defaults/MaintainLoyalty.jsp" />
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.savemaintainloyalty"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success" path="/customermanagement.defaults.maintainloyalty.clearmaintainloyalty.do" />
+			<forward name="save_failure" path="/jsp/customermanagement/defaults/MaintainLoyalty.jsp" />
+			<forward name="savefrom_list_success" path="/jsp/customermanagement/defaults/MaintainLoyalty.jsp" />
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.deletemaintainloyalty"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success" path="/customermanagement.defaults.maintainloyalty.clearmaintainloyalty.do" />
+			<forward name="savefrom_list_success" path="/customermanagement.defaults.maintainloyalty.clearmaintainloyalty.do" />
+			<forward name="delete_failure" path="/jsp/customermanagement/defaults/MaintainLoyalty.jsp" />
+			
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.closemaintainloyalty"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success" path="/customermanagement.defaults.closeaction.do" />
+			<forward name="close_listloyalty_success" path="/customermanagement.defaults.listloyalty.list.do" />
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.clearmaintainloyalty"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/customermanagement/defaults/MaintainLoyalty.jsp" />
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.unitChanged"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="change_success" path="/jsp/customermanagement/defaults/MaintainLoyalty.jsp" />
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.screenloadparametervalues"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/customermanagement/defaults/ParameterValuesLOV.jsp" />
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.addparametervalues"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="addRow_success" path="/jsp/customermanagement/defaults/ParameterValuesLOV.jsp" />
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.delparametervalues"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="deleteRow_success" path="/jsp/customermanagement/defaults/ParameterValuesLOV.jsp" />
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.okparametervalues"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="ok_success" path="/jsp/customermanagement/defaults/ParameterValuesLOV.jsp" />
+		</action>
+		<action
+			name="maintainLoyaltyForm"
+			path="/customermanagement.defaults.maintainloyalty.navigateloyalty"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="navigate_success" path="/customermanagement.defaults.maintainloyalty.listmaintainloyalty.do" />
+		</action>
+
+	<!--for Loyalty Programme LOV -->
+
+		<action name="loyaltyProgrammeLovForm"
+			path="/customermanagement.defaults.lov.screenloadloyaltyproglov"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/customermanagement/defaults/LoyaltyProgrammeLOV.jsp" />
+			<forward name="screenload_failure" path="/jsp/customermanagement/defaults/LoyaltyProgrammeLOV.jsp" />	
+		</action>
+
+		<action name="loyaltyProgrammeLovForm"
+			path="/customermanagement.defaults.lov.listloyaltyproglov"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/LoyaltyProgrammeLOV.jsp" />
+		</action>
+		
+		<action name="loyaltyProgrammeLovForm"
+			path="/customermanagement.defaults.lov.clearloyaltyproglov"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/customermanagement/defaults/LoyaltyProgrammeLOV.jsp" />
+		</action>
+
+	<!--for List Loyalty Programme -->
+	
+	<!--for List Loyalty Programme added by Dhanya -->
+	
+		<action
+			path="/customermanagement.defaults.printlistloyaltyprogramme"
+			name="listLoyaltyForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false">
+		</action>	
+	
+	<!--for List Loyalty Programme report ends -->
+	
+		
+
+		<action
+			name="listLoyaltyForm"
+			path="/customermanagement.defaults.listloyalty.screenloadlistloyalty"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/customermanagement/defaults/ListLoyaltyProgramme.jsp" />
+		</action>
+		<action
+			name="listLoyaltyForm"
+			path="/customermanagement.defaults.listloyalty.list"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/ListLoyaltyProgramme.jsp" />
+			<forward name="list_failure" path="/jsp/customermanagement/defaults/ListLoyaltyProgramme.jsp" />
+		</action>
+		<action
+			name="listLoyaltyForm"
+			path="/customermanagement.defaults.listloyalty.clearlistloyalty"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/customermanagement/defaults/ListLoyaltyProgramme.jsp" />
+		</action>
+		<action
+			name="listLoyaltyForm"
+			path="/customermanagement.defaults.listloyalty.detailslistloyalty"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="view_success" path="/customermanagement.defaults.maintainloyalty.listmaintainloyalty.do" />
+		</action>
+		
+	<!--for Temporary Customer Registration -->	
+	
+		<action
+			name="MaintainTempCustomerForm"
+			path="/customermanagement.defaults.screenloadtemporarycustomerregistration"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/customermanagement/defaults/TemporaryCustomerRegistration.jsp" />
+			<forward name="screenload_failure" path="/jsp/customermanagement/defaults/TemporaryCustomerRegistration.jsp" />
+		</action>
+		
+		<action path="/customermanagement.defaults.closetemporarycustomerregistration"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+				scope="request"
+				validate="false"
+			        forward="/home.jsp" />
+			        
+			        
+			        
+	  	<action
+			name="MaintainTempCustomerForm"
+			path="/customermanagement.defaults.listtemporarycustomerregistration"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/TemporaryCustomerRegistration.jsp" />
+			<forward name="list_failure" path="/jsp/customermanagement/defaults/TemporaryCustomerRegistration.jsp" />
+		</action>
+        	
+        	<action
+			name="MaintainTempCustomerForm"
+			path="/customermanagement.defaults.cleartemporarycustomerregistration"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/customermanagement/defaults/TemporaryCustomerRegistration.jsp" />				
+		</action>
+        	
+        	
+        	<action
+			name="MaintainTempCustomerForm"
+			path="/customermanagement.defaults.savetemporarycustomerregistration"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success" path="/jsp/customermanagement/defaults/TemporaryCustomerRegistration.jsp" />
+			<forward name="save_failure" path="/jsp/customermanagement/defaults/TemporaryCustomerRegistration.jsp" />
+		</action>
+        	
+        	
+        	<!--LIST TEMP CUST START -->
+        	<action
+			name="ListTempCustomerForm"
+			path="/customermanagement.defaults.screenloadlisttempcustomerregistration"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/customermanagement/defaults/ListTempCustomerRegistration.jsp" />
+			<forward name="screenload_failure" path="/jsp/customermanagement/defaults/ListTempCustomerRegistration.jsp" />
+		</action>
+		<action
+			name="ListTempCustomerForm"
+			path="/customermanagement.defaults.refreshtempcustdetails"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			forward="/jsp/customermanagement/defaults/ListTempCustomerRegistration.jsp"/>
+		<action
+			name="ListTempCustomerForm"
+			path="/customermanagement.defaults.attachcustomer"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="attach_success" path="/customermanagement.defaults.listtempcustreg.do" />
+		</action>
+		<action
+			name="ListTempCustomerForm"
+			path="/customermanagement.defaults.blacklistcustomer"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="blacklist_success" path="/customermanagement.defaults.listtempcustreg.do" />
+		</action>
+		<action
+			name="ListTempCustomerForm"
+			path="/customermanagement.defaults.deletetempcustomer"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="delete_success" path="/jsp/customermanagement/defaults/ListTempCustomerRegistration.jsp" />
+		</action>
+		<action
+			name="ListTempCustomerForm"
+			path="/customermanagement.defaults.registercustomer"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="register_success" path="/customermanagement.defaults.listcustomerregistration.do" />
+		</action>
+		<action path="/customermanagement.defaults.closelisttemporarycustomerregistration"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+			scope="request"
+			validate="false"
+			forward="/home.jsp" />
+		<action
+			name="ListTempCustomerForm"
+			path="/customermanagement.defaults.listtempcustreg"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/ListTempCustomerRegistration.jsp" />
+			<forward name="list_failure" path="/jsp/customermanagement/defaults/ListTempCustomerRegistration.jsp" />
+		</action>
+		<action
+			name="ListTempCustomerForm"
+			path="/customermanagement.defaults.clearlisttemporarycustomerregistration"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/customermanagement/defaults/ListTempCustomerRegistration.jsp" />				
+		</action>
+		<!--LIST TEMP CUST END -->
+		
+		
+		<action
+			name="MaintainTempCustomerForm"
+			path="/customermanagement.defaults.charter.navigatetempcustreg"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="navigate_success" path="/customermanagement.defaults.listtemporarycustomerregistration.do" />
+		</action>
+		
+		<action name="MaintainTempCustomerForm"
+			path="/customermanagement.defaults.viewtempcustreg"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="view_success" path="/customermanagement.defaults.listtemporarycustomerregistration.do" />
+			
+		</action>
+	
+	
+		
+        	<action
+			name="MaintainTempCustomerForm"
+			path="/customermanagement.defaults.closecustaction"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_tempcustreg_success" path="/customermanagement.defaults.listtempcustreg.do?closeStatus=Y" />
+			<forward name="close_success" path="/customermanagement.defaults.closetempcustreg.do" />
+		</action>
+		
+		<action path="/customermanagement.defaults.closetempcustreg"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+			scope="request"
+			validate="false"
+			forward="/home.jsp" />
+			
+		<action name="TempIDForm"
+			path="/customermanagement.defaults.lov.screenloadtempidlov"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/customermanagement/defaults/TempIDLOV.jsp" />
+			<forward name="screenload_failure" path="/jsp/customermanagement/defaults/TempIDLOV.jsp" />	
+		</action>	
+			
+
+	
+	<!--CUST REG START -->
+	<action
+		name="MaintainCustomerRegistrationForm"
+		path="/customermanagement.defaults.screenloadcustomerregistration"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+	</action>
+	<action
+		name="MaintainCustomerRegistrationForm"
+		path="/customermanagement.defaults.listcustomerregistration"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="list_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+	</action>
+	<action
+		name="MaintainCustomerRegistrationForm"
+		path="/customermanagement.defaults.addkeycontactdetails"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="add_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+		<forward name="add_failure" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+	</action>
+	<action
+		name="MaintainCustomerRegistrationForm"
+		path="/customermanagement.defaults.addclearingagentdetails"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="add_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+		<forward name="add_failure" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+	</action>
+	<action
+		name="MaintainCustomerRegistrationForm"
+		path="/customermanagement.defaults.deleteclearingagentdetails"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="delete_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+		<forward name="delete_failure" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+	</action>
+	<action
+		name="MaintainCustomerRegistrationForm"
+		path="/customermanagement.defaults.deletekeycontactdetails"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="delete_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+		<forward name="delete_failure" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+	</action>
+	
+	<action
+			name="MaintainCustomerRegistrationForm"
+			path="/customermanagement.defaults.savecustomerregistratrion"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+			<forward name="save_failure" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+			<forward name="list_success" path="/customermanagement.defaults.listcustomerregistration.do" />
+		</action>
+		
+		
+	<action
+		name="MaintainCustomerRegistrationForm"
+		path="/customermanagement.defaults.clearcustomerregistratrion"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="clear_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+	</action>
+	<action
+		name="MaintainCustomerRegistrationForm"
+		path="/customermanagement.defaults.listcustomerregistratrion"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="list_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+		<forward name="list_failure" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+
+	</action>
+	<action
+			name="MaintainCustomerRegistrationForm"
+			path="/customermanagement.defaults.populatezipcodedetails"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration_AjaxZipDetails.jsp" />
+			<forward name="failure" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration_AjaxZipDetails.jsp" />
+	</action>
+	<action
+		name="MaintainCustomerRegistrationForm"
+		path="/customermanagement.defaults.closeregisteraction"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="close_tempcustreg_success" path="/customermanagement.defaults.listtempcustreg.do" />
+		<forward name="close_success" path="/customermanagement.defaults.closeaction.do" />
+		<!--Added by A-8227 for ICRD-236257 starts-->
+		<forward name="close_customer_console_success" path="/customermanagement.defaults.ux.customerconsolescreenload.do?fromScreen=customermanagement.defaults.maintainregcustomer" />
+		<!--Added by A-8227 for ICRD-236257 ends-->
+		<forward name="close_customer_dprdo" path="/operations.flthandling.cto.maintaindprdohistory.listCommand.do?fromScreen=customer_screen" />
+	</action>
+	
+			<!-- Added by A-6841 for ICRD-152555  starts -->			
+		
+		<action path="/customermanagement.defaults.listNotificationPreferences" type="com.ibsplc.icargo.framework.struts.action.GenericAction" name="MaintainCustomerRegistrationForm" scope="request" validate="false">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/NotificationPreferences.jsp" />
+		</action>
+		<action path="/customermanagement.defaults.listAdditionalContacts" type="com.ibsplc.icargo.framework.struts.action.GenericAction" name="MaintainCustomerRegistrationForm" scope="request" validate="false">
+			 <forward name="list_success" path="/jsp/customermanagement/defaults/AdditionalContacts.jsp" />
+		</action>
+		<action path="/customermanagement.defaults.okNotificationPreferences" type="com.ibsplc.icargo.framework.struts.action.GenericAction" name="MaintainCustomerRegistrationForm" scope="request" validate="false">
+			 <forward name="ok_success" path="/jsp/customermanagement/defaults/NotificationPreferences.jsp" />
+		</action>
+		<action path="/customermanagement.defaults.okAdditionalContacts" type="com.ibsplc.icargo.framework.struts.action.GenericAction" name="MaintainCustomerRegistrationForm" scope="request" validate="false">
+			 <forward name="ok_success" path="/jsp/customermanagement/defaults/AdditionalContacts.jsp" />
+		</action>
+		<!-- Added by A-6841 for ICRD-152555  ends -->	
+		<!--Added as part of CR ICRD-253447 by A-8154 starts-->
+		<action
+			name="MaintainCustomerRegistrationForm"
+			path="/customermanagement.defaults.refreshcustregdetails"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			forward="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp"/>
+		<action
+			name="MaintainCustomerRegistrationForm"
+			path="/customermanagement.defaults.activatestatusforcustomers"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="activate_success" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+			<forward name="duplicate_stockholder" path="/jsp/customermanagement/defaults/MaintainCustomerRegistration.jsp" />
+		</action>
+		<!--Added as part of CR ICRD-253447 by A-8154 ends-->
+		<!--Added for IASCB-127123  : START-->
+		<action
+			name="ListGroupDetailsForm"
+			path="/customermanagement.defaults.showgroupdetailsforcustomer"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="groupdetails_success" path="/jsp/customermanagement/defaults/CustomerGroupDetails.jsp" />
+			<forward name="groupdetails_failure" path="/jsp/customermanagement/defaults/CustomerGroupDetails.jsp" />
+		</action>
+		<action
+			name="ListGroupDetailsForm"
+			path="/customermanagement.defaults.listgroupdetailsforcustomer"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="groupdetails_success" path="/jsp/customermanagement/defaults/CustomerGroupDetails.jsp" />
+			<forward name="groupdetails_failure" path="/jsp/customermanagement/defaults/CustomerGroupDetails.jsp" />
+		</action>
+		<action
+			name="ListGroupDetailsForm"
+			path="/customermanagement.defaults.cleargroupdetailsforcustomer"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="groupdetails_success" path="/jsp/customermanagement/defaults/CustomerGroupDetails.jsp" />
+			<forward name="groupdetails_failure" path="/jsp/customermanagement/defaults/CustomerGroupDetails.jsp" />
+		</action>
+		<!--Added for IASCB-127123  : END-->
+	<!--CUST REG END -->
+
+		
+	<!--VIEW CUSTOMER POINTS START -->
+	
+	
+	<action
+		name="ListCustomerPointsForm"
+		path="/customermanagement.defaults.screenloadlistcustomerpoints"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/ListCustomerPoints.jsp" />
+	</action>
+	
+	<action
+		name="ListCustomerPointsForm"
+		path="/customermanagement.defaults.listcustomerpoints.listcustomerpoints"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="list_success" path="/jsp/customermanagement/defaults/ListCustomerPoints.jsp" />
+		<forward name="list_failure" path="/jsp/customermanagement/defaults/ListCustomerPoints.jsp" />
+		<forward name="dupawb_success" path="/jsp/customermanagement/defaults/ListCustomerPoints.jsp" />
+	</action>
+	
+	<action
+		name="ListCustomerPointsForm"
+		path="/customermanagement.defaults.listcustomerpoints.clearcustomerpoints"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/ListCustomerPoints.jsp" />
+	</action>
+	
+	<action
+		name="ListCustomerPointsForm"
+		path="/customermanagement.defaults.listcustomerpoints.showtotalcustomerpoints"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/ListCustomerPoints.jsp" />
+	</action>
+	
+	<action
+		name="ListCustomerPointsForm"
+		path="/customermanagement.defaults.listcustomerpoints.closecustomerpoints"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/customermanagement.defaults.closeaction.do" />
+	</action>
+	
+	<action
+		name="ListCustomerPointsForm"
+		path="/customermanagement.defaults.listcustomerpoints.reloadcustomerpoints"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/customermanagement.defaults.listcustomerpoints.listcustomerpoints.do" />
+	</action>
+	
+
+	<!--VIEW CUSTOMER POINTS END -->
+	
+	
+	
+		<!-- ListCustomerGroup starts-->
+
+			<action name="listCustomerGroupForm"
+				path="/customermanagement.defaults.listcustomergroup.screenloadlistcustomergroup"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="screenload_success" path="/jsp/customermanagement/defaults/ListCustomerGroup.jsp" />
+				<forward name="screenload_failure" path="/jsp/customermanagement/defaults/ListCustomerGroup.jsp" />
+			</action>
+
+
+			<action name="listCustomerGroupForm"
+				path="/customermanagement.defaults.listcustomergroup.listcustomergroup"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="list_success" path="/jsp/customermanagement/defaults/ListCustomerGroup.jsp" />
+				<forward name="list_error" path="/jsp/customermanagement/defaults/ListCustomerGroup.jsp" />
+			</action>
+
+			<action name="listCustomerGroupForm"
+				path="/customermanagement.defaults.listcustomergroup.clearlistcustomergroup"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="clear_success" path="/jsp/customermanagement/defaults/ListCustomerGroup.jsp" />
+			</action>
+
+			<action name="listCustomerGroupForm"
+				path="/customermanagement.defaults.listcustomergroup.deletecustomergroup"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="delete_success" path="/jsp/customermanagement/defaults/ListCustomerGroup.jsp" />
+				<forward name="delete_failure" path="/jsp/customermanagement/defaults/ListCustomerGroup.jsp" />
+			</action>
+
+
+
+
+			<action path="/customermanagement.defaults.listcustomergroup.closelistcustomergroup"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="listCustomerGroupForm"
+				scope="request"
+				validate="false"
+				forward ="/home.jsp" />
+
+
+				<action
+						name="listCustomerGroupForm"
+						path="/customermanagement.defaults.screenloadattachgroupcode"
+						scope="request"
+						validate="false"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+						<forward name="screenload_success" path="/jsp/customermanagement/defaults/AttachGroupCode.jsp" />
+					</action>
+
+					<action
+						name="listCustomerGroupForm"
+						path="/customermanagement.defaults.listcustomergroup.addattachgroupcode"
+						scope="request"
+						validate="false"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+						<forward name="addRow_success" path="/jsp/customermanagement/defaults/AttachGroupCode.jsp" />
+					</action>
+
+					<action
+						name="listCustomerGroupForm"
+						path="/customermanagement.defaults.listcustomergroup.deleteattachgroupcode"
+						scope="request"
+						validate="false"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+						<forward name="deleteRow_success" path="/jsp/customermanagement/defaults/AttachGroupCode.jsp" />
+					</action>
+
+					<action
+						name="listCustomerGroupForm"
+						path="/customermanagement.defaults.listcustomergroup.saveattachgroupcode"
+						scope="request"
+						validate="false"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+						<forward name="save_success" path="/jsp/customermanagement/defaults/AttachGroupCode.jsp" />
+						<forward name="save_failure" path="/jsp/customermanagement/defaults/AttachGroupCode.jsp" />
+					</action>
+
+
+			<!-- ListCustomerGroup ends -->
+		
+		
+		
+		<!--CustomerGroup starts-->
+			
+		<action name="customerGroupForm"
+			path="/customermanagement.defaults.maintaincustomergroup.screenloadcustomergroup"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/customermanagement/defaults/CustomerGroup.jsp" />
+			<forward name="screenload_failure" path="/jsp/customermanagement/defaults/CustomerGroup.jsp" />	
+		</action>
+		
+		
+		<action name="customerGroupForm"
+			path="/customermanagement.defaults.maintaincustomergroup.listcustomergroup"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="list_success" path="/jsp/customermanagement/defaults/CustomerGroup.jsp" />
+			<forward name="list_failure" path="/jsp/customermanagement/defaults/CustomerGroup.jsp" />	
+		</action>
+		
+		<action name="customerGroupForm"
+			path="/customermanagement.defaults.maintaincustomergroup.savecustomergroup"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="save_success" path="/jsp/customermanagement/defaults/CustomerGroup.jsp" />
+			<forward name="list_forward" path="/customermanagement.defaults.listcustomergroup.listcustomergroup.do"/>
+			<forward name="save_failure" path="/jsp/customermanagement/defaults/CustomerGroup.jsp" />
+		</action>
+		
+		
+		<action name="customerGroupForm"
+			path="/customermanagement.defaults.maintaincustomergroup.clearcustomergroup"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/customermanagement/defaults/CustomerGroup.jsp" />
+		</action>
+		
+		
+		<action name="customerGroupForm"
+			path="/customermanagement.defaults.maintaincustomergroup.detailslistcustomergroup"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="details_success" path="/jsp/customermanagement/defaults/CustomerGroup.jsp" />
+			<forward name="details_failure" path="/jsp/customermanagement/defaults/ListCustomerGroup.jsp" />
+		</action>
+		
+			
+		<action name="customerGroupForm"
+			path="/customermanagement.defaults.maintaincustomergroup.navigatecustomergroup"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="navigation_success" path="/jsp/customermanagement/defaults/CustomerGroup.jsp" />
+			<forward name="navigation_failure" path="/jsp/customermanagement/defaults/CustomerGroup.jsp" />
+		</action>
+			
+		
+		<action path="/customermanagement.defaults.maintaincustomergroup.closecustomergroup"
+			name="customerGroupForm"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="close_success" path="/home.jsp" />
+			<forward name="list_forward" path="/customermanagement.defaults.listcustomergroup.listcustomergroup.do"/>
+			<forward name="create_success" path="/customermanagement.defaults.listcustomergroup.screenloadlistcustomergroup.do"/>
+		</action>
+		
+	<!-- CustomerGroup ends -->
+	
+	
+	
+	<!--Running Loyalty Programme LOV starts-->
+	
+		<action name="runningLoyaltyProgrammeLovForm"
+			path="/customermanagement.defaults.lov.screenloadrunningloyaltyproglov"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="screenload_success" path="/jsp/customermanagement/defaults/RunningLoyaltyProgrammeLOV.jsp" />
+			<forward name="screenload_failure" path="/jsp/customermanagement/defaults/RunningLoyaltyProgrammeLOV.jsp" />	
+		</action>
+
+	<!-- Running Loyalty Programme LOV Ends-->
+	
+	
+		<!-- ServiceMaster starts -->
+	
+	<action name="ServiceMasterForm"
+		path="/customermanagement.defaults.servicemaster.screenloadservicemaster"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/ServiceMaster.jsp" />		
+	</action>
+	
+	<action name="ServiceMasterForm"
+		path="/customermanagement.defaults.servicemaster.listservicemaster"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/ServiceMaster.jsp" />		
+	</action>
+	
+	<action name="ServiceMasterForm"
+		path="/customermanagement.defaults.servicemaster.clearservicemaster"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/ServiceMaster.jsp" />		
+	</action>
+	
+	<action name="ServiceMasterForm"
+		path="/customermanagement.defaults.servicemaster.saveservicemaster"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/ServiceMaster.jsp" />		
+	</action>
+	
+	<action name="ServiceMasterForm"
+		path="/customermanagement.defaults.servicemaster.deleteservicemaster"
+		scope="request"
+		validate="false"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/ServiceMaster.jsp" />	
+		<forward name="delete_failure" path="/jsp/customermanagement/defaults/ServiceMaster.jsp" />	
+	</action>
+	
+	 <action 
+		path="/showCustomerService"
+		name="CustomerServiceLovForm"
+		scope="request"		
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="findserviceLov_Success" path="/jsp/customermanagement/defaults/ServiceLOV.jsp" />
+	</action>
+
+	 <action 
+		path="/clearCustomerService"
+		name="CustomerServiceLovForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="clearserviceLov_Success" path="/jsp/customermanagement/defaults/ServiceLOV.jsp" />
+	</action>
+	<!--Added by a-3045 for CR HA68 on 05Jun08 starts-->
+	<action 
+		path="/customermanagement.defaults.customerlisting.uploadscreenloadcommand"
+		name="UploadTSAForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/customermanagement/defaults/UploadTSA.jsp" />
+	</action>
+	<action 
+		path="/customermanagement.defaults.customerlisting.uploadtsadatacommand"
+		name="UploadTSAForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="save_success" path="/jsp/customermanagement/defaults/UploadTSA.jsp" />
+	</action>
+	<!--Added by a-3045 for CR HA68 on 05Jun08 starts-->
+	<!-- ServiceMaster ends -->
+	 <!-- customer enqiry starts -->
+	<action 
+		path="/customermanagement.defaults.customerenquiry.screenloadenquiry"
+		name="CustomerEnquiryForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/customermanagement/defaults/CustomerEnquiry.jsp" />	
+		<forward name="failure" path="/jsp/customermanagement/defaults/CustomerEnquiry.jsp" />	
+	</action>
+	
+	<action 
+		path="/customermanagement.defaults.customerenquiry.listcustomerenquiry"
+		name="CustomerEnquiryForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/customermanagement/defaults/CustomerEnquiry.jsp" />	
+		<forward name="failure" path="/jsp/customermanagement/defaults/CustomerEnquiry.jsp" />	
+		<forward name="bookingdetails" path="/jsp/customermanagement/defaults/CustomerEnquiry_Booking.jsp" />	
+		<forward name="claimdetails" path="/jsp/customermanagement/defaults/CustomerEnquiry_Claim.jsp" />	
+		<forward name="stockdetails" path="/jsp/customermanagement/defaults/CustomerEnquiry_Stock.jsp" />	
+		<forward name="messagingdetails" path="/jsp/customermanagement/defaults/CustomerEnquiry_Messaging.jsp" />	
+		<forward name="allotmentdetails" path="/jsp/customermanagement/defaults/CustomerEnquiry_Allotment.jsp" />	
+		<forward name="spotrates" path="/jsp/customermanagement/defaults/CustomerEnquiry_Spot.jsp" />	
+		<forward name="contractrates" path="/jsp/customermanagement/defaults/CustomerEnquiry_Contract.jsp" />	
+		<forward name="terminalhandling" path="/jsp/customermanagement/defaults/CustomerEnquiry_Terminal.jsp" />	
+		<forward name="charter" path="/jsp/customermanagement/defaults/CustomerEnquiry_Charter.jsp" />	
+		<forward name="select" path="/jsp/customermanagement/defaults/CustomerEnquiry_Select.jsp" />	
+	</action>
+	
+	<action 
+		path="/customermanagement.defaults.customerenquiry.customerenquirydetails"
+		name="CustomerEnquiryForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/customermanagement/defaults/CustomerEnquiry.jsp" />	
+		<forward name="failure" path="/jsp/customermanagement/defaults/CustomerEnquiry.jsp" />	
+	</action>
+	
+	<action 
+		path="/customermanagement.defaults.customerenquiry.clearcustomerenquiry"
+		name="CustomerEnquiryForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/customermanagement/defaults/CustomerEnquiry.jsp" />	
+		<forward name="failure" path="/jsp/customermanagement/defaults/CustomerEnquiry.jsp" />	
+	</action>
+	
+	<action 
+		path="/customermanagement.defaults.customerenquiry.closecustomerenquiry"
+		name="CustomerEnquiryForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/home.jsp" />	
+		<forward name="failure" path="/jsp/customermanagement/defaults/CustomerEnquiry.jsp" />	
+	</action>
+	
+	<action 
+		path="/customermanagement.defaults.customerenquiry.navigatecustomerenquiry"
+		name="CustomerEnquiryForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/customermanagement/defaults/CustomerEnquiry.jsp" />	
+		<forward name="failure" path="/jsp/customermanagement/defaults/CustomerEnquiry.jsp" />	
+	</action>
+	
+	<!-- customer enqiry ends -->
+	<!-- Added by A-5791 for ICRD-59602 -->
+	<action path="/customermanagement.defaults.listagentdetails" 
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+		name="MaintainCustomerRegistrationForm" 
+		scope="request" 
+		validate="false"> 
+		<forward name="action_success" path="/jsp/customermanagement/defaults/CustomerRegistration_AgentAjax.jsp" /> 
+	</action>
+	<!-- Added by A-8227 for ICRD-236527 -->
+			<action path="/customermanagement.defaults.ux.customerconsolescreenload" 
+				name="DefaultSPAForm"
+				scope="request" 				
+				type="com.ibsplc.icargo.framework.struts.action.DefaultSPARenderAction"  
+				validate="false">
+				<forward name="_default_render_success"  path="/app/customermanagement/defaults/customerconsole/index.jsp"/>
+			</action>
+			<!-- Added by A-8227 for ICRD-236527 ends-->
+	<!-- Added by A-10568 -->
+	<action path="/customermanagement.defaults.ux.brokermapping.screenload" 
+			name="BrokerMappingForm"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="_screenload_success" path="/app/customermanagement/defaults/brokermapping/index.jsp"/>
+	</action>
+	<action path="/customermanagement.defaults.ux.brokermapping.defaultscreenload" 
+			 name="BrokerMappingForm"
+			 scope="request"
+			 validate="false"
+			 type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			 <forward name="_default_screenload_success" path="/app/customermanagement/defaults/brokermapping/index.jsp" />
+	</action>
+	<!-- Added by A-10568 ends-->
+	
+	</action-mappings>
+	
+	<message-resources key="listloyaltyResources" parameter="resources.customermanagement.defaults.ListLoyaltyProgramme" null="false"/>
+
+	<message-resources key="maintainLoyaltyResources" parameter="resources.customermanagement.defaults.MaintainLoyalty" null="false"/>
+	<message-resources key="listLoyaltyLOV" parameter="resources.customermanagement.defaults.LoyaltyProgrammeLOV" null="false"/>
+	<message-resources key="maintaintempcustomerform" parameter="resources.customermanagement.defaults.TemporaryCustomerRegistration" null="false"/>
+	<message-resources key="listtempcustomerform" parameter="resources.customermanagement.defaults.ListTemporaryCustomerRegistration" null="false"/>
+	<message-resources key="ListTempIDLOV" parameter="resources.customermanagement.defaults.TempIDLOV" null="false"/>
+	<message-resources key="maintainregcustomerform" parameter="resources.customermanagement.defaults.CustomerRegistration" null="false"/>
+	<message-resources key="listcustomerpointsform" parameter="resources.customermanagement.defaults.ListCustomerPoints" null="false"/>
+	<message-resources key="listcustomerform" parameter="resources.customermanagement.defaults.ListCustomer" null="false"/>
+	<message-resources key="listcustomergroupResources" parameter="resources.customermanagement.defaults.ListCustomerGroup" null="false"/>
+	<message-resources key="customergroupResources" parameter="resources.customermanagement.defaults.CustomerGroup" null="false"/>
+	<message-resources key="listRunningLoyaltyLOVResources" parameter="resources.customermanagement.defaults.RunningLoyaltyProgrammeLOV" null="false"/>
+	<message-resources key="servicemaster" parameter="resources.customermanagement.defaults.ServiceMaster" null="false"/>
+	<message-resources key="servicelov" parameter="resources.customermanagement.defaults.ServiceLov" null="false"/>
+	<message-resources key="customerenquiry" parameter="resources.customermanagement.defaults.CustomerEnquiry" null="false"/>
+	<!-- Added by A-8169 for ICRD-236527 starts-->
+	<message-resources key="customerConsoleResourceBundle" parameter="resources.customermanagement.defaults.ux.CustomerConsole" null="false"/>
+	<!-- Added by A-8169 for ICRD-236527 ends-->
+	<message-resources key="brokerMappingResourceBundle" parameter="resources/customermanagement/defaults/ux/BrokerMapping" null="false"/>
+	
+	<plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+		<set-property property="configFileName" value="/WEB-INF/errortags/customermanagement/defaults/errortags.xml"/>
+	</plug-in>
+	<plug-in className="com.ibsplc.icargo.framework.plugin.CustomTagsPlugin">
+		<set-property property="configFileName" value="/WEB-INF/customtags.xml"/>
+	</plug-in>
+
+</struts-config>

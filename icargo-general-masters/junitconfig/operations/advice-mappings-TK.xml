@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adv:advice-mappings xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:adv="http://www.ibsplc.com/icargo/business/advice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ibsplc.com/icargo/business/advice xibase/java/server/config/framework/xsd/advice-mappings.xsd" product="operations">
+	<adv:advice name="operations.flthandling.findIRPsWithOrdinoDetails">
+		<adv:action name="sendFRPMessageForOrdino" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.tk.MessageBuilder" method="sendFRPMessageForOrdino" async="false" enabled="true"/>
+	</adv:advice>
+	<adv:advice name="operations.flthandling.updateOrdinoDetails">
+		<adv:action name="updateOrdinoDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="updateOrdinoDetails" async="true" enabled="true"/>
+	</adv:advice>
+	<!--added by A-5844 for CRQ ICRD-55630 starts-->
+	<adv:advice name="operations.flthandling.generateordino.sendNotificationMessage">
+		<adv:action name="sendNotificationMessage" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.tk.MessageBuilder" method="sendNotificationMessage" async="false" enabled="true"/>
+	</adv:advice>
+	<adv:advice name="operations.flthandling.tk.sendNotification">
+		<adv:action name="sendNotification" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.tk.MessageBuilder" method="updateNFDLogicForOrdino" async="true" enabled="true"/>
+	</adv:advice>
+	<!--added by A-5844 for CRQ ICRD-55630 ends-->
+</adv:advice-mappings>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adv:advice-mappings xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+					 xmlns:adv="http://www.ibsplc.com/icargo/business/advice" 
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+					 xsi:schemaLocation="http://www.ibsplc.com/icargo/business/advice xibase/java/server/config/framework/xsd/advice-mappings.xsd"
+					 product="operations">
+	<adv:advice name="operations.flthandling.cto.finaliseExportFlight">
+		<adv:action name="finalizeFlightAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="finalizeFlightAudit" async="true" enabled="true" />
+		<adv:action name="finaliseFlightAuditForShipment" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentsDepartureDetails" async="true" enabled="true" />
+		<adv:action name="saveShipmentHistoryForFlightFinalize" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="finaliseExportFlight" async="true" enabled="true" />
+		<adv:action name="findMalperformedAllotments" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AllotmentWorkflowBuilder" method="findMalperformedAllotments" async="true" enabled="true" />
+		<adv:action name="sendUCMOutMessage" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="sendUCMOutMessage" async="true" enabled="true" />
+		<adv:action name="sendManifestReport" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="sendManifestReportOnFlightFinalisation" async="true" enabled="true" /> 
+	</adv:advice>
+	<adv:advice name="operations.flthandling.saveManifestDetails"> 
+	   <adv:action name="saveManifestDetails" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForManifest" async="true" enabled="true" />	  
+	</adv:advice>
+	<adv:advice name="operations.flthandling.saveULDArrivalDetails"> 
+	    <adv:action name="ULDarrivalAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentULDArrivalDetails" async="false" enabled="true" />
+		<adv:action name="saveNotesForUldArrivalDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForUldArrivalDetails" async="false" enabled="true" />
+		<adv:action name="saveShipmentHistoryForUldArrivalDetails" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForUldArrivalDetails" async="true" enabled="true" />
+	</adv:advice>  
+	<adv:advice name="operations.flthandling.cto.nh.sendMsgsforFinalizeFlt">
+		<adv:action name="sendFFMOMessage" type="message" builder="com.ibsplc.icargo.business.operations.flthandling.builder.nh.MessageBuilder" method="sendFFMOMessage" async="true" enabled="true" />
+	</adv:advice> 
+	<adv:advice name="operations.shipment.sendCCAEMail"> 
+	  <adv:action name="sendCCAEMail" type="message" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendCCAEMail" async="true" enabled="false" />	  
+	</adv:advice>
+</adv:advice-mappings>
+  
+

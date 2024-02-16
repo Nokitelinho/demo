@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-54540_MSM005.yml
+  - changeSet:
+      id: STK_009
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: STKHLDAGT_SEQ
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE STKHLDAGT_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;
+
+  - changeSet:
+      id: STK_006
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: STKHLDAGT
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE STKHLDAGT(
+          STKHLDAGTSERNUM BIGINT,
+          CMPCOD VARCHAR(6) NOT NULL,
+          AGTCOD VARCHAR(15) NOT NULL,
+          STKHLDCOD VARCHAR(15) NOT NULL,
+          LSTUPDUSR VARCHAR(50),
+          LSTUPDTIM TIMESTAMP(3),
+          TAGIDX NUMERIC(1,0) DEFAULT 0 NOT NULL,
+          CONSTRAINT "stkhldagt_pk" PRIMARY KEY (STKHLDAGTSERNUM),
+          CONSTRAINT "stkhldagt_cmpcod_agtcod_unique" UNIQUE (CMPCOD, AGTCOD));
+
+

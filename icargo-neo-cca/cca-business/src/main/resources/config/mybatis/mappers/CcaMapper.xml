@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ibsplc.neoicargo.cca.dao.mybatis.CcaQueryMapper">
+
+    <select id="getCCADetails" resultMap="getCCADetails" parameterType="map">
+        SELECT DISTINCT mst.ccasernum, mst.autccaflg, mst.cmpcod, mst.ccarefnum, mst.ccaissdat, mst.ccatyp, mst.ccasrc,
+        mst.ccastatus, mst.mstdocnum, mst.shppfx, mst.awbsernum, mst.ccarmk, mst.ccarsn, mst.ccaasgnee, mst.attfilnam,
+        mst.autcaltax, mst.expblgsta, mst.impblgsta, mst.exedat, mst.exestn,
+
+        awb.rectyp, awb.curcod, awb.pcs AS awbpcs, awb.orgcod AS awborgcod, awb.dstcod AS awbdstcod, awb.inbcuscod,
+        awb.outcuscod, awb.agtcod, awb.prdcod, awb.srvcrgcls, awb.iatrat, awb.awbwgtchg, awb.awbvalchg, awb.mktrat,
+        awb.awbnetchg, awb.awbdueagtccfchg, awb.awbdueagtppdchg, awb.awbduecarccfchg, awb.awbduecarppdchg,
+        awb.awbnonawbchg, awb.hdlcod, awb.sptratsta, awb.sptratidr, awb.shpdat,
+        awb.chgcolfee, awb.chgcolfeecur, awb.awbdisamt, awb.awbcmsamt, awb.awbtaxppd, awb.awbtaxccf,
+        awb.prdnam, awb.tottaxamt, to_jsonb(awb.distaxdtl) AS distaxdtl, awb.inbfop, awb.outfop,
+
+        chgdtl.chdcod, chgdtl.chghed, chgdtl.duecarflg, chgdtl.dueagtflg, chgdtl.paytyp,
+        chgdtl.ccaawbchgsernum,
+
+        rat.ccaawbratsernum, rat.rat, rat.rattyp, rat.comcod AS ratcomcod,
+
+        awbdtl.ccaawbdtlsernum, awbdtl.comcod AS awbdtlcomcod, awbdtl.pcs AS awbdtltpcs, awbdtl.comdes,
+
+        awbroudet.ccaawbrtgsernum, awbroudet.segorgcod AS awbroudetorgcod, awbroudet.segdstcod AS awbroudetdstcod,
+        awbroudet.fltcar, awbroudet.fltnum, awbroudet.fltdat, awbroudet.fstcar,
+        awbroudet.pcs AS awbroudetpcs, awbroudet.agrmnttyp, awbroudet.rtgsrc,
+
+        uld.uldsernum, uld.uldtyp, uld.numuld, uld.uldcon,
+
+        detdim.ccaawbdimdtlsernum, detdim.pcs AS detdimpcs,
+
+        cusdtl.custyp, cusdtl.cusnam, cusdtl.stncod, cusdtl.casidr, cusdtl.cntcod, cusdtl.accnum, cusdtl.ctycod,
+        cusdtl.iatcod, cusdtl.ccacusdtlsernum,
+
+        substring ( awb.paytyp, 1, 1) || substring(awb.paytyp, 1, 1 ) AS awbpaytyp,
+        substring ( awb.paytyp, 2, 1) || substring(awb.paytyp, 2, 1 ) AS awbothchgpaytyp,
+
+        CONCAT_WS('-', awb.curcod, awb.expduearl ) as expnetval,
+        CONCAT_WS('-', awb.curcod, awb.impduearl ) as impnetval,
+        CONCAT_WS('-', awb.diswgtunt, awb.disvolunt ) AS untofmsr,
+        CONCAT_WS('-', awb.curcod, chgdtl.chg ) as chgdtlchg,
+        CONCAT_WS('-', awb.curcod, rat.chg ) as ratchg,
+        CONCAT_WS ( '-', 'WGT', awbroudet.diswgt, awbroudet.wgt, awbroudet.diswgtunt ) AS rouwgt,
+        CONCAT_WS ( '-', 'WGT', awb.disvolwgt, awb.volwgt, awb.diswgtunt ) AS awbvolwgt,
+        CONCAT_WS ( '-', 'WGT', awb.disadjwgt, awb.adjwgt, awb.diswgtunt ) AS awbadjwgt,
+        CONCAT_WS ( '-', 'WGT', awb.dischgwgt, awb.chgwgt, awb.diswgtunt ) AS awbchgwgt,
+        CONCAT_WS ( '-', 'WGT', awbdtl.dischgwgt, awbdtl.chgwgt, awbdtl.diswgtunt ) AS awbdtlchgwgt,
+        CONCAT_WS ( '-', 'WGT', awbdtl.diswgt, awbdtl.wgt, awbdtl.diswgtunt ) AS awbdtlgrswgt,
+        CONCAT_WS ( '-', 'WGT', awbdtl.disvolwgt, awbdtl.volwgt, awbdtl.diswgtunt ) AS awbdtlvolwgt,
+        CONCAT_WS ( '-', 'WGT', awbdtl.disadjwgt, awbdtl.adjwgt, awbdtl.diswgtunt ) AS awbdtladjwgt,
+        CONCAT_WS ( '-', 'WGT', detdim.diswgt, detdim.wgt, detdim.diswgtunt ) AS detdimwei,
+        CONCAT_WS ( '-', 'WGT', awb.diswgt, awb.wgt, awb.diswgtunt ) AS awbwgt,
+        CONCAT_WS ( '-', 'VOL', awb.disvol, awb.vol, awb.disvolunt ) AS awbvol,
+        CONCAT_WS ( '-', 'VOL', detdim.disvol, detdim.vol, detdim.disvolunt ) AS detdimvol,
+        CONCAT_WS ( '-', 'VOL', awbdtl.disvol, awbdtl.vol, awbdtl.disvolunt ) AS awbdtlvol,
+        CONCAT_WS ( '-', 'DIM', detdim.dislen, detdim.len, detdim.dislenunt ) AS detdimlen,
+        CONCAT_WS ( '-', 'DIM', detdim.diswid, detdim.wid, detdim.dislenunt ) AS detdimwid,
+        CONCAT_WS ( '-', 'DIM', detdim.dishgt, detdim.hgt, detdim.dislenunt ) AS detdimhei,
+        CONCAT_WS ( '-', 'VOL', uld.disuldvol, uld.uldvol, uld.disvolunt ) AS uldvol,
+        CONCAT_WS ( '-', 'WGT', uld.disuldwgt, uld.uldwgt, uld.diswgtunt ) AS uldwgh,
+
+        wrkflwdtl.usrnam, wrkflwdtl.ccasta, wrkflwdtl.reqdat
+
+        FROM ccamst mst
+
+        LEFT JOIN ccaawb awb
+        ON awb.cmpcod = mst.cmpcod
+        AND awb.ccasernum = mst.ccasernum
+
+        LEFT JOIN ccaawbdtl awbdtl
+        ON awb.cmpcod = awbdtl.cmpcod
+        AND awb.ccasernum = awbdtl.ccasernum
+        AND awb.rectyp = awbdtl.rectyp
+
+        LEFT JOIN ccaawbrtg awbroudet
+        ON awb.cmpcod = awbroudet.cmpcod
+        AND awb.ccasernum = awbroudet.ccasernum
+        AND awb.rectyp = awbroudet.rectyp
+
+        LEFT JOIN ccaawbrat rat
+        ON rat.cmpcod = awb.cmpcod
+        AND rat.ccasernum = awb.ccasernum
+        AND rat.rectyp = awb.rectyp
+
+        LEFT JOIN ccaawbchgdtl chgdtl
+        ON chgdtl.cmpcod = awb.cmpcod
+        AND chgdtl.ccasernum = awb.ccasernum
+        AND chgdtl.rectyp = awb.rectyp
+
+        LEFT JOIN ccaawbdimdtl detdim
+        ON detdim.cmpcod = awbdtl.cmpcod
+        AND detdim.ccaawbdtlsernum = awbdtl.ccaawbdtlsernum
+
+        LEFT JOIN ccaawbuld uld
+        ON uld.cmpcod = awbdtl.cmpcod
+        AND uld.ccaawbdtlsernum = awbdtl.ccaawbdtlsernum
+
+        LEFT JOIN ccacusdtl cusdtl
+        ON cusdtl.cmpcod = awb.cmpcod
+        AND cusdtl.ccasernum = awb.ccasernum
+        AND cusdtl.rectyp = awb.rectyp
+
+        LEFT JOIN ccawrkflwdtl wrkflwdtl
+        ON wrkflwdtl.cmpcod = mst.cmpcod
+        AND wrkflwdtl.ccasernum = mst.ccasernum
+
+        WHERE mst.cmpcod= #{ccaDataFilter.companyCode}
+        AND mst.shppfx = #{ccaDataFilter.shipmentPrefix}
+        AND mst.mstdocnum = #{ccaDataFilter.masterDocumentNumber}
+        AND mst.ccarefnum = #{ccaDataFilter.ccaReferenceNumber}
+    </select>
+
+    <resultMap id="getCCADetails" type="com.ibsplc.neoicargo.cca.vo.CCAMasterVO">
+
+        <id property="ccaSerialNumber" column="ccasernum"/>
+        <result property="shipmentPrefix" column="shppfx" jdbcType="VARCHAR"/>
+        <result property="masterDocumentNumber" column="mstdocnum" jdbcType="VARCHAR"/>
+        <result property="awbSequenceNumber" column="awbsernum" jdbcType="INTEGER"/>
+        <result property="autoCCAFlag" column="autccaflg" jdbcType="VARCHAR"/>
+        <result property="companyCode" column="cmpcod" jdbcType="VARCHAR"/>
+        <result property="ccaReferenceNumber" column="ccarefnum" jdbcType="VARCHAR"/>
+        <result property="ccaIssueDate" column="ccaissdat" jdbcType="DATE"/>
+        <result property="ccaType" column="ccatyp" jdbcType="VARCHAR"/>
+        <result property="ccaStatus" column="ccastatus" jdbcType="VARCHAR"/>
+        <result property="ccaSource" column="ccasrc" jdbcType="VARCHAR"/>
+        <result property="ccaRemarks" column="ccarmk" jdbcType="VARCHAR"/>
+        <result property="ccaReason" column="ccarsn" jdbcType="VARCHAR"/>
+        <result property="assignee" column="ccaasgnee" jdbcType="VARCHAR"/>
+        <result property="ccaAttachments" column="attfilnam" jdbcType="OTHER"
+                typeHandler="com.ibsplc.neoicargo.framework.tenant.jpa.mybatis.JsonTypeHandler"/>
+        <result property="autoCalculateTax" column="autcaltax" jdbcType="VARCHAR"/>
+        <result property="exportBillingStatus" column="expblgsta" jdbcType="VARCHAR"/>
+        <result property="importBillingStatus" column="impblgsta" jdbcType="VARCHAR"/>
+
+        <collection property="ccaWorkFlows" javaType="java.util.List"
+                    ofType="com.ibsplc.neoicargo.cca.vo.CCAWorkflowVO">
+            <result property="userName" column="usrnam" jdbcType="VARCHAR"/>
+            <result property="ccaStatus" column="ccasta" jdbcType="VARCHAR"/>
+            <result property="requestedDate" column="reqdat" jdbcType="DATE"/>
+        </collection>
+
+        <collection property="shipmentDetailVOs" ofType="com.ibsplc.neoicargo.cca.vo.CcaAwbVO">
+            <id property="recordType" column="rectyp"/>
+            <result property="executionDate" column="exedat" jdbcType="DATE"/>
+            <result property="executionStation" column="exestn" jdbcType="VARCHAR"/>
+            <result property="currency" column="curcod" jdbcType="VARCHAR"/>
+            <result property="payType" column="awbpaytyp" jdbcType="VARCHAR"/>
+            <result property="productName" column="prdnam" jdbcType="VARCHAR"/>
+            <result property="volumetricWeight" column="awbvolwgt" jdbcType="VARCHAR"
+                    typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+            <result property="adjustedWeight" column="awbadjwgt" jdbcType="VARCHAR"
+                    typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+            <result property="chargeableWeight" column="awbchgwgt" jdbcType="VARCHAR"
+                    typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+            <result property="weight" column="awbwgt" jdbcType="VARCHAR"
+                    typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+            <result property="pieces" column="awbpcs" jdbcType="INTEGER"/>
+            <result property="volume" column="awbvol" jdbcType="VARCHAR"
+                    typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+            <result property="unitOfMeasure" column="untofmsr" jdbcType="VARCHAR"
+                    typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaUnitsHandler"/>
+            <result property="origin" column="awborgcod" jdbcType="VARCHAR"/>
+            <result property="destination" column="awbdstcod" jdbcType="VARCHAR"/>
+            <result property="inboundCustomerCode" column="inbcuscod" jdbcType="VARCHAR"/>
+            <result property="outboundCustomerCode" column="outcuscod" jdbcType="VARCHAR"/>
+            <result property="agentCode" column="agtcod" jdbcType="VARCHAR"/>
+            <result property="productCode" column="prdcod" jdbcType="VARCHAR"/>
+            <result property="serviceCargoClass" column="srvcrgcls" jdbcType="VARCHAR"/>
+            <result property="iataRate" column="iatrat" jdbcType="NUMERIC"/>
+            <result property="weightCharge" column="awbwgtchg" jdbcType="VARCHAR"/>
+            <result property="valuationCharge" column="awbvalchg" jdbcType="VARCHAR"/>
+            <result property="marketRate" column="mktrat" jdbcType="NUMERIC"/>
+            <result property="netCharge" column="awbnetchg" jdbcType="VARCHAR"/>
+            <result property="totalDueAgtCCFChg" column="awbdueagtccfchg" jdbcType="VARCHAR"/>
+            <result property="totalDueAgtPPDChg" column="awbdueagtppdchg" jdbcType="VARCHAR"/>
+            <result property="totalDueCarCCFChg" column="awbduecarccfchg" jdbcType="VARCHAR"/>
+            <result property="totalDueCarPPDChg" column="awbduecarppdchg" jdbcType="VARCHAR"/>
+            <result property="totalNonAWBCharge" column="awbnonawbchg" jdbcType="NUMERIC"/>
+            <result property="handlingCode" column="hdlcod" jdbcType="VARCHAR"/>
+            <result property="spotRateStatus" column="sptratsta" jdbcType="VARCHAR" />
+            <result property="spotRateId" column="sptratidr" jdbcType="VARCHAR" />
+            <result property="ccfee" column="chgcolfee" jdbcType="VARCHAR"/>
+            <result property="ccfeeCurrency" column="chgcolfeecur" jdbcType="VARCHAR"/>
+            <result property="commissionAmount" column="awbcmsamt" jdbcType="NUMERIC"/>
+            <result property="discountAmount" column="awbdisamt" jdbcType="NUMERIC"/>
+            <result property="taxAmount" column="tottaxamt" jdbcType="NUMERIC"/>
+            <result property="awbPPTaxAmount" column="awbtaxppd" jdbcType="NUMERIC"/>
+            <result property="awbCCTaxAmount" column="awbtaxccf" jdbcType="NUMERIC"/>
+            <result property="shippingDate" column="shpdat" jdbcType="DATE" />
+            <result property="awbOtherChargePaymentType" column="awbothchgpaytyp" jdbcType="VARCHAR"/>
+            <result property="displayTaxDetails" column="distaxdtl" jdbcType="OTHER"
+                    typeHandler="com.ibsplc.neoicargo.framework.tenant.jpa.mybatis.JsonTypeHandler"/>
+            <result property="netValueExport" column="expnetval" jdbcType="VARCHAR"
+                    typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaMoneyHandler"/>
+            <result property="netValueImport" column="impnetval" jdbcType="VARCHAR"
+                    typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaMoneyHandler"/>
+            <result property="inboundFop" column="inbfop" jdbcType="VARCHAR"/>
+            <result property="outboundFop" column="outfop" jdbcType="VARCHAR"/>
+
+            <collection property="ccaCustomerDetails" javaType="java.util.Set"
+                        ofType="com.ibsplc.neoicargo.cca.vo.CcaCustomerDetailVO">
+                <id property="serialNumber" column="ccacusdtlsernum"/>
+                <result property="customerType" column="custyp" jdbcType="VARCHAR"/>
+                <result property="customerName" column="cusnam" jdbcType="VARCHAR"/>
+                <result property="stationCode" column="stncod" jdbcType="VARCHAR"/>
+                <result property="cityCode" column="ctycod" jdbcType="VARCHAR"/>
+                <result property="countryCode" column="cntcod" jdbcType="VARCHAR"/>
+                <result property="accountNumber" column="accnum" jdbcType="VARCHAR"/>
+                <result property="iataCode" column="iatcod" jdbcType="VARCHAR"/>
+                <result property="cassIndicator" column="casidr" jdbcType="VARCHAR"/>
+            </collection>
+
+            <collection property="ratingDetails" javaType="java.util.List"
+                        ofType="com.ibsplc.neoicargo.cca.vo.CcaRatingDetailVO">
+                <id property="serialNumber" column="ccaawbdtlsernum"/>
+                <result property="commodityCode" column="awbdtlcomcod" jdbcType="VARCHAR"/>
+                <result property="volumeOfShipment" column="awbdtlvol" jdbcType="VARCHAR"
+                        typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                <result property="chargeableWeight" column="awbdtlchgwgt" jdbcType="VARCHAR"
+                        typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                <result property="weightOfShipment" column="awbdtlgrswgt" jdbcType="VARCHAR"
+                        typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                <result property="volumetricWeight" column="awbdtlvolwgt" jdbcType="VARCHAR"
+                        typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                <result property="adjustedWeight" column="awbdtladjwgt" jdbcType="VARCHAR"
+                        typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                <result property="numberOfPieces" column="awbdtltpcs" jdbcType="NUMERIC"/>
+                <result property="shipmentDescription" column="comdes" jdbcType="VARCHAR"/>
+
+                <collection property="dimensions" javaType="java.util.Set"
+                            ofType="com.ibsplc.neoicargo.cca.vo.DimensionsVO">
+                    <id property="serialNumber" column="ccaawbdimdtlsernum"/>
+                    <result property="pieces" column="detdimpcs" jdbcType="INTEGER"/>
+                    <result property="weight" column="detdimwei" jdbcType="VARCHAR"
+                            typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                    <result property="length" column="detdimlen" jdbcType="VARCHAR"
+                            typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                    <result property="width" column="detdimwid" jdbcType="VARCHAR"
+                            typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                    <result property="height" column="detdimhei" jdbcType="VARCHAR"
+                            typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                    <result property="volume" column="detdimvol" jdbcType="VARCHAR"
+                            typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                </collection>
+
+                <collection property="ulds" javaType="java.util.Set"
+                            ofType="com.ibsplc.neoicargo.cca.vo.CcaRatingUldVO">
+                    <id property="serialNumber" column="uldsernum"/>
+                    <result property="type" column="uldtyp" jdbcType="VARCHAR"/>
+                    <result property="numberOfUld" column="numuld" jdbcType="NUMERIC"/>
+                    <result property="contour" column="uldcon" jdbcType="VARCHAR"/>
+                    <result property="weight" column="uldwgh" jdbcType="VARCHAR" typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                    <result property="volume" column="uldvol" jdbcType="VARCHAR" typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                </collection>
+
+            </collection>
+
+            <collection property="awbCharges" javaType="java.util.List"
+                        ofType="com.ibsplc.neoicargo.cca.vo.CcaChargeDetailsVO">
+                <id property="serialNumber" column="ccaawbchgsernum"/>
+                <result property="paymentType" column="paytyp" jdbcType="VARCHAR"/>
+                <result property="dueCarrier" column="duecarflg" jdbcType="VARCHAR"/>
+                <result property="dueAgent" column="dueagtflg" jdbcType="VARCHAR"/>
+                <result property="chargeHead" column="chghed" jdbcType="VARCHAR"/>
+                <result property="chargeHeadCode" column="chdcod" jdbcType="VARCHAR"/>
+                <result property="charge" column="chgdtlchg" jdbcType="VARCHAR"
+                        typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaMoneyHandler"/>
+            </collection>
+
+            <collection property="awbRates" javaType="java.util.List"
+                        ofType="com.ibsplc.neoicargo.cca.vo.CcaRateDetailsVO">
+                <id property="serialNumber" column="ccaawbratsernum"/>
+                <result property="rateDetails" column="ratdtl" jdbcType="OTHER"
+                        typeHandler="com.ibsplc.neoicargo.framework.tenant.jpa.mybatis.JsonTypeHandler"/>
+                <result property="rate" column="rat" jdbcType="NUMERIC"/>
+                <result property="charge" column="ratchg" jdbcType="NUMERIC"
+                        typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaMoneyHandler"/>
+                <result property="rateType" column="rattyp" jdbcType="VARCHAR"/>
+                <result property="commodityCode" column="ratcomcod" jdbcType="VARCHAR"/>
+            </collection>
+
+            <collection property="ccaAwbRoutingDetails" javaType="java.util.Set"
+                        ofType="com.ibsplc.neoicargo.cca.vo.CcaAwbRoutingDetailsVO">
+                <id property="serialNumber" column="ccaawbrtgsernum"/>
+                <result property="origin" column="awbroudetorgcod" jdbcType="VARCHAR"/>
+                <result property="destination" column="awbroudetdstcod" jdbcType="VARCHAR"/>
+                <result property="flightNumber" column="fltnum" jdbcType="VARCHAR"/>
+                <result property="flightDate" column="fltdat" jdbcType="DATE"/>
+                <result property="pieces" column="awbroudetpcs" jdbcType="INTEGER"/>
+                <result property="weight" column="rouwgt" jdbcType="VARCHAR"
+                        typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaQuantityHandler"/>
+                <result property="argumentType" column="agrmnttyp" jdbcType="VARCHAR"/>
+                <result property="source" column="rtgsrc" jdbcType="VARCHAR"/>
+                <result property='flightCarrierCode' column="fltcar" jdbcType="VARCHAR"/>
+                <result property='firstCarrierCode' column="fstcar" jdbcType="VARCHAR"/>
+            </collection>
+
+        </collection>
+
+    </resultMap>
+
+    <select id="getRelatedCCA" resultMap="relatedCCA" parameterType="map">
+        SELECT
+            mst.shppfx, mst.mstdocnum, mst.ccarefnum, mst.ccaissdat, mst.ccaissdattimutc, mst.ccatyp, mst.ccasrc, mst.ccastatus,
+            mst.expblgsta, mst.impblgsta, coalesce(ca1.expduearl, 0) - coalesce(ca2.expduearl, 0) as netvalexp,
+            coalesce(ca1.impduearl, 0) - coalesce(ca2.impduearl, 0) as netvalimp, ca1.curcod
+        FROM ccamst mst
+        LEFT JOIN ccaawb ca1
+        ON ca1.ccasernum = mst.ccasernum AND ca1.rectyp = 'R'
+        LEFT JOIN ccaawb ca2
+        ON ca2.ccasernum = mst.ccasernum AND ca2.rectyp = 'O'
+        WHERE
+            mst.cmpcod= #{ccaDataFilter.companyCode}
+            AND mst.shppfx = #{ccaDataFilter.shipmentPrefix}
+            AND mst.mstdocnum = #{ccaDataFilter.masterDocumentNumber}
+        ORDER BY mst.ccaissdattimutc DESC, mst.ccarefnum DESC
+    </select>
+    <resultMap id="relatedCCA" type="com.ibsplc.neoicargo.cca.vo.CCAMasterVO">
+        <result property="shipmentPrefix" column="shppfx" jdbcType="VARCHAR"/>
+        <result property="masterDocumentNumber" column="mstdocnum" jdbcType="VARCHAR"/>
+        <result property="ccaReferenceNumber" column="ccarefnum" jdbcType="VARCHAR"/>
+        <result property="ccaIssueDate" column="ccaissdat" jdbcType="DATE"/>
+        <result property="ccaIssueDateTimeInUTC" column="ccaissdattimutc" jdbcType="TIMESTAMP"/>
+        <result property="ccaType" column="ccatyp" jdbcType="VARCHAR"/>
+        <result property="ccaSource" column="ccasrc" jdbcType="VARCHAR"/>
+        <result property="ccaStatus" column="ccastatus" jdbcType="VARCHAR"/>
+        <result property="exportBillingStatus" column="expblgsta" jdbcType="VARCHAR"/>
+        <result property="importBillingStatus" column="impblgsta" jdbcType="VARCHAR"/>
+        <result property="netValueExport" column="netvalexp" jdbcType="NUMERIC"/>
+        <result property="netValueImport" column="netvalimp" jdbcType="NUMERIC"/>
+        <result property="currencyCode" column="curcod" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getCCAList" resultMap="CCAList" parameterType="map">
+        SELECT mst.ccasernum, mst.cmpcod, mst.shppfx, mst.mstdocnum, mst.ccarefnum, mst.ccaissdat, mst.ccastatus,
+        mst.ccasrc, mst.autccaflg, mst.ccatyp,
+
+        cusdtl.casidr,
+
+        awb.rectyp, awb.orgcod , awb.dstcod ,
+
+        SUM(CASE awb.rectyp
+        WHEN 'R' THEN awb.awbnetchg
+        WHEN 'O' THEN -awb.awbnetchg END) AS ccaval
+
+        FROM ccamst mst
+
+        JOIN ccaawb awb
+        ON awb.cmpcod = mst.cmpcod
+        AND awb.ccasernum = mst.ccasernum
+
+        LEFT JOIN ccacusdtl cusdtl
+        ON cusdtl.ccasernum = awb.ccasernum
+        AND cusdtl.rectyp = awb.rectyp
+        AND cusdtl.custyp = 'O'
+
+        <where>
+            <foreach item="ccaDataFilter" index="index" collection="ccaDataFilters" open="" separator=" OR " close="">
+                (
+                mst.cmpcod= #{ccaDataFilter.companyCode}
+                <if test="ccaDataFilter.ccaReferenceNumber != null">
+                    AND mst.ccarefnum LIKE #{ccaDataFilter.ccaReferenceNumber}||'%'
+                </if>
+                <if test="ccaDataFilter.shipmentPrefix != null">
+                    AND mst.shppfx = #{ccaDataFilter.shipmentPrefix}
+                </if>
+                <if test="ccaDataFilter.masterDocumentNumber != null">
+                    AND mst.mstdocnum = #{ccaDataFilter.masterDocumentNumber}
+                </if>
+                )
+            </foreach>
+        </where>
+
+        GROUP BY mst.cmpcod, mst.shppfx, mst.mstdocnum, awb.rectyp, mst.ccasernum, cusdtl.casidr, awb.orgcod, awb.dstcod
+        ORDER BY mst.ccaissdattimutc DESC, mst.mstdocnum DESC,shppfx
+    </select>
+    <resultMap id="CCAList" type="com.ibsplc.neoicargo.cca.vo.GetCcaListMasterVO">
+        <id property="ccaSerialNumber" column="ccasernum"/>
+        <result property="ccaReferenceNumber" column="ccarefnum" jdbcType="VARCHAR"/>
+        <result property="shipmentPrefix" column="shppfx" jdbcType="VARCHAR"/>
+        <result property="masterDocumentNumber" column="mstdocnum" jdbcType="VARCHAR"/>
+        <result property="ccaIssueDate" column="ccaissdat" jdbcType="DATE"/>
+        <result property="ccaSource" column="ccasrc" jdbcType="VARCHAR"/>
+        <result property="ccaStatus" column="ccastatus" jdbcType="VARCHAR"/>
+        <result property="ccaValue" column="ccaval" jdbcType="NUMERIC"/>
+        <result property="ccaType" column="ccatyp" jdbcType="VARCHAR"/>
+        <result property="autoCCAFlag" column="autccaflg" jdbcType="VARCHAR"/>
+        <result property="cassIndicator" column="casidr" jdbcType="VARCHAR"/>
+
+        <collection property="shipmentDetailVOs" ofType="com.ibsplc.neoicargo.cca.vo.CcaAwbVO">
+            <id property="recordType" column="rectyp"/>
+            <result property="origin" column="orgcod" jdbcType="VARCHAR"/>
+            <result property="destination" column="dstcod" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <select id="getCcaNumbers" resultMap="CcaNumbers" parameterType="map">
+        SELECT cca.ccasernum, cca.ccarefnum
+        FROM ccamst as cca
+        WHERE cca.cmpcod= #{companyCode}
+
+        <if test="ccaSelectFilter.loadFromFilter and ccaSelectFilter.filter != null and ccaSelectFilter.filter.size() > 0">
+            AND cca.ccarefnum IN
+            <foreach item="filterItem" index="index" collection="ccaSelectFilter.filter" open="(" separator=","
+                     close=")">
+                UPPER(#{filterItem})
+            </foreach>
+        </if>
+
+        <if test="!ccaSelectFilter.loadFromFilter  and ccaSelectFilter.search != null and ccaSelectFilter.search != ''">
+            <bind name="searchPattern" value="ccaSelectFilter.search + '%'"/>
+            AND cca.ccarefnum ILIKE #{searchPattern}
+        </if>
+
+        ORDER BY cca.ccasernum DESC
+        LIMIT #{ccaSelectFilter.first}
+    </select>
+
+    <resultMap id="CcaNumbers" type="com.ibsplc.neoicargo.cca.vo.CcaNumbersNodeVO">
+        <result property="ccaNumberId" column="ccasernum" jdbcType="VARCHAR"/>
+        <result property="ccaNumber" column="ccarefnum" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findCcaMasterListView" resultMap="ccaMasterListView" parameterType="map">
+        SELECT DISTINCT
+
+        mst.ccasernum, mst.ccarefnum, mst.shppfx, mst.mstdocnum, mst.ccastatus, mst.ccatyp, mst.ccaissdat,mst.ccaissdattimutc,
+        mst.ccasrc, mst.expblgsta, mst.impblgsta, mst.ccarsn, mst.ccaasgnee, mst.attfilnam,
+        substring(mst.ccarsn, '[^a-zA-Z]*'), length(mst.ccarsn),
+
+        awb.awbnonawbchg, awb.curcod, awb.agtcod, awb.inbcuscod, awb.outcuscod,
+
+        cusdtl.ccacusdtlsernum, cusdtl.cusnam, cusdtl.stncod, cusdtl.cntcod, cusdtl.accnum,
+        cusdtl.iatcod, cusdtl.casidr,
+
+        cusdtl2.ccacusdtlsernum AS ccacusdtlsernum2, cusdtl2.cusnam AS cusnam2, cusdtl2.stncod AS stncod2,
+        cusdtl2.cntcod AS cntcod2, cusdtl2.accnum AS accnum2, cusdtl2.iatcod AS iatcod2,
+
+        cusdtl3.ccacusdtlsernum AS ccacusdtlsernum3, cusdtl3.cusnam AS cusnam3, cusdtl3.stncod AS stncod3,
+        cusdtl3.cntcod AS cntcod3, cusdtl3.accnum AS accnum3, cusdtl3.iatcod AS iatcod3,
+
+        CONCAT_WS('-', awb.curcod, awbR.expduearl ) as expnetval,
+        CONCAT_WS('-', awb.curcod, awbR.impduearl ) as impnetval
+
+        FROM ccamst mst
+
+        <include refid="ccaMasterViewJoin"/>
+        <include refid="ccaMasterViewWhere"/>
+
+        ORDER BY
+        <include refid="ccaMasterViewOrderBy"/>, mst.mstdocnum DESC,shppfx
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <resultMap id="ccaMasterListView" type="com.ibsplc.neoicargo.cca.vo.CcaListViewVO">
+        <id property="ccaSerialNumber" column="ccasernum"/>
+        <result property="totalNonAWBCharge" column="awbnonawbchg" jdbcType="NUMERIC"/>
+        <result property="currency" column="curcod" jdbcType="VARCHAR"/>
+        <result property="agentCode" column="agtcod" jdbcType="VARCHAR"/>
+        <result property="inboundCustomerCode" column="inbcuscod" jdbcType="VARCHAR"/>
+        <result property="outboundCustomerCode" column="outcuscod" jdbcType="VARCHAR"/>
+        <result property="ccaReferenceNumber" column="ccarefnum" jdbcType="VARCHAR"/>
+        <result property="shipmentPrefix" column="shppfx" jdbcType="VARCHAR"/>
+        <result property="masterDocumentNumber" column="mstdocnum" jdbcType="VARCHAR"/>
+        <result property="ccaStatus" column="ccastatus" jdbcType="VARCHAR"/>
+        <result property="ccaType" column="ccatyp" jdbcType="VARCHAR"/>
+        <result property="ccaIssueDate" column="ccaissdat" jdbcType="DATE"/>
+        <result property="ccaIssueDateTimeInUTC" column="ccaissdattimutc" jdbcType="DATE"/>
+        <result property="ccaSource" column="ccasrc" jdbcType="VARCHAR"/>
+        <result property="exportBillingStatus" column="expblgsta" jdbcType="VARCHAR"/>
+        <result property="importBillingStatus" column="impblgsta" jdbcType="VARCHAR"/>
+        <result property="netValueExport" column="expnetval" jdbcType="VARCHAR"
+                typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaMoneyHandler"/>
+        <result property="netValueImport" column="impnetval" jdbcType="VARCHAR"
+                typeHandler="com.ibsplc.neoicargo.cca.dao.mybatis.handler.CcaMoneyHandler"/>
+        <result property="ccaReason" column="ccarsn" jdbcType="VARCHAR"/>
+        <result property="ccaAssignee" column="ccaasgnee" jdbcType="VARCHAR"/>
+        <result property="ccaAttachments" column="attfilnam" jdbcType="OTHER"
+                typeHandler="com.ibsplc.neoicargo.framework.tenant.jpa.mybatis.JsonTypeHandler"/>
+
+        <collection property="outboundCustomerDetails" javaType="java.util.Set"
+                    ofType="com.ibsplc.neoicargo.cca.modal.CcaCustomerDetailData">
+            <id property="serialNumber" column="ccacusdtlsernum"/>
+            <result property="customerName" column="cusnam" jdbcType="VARCHAR"/>
+            <result property="stationCode" column="stncod" jdbcType="VARCHAR"/>
+            <result property="countryCode" column="cntcod" jdbcType="VARCHAR"/>
+            <result property="accountNumber" column="accnum" jdbcType="VARCHAR"/>
+            <result property="iataCode" column="iatcod" jdbcType="VARCHAR"/>
+            <result property="cassIndicator" column="casidr" jdbcType="VARCHAR"/>
+        </collection>
+
+        <collection property="inboundCustomerDetails" javaType="java.util.Set"
+                    ofType="com.ibsplc.neoicargo.cca.modal.CcaCustomerDetailData">
+            <id property="serialNumber" column="ccacusdtlsernum2"/>
+            <result property="customerName" column="cusnam2" jdbcType="VARCHAR"/>
+            <result property="stationCode" column="stncod2" jdbcType="VARCHAR"/>
+            <result property="countryCode" column="cntcod2" jdbcType="VARCHAR"/>
+            <result property="accountNumber" column="accnum2" jdbcType="VARCHAR"/>
+            <result property="iataCode" column="iatcod2" jdbcType="VARCHAR"/>
+        </collection>
+
+        <collection property="agentDetails" javaType="java.util.Set"
+                    ofType="com.ibsplc.neoicargo.cca.modal.CcaCustomerDetailData">
+            <id property="serialNumber" column="ccacusdtlsernum3"/>
+            <result property="customerName" column="cusnam3" jdbcType="VARCHAR"/>
+            <result property="stationCode" column="stncod3" jdbcType="VARCHAR"/>
+            <result property="countryCode" column="cntcod3" jdbcType="VARCHAR"/>
+            <result property="accountNumber" column="accnum3" jdbcType="VARCHAR"/>
+            <result property="iataCode" column="iatcod3" jdbcType="VARCHAR"/>
+        </collection>
+
+    </resultMap>
+
+    <select id="findTotalElements" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM (
+
+        SELECT DISTINCT mst.ccasernum
+        FROM ccamst mst
+
+        <include refid="ccaMasterViewJoin"/>
+        <include refid="ccaMasterViewWhere"/>
+
+        ) AS temp
+    </select>
+
+    <sql id="ccaMasterViewJoin">
+        JOIN ccaawb awb
+        ON awb.cmpcod = mst.cmpcod
+        AND awb.ccasernum = mst.ccasernum
+
+        LEFT JOIN ccaawb awbR
+        ON awbR.cmpcod = mst.cmpcod
+        AND awbR.ccasernum = mst.ccasernum
+        AND (awbR.rectyp = 'R')
+
+        LEFT JOIN ccacusdtl cusdtl
+        ON cusdtl.ccasernum = awb.ccasernum
+        AND cusdtl.rectyp = awb.rectyp
+        AND (cusdtl.custyp = 'O' )
+
+        LEFT JOIN ccacusdtl cusdtl2
+        ON cusdtl2.ccasernum = awb.ccasernum
+        AND cusdtl2.rectyp = awb.rectyp
+        AND (cusdtl2.custyp = 'I' )
+
+        LEFT JOIN ccacusdtl cusdtl3
+        ON cusdtl3.ccasernum = awb.ccasernum
+        AND cusdtl3.rectyp = awb.rectyp
+        AND (cusdtl3.custyp = 'A' )
+    </sql>
+
+    <sql id="ccaMasterViewWhere">
+        WHERE mst.cmpcod = #{ccaListViewFilterVO.companyCode}
+        AND awb.rectyp = 'R'
+
+        <if test="ccaListViewFilterVO.currency != null and not ccaListViewFilterVO.currency.isEmpty()">
+            AND awb.curcod IN
+            <foreach item='currency' collection='ccaListViewFilterVO.currency'
+                     open='(' separator=',' close=')'>
+                #{currency}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.origin != null and not ccaListViewFilterVO.origin.isEmpty()">
+            AND awb.orgcod IN
+            <foreach item='origin' collection='ccaListViewFilterVO.origin'
+                     open='(' separator=',' close=')'>
+                #{origin}
+            </foreach>
+
+        </if>
+
+        <if test="ccaListViewFilterVO.destination != null and not ccaListViewFilterVO.destination.isEmpty()">
+            AND awb.dstcod IN
+            <foreach item='destination' collection='ccaListViewFilterVO.destination'
+                     open='(' separator=',' close=')'>
+                #{destination}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.agentCode != null and not
+        ccaListViewFilterVO.agentCode.isEmpty()">
+            AND awb.agtcod IN
+            <foreach item='agentCode' collection='ccaListViewFilterVO.agentCode'
+                     open='(' separator=',' close=')'>
+                #{agentCode}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.inboundCustomerCode != null and not
+        ccaListViewFilterVO.inboundCustomerCode.isEmpty()">
+            AND awb.inbcuscod IN
+            <foreach item='inboundCustomerCode' collection='ccaListViewFilterVO.inboundCustomerCode'
+                     open='(' separator=',' close=')'>
+                #{inboundCustomerCode}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.outboundCustomerCode != null and not
+        ccaListViewFilterVO.outboundCustomerCode.isEmpty()">
+            AND awb.outcuscod IN
+            <foreach item='outboundCustomerCode' collection='ccaListViewFilterVO.outboundCustomerCode'
+                     open='(' separator=',' close=')'>
+                #{outboundCustomerCode}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.ccaReferenceNumber != null and not ccaListViewFilterVO.ccaReferenceNumber.isEmpty()">
+            AND mst.ccarefnum IN
+            <foreach item='ccaReferenceNumber' collection='ccaListViewFilterVO.ccaReferenceNumber'
+                     open='(' separator=',' close=')'>
+                #{ccaReferenceNumber}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.masterDocumentNumber != null">
+            AND mst.mstdocnum = #{ccaListViewFilterVO.masterDocumentNumber}
+        </if>
+
+        <if test="ccaListViewFilterVO.shipmentPrefix != null">
+            AND mst.shppfx = #{ccaListViewFilterVO.shipmentPrefix}
+        </if>
+
+        <if test="ccaListViewFilterVO.ccaIssueDate != null">
+            <if test="ccaListViewFilterVO.ccaIssueDate.fromLocalDate != null">
+                AND mst.ccaissdat &gt;= #{ccaListViewFilterVO.ccaIssueDate.fromLocalDate}
+            </if>
+
+            <if test="ccaListViewFilterVO.ccaIssueDate.toLocalDate != null">
+                AND mst.ccaissdat &lt;= #{ccaListViewFilterVO.ccaIssueDate.toLocalDate}
+            </if>
+        </if>
+
+        <if test="ccaListViewFilterVO.ccaAssignee != null and not ccaListViewFilterVO.ccaAssignee.isEmpty()">
+            AND mst.ccaasgnee IN
+            <foreach item='ccaAssignee' collection='ccaListViewFilterVO.ccaAssignee'
+                     open='(' separator=',' close=')'>
+                #{ccaAssignee}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.ccaType != null and not ccaListViewFilterVO.ccaType.isEmpty()">
+            AND mst.ccatyp IN
+            <foreach item='ccaType' collection='ccaListViewFilterVO.ccaType'
+                     open='(' separator=',' close=')'>
+                #{ccaType}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.ccaStatus != null and not ccaListViewFilterVO.ccaStatus.isEmpty()">
+            AND mst.ccastatus IN
+            <foreach item='ccaStatus' collection='ccaListViewFilterVO.ccaStatus'
+                     open='(' separator=',' close=')'>
+                #{ccaStatus}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.exportBillingStatus != null and not ccaListViewFilterVO.exportBillingStatus.isEmpty()">
+            AND mst.expblgsta IN
+            <foreach item='exportBillingStatus' collection='ccaListViewFilterVO.exportBillingStatus'
+                     open='(' separator=',' close=')'>
+                #{exportBillingStatus}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.importBillingStatus != null and not
+        ccaListViewFilterVO.importBillingStatus.isEmpty()">
+            AND mst.impblgsta in
+            <foreach item='importBillingStatus' collection='ccaListViewFilterVO.importBillingStatus'
+                     open='(' separator=',' close=')'>
+                #{importBillingStatus}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.ccaSource != null and not ccaListViewFilterVO.ccaSource.isEmpty()">
+            AND mst.ccasrc IN
+            <foreach item='ccaSource' collection='ccaListViewFilterVO.ccaSource'
+                     open='(' separator=',' close=')'>
+                #{ccaSource}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.ccaReason != null and not ccaListViewFilterVO.ccaReason.isEmpty()">
+            <foreach item='ccaReason' collection='ccaListViewFilterVO.ccaReason'>
+                AND UPPER(mst.ccarsn) LIKE '%' || UPPER(#{ccaReason}) || '%'
+            </foreach>
+
+        </if>
+
+        <if test="ccaListViewFilterVO.outboundStationCode != null and not
+        ccaListViewFilterVO.outboundStationCode.isEmpty()">
+            AND cusdtl.stncod IN
+            <foreach item='outboundStationCode' collection='ccaListViewFilterVO.outboundStationCode'
+                     open='(' separator=',' close=')'>
+                #{outboundStationCode}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.inboundStationCode != null and not
+        ccaListViewFilterVO.inboundStationCode.isEmpty()">
+            AND cusdtl2.stncod IN
+            <foreach item='inboundStationCode' collection='ccaListViewFilterVO.inboundStationCode'
+                     open='(' separator=',' close=')'>
+                #{inboundStationCode}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.agentStationCode != null and not
+        ccaListViewFilterVO.agentStationCode.isEmpty()">
+            AND cusdtl3.stncod IN
+            <foreach item='agentStationCode' collection='ccaListViewFilterVO.agentStationCode'
+                     open='(' separator=',' close=')'>
+                #{agentStationCode}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.outboundCountryCode != null and not
+        ccaListViewFilterVO.outboundCountryCode.isEmpty()">
+            AND cusdtl.cntcod IN
+            <foreach item='outboundCountryCode' collection='ccaListViewFilterVO.outboundCountryCode'
+                     open='(' separator=',' close=')'>
+                #{outboundCountryCode}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.inboundCountryCode != null and not
+        ccaListViewFilterVO.inboundCountryCode.isEmpty()">
+            AND cusdtl2.cntcod IN
+            <foreach item='inboundCountryCode' collection='ccaListViewFilterVO.inboundCountryCode'
+                     open='(' separator=',' close=')'>
+                #{inboundCountryCode}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.agentCountryCode != null and not
+        ccaListViewFilterVO.agentCountryCode.isEmpty()">
+            AND cusdtl3.cntcod IN
+            <foreach item='agentCountryCode' collection='ccaListViewFilterVO.agentCountryCode'
+                     open='(' separator=',' close=')'>
+                #{agentCountryCode}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.inboundAccountNumber != null and not
+        ccaListViewFilterVO.inboundAccountNumber.isEmpty()">
+            AND cusdtl2.accnum IN
+            <foreach item='inboundAccountNumber' collection='ccaListViewFilterVO.inboundAccountNumber'
+                     open='(' separator=',' close=')'>
+                #{inboundAccountNumber}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.outboundAccountNumber != null and not
+        ccaListViewFilterVO.outboundAccountNumber.isEmpty()">
+            AND cusdtl.accnum IN
+            <foreach item='outboundAccountNumber' collection='ccaListViewFilterVO.outboundAccountNumber'
+                     open='(' separator=',' close=')'>
+                #{outboundAccountNumber}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.agentIataCode != null and not
+        ccaListViewFilterVO.agentIataCode.isEmpty()">
+            AND cusdtl3.iatcod IN
+            <foreach item='agentIataCode' collection='ccaListViewFilterVO.agentIataCode'
+                     open='(' separator=',' close=')'>
+                #{agentIataCode}
+            </foreach>
+        </if>
+
+        <if test="ccaListViewFilterVO.outboundCassIndicator == true">
+            AND cusdtl.casidr IN ('B','D','I')
+        </if>
+
+        <if test="ccaListViewFilterVO.outboundCassIndicator == false">
+            AND cusdtl.casidr IS NULL
+        </if>
+
+    </sql>
+
+    <sql id="ccaMasterViewOrderBy">
+        <choose>
+            <when test="ccaListViewFilterVO.ccaListViewSortData == null or ccaListViewFilterVO.ccaListViewSortData.isEmpty()">
+                mst.ccaissdattimutc DESC
+            </when>
+
+            <otherwise>
+                <foreach item='sortData' collection='ccaListViewFilterVO.ccaListViewSortData' separator=','>
+                    <if test="'ccaNumber'.equals(sortData.sortOn)">
+                        mst.ccarefnum
+                    </if>
+
+                    <if test="'awbNo'.equals(sortData.sortOn)">
+                        mst.shppfx
+
+                        <include refid="ifDescendingOrder"/>
+                        ,
+
+                        mst.mstdocnum
+                    </if>
+
+                    <if test="'ccaStatus'.equals(sortData.sortOn)">
+                        mst.ccastatus
+                    </if>
+
+                    <if test="'ccaType'.equals(sortData.sortOn)">
+                        mst.ccatyp
+                    </if>
+
+                    <if test="'nonAWB'.equals(sortData.sortOn)">
+                        awb.awbnonawbchg
+                    </if>
+
+                    <if test="'ccaIssueDate'.equals(sortData.sortOn)">
+                        mst.ccaissdattimutc
+                    </if>
+
+                    <if test="'ccaSource'.equals(sortData.sortOn)">
+                        mst.ccasrc
+                    </if>
+
+                    <if test="'outboundCustomerCode'.equals(sortData.sortOn)">
+                        awb.outcuscod
+                    </if>
+
+                    <if test="'inboundCustomerCode'.equals(sortData.sortOn)">
+                        awb.inbcuscod
+                    </if>
+
+                    <if test="'agentCode'.equals(sortData.sortOn)">
+                        awb.agtcod
+                    </if>
+
+                    <if test="'ccaReason'.equals(sortData.sortOn)">
+                        substring(mst.ccarsn, '[^a-zA-Z]*')
+
+                        <include refid="ifDescendingOrder"/>
+                        ,
+
+                        length(mst.ccarsn)
+                    </if>
+
+                    <if test="'assignee'.equals(sortData.sortOn)">
+                        mst.ccaasgnee
+                    </if>
+
+                    <include refid="ifDescendingOrder"/>
+                </foreach>
+
+            </otherwise>
+        </choose>
+
+    </sql>
+
+    <sql id="ifDescendingOrder">
+        <if test="'Descending'.equals(sortData.order)">
+            DESC
+        </if>
+    </sql>
+
+</mapper>

@@ -1,0 +1,174 @@
+def Stage_Name
+def ARTIFACTORY_HOST
+def ARTIFACTORY_REPO
+def APP
+def ENV
+def bitbucketURL ="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"
+def commitId
+def response
+def results
+def data
+def bitbucketresponse
+def loadValuesYaml(){
+  def valuesYaml = readYaml file: 'neo-datamonitor/app.yml'
+  return valuesYaml;
+}
+
+pipeline {
+    agent any
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '1'))
+    }
+    stages {
+		stage('Initial Setup') {
+			steps {
+                script {
+					Stage_Name = 'Initial Setup'
+					valuesYaml = loadValuesYaml()
+					echo " valuesYaml   : ${valuesYaml}"
+					appServers = valuesYaml.APP.each{ k,v->}
+					for(app in appServers) { 
+							env.JAVA_HOME=app.JAVA_HOME
+							env.M2_HOME =app.M2_HOME
+							env.repo=app.repo
+							env.token=app.token
+							env.project_name=app.project_name                    		                     		
+                            env.service_name =app.service_name
+                      		env.release_url=app.release_url
+						}
+                }
+
+            }
+        }
+			
+        stage('Build') {
+			when {
+                        branch 'master'
+            }
+			
+            steps {
+                script {
+					Stage_Name = 'Build Stage'
+					
+					echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+                }
+
+                checkout([$class           : 'GitSCM',
+                          branches         : [[name: env.BRANCH_NAME]],
+                          userRemoteConfigs: [[
+                                                      credentialsId: env.token,
+                                                      url          : env.repo]]])
+
+                 dir(path: 'neo-datamonitor') {
+                    sh '''export M2_HOME=$M2_HOME
+                      export M2=$M2_HOME/bin
+                      export JAVA_HOME=$JAVA_HOME
+                      export PATH=$M2:$JAVA_HOME:$PATH
+                      mvn clean deploy -U -DsendCredentialsOverHttp=true -Dproj.name=$project_name -Dbuild.number=v1.0.$BUILD_NUMBER '''
+                }
+				script {
+                    Stage_Name = 'Build Stage'
+					 echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+					 def notifyBitbucket = {
+					  echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+					  return "ees"
+					 }
+					 echo "   notifyBitbucket  ${notifyBitbucket}"
+                }
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+				
+            }
+        }
+		
+
+}
+	
+
+    post {
+		success{
+			script {
+			 echo "GIT_COMMIT is ${env.GIT_COMMIT}"
+			 data='{"key": "'+env.BUILD_ID+'","state":"SUCCESSFUL", "name":"'+env.JOB_NAME+'","url":"'+env.BUILD_URL+'","description":"Build is successful."}'
+							bitbucketURL="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"+env.GIT_COMMIT
+							echo "bitbucketURL  ${bitbucketURL}"
+							bitbucketresponse = ["curl", "-u", "icargo-release:Icargo-release", "-X", "POST", "-H", "Content-Type: application/json", "-d", "${data}", "${bitbucketURL}"].execute().text
+							echo "bitbucketresponse ${bitbucketresponse}"
+			
+			if (env.BRANCH_NAME == 'master') {
+              env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+              echo "GIT_COMMIT_MSG is ${env.GIT_COMMIT_MSG}"
+              env.GIT_AUTHOR = sh (script: 'git log -1 --pretty=%cn ${GIT_COMMIT}', returnStdout: true).trim()
+			  echo "GIT_COMMIT is ${env.GIT_COMMIT[0..6]}"
+              recipientProvidersForQADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+			  echo "recipientProvidersForQADeploy  -> ${recipientProvidersForQADeploy}"
+              gitCommitID =env.GIT_COMMIT
+              echo "gitCommitID  -> ${gitCommitID}"
+					def listOfServices =Arrays.asList(env.service_name.split(","))
+					echo "listOfServices   - ${listOfServices}"
+					echo "size of list "+listOfServices.size()
+					echo "size of size 0 values "+listOfServices[0]
+					build job: "${listOfServices[0]}-deployment", parameters: [[$class: 'StringParameterValue', name: 'gitCommitID', value: gitCommitID ], [$class: 'StringParameterValue', name: 'recipientProvidersForQADeploy', value: recipientProvidersForQADeploy]],wait: false
+					for (servicename in listOfServices) {
+						echo "  -- servicename --  ${servicename}"
+						
+						sleep(20)
+              
+					}
+			  
+                    
+                    emailext(
+                            subject: "Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+Check console output at:  ${env.BUILD_URL}  
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'cc:'
+                    )
+					
+					
+                } else {
+					emailext(
+                            subject: "Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+Check console output at:  ${env.BUILD_URL}
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider']],
+							to: 'cc:'
+                    )
+                }
+				
+				
+			
+			}
+			
+	}
+	
+        failure {
+            script {
+			
+				echo "GIT_COMMIT is ${env.GIT_COMMIT}"
+				data='{"key": "'+env.BUILD_ID+'","state":"FAILED", "name":"'+env.JOB_NAME+'","url":"'+env.BUILD_URL+'","description":"Build has failed"}'
+							bitbucketURL="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"+env.GIT_COMMIT
+							echo "bitbucketURL  ${bitbucketURL}"
+							bitbucketresponse = ["curl", "-u", "icargo-release:Icargo-release", "-X", "POST", "-H", "Content-Type: application/json", "-d", "${data}", "${bitbucketURL}"].execute().text
+							echo "bitbucketresponse ${bitbucketresponse}"
+			 
+				
+            }
+        }
+    }
+}

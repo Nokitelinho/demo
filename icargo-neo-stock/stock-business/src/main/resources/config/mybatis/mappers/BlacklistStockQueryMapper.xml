@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ibsplc.neoicargo.stock.dao.mybatis.BlacklistStockQueryMapper">
+  <select id="alreadyBlackListed" parameterType="map" resultType="java.lang.String">
+    SELECT
+    cmpcod
+    FROM
+    stkblklstrng
+    WHERE
+    cmpcod = #{blacklistStockVO.companyCode}
+    AND doctyp = #{blacklistStockVO.documentType}
+    AND arlidr = #{blacklistStockVO.airlineIdentifier}
+    AND (
+    ( starng BETWEEN #{blacklistStockVO.rangeFrom} AND #{blacklistStockVO.rangeTo})
+    OR ( endrng BETWEEN #{blacklistStockVO.rangeFrom} AND #{blacklistStockVO.rangeTo})
+    )
+  </select>
+  <select id="findBlackListRangesFromTransit" resultMap="findBlackListRangesFromTransit"
+    parameterType="map">
+    SELECT
+    *
+    FROM
+    stktrsrng
+    WHERE
+    cmpcod = #{blacklistStockVO.companyCode}
+    AND arlidr = #{blacklistStockVO.airlineIdentifier}
+    AND doctyp = #{blacklistStockVO.documentType}
+    AND docsubtyp = #{blacklistStockVO.documentSubType}
+    AND (
+    (#{blacklistStockVO.rangeFrom}::NUMERIC BETWEEN ascmisstarng AND ascmisendrng )
+    OR (#{blacklistStockVO.rangeTo}::NUMERIC BETWEEN ascmisstarng AND ascmisendrng )
+    OR (
+    #{blacklistStockVO.rangeFrom}::NUMERIC <![CDATA[ <= ]]> ascmisstarng
+    AND #{blacklistStockVO.rangeTo}::NUMERIC >= ascmisendrng
+    )
+    )
+    AND cfrsta = 'M'
+  </select>
+  <resultMap id="findBlackListRangesFromTransit"
+    type="com.ibsplc.neoicargo.stock.vo.TransitStockVO">
+    <result property="companyCode" column="CMPCOD" jdbcType="VARCHAR"/>
+    <result property="stockHolderCode" column="STKHLDCOD" jdbcType="VARCHAR"/>
+    <result property="missingStartRange" column="MISSTARNG" jdbcType="VARCHAR"/>
+    <result property="missingEndRange" column="MISENDRNG" jdbcType="VARCHAR"/>
+    <result property="asciiMissingStartRange" column="ASCMISSTARNG" jdbcType="NUMERIC"/>
+    <result property="asciiMissingEndRange" column="ASCMISENDRNG" jdbcType="NUMERIC"/>
+    <result property="airlineIdentifier" column="ARLIDR" jdbcType="VARCHAR"/>
+    <result property="documentType" column="DOCTYP" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="DOCSUBTYP" jdbcType="VARCHAR"/>
+    <result property="actualStartRange" column="ACTSTARNG" jdbcType="VARCHAR"/>
+    <result property="actualEndRange" column="ACTENDRNG" jdbcType="VARCHAR"/>
+    <result property="confirmStatus" column="CFRSTA" jdbcType="VARCHAR"/>
+    <result property="lastUpdateTime" column="LSTUPDTIM" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="lastUpdateUser" column="LSTUPDUSR" jdbcType="VARCHAR"/>
+    <result property="missingNumberOfDocs" column="MISNUMDOC" jdbcType="NUMERIC"/>
+    <result property="numberOfDocs" column="NUMDOC" jdbcType="NUMERIC"/>
+    <result property="stockControlFor" column="FRMSTKHLDCOD" jdbcType="VARCHAR"/>
+    <result property="txnCode" column="TXNCOD" jdbcType="VARCHAR"/>
+    <result property="missingRemarks" column="MISRMK" jdbcType="VARCHAR"/>
+    <result property="txnDate" column="txndat" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+  </resultMap>
+</mapper>

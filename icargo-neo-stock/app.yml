@@ -1,0 +1,26 @@
+APP: 
+  - 
+    JAVA_HOME: /usr/lib/jvm/java-11-amazon-corretto
+    M2: /opt/apache-maven-3.6.2/bin
+    M2_HOME: /opt/apache-maven-3.6.2
+    repo: "http://Icargo-release@bitbucket.ibsplc.com/scm/icneo/icargo-neo-stock.git"
+    token: "f60d9763-39f7-4e73-8467-258d60f1d7f6"
+    project_name: "icargo-neo-stock"
+    sonar_host_url: "http://10.250.3.253:9000"
+    sonar_projectkey_dev: "com.ibsplc.icargo:icargo-neo-stock-dev"
+    sonar_projectkey_master: "com.ibsplc.icargo:icargo-neo-stock-master"
+    sonar_password: "admin"
+    sonar_user: "admin"
+    sonar_project_name_dev: "icargo-neo-stock-dev"
+    sonar_project_name_master: "icargo-neo-stock-master"
+    stop_script: "icargoadm@10.250.3.67 /home/icargoadm/deploy/deployStock/stop.sh"
+    copy_script: "stock-business/target/neo-stock-business*.jar icargoadm@10.250.3.67:/home/icargoadm/deploy/deployStock"
+    start_script: "icargoadm@10.250.3.67 /home/icargoadm/deploy/deployStock/start.sh"
+    sonar_project_name_integrationtest: "icargo-neo-stock-integrationTest"
+    sonar_project_name_integrationtest_dev: "icargo-neo-stock-integrationTest-Dev"
+    sonar_projectkey_integrationtest: "com.ibsplc.icargo:icargo-neo-stock-integrationTest"
+    sonar_projectkey_integrationtest_dev: "com.ibsplc.icargo:icargo-neo-stock-integrationTest-dev"
+    integration_test_stage: false
+    deploy_stage: true
+    service_name: neo-stock-business
+    release_url: http://10.250.3.242:5000/release-manager-service/rest/api/release/

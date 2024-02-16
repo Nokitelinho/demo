@@ -1,0 +1,41 @@
+---
+{{- if .Values.accessLog.enabled }}
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: logback-accesslog-configmap
+  namespace: {{ $.Values.namespace | quote }}
+data:     
+  logback-access.xml: |
+    <configuration debug="true"> 
+      <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />  
+      <appender name="upd" class="net.logstash.logback.appender.LogstashAccessUdpSocketAppender">
+        <host>icargo-neo-logstash.icargo-system</host>
+        <port>9060</port>
+        <layout class="net.logstash.logback.layout.LogstashAccessLayout">
+          <customFields>{"probeType":"ACCESS_LOG", "serviceName":"${spring.application.name}"}</customFields>
+        </layout>
+      </appender>
+    </configuration>  
+ {{- end }}
+{{- if ((hasKey .Values "smartLoadbalancer") | ternary .Values.smartLoadbalancer.enabled false) }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: "icargo-neo-app"
+  namespace: {{ $.Values.namespace | quote }}
+  labels:
+    tenant: {{ .Values.tenants | join "-" | lower | quote }}
+    release: {{ $.Release.Name | quote }}
+data:
+  bom: |
+    ---
+    deployments:
+{{ .Values.deployments | toYaml | indent 6 }}
+    applicationId: {{ .Values.applicationId | quote }}
+    tenant: {{ .Values.tenants | toJson }}
+    buildNumber: {{ .Values.buildNumber | quote }}
+    versionTimestamp: {{ .Values.versionTimestamp | quote }}
+# End of bom
+{{- end }}

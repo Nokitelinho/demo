@@ -1,0 +1,161 @@
+def Stage_Name
+def ARTIFACTORY_HOST
+def ARTIFACTORY_REPO
+def APP
+def ENV
+def bitbucketURL ="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"
+def commitId
+def response
+def results
+def data
+def bitbucketresponse
+def listOfServices
+def loadValuesYaml(){
+  def valuesYaml = readYaml file: 'app.yml'
+  return valuesYaml;
+}
+
+def cancelPreviousBuilds() {
+    def jobName = env.JOB_NAME
+    def buildNumber = env.BUILD_NUMBER.toInteger()
+    /* Get job name */
+    def currentJob = Jenkins.instance.getItemByFullName(jobName)
+
+    /* Iterating over the builds for specific job */
+    for (def build : currentJob.builds) {
+        def exec = build.getExecutor()
+        /* If there is a build that is currently running and it's not current build */
+        if (build.isBuilding() && build.number.toInteger() != buildNumber && exec != null) {
+            /* Then stop it */
+            exec.interrupt(
+                    Result.ABORTED,
+                    new CauseOfInterruption.UserInterruption("Aborted by #${currentBuild.number}")
+                )
+            println("Aborted previously running build #${build.number}")            
+        }
+    }
+}
+
+pipeline {
+    agent any
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '1'))
+    }
+    stages {
+		stage('Initial Setup') {
+			steps {
+                script {
+                	cancelPreviousBuilds()
+					Stage_Name = 'Initial Setup'
+					valuesYaml = loadValuesYaml()
+					echo " valuesYaml   : ${valuesYaml}"
+					appServers = valuesYaml.APP.each{ k,v->}
+					for(app in appServers) { 
+							env.repo="http://icargo-release:Icargo-release@bitbucket.ibsplc.com/scm/ic-va_cvc/cvc-portal-common-frontend.git"
+							env.token=app.token
+							env.project_name=app.project_name
+							env.sonar_host_url=app.sonar_host_url
+							env.sonar_projectkey_dev=app.sonar_projectkey_dev
+							env.sonar_projectkey_master=app.sonar_projectkey_master
+							env.sonar_password=app.sonar_password
+							env.sonar_user=app.sonar_user
+							env.sonar_project_name_dev=app.sonar_project_name_dev
+							env.sonar_project_name_master=app.sonar_project_name_master
+                      		env.stop_script=app.stop_script
+                      		env.copy_script=app.copy_script
+                      		env.start_script=app.start_script
+                      		env.deploy_stage=app.deploy_stage
+                            env.yarn_path=app.yarn_path
+                            env.node_path=app.node_path
+							env.service_name =app.service_name
+							env.docker_reg =app.docker_reg
+                      		env.release_url=app.release_url
+							if(app.containsKey("gateway")) {
+								env.gateway=app.gateway
+							} else {
+								env.gateway='false'
+							}
+							if(app.containsKey("storybook")) {
+								env.storybook=app.storybook
+							} else {
+								env.storybook='false'
+							}							
+						}
+					listOfServices =Arrays.asList(env.service_name.split(","))
+                    sh '''npm config set registry http://repo.ibsplc.com:8182/'''
+                }
+
+            }
+        }
+        stage('Build') {
+			when {
+                        branch 'master'
+            }
+
+            steps {
+                script {
+					Stage_Name = 'Build Stage'
+					
+					echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+                }
+
+                checkout([$class           : 'GitSCM',
+                          branches         : [[name: env.BRANCH_NAME]],
+						  extensions: [[$class: 'CloneOption', noTags: true, shallow: true, reference: '']],
+                          userRemoteConfigs: [[
+                                                      credentialsId: env.token,
+                                                      url          : env.repo]]])
+
+				script{
+						dir(path: '.') {
+							
+
+								sh '''export PATH=$node_path:$PATH:$yarn_path
+								rm -rf node_modules
+								rm -rf eslint-coverage
+								yarn update-version'''
+								
+							
+							
+							
+
+
+						}		
+
+					
+				}
+				sshagent( ['gitCommitCrendentials']) {
+				sh'''git push -u origin HEAD:master'''
+				}
+            }
+        }
+
+        
+	}
+    post {
+			success{
+				script {
+				 echo "The commit is succcess"
+				}
+				
+		}
+		
+			failure {
+				script {
+					echo "The commit has failed"
+				}
+			}
+	  always {
+			dir("${env.WORKSPACE}@tmp") {
+			  deleteDir()
+			}
+			dir("${env.WORKSPACE}@script") {
+			  deleteDir()
+			}
+			dir("${env.WORKSPACE}@script@tmp") {
+			  deleteDir()
+			}
+		}
+    }
+}

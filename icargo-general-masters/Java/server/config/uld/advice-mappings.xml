@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<adv:advice-mappings xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:adv="http://www.ibsplc.com/icargo/business/advice" 
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:schemaLocation="http://www.ibsplc.com/icargo/business/advice xibase/java/server/config/framework/xsd/advice-mappings.xsd" 
+			product="uld"> 
+	<adv:advice name="uld.defaults.processucmmessage"> 
+		<adv:action name="sendUCMMessage" type="MESSAGE" 
+                    builder="com.ibsplc.icargo.business.uld.defaults.builder.MessageBuilder"
+                    method="sendUCMMessage" async="false" enabled="true" />
+	</adv:advice>
+</adv:advice-mappings> 

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--The file contains mapping information for request URI and to its corresponding handler
+and  screen. There will be entries for each request URI which need to be mapped.
+This file is used to build request mapping objects.-->
+<request-mappings>
+
+   <url-mapping url="products">
+           <submodule-mapping submodule="defaults">
+              <request-service-name>PRODUCTS_DEFAULTS</request-service-name>
+			  <request-action actionName="doFlow" methodName="doFlow" parameterTypes="com.ibsplc.xibase.server.framework.requestprocessor.eblflow.Flow" permissionCheck="false" />
+			  <request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+			  <request-action actionName="findProductDetailsforParameter" methodName="findProducts" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductFilterVO" permissionCheck="false" />
+			 <request-action actionName="findProducts" methodName="findProducts" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductFilterVO,int" permissionCheck="false" />
+              <request-action actionName="saveProductDetails" methodName="saveProductDetails" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductVO" permissionCheck="false" />
+              <request-action actionName="validateProductName" methodName="validateProductName" parameterTypes="java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate,com.ibsplc.icargo.framework.util.time.LocalDate"  permissionCheck="false" />
+              <request-action actionName="findProductDetails" methodName="findProductDetails" parameterTypes="java.lang.String,java.lang.String"  permissionCheck="false" />
+              <request-action actionName="deleteProduct" methodName="deleteProduct" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductVO"  permissionCheck="false" />
+              <request-action actionName="findProductsByName" methodName="findProductsByName" parameterTypes="java.lang.String,java.lang.String"  permissionCheck="false" />
+              <request-action actionName="findProductLov" methodName="findProductLov" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductLovFilterVO,int"  permissionCheck="false" />
+              <request-action actionName="findProductForMaster" methodName="findProductForMaster" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductLovFilterVO"  permissionCheck="false" />
+              <request-action actionName="findSubProducts" methodName="findSubProducts" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductFilterVO,int" permissionCheck="false" />
+              <request-action actionName="updateSubProductStatus" methodName="updateSubProductStatus" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductVO" permissionCheck="false" />
+              <request-action actionName="updateProductStatus" methodName="updateProductStatus" parameterTypes="java.util.Collection" permissionCheck="false" />
+              <request-action actionName="saveSubProductDetails" methodName="saveSubProductDetails" parameterTypes="java.util.Collection" permissionCheck="false" />
+              <request-action actionName="deleteSubProduct" methodName="deleteSubProduct" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.SubProductVO" permissionCheck="false" />
+              <request-action actionName="findSubProductDetails" methodName="findSubProductDetails" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.SubProductVO" permissionCheck="false" />
+              <request-action actionName="audit" methodName="audit" parameterTypes="com.ibsplc.icargo.framework.audit.vo.AuditVO" permissionCheck="false" />
+              <request-action actionName="findProductServices" methodName="findProductServices" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+              <request-action actionName="findProductRestrictions" methodName="findProductRestrictions" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+              <request-action actionName="validateProductForAPeriod" methodName="validateProductForAPeriod" parameterTypes="java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate,com.ibsplc.icargo.framework.util.time.LocalDate"  permissionCheck="false" />
+              <request-action actionName="saveProductFeedback" methodName="saveProductFeedback" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductFeedbackVO" permissionCheck="false" />
+              <request-action actionName="listProductFeedback" methodName="listProductFeedback" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductFeedbackFilterVO,int" permissionCheck="false" />
+              <request-action actionName="findProductEvent" methodName="findProductEvent" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+              <request-action actionName="checkStationAvailability" methodName="checkStationAvailability" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.StationAvailabilityFilterVO" permissionCheck="false" />
+              <request-action actionName="findImage" methodName="findImage" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductFilterVO"  permissionCheck="false" />
+              <request-action actionName="getProductPerformanceDetailsForReport" methodName="getProductPerformanceDetailsForReport" parameterTypes="com.ibsplc.icargo.business.operations.shipment.vo.ProductPerformanceFilterVO" permissionCheck="false" />
+	      <request-action actionName="sendMessageForProduct" methodName="sendMessageForProduct" parameterTypes="com.ibsplc.icargo.business.msgbroker.message.vo.MessageVO" permissionCheck="false" />
+	      <request-action actionName="validateProducts" methodName="validateProducts" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+	      <request-action actionName="findSccCodesForProducts" methodName="findSccCodesForProducts" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+	      <request-action actionName="validateProduct" methodName="validateProduct" parameterTypes="java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate,com.ibsplc.icargo.framework.util.time.LocalDate" permissionCheck="false" />
+		  <request-action actionName="validateProductsForListing" methodName="validateProductsForListing" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductFilterVO" permissionCheck="false" />
+	      <request-action actionName="findProductsForStock" methodName="findProductsForStock" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+	      <request-action actionName="findSubproductEventsForTracking" methodName="findSubproductEventsForTracking" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+	      <request-action actionName="validateProductForDocType" methodName="validateProductForDocType" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />
+	      <request-action actionName="findProductPkForProductName" methodName="findProductPkForProductName" parameterTypes="java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate,com.ibsplc.icargo.framework.util.time.LocalDate" permissionCheck="false" />
+            <!--added for ICRD-9619 -->
+			<request-action actionName="validateProductNames" methodName="validateProductNames" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findPriorityForProducts" methodName="findPriorityForProducts" parameterTypes="java.util.Collection" permissionCheck="false" />
+			
+			<request-action actionName="saveProductSuggestConfigurations" methodName="saveProductSuggestConfigurations" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="findProductMappings" methodName="findProductMappings" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" />
+			<request-action actionName="findProductSuggestions" methodName="findProductMappings" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductSuggestionVO" permissionCheck="false" />
+			 
+<!--<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />-->
+             <!-- Added by A-5867 for ICRD-111936 starts -->
+			<request-action actionName="findBookableProducts" methodName="findBookableProducts" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductFilterVO" permissionCheck="false" />
+			<request-action actionName="findSuggestedProducts" methodName="findSuggestedProducts" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" />			
+			<!-- Added by A-5867 for ICRD-111936 ends -->
+			<request-action actionName="getProductModelMapping" methodName="getProductModelMapping" parameterTypes="com.ibsplc.icargo.business.products.defaults.vo.ProductModelMappingFilterVO" permissionCheck="false"/>
+			<request-action actionName="saveProductCommodityGroupMapping" methodName="saveProductCommodityGroupMapping" parameterTypes="java.util.Collection" permissionCheck="false" />
+            <request-action actionName="saveProductAttributePriority" methodName="saveProductAttributePriority" parameterTypes="java.util.Collection" permissionCheck="false" />
+            <request-action actionName="saveProductAttributeMapping" methodName="saveProductAttributeMapping" parameterTypes="java.util.Collection" permissionCheck="false" />
+            <request-action actionName="saveProductGroupRecommendations" methodName="saveProductGroupRecommendations" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="saveAllowedProductsForOD" methodName="saveAllowedProductsForOD" parameterTypes="java.util.Collection" permissionCheck="false" />
+		<request-action actionName="getProductODMapping" methodName="getProductODMapping" parameterTypes="java.lang.String" permissionCheck="false" />	
+			<request-action actionName="findProductParametersByCode" methodName="findProductParametersByCode" parameterTypes="java.lang.String,java.lang.String,java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="findProductsByParameters" methodName="findProductsByParameters" parameterTypes="java.lang.String,java.util.Map" permissionCheck="false" />	
+			<request-action actionName="findAllProductParameters" methodName="findAllProductParameters" parameterTypes="java.lang.String" permissionCheck="false" />	
+           	<request-action actionName="findProductPksForProductNames" methodName="findProductPksForProductNames" parameterTypes="java.lang.String,java.lang.String,com.ibsplc.icargo.framework.util.time.LocalDate,com.ibsplc.icargo.framework.util.time.LocalDate" permissionCheck="false" />	
+            <request-action actionName="findProductsRestrictions" methodName="findProductsRestrictions" parameterTypes="java.lang.String,java.util.Map,java.lang.String" permissionCheck="false" />	
+			 <request-action actionName="saveProductSelectionRuleMasterDetails" methodName="saveProductSelectionRuleMasterDetails" parameterTypes="java.util.Collection" permissionCheck="false" />	
+			  <request-action actionName="listProductSelectionRuleMaster" methodName="listProductSelectionRuleMaster" parameterTypes="java.lang.String" permissionCheck="false" />	
+			  <request-action actionName="findProductsForBookingFromProductSelectionRule" methodName="findProductsForBookingFromProductSelectionRule" parameterTypes="java.lang.String,java.util.Map" permissionCheck="false" />	
+                        
+             </submodule-mapping>
+    </url-mapping>
+
+</request-mappings>

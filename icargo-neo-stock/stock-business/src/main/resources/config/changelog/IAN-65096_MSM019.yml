@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-65096_MSM019.yml
+  - changeSet:
+      id: STK_033
+      author: 203855
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: alter table stkrngutl add LSTUPDTIM TIMESTAMP(3);
+             
+             COMMENT ON COLUMN STKRNGUTL.LSTUPDTIM IS 'The date and time at which record was last updated';
+
+

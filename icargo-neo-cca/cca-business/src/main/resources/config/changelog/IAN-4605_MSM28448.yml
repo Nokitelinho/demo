@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-4605_MSM28448.yml
+  - changeSet:
+      id: 28448
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: ccaawbuld_seq
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE ccaawbuld_seq
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;

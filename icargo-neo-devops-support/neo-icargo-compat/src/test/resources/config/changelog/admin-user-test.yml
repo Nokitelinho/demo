@@ -1,0 +1,147 @@
+databaseChangeLog:
+  - changeSet:
+      id: TEST_001
+      author: A-2394
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: admusrmst
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: create table admusrmst (
+              CMPCOD       varchar(6)           not null,
+              USRCOD       varchar(50)          not null,
+              FSTNAM       varchar(100)         not null,
+              MDLNAM       varchar(100),
+              LSTNAM       varchar(100),
+              PERADD       varchar(4000),
+              PERZIPCOD    varchar(10),
+              PERPHN       varchar(1000),
+              PEREML       varchar(1000),
+              PERFAX       varchar(100),
+              PERMOBNUM    varchar(1000),
+              OFFADD       varchar(500),
+              OFFZIPCOD    varchar(10),
+              OFFPHN       varchar(100),
+              OFFEML       varchar(100),
+              OFFFAX       varchar(100),
+              OFFMOBNUM    varchar(100),
+              USRRMK       varchar(500),
+              DEFROLGRP    varchar(20),
+              NUMSES       integer,
+              NUMGRCLOG    integer,
+              PWDEXPDAT    DATE,
+              ACCDISFLG    varchar(1),
+              ACCFRMDAT    DATE,
+              ACCENDDAT    DATE,
+              ACCDISRMK    varchar(500),
+              DEFOFF       varchar(6),
+              DEFSTN       varchar(4),
+              DEFARP       varchar(4),
+              LSTUPDUSR    varchar(50)          not null,
+              LSTUPDTIM    TIMESTAMP          not null,
+              USRPWD       varchar(200),
+              DEFWHS       varchar(15),
+              DEFAUT       varchar(6),
+              CRTDAT       DATE,
+              MSGALTFLG    varchar(1),
+              JOBTIL       varchar(100),
+              DISUSRCOD    varchar(50),
+              STRSCRIDR    varchar(50),
+              REMNUMSES    integer,
+              REMGRCLOG    integer,
+              PWDCHGREQFLG varchar(1),
+              USRTYP       varchar(1),
+              DEFLNG       varchar(10)          not null,
+              EMPID        varchar(15),
+              DEPNAM       varchar(100),
+              LOGFALCNT    integer default 0,
+              LSTPWDUPDTIM DATE,
+              CUSCOD       varchar(15),
+              DLVREQFLG    varchar(1) default 'N',
+              OFFCTYNAM    varchar(50),
+              OFFCNTNAM    varchar(100),
+              USRTTL       varchar(4),
+              PWDREQTIM    TIMESTAMP,
+              PWDTKN       varchar(200),
+              PORUSRTYP    varchar(10),
+              CRTUSR       varchar(50),
+              PORDEFROLGRP varchar(20),
+              MAXCLDUSRCNT integer,
+              CLDUSRCNT    integer,
+              LSTLOGINTIM  DATE,
+              NFNFMT       varchar(1),
+              STDEMLFLG    varchar(1),
+              NFNLNG       varchar(5),
+              SECINFMSGFLG varchar(1),
+              SALREPFLG    varchar(1) default 'N',
+              TAGIDX       integer   default 0 not null,
+              CMPDTAONE bytea,
+              CMPDTATWO bytea,
+              constraint ADMUSRMST_PK primary key (USRCOD, CMPCOD)
+              );
+
+  - changeSet:
+      id: TEST_002
+      author: A-2394
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: admusralloff
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: create table ADMUSRALLOFF (
+              CMPCOD varchar(6)         not null,
+              USRCOD varchar(50)        not null,
+              OFFCOD varchar(6)         not null,
+              TAGIDX integer default 0 not null,
+              constraint ADMUSRALLOFF_PK primary key (USRCOD, OFFCOD, CMPCOD) );
+
+  - changeSet:
+      id: TEST_003
+      author: A-2394
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: admusrallstn
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: create table admusrallstn (
+              CMPCOD    varchar(6)         not null,
+              USRCOD    varchar(50)        not null,
+              STNCOD    varchar(4)         not null,
+              DEFROLGRP varchar(20),
+              TAGIDX    integer default 0 not null,
+              constraint ADMUSRALLSTN_PK primary key (USRCOD, STNCOD, CMPCOD) );
+
+  - changeSet:
+      id: TEST_004
+      author: A-2394
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: admusrpar
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: create table admusrpar (
+              CMPCOD    varchar(6)         not null,
+              USRCOD    varchar(50)        not null,
+              PARCOD    varchar(100)       not null,
+              PARVAL    varchar(200)       not null,
+              LSTUPDUSR varchar(50)        not null,
+              LSTUPDTIM TIMESTAMP        not null,
+              TAGIDX    integer default 0 not null,
+              constraint ADMUSRPAR_PK primary key (USRCOD, PARCOD, CMPCOD) );
+

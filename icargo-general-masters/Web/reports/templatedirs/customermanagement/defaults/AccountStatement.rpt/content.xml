@@ -1,0 +1,1426 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<inet:Report xmlns:inet="http://www.inetsoftware.de" major_version="11" minor_version="0" major_xml_version="11" minor_xml_version="1" id="0">
+    <Datasource>
+
+      <DataSourceConfiguration name="ICOBSSTGDEV4">
+        <property name="user" value="ICOBSSTGDEV4"/>
+        <property name="oracle.jdbc.J2EE13Compliant" value="false"/>
+        <property name="supportsWhere" value="true"/>
+        <property name="datasource_catalog" value=""/>
+        <property name="supportsSQL92" value="false"/>
+        <property name="password" value="00A73456E485888B2D0D3D2C3620117CD4AB381FEE89859A2D0A2E2F3733732E71"/>
+        <property name="supportsOrderBy" value="true"/>
+        <property name="oracle.jdbc.TcpNoDelay" value="false"/>
+        <property name="url" value="jdbc:oracle:thin:@{host}"/>
+        <property name="initSQL" value=""/>
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="escapeEverything" value="false"/>
+        <property name="defaultNChar" value="false"/>
+        <property name="host" value="192.168.16.196:1522: ICODB32"/>
+        <property name="restrictGetTables" value="false"/>
+        <property name="driverLibrary" value=""/>
+        <property name="processEscapes" value="true"/>
+        <property name="catalog" value=""/>
+        <property name="datasource_schema" value=""/>
+        <property name="databaseClassName" value=""/>
+        <property name="useFetchSizeWithLongColumn" value="false"/>
+        <property name="defaultRowPrefetch" value=""/>
+        <property name="aliasToken" value=""/>
+        <property name="supportsParenthesesForJoin" value="true"/>
+        <property name="identifierQuoteString" value=""/>
+        <property name="validationQuery" value=""/>
+        <property name="savePassword" value="true"/>
+        <property name="quotesLowerCase" value="false"/>
+      </DataSourceConfiguration>
+      <Tablesource alias="DUMMY_VW_ACCOUNT_STATEMENT_RPT" databaseIdentifier="ICOBSSTGDEV4.DUMMY_VW_ACCOUNT_STATEMENT_RPT">
+
+        <Column name="INVNUM" type="11" description="INVNUM" />
+        <Column name="AGEDAYS" type="6" description="AGEDAYS" />
+        <Column name="AWB" type="11" description="AWB" />
+        <Column name="ORG" type="11" description="ORG" />
+        <Column name="DEST" type="11" description="DEST" />
+        <Column name="ACTBILAMT" type="6" description="ACTBILAMT" />
+        <Column name="STATUS" type="11" description="STATUS" />
+        <Column name="DUEAMT" type="6" description="DUEAMT" />
+        <Column name="RMK" type="11" description="RMK" />
+        <Column name="AWBEXEDAT" type="11" description="AWBEXEDAT" />
+      </Tablesource>
+
+    </Datasource>
+
+  <Database>
+  </Database>
+  <FormulaFields>
+  </FormulaFields>
+  <PromptFields>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="ReportId"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="StaffId"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="Station"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="PrintDate"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <MinRange value="0.0"/>
+      <PromptText value=""/>
+      <UseRange value="true"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="PrintTime"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="CustomerCode"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="CustomerName"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="CustomerAccNo"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="Name"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="Email"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="Telephone"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="CustomerAddress"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="Street"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="Location"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="City"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="State"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="PrimaryEmail"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="OverpaidCount"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <MinRange value="0.0"/>
+      <PromptText value=""/>
+      <UseRange value="true"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="OverpaidItem(s)"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <MinRange value="0.0"/>
+      <PromptText value=""/>
+      <UseRange value="true"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="Overpaid"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="OverpaidAmt"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <MinRange value="0.0"/>
+      <PromptText value=""/>
+      <UseRange value="true"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="ShortpaidCount"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <MinRange value="0.0"/>
+      <PromptText value=""/>
+      <UseRange value="true"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="ShortpaidItem(s)"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="Shortpaid"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="ShortpaidAmt"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <MinRange value="0.0"/>
+      <PromptText value=""/>
+      <UseRange value="true"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="UnpaidCount"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <MinRange value="0.0"/>
+      <PromptText value=""/>
+      <UseRange value="true"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="UnpaidItem(s)"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="Unpaid"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <MinRange value="0.0"/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="UnpaidAmt"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <MinRange value="0.0"/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="TotalCount"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="TotalItem(s)"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="TotalAmt"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="CurrentDate"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+    <Field type="PromptVarField" valueType="11">
+      <Name value="Currency"/>
+      <AllowMultipleValues value="false"/>
+      <DiscreteOrRange value="0"/>
+      <AllowEditing value="true"/>
+      <DescriptionOnly value="false"/>
+      <EditMask value=""/>
+      <PromptText value=""/>
+      <UseRange value="false"/>
+    </Field>
+  </PromptFields>
+  <SQLFields>
+  </SQLFields>
+  <SummaryFields>
+    <Field type="SummaryField" valueType="6">
+      <Name value="Sum of DUMMY_VW_ACCOUNT_STATEMENT_RPT.DUEAMT"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.DUEAMT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="DueAmtGroupSUM"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.DUEAMT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumber value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="OrgDebitAmtSum"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.ACTBILAMT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumber value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+    <Field type="SummaryField" valueType="6">
+      <Name value="Sum of DUMMY_VW_ACCOUNT_STATEMENT_RPT.ACTBILAMT"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.ACTBILAMT"/>
+      <Operation value="0"/>
+      <SummaryNth value="0"/>
+      <SummaryType value="1"/>
+      <GroupNumberType value="0"/>
+      <ShowAsPercentValue value="false"/>
+      <ExecuteOnDb value="false"/>
+    </Field>
+  </SummaryFields>
+  <SortFields>
+  </SortFields>
+  <UserFunctions>
+  </UserFunctions>
+  <GroupNameFields>
+    <Field type="GroupNameField" valueType="11">
+      <GroupNumberType value="0"/>
+      <GroupNumber value="0"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.INVNUM"/>
+    </Field>
+  </GroupNameFields>
+  <ReportProperties>
+    <PageWidth value="16839"/>
+    <PageHeight value="11907"/>
+    <PageOrientation value="2"/>
+    <PageMarginLeft value="720"/>
+    <PageMarginRight value="720"/>
+    <PageMarginTop value="720"/>
+    <PageMarginBottom value="720"/>
+    <MailingLabelType1 value=""/>
+    <MailingLabelType2 value=""/>
+    <FormatWithMultipleColumns value="false"/>
+    <MailingLabelWidth value="0"/>
+    <MailingLabelHeight value="0"/>
+    <MailingLabelDistanceVertical value="0"/>
+    <MailingLabelDistanceHorizontal value="0"/>
+    <AcrossThenDown value="false"/>
+    <FormatGroupsWithMultipleColumns value="false"/>
+    <Distinct value="false"/>
+    <ShowSuppressedNodes value="true"/>
+    <IgnoreFiltering value="false"/>
+    <IgnoreSorting value="false"/>
+    <ConvertDateTime value="0"/>
+    <SuppressIfNoRows value="false"/>
+    <ConvertNullValuesToDefault value="false"/>
+    <HidePageFooterInsideReportHeader value="false"/>
+    <FormPrint value="false"/>
+    <PrintingEnabled value="true"/>
+    <ClipboardEnabled value="true"/>
+    <ExportEnabled value="true"/>
+    <GroupTreeVisible value="true"/>
+  </ReportProperties>
+  <AreaPair type="PageAreaPair">
+    <Area type="PageHeader">
+      <Section type="PageHeader" width="15399" height="4410">
+        <SectionProperties>
+          <Suppress value="true"/>
+          <PropertyFormula propertyType="suppress">
+            <Name value="suppress"/>
+            <BasicSyntax value="1001"/>
+            <NullBehavior value="0"/>
+            <TextData><![CDATA[PageNumber>1]]></TextData>
+          </PropertyFormula>
+        </SectionProperties>
+        <Element type="Text" count="1" x_position="4770" y_position="450" width="6813" height="375">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+            <CanGrow value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="440"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#TITLE]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Picture" x_position="294" y_position="147" width="2895" height="1035">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <PictureProperties>
+            <Reference value="1.png"/>
+          </PictureProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="438" y_position="1761" width="4062" height="240">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#cusdtl]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="438" y_position="2061" width="2112" height="240">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#cuscode]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="438" y_position="2385" width="1677" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#cusaddress]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="450" y_position="2655" width="1323" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#street]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="450" y_position="2925" width="1323" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#location]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="450" y_position="3195" width="1323" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#city]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="450" y_position="3735" width="1650" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#primaryemail]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="4050" y_position="2100" width="1725" height="240">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#cusname]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7500" y_position="2100" width="3000" height="240">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#cusaccno]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="11550" y_position="2100" width="3450" height="240">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#accntngpt]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="11610" y_position="2430" width="1050" height="240">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#name]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="11610" y_position="2730" width="1050" height="240">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#email]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="11610" y_position="3030" width="1050" height="240">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#telephone]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="2250" y_position="2100" width="1200" height="240">
+          <Reference name="field" type="PromptVarField" value="?CustomerCode"/>
+        </Element>
+        <Element type="FieldElement" x_position="5550" y_position="2100" width="1200" height="240">
+          <Reference name="field" type="PromptVarField" value="?CustomerName"/>
+        </Element>
+        <Element type="FieldElement" x_position="10200" y_position="2100" width="1200" height="240">
+          <Reference name="field" type="PromptVarField" value="?CustomerAccNo"/>
+        </Element>
+        <Element type="FieldElement" x_position="12645" y_position="2430" width="2385" height="240">
+          <Reference name="field" type="PromptVarField" value="?Name"/>
+        </Element>
+        <Element type="FieldElement" x_position="12645" y_position="2724" width="2385" height="240">
+          <Reference name="field" type="PromptVarField" value="?Email"/>
+        </Element>
+        <Element type="FieldElement" x_position="12645" y_position="3018" width="2385" height="240">
+          <Reference name="field" type="PromptVarField" value="?Telephone"/>
+        </Element>
+        <Element type="FieldElement" x_position="2250" y_position="2655" width="3105" height="225">
+          <Reference name="field" type="PromptVarField" value="?Street"/>
+        </Element>
+        <Element type="FieldElement" x_position="2250" y_position="2925" width="3105" height="225">
+          <Reference name="field" type="PromptVarField" value="?Location"/>
+        </Element>
+        <Element type="FieldElement" x_position="2250" y_position="3195" width="3105" height="225">
+          <Reference name="field" type="PromptVarField" value="?City"/>
+        </Element>
+        <Element type="FieldElement" x_position="2250" y_position="3465" width="3105" height="225">
+          <Reference name="field" type="PromptVarField" value="?State"/>
+        </Element>
+        <Element type="FieldElement" x_position="2250" y_position="3735" width="3105" height="225">
+          <Reference name="field" type="PromptVarField" value="?PrimaryEmail"/>
+        </Element>
+        <Element type="Text" count="1" x_position="450" y_position="3465" width="1323" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#state]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Box" x2_position="15288" y2_position="4263" x_position="147" y_position="1470" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="FieldElement" x_position="2250" y_position="2385" width="3105" height="225">
+          <Reference name="field" type="PromptVarField" value="?CustomerAddress"/>
+        </Element>
+      </Section>
+      <Section type="PageHeader" width="15399" height="795">
+        <SectionProperties>
+          <Suppress value="true"/>
+          <PropertyFormula propertyType="suppress">
+            <Name value="suppress"/>
+            <BasicSyntax value="1001"/>
+            <NullBehavior value="0"/>
+            <TextData><![CDATA[PageNumber>1]]></TextData>
+          </PropertyFormula>
+        </SectionProperties>
+        <Element type="Box" x2_position="12900" y2_position="825" x_position="2700" y_position="75" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+              <LineProperties>
+                <EndSection area="PH" sectionIndex="5"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="4050" y_position="150" width="3690" height="570">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontSize value="440"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#openitems]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="7800" y_position="150" width="3000" height="600">
+          <FontProperties>
+            <FontSize value="400"/>
+            <FontStyle value="1"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?CurrentDate"/>
+        </Element>
+      </Section>
+      <Section type="PageHeader" width="15399" height="600">
+        <SectionProperties>
+          <Suppress value="true"/>
+          <PropertyFormula propertyType="suppress">
+            <Name value="suppress"/>
+            <BasicSyntax value="1001"/>
+            <NullBehavior value="0"/>
+            <TextData><![CDATA[PageNumber>1 OR if( {?Overpaid})= "Overpaid" then false else true ]]></TextData>
+          </PropertyFormula>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="3600" y_position="150" width="615" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?OverpaidCount"/>
+        </Element>
+        <Element type="FieldElement" x_position="5025" y_position="150" width="1200" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?OverpaidItem(s)"/>
+        </Element>
+        <Element type="FieldElement" x_position="9900" y_position="150" width="1545" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+              <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?OverpaidAmt"/>
+        </Element>
+        <Element type="FieldElement" x_position="6825" y_position="150" width="2400" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?Overpaid"/>
+        </Element>
+        <Element type="FieldElement" x_position="11550" y_position="150" width="1200" height="240">
+          <Reference name="field" type="PromptVarField" value="?Currency"/>
+        </Element>
+      </Section>
+      <Section type="PageHeader" width="15399" height="600">
+        <SectionProperties>
+          <Suppress value="true"/>
+          <PropertyFormula propertyType="suppress">
+            <Name value="suppress"/>
+            <BasicSyntax value="1001"/>
+            <NullBehavior value="0"/>
+            <TextData><![CDATA[PageNumber>1 OR if( {?Shortpaid}  )= "Short Pay" then false else true]]></TextData>
+          </PropertyFormula>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="5025" y_position="150" width="1200" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?ShortpaidItem(s)"/>
+        </Element>
+        <Element type="FieldElement" x_position="3600" y_position="150" width="615" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?ShortpaidCount"/>
+        </Element>
+        <Element type="FieldElement" x_position="9900" y_position="150" width="1545" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?ShortpaidAmt"/>
+        </Element>
+        <Element type="FieldElement" x_position="6825" y_position="150" width="2400" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+              <FontProperties>
+            <FontSize value="240"/>
+              </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?Shortpaid"/>
+            </Element>
+        <Element type="FieldElement" x_position="11550" y_position="150" width="1200" height="240">
+          <Reference name="field" type="PromptVarField" value="?Currency"/>
+        </Element>
+      </Section>
+      <Section type="PageHeader" width="15399" height="525">
+        <SectionProperties>
+          <Suppress value="true"/>
+          <PropertyFormula propertyType="suppress">
+            <Name value="suppress"/>
+            <BasicSyntax value="1001"/>
+            <NullBehavior value="0"/>
+            <TextData><![CDATA[PageNumber>1 OR if({?Unpaid}  )= "Unpaid" then false else true ]]></TextData>
+          </PropertyFormula>
+        </SectionProperties>
+        <Element type="FieldElement" x_position="5025" y_position="150" width="1200" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?UnpaidItem(s)"/>
+        </Element>
+        <Element type="FieldElement" x_position="3600" y_position="150" width="615" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?UnpaidCount"/>
+        </Element>
+        <Element type="FieldElement" x_position="9900" y_position="150" width="1500" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?UnpaidAmt"/>
+        </Element>
+        <Element type="FieldElement" x_position="6825" y_position="150" width="2400" height="300">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+              <FontProperties>
+            <FontSize value="240"/>
+              </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?Unpaid"/>
+            </Element>
+        <Element type="FieldElement" x_position="11550" y_position="150" width="1200" height="240">
+          <Reference name="field" type="PromptVarField" value="?Currency"/>
+        </Element>
+      </Section>
+      <Section type="PageHeader" width="15399" height="1050">
+        <SectionProperties>
+          <Suppress value="true"/>
+          <PropertyFormula propertyType="suppress">
+            <Name value="suppress"/>
+            <BasicSyntax value="1001"/>
+            <NullBehavior value="0"/>
+            <TextData><![CDATA[PageNumber>1]]></TextData>
+          </PropertyFormula>
+        </SectionProperties>
+        <Element type="Text" count="1" x_position="6825" y_position="225" width="2382" height="300">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontSize value="240"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[Total Balance]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="FieldElement" x_position="3600" y_position="225" width="615" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="3"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+            <FontStyle value="1"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?TotalCount"/>
+        </Element>
+        <Element type="FieldElement" x_position="5025" y_position="225" width="1200" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+            <FontStyle value="1"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?TotalItem(s)"/>
+        </Element>
+        <Element type="FieldElement" x_position="9900" y_position="225" width="1545" height="300">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <FontProperties>
+            <FontSize value="240"/>
+            <FontStyle value="1"/>
+          </FontProperties>
+          <Reference name="field" type="PromptVarField" value="?TotalAmt"/>
+        </Element>
+        <Element type="Line" x_position="3600" y_position="60" width="0" height="0" x2_position="11325" y2_position="60">
+        </Element>
+        <Element type="FieldElement" x_position="11550" y_position="300" width="1200" height="240">
+          <Reference name="field" type="PromptVarField" value="?Currency"/>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="PageFooter">
+      <Section type="PageFooter" width="15399" height="0">
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="ReportAreaPair">
+    <Area type="ReportHeader">
+      <Section type="ReportHeader" width="15399" height="0">
+      </Section>
+    </Area>
+    <Area type="ReportFooter">
+      <Section type="ReportFooter" width="15399" height="0">
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="GroupAreaPair" id="1">
+    <AreaPairProperties>
+      <KeepGroupTogether value="-1"/>
+      <CustomizeGroupName value="1"/>
+      <Reference name="id" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.INVNUM"/>
+      <Reference name="group name" type="GroupNameField" id="1"/>
+      <PropertyFormula propertyType="group name formula">
+        <Name value="group name formula"/>
+        <BasicSyntax value="1001"/>
+        <NullBehavior value="0"/>
+        <TextData><![CDATA[ToText({DUMMY_VW_ACCOUNT_STATEMENT_RPT.INVNUM})]]></TextData>
+      </PropertyFormula>
+    </AreaPairProperties>
+    <Area type="GroupHeader">
+      <Section type="GroupHeader" width="15399" height="1208">
+        <Element type="Text" count="1" x_position="0" y_position="180" width="1650" height="213">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#invnum]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3510" y_position="180" width="969" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="1"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#age]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Box" x2_position="15210" y2_position="1205" x_position="630" y_position="585" width="0" height="0">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <BoxProperties>
+            <BackgroundColor value="16777215"/>
+            <CloseBorderOnPageBreak value="true"/>
+          </BoxProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="735" y_position="735" width="1470" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#awb]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="2550" y_position="750" width="804" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#org]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="3600" y_position="750" width="690" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#dest]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="7800" y_position="750" width="1470" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#status]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="9600" y_position="750" width="1470" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#amtdue]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Text" count="1" x_position="11400" y_position="750" width="1470" height="225">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#remarks]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="2499" y_position="588" width="0" height="0" x2_position="2499" y2_position="630">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="FieldElement" x_position="1620" y_position="180" width="1470" height="213">
+          <Reference name="field" type="GroupNameField" id="1"/>
+        </Element>
+        <Element type="Box" x2_position="15210" y2_position="630" x_position="630" y_position="585" width="0" height="0">
+          <BoxProperties>
+            <CloseBorderOnPageBreak value="true"/>
+              <LineProperties>
+                <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+              </LineProperties>
+          </BoxProperties>
+        </Element>
+        <Element type="Line" x_position="3450" y_position="600" width="0" height="0" x2_position="3450" y2_position="642">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="9450" y_position="600" width="0" height="0" x2_position="9450" y2_position="642">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="11250" y_position="600" width="0" height="0" x2_position="11250" y2_position="642">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="FieldElement" x_position="4455" y_position="180" width="750" height="225">
+          <CommonProperties>
+            <HorizontalAlign value="1"/>
+          </CommonProperties>
+          <NumberProperties>
+            <NDecimalPlaces value="0"/>
+            <RoundingType value="11"/>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.AGEDAYS"/>
+        </Element>
+        <Element type="Line" x_position="6000" y_position="600" width="0" height="0" x2_position="6000" y2_position="642">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Line" x_position="4500" y_position="600" width="0" height="0" x2_position="4500" y2_position="642">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="4500" y_position="750" width="1500" height="450">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#awexedat]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+        <Element type="Line" x_position="7650" y_position="600" width="0" height="0" x2_position="7650" y2_position="600">
+          <LineProperties>
+            <EndSection area="GF" groupIndex="1" sectionIndex="0"/>
+          </LineProperties>
+        </Element>
+        <Element type="Text" count="1" x_position="6150" y_position="750" width="1470" height="450">
+          <CommonProperties>
+            <KeepTogether value="true"/>
+          </CommonProperties>
+          <Element type="Paragraph" count="1">
+            <CommonProperties>
+              <HorizontalAlign value="2"/>
+            </CommonProperties>
+            <Element type="TextPart">
+              <FontProperties>
+                <FontName value="Arial"/>
+                <FontStyle value="1"/>
+              </FontProperties>
+              <TextData><![CDATA[RPRCUS003#orgdbtamt]]></TextData>
+            </Element>
+          </Element>
+        </Element>
+      </Section>
+    </Area>
+    <Area type="GroupFooter">
+      <Section type="GroupFooter" width="15399" height="882">
+        <Element type="Line" x_position="9600" y_position="150" width="0" height="0" x2_position="11070" y2_position="150">
+        </Element>
+        <Element type="FieldElement" x_position="9750" y_position="300" width="1200" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <NumberProperties>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="SummaryField" value="#DueAmtGroupSUM"/>
+        </Element>
+        <Element type="Line" x_position="6150" y_position="150" width="0" height="0" x2_position="7620" y2_position="150">
+        </Element>
+        <Element type="FieldElement" x_position="6150" y_position="300" width="1350" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <NumberProperties>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="SummaryField" value="#OrgDebitAmtSum"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+  <AreaPair type="DetailArea">
+    <Area type="Detail">
+      <Section type="Detail" width="15399" height="442">
+        <Element type="FieldElement" x_position="735" y_position="147" width="1470" height="225">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.AWB"/>
+        </Element>
+        <Element type="FieldElement" x_position="2550" y_position="150" width="654" height="225">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.ORG"/>
+        </Element>
+        <Element type="FieldElement" x_position="3600" y_position="150" width="540" height="225">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.DEST"/>
+        </Element>
+        <Element type="FieldElement" x_position="7800" y_position="150" width="1470" height="225">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.STATUS"/>
+        </Element>
+        <Element type="FieldElement" x_position="9600" y_position="150" width="1470" height="225">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <NumberProperties>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.DUEAMT"/>
+        </Element>
+        <Element type="FieldElement" x_position="11400" y_position="150" width="3600" height="225">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.RMK"/>
+        </Element>
+        <Element type="FieldElement" x_position="4650" y_position="150" width="1200" height="240">
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.AWBEXEDAT"/>
+        </Element>
+        <Element type="FieldElement" x_position="6150" y_position="150" width="1350" height="240">
+          <CommonProperties>
+            <HorizontalAlign value="2"/>
+          </CommonProperties>
+          <NumberProperties>
+            <ThousandSeparatorsSymbol value=","/>
+            <DecimalSeparatorsSymbol value="."/>
+            <CurrencySymbol value="Rs."/>
+          </NumberProperties>
+          <Reference name="field" type="DatabaseField" value="DUMMY_VW_ACCOUNT_STATEMENT_RPT.ACTBILAMT"/>
+        </Element>
+      </Section>
+    </Area>
+  </AreaPair>
+</inet:Report>

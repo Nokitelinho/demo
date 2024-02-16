@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adv:advice-mappings xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:adv="http://www.ibsplc.com/icargo/business/advice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ibsplc.com/icargo/business/advice xibase/java/server/config/framework/xsd/advice-mappings.xsd"
+	product="operations">
+	<adv:advice name="operations.flthandling.iag.validateCustomsReportedStatus">
+		<adv:action name="validateCustomsReportedStatus" type="SHPHIS"
+			builder="com.ibsplc.icargo.business.operations.flthandling.builder.iag.IAGOperationsFlthandlingBuilder"
+			method="validateCustomsReportedStatus" async="false" />
+	</adv:advice>
+	
+	<adv:advice name="operations.flthandling.iag.validateCustomsReportedStatusForScreen">
+		<adv:action name="validateCustomsReportedStatusForScreen" type="SHPHIS"
+			builder="com.ibsplc.icargo.business.operations.flthandling.builder.iag.IAGOperationsFlthandlingBuilder"
+			method="validateCustomsReportedStatusForScreen" async="false" />
+	</adv:advice>
+	
+	 <!-- Added by A-6800 for ICRD-165313:starts --> 
+	<adv:advice name="operations.shipment.iag.submitPaymentStatus">
+		<adv:action name="auditPaymentStatus" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.iag.ShipmentAuditBuilder" method="auditPaymentStatus" async="false" enabled="true" />
+		<adv:action name="releaseBlockForWTPOSMessage" type="BLOCK" builder="com.ibsplc.icargo.business.operations.shipment.builder.iag.ShipmentBlockBuilder"
+			method="releaseBlockForWTPOSMessage" async="false" enabled="true" />
+	</adv:advice>
+	 <!-- Added by A-6800 for ICRD-165313:ends -->
+	 
+	 <adv:advice name="operations.shipment.saveScreeningDetails.iag.handleBlock">
+		<adv:action name="handleShipmentBlock" type="SHPBLK" builder="com.ibsplc.icargo.business.operations.shipment.builder.iag.ShipmentBlockBuilder" method="handleShipmentBlock" async="false" enabled="true"/>
+	</adv:advice>
+
+	<adv:advice name="operations.shipment.iag.saveScreeningDetailsForAudit">
+		<adv:action name="auditScreeningDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.iag.ShipmentAuditBuilder" method="auditScreeningDetails" async="true" enabled="true"/>
+	</adv:advice>
+	<!-- Added by A-5127 for ICRD-163739:starts --> 
+	<adv:advice name="operations.flthandling.cto.iag.saveCTOImportManifestDetails">
+       	<adv:action name="processNFMQueuedMessages" type="message" builder="com.ibsplc.icargo.business.operations.flthandling.builder.iag.MessageBuilder" 
+              		method="processNFMQueuedMessages" async="true" enabled="true" />
+	</adv:advice>
+	<!-- Added by A-5127 for ICRD-163739:ends -->
+	
+</adv:advice-mappings>
+
+

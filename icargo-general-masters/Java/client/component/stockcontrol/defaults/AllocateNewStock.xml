@@ -1,0 +1,454 @@
+<?xml version="1.0"?>
+<components screenId="stockcontrol.defaults.allocatenewstock"
+	xmlns="http://www.ibsplc.com/icargo/components-details">
+
+	<!--***************************Text Fields******************************-->
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_STOCKHOLDERCODE" name="Stock Holder Code">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.stockholdercode</value>
+		</attribute>
+
+	    <attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+	      <attribute>
+	      		<name>type</name>
+			<value>filter</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+
+
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_RANGEFROM" name="Range From">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.rangefrom</value>
+		</attribute>
+
+	    <attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_RANGETO" name="Range To">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.rangeto</value>
+		</attribute>
+		<attribute>
+			  <name>type</name>
+			  <value>filter</value>
+		</attribute>
+        
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_NUMBEROFDOCUMENTS" name="Number of Documents">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.numberofdocuments</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+        <attribute>
+           <name>formatter-id</name>
+           <value>FRM_RESTRICT_INTEGER</value>
+        </attribute>
+
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_STOCKRANGEFROM" name="Stock Range From">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.stockrangefrom</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL_ROW_COLOR1</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>details</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_STOCKRANGETO" name="Stock Range To">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.stockrangeto</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL_ROW_COLOR1</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>details</value>
+        </attribute>
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_NUMEBROFDOCS" name="Number of Docs">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.numberofdocuments</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_TXT_SMALL_ROW_COLOR1</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>details</value>
+		</attribute>
+		<attribute>
+           <name>formatter-id</name>
+           <value>FRM_RESTRICT_INTEGER</value>
+        </attribute>
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_AVAILABLETOTALNUMBEROFDOCS" name="Total number of available docs">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.totalnumberofavailabledocs</value>
+		</attribute>
+		<attribute>
+           <name>formatter-id</name>
+           <value>FRM_RESTRICT_INTEGER</value>
+        </attribute>
+
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_ALLOACTEDTOTALNUMBEROFDOCS" name="Total number of allocated docs">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.totalnumberofallocateddocs</value>
+		</attribute>
+		<attribute>
+           <name>formatter-id</name>
+           <value>FRM_RESTRICT_INTEGER</value>
+		</attribute>
+
+	</component>
+
+	<!--***************************Combo******************************-->
+
+	<component id="CMB_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_STOCKCONTROLFOR" name="Stock Control For">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_TXT_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.stockcontrolfor</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+	   	 <attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>lov</name>
+			<value>true</value>
+		</attribute>
+	</component>
+
+	<component id="CMB_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_STOCKHOLDERTYPE" name="Stock Holder Type">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_SELECT</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_CMB_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.stockholdertype</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+
+	</component>
+
+<!--***************************Checkboxes******************************-->
+
+	<component id="CHK_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_MANUAL" name="Manual">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CHECKBOX</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.manual</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+	</component>
+
+	<component id="CHK_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_AVAILABLECHECKALL" name="Available Check All">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CHECKBOX</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.availablecheckall</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+	<component id="CHK_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_AVAILABLERANGENO" name="Available Range Number">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CHECKBOX</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.availablerangenumber</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+	<component id="CHK_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_ALLOCATEDCHECKALL" name="Allocated Check All">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CHECKBOX</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.allocatedcheckall</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+	<component id="CHK_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_ALLOCATEDRANGENO" name="Allocated Range Number">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CHECKBOX</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.allocatedrangenumber</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+<!--***************************Buttons******************************-->
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_LIST" name="List button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.list</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+            <component id="BTN_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_CLEAR" name="Clear button">
+                <attribute>
+                    <name>businesstype-id</name>
+                    <value>BT_BTN_SMALL</value>
+                </attribute>
+
+                <attribute>
+                    <name>tooltip</name>
+                    <value>stockcontrol.defaults.allocatenewstock.tooltip.clear</value>
+                </attribute>
+                <attribute>
+                    <name>formatter-id</name>
+                    <value>FRM_VIEW</value>
+                </attribute>
+    </component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_MOVERANGE" name="Move Range button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_BTN_GENERAL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.moverange</value>
+		</attribute>
+
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_SAVE" name="Save button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.save</value>
+		</attribute>
+
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_CLOSE" name="Close button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.close</value>
+		</attribute>
+
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_ALLOCATENEWSTOCK_DYNAMICOPTIONLIST" name="DynamicOptionList">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_OPTIONLIST</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.allocatenewstock.tooltip.doctypesubtype</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+	</component>
+
+	<component id="CHK_STOCKCONTROL_DEFAULTS_CREATESTOCK_PRTARL_CHK" name="Partner Airline">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CHECKBOX</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.allocatenewstock.partnerAirlines.lbl</value>
+			</attribute>
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_VIEW</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>details</value>
+			</attribute>
+	</component>
+	
+	<component id="CHK_STOCKCONTROL_DEFAULTS_CREATESTOCK_PRTARL_CMB" name="Partner Airline">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CMB_GENCOMBO</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.allocatenewstock.awbPrefix.lbl</value>
+			</attribute>			
+	</component>
+	
+	<component id="CHK_STOCKCONTROL_DEFAULTS_CREATESTOCK_PRTARL" name="Partner Airline code">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_EXTRA_LONG</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.allocatenewstock.partnerAirlines.lbl</value>
+			</attribute>				
+	</component>
+
+</components>

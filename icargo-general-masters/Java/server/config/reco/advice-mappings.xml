@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adv:advice-mappings xmlns:xs="http://www.w3.org/2001/XMLSchema"
+					 xmlns:adv="http://www.ibsplc.com/icargo/business/advice"
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					 xsi:schemaLocation="http://www.ibsplc.com/icargo/business/advice xibase/java/server/config/framework/xsd/advice-mappings.xsd"
+					 product="reco">
+	
+	
+	<adv:advice name="reco.defaults.saveEmbargoDetails">
+		<adv:action name="saveEmbargoDetailsAudit" type="AUDIT"
+			builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsAuditBuilder"
+            method="auditForEmbargoDetails" async="true"/>
+		<adv:action name="generateWorkflowForEmbargoCreation" type="WORKFLOW"
+			builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsWorkflowBuilder"
+            method="generateWorkflowForEmbargoCreation" async="true"/>
+		<adv:action name="updateEmbargoView" type="REFRESHVIEW"
+			builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsBuilder"
+            method="updateEmbargoView" async="true"/>
+		<adv:action name="saveEmbargoDetails" type="PUBLISH"
+					builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsPublishBuilder"
+					method="publishEmbargoDetails" async="true"/>
+	</adv:advice> 
+	<adv:advice name="reco.defaults.saveEmbargoDetailsPreInvokeForPublish">
+		<adv:action name="saveEmbargoDetailsPreInvokeForPublish" type="PREADVICE"
+					builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsPublishBuilder"
+					method="retainExistingEmbargoDetailsForPublish" async="false"/>
+    </adv:advice> 
+	<adv:advice name="reco.defaults.statusUpdatePreInvokeForPublish">
+		<adv:action name="statusUpdatePreInvokeForPublish" type="PREADVICE"
+					builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsPublishBuilder"
+					method="retainExistingEmbargoDetailsForStatusUpdatePublish" async="false"/>
+    </adv:advice> 
+	<adv:advice name="reco.defaults.statusUpdate">
+		<adv:action name="statusUpdateAudit" type="AUDIT"
+					builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsAuditBuilder"
+					method="auditForStatusUpdate" async="true"/>
+		<adv:action name="generateWorkflowForEmbargoUpdation" type="WORKFLOW"
+			builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsWorkflowBuilder"
+            method="generateWorkflowForEmbargoUpdation" async="true"/>
+		<adv:action name="updateEmbargoViewOnStatusUpdate" type="REFRESHVIEW"
+			builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsBuilder"
+            method="updateEmbargoViewOnStatusUpdate" async="true"/>
+		<adv:action name="statusUpdatePublish" type="PUBLISH"
+					builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsPublishBuilder"
+					method="statusUpdatePublish" async="true"/>
+	</adv:advice> 
+	<adv:advice name="reco.defaults.approveEmbargo">
+		<adv:action name="statusUpdateAudit" type="AUDIT"
+					builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsAuditBuilder"
+					method="auditForStatusUpdate" async="true"/>
+		<adv:action name="generateWorkflowForEmbargoUpdation" type="WORKFLOW"
+			builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsWorkflowBuilder"
+            method="generateWorkflowForEmbargoUpdation" async="true"/>
+		<adv:action name="updateEmbargoViewOnStatusUpdate" type="REFRESHVIEW"
+			builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsBuilder"
+            method="updateEmbargoViewOnStatusUpdate" async="true"/>
+			<adv:action name="statusUpdatePublish" type="PUBLISH"
+					builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsPublishBuilder"
+					method="statusUpdatePublish" async="true"/>
+	</adv:advice> 
+	<adv:advice name="reco.defaults.rejectEmbargo">
+		<adv:action name="statusUpdateAudit" type="AUDIT"
+					builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsAuditBuilder"
+					method="auditForStatusUpdate" async="true"/>
+		<adv:action name="generateWorkflowForEmbargoUpdation" type="WORKFLOW"
+			builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsWorkflowBuilder"
+            method="generateWorkflowForEmbargoUpdation" async="true"/>
+		<adv:action name="updateEmbargoViewOnStatusUpdate" type="REFRESHVIEW"
+			builder="com.ibsplc.icargo.business.reco.defaults.builder.RecoDefaultsBuilder"
+            method="updateEmbargoViewOnStatusUpdate" async="true"/>
+	</adv:advice> 
+	
+</adv:advice-mappings>
+
+

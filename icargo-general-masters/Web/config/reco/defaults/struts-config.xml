@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN " 
+	"http://struts.apache.org/dtds/struts-config_1_2.dtd " > 
+  
+<struts-config>
+
+	
+	<form-beans>
+		<form-bean name="MaintainEmbargoRulesForm" type="com.ibsplc.icargo.presentation.web.struts.form.reco.defaults.MaintainEmbargoRulesForm"  />
+		<form-bean name="MaintainComplianceInfoForm" type="com.ibsplc.icargo.presentation.web.struts.form.reco.defaults.MaintainComplianceInfoForm"  />
+		<form-bean name="UldTypeLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.shared.uld.ULDTypeLovForm"  />
+		<form-bean name="ListEmbargoRulesForm" type="com.ibsplc.icargo.presentation.web.struts.form.reco.defaults.ListEmbargoRulesForm"  />
+		<form-bean name="countryTypeLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.shared.area.country.CountryTypeLovForm"  />
+		<form-bean name="stationLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.shared.area.station.StationLovForm"  />
+		<form-bean name="SCCLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.shared.scc.SCCLovForm"  />
+		<form-bean name="commodityLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.shared.commodity.CommodityLovForm"  />
+		<form-bean name="airlineLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.shared.airline.AirlineLovForm"  />
+
+		<form-bean name="CheckEmbargoRulesForm" type="com.ibsplc.icargo.presentation.web.struts.form.reco.defaults.CheckEmbargoRulesForm"  />
+		<form-bean name="CheckEmbargoRulesRevampedForm" type="com.ibsplc.icargo.presentation.web.struts.form.reco.defaults.ux.CheckEmbargoRulesForm"  />
+		<form-bean name="SearchEmbargoForm" type="com.ibsplc.icargo.presentation.web.struts.form.reco.defaults.SearchEmbargoForm"  />
+		<form-bean name="ComposeMessage" type="com.ibsplc.icargo.presentation.web.struts.form.reco.defaults.RegulatoryComposeMessageForm"  />
+		<form-bean name="ExceptionEmbargoForm" type="com.ibsplc.icargo.presentation.web.struts.form.reco.defaults.ExceptionEmbargoForm"  />
+	</form-beans>
+
+	<global-forwards>
+	   <forward name="error_fwd" path="/jsp/icargo_logon.jsp" />
+	</global-forwards>
+	
+	<action-mappings>
+	
+	<!-- Mappings for logon -->
+	<action path="/reco.defaults.screenloadforMaintain" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MaintainEmbargoRulesForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+	</action>
+			
+	<action path="/reco.defaults.screenload" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListEmbargoRulesForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+	</action>
+	
+	<action path="/reco.defaults.showParameters" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListEmbargoRulesForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+			<forward name="screenload_failure" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+	</action>
+	
+	
+	<action path="/reco.defaults.listEmbargo"
+		name="ListEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+		<forward name="failure" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+	</action>
+	<action path="/home"
+		name="ListEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false"
+		forward ="/home.jsp" />			
+	
+	
+	<action path="/reco.defaults.viewEmbargo"
+		name="ListEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+	</action>
+	
+	<action path="/reco.defaults.clearEmbargo"
+		name="ListEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="clear_success" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+	</action>
+	
+	<action path="/reco.defaults.cancelEmbargo"
+		name="ListEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+		<forward name="failure" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+
+	</action>
+	<action path="/reco.defaults.approve"
+		name="ListEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+		<forward name="failure" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+
+	</action>
+	<action path="/reco.defaults.reject"
+		name="ListEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+		<forward name="failure" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+
+	</action>
+	<action  path="/reco.defaults.embargocreationworkflow"
+			 name="MaintainEmbargoRulesForm"
+			 scope="request"
+			 validate="false"
+			 type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			 <forward name="modifyScreenloadSuccess" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+			<forward name="screenload_success" path="/reco.defaults.maintainscreenload.do" />
+			<forward name="screenload_failure" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+	 </action>
+	
+   	<action path="/reco.defaults.maintainscreenload" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+	</action>
+
+	<action path="/reco.defaults.addrow" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+	</action>
+
+	<action path="/reco.defaults.deleterow" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+	</action>
+
+	<action path="/reco.defaults.saveEmbargoDetails" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/reco.defaults.maintainscreenload.do" />
+		<forward name="screenload_failure" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+		<forward name="approve_success" path="/reco.defaults.acknowledgeapproval.do" />
+    	</action>
+	<action path="/reco.defaults.acknowledgeapproval" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		validate="false">
+		<forward name="action_success" path="/workflow.defaults.messageinbox.listmessageinbox.do?listStatus=fromAnotherScreen" />
+	</action>
+	<action path="/reco.defaults.saveMultiLnguageEbmbargoDesc" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		validate="false">
+		<forward name="save_success" path="/jsp/reco/defaults/MaintainEmbargoLanguageAjaxTemp.jsp" />
+    </action>
+	<action path="/reco.defaults.modifyScreenLoad" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		validate="false">
+		<forward name="modifyScreenloadSuccess" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+		<forward name="screenload_success" path="/reco.defaults.maintainscreenload.do" />
+		<forward name="screenload_failure" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+	</action>
+
+	<action path="/reco.defaults.closecommand" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ListEmbargoRulesForm"
+		scope="request"
+		validate="false">
+		<forward name="success" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+		<forward name="failure" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+	</action>
+
+	<action path="/reco.defaults.maintaincomplianceinfoclosecommand" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ListEmbargoRulesForm"
+		scope="request"
+		validate="false">
+		<forward name="success" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+		<forward name="failure" path="/jsp/reco/defaults/ListEmbargo.jsp" />
+	</action>
+   	<action path="/reco.defaults.defaultCommand" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		validate="false">
+		<forward name="homePage_success" path="/jsp/reco/defaults/Mainmenu.jsp" />
+	</action>
+	
+     	<action path="/reco.defaults.showEmbargo" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+ 		name="CheckEmbargoRulesForm"
+ 		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/reco/defaults/ShowEmbargo.jsp" />
+	</action>	
+	
+	<action path="/reco.defaults.approveembargo"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="screenload_success" path="/reco.defaults.maintainscreenload.do" />
+		<forward name="screenload_failure" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+
+	</action>
+	<action path="/reco.defaults.rejectembargo"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="screenload_success" path="/reco.defaults.maintainscreenload.do" />
+		<forward name="screenload_failure" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+		<forward name="reject_success" path="/reco.defaults.acknowledgeapproval.do" />	
+	</action>
+	<action path="/reco.defaults.cancel"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="screenload_success" path="/reco.defaults.maintainscreenload.do" />
+		<forward name="screenload_failure" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+
+	</action>
+	<action path="/reco.defaults.constructdesc" name="MaintainEmbargoRulesForm" scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction" validate="false">
+		<forward name="success" path="/jsp/reco/defaults/MaintainEmbargo_description.jsp" />
+		<forward name="failure" path="/jsp/reco/defaults/MaintainEmbargo_description.jsp" />
+
+	</action>
+	<action path="/reco.defaults.duplicatecheck"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="modifyScreenloadSuccess" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+		<forward name="modifyScreenloadFailure" path="/jsp/reco/defaults/MaintainEmbargo.jsp" />
+
+	</action>
+	<action path="/reco.defaults.duplicateembargos"
+		name="MaintainEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="modifyScreenloadSuccess" path="/jsp/reco/defaults/DuplicateEmbargos.jsp" />
+	
+	</action>
+	<action  path="/reco.defaults.compliancecreationworkflow"
+			 name="MaintainComplianceInfoForm"
+			 scope="request"
+			 validate="false"
+			 type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			 <forward name="modifyScreenloadSuccess" path="/jsp/reco/defaults/MaintainComplianceInfo.jsp" />
+			<forward name="screenload_success" path="/reco.defaults.maintaincomplianceinfoscreenload.do" />
+			<forward name="screenload_failure" path="/jsp/reco/defaults/MaintainComplianceInfo.jsp" />
+	</action>
+	<action path="/reco.defaults.maintaincomplianceinfoscreenload" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MaintainComplianceInfoForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/reco/defaults/MaintainComplianceInfo.jsp" />
+	</action>
+	<action path="/reco.defaults.saveCompliance" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MaintainComplianceInfoForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/reco.defaults.maintaincomplianceinfoscreenload.do" />
+			<forward name="screenload_failure" path="/jsp/reco/defaults/MaintainComplianceInfo.jsp" />
+			<forward name="approve_success" path="/reco.defaults.acknowledgeapproval.do" />
+	</action>
+	
+	<action path="/reco.defaults.acknowledgeapproval" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainComplianceInfoForm"
+		scope="request"
+		validate="false">
+		<forward name="action_success" path="/workflow.defaults.messageinbox.listmessageinbox.do?listStatus=fromAnotherScreen" />
+	</action>
+	<action path="/reco.defaults.modifyComplianceScreenLoad" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainComplianceInfoForm"
+		scope="request"
+		validate="false">
+		<forward name="modifyScreenloadSuccess" path="/jsp/reco/defaults/MaintainComplianceInfo.jsp" />
+		<forward name="screenload_success" path="/reco.defaults.maintaincomplianceinfoscreenload.do" />
+		<forward name="screenload_failure" path="/jsp/reco/defaults/MaintainComplianceInfo.jsp" />
+	</action>
+    <action path="/reco.defaults.approveCompliance"
+		name="MaintainComplianceInfoForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="screenload_success" path="/reco.defaults.maintaincomplianceinfoscreenload.do" />
+		<forward name="screenload_failure" path="/jsp/reco/defaults/MaintainComplianceInfo.jsp" />
+
+	</action>
+	<action path="/reco.defaults.rejectCompliance"
+		name="MaintainComplianceInfoForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="screenload_success" path="/reco.defaults.maintaincomplianceinfoscreenload.do" />
+		<forward name="screenload_failure" path="/jsp/reco/defaults/MaintainComplianceInfo.jsp" />
+
+	</action>
+	<action path="/reco.defaults.cancelCompliance"
+		name="MaintainComplianceInfoForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="screenload_success" path="/reco.defaults.maintaincomplianceinfoscreenload.do" />
+		<forward name="screenload_failure" path="/jsp/reco/defaults/MaintainComplianceInfo.jsp" />
+
+	</action>	
+               	
+	<action name="SearchEmbargoForm" path="/reco.defaults.onscreenloadsearchembargo" scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="listscreenload_success" path="/jsp/reco/defaults/SearchEmbargo.jsp" />
+	</action>
+	<action name="SearchEmbargoForm" path="/reco.defaults.simplesearch" scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="success" path="/jsp/reco/defaults/SearchEmbargo.jsp" />
+			<forward name="failure" path="/jsp/reco/defaults/SearchEmbargo.jsp" />
+	</action>
+	<action name="SearchEmbargoForm" path="/reco.defaults.asyncsearch" scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="success" path="/jsp/reco/defaults/SearchEmbargo_listTable.jsp" />
+			<forward name="failure" path="/jsp/reco/defaults/SearchEmbargo_listTable.jsp" />
+	</action>
+	<action name="SearchEmbargoForm" path="/reco.defaults.clearsearch" scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="clear_success" path="/jsp/reco/defaults/SearchEmbargo.jsp" />
+	</action>
+	<action name="SearchEmbargoForm" path="/reco.defaults.closeembargo" scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="success" path="/jsp/reco/defaults/SearchEmbargo.jsp" />
+			<forward name="failure" path="/jsp/reco/defaults/SearchEmbargo.jsp" />
+	</action>	
+
+	<action name="ComposeMessage" path="/reco.defaults.onscreenloadcomposemessage" scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="success" path="/jsp/reco/defaults/MaintainRegulatoryComposeMessage.jsp" />
+	</action>
+	<action name="ComposeMessage" path="/reco.defaults.listcomposemessage" scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="success" path="/jsp/reco/defaults/MaintainRegulatoryComposeMessage.jsp" />
+			<forward name="failure" path="/jsp/reco/defaults/MaintainRegulatoryComposeMessage.jsp" />
+	</action>
+	<action name="ComposeMessage" path="/reco.defaults.savecomposemessage" scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="success" path="/jsp/reco/defaults/MaintainRegulatoryComposeMessage.jsp" />
+			<forward name="failure" path="/jsp/reco/defaults/MaintainRegulatoryComposeMessage.jsp" />
+	</action>
+	<action name="ComposeMessage" path="/reco.defaults.clearcomposemessage" scope="request" validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="success" path="/jsp/reco/defaults/MaintainRegulatoryComposeMessage.jsp" />
+	</action>	
+	
+	
+	<action path="/reco.defaults.onscreenloadexceptionembargo" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ExceptionEmbargoForm"
+			scope="request"
+			validate="false">
+		<forward name="screenload_success" path="/jsp/reco/defaults/ExceptionAWBEmbargo.jsp" />
+	</action>
+	
+	<action path="/reco.defaults.clearexception" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ExceptionEmbargoForm"
+			scope="request"
+			validate="false">
+		<forward name="success" path="/jsp/reco/defaults/ExceptionAWBEmbargo.jsp" />
+		<forward name="failure" path="/jsp/reco/defaults/ExceptionAWBEmbargo.jsp" />
+	</action>
+	<action path="/reco.defaults.expawbembsave" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="ExceptionEmbargoForm"
+		scope="request"
+		validate="false">
+		<forward name="success" path="/jsp/reco/defaults/ExceptionAWBEmbargo.jsp" />
+		<forward name="failure" path="/jsp/reco/defaults/ExceptionAWBEmbargo.jsp" />
+	</action>
+		<action path="/reco.defaults.expawbemblist"
+		name="ExceptionEmbargoForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/reco/defaults/ExceptionAWBEmbargo.jsp" />
+		<forward name="failure" path="/jsp/reco/defaults/ExceptionAWBEmbargo.jsp" />
+	</action>
+	<action path="/reco.defaults.findParamterGroupingDetailsForListEmbargo"
+		name="ListEmbargoRulesForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/reco/defaults/ParameterGroupingDetailForListEmbargo_Ajax.jsp" />
+		<forward name="failure" path="/jsp/reco/defaults/ParameterGroupingDetailForListEmbargo_Ajax.jsp" />
+	</action>
+	<action path="/reco.defaults.findParamterGroupingDetailsForSearchCompliance"
+		name="SearchEmbargoForm"
+		scope="request"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		validate="false">
+		<forward name="success" path="/jsp/reco/defaults/ParameterGroupingDetailForSearchCompliance_Ajax.jsp" />
+		<forward name="failure" path="/jsp/reco/defaults/ParameterGroupingDetailForSearchCompliance_Ajax.jsp" />
+	</action>
+	<action path="/reco.defaults.ux.showEmbargo" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+ 		name="CheckEmbargoRulesRevampedForm"
+ 		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/reco/defaults/ux/ShowEmbargo.jsp" />
+	</action>
+	</action-mappings>
+	
+	<message-resources  key ="embargorulesresources" parameter="resources.reco.defaults.Reco" null="false"/>	
+	<message-resources  key ="uxembargorulesresources" parameter="resources.reco.defaults.ux.Reco" null="false"/>	
+	<message-resources key="searchembargoresources" parameter="resources.reco.defaults.SearchReco" null="false"/>
+	<message-resources key="regulatorycomposemessage" parameter="resources.reco.defaults.RegulatoryComposeMessage" null="false"/>
+	<message-resources key="exceptionembargoresources" parameter="resources.reco.defaults.ExceptionReco" null="false"/>
+	<plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+			 <set-property property="configFileName" value="/WEB-INF/errortags/reco/defaults/errortags.xml"/> 
+	</plug-in>	
+	
+</struts-config>

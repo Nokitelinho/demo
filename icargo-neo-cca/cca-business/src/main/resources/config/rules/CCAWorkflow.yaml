@@ -1,0 +1,399 @@
+name: CCAWorkflow
+description: CCA Workflow
+params:
+  - name: userAction
+    description: User Action
+    type: STRING
+    qualifier: HARDCODED
+    data: '[Initiate-Initiate, Recommend-Recommend, Approve-Approve, Reject-Reject]'
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 0
+  - name: ccaLevel
+    description: CCA Level
+    type: STRING
+    qualifier: HARDCODED
+    data: '[AWB-AWB level, Invoice-Invoice level, Customer-Customer level]'
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 1
+  - name: ccaType
+    description: CCA Type
+    type: STRING
+    qualifier: HARDCODED
+    data: '[I-Internal, A-Actual]'
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 2
+  - name: ccaSource
+    description: CCA Source
+    type: STRING
+    qualifier: HARDCODED
+    data: '[CRA-CRA CCA, OPS-OPS CCA, Auto-Auto CCA]'
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 29
+  - name: drcr
+    description: Dr / Cr
+    type: STRING
+    qualifier: HARDCODED
+    data: '[Dr-CCA is issued to increase the AWB charges, Cr-CCA is issued to decrease the AWB charges, blank-Both debit and credit]'
+    operators:
+      - notation: '=='
+        label: Equal to
+    score: 3
+  - name: ccaNetAmount
+    description: CCA Net Amount
+    type: NUMBER
+    qualifier: FREE_TEXT
+    operators:
+      - notation: '=='
+        label: Equal to
+      - notation: '>'
+        label: Greater than
+      - notation: '>='
+        label: Greater than or equal to
+      - notation: '<'
+        label: Less than
+      - notation: '<='
+        label: Less than or equal to
+    score: 4
+  - name: ccaCurrency
+    description: CCA Currency Code
+    type: STRING
+    qualifier: CURRENCY
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 4
+  - name: agent
+    description: Agent
+    type: STRING
+    qualifier: AGENT
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 6
+  - name: agentCountry
+    description: Agent Country
+    type: STRING
+    qualifier: COUNTRY
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 7
+  - name: agentStation
+    description: Agent Station
+    type: STRING
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    qualifier: STATION
+    score: 8
+  - name: originApt
+    description: Origin Airport
+    type: STRING
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    qualifier: AIRPORT
+    score: 9
+  - name: originCity
+    description: Origin City
+    type: STRING
+    qualifier: CITY
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 10
+  - name: originCountry
+    description: Origin Country
+    type: STRING
+    qualifier: COUNTRY
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 11
+  - name: originRegion
+    description: Origin Region
+    type: STRING
+    qualifier: REGION
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 12
+  - name: originAptGroup
+    description: Origin Apt Code Group
+    type: STRING
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    qualifier: FREE_TEXT
+    score: 13
+  - name: originCityGroup
+    description: Origin City Group
+    type: STRING
+    qualifier: FREE_TEXT
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 14
+  - name: originCountryGroup
+    description: Origin Country Group
+    type: STRING
+    qualifier: FREE_TEXT
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 15
+  - name: originRegionGroup
+    description: Origin Region Group
+    type: STRING
+    qualifier: REGION
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 16
+  - name: destinationApt
+    description: Destination Airport
+    type: STRING
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    qualifier: AIRPORT
+    score: 17
+  - name: destinationCity
+    description: Destination City
+    type: STRING
+    qualifier: CITY
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 18
+  - name: destinationCountry
+    description: Destination Country
+    type: STRING
+    qualifier: COUNTRY
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 19
+  - name: destinationRegion
+    description: Destination Region
+    type: STRING
+    qualifier: REGION
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 20
+  - name: destinationAptGroup
+    description: Destination Apt Code Group
+    type: STRING
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    qualifier: FREE_TEXT
+    score: 21
+  - name: destinationCityGroup
+    description: Destination City Group
+    type: STRING
+    qualifier: FREE_TEXT
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 22
+  - name: destinationCountryGroup
+    description: Destination Country Group
+    type: STRING
+    qualifier: FREE_TEXT
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 23
+  - name: destinationRegionGroup
+    description: Destination Region Group
+    type: STRING
+    qualifier: REGION
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 24
+  - name: status
+    description: CCA Status
+    type: STRING
+    qualifier: HARDCODED
+    data: '[N-New, I-Initiated, C-Recommended]'
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 25
+  - name: reasonCode
+    description: Reason Code
+    type: STRING_ARRAY
+    qualifier: FREE_TEXT
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 26
+  - name: userRoleGroup
+    description: User Role Group
+    type: STRING
+    qualifier: FREE_TEXT
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 27
+  - name: userName
+    description: Username
+    type: STRING
+    qualifier: FREE_TEXT
+    operators:
+      - notation: IN
+        label: Includes
+      - notation: NOT_IN
+        label: Excludes
+    score: 28
+output:
+  - name: ASSIGNINITIATOR
+    description: Assign Initiator
+    params:
+      - name: USRROLGRP
+        description: User Role Group
+        parameterType: CLIENT
+        qualifier: FREE_TEXT
+        required: MANDATORY
+      - name: USRNAME
+        description: Username
+        parameterType: CLIENT
+        qualifier: FREE_TEXT
+        required: OPTIONAL
+  - name: ASSIGNRECOMENDER
+    description: Assign Recommender
+    params:
+      - name: USRROLGRP
+        description: User Role Group
+        parameterType: CLIENT
+        qualifier: FREE_TEXT
+        required: MANDATORY
+      - name: USRNAME
+        description: Username
+        parameterType: CLIENT
+        qualifier: FREE_TEXT
+        required: OPTIONAL
+  - name: ASSIGNAPPROVER
+    description: Assign Approver
+    params:
+      - name: USRROLGRP
+        description: User Role Group
+        parameterType: CLIENT
+        qualifier: FREE_TEXT
+        required: MANDATORY
+      - name: USRNAME
+        description: Username
+        parameterType: CLIENT
+        qualifier: FREE_TEXT
+        required: OPTIONAL
+  - name: INITIATE
+    description: Initiate CCA
+    params:
+      - name: NEWSTS
+        description: Return a new CCA Status 'I' - Initiated
+        parameterType: CONFIG
+        required: MANDATORY
+        qualifier: HARDCODED
+        value: 'I'
+  - name: RECOMMEND
+    description: Recommend CCA
+    params:
+      - name: NEWSTS
+        description: Return a new CCA Status 'C' - Recommended
+        parameterType: CONFIG
+        required: MANDATORY
+        qualifier: HARDCODED
+        value: 'C'
+  - name: APPROVE
+    description: Aprove CCA
+    params:
+      - name: NEWSTS
+        description: Return a new CCA Status 'A' - Approved
+        parameterType: CONFIG
+        required: MANDATORY
+        qualifier: HARDCODED
+        value: 'A'
+  - name: REJECT
+    description: Reject CCA
+    params:
+      - name: NEWSTS
+        description: Return a new CCA Status 'R' - Rejected
+        parameterType: CONFIG
+        required: MANDATORY
+        qualifier: HARDCODED
+        value: 'R'
+  - name: CRTEXP
+    description: Move to Exception
+    params:
+      - name: ACTCOD
+        description: Action Code to create exception
+        parameterType: CONFIG
+        qualifier: FREE_TEXT
+        required: MANDATORY
+        value: CRTEXP
+ruleNameFormat: CATNAM_RULIDR-PARNAM_PARVAL

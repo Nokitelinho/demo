@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-44968_MSM28404.yml
+  - changeSet:
+      id: 28404
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: ccaawb
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccamst ADD COLUMN autcaltax VARCHAR(1);
+
+          COMMENT ON COLUMN ccamst.autcaltax IS 'A flag indicating whether the total tax is auto calculated using configuration. Possible values are Y or N';

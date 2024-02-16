@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-39612_MSM27954.yml
+  - changeSet:
+       id: 27954
+       author: A-6055
+       preConditions:
+         - onFail: MARK_RAN
+         - tableExists:
+              tableName: ccaawbchgdtl
+         - columnExists:
+              tableName: ccaawbchgdtl
+              columnName: recchg
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: ALTER TABLE ccaawbchgdtl DROP COLUMN recchg;

@@ -1,0 +1,168 @@
+name: TotalTax
+description: Total Tax
+params:
+    - name : awbOwner
+      type: STRING
+      description: AWB Type
+      qualifier: ONETIME
+      data: "cra.agentbilling.documentsource"
+      resolver: qualityAuditDataResolver.awbOwner
+      score: 8
+    - name : agentRegionCode
+      type: STRING 
+      description: Agent Region
+      resolver: qualityAuditDataResolver.agentRegionCode
+      qualifier: REGION
+      score: 12
+    - name : agentCountryCode
+      type: STRING 
+      description: Agent Country
+      qualifier: COUNTRY
+      resolver: qualityAuditDataResolver.agentCountryCode
+      score: 13
+    - name : agentStationCode
+      type: STRING 
+      description: Agent Station
+      resolver: qualityAuditDataResolver.agentStationCode
+      qualifier: STATION
+      score: 14
+    - name : productCodes
+      type: STRING_ARRAY
+      description: Product Code
+      qualifier: PRODUCT
+      score: 10
+    - name : sccCodes
+      type:  STRING_ARRAY 
+      description: SCC
+      qualifier: SCC
+      score: 11 
+    - name : isContractRateExists
+      type: STRING
+      description: Contract Rate Exists(Y/N)
+      qualifier: HARDCODED
+      data: "[Y-Yes,N-No]"
+      derivedExpression:  (netCharge == weightCharge )?"Y":"N"
+      score: 3 
+    - name : customerType
+      type: STRING 
+      description: Customer Type
+      resolver: qualityAuditDataResolver.customerType
+      qualifier: HARDCODED
+      data: "[AG-Agent,CU-Customer,CC-CC Collector]"
+      score: 6
+    - name : customerCode
+      type: STRING
+      description: Customer Code
+      qualifier: CUSTOMER
+      resolver: taxDataResolver.customerCode 
+      score: 7
+    - name : inboundCustomerCode
+      type: STRING
+      description: Inbound Customer Code
+      qualifier: FREE_TEXT
+      score: 4
+    - name : outboundCustomerCode
+      type: STRING
+      description: Outbound Customer Code
+      qualifier: FREE_TEXT
+      score: 5
+    - name: awbOriginAirport
+      type: STRING
+      description: Origin Airport
+      qualifier: AIRPORT
+      score: 20
+    - name: awbOriginCountry
+      type: STRING
+      description: Origin Country
+      qualifier: COUNTRY
+      resolver: qualityAuditDataResolver.originCountryCode
+      score: 19
+    - name: awbOriginRegion
+      type: STRING
+      description: Origin Region
+      resolver: qualityAuditDataResolver.originRegionCode
+      qualifier: REGION
+      score: 18
+    - name : awbDestinationAirport
+      type: STRING 
+      description: Destination Airport
+      qualifier: AIRPORT
+      score: 17
+    - name : awbDestinationCountry
+      type: STRING 
+      description: Destination Country
+      qualifier: COUNTRY
+      resolver: qualityAuditDataResolver.destinationCountryCode
+      score: 16
+    - name : awbDestinationRegion
+      type: STRING 
+      description: Destination Region
+      resolver: qualityAuditDataResolver.destinationRegionCode
+      qualifier: REGION
+      score: 15
+    - name : paymentType
+      type: STRING
+      description: Payment Type
+      qualifier: ONETIME
+      data: "cra.defaults.awbmop"
+      score: 9
+    - name : rateClassIATA
+      type: STRING 
+      description: Rate Class IATA
+      resolver: taxDataResolver.rateClassIata
+      qualifier: ONETIME
+      data: "tariff.freight.rateclass"
+      score: 2
+    - name : rateClassMarket
+      type: STRING 
+      description: Rate Class Market
+      resolver: taxDataResolver.rateClassMarket
+      qualifier: ONETIME
+      data: "tariff.freight.rateclass"
+      score: 1
+output:  
+   - name: TotalTax
+     description: TotalTax
+     params:
+       - name: serviceTaxFreightCharge
+         description: Service TAX Freight Charges
+         resolver: taxDataResolver.serviceTaxFreightCharge
+         parameterType: FACT
+       - name: serviceTaxOCDC
+         description: Service TAX OCDC
+         resolver: taxDataResolver.serviceTaxOCDC
+         parameterType: FACT
+       - name: serviceTaxOCDA
+         description: Service Tax OCDA
+         resolver: taxDataResolver.serviceTaxOCDA
+         parameterType: FACT
+       - name: serviceTaxCommission
+         description: Service TAX on Commission
+         resolver: taxDataResolver.serviceTaxCommission
+         parameterType: FACT
+       - name: serviceTaxDiscount
+         description: Service TAX on Discount
+         resolver: taxDataResolver.serviceTaxDiscount
+         parameterType: FACT
+       - name: tdsDueCarrier
+         description: TDS Due Airline
+         resolver: taxDataResolver.tdsDueCarrier
+         parameterType: FACT
+       - name: tdsDueAgent
+         description: TDS Due Agent
+         resolver: taxDataResolver.tdsDueAgent
+         parameterType: FACT
+       - name: sgst
+         description: SGST
+         resolver: taxDataResolver.sgst
+         parameterType: FACT
+       - name: cgst
+         description: CGST
+         resolver: taxDataResolver.cgst
+         parameterType: FACT
+       - name: igst
+         description: IGST
+         resolver: taxDataResolver.igst
+         parameterType: FACT
+categoryType: FORMULA
+ruleNameFormat: CATNAM-RULIDR

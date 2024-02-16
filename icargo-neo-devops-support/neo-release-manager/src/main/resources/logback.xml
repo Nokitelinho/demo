@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+   <!-- To be removed after 1.3.3 upgrade is completed -->
+   <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+   <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+   <springProperty name="neoServiceName" source="spring.application.name"/>
+   <springProperty name="neoServiceVersion" source="git.commit.id.abbrev"/>
+   <springProperty name="neoLoggingAppenders" source="neo.logging.appenders"/>
+   <springProperty name="neoRootLevel" source="neo.logging.root-level"/>
+   <springProperty name="neoUdpLoggingHost" source="neo.logging.udp.host"/>
+   <springProperty name="neoUdpLoggingPort" source="neo.logging.udp.port"/>
+   <springProperty name="neoTcpLoggingDestination" source="neo.logging.tcp.destination"/>
+
+   <appender name="appender.console" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder>
+         <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+         <charset>utf8</charset>
+      </encoder>
+   </appender>
+
+   <if condition='property("neoLoggingAppenders").contains("udp")'>
+      <then>
+         <appender name="appender.udp" class="net.logstash.logback.appender.LogstashUdpSocketAppender">
+            <host>${neoUdpLoggingHost}</host>
+            <port>${neoUdpLoggingPort}</port>
+            <layout class="net.logstash.logback.layout.LogstashLayout">
+               <customFields>{"service":"${neoServiceName}"}</customFields>
+               <includeCallerData>false</includeCallerData>
+               <includeMdc>true</includeMdc>
+               <version>${neoServiceVersion}</version>
+            </layout>
+         </appender>
+      </then>
+   </if>
+
+   <if condition='property("neoLoggingAppenders").contains("tcp")'>
+      <then>
+         <appender name="appender.tcp" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+            <destination>${neoTcpLoggingDestination}</destination>
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+               <customFields>{"service":"${neoServiceName}"}</customFields>
+               <includeCallerData>false</includeCallerData>
+               <includeMdc>true</includeMdc>
+               <version>${neoServiceVersion}</version>
+            </encoder>
+         </appender>
+      </then>
+   </if>
+
+   <root level="${neoRootLevel:-INFO}">
+      <if condition='isDefined("neoLoggingAppenders")'>
+         <then>
+            <if condition='property("neoLoggingAppenders").contains("console")'>
+               <then>
+                  <appender-ref ref="appender.console"/>
+               </then>
+            </if>
+            <if condition='property("neoLoggingAppenders").contains("udp")'>
+               <then>
+                  <appender-ref ref="appender.udp"/>
+               </then>
+            </if>
+            <if condition='property("neoLoggingAppenders").contains("tcp")'>
+               <then>
+                  <appender-ref ref="appender.tcp"/>
+               </then>
+            </if>
+         </then>
+         <else>
+            <appender-ref ref="appender.console"/>
+         </else>
+      </if>
+   </root>
+   <!-- Include End -->
+
+   <logger name="com.ibsplc.neoicargo" level="INFO"/>
+   <logger name="org.springframework" level="INFO"/>
+   <logger name="org.apache.cxf" level="INFO"/>
+
+</configuration>

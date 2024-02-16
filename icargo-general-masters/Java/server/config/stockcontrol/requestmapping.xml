@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--The file contains mapping information for request URI and to its corresponding handler
+and  screen. There will be entries for each request URI which need to be mapped.
+This file is used to build request mapping objects.-->
+
+<request-mappings>
+	<url-mapping url="stockcontrol">
+		<submodule-mapping submodule="defaults">
+			<request-service-name>STOCKCONTROL_DEFAULTS</request-service-name>
+			<request-action actionName="doFlow" methodName="doFlow" parameterTypes="com.ibsplc.xibase.server.framework.requestprocessor.eblflow.Flow" permissionCheck="false" />
+			<request-action actionName="handleAdvice" methodName="handleAdvice" parameterTypes="com.ibsplc.xibase.server.framework.interceptor.vo.AsyncAdviceHelperVO" permissionCheck="false" />
+			<request-action actionName="validateStockHolders" methodName="validateStockHolders" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="saveStockHolderDetails" methodName="saveStockHolderDetails" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockHolderVO" permissionCheck="false"/>
+			<request-action actionName="deleteStockHolder" methodName="deleteStockHolder" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockHolderDetailsVO" permissionCheck="false"/>
+			<request-action actionName="findStockHolderDetails" methodName="findStockHolderDetails" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="validateNumericCode" methodName="validateNumericCode" parameterTypes="java.lang.String,java.lang.String" permissionCheck="false"/>
+			<request-action actionName="findStockHolders" methodName="findStockHolders" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockHolderFilterVO" permissionCheck="false"/>
+			<request-action actionName="findStockHolderLov" methodName="findStockHolderLov" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockHolderLovFilterVO,int" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="saveStockRequestDetails" methodName="saveStockRequestDetails" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockRequestVO" permissionCheck="false"/>
+			<request-action actionName="findStockRequestDetails" methodName="findStockRequestDetails" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockRequestFilterVO" permissionCheck="false"/>
+			<request-action actionName="findStockRequests" methodName="findStockRequests" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockRequestFilterVO,int" permissionCheck="false"/>
+			<request-action actionName="cancelStockRequest" methodName="cancelStockRequest" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockRequestVO" permissionCheck="false"/>
+			<!--<request-action actionName="findStockRequestsForApproval" methodName="findStockRequestsForApproval" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockRequestFilterVO" permissionCheck="false"/>-->
+			<request-action actionName="approveStockRequests" methodName="approveStockRequests" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockRequestApproveVO" permissionCheck="false"/>
+			<request-action actionName="rejectStockRequests" methodName="rejectStockRequests" parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="completeStockRequests" methodName="completeStockRequests" parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="findStockHolderTypes" methodName="findStockHolderTypes" parameterTypes="java.lang.String" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="audit" methodName="audit" parameterTypes="com.ibsplc.icargo.framework.audit.vo.AuditVO" permissionCheck="false"/>
+			<!--<request-action actionName="allocateStockRequest" methodName="allocateStockRequest" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockRequestVO" permissionCheck="false"/>-->
+			<request-action actionName="allocateStock" methodName="allocateStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockAllocationVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findBlacklistedStock" methodName="findBlacklistedStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockFilterVO,int" permissionCheck="false"/>
+			<request-action actionName="findStockHolderCodes" methodName="findStockHolderCodes" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="findRanges" methodName="findRanges" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.RangeFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="viewRange" methodName="viewRange" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="createHistory" methodName="createHistory" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockAllocationVO, java.lang.String" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="monitorStock" methodName="monitorStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findMonitoringStockHolderDetails" methodName="findMonitoringStockHolderDetails" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockFilterVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="validateStockHolderTypeCode" methodName="validateStockHolderTypeCode" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockRequestVO" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="blacklistStock" methodName="blacklistStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.BlacklistStockVO" permissionCheck="false"/>
+			<request-action actionName="revokeBlacklistStock" methodName="revokeBlacklistStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.BlacklistStockVO" permissionCheck="false"/>
+			<request-action actionName="findPriorities" methodName="findPriorities" parameterTypes="java.lang.String,java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findApproverCode" methodName="findApproverCode" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="checkStock" methodName="checkStock" parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+			<request-action actionName="checkForBlacklistedDocument" methodName="checkForBlacklistedDocument" parameterTypes="java.lang.String,java.lang.String,java.lang.String" permissionCheck="false"/>
+			<request-action actionName="findStockList" methodName="findStockList" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockFilterVO" permissionCheck="false"/>
+			<request-action actionName="saveStockRequestForOAL" methodName="saveStockRequestForOAL" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockRequestForOALVO" permissionCheck="false"/>
+			<request-action actionName="findStockRequestForOAL" methodName="findStockRequestForOAL" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockFilterVO" permissionCheck="false"/>
+			<request-action actionName="findStockForAirline" methodName="findStockForAirline" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockFilterVO" permissionCheck="false"/>
+			<request-action actionName="cancelReservation" methodName="cancelReservation" parameterTypes=" java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="extendReservation" methodName="extendReservation" parameterTypes=" java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="findReservationListing" methodName="findReservationListing" parameterTypes=" com.ibsplc.icargo.business.stockcontrol.defaults.reservation.vo.ReservationFilterVO" permissionCheck="false"/>
+			<request-action actionName="reserveDocument" methodName="reserveDocument" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.reservation.vo.ReserveAWBVO" permissionCheck="false"/>
+			<request-action actionName="expireReservations" methodName="expireReservations" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.reservation.vo.ReservationFilterVO" permissionCheck="false"/>
+			<request-action actionName="findDocumentDetails" methodName="findDocumentDetails" parameterTypes="java.lang.String,int,java.lang.String" permissionCheck="false"/>
+			<request-action actionName="sendReorderMessages" methodName="sendReorderMessages" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.InformAgentFilterVO" permissionCheck="false"/>
+			<request-action actionName="saveStockAgentMappings" methodName="saveStockAgentMappings" parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="findStockAgentMappings" methodName="findStockAgentMappings" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockAgentFilterVO" permissionCheck="false"/>
+			<request-action actionName="validateDocument" methodName="validateDocument" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false"/>
+			<request-action actionName="deleteDocumentFromStock" methodName="deleteDocumentFromStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false"/>
+			<request-action actionName="findNextDocumentNumber" methodName="findNextDocumentNumber" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false"/>
+			<request-action actionName="returnDocumentToStock" methodName="returnDocumentToStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockAllocationVO" permissionCheck="false" />
+			<request-action actionName="autoStockDeplete" methodName="autoStockDeplete" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockDepleteFilterVO" permissionCheck="false"/>
+			<request-action actionName="generateStockListReport" methodName="generateStockListReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false"/>
+			<request-action actionName="generateReservationListReport" methodName="generateReservationListReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false"/>
+			<request-action actionName="generateReserveAWBReport" methodName="generateReserveAWBReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false"/>
+			<request-action actionName="validateAgentForStockHolder" methodName="validateAgentForStockHolder" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.AWBDocumentValidationVO" permissionCheck="false" />
+			<request-action actionName="findCustomerStockDetails" methodName="findCustomerStockDetails" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockDetailsFilterVO" permissionCheck="false"/>
+			<request-action actionName="generateAWBStockReport" methodName="generateAWBStockReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false"/>
+			  <request-action actionName="findStockRangeHistory" methodName="findStockRangeHistory" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockRangeFilterVO" permissionCheck="false" />
+			<request-action actionName="findStockRangeHistoryReport" methodName="findStockRangeHistoryReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />
+			<!--<request-action actionName="autoDepleteStock" methodName="autoDepleteStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockDepleteFilterVO" permissionCheck="false" />		 -->
+			<request-action actionName="reopenDocumentToStock" methodName="reopenDocumentToStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false"/>
+			<!--<request-action actionName="printAgentCSVReport" methodName="printAgentCSVReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false" />-->
+			<!--Added by A-6767 for ICRD-139677 Starts-->
+			<request-action actionName="saveStockUtilisation" methodName="saveStockUtilisation" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockAllocationVO, java.lang.String" permissionCheck="false" />
+			<!--Added by A-6767 for ICRD-139677 Ends-->
+
+					 
+			 <!--Added by Chippy for CR 1878 Starts-->
+			<request-action actionName="listStockDetails" methodName="listStockDetails" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockDetailsFilterVO" permissionCheck="false" />
+			<request-action actionName="updateStockUtilization" methodName="updateStockUtilization" parameterTypes="java.lang.String"  permissionCheck="false" />
+			<!--Added by Chippy Ends-->
+		 <!--Added by Aswin Starts-->
+<!--<request-action actionName="findPrivileage" methodName="findPrivileage" parameterTypes="java.lang.String" permissionCheck="false" />-->
+<!--Added by Aswin Ends-->
+ <!--Added by A4443 for CR 3024 Starts-->
+<request-action actionName="findTransitStocks" methodName="findTransitStocks" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockRequestFilterVO"  permissionCheck="false" />
+<request-action actionName="confirmStockRange" methodName="confirmStockRange" parameterTypes="java.util.Collection"  permissionCheck="false" />
+<request-action actionName="updateMissingStock" methodName="updateMissingStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.TransitStockVO"  permissionCheck="false" />
+ <!--Added by A4443 for CR 3024 ends-->
+ 
+ <request-action actionName="validateStockForVoiding" methodName="validateStockForVoiding" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.BlacklistStockVO"  permissionCheck="false" />
+ <request-action actionName="voidStock" methodName="voidStock" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.BlacklistStockVO"  permissionCheck="false" />
+ <request-action actionName="findStockRangeHistoryForPage" methodName="findStockRangeHistoryForPage" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockRangeFilterVO" permissionCheck="false" />
+<!--<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />-->
+
+<request-action actionName="saveStockRangeHistory" methodName="saveStockRangeHistory" parameterTypes="java.util.Collection"  permissionCheck="false" />
+	<request-action actionName="generateStockAllocationReport" methodName="generateStockAllocationReport" parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec" permissionCheck="false"/>
+	<request-action actionName="getNextDocument" methodName="getNextDocument" parameterTypes="java.lang.String,int" permissionCheck="false"/>	
+<request-action actionName="validateDocumentForWS" methodName="validateDocumentForWS" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false"/>
+<request-action actionName="validateDocumentStockForWS" methodName="validateDocumentStockForWS" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false"/>
+			<request-action actionName="findAutoPopulateSubtype" methodName="findAutoPopulateSubtype" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false"/>
+			<request-action actionName="deleteStock" methodName="deleteStock" parameterTypes="java.util.Collection" permissionCheck="false" neoApiCall="false"/>
+			<request-action actionName="findAvailableRanges" methodName="findAvailableRanges" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockFilterVO" permissionCheck="false" neoApiCall="false" />
+			<request-action actionName="findTotalNoOfDocuments" methodName="findTotalNoOfDocuments" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockFilterVO" permissionCheck="false" />
+			<request-action actionName="saveStockDetails" methodName="saveStockDetails" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockAllocationVO" permissionCheck="false"/>
+			<request-action actionName="isStockDetailsExists" methodName="isStockDetailsExists" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false"/>
+			<request-action actionName="saveStockReuseHistory" methodName="saveStockReuseHistory" parameterTypes="java.util.Collection" permissionCheck="false" />
+			<request-action actionName="removeStockReuseHistory" methodName="removeStockReuseHistory" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.StockReuseHistoryVO" permissionCheck="false" />
+			<request-action actionName="updateStockReuseHistory" methodName="updateStockReuseHistory" parameterTypes="java.util.Collection" permissionCheck="false" />
+		    <request-action actionName="doAWBReUseRestrictionCheckEnhanced" methodName="doAWBReUseRestrictionCheckEnhanced" parameterTypes="com.ibsplc.icargo.business.stockcontrol.defaults.vo.DocumentFilterVO" permissionCheck="false" />
+		</submodule-mapping>
+	</url-mapping>
+</request-mappings>

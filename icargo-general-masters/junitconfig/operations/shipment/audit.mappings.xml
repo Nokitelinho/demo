@@ -1,0 +1,39 @@
+<audit-mappings xmlns="http://www.ibsplc.com/icargo/audit/mappings" product="operations" subproduct="shipment">
+	<audit-entities package="com.ibsplc.icargo.business.operations.shipment">
+		<!-- entity: the simple class name of the entity -->
+		<!-- name: the display name for the entity -->
+		<!-- the simple class name the Audit entity -->
+		<audit name="operations.shipment.auditoperationalshipment" entity="OperationalShipment" enabled="true" historyEnabled="true">
+				OperationalShipmentAudit
+		</audit>
+	</audit-entities>
+	
+	<audit-entities package="com.ibsplc.icargo.business.operations.shipment.delivery">
+			<!-- entity: the simple class name of the entity -->
+			<!-- name: the display name for the entity -->
+			<!-- the simple class name the Audit entity -->
+			<audit name="operations.shipment.auditdndetails" entity="DeliveryNote" enabled="true">
+					DNAudit
+			</audit>
+	</audit-entities>
+
+	<audit-entities package="com.ibsplc.icargo.business.operations.shipment.discrepancy">
+			<!-- entity: the simple class name of the entity -->
+			<!-- name: the display name for the entity -->
+			<!-- the simple class name the Audit entity -->
+			<audit name="operations.shipment.discrepancy.FoundShipment" entity="FoundShipment" enabled="true">
+					FoundShipmentAudit
+			</audit>
+	</audit-entities>	
+	<!--Added by A-5807 for ICRD-146757 starts-->
+	<audit-entities package="com.ibsplc.icargo.business.operations.shipment.plt">
+			<!-- entity: the simple class name of the entity -->
+			<!-- name: the display name for the entity -->
+			<!-- the simple class name the Audit entity -->
+			<audit name="operations.shipment.auditpiecegroupdetails" entity="ShipmentPieceGroup" enabled="true">
+					ShipmentPieceGroupAudit
+			</audit>
+	</audit-entities>
+	<!--Added by A-5807 for ICRD-146757 ends-->
+</audit-mappings>
+

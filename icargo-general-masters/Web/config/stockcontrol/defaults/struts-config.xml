@@ -1,0 +1,1655 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN "
+	"http://struts.apache.org/dtds/struts-config_1_2.dtd " >
+
+<struts-config>
+
+	<form-beans>
+		<!--***********************Added by Jens*****************-->	
+		<form-bean name="MaintainStockAgentMappingForm" 
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.MaintainStockAgentMappingForm"  />						
+		<!--***********************Added by Rajeesh*****************-->
+		<form-bean name="MaintainStockHolderForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.MaintainStockHolderForm"/>
+		<form-bean name="MaintainStockRequestForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.MaintainStockRequestForm"/>
+		<!--*****************Added by Chippy STARTS*******************-->
+		<form-bean name="StockDetailsForm"
+		 	type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.StockDetailsForm"/>
+		<!--*****************Added by Chippy ENDS*******************-->
+
+		<form-bean name="CreateStockForm"
+		 	type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.CreateStockForm"/>
+		<!--*****************Added by Kirupakaran*******************-->
+		<form-bean name="AllocateNewStockForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.AllocateNewStockForm"/> 
+		<form-bean name="ApproverLovForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.ApproverLovForm"/>
+		<form-bean name="EditRangeForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.EditRangeForm"/>
+		<form-bean name="ListBlackListedStockForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.ListBlackListedStockForm"/>
+		<form-bean name="RevokeBlackListedStockForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.RevokeBlackListedStockForm"/>
+		<form-bean name="StockHolderLovForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.StockHolderLovForm"/>
+		<!--*****************Added by Smrithi*******************-->
+		<form-bean name="ViewRangeForm"
+				type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.ViewRangeForm"/>
+		<form-bean name="UtilisedDocsInfoForm"
+				type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.UtilisedDocsInfoForm"/>
+		<form-bean name="BlackListStockForm"
+		    	type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.BlackListStockForm"/>
+		<form-bean name="AllocateStockForm"
+				type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.AllocateStockForm"/>
+		<form-bean name="TransferStockForm"
+				type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.TransferStockForm"/>
+		<form-bean name="ReturnStockForm"
+				type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.ReturnStockForm"/>
+		<!--*****************Added by Salish*******************-->
+		<form-bean name="ListStockHolderForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.ListStockHolderForm"  />
+		<form-bean name="ListStockRequestForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.ListStockRequestForm"  />
+		<form-bean name="MonitorStockForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.MonitorStockForm"  />
+
+
+	 	 <!--***********************Added by Santhi For R2 on 10th feb*****************-->
+	 	 <form-bean name="StockListForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.StockListForm"  />
+		<form-bean name="ViewStockRequestForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.ViewStockRequestForm"  />
+		<form-bean name="CreateStockRequestForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.CreateStockRequestForm"  />
+
+	  	<!--***********************Added by Santhi For R2 on 22th feb*****************-->
+	  	<form-bean name="ReserveAWBForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.ReserveAWBForm"  />
+
+	 	<!--***********************Added by Santhi For R2 ends*****************-->
+
+	         <!--***********************Added by Raji For R2 on 14th feb ****************-->
+	         <form-bean name="ReservationListingForm"
+	               type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.ReservationListingForm" />
+	 	<!--***********************Added by Raji For R2 on 14th feb ends*****************-->
+
+	 	<!--***********************Added by Anbumani For R2 on 16th feb starts****************-->
+	 	<form-bean name="StockManagerForm" type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.StockManagerForm" />
+	 	<!--***********************Added by Anbumani For R2 on 16th feb ends****************-->
+	 	<!--***********************Added by Sathish*****************-->	
+		<form-bean name="DeleteAwbForm" 
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.DeleteAwbForm" scope="request" />
+			
+		<!--***********************Added by Dhamu*****************-->	
+		<form-bean name="ListAwbStockHistoryForm" 
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.ListAwbStockHistoryForm" scope="request" />	
+		<form-bean name="ViewAwbStockForm" 
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.ViewAwbStockForm" scope="request" />	
+		<!--***********************Added by Dhamu Ends*****************-->	
+			<!--Added by a-4443 for icrd-3024 starts-->
+			<form-bean name="ConfirmStockForm" type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.ConfirmStockForm" scope="request" />	
+			<form-bean name="MissingStockForm" 
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.MissingStockForm" scope="request" />		
+			 <!--************************Added by a-4443 for icrd-3024 ends*************-->
+			 <form-bean name="DocumentRangeForm" 
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.DocumentRangeForm" scope="request" />
+			<form-bean name="DeleteStockRangeForm" 
+			type="com.ibsplc.icargo.presentation.web.struts.form.stockcontrol.defaults.DeleteStockRangeForm" scope="request" />	
+	 </form-beans>
+
+	<global-forwards>
+	</global-forwards>
+
+		<action-mappings>
+		<!--***********************Added by Jens START****************-->
+				<action path="/stockcontrol.defaults.screenloadmaintainstockagentmapping"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockAgentMappingForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MaintainStockAgentMapping.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.clearmaintainstockagentmapping"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockAgentMappingForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MaintainStockAgentMapping.jsp" />
+				</action>					
+				<action path="/stockcontrol.defaults.addrowmaintainstockagentmapping"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockAgentMappingForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MaintainStockAgentMapping.jsp" />
+				</action>						
+				<action path="/stockcontrol.defaults.deleterowmaintainstockagentmapping"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockAgentMappingForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MaintainStockAgentMapping.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.listmaintainstockagentmapping"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockAgentMappingForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MaintainStockAgentMapping.jsp" />
+				</action>	
+				<action path="/stockcontrol.defaults.navigatemaintainstockagentmapping"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockAgentMappingForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MaintainStockAgentMapping.jsp" />
+				</action>												
+				<action path="/stockcontrol.defaults.savemaintainstockagentmapping"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockAgentMappingForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MaintainStockAgentMapping.jsp" />
+				</action>
+		
+				
+		<!--***********************Added by Jens END****************-->
+		<!--***********************Added by Dhamu START****************-->
+				<action path="/stockcontrol.defaults.screenloadlistawbstockhistory"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListAwbStockHistoryForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListAwbStockHistory.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.listawbstockhistory"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListAwbStockHistoryForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListAwbStockHistory.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.clearawbstockhistory"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListAwbStockHistoryForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListAwbStockHistory.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.screenloadviewawbstock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ViewAwbStockForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ViewAwbStock.jsp" />
+				</action>
+				
+				<action path="/stockcontrol.defaults.printstockrangehistory"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListAwbStockHistoryForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListAwbStockHistory.jsp" />
+				</action>
+		<!--***********************Added by Dhamu END****************-->
+		
+				<action path="/stockcontrol.defaults.printagentCSV"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListAwbStockHistoryForm"
+					scope="request"
+					validate="false">
+				</action>
+		<!--***********************Added by AKHILA START****************-->
+				<action path="/stockcontrol.defaults.screenloadmaintainstockholder"
+				    type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockHolderForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success"
+					path="/jsp/stockcontrol/defaults/MaintainStockHolder.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.clearmaintainstockholder"
+				    type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockHolderForm"
+					scope="request"
+					validate="false">
+					<forward name="clear_success"
+					path="/jsp/stockcontrol/defaults/MaintainStockHolder.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.addrow"
+				    type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockHolderForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success"
+					path="/jsp/stockcontrol/defaults/MaintainStockHolder.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.deleterow"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockHolderForm"
+					scope="request"
+					validate="false">
+					<forward name="delete_success"
+					path="/jsp/stockcontrol/defaults/MaintainStockHolder.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.save"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockHolderForm"
+					scope="request"
+					validate="false">
+					<forward name="save_success"
+					path="/jsp/stockcontrol/defaults/MaintainStockHolder.jsp" />
+					<forward name="save_failure"
+					path="/jsp/stockcontrol/defaults/MaintainStockHolder.jsp" />
+					<forward name="savestockholder_success" 
+					path="/stockholder.defaults.acknowledgesave.do" />
+				</action>
+				<!-- Added by A-7364 as part of ICRD-217145 starts-->
+				<action path="/stockholder.defaults.acknowledgesave" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockHolderForm"
+					scope="request"
+					validate="false">
+					<forward name="action_success" path="/workflow.defaults.messageinbox.listmessageinbox.do?listStatus=fromAnotherScreen" />
+				</action>
+				<!-- Added by A-7364 as part of ICRD-217145 ends-->
+				<action path="/stockcontrol.defaults.update"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockHolderForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success"
+					path="/jsp/stockcontrol/defaults/MaintainStockHolder.jsp" />
+			    </action>
+				<action path="/stockcontrol.defaults.viewstockholder"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockHolderForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success"
+					path="/jsp/stockcontrol/defaults/MaintainStockHolder.jsp" />
+				</action>
+<!-- newly added by raji starts-->
+				<action path="/stockcontrol.defaults.fiterdetailsstockholder"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListStockHolderForm"
+					scope="request"
+					validate="false">
+					<forward name="filterdetails_success" path="/stockcontrol.defaults.screenloadmaintainstockholder.do" />
+				</action>
+				<action path="/stockcontrol.defaults.closestockholder" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockHolderForm"
+					scope="request"
+					validate="false">
+					<forward name="close_success" path="/home.jsp" />
+					<forward name="returnToStockHolderList_success" path="/stockcontrol.defaults.returnToListStock.do" />
+					<forward name="closeToMessageInbox_success" path="/workflow.defaults.messageinbox.listmessageinbox.do?listStatus=fromAnotherScreen" />
+				</action>
+				<action path="/stockcontrol.defaults.returnToListStock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListStockHolderForm"
+					scope="request"
+					validate="false">
+					<forward name="reloadListStock_success" path="/jsp/stockcontrol/defaults/ListStockHolder.jsp" />
+				</action>
+	<!-- newly added by raji ends-->
+
+				<!--action path="/stockcontrol.defaults.screenloadapproverlov"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ApproverLovForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success"
+					path="/jsp/stockcontrol/defaults/ApproverLov.jsp" />
+				</action-->
+				<action path="/stockcontrol.defaults.listLov"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ApproverLovForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success"
+					path="/jsp/stockcontrol/defaults/ApproverLov.jsp" />
+					<forward name="list_failure"
+					path="/jsp/stockcontrol/defaults/ApproverLov.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.selectfromlov"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ApproverLovForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success"
+					path="/jsp/stockcontrol/defaults/ApproverLov.jsp" />
+				</action>
+		        <action path="/stockcontrol.defaults.reload"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="MaintainStockHolderForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success"
+					path="/jsp/stockcontrol/defaults/MaintainStockHolder.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.screenloadallocatestock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.liststock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+					<forward name="list_failure"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+				</action>
+				<!-- Added by A-7534 for ICRD-227512 starts-->
+				<action path="/stockcontrol.defaults.liststockfromworkflow"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+					<forward name="list_failure"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+				</action>
+				<!-- Added by A-7534 for ICRD-227512 ends-->
+				<action path="/stockcontrol.defaults.approvestock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+					<forward name="reject_failure"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+					<forward name="msg_proccessed" 
+					path="/stockholder.defaults.acknowledgerequestchange.do" />
+				</action>
+				<action path="/stockcontrol.defaults.rejectstock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+					<forward name="reject_failure"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+					<forward name="msg_proccessed" 
+					path="/stockholder.defaults.acknowledgerequestchange.do" />
+				</action>
+				<!-- Added by A-7364 as part of ICRD-227512 starts-->
+				<action path="/stockholder.defaults.acknowledgerequestchange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="action_success" path="/workflow.defaults.messageinbox.listmessageinbox.do?listStatus=fromAnotherScreen" />
+				</action>
+				<!-- Added by A-7364 as part of ICRD-227512 ends-->
+				<action path="/stockcontrol.defaults.listranges"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+					<forward name="list_failure"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.onblur"
+				    type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.allocatestock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+					<forward name="allocate_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+					<forward name="reject_failure"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+					<forward name="screenload_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.completestock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+					<forward name="reject_failure"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+					<forward name="msg_proccessed" 
+					path="/stockholder.defaults.acknowledgerequestchange.do" />
+				</action>
+				<action path="/stockcontrol.defaults.clear"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="clear_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.list"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+				</action>
+
+				<action path="/stockcontrol.defaults.screenloadmonitorallocatestock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="AllocateStockForm"
+					scope="request"
+					validate="false">
+					<forward name="list_success"
+					path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+				</action>
+<!--*****************Added by Akhila END*******************-->
+		<action path="/stockcontrol.defaults.screenloadmaintainstockreq" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MaintainStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MaintainStockRequest.jsp" />
+		</action>
+
+
+		<action path="/stockcontrol.defaults.screenloadcreatestock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CreateStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/CreateStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.screenloadcreatestockpopup" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CreateStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenloadpopup_success" path="/jsp/stockcontrol/defaults/CreateStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.addcreatestock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CreateStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/CreateStock.jsp" />
+			<forward name="screenloadpopup_success" path="/jsp/stockcontrol/defaults/CreateStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.deletecreatestock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CreateStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/CreateStock.jsp" />
+			<forward name="screenloadpopup_success" path="/jsp/stockcontrol/defaults/CreateStockPopUp.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.savecreatestock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CreateStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/CreateStock.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/CreateStock.jsp" />
+			<forward name="screenloadpopup_success" path="/jsp/stockcontrol/defaults/CreateStock.jsp" />
+		</action>
+		<!--*****************Added by Kirupakaran*******************-->
+
+		<action path="/stockcontrol.defaults.screenloadallocatenewstock"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateNewStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.screenloadmonitorallocatenewstock"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateNewStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.screenloadapproverlov"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ApproverLovForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/stockcontrol.defaults.listLov.do" />			
+		</action>
+
+		<!--*****************Added by Smrithi*******************-->
+ 		<action path="/stockcontrol.defaults.screenloadviewrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ViewRangeForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ViewRange.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.listawbstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ViewRangeForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ViewRange_ListAwbStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.utiliseddocsinfo" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="UtilisedDocsInfoForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/UtilisedDocsInfo.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.screenloadblackliststock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="BlackListStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/BlacklistStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.screenloadblackliststockpopup" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="BlackListStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/BlacklistStockPopUp.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.blackliststock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="BlackListStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/BlacklistStock.jsp" />
+			<forward name="screenloadpopup_success" path="/jsp/stockcontrol/defaults/BlacklistStockPopUp.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.void" 
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="BlackListStockForm"
+			scope="request"
+			validate="false">
+			<forward name="void_success" path="/cashiering.defaults.generatepaymentadvicescreenloadcommand.do?screenMode=VOIDSTK" />
+			<forward name="void_failure" path="/jsp/stockcontrol/defaults/BlacklistStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.reloadblackliststock" 
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="BlackListStockForm"
+			scope="request"
+			validate="false">
+			<forward name="reload_success" path="/jsp/stockcontrol/defaults/BlacklistStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.screenloadallocatestock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+		</action>
+
+<!--*****************Added by JIJI*******************-->
+		<action path="/stockcontrol.defaults.allocatenewstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateStockForm"
+			scope="request"
+			validate="false">
+			<forward name="allocateNewStock_success" path="/stockcontrol.defaults.screenloadallocatenewstock.do" />
+		</action>
+
+		<action path="/stockcontrol.defaults.reloadAllocateStock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateStockForm"
+			scope="request"
+			validate="false">
+			<forward name="reload_success" path="/jsp/stockcontrol/defaults/AllocateStock.jsp" />
+		</action>
+<!--*****************Added by JIJI*******************-->
+
+		<!--*****************Added by Salish*******************-->
+		<action path="/stockcontrol.defaults.screenloadliststockholder" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListStockHolderForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListStockHolder.jsp" />
+			</action>
+		<!--*****************Added by Smrithi*******************-->
+		<action path="/stockcontrol.defaults.screenloadmonitorstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MonitorStockForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MonitorStock.jsp" />
+				<forward name="screenload_MoniterList" path="/stockcontrol.defaults.listmonitorstock.do" />
+				
+		</action>
+		
+		<!--*****************Added by Chippy for stock details*******************-->
+		<action path="/stockcontrol.defaults.screenloadstockdetails" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="StockDetailsForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/stockcontrol/defaults/StockDetails.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.liststockdetails" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="StockDetailsForm"
+				scope="request"
+				validate="false">
+				<forward name="list_success" path="/jsp/stockcontrol/defaults/StockDetails.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.clearstockdetails" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="StockDetailsForm"
+				scope="request"
+				validate="false">
+				<forward name="clear_success" path="/jsp/stockcontrol/defaults/StockDetails.jsp" />
+		</action>
+			<action path="/stockcontrol.defaults.closestockdetails" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="StockDetailsForm"
+				scope="request"
+				validate="false">
+				<forward name="close_success" path="/home.jsp"/>
+		</action>
+		<!--*****************end the actions in the stock details screen added by Chippy*******************-->
+		<action path="/stockcontrol.defaults.viewmonitorstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MonitorStockForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MonitorStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.clearmonitorstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MonitorStockForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MonitorStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.listmonitorstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MonitorStockForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MonitorStock.jsp" />
+		</action>
+		<!--*****************Added by A-5201 for ICRD-24963 starts*******************-->
+<action
+			path="/stockcontrol.defaults.closeMonitorStock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MonitorStockForm"
+			scope="request"
+			validate="false">
+			<forward name ="closetoAllocateStock" path="/stockcontrol.defaults.reloadAllocateStock.do" />
+			<forward name ="closeSuccess" path="/home.jsp" />
+		</action>
+		<!--*****************Added by A-5201 for ICRD-24963 end *******************-->
+		<action path="/stockcontrol.defaults.generateawbstockreport" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MonitorStockForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MonitorStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.createstockrequest" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MonitorStockForm"
+			scope="request"
+			validate="false">
+			<forward name="createStock_success" path="/stockcontrol.defaults.screenloadmaintainstockreq.do" />
+		</action>
+		<action path="/stockcontrol.defaults.closecreaterequest" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MaintainStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="returnToMonitorStock_success" path="/stockcontrol.defaults.reloadMonitor.do" />
+		</action>
+		<action path="/stockcontrol.defaults.closeallocatenewstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateNewStockForm"
+			scope="request"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+			<forward name="returnToMonitorStock_success" path="/stockcontrol.defaults.reloadMonitor.do" />
+			<forward name="returnToAllocateStock_success" path="/stockcontrol.defaults.reloadAllocateStock.do" />
+		</action>
+
+		<action path="/stockcontrol.defaults.createstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MonitorStockForm"
+			scope="request"
+			validate="false">
+			<forward name="createStock_success" path="/stockcontrol.defaults.screenloadcreatestock.do" />
+		</action>
+		<action path="/stockcontrol.defaults.screenloadcreatestock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CreateStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/CreateStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.closecreatestock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="CreateStockForm"
+			scope="request"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+		
+			<forward name="returnToMonitorStock_success" path="/stockcontrol.defaults.reloadMonitor.do" />
+			
+		</action>
+		<action path="/stockcontrol.defaults.closeallocatestock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateStockForm"
+			scope="request"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+			<forward name="returnToMonitorStock_success" path="/stockcontrol.defaults.reloadMonitor.do" />
+			<forward name="closeToMessageInbox_success" path="/workflow.defaults.messageinbox.listmessageinbox.do?listStatus=fromAnotherScreen" />
+		</action>
+
+
+		<action path="/stockcontrol.defaults.reloadMonitor" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MonitorStockForm"
+			scope="request"
+			validate="false">
+			<forward name="reload_success" path="/jsp/stockcontrol/defaults/MonitorStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.monitorallocatestock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MonitorStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MonitorStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.screenloadtransferstockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="TransferStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/TransferStockRange.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.addtransferstockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="TransferStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/TransferStockRange.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.deletetransferstockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="TransferStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/TransferStockRange.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.transferstockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="TransferStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/TransferStockRange.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.screenloadreturnstockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ReturnStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ReturnStockRange.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.addreturnstockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ReturnStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ReturnStockRange.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.deletereturnstockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ReturnStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ReturnStockRange.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.returnstockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ReturnStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ReturnStockRange.jsp" />
+		</action>
+		<!--******************************Added By Amritha*****************-->
+
+
+		<action path="/stockcontrol.defaults.clearscreen"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListStockHolderForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListStockHolder.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.liststockholder"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListStockHolderForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListStockHolder.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.cancelstockholder"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListStockHolderForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListStockHolder.jsp" />
+		</action>
+		<!--**********************added by Smrithi on 07 Sep**********************-->
+
+		<action path="/stockcontrol.defaults.screenloadliststockrequest" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListStockRequest.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.clearliststockrequest" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListStockRequest.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.liststockrequest" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListStockRequest.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/ListStockRequest.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.cancelliststockrequest" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListStockRequest.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/ListStockRequest.jsp" />
+		</action>
+<!-- newly added by raji starts-->
+		<action path="/stockcontrol.defaults.fiterdetailsstockrequest"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="filterdetails_success" path="/stockcontrol.defaults.screenloadmaintainstockreq.do" />
+		</action>
+		<action path="/stockcontrol.defaults.closestockrequest" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MaintainStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+			<forward name="returnToStockRequestList_success" path="/stockcontrol.defaults.returnToListStockRequest.do" />
+			<forward name="returnToMonitorStock_success" path="/stockcontrol.defaults.reloadMonitor.do" />
+		</action>
+		<action path="/stockcontrol.defaults.returnToListStockRequest"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ListStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="reloadListStock_success" path="/jsp/stockcontrol/defaults/ListStockRequest.jsp" />
+		</action>
+<!-- newly added by raji ends-->
+		<!--********************added by Kirupakaran on 08 Sep***************-->
+
+		<action path="/stockcontrol.defaults.savestockreq" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MaintainStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MaintainStockRequest.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/MaintainStockRequest.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.modifystockreq" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MaintainStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MaintainStockRequest.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/MaintainStockRequest.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.viewstockreq" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MaintainStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MaintainStockRequest.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/MaintainStockRequest.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.clearstockreq" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MaintainStockRequestForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MaintainStockRequest.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/MaintainStockRequest.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.screenloadstockholderlov" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="StockHolderLovForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/StockHolderLov.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/StockHolderLov.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.clearstockholderlov" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="StockHolderLovForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/StockHolderLov.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/StockHolderLov.jsp" />
+		</action>
+		<!--**************Added by Kirupakaran on 19 Sep******************-->
+
+		<action path="/stockcontrol.defaults.screenloadeditrange"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="EditRangeForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/EditRange.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/EditRange.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.addroweditrange"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="EditRangeForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/EditRange.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/EditRange.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.deleteroweditrange"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="EditRangeForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/EditRange.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/EditRange.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.listeditrange"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="EditRangeForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/EditRange.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/EditRange.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.transfereditrange"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="EditRangeForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/EditRange.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/EditRange.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.closeeditrange"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="EditRangeForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/EditRange.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/EditRange.jsp" />
+		</action>
+
+		<!--*****************Added by Kirupakaran on 20 Sep for Allocate New Stock********-->
+
+		<action path="/stockcontrol.defaults.screenloadallocatenewstock"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateNewStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.addrowallocatenewstock"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateNewStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.deleterowallocatenewstock"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateNewStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.listallocatenewstock"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateNewStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.transferallocatenewstock"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateNewStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+		</action>
+
+		<action path="/stockcontrol.defaults.saveallocatenewstock"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateNewStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/AllocateNewStock.jsp" />
+		</action>
+
+	<!--***************************Added by Kirupakaran on 21 Sep for ListBlacklistedStock****************-->
+
+		<action path="/stockcontrol.defaults.screenloadlistblacklistedstock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListBlackListedStockForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListBlacklistedStock.jsp" />
+					<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/ListBlacklistedStock.jsp" />
+				</action>
+
+				<action path="/stockcontrol.defaults.listblacklistedstock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListBlackListedStockForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListBlacklistedStock.jsp" />
+					<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/ListBlacklistedStock.jsp" />
+				</action>
+
+				<action path="/stockcontrol.defaults.clearblacklistedstock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListBlackListedStockForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListBlacklistedStock.jsp" />
+					<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/ListBlacklistedStock.jsp" />
+				</action>
+
+				<action path="/stockcontrol.defaults.revokeblacklistedstock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ListBlackListedStockForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ListBlacklistedStock.jsp" />
+					<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/ListBlacklistedStock.jsp" />
+				</action>
+
+				<action path="/stockcontrol.defaults.screenloadrevokeblacklistedstock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="RevokeBlackListedStockForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/RevokeBlacklistedStock.jsp" />
+					<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/RevokeBlacklistedStock.jsp" />
+				</action>
+
+				<action path="/stockcontrol.defaults.revokingblacklistedstock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="RevokeBlackListedStockForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/RevokeBlacklistedStock.jsp" />
+					<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/RevokeBlacklistedStock.jsp" />
+				</action>
+
+				 <!--***********************Added by Santhi For R2 on 10th feb *****************-->
+
+				<action path="/stockcontrol.defaults.cto.screenloadstocklist"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="StockListForm"
+					  scope="request"
+					  validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/cto/StockList.jsp"/>
+				</action>
+				<action path="/stockcontrol.defaults.liststocks"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="StockListForm"
+					  scope="request"
+					  validate="false">
+					<forward name="screenlist_success" path="/jsp/stockcontrol/defaults/cto/StockList.jsp"/>
+					<forward name="screenlist_failure" path="/jsp/stockcontrol/defaults/cto/StockList.jsp"/>
+				</action>
+				<action path="/stockcontrol.defaults.cto.reloadstockrequest"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="StockListForm"
+					  scope="request"
+					  validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/cto/StockList.jsp"/>
+				</action>
+				<action path="/stockcontrol.defaults.cto.viewstockrequest"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="ViewStockRequestForm"
+					  scope="request"
+					  validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/cto/ViewRequest.jsp"/>
+				</action>
+				<action path="/stockcontrol.defaults.cto.createstockrequestscreenload"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="CreateStockRequestForm"
+					  scope="request"
+					  validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/cto/CreateRequest.jsp"/>
+				</action>
+				<action path="/stockcontrol.defaults.savestockrequest"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="CreateStockRequestForm"
+					  scope="request"
+					  validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/cto/CreateRequest.jsp"/>
+					<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/cto/CreateRequest.jsp"/>
+				</action>
+				<action path="/stockcontrol.defaults.clearliststocks"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="StockListForm"
+					  scope="request"
+					  validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/cto/StockList.jsp"/>
+				</action>
+				<action path="/stockcontrol.defaults.cto.home"
+					name="StockListForm"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+				<forward name="close_success" path="/home.jsp"/>
+				</action>
+				<action path="/stockcontrol.defaults.cto.showstockmanager"
+					name="StockListForm"
+					scope="request"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					validate="false">
+				<forward name="stockmanagerscreenload_success" path="/jsp/stockcontrol/defaults/cto/StockList.jsp"/>
+				</action>
+				<!--***********************for report *****************-->
+
+				<action path="/stockcontrol.defaults.cto.stocklistreport"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="StockListForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="screenload_success" path="/jsp/stockcontrol/defaults/cto/StockList.jsp" />
+				</action>
+				<!--***********************for report *****************-->
+
+					<!--***********************Added by Santhi For Reservation *****************-->
+					<action path="/stockcontrol.defaults.cto.reserveawbstocklistscreenload"
+						  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						  name="ReserveAWBForm"
+						  scope="request"
+						  validate="false">
+						<forward name="screenload_success" path="/jsp/stockcontrol/defaults/cto/ReservedAWBList.jsp"/>
+					</action>
+					<action path="/stockcontrol.defaults.cto.reservestockscreenload"
+						  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						  name="ReserveAWBForm"
+						  scope="request"
+						  validate="false">
+						<forward name="screenload_success" path="/jsp/stockcontrol/defaults/cto/Reservation.jsp"/>
+					</action>
+					<action path="/stockcontrol.defaults.cto.reserveawbstock"
+						  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						  name="ReserveAWBForm"
+						  scope="request"
+						  validate="false">
+						<forward name="reserve_failure" path="/jsp/stockcontrol/defaults/cto/Reservation.jsp"/>
+						<forward name="reserve_success" path="/jsp/stockcontrol/defaults/cto/Reservation.jsp"/>
+					</action>
+					<!--***********************Modified by Santhi For Add/Delete *****************-->
+					<action path="/stockcontrol.defaults.cto.reservestockaddrow"
+						  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						  name="ReserveAWBForm"
+						  scope="request"
+						  validate="false">
+						<forward name="addrow_success" path="/jsp/stockcontrol/defaults/cto/ReservationRefresh_Ajax.jsp"/>
+						<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/cto/Reservation.jsp"/>
+					</action>		
+					<action path="/stockcontrol.defaults.cto.reservestockdeleterow"
+						  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						  name="ReserveAWBForm"
+						  scope="request"
+						  validate="false">
+						<forward name="deleterow_success" path="/jsp/stockcontrol/defaults/cto/ReservedAWB_Table.jsp"/>
+					</action>
+					<action path="/stockcontrol.defaults.cto.closeawblist"
+						  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						  name="ReserveAWBForm"
+						  scope="request"
+						  validate="false">
+						<forward name="screenclose_success" path="/home.jsp"/>
+					</action>
+					<action path="/stockcontrol.defaults.cto.closereservescreen"
+						  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						  name="ReserveAWBForm"
+						  scope="request"
+						  validate="false">
+						<forward name="closescreen_success" path="/home.jsp"/>
+					</action>
+					<action path="/stockcontrol.defaults.cto.clearreservationscreen"
+						  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						  name="ReserveAWBForm"
+						  scope="request"
+						  validate="false">
+						<forward name="screenload_success" path="/jsp/stockcontrol/defaults/cto/Reservation.jsp"/>
+					</action>
+					<action path="/stockcontrol.defaults.cto.printawblist"
+						  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+						  name="ReserveAWBForm"
+						  scope="request"
+						  validate="false">
+						<forward name="screenload_success" path="/jsp/stockcontrol/defaults/cto/Reservation.jsp"/>
+					</action>
+							  <!--***********************Added by Santhi For R2  ends*****************-->
+
+			<!--***********************Added by Raji For R2 on 14th feb *****************-->
+				 <action path="/stockcontrol.defaults.reservationlistingscreenload"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="ScreenLoadReservation_Success" path="/jsp/stockcontrol/defaults/cto/ReservationListing.jsp" />
+				</action>
+				<!--***********************for report *****************-->
+
+				<action path="/stockcontrol.defaults.cto.reservationlistreport"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="screenload_success" path="/jsp/stockcontrol/defaults/cto/ReservationListing.jsp" />
+				</action>
+				<!--***********************for report *****************-->
+
+				<action path="/stockcontrol.defaults.reservationlisting.ListCommand"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="list_reservation_success" path="/jsp/stockcontrol/defaults/cto/ReservationListing_Table.jsp" />
+					  <forward name="list_reservation_failure" path="/jsp/stockcontrol/defaults/cto/ReservationListing_Table.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.reservationlisting.ClearCommand"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="clear_reservation_success" path="/jsp/stockcontrol/defaults/cto/ReservationListing.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.reservationlisting.CloseCommand"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="close_reservation_success" path="/home.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.reservationlisting.CancelCommand"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="cancel_reservation_success" path="/jsp/stockcontrol/defaults/cto/CancelReservation.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.reservationlisting.ExtendCommand"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="extend_reservation_success" path="/jsp/stockcontrol/defaults/cto/ExtendReservation.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.reservationlisting.ReloadCommand"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="reload_success" path="/jsp/stockcontrol/defaults/cto/ReservationListing.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.reservationlisting.OkCancelCommand"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="Cancel_reservation_success" path="/jsp/stockcontrol/defaults/cto/CancelReservation.jsp" />
+					  <forward name="Cancel_reservation_failure" path="/jsp/stockcontrol/defaults/cto/CancelReservation.jsp" />
+
+				</action>
+				<action path="/stockcontrol.defaults.reservationlisting.OkExtendCommand"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="Extend_reservation_success" path="/jsp/stockcontrol/defaults/cto/ExtendReservation.jsp" />
+					  <forward name="Extend_reservation_failure" path="/jsp/stockcontrol/defaults/cto/ExtendReservation.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.reservationlisting.NavigateCommand"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="navigation_reservation_success" path="/jsp/stockcontrol/defaults/cto/CancelReservation.jsp" />
+					  <forward name="navigation_reservation_failure" path="/jsp/stockcontrol/defaults/cto/CancelReservation.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.reservationlisting.ExtendNavigateCommand"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="extend_navigation_reservation_success" path="/jsp/stockcontrol/defaults/cto/ExtendReservation.jsp" />
+					  <forward name="extend_navigation_reservation_failure" path="/jsp/stockcontrol/defaults/cto/ExtendReservation.jsp" />
+				</action>
+				<action path="/stockcontrol.defaults.reservationlisting.CloseCancelCommand"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="close_reservation_success" path="/jsp/stockcontrol/defaults/cto/CancelReservation.jsp" />
+
+				</action>
+				<action path="/stockcontrol.defaults.reservationlisting.CloseExtendCommand"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+					  name="ReservationListingForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="close_reservation_success" path="/jsp/stockcontrol/defaults/cto/ExtendReservation.jsp" />
+
+				</action>
+
+			<!--***********************Added by Raji For R2 on 14th feb ends*****************-->
+	<!--***********************Added by Anbumani For R2 on 16th feb starts****************-->
+
+	<action path="/stockcontrol.defaults.cto.stockmanagerscreenload"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+		  name="StockManagerForm"
+		  scope="request"
+		  validate="false">
+		  <forward name="screenload_stockmanager_success" 
+			path="/jsp/stockcontrol/defaults/cto/StockManager.jsp" />
+	</action>
+
+	<action path="/stockcontrol.defaults.cto.liststockmanager"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+		  name="StockManagerForm"
+		  scope="request"
+		  validate="false">
+		  <forward name="list_stockmanager_success" 
+			path="/jsp/stockcontrol/defaults/cto/StockManager.jsp" />
+		  <forward name="list_failure" 
+			path="/jsp/stockcontrol/defaults/cto/StockManager.jsp" />
+
+	</action>
+
+	<action path="/stockcontrol.defaults.cto.clearstockmanager"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+		  name="StockManagerForm"
+		  scope="request"
+		  validate="false">
+		  <forward name="clear_stockmanager_success" 
+			path="/jsp/stockcontrol/defaults/cto/StockManager.jsp" />
+		  <forward name="screenload_stockmanager_success" 
+			path="/jsp/stockcontrol/defaults/cto/StockManager.jsp" />						
+	</action>
+
+	<action path="/stockcontrol.defaults.cto.addstockmanager"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+		  name="StockManagerForm"
+		  scope="request"
+		  validate="false">
+		  <forward name="add_stock_success" 
+			path="/jsp/stockcontrol/defaults/cto/AddStock.jsp" />
+	</action>
+
+	<action path="/stockcontrol.defaults.cto.removestockmanager"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+		  name="StockManagerForm"
+		  scope="request"
+		  validate="false">
+		  <forward name="remove_stock_success" 
+			path="/jsp/stockcontrol/defaults/cto/RemoveStock.jsp" />
+	</action>
+
+	<action path="/stockcontrol.defaults.cto.closestockmanager"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+		  name="StockManagerForm"
+		  scope="request"
+		  validate="false">
+		  <forward name="close_stockmanager_success" 
+			path="/home.jsp" />
+		<forward name="close_stockmanager_success" 
+			path="/home.jsp" />
+		<forward name="stocklist_success" 
+			path="/stockcontrol.defaults.liststocks.do" />
+	</action>		
+
+	<action path="/stockcontrol.defaults.cto.addokstockmanager"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+		  name="StockManagerForm"
+		  scope="request"
+		  validate="false">
+		  <forward name="add_stock_ok_success" 
+			path="/jsp/stockcontrol/defaults/cto/AddStock.jsp" />
+		  <forward name="add_ok_failure" 
+			path="/jsp/stockcontrol/defaults/cto/AddStock.jsp" />	
+	</action>
+
+	<action path="/stockcontrol.defaults.cto.removeokstockmanager"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+		  name="StockManagerForm"
+		  scope="request"
+		  validate="false">
+		  <forward name="remove_ok_success" 
+			path="/jsp/stockcontrol/defaults/cto/RemoveStock.jsp" />
+		  <forward name="remove_ok_failure" 
+			path="/jsp/stockcontrol/defaults/cto/RemoveStock.jsp" />
+	</action>		
+
+	<action path="/stockcontrol.defaults.cto.getnextstockdetails"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+		  name="StockManagerForm"
+		  scope="request"
+		  validate="false">
+		  <forward name="get_next_success" 
+			path="/jsp/stockcontrol/defaults/cto/RemoveStock.jsp" />
+		  <forward name="get_next_failure" 
+			path="/jsp/stockcontrol/defaults/cto/RemoveStock.jsp" />
+	</action>
+	<!--***********************Added by Anbumani For R2 on 16th feb endss****************-->
+ <!--************************Added by a-4443 for icrd-3024 STARTS*************-->
+	<action path="/stockcontrol.defaults.screenloadconfirmstock"
+					type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="ConfirmStockForm"
+					scope="request"
+					validate="false">
+					<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ConfirmStock.jsp" />
+				</action>
+	<action path="/stockcontrol.defaults.closeconfirmstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ConfirmStockForm"
+			scope="request"
+			validate="false">
+			<forward name="close_success" path="/home.jsp" />
+	</action>
+			<action path="/stockcontrol.defaults.clearconfirmstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ConfirmStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ConfirmStock.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/ConfirmStock.jsp" />
+		</action>
+	<action path="/stockcontrol.defaults.listconfirmstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ConfirmStockForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/stockcontrol/defaults/ConfirmStock.jsp" />
+			<forward name="list_failure" path="/jsp/stockcontrol/defaults/ConfirmStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.confirmtransitstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ConfirmStockForm"
+			scope="request"
+			validate="false">
+			<forward name="confirm_success" path="/jsp/stockcontrol/defaults/ConfirmStock.jsp" />
+			<forward name="confirm_failure" path="/jsp/stockcontrol/defaults/ConfirmStock.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.blacklisttransitstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ConfirmStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success_blacklist" path="/stockcontrol.defaults.screenloadblackliststock.do" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/ConfirmStock.jsp" />
+		</action>	
+		<action path="/stockcontrol.defaults.missingstockscreenloadpopup"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction" 
+			name="MissingStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenloadpopup_success" 
+			path="/jsp/stockcontrol/defaults/MissingStock.jsp" />
+		</action>
+			
+		<action path="/stockcontrol.defaults.missingstockok" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MissingStockForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/stockcontrol/defaults/MissingStock.jsp" />
+			<forward name="action_failure" path="/jsp/stockcontrol/defaults/MissingStock.jsp" />
+		</action>	
+		<action path="/stockcontrol.defaults.selectedmissingtransitstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ConfirmStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success_missing" path="/jsp/stockcontrol/defaults/ConfirmStock.jsp" />
+			<forward name="screenload_failure" path="/jsp/stockcontrol/defaults/ConfirmStock.jsp" />
+		</action>	
+		<action path="/stockcontrol.defaults.confirmstock.reloadconfirmstock" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ConfirmStockForm"
+			scope="request"
+			validate="false">
+			<forward name="action_success" path="/jsp/stockcontrol/defaults/ConfirmStock.jsp" />
+			<forward name="action_failure" path="/jsp/stockcontrol/defaults/ConfirmStock.jsp" />
+		</action>	
+			
+		<action path="/stockcontrol.defaults.monitorstock.generatestockallocationreport" 
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MonitorStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/MonitorStock.jsp" />				
+		</action>
+		
+		<action path="/stockcontrol.defaults.allocatenewstock.generatestockallocationreport" 
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateNewStockForm"
+			scope="request"
+			validate="false">			
+		</action>
+		<action path="/stockcontrol.defaults.allocatestock.generatestockallocationreport" 
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="AllocateStockForm"
+			scope="request"
+			validate="false">			
+		</action>
+		<action path="/stockcontrol.defaults.documentrange" 
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="DocumentRangeForm"
+			scope="request"
+			validate="false">	
+			<forward name="find_success" path="/jsp/stockcontrol/defaults/DocumentRange_Ajax.jsp" />				
+		</action>
+ <!--************************Added by a-4443 for icrd-3024 ends*************-->
+		<action path="/stockcontrol.defaults.screenloaddeletestockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="DeleteStockRangeForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/DeleteStockRange.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.listdeletestockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="DeleteStockRangeForm"
+			scope="request"
+			validate="false">
+			<forward name="list_success" path="/jsp/stockcontrol/defaults/DeleteStockRange.jsp" />
+			<forward name="list_failure" path="/jsp/stockcontrol/defaults/DeleteStockRange.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.deletestockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="DeleteStockRangeForm"
+			scope="request"
+			validate="false">
+			<forward name="delete_success" path="/jsp/stockcontrol/defaults/DeleteStockRange.jsp" />
+			<forward name="delete_failure" path="/jsp/stockcontrol/defaults/DeleteStockRange.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.transferliststockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="TransferStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/TransferStockRange_Ajax.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.returnliststockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ReturnStockForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/ReturnStockRange_Ajax.jsp" />
+		</action>
+		<action path="/stockcontrol.defaults.deleteliststockrange" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="DeleteStockRangeForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/stockcontrol/defaults/DeleteStockRange_Ajax.jsp" />
+		</action>
+	</action-mappings>
+		<message-resources  key ="allocatenewstockresources" parameter="resources.stockcontrol.defaults.AllocateNewStock" null="false"/>
+		<message-resources  key ="allocatestockresources" parameter="resources.stockcontrol.defaults.AllocateStock" null="false"/>
+		<message-resources  key ="approverlovresources" parameter="resources.stockcontrol.defaults.Approver" null="false"/>
+		<message-resources  key ="blackliststockresources" parameter="resources.stockcontrol.defaults.BlackListStock" null="false"/>
+		<message-resources  key ="createstockresources" parameter="resources.stockcontrol.defaults.CreateStock" null="false"/>
+		<message-resources  key ="editrangeresources" parameter="resources.stockcontrol.defaults.EditRange" null="false"/>
+		<message-resources  key ="listblacklistedstockresources" parameter="resources.stockcontrol.defaults.ListBlackListedStock" null="false"/>
+		<message-resources  key ="liststockholderresources" parameter="resources.stockcontrol.defaults.ListStockHolder" null="false"/>
+		<message-resources  key ="liststockrequestresources" parameter="resources.stockcontrol.defaults.ListStockRequest" null="false"/>
+		<message-resources  key ="maintainstockholderresources" parameter="resources.stockcontrol.defaults.MaintainStockHolder" null="false"/>
+		<message-resources  key ="maintainstockrequestresources" parameter="resources.stockcontrol.defaults.MaintainStockRequest" null="false"/>
+		<message-resources  key ="monitorstockresources" parameter="resources.stockcontrol.defaults.MonitorStock" null="false"/>
+		<message-resources  key ="returnstockresources" parameter="resources.stockcontrol.defaults.ReturnStockRange" null="false"/>
+		<message-resources  key ="revokeblacklistedstockresources" parameter="resources.stockcontrol.defaults.RevokeBlackListedStock" null="false"/>
+		<message-resources  key ="stockholderlovresources" parameter="resources.stockcontrol.defaults.StockHolderLov" null="false"/>
+		<message-resources  key ="transferstockresources" parameter="resources.stockcontrol.defaults.TranferStockRange" null="false"/>
+		<message-resources  key ="viewrangeresources" parameter="resources.stockcontrol.defaults.ViewRange" null="false"/>
+		<message-resources  key="requeststockresources" parameter="resources.stockcontrol.defaults.RequestStock" null="false"/>
+
+		<!--***********************Added by Santhi For R2 on 10th feb *****************-->
+		<message-resources key="stocklistresources" parameter="resources.stockcontrol.defaults.StockList" null="false"/>
+		<message-resources key="viewrequestresources" parameter="resources.stockcontrol.defaults.ViewRequest" null="false"/>
+		<message-resources key="createrequestresources" parameter="resources.stockcontrol.defaults.CreateRequest" null="false"/>
+		<!--***********************Added by Santhi For R2 on 10th feb ends*****************-->
+
+                <!--***********************Added by Raji For R2 on 14th feb *****************-->
+                <message-resources key="reservationListingResources" parameter="resources.stockcontrol.defaults.ReservationListing" null="false"/>
+                <!--***********************Added by Raji For R2 on 14th feb ends*****************-->
+
+                <!--***********************Added by Anbumani For R2 on 16th feb starts****************-->
+                <message-resources parameter="resources.stockcontrol.defaults.StockManager" key="stockmanager" null="false"/>
+                <!--***********************Added by Anbumani For R2 on 16th feb endss****************-->
+		
+		<!--***********************Added by Jens START****************-->				
+		<message-resources  key="maintainstockagentmapping"  parameter="resources.stockcontrol.defaults.MaintainStockAgentMapping" null="false" />				
+		<!--***********************Added by Jens ENDS****************-->
+		<!--***********************Added by Chippy START *****************-->
+		<message-resources key="stockdetailsresources" parameter="resources.stockcontrol.defaults.StockDetails" null="false"/>
+		<!--***********************Added by Chippy ENDS *****************-->
+		<!--***********************Added by Dhamu START****************-->				
+		<message-resources  key="listawbstockhistoryresources"  parameter="resources.stockcontrol.defaults.listawbstockhistoryresources" null="false" />	
+		<message-resources  key="viewawbstockresources"  parameter="resources.stockcontrol.defaults.listawbstockhistoryresources" null="false" />
+		<!--***********************Added by Dhamu ENDS****************-->
+
+		<!--***********************Added by Sathish START****************-->				
+		<message-resources  key="deleteawbresources"  parameter="resources.stockcontrol.defaults.DeleteAwb" null="false" />				
+		<!--***********************Added by Sathish ENDS****************-->
+		 <!--************************Added by a-4443 for icrd-3024 STARTS*************-->
+		<message-resources  key="confirmstockresources" parameter="resources.stockcontrol.defaults.ConfirmStock" null="false"/>
+		<message-resources  key="missingstock"  parameter="resources.stockcontrol.defaults.MissingStock" null="false" />	
+		 <!--************************Added by a-4443 for icrd-3024 ends*************-->
+		<message-resources  key ="deletestockresources" parameter="resources.stockcontrol.defaults.DeleteStockRange" null="false"/>
+	<plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+		<set-property
+		property="configFileName"
+		value="/WEB-INF/errortags/stockcontrol/defaults/errortags.xml"/>
+	</plug-in>
+	<plug-in className="com.ibsplc.icargo.framework.plugin.CustomTagsPlugin">
+		<set-property property="configFileName" value="/WEB-INF/customtags.xml"/>
+  	</plug-in>
+
+</struts-config>

@@ -1,0 +1,129 @@
+def Stage_Name
+def ENV
+def releaseVersion
+def bom
+def tenantId = "base"
+def currentVer
+def applicationId ="icargo-neo"
+def jiraIds
+
+pipeline {
+    agent any
+
+	options {
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '1'))
+    }
+	
+    stages {			
+		
+		stage("QA Deploy Phase") {			
+			steps {
+				echo "QA Deploy Phase"
+				sh '''
+					if [ -e ${WORKSPACE}/bom ]; then
+							echo "---- >Deleting bom ---  "
+							rm  ${WORKSPACE}/bom
+					fi
+				'''
+				dir("icargo-neo-cli"){
+					sh"pwd"
+					sh '''
+						./iconctl.sh app-version qa full >${WORKSPACE}/version
+					'''	
+					
+				}
+				script {
+                	env.HELM_TMOUT_DEFAULT="600s"
+					Stage_Name='QA_Deploy'
+					currentVer = readFile ("${env.WORKSPACE}/version").trim()
+					echo "Stage_NameStage_NameStage_NameStage_NameStage_NameStage_Name is ${currentVer}"
+					env.POSTURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds?tenantId="+tenantId+"&applicationId="+applicationId
+					echo "POSTURL is ${env.POSTURL}"
+					relVer = ["curl","-X", "POST", "-H", "Content-Type: application/json", "${env.POSTURL}"].execute().text
+					echo "releaseVersion is ${relVer}"
+					env.GETURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds/"+releaseVersion+"/bom"
+					bom = ["curl","-o","${WORKSPACE}/bom" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/yaml", "${env.GETURL}"].execute().text
+                    queryString="currentVersion="+currentVer+"&newVersion="+relVer
+                    echo"querystring = ${queryString}"
+					env.JIRAURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds/base/icargo-neo/activity/list?"+queryString
+					echo "${env.JIRAURL}"
+					jiraIds = ["curl","-o","${WORKSPACE}/jiraIds.txt" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/json", "${env.JIRAURL}"].execute().text
+					echo "JIRAURL  ----------------> is ${jiraIds}"
+				}
+				
+			}
+		}
+	
+		
+	}
+
+	
+	post {
+		success{
+			script {
+				recipientProvidersForQADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForQADeploy   ->  ${recipientProvidersForQADeploy}"
+			
+				
+				emailext( attachmentsPattern: "icargo-neo-cli/qa.zip,bom,jiraIds.txt",
+                            subject: "Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+Check console output at:  ${env.BUILD_URL} 
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'sander.joseph@ibsplc.com'
+                    )                
+			}
+			
+			sh '''
+				if [ -e ${WORKSPACE}/bom ]; then
+					rm  ${WORKSPACE}/bom
+				fi
+				
+				if [ -e ${WORKSPACE}/icargo-neo-cli/qa.zip ]; then
+					rm  ${WORKSPACE}/icargo-neo-cli/qa.zip
+				fi
+				
+				'''
+			
+	}
+	
+        failure {
+            script {
+				recipientProvidersForQADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForQADeploy   ->  ${recipientProvidersForQADeploy}"			
+				emailext(
+							attachmentsPattern: "icargo-neo-cli/qa.zip",
+                            subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+Failure happened in ${Stage_Name}.
+										
+Check console output at:  ${env.BUILD_URL}  
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'sander.joseph@ibsplc.com'
+						)				
+            }
+        }
+    }
+
+}

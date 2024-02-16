@@ -1,0 +1,43 @@
+# The namespace in which the applications will be deployed
+namespace: "icargo-system"
+dockerRegistry: "192.168.49.43/icargo-docker-local"
+environmentProfile: "DEV"
+
+environment:
+  DEV:
+    elasticsearchIndexPrefix: "icargo_log_dev"
+    elasticsearchAccessIndexPrefix: "icargo_access_log_dev"
+
+logstash:
+  enabled: false  
+  withAwsEnabled: true
+  udpPort: 9040
+  image: "icargo-neo-logstash-aws:1.0.1-7_10_1"
+  replicas: 2
+  includeEnvProfileInResourceNames: true
+  accesslog:
+    udpPort: 9060
+
+disable:
+  ns: true
+  es:
+   service: false
+
+curator:
+  enabled: false
+  withAwsEnabled: true
+  image: "untergeek/curator:5.8.1"
+  forceMergeDisabled: "False"
+  txProbeIndexRetentionHours: 48
+  logIndexRetentionDays: 8
+
+awsElasticSearch:
+  useAmazonLogstashPlugin: false
+  vpcEndpoint:
+  awsAccessKeyId:
+  awsSecretAccessKey:
+  #Example:  
+  #vpcEndpoint: "https://vpc-aws-elasticsearch-dtd-xvtgufvaohqcgxen53ylbc52eq.ap-southeast-2.es.amazonaws.com"
+  region:
+  #Example  
+  #region: "ap-southeast-2"

@@ -1,0 +1,1209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ibsplc.neoicargo.stock.dao.mybatis.StockCQRSMapper">
+  <select id="findAwbStockDetails" resultMap="findAwbStockDetails" parameterType="map">
+    SELECT
+    z.*
+    FROM
+    (
+    SELECT
+    hist.txndat,
+    hist.status,
+    hist.tostkhldcod,
+    hist.lstupdusr,
+    hist.frmstkhldcod,
+    hist.txnrmk,
+    hist.vodchg,
+    hist.curcod,
+    stk.stkhldcod,
+    stk.stkaprcod,
+    (
+    CASE WHEN arlmst.awbchkdgt != 0 THEN concat(
+    starng,
+    (
+    hist.starng :: integer % arlmst.awbchkdgt
+    ):: text,
+    '-',
+    endrng,
+    (
+    hist.endrng :: integer % arlmst.awbchkdgt
+    ):: text
+    ) END
+    ) as awbRange
+    FROM
+    shrarlactmst arlmst,
+    stkrngtxnhis hist
+    LEFT OUTER JOIN stkhldstk stk ON stk.arlidr = hist.arlidr
+    AND stk.cmpcod = hist.cmpcod
+    AND stk.stkhldcod = hist.frmstkhldcod
+    AND stk.docsubtyp = hist.docsubtyp
+    AND stk.doctyp = hist.doctyp
+    WHERE
+    arlmst.cmpcod = hist.cmpcod
+    AND arlmst.arlidr = hist.arlidr
+    AND hist.cmpcod = #{stockRangeFilterVO.companyCode}
+    AND hist.arlidr = #{stockRangeFilterVO.airlineIdentifier}
+    AND hist.status <![CDATA[ <> ]]> 'U'
+    AND hist.doctyp = 'AWB'
+    AND (
+    hist.ascstarng <![CDATA[ <= ]]> #{stockRangeFilterVO.awb}::NUMERIC
+    AND hist.ascendrng <![CDATA[ >= ]]> #{stockRangeFilterVO.awb}::NUMERIC
+    )
+    UNION ALL
+    SELECT
+    DISTINCT
+    utlhist.txndat,
+    utlhist.status,
+    utlhist.stkhldcod,
+    utlhist.lstupdusr,
+    NULL,
+    NULL,
+    0,
+    NULL,
+    stk.stkhldcod,
+    stk.stkaprcod,
+    (
+    CASE WHEN arlmst.awbchkdgt != 0 THEN concat(
+    starng,
+    (
+    utlhist.starng :: integer % arlmst.awbchkdgt
+    ):: text,
+    '-',
+    endrng,
+    (
+    utlhist.endrng :: integer % arlmst.awbchkdgt
+    ):: text
+    ) END
+    ) as awbRange
+    FROM
+    shrarlactmst arlmst,
+    stkrngutlhis utlhist
+    LEFT OUTER JOIN stkhldstk stk ON stk.arlidr = utlhist.arlidr
+    AND stk.cmpcod = utlhist.cmpcod
+    AND stk.stkhldcod = utlhist.stkhldcod
+    AND stk.docsubtyp = utlhist.docsubtyp
+    AND stk.doctyp = utlhist.doctyp
+    WHERE
+    arlmst.cmpcod = utlhist.cmpcod
+    AND arlmst.arlidr = utlhist.arlidr
+    AND utlhist.doctyp = 'AWB'
+    AND utlhist.cmpcod = #{stockRangeFilterVO.companyCode}
+    AND utlhist.arlidr = #{stockRangeFilterVO.airlineIdentifier}
+    AND (
+    utlhist.ascstarng <![CDATA[ <= ]]> #{stockRangeFilterVO.awb}::NUMERIC
+    AND utlhist.ascendrng <![CDATA[ >= ]]> #{stockRangeFilterVO.awb}::NUMERIC
+    )
+    ) z
+
+    <if test='"STK_HLDR_CODE" == stockRangeFilterVO.privilegeRule
+        and "STKHLD" == stockRangeFilterVO.privilegeLevelType
+        and not stockRangeFilterVO.privilegeLevelValue.isEmpty()'>
+      <if test="stockRangeFilterVO.privilegeLevelValue != null
+        and stockRangeFilterVO.privilegeRule != null
+        and stockRangeFilterVO.privilegeLevelValue != null">
+        AND (Z.STKHLDCOD IN
+        <foreach item='levelValue' collection='stockRangeFilterVO.privilegeLevelValue'
+          open='(' separator=',' close=')'>
+          #{levelValue}
+        </foreach>
+        OR Z.STKAPRCOD IN
+        <foreach item='levelValue' collection='stockRangeFilterVO.privilegeLevelValue'
+          open='(' separator=',' close=')'>
+          #{levelValue}
+        </foreach>
+        OR Z.TOSTKHLDCOD IN
+        <foreach item='levelValue' collection='stockRangeFilterVO.privilegeLevelValue'
+          open='(' separator=',' close=')'>
+          #{levelValue}
+        </foreach>
+        )
+      </if>
+    </if>
+    ORDER BY Z.TXNDAT
+  </select>
+  <resultMap id="findAwbStockDetails" type="com.ibsplc.neoicargo.stock.vo.StockRangeHistoryVO">
+    <result property="companyCode" column="cmpcod" jdbcType="VARCHAR"/>
+    <result property="airlineIdentifier" column="arlidr" jdbcType="NUMERIC"/>
+    <result property="toStockHolderCode" column="tostkhldcod" jdbcType="VARCHAR"/>
+    <result property="fromStockHolderCode" column="frmstkhldcod" jdbcType="VARCHAR"/>
+    <result property="awbRange" column="awbRange" jdbcType="VARCHAR"/>
+    <result property="status" column="status" jdbcType="VARCHAR"/>
+    <result property="transactionDate" column="txndat" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="transDateStr" column="txndat" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.TimestampHandler"/>
+    <result property="lastUpdateUser" column="lstupdusr" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <select id="findStockUtilisationDetails" resultMap="findStockUtilisationDetails" parameterType="map">
+    WITH findStockUtilisationDetails AS (
+      SELECT
+        rng.stkhldcod,
+        rng.mnlflg,
+        rng.doctyp,
+        rng.docsubtyp,
+        rng.starng,
+        rng.endrng,
+        rng.docnum,
+        rng.rngacpdat AS stkdat,
+        'F' AS status,
+        (
+          CASE
+            WHEN rng.doctyp = 'AWB' THEN
+          CASE
+            WHEN arlmst.awbchkdgt != 0 THEN
+          concat(
+              starng,
+              (rng.starng :: integer % arlmst.awbchkdgt):: text,
+              '-',
+              endrng,
+              (rng.endrng :: integer % arlmst.awbchkdgt):: text
+                ) END
+          ELSE concat(rng.starng, '-', rng.endrng) END
+        ) as awbRange
+      FROM
+        stkrng rng,
+        shrarlactmst arlmst,
+        stkhldstk stk
+      WHERE
+        rng.cmpcod = arlmst.cmpcod
+        AND rng.arlidr = arlmst.arlidr
+        AND stk.arlidr = rng.arlidr
+        AND stk.cmpcod = rng.cmpcod
+        AND stk.stkhldcod = rng.stkhldcod
+        AND stk.docsubtyp = rng.docsubtyp
+        AND stk.doctyp = rng.doctyp
+        AND rng.cmpcod = #{stockRangeFilterVO.companyCode}
+        <if test="stockRangeFilterVO.airlineIdentifier != 0">
+          AND RNG.ARLIDR = #{stockRangeFilterVO.airlineIdentifier}
+        </if>
+        <if test="endRange == null and startRange != null">
+          AND  (RNG.ASCSTARNG >= #{startRange} OR (#{startRange} between RNG.ASCSTARNG and  RNG.ASCENDRNG))
+        </if>
+        <if test="startRange == null and endRange != null">
+          AND  (RNG.ASCENDRNG <![CDATA[ <= ]]> #{endRange} OR (#{endRange} between RNG.ASCSTARNG and  RNG.ASCENDRNG))
+        </if>
+        <if test="startRange != null and endRange != null">
+          AND ( ( #{startRange} BETWEEN RNG.ASCSTARNG AND RNG.ASCENDRNG) OR ( #{endRange} BETWEEN RNG.ASCSTARNG AND RNG.ASCENDRNG)OR ( RNG.ASCSTARNG >= #{startRange} AND RNG.ASCENDRNG <![CDATA[ <= ]]> #{endRange} ) )
+        </if>
+        <if test="stockRangeFilterVO.fromStockHolderCode != null and stockRangeFilterVO.fromStockHolderCode.trim().length() > 0">
+          AND RNG.STKHLDCOD=#{stockRangeFilterVO.fromStockHolderCode}
+        </if>
+        <if
+          test="stockRangeFilterVO.privilegeRule == 'STK_HLDR_CODE' and stockRangeFilterVO.privilegeLevelType == 'STKHLD' and stockRangeFilterVO.privilegeLevelValue!=null">
+          AND (STK.STKHLDCOD IN
+          <foreach collection='stockRangeFilterVO.privilegeLevelValue' item='item' open='('
+            separator=',' close=')'>
+            #{item}
+          </foreach>
+          OR STK.STKAPRCOD IN
+          <foreach collection='stockRangeFilterVO.privilegeLevelValue' item='item' open='('
+            separator=',' close=')'>
+            #{item}
+          </foreach>)
+        </if>
+    <if
+      test="stockRangeFilterVO.documentType != null and stockRangeFilterVO.documentType.trim().length() > 0">
+      AND RNG.DOCTYP= #{stockRangeFilterVO.documentType}
+    </if>
+    <if
+      test="stockRangeFilterVO.documentSubType != null and stockRangeFilterVO.documentSubType.trim().length() > 0">
+      AND RNG.DOCSUBTYP= #{stockRangeFilterVO.documentSubType}
+    </if>
+    <if test="stockRangeFilterVO.startDate != null and stockRangeFilterVO.endDate != null">
+      AND date_trunc('day', rng.rngacpdat) BETWEEN #{stockRangeFilterVO.startDate} AND
+      #{stockRangeFilterVO.endDate}
+    </if>
+    <if
+      test="stockRangeFilterVO.accountNumber != null and stockRangeFilterVO.accountNumber.trim().length() > 0">
+      AND RNG.STKHLDCOD IN (SELECT STKHLD.STKHLDCOD FROM STKHLDAGT STKHLD,SHRAGTMST AGTMST WHERE
+      AGTMST.AGTCOD = STKHLD.AGTCOD AND AGTMST.AGTACCCOD = #{stockRangeFilterVO.accountNumber})
+    </if>
+
+
+    <if test='status == ""'>
+      <if test="endRange == null and startRange != null">
+        AND (RNG.ASCSTARNG >= #{startRange} OR (#{startRange} between RNG.ASCSTARNG and
+        RNG.ASCENDRNG))
+      </if>
+          <if test="startRange == null and endRange != null">
+            AND  (RNG.ASCENDRNG <![CDATA[ <= ]]> #{endRange} OR (#{endRange} between RNG.ASCSTARNG and  RNG.ASCENDRNG))
+          </if>
+          <if test="startRange != null and endRange != null">
+            AND ( ( #{startRange} BETWEEN RNG.ASCSTARNG AND RNG.ASCENDRNG) OR ( #{endRange} BETWEEN RNG.ASCSTARNG AND RNG.ASCENDRNG)OR ( RNG.ASCSTARNG >= #{startRange} AND RNG.ASCENDRNG <![CDATA[ <= ]]> #{endRange} ) )
+          </if>
+          <if test="stockRangeFilterVO.fromStockHolderCode != null and stockRangeFilterVO.fromStockHolderCode.trim().length() > 0">
+            AND RNG.STKHLDCOD=#{stockRangeFilterVO.fromStockHolderCode}
+          </if>
+      <if
+        test="stockRangeFilterVO.privilegeRule == 'STK_HLDR_CODE' and stockRangeFilterVO.privilegeLevelType == 'STKHLD' and stockRangeFilterVO.privilegeLevelValue!=null">
+        AND (STK.STKHLDCOD IN
+        <foreach collection='stockRangeFilterVO.privilegeLevelValue' item='item' open='('
+          separator=',' close=')'>
+          #{item}
+        </foreach>
+        OR STK.STKAPRCOD IN
+        <foreach collection='stockRangeFilterVO.privilegeLevelValue' item='item' open='('
+          separator=',' close=')'>
+          #{item}
+        </foreach>)
+      </if>
+      <if
+        test="stockRangeFilterVO.documentType != null and stockRangeFilterVO.documentType.trim().length() > 0">
+        AND RNG.DOCTYP = #{stockRangeFilterVO.documentType}
+      </if>
+      <if
+        test="stockRangeFilterVO.documentSubType != null and stockRangeFilterVO.documentSubType.trim().length() > 0">
+        AND RNG.DOCSUBTYP = #{stockRangeFilterVO.documentSubType}
+      </if>
+      <if test="stockRangeFilterVO.startDate != null and stockRangeFilterVO.endDate != null">
+        AND date_trunc('day', rng.rngacpdat) BETWEEN #{stockRangeFilterVO.startDate} AND
+        #{stockRangeFilterVO.endDate}
+      </if>
+      <if
+        test="stockRangeFilterVO.accountNumber != null and stockRangeFilterVO.accountNumber.trim().length() > 0">
+        AND RNG.STKHLDCOD IN (SELECT STKHLD.STKHLDCOD FROM STKHLDAGT STKHLD,SHRAGTMST AGTMST WHERE
+        AGTMST.AGTCOD = STKHLD.AGTCOD AND AGTMST.AGTACCCOD = #{stockRangeFilterVO.accountNumber})
+      </if>
+
+      UNION
+      SELECT DISTINCT UTLHIST.FRMSTKHLDCOD AS STKHLDCOD,UTLHIST.RNGTYP AS
+      MNLFLG,UTLHIST.DOCTYP,UTLHIST.DOCSUBTYP,UTLHIST.STARNG,UTLHIST.ENDRNG,UTLHIST.NUMDOC AS
+      DOCNUM,UTLHIST.TXNDAT AS STKDAT,COALESCE(UTLHIST.STATUS,'U') AS STATUS,(
+                CASE
+                    WHEN UTLHIST.doctyp = 'AWB' THEN
+                CASE
+                    WHEN arlmst.awbchkdgt != 0 THEN
+                    concat(
+                    starng,
+                    (UTLHIST.starng :: integer % arlmst.awbchkdgt):: text,
+                    '-',
+                    endrng,
+                    (UTLHIST.endrng :: integer % arlmst.awbchkdgt):: text
+                    ) END
+                ELSE concat(UTLHIST.starng, '-', UTLHIST.endrng) END
+              ) as awbRange FROM
+      shrarlactmst ARLMST ,STKRNGTXNHIS UTLHIST LEFT OUTER JOIN STKHLDSTK STK ON STK.ARLIDR =
+      UTLHIST.ARLIDR
+      AND STK.CMPCOD = UTLHIST.CMPCOD AND STK.STKHLDCOD = UTLHIST.FRMSTKHLDCOD AND STK.DOCSUBTYP =
+      UTLHIST.DOCSUBTYP AND STK.DOCTYP = UTLHIST.DOCTYP WHERE ARLMST.CMPCOD = UTLHIST.CMPCOD AND
+      ARLMST.ARLIDR=UTLHIST.ARLIDR AND UTLHIST.CMPCOD = #{stockRangeFilterVO.companyCode} AND
+      UTLHIST.ARLIDR = #{stockRangeFilterVO.airlineIdentifier}
+      AND UTLHIST.STATUS = 'U'
+
+          <if test="endRange == null and startRange != null">
+            AND  (UTLHIST.ASCSTARNG >= #{startRange} OR (#{startRange} between UTLHIST.ASCSTARNG and  UTLHIST.ASCENDRNG))
+          </if>
+          <if test="startRange == null and endRange != null">
+            AND  (UTLHIST.ASCENDRNG <![CDATA[ <= ]]> #{endRange} OR (#{endRange} between UTLHIST.ASCSTARNG and  UTLHIST.ASCENDRNG))
+          </if>
+          <if test="startRange != null and endRange != null">
+            AND (( #{startRange} BETWEEN UTLHIST.ASCSTARNG AND UTLHIST.ASCENDRNG) OR ( #{endRange} BETWEEN UTLHIST.ASCSTARNG AND UTLHIST.ASCENDRNG) OR ( UTLHIST.ASCSTARNG >= #{startRange} AND UTLHIST.ASCENDRNG <![CDATA[ <= ]]> #{endRange} ))
+          </if>
+          <if test="stockRangeFilterVO.fromStockHolderCode != null and stockRangeFilterVO.fromStockHolderCode.trim().length() > 0">
+            AND UTLHIST.FRMSTKHLDCOD = #{stockRangeFilterVO.fromStockHolderCode}
+          </if>
+      <if
+        test="stockRangeFilterVO.privilegeRule == 'STK_HLDR_CODE' and stockRangeFilterVO.privilegeLevelType == 'STKHLD' and stockRangeFilterVO.privilegeLevelValue!=null">
+        AND (STK.STKHLDCOD IN
+        <foreach collection='stockRangeFilterVO.privilegeLevelValue' item='item' open='('
+          separator=',' close=')'>
+          #{item}
+        </foreach>
+        OR STK.STKAPRCOD IN
+        <foreach collection='stockRangeFilterVO.privilegeLevelValue' item='item' open='('
+          separator=',' close=')'>
+          #{item}
+        </foreach>)
+      </if>
+      <if
+        test="stockRangeFilterVO.documentType != null and stockRangeFilterVO.documentType.trim().length() > 0">
+        AND UTLHIST.DOCTYP = #{stockRangeFilterVO.documentType}
+      </if>
+      <if
+        test="stockRangeFilterVO.documentSubType != null and stockRangeFilterVO.documentSubType.trim().length() > 0">
+        AND UTLHIST.DOCSUBTYP = #{stockRangeFilterVO.documentSubType}
+      </if>
+      <if test="stockRangeFilterVO.startDate != null and stockRangeFilterVO.endDate != null">
+        AND UTLHIST.TXNDAT >= #{stockRangeFilterVO.startDate} AND UTLHIST.TXNDAT <![CDATA[ <= ]]>
+        #{stockRangeFilterVO.endDate}
+      </if>
+      <if
+        test="stockRangeFilterVO.accountNumber != null and stockRangeFilterVO.documentSubType.trim().length() > 0">
+        AND UTLHIST.FRMSTKHLDCOD IN (SELECT STKHLD.STKHLDCOD FROM STKHLDAGT STKHLD,SHRAGTMST AGTMST
+        WHERE AGTMST.AGTCOD = STKHLD.AGTCOD AND AGTMST.AGTACCCOD =
+        #{stockRangeFilterVO.accountNumber})
+      </if>
+    </if>
+        ORDER BY STKHLDCOD,MNLFLG,STATUS,STKDAT
+    )
+    SELECT *
+    FROM (
+      TABLE findStockUtilisationDetails
+      LIMIT #{limit}
+      OFFSET #{offset}
+    ) rowNumber
+    INNER JOIN (SELECT count(*) FROM findStockUtilisationDetails) c(totalRecordCount) ON true;
+  </select>
+  <resultMap id="findStockUtilisationDetails" type="com.ibsplc.neoicargo.stock.vo.StockRangeHistoryVO">
+    <result property="fromStockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="rangeType" column="mnlflg" jdbcType="VARCHAR"
+            typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.RangeTypeHandler"/>
+    <result property="documentType" column="doctyp" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="docsubtyp" jdbcType="VARCHAR"/>
+    <result property="startRange" column="starng" jdbcType="VARCHAR"/>
+    <result property="endRange" column="endrng" jdbcType="VARCHAR"/>
+    <result property="numberOfDocuments" column="docnum" jdbcType="NUMERIC"/>
+    <result property="transactionDate" column="stkdat" jdbcType="DATE"
+            typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="transDateStr" column="stkdat" jdbcType="DATE"
+            typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.DateHandler"/>
+    <result property="status" column="status" jdbcType="VARCHAR"/>
+    <result property="awbRange" column="awbRange" jdbcType="VARCHAR"/>
+    <result property="totalRecordCount" column="totalRecordCount" jdbcType="NUMERIC"/>
+  </resultMap>
+
+  <select id="findStockUtilisationDetailsUsed" resultMap="findStockUtilisationDetailsUsed" parameterType="map">
+    WITH findStockUtilisationDetailsUsed AS (
+      SELECT DISTINCT
+        utlhist.frmstkhldcod AS stkhldcod,
+        utlhist.rngtyp AS mnlflg,
+        utlhist.doctyp,
+        utlhist.docsubtyp,
+        utlhist.starng,
+        utlhist.endrng,
+        utlhist.numdoc AS docnum,
+        utlhist.txndat AS stkdat,
+        coalesce(utlhist.status,'U') AS status,
+        (
+          CASE
+            WHEN utlhist.doctyp = 'AWB' THEN
+          CASE
+            WHEN arlmst.awbchkdgt != 0 THEN
+          concat(
+              starng,
+              (utlhist.starng :: integer % arlmst.awbchkdgt):: text,
+              '-',
+              endrng,
+              (utlhist.endrng :: integer % arlmst.awbchkdgt):: text
+                ) END
+          ELSE concat(utlhist.starng, '-', utlhist.endrng) END
+        ) as awbRange
+      FROM
+        shrarlactmst arlmst,
+        stkrngtxnhis utlhist
+        LEFT OUTER JOIN stkhldstk stk ON stk.arlidr = utlhist.arlidr
+        AND stk.cmpcod = utlhist.cmpcod
+        AND stk.stkhldcod = utlhist.frmstkhldcod
+        AND stk.docsubtyp = utlhist.docsubtyp
+        AND stk.doctyp = utlhist.doctyp
+      WHERE
+        arlmst.cmpcod = utlhist.cmpcod
+        AND arlmst.arlidr = utlhist.arlidr
+        AND utlhist.cmpcod = #{stockRangeFilterVO.companyCode}
+        AND utlhist.arlidr = #{stockRangeFilterVO.airlineIdentifier}
+        <if test="endRange == null and startRange != null">
+          AND  (UTLHIST.ASCSTARNG >= #{startRange} OR (#{startRange} between UTLHIST.ASCSTARNG and  UTLHIST.ASCENDRNG))"
+        </if>
+        <if test="startRange == null and endRange != null">
+          AND  (UTLHIST.ASCENDRNG <![CDATA[ <= ]]> #{endRange} OR (#{endRange} between UTLHIST.ASCSTARNG and  UTLHIST.ASCENDRNG))
+        </if>
+        <if test="startRange != null and endRange != null">
+          AND ( ( #{startRange} BETWEEN UTLHIST.ASCSTARNG AND UTLHIST.ASCENDRNG) OR ( #{endRange} BETWEEN UTLHIST.ASCSTARNG AND UTLHIST.ASCENDRNG)OR ( UTLHIST.ASCSTARNG >= #{startRange} AND UTLHIST.ASCENDRNG <![CDATA[ <= ]]> #{endRange} ) )
+        </if>
+        <if test="stockRangeFilterVO.fromStockHolderCode != null and stockRangeFilterVO.fromStockHolderCode.trim().length() > 0">
+          AND UTLHIST.FRMSTKHLDCOD= = #{stockRangeFilterVO.fromStockHolderCode}
+        </if>
+    <if
+      test="stockRangeFilterVO.privilegeRule == 'STK_HLDR_CODE' and stockRangeFilterVO.privilegeLevelType == 'STKHLD' and stockRangeFilterVO.privilegeLevelValue!=null">
+      AND (STK.STKHLDCOD IN
+      <foreach collection='stockRangeFilterVO.privilegeLevelValue' item='item' open='('
+        separator=',' close=')'>
+        #{item}
+      </foreach>
+      OR STK.STKAPRCOD IN
+      <foreach collection='stockRangeFilterVO.privilegeLevelValue' item='item' open='('
+        separator=',' close=')'>
+        #{item}
+      </foreach>)
+    </if>
+    <if test="stockRangeFilterVO.status != null and stockRangeFilterVO.status.trim().length() > 0 ">
+      AND UTLHIST.STATUS = #{stockRangeFilterVO.status}
+    </if>
+    <if
+      test="stockRangeFilterVO.documentType != null and stockRangeFilterVO.documentType.trim().length() > 0">
+      AND UTLHIST.DOCTYP = #{stockRangeFilterVO.documentType}
+    </if>
+    <if
+      test="stockRangeFilterVO.documentSubType != null and stockRangeFilterVO.documentSubType.trim().length() > 0">
+      AND UTLHIST.DOCSUBTYP = #{stockRangeFilterVO.documentSubType}
+    </if>
+    <if test="stockRangeFilterVO.startDate != null and stockRangeFilterVO.endDate != null">
+      AND UTLHIST.TXNDAT >= #{stockRangeFilterVO.startDate} AND UTLHIST.TXNDAT <![CDATA[ <= ]]>
+      #{stockRangeFilterVO.endDate}
+    </if>
+    <if
+      test="stockRangeFilterVO.accountNumber != null and stockRangeFilterVO.documentSubType.trim().length() > 0">
+      AND UTLHIST.FRMSTKHLDCOD IN (SELECT STKHLD.STKHLDCOD FROM STKHLDAGT STKHLD,SHRAGTMST AGTMST
+      WHERE AGTMST.AGTCOD = STKHLD.AGTCOD AND AGTMST.AGTACCCOD =
+      #{stockRangeFilterVO.accountNumber})
+    </if>
+    ORDER BY STKHLDCOD,MNLFLG,STATUS,STKDAT
+    )
+    SELECT *
+    FROM (
+    TABLE findStockUtilisationDetailsUsed
+    LIMIT #{limit}
+      OFFSET #{offset}
+    ) rowNumber
+    INNER JOIN (SELECT count(*) FROM findStockUtilisationDetailsUsed) c(totalRecordCount) ON true;
+  </select>
+  <resultMap id="findStockUtilisationDetailsUsed" type="com.ibsplc.neoicargo.stock.vo.StockRangeHistoryVO">
+    <result property="fromStockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="rangeType" column="mnlflg" jdbcType="VARCHAR"
+            typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.RangeTypeHandler"/>
+    <result property="documentType" column="doctyp" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="docsubtyp" jdbcType="VARCHAR"/>
+    <result property="startRange" column="starng" jdbcType="VARCHAR"/>
+    <result property="endRange" column="endrng" jdbcType="VARCHAR"/>
+    <result property="numberOfDocuments" column="docnum" jdbcType="NUMERIC"/>
+    <result property="transactionDate" column="stkdat" jdbcType="DATE"
+            typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="transDateStr" column="stkdat" jdbcType="DATE"
+            typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.DateHandler"/>
+    <result property="status" column="status" jdbcType="VARCHAR"/>
+    <result property="awbRange" column="awbRange" jdbcType="VARCHAR"/>
+    <result property="totalRecordCount" column="totalRecordCount" jdbcType="NUMERIC"/>
+  </resultMap>
+
+  <select id="findStockRangeHistory" resultMap="findStockRangeHistory" parameterType="map">
+    WITH findStockRangeHistory AS (
+      SELECT DISTINCT
+        hist.frmstkhldcod AS stkhldcod,
+        hist.rngtyp AS mnlflg,
+        hist.doctyp,
+        hist.docsubtyp,
+        hist.starng,
+        hist.endrng,
+        hist.numdoc AS docnum,
+        hist.txndat AS stkdat,
+        hist.status,
+        hist.tostkhldcod,
+        hist.txnrmk,
+        hist.vodchg,
+        hist.curcod,
+        (
+          CASE
+            WHEN hist.doctyp = 'AWB' THEN
+          CASE
+            WHEN arlmst.awbchkdgt != 0 THEN
+          concat(
+              starng,
+              (hist.starng :: integer % arlmst.awbchkdgt):: text,
+              '-',
+              endrng,
+              (hist.endrng :: integer % arlmst.awbchkdgt):: text
+                ) END
+          ELSE concat(hist.starng, '-', hist.endrng) END
+        ) as awbRange
+      FROM
+        shrarlactmst arlmst,
+        shrdocmst docmst,stkrngtxnhis hist LEFT OUTER JOIN stkhldstk stk ON stk.arlidr = hist.arlidr
+        AND stk.cmpcod = hist.cmpcod
+        AND stk.stkhldcod = hist.frmstkhldcod
+        AND stk.docsubtyp = hist.docsubtyp
+        AND stk.doctyp = hist.doctyp
+        WHERE
+        arlmst.cmpcod = hist.cmpcod
+        AND docmst.cmpcod = hist.cmpcod
+        AND docmst.doccod = hist.doctyp
+        AND docmst.docsubtyp = hist.docsubtyp
+        AND arlmst.arlidr = hist.arlidr
+        AND hist.cmpcod = #{stockRangeFilterVO.companyCode}
+        <if test="stockRangeFilterVO.airlineIdentifier != 0">
+          AND HIST.ARLIDR = #{stockRangeFilterVO.airlineIdentifier}
+        </if>
+        <if test="stockRangeFilterVO.startRange != null and stockRangeFilterVO.startRange.trim().length() > 0">
+          AND ((#{startRange} between ASCSTARNG and ASCENDRNG) OR (ASCSTARNG >= #{startRange}))
+          AND ( CASE WHEN NULLIF(REGEXP_REPLACE(#{stockRangeFilterVO.startRange},'[[:digit:]]','','g'), '') IS NOT NULL
+          THEN CASE
+          WHEN COALESCE (NULLIF(REGEXP_REPLACE(STARNG,'[[:digit:]]','','g'), ''), '') = REGEXP_REPLACE(#{stockRangeFilterVO.startRange},'[[:digit:]]','','g')
+          THEN 1  ELSE 0  END  ELSE  1 END) > 0
+        </if>
+        <if test="stockRangeFilterVO.endRange != null and stockRangeFilterVO.endRange.trim().length() > 0">
+          AND ((#{endRange} between ASCSTARNG and ASCENDRNG) OR (ASCENDRNG <![CDATA[ <= ]]> #{endRange}))
+          AND ( CASE WHEN NULLIF(REGEXP_REPLACE(#{stockRangeFilterVO.endRange},'[[:digit:]]','','g'), '') IS NOT NULL
+          THEN CASE
+          WHEN COALESCE (NULLIF(REGEXP_REPLACE(ENDRNG,'[[:digit:]]','','g'), ''), '') = REGEXP_REPLACE(#{stockRangeFilterVO.endRange},'[[:digit:]]','','g')
+          THEN 1  ELSE 0  END  ELSE  1 END) > 0
+        </if>
+        <if test="stockRangeFilterVO.fromStockHolderCode != null
+          and stockRangeFilterVO.fromStockHolderCode.trim().length() > 0">
+          <choose>
+            <when test='status == "G" or status == "H" or status == "I"'>
+              AND HIST.TOSTKHLDCOD = #{stockRangeFilterVO.fromStockHolderCode}
+            </when>
+            <otherwise>
+              AND HIST.FRMSTKHLDCOD = #{stockRangeFilterVO.fromStockHolderCode}
+            </otherwise>
+          </choose>
+        </if>
+        <if test="stockRangeFilterVO.documentType != null and stockRangeFilterVO.documentType.trim().length() > 0">
+          AND HIST.DOCTYP = #{stockRangeFilterVO.documentType}
+        </if>
+        <if test="stockRangeFilterVO.documentSubType != null and stockRangeFilterVO.documentSubType.trim().length() > 0">
+          AND HIST.DOCSUBTYP = #{stockRangeFilterVO.documentSubType}
+        </if>
+        <choose>
+          <when test="status != null and status.trim().length() > 0">
+            AND HIST.STATUS = #{status}
+          </when>
+          <otherwise>
+            <if test="stockRangeFilterVO.availableStatus != null and not stockRangeFilterVO.availableStatus.isEmpty()">
+              AND HIST.STATUS  IN
+              <foreach collection = 'stockRangeFilterVO.availableStatus' item= 'item' open= '(' separator= ',' close= ')'>
+                #{item}
+              </foreach>
+            </if>
+          </otherwise>
+        </choose>
+    <if
+      test="stockRangeFilterVO.accountNumber != null and stockRangeFilterVO.accountNumber.trim().length() > 0">
+      AND HIST.FRMSTKHLDCOD IN (SELECT STKHLD.STKHLDCOD FROM STKHLDAGT STKHLD,SHRAGTMST AGTMST WHERE
+      AGTMST.AGTCOD = STKHLD.AGTCOD AND AGTMST.AGTACCCOD = #{stockRangeFilterVO.accountNumber})
+    </if>
+    <if test="stockRangeFilterVO.userId != null and stockRangeFilterVO.userId.trim().length() > 0">
+      AND HIST.USRCOD= #{stockRangeFilterVO.userId}
+    </if>
+    <if test="stockRangeFilterVO.startDate != null and stockRangeFilterVO.endDate != null">
+      AND HIST.TXNDAT >= #{stockRangeFilterVO.startDate} AND HIST.TXNDAT <![CDATA[ <= ]]>
+      #{stockRangeFilterVO.endDate}
+    </if>
+    <if
+      test="stockRangeFilterVO.privilegeRule == 'STK_HLDR_CODE' and stockRangeFilterVO.privilegeLevelType == 'STKHLD' and stockRangeFilterVO.privilegeLevelValue != null">
+      AND (STK.STKHLDCOD IN
+      <foreach collection='stockRangeFilterVO.privilegeLevelValue' item='item' open='('
+        separator=',' close=')'>
+        #{item}
+      </foreach>
+      OR STK.STKAPRCOD IN
+      <foreach collection='stockRangeFilterVO.privilegeLevelValue' item='item' open='('
+        separator=',' close=')'>
+        #{item}
+      </foreach>)
+    </if>
+        ORDER BY STKDAT
+    )
+    SELECT *
+      FROM (
+      TABLE findStockRangeHistory
+      LIMIT #{limit}
+      OFFSET #{offset}
+    ) rowNumber
+    INNER JOIN (SELECT count(*) FROM findStockRangeHistory) c(totalRecordCount) ON true;
+  </select>
+  <resultMap id="findStockRangeHistory" type="com.ibsplc.neoicargo.stock.vo.StockRangeHistoryVO">
+    <result property="fromStockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="rangeType" column="mnlflg" jdbcType="VARCHAR"
+            typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.RangeTypeHandler"/>
+    <result property="documentType" column="doctyp" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="docsubtyp" jdbcType="VARCHAR"/>
+    <result property="startRange" column="starng" jdbcType="VARCHAR"/>
+    <result property="endRange" column="endrng" jdbcType="VARCHAR"/>
+    <result property="numberOfDocuments" column="docnum" jdbcType="NUMERIC"/>
+    <result property="transactionDate" column="stkdat" jdbcType="DATE"
+            typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="transDateStr" column="stkdat" jdbcType="DATE"
+            typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.DateHandler"/>
+    <result property="status" column="status" jdbcType="VARCHAR"/>
+    <result property="toStockHolderCode" column="tostkhldcod" jdbcType="VARCHAR"/>
+    <result property="remarks" column="txnrmk" jdbcType="VARCHAR"/>
+    <result property="voidingCharge" column="vodchg" jdbcType="NUMERIC"/>
+    <result property="currencyCode" column="curcod" jdbcType="VARCHAR"/>
+    <result property="awbRange" column="awbRange" jdbcType="VARCHAR"/>
+    <result property="totalRecordCount" column="totalRecordCount" jdbcType="NUMERIC"/>
+  </resultMap>
+
+  <select id="findStockHistory" resultMap="findStockHistory" parameterType="map">
+    SELECT
+    DISTINCT
+    hist.frmstkhldcod AS stkhldcod,
+    hist.rngtyp AS mnlflg,
+    hist.doctyp,
+    hist.docsubtyp,
+    hist.starng,
+    hist.endrng,
+    hist.numdoc AS docnum,
+    hist.txndat AS stkdat,
+    hist.status,
+    hist.tostkhldcod,
+    hist.txnrmk,
+    hist.vodchg,
+    hist.curcod,
+    (
+    CASE
+    WHEN hist.doctyp = 'AWB' THEN
+    CASE
+    WHEN arlmst.awbchkdgt != 0 THEN
+    concat(
+    starng,
+    (hist.starng :: integer % arlmst.awbchkdgt):: text,
+    '-',
+    endrng,
+    (hist.endrng :: integer % arlmst.awbchkdgt):: text
+    ) END
+    ELSE concat(hist.starng, '-', hist.endrng) END
+    ) as awbRange,
+    docmst.chkdgtflg
+    FROM
+    shrarlactmst arlmst,
+    shrdocmst docmst,
+    stkrngtxnhis hist
+    LEFT OUTER JOIN stkhldstk stk ON stk.arlidr = hist.arlidr
+    AND stk.cmpcod = hist.cmpcod
+    AND stk.stkhldcod = hist.frmstkhldcod
+    AND stk.docsubtyp = hist.docsubtyp
+    AND stk.doctyp = hist.doctyp
+    WHERE
+    arlmst.cmpcod = hist.cmpcod
+    AND docmst.cmpcod = hist.cmpcod
+    AND docmst.doccod = hist.doctyp
+    AND docmst.docsubtyp = hist.docsubtyp
+    AND arlmst.arlidr = hist.arlidr
+    AND hist.cmpcod = #{stockRangeFilterVO.companyCode}
+    <if test='stockRangeFilterVO.airlineIdentifier > 0'>
+      AND HIST.ARLIDR = #{stockRangeFilterVO.airlineIdentifier}
+    </if>
+    <if test='"INVOICE" != stockRangeFilterVO.documentType'>
+      <if test="stockRangeFilterVO.endRange == null
+        or stockRangeFilterVO.endRange.trim().length() == 0">
+        <if test="stockRangeFilterVO.startRange != null
+        and stockRangeFilterVO.startRange.trim().length() > 0">
+          AND (HIST.ASCSTARNG >= #{stockRangeFilterVO.startRange}::NUMERIC OR
+          (#{stockRangeFilterVO.startRange}::NUMERIC between
+          HIST.ASCSTARNG and HIST.ASCENDRNG))
+        </if>
+      </if>
+      <if test="stockRangeFilterVO.startRange == null
+        or stockRangeFilterVO.startRange.trim().length() == 0">
+        <if test="stockRangeFilterVO.endRange != null
+          and stockRangeFilterVO.endRange.trim().length() > 0">
+          AND (HIST.ASCENDRNG <![CDATA[ <= ]]> #{stockRangeFilterVO.endRange}::NUMERIC OR
+          (#{stockRangeFilterVO.endRange}::NUMERIC between HIST.ASCSTARNG and HIST.ASCENDRNG))
+        </if>
+      </if>
+      <if test="stockRangeFilterVO.startRange != null
+      and stockRangeFilterVO.startRange.trim().length() > 0">
+        <if test="stockRangeFilterVO.endRange != null
+        and stockRangeFilterVO.endRange.trim().length() > 0">
+          AND ( ( #{stockRangeFilterVO.startRange}::NUMERIC BETWEEN HIST.ASCSTARNG AND
+          HIST.ASCENDRNG)
+          OR ( #{stockRangeFilterVO.endRange}::NUMERIC BETWEEN HIST.ASCSTARNG AND HIST.ASCENDRNG)
+          OR ( HIST.ASCSTARNG >= #{stockRangeFilterVO.startRange}::NUMERIC AND HIST.ASCENDRNG
+          <![CDATA[ <= ]]>
+          #{stockRangeFilterVO.endRange}::NUMERIC ) )
+        </if>
+      </if>
+    </if>
+
+    <if test="stockRangeFilterVO.fromStockHolderCode != null
+      and stockRangeFilterVO.fromStockHolderCode.trim().length() > 0">
+      <choose>
+        <when
+          test='stockRangeFilterVO.status == "G"
+          or stockRangeFilterVO.status == "H"
+          or stockRangeFilterVO.status == "I"'>
+          AND HIST.TOSTKHLDCOD = #{stockRangeFilterVO.fromStockHolderCode}
+        </when>
+        <otherwise>
+          <if test='stockRangeFilterVO.startRange != null
+          and stockRangeFilterVO.endRange != null'>
+            AND HIST.FRMSTKHLDCOD = #{stockRangeFilterVO.fromStockHolderCode}
+          </if>
+        </otherwise>
+      </choose>
+    </if>
+    <if test="stockRangeFilterVO.documentType != null
+      and stockRangeFilterVO.documentType.trim().length() > 0">
+      AND HIST.DOCTYP= #{stockRangeFilterVO.documentType}
+    </if>
+    <if test="stockRangeFilterVO.documentSubType != null
+      and stockRangeFilterVO.documentSubType.trim().length() > 0">
+      AND HIST.DOCSUBTYP= #{stockRangeFilterVO.documentSubType}
+    </if>
+    <choose>
+      <when test="status != null and status.trim().length() > 0">
+        AND HIST.STATUS = #{status}
+      </when>
+      <otherwise>
+        <if
+          test='stockRangeFilterVO.availableStatus != null and !stockRangeFilterVO.availableStatus.isEmpty()'>
+          AND HIST.STATUS IN
+          <foreach item='status' collection='stockRangeFilterVO.availableStatus'
+            open='(' separator=',' close=')'>
+            #{status}
+          </foreach>
+        </if>
+      </otherwise>
+    </choose>
+    <if test="stockRangeFilterVO.accountNumber != null
+        and stockRangeFilterVO.accountNumber.trim().length() > 0">
+      AND HIST.FRMSTKHLDCOD IN (SELECT STKHLD.STKHLDCOD FROM STKHLDAGT
+      STKHLD,SHRAGTMST AGTMST WHERE AGTMST.AGTCOD = STKHLD.AGTCOD AND AGTMST.AGTACCCOD =
+      #{stockRangeFilterVO.accountNumber})
+    </if>
+    <if test="stockRangeFilterVO.userId != null
+      and stockRangeFilterVO.userId.trim().length() > 0">
+      AND HIST.USRCOD= #{stockRangeFilterVO.userId}
+    </if>
+    <if test="stockRangeFilterVO.startDate != null and stockRangeFilterVO.endDate != null">
+      AND HIST.TXNDAT <![CDATA[ >= ]]> #{stockRangeFilterVO.startDate}
+      AND HIST.TXNDAT <![CDATA[ <= ]]> #{stockRangeFilterVO.endDate}
+    </if>
+    <if test='"INVOICE" != stockRangeFilterVO.documentType'>
+      <if test="stockRangeFilterVO.startRange != null and stockRangeFilterVO.startRange != null">
+        AND HIST.STARNG = #{stockRangeFilterVO.startRange}
+        AND HIST.ENDRNG = #{stockRangeFilterVO.endRange}
+      </if>
+    </if>
+    ORDER BY STKDAT
+  </select>
+  <resultMap id="findStockHistory" type="com.ibsplc.neoicargo.stock.vo.StockRangeHistoryVO">
+    <result property="companyCode" column="cmpcod" jdbcType="VARCHAR"/>
+    <result property="airlineIdentifier" column="arlidr" jdbcType="NUMERIC"/>
+    <result property="toStockHolderCode" column="tostkhldcod" jdbcType="VARCHAR"/>
+    <result property="numberOfDocuments" column="docnum" jdbcType="NUMERIC"/>
+    <result property="fromStockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="rangeType" column="mnlflg" jdbcType="VARCHAR"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.RangeTypeHandler"/>
+    <result property="documentType" column="doctyp" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="docsubtyp" jdbcType="VARCHAR"/>
+    <result property="startRange" column="starng" jdbcType="VARCHAR"/>
+    <result property="endRange" column="endrng" jdbcType="VARCHAR"/>
+    <result property="status" column="status" jdbcType="VARCHAR"/>
+    <result property="transactionDate" column="stkdat" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="transDateStr" column="stkdat" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.DateHandler"/>
+    <result property="remarks" column="txnrmk" jdbcType="VARCHAR"/>
+    <result property="voidingCharge" column="vodchg" jdbcType="NUMERIC"/>
+    <result property="currencyCode" column="curcod" jdbcType="VARCHAR"/>
+    <result property="awbRange" column="awbRange" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <select id="findStockUtilisationDetailsStatusUnused"
+    resultMap="findStockUtilisationDetailsStatus" parameterType="map">
+    SELECT
+    rng.stkhldcod,
+    rng.mnlflg,
+    rng.doctyp,
+    rng.docsubtyp,
+    rng.starng,
+    rng.endrng,
+    rng.docnum,
+    rng.rngacpdat AS stkdat,
+    'F' AS status,
+    arlmst.awbchkdgt,
+    (
+    CASE
+    WHEN rng.doctyp = 'AWB' THEN
+    CASE
+    WHEN arlmst.awbchkdgt != 0 THEN
+    concat(
+    starng,
+    (rng.starng :: integer % arlmst.awbchkdgt):: text,
+    '-',
+    endrng,
+    (rng.endrng :: integer % arlmst.awbchkdgt):: text
+    ) END
+    ELSE concat(rng.starng, '-', rng.endrng) END
+    ) as awbRange
+    FROM
+    stkrng rng,
+    shrarlactmst arlmst,
+    stkhldstk stk
+    WHERE
+    rng.cmpcod = arlmst.cmpcod
+    AND rng.arlidr = arlmst.arlidr
+    AND stk.arlidr = rng.arlidr
+    AND stk.cmpcod = rng.cmpcod
+    AND stk.stkhldcod = rng.stkhldcod
+    AND stk.docsubtyp = rng.docsubtyp
+    AND stk.doctyp = rng.doctyp
+    AND RNG.CMPCOD= #{stockRangeFilterVO.companyCode}
+    <if test='stockRangeFilterVO.airlineIdentifier > 0'>
+      AND RNG.ARLIDR = #{stockRangeFilterVO.airlineIdentifier}
+    </if>
+    <if test="stockRangeFilterVO.endRange == null
+      or stockRangeFilterVO.endRange.trim().length() == 0">
+      <if test="stockRangeFilterVO.startRange != null
+        and stockRangeFilterVO.startRange.trim().length() > 0">
+        AND (RNG.ASCSTARNG >= #{stockRangeFilterVO.startRange}::NUMERIC OR
+        (#{stockRangeFilterVO.startRange}::NUMERIC between RNG.ASCSTARNG and RNG.ASCENDRNG))
+      </if>
+    </if>
+    <if test="stockRangeFilterVO.startRange == null
+      or stockRangeFilterVO.startRange.trim().length() == 0">
+      <if test="stockRangeFilterVO.endRange != null
+        and stockRangeFilterVO.endRange.trim().length() > 0">
+        AND (RNG.ASCENDRNG <![CDATA[ <= ]]> #{stockRangeFilterVO.endRange}::NUMERIC OR
+        (#{stockRangeFilterVO.endRange}::NUMERIC between RNG.ASCSTARNG and RNG.ASCENDRNG))
+      </if>
+    </if>
+
+    <if test="stockRangeFilterVO.startRange != null
+      and stockRangeFilterVO.startRange.trim().length() > 0">
+      <if test="stockRangeFilterVO.endRange != null
+        and stockRangeFilterVO.endRange.trim().length() > 0">
+        AND ( ( #{stockRangeFilterVO.startRange}::NUMERIC BETWEEN RNG.ASCSTARNG AND RNG.ASCENDRNG)
+        OR ( #{stockRangeFilterVO.endRange}::NUMERIC BETWEEN RNG.ASCSTARNG AND RNG.ASCENDRNG) OR (
+        RNG.ASCSTARNG >= #{stockRangeFilterVO.startRange}::NUMERIC AND RNG.ASCENDRNG
+        <![CDATA[ <= ]]> #{stockRangeFilterVO.endRange}::NUMERIC ) )
+      </if>
+    </if>
+    <if test="stockRangeFilterVO.fromStockHolderCode != null
+      and stockRangeFilterVO.fromStockHolderCode.trim().length() > 0">
+      AND RNG.STKHLDCOD=#{stockRangeFilterVO.fromStockHolderCode}
+    </if>
+    <if test="stockRangeFilterVO.documentType != null
+      and stockRangeFilterVO.documentType.trim().length() > 0">
+      AND RNG.DOCTYP= #{stockRangeFilterVO.documentType}
+    </if>
+    <if test="stockRangeFilterVO.documentSubType != null
+      and stockRangeFilterVO.documentSubType.trim().length() > 0">
+      AND RNG.DOCSUBTYP= #{stockRangeFilterVO.documentSubType}
+    </if>
+    <if test="stockRangeFilterVO.startDate != null and stockRangeFilterVO.endDate != null">
+      AND date_trunc('day', rng.rngacpdat) BETWEEN #{stockRangeFilterVO.startDate} AND
+      #{stockRangeFilterVO.endDate}
+    </if>
+    <if test="stockRangeFilterVO.accountNumber != null
+        and stockRangeFilterVO.accountNumber.trim().length() > 0">
+      AND RNG.STKHLDCOD IN (SELECT STKHLD.STKHLDCOD FROM STKHLDAGT STKHLD,SHRAGTMST AGTMST WHERE
+      AGTMST.AGTCOD = STKHLD.AGTCOD AND AGTMST.AGTACCCOD = #{stockRangeFilterVO.accountNumber})
+    </if>
+    ORDER BY STKHLDCOD,MNLFLG,STATUS
+  </select>
+  <select id="findStockUtilisationDetailsStatusEmpty"
+    resultMap="findStockUtilisationDetailsStatus" parameterType="map">
+    SELECT
+    rng.stkhldcod,
+    rng.mnlflg,
+    rng.doctyp,
+    rng.docsubtyp,
+    rng.starng,
+    rng.endrng,
+    rng.docnum,
+    rng.rngacpdat AS stkdat,
+    'F' AS status,
+    (
+    CASE
+    WHEN rng.doctyp = 'AWB' THEN
+    CASE
+    WHEN arlmst.awbchkdgt != 0 THEN
+    concat(
+    starng,
+    (rng.starng :: integer % arlmst.awbchkdgt):: text,
+    '-',
+    endrng,
+    (rng.endrng :: integer % arlmst.awbchkdgt):: text
+    ) END
+    ELSE concat(rng.starng, '-', rng.endrng) END
+    ) as awbRange
+    FROM
+    stkrng rng,
+    shrarlactmst arlmst,
+    stkhldstk stk
+    WHERE
+    rng.cmpcod = arlmst.cmpcod
+    AND rng.arlidr = arlmst.arlidr
+    AND stk.arlidr = rng.arlidr
+    AND stk.cmpcod = rng.cmpcod
+    AND stk.stkhldcod = rng.stkhldcod
+    AND stk.docsubtyp = rng.docsubtyp
+    AND stk.doctyp = rng.doctyp
+    AND RNG.CMPCOD= #{stockRangeFilterVO.companyCode}
+
+    <if test="stockRangeFilterVO.endRange == null
+      or stockRangeFilterVO.endRange.trim().length() == 0">
+      <if test="stockRangeFilterVO.startRange != null
+        and stockRangeFilterVO.startRange.trim().length() > 0">
+        AND (RNG.ASCSTARNG >= #{stockRangeFilterVO.startRange}::NUMERIC OR
+        (#{stockRangeFilterVO.startRange}::NUMERIC between RNG.ASCSTARNG and RNG.ASCENDRNG))
+      </if>
+    </if>
+    <if test="stockRangeFilterVO.startRange == null
+      or stockRangeFilterVO.startRange.trim().length() == 0">
+      <if test="stockRangeFilterVO.endRange != null
+        and stockRangeFilterVO.endRange.trim().length() > 0">
+        AND (RNG.ASCENDRNG <![CDATA[ <= ]]> #{stockRangeFilterVO.endRange}::NUMERIC OR
+        (#{stockRangeFilterVO.endRange}::NUMERIC between RNG.ASCSTARNG and RNG.ASCENDRNG))
+      </if>
+    </if>
+    <if test="stockRangeFilterVO.startRange != null
+      and stockRangeFilterVO.startRange.trim().length() > 0">
+      <if test="stockRangeFilterVO.endRange != null
+        and stockRangeFilterVO.endRange.trim().length() > 0">
+        AND ( ( #{stockRangeFilterVO.startRange}::NUMERIC BETWEEN RNG.ASCSTARNG AND RNG.ASCENDRNG)
+        OR ( #{stockRangeFilterVO.endRange}::NUMERIC BETWEEN RNG.ASCSTARNG AND RNG.ASCENDRNG) OR (
+        RNG.ASCSTARNG >= #{stockRangeFilterVO.startRange}::NUMERIC AND RNG.ASCENDRNG
+        <![CDATA[ <= ]]> #{stockRangeFilterVO.endRange}::NUMERIC ) )
+      </if>
+    </if>
+    <if test="stockRangeFilterVO.fromStockHolderCode != null
+      and stockRangeFilterVO.fromStockHolderCode.trim().length() > 0">
+      AND RNG.STKHLDCOD=#{stockRangeFilterVO.fromStockHolderCode}
+    </if>
+    <if test="stockRangeFilterVO.documentType != null
+      and stockRangeFilterVO.documentType.trim().length() > 0">
+      AND RNG.DOCTYP= #{stockRangeFilterVO.documentType}
+    </if>
+    <if test="stockRangeFilterVO.documentSubType != null
+      and stockRangeFilterVO.documentSubType.trim().length() > 0">
+      AND RNG.DOCSUBTYP= #{stockRangeFilterVO.documentSubType}
+    </if>
+    <if test="stockRangeFilterVO.startDate != null and stockRangeFilterVO.endDate != null">
+      AND date_trunc('day', rng.rngacpdat) BETWEEN #{stockRangeFilterVO.startDate} AND
+      #{stockRangeFilterVO.endDate}
+    </if>
+    <if test="stockRangeFilterVO.accountNumber != null
+        and stockRangeFilterVO.accountNumber.trim().length() > 0">
+      AND RNG.STKHLDCOD IN (SELECT STKHLD.STKHLDCOD FROM STKHLDAGT STKHLD,SHRAGTMST AGTMST WHERE
+      AGTMST.AGTCOD = STKHLD.AGTCOD AND AGTMST.AGTACCCOD = #{stockRangeFilterVO.accountNumber})
+    </if>
+    UNION
+    SELECT
+    DISTINCT UTLHIST.FRMSTKHLDCOD AS STKHLDCOD,
+    UTLHIST.RNGTYP AS MNLFLG,
+    UTLHIST.DOCTYP,
+    UTLHIST.DOCSUBTYP,
+    UTLHIST.STARNG,
+    UTLHIST.ENDRNG,
+    UTLHIST.NUMDOC AS DOCNUM,
+    UTLHIST.TXNDAT AS STKDAT,
+    COALESCE(UTLHIST.STATUS,'U') AS STATUS,
+    (
+    CASE
+    WHEN UTLHIST.DOCTYP = 'AWB' THEN
+    CASE
+    WHEN ARLMST.AWBCHKDGT != 0 THEN
+    concat(
+    starng,
+    (UTLHIST.STARNG :: integer % ARLMST.AWBCHKDGT):: text,
+    '-',
+    endrng,
+    (UTLHIST.ENDRNG :: integer % ARLMST.AWBCHKDGT):: text
+    ) END
+    ELSE concat(UTLHIST.STARNG, '-', UTLHIST.ENDRNG) END
+    ) as awbRange
+    FROM
+    STKRNGTXNHIS UTLHIST,
+    SHRARLACTMST ARLMST
+    WHERE ARLMST.CMPCOD = UTLHIST.CMPCOD
+    AND ARLMST.ARLIDR=UTLHIST.ARLIDR
+    AND UTLHIST.CMPCOD=#{stockRangeFilterVO.companyCode} AND
+    UTLHIST.ARLIDR=#{stockRangeFilterVO.airlineIdentifier}
+    AND UTLHIST.STATUS='U'
+    <if test="stockRangeFilterVO.endRange == null
+        or stockRangeFilterVO.endRange.trim().length() == 0">
+      <if test="stockRangeFilterVO.startRange != null
+          and stockRangeFilterVO.startRange.trim().length() > 0">
+        AND (UTLHIST.ASCSTARNG >= #{stockRangeFilterVO.startRange}::NUMERIC OR
+        (#{stockRangeFilterVO.startRange}::NUMERIC between UTLHIST.ASCSTARNG and UTLHIST.ASCENDRNG))
+      </if>
+    </if>
+    <if test="stockRangeFilterVO.startRange == null
+        or stockRangeFilterVO.startRange.trim().length() == 0">
+      <if test="stockRangeFilterVO.endRange != null
+          and stockRangeFilterVO.endRange.trim().length() > 0">
+        AND (UTLHIST.ASCENDRNG <![CDATA[ <= ]]> #{stockRangeFilterVO.endRange}::NUMERIC OR
+        (#{stockRangeFilterVO.endRange}::NUMERIC between UTLHIST.ASCSTARNG and UTLHIST.ASCENDRNG))
+      </if>
+    </if>
+    <if test="stockRangeFilterVO.startRange != null
+        and stockRangeFilterVO.startRange.trim().length() > 0">
+      <if test="stockRangeFilterVO.endRange != null
+          and stockRangeFilterVO.endRange.trim().length() > 0">
+        AND ( ( #{stockRangeFilterVO.startRange}::NUMERIC BETWEEN UTLHIST.ASCSTARNG AND
+        UTLHIST.ASCENDRNG) OR ( #{stockRangeFilterVO.endRange}::NUMERIC BETWEEN UTLHIST.ASCSTARNG
+        AND UTLHIST.ASCENDRNG)OR ( UTLHIST.ASCSTARNG >= #{stockRangeFilterVO.startRange}::NUMERIC
+        AND UTLHIST.ASCENDRNG <![CDATA[ <= ]]> #{stockRangeFilterVO.endRange}::NUMERIC ) )
+      </if>
+    </if>
+    <if test="stockRangeFilterVO.fromStockHolderCode != null
+        and stockRangeFilterVO.fromStockHolderCode.trim().length() > 0">
+      AND UTLHIST.FRMSTKHLDCOD=#{stockRangeFilterVO.fromStockHolderCode}
+    </if>
+    <if test="stockRangeFilterVO.status != null
+        and stockRangeFilterVO.status.trim().length() > 0">
+      AND UTLHIST.STATUS=#{stockRangeFilterVO.status}
+    </if>
+    <if test="stockRangeFilterVO.documentType != null
+        and stockRangeFilterVO.documentType.trim().length() > 0">
+      AND UTLHIST.DOCTYP= #{stockRangeFilterVO.documentType}
+    </if>
+    <if test="stockRangeFilterVO.documentSubType != null
+        and stockRangeFilterVO.documentSubType.trim().length() > 0">
+      AND UTLHIST.DOCSUBTYP= #{stockRangeFilterVO.documentSubType}
+    </if>
+    <if test="stockRangeFilterVO.startDate != null and stockRangeFilterVO.endDate != null">
+      AND UTLHIST.TXNDAT <![CDATA[ >= ]]> #{stockRangeFilterVO.startDate}
+      AND UTLHIST.TXNDAT <![CDATA[ <= ]]> #{stockRangeFilterVO.endDate}
+    </if>
+    <if test="stockRangeFilterVO.accountNumber != null
+          and stockRangeFilterVO.accountNumber.trim().length() > 0">
+      AND UTLHIST.FRMSTKHLDCOD IN (SELECT STKHLD.STKHLDCOD FROM STKHLDAGT STKHLD,SHRAGTMST AGTMST
+      WHERE AGTMST.AGTCOD = STKHLD.AGTCOD AND AGTMST.AGTACCCOD =
+      #{stockRangeFilterVO.accountNumber})
+    </if>
+
+    ORDER BY STKHLDCOD,MNLFLG,STATUS
+  </select>
+
+  <select id="findStockUtilisationDetailsStatusUsed"
+    resultMap="findStockUtilisationDetailsStatus" parameterType="map">
+    SELECT DISTINCT
+    utlhist.frmstkhldcod AS stkhldcod,
+    utlhist.rngtyp AS mnlflg,
+    utlhist.doctyp,
+    utlhist.docsubtyp,
+    utlhist.starng,
+    utlhist.endrng,
+    utlhist.numdoc AS docnum,
+    utlhist.txndat AS stkdat,
+    coalesce(utlhist.status,'U') AS status,
+    (
+    CASE
+    WHEN utlhist.doctyp = 'AWB' THEN
+    CASE
+    WHEN arlmst.awbchkdgt != 0 THEN
+    concat(
+    starng,
+    (utlhist.starng :: integer % arlmst.awbchkdgt):: text,
+    '-',
+    endrng,
+    (utlhist.endrng :: integer % arlmst.awbchkdgt):: text
+    ) END
+    ELSE concat(utlhist.starng, '-', utlhist.endrng) END
+    ) as awbRange
+    FROM
+    shrarlactmst arlmst,stkrngtxnhis utlhist
+    LEFT OUTER JOIN stkhldstk stk ON stk.arlidr = utlhist.arlidr
+    AND stk.cmpcod = utlhist.cmpcod
+    AND stk.stkhldcod = utlhist.frmstkhldcod
+    AND stk.docsubtyp = utlhist.docsubtyp
+    AND stk.doctyp = utlhist.doctyp
+    WHERE
+    arlmst.cmpcod = utlhist.cmpcod
+    AND arlmst.arlidr = utlhist.arlidr
+    AND utlhist.cmpcod =#{stockRangeFilterVO.companyCode}
+    AND utlhist.arlidr =#{stockRangeFilterVO.airlineIdentifier}
+    <if test="stockRangeFilterVO.endRange == null
+        or stockRangeFilterVO.endRange.trim().length() == 0">
+      <if test="stockRangeFilterVO.startRange != null
+          and stockRangeFilterVO.startRange.trim().length() > 0">
+        AND (UTLHIST.ASCSTARNG >= #{stockRangeFilterVO.startRange}::NUMERIC OR
+        (#{stockRangeFilterVO.startRange}::NUMERIC between UTLHIST.ASCSTARNG and UTLHIST.ASCENDRNG))
+      </if>
+    </if>
+    <if test="stockRangeFilterVO.startRange == null
+        or stockRangeFilterVO.startRange.trim().length() == 0">
+      <if test="stockRangeFilterVO.endRange != null
+          and stockRangeFilterVO.endRange.trim().length() > 0">
+        AND (UTLHIST.ASCENDRNG <![CDATA[ <= ]]> #{stockRangeFilterVO.endRange}::NUMERIC OR
+        (#{stockRangeFilterVO.endRange}::NUMERIC between UTLHIST.ASCSTARNG and UTLHIST.ASCENDRNG))
+      </if>
+    </if>
+    <if test="stockRangeFilterVO.startRange != null
+        and stockRangeFilterVO.startRange.trim().length() > 0">
+      <if test="stockRangeFilterVO.endRange != null
+          and stockRangeFilterVO.endRange.trim().length() > 0">
+        AND ( ( #{stockRangeFilterVO.startRange}::NUMERIC BETWEEN UTLHIST.ASCSTARNG AND
+        UTLHIST.ASCENDRNG) OR ( #{stockRangeFilterVO.endRange}::NUMERIC BETWEEN UTLHIST.ASCSTARNG
+        AND UTLHIST.ASCENDRNG)OR ( UTLHIST.ASCSTARNG >= #{stockRangeFilterVO.startRange}::NUMERIC
+        AND UTLHIST.ASCENDRNG <![CDATA[ <= ]]> #{stockRangeFilterVO.endRange}::NUMERIC ) )
+      </if>
+    </if>
+    <if test="stockRangeFilterVO.fromStockHolderCode != null
+        and stockRangeFilterVO.fromStockHolderCode.trim().length() > 0">
+      AND UTLHIST.FRMSTKHLDCOD=#{stockRangeFilterVO.fromStockHolderCode}
+    </if>
+    <if test="stockRangeFilterVO.status != null
+        and stockRangeFilterVO.status.trim().length() > 0">
+      AND UTLHIST.STATUS=#{stockRangeFilterVO.status}
+    </if>
+    <if test="stockRangeFilterVO.documentType != null
+        and stockRangeFilterVO.documentType.trim().length() > 0">
+      AND UTLHIST.DOCTYP= #{stockRangeFilterVO.documentType}
+    </if>
+    <if test="stockRangeFilterVO.documentSubType != null
+        and stockRangeFilterVO.documentSubType.trim().length() > 0">
+      AND UTLHIST.DOCSUBTYP= #{stockRangeFilterVO.documentSubType}
+    </if>
+    <if test="stockRangeFilterVO.startDate != null and stockRangeFilterVO.endDate != null">
+      AND UTLHIST.TXNDAT <![CDATA[ >= ]]> #{stockRangeFilterVO.startDate}
+      AND UTLHIST.TXNDAT <![CDATA[ <= ]]> #{stockRangeFilterVO.endDate}
+    </if>
+    <if test="stockRangeFilterVO.accountNumber != null
+          and stockRangeFilterVO.accountNumber.trim().length() > 0">
+      AND UTLHIST.FRMSTKHLDCOD IN (SELECT STKHLD.STKHLDCOD FROM STKHLDAGT STKHLD,SHRAGTMST AGTMST
+      WHERE AGTMST.AGTCOD = STKHLD.AGTCOD AND AGTMST.AGTACCCOD =
+      #{stockRangeFilterVO.accountNumber})
+    </if>
+    ORDER BY STKHLDCOD,MNLFLG,STATUS
+  </select>
+
+  <resultMap id="findStockUtilisationDetailsStatus"
+    type="com.ibsplc.neoicargo.stock.vo.StockRangeHistoryVO">
+    <result property="companyCode" column="cmpcod" jdbcType="VARCHAR"/>
+    <result property="airlineIdentifier" column="arlidr" jdbcType="NUMERIC"/>
+    <result property="fromStockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="numberOfDocuments" column="docnum" jdbcType="NUMERIC"/>
+    <result property="rangeType" column="mnlflg" jdbcType="VARCHAR"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.RangeTypeHandler"/>
+    <result property="documentType" column="doctyp" jdbcType="VARCHAR"/>
+    <result property="documentSubType" column="docsubtyp" jdbcType="VARCHAR"/>
+    <result property="startRange" column="starng" jdbcType="VARCHAR"/>
+    <result property="endRange" column="endrng" jdbcType="VARCHAR"/>
+    <result property="transactionDate" column="stkdat" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.ZonedDateTimeHandler"/>
+    <result property="transDateStr" column="stkdat" jdbcType="DATE"
+      typeHandler="com.ibsplc.neoicargo.stock.dao.mybatis.handler.DateHandler"/>
+    <result property="awbRange" column="awbRange" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <select id="findBlacklistRangesForBlacklist"
+    resultMap="findBlacklistRangesForBlacklist" parameterType="map">
+    SELECT
+    cmpcod,
+    stkhldcod,
+    starng,
+    endrng,
+    ascstarng,
+    ascendrng,
+    mnlflg
+    FROM
+    stkrng
+    WHERE
+    cmpcod = #{companyCode}
+    AND arlidr = #{airlineId}
+    AND doctyp = #{docType}
+    AND docsubtyp = #{docSubType}
+    AND (
+    (#{startRange} BETWEEN ascstarng AND ascendrng )
+    OR (#{endRange} BETWEEN ascstarng AND ascendrng )
+    OR ( #{startRange} <![CDATA[ <= ]]> ascstarng AND #{endRange} <![CDATA[ >= ]]> ascendrng ))
+  </select>
+  <resultMap id="findBlacklistRangesForBlacklist"
+    type="com.ibsplc.neoicargo.stock.vo.RangeVO">
+    <result property="companyCode" column="cmpcod" jdbcType="VARCHAR"/>
+    <result property="stockHolderCode" column="stkhldcod" jdbcType="VARCHAR"/>
+    <result property="startRange" column="starng" jdbcType="VARCHAR"/>
+    <result property="endRange" column="endrng" jdbcType="VARCHAR"/>
+    <result property="asciiStartRange" column="ascstarng" jdbcType="NUMERIC"/>
+    <result property="asciiEndRange" column="ascendrng" jdbcType="NUMERIC"/>
+  </resultMap>
+</mapper>

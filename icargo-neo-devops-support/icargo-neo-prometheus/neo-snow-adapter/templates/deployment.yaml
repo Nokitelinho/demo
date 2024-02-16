@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "neo-snow-adapter.name" . }}
+  namespace: {{ .Values.namespaceOverride | default "icargo-system" }}
+  labels:
+    {{- include "neo-snow-adapter.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "neo-snow-adapter.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "neo-snow-adapter.selectorLabels" . | nindent 8 }}
+    spec:
+      volumes:
+        - name: mappings-config-volume
+          configMap:
+            name: {{printf "%s-%s" (include "neo-snow-adapter.name" .) "mappings-configmap" | quote }}
+            items:
+              - key: mappings.yaml
+                path: mappings.yaml    
+        - name: app-config-volume
+          configMap:
+            name: {{printf "%s-%s" (include "neo-snow-adapter.name" .) "app-configmap" | quote }}
+            items:
+              - key: application-{{ .Values.snowAdapter.springProfile }}.yaml
+                path: application-{{ .Values.snowAdapter.springProfile }}.yaml                
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - '--server.port=8080'
+            - '--spring.profiles.active={{ .Values.snowAdapter.springProfile }}'
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: >-
+                -Dspring.application.name={{ .Chart.Name }}
+                -Xms256M -Xmx256M   
+          startupProbe:
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            failureThreshold: 15          
+            httpGet:
+              path: /snow-adapter/actuator/health
+              port: http
+          livenessProbe:
+            periodSeconds: 30
+            httpGet:
+              path: /snow-adapter/actuator/health
+              port: http
+          readinessProbe:
+            periodSeconds: 10
+            httpGet:
+              path: /snow-adapter/actuator/health
+              port: http          
+          volumeMounts:
+            - name: mappings-config-volume
+              mountPath: /app/resources/config/snow/mappings.yaml
+              subPath: mappings.yaml
+            - name: app-config-volume
+              mountPath: /app/resources/config/application-{{ .Values.snowAdapter.springProfile }}.yaml
+              subPath: application-{{ .Values.snowAdapter.springProfile }}.yaml              
+      serviceAccountName: {{ .Values.serviceAccountNameOverride | default "neo-snow-adapter"}}
+      serviceAccount: {{ .Values.serviceAccountNameOverride | default "neo-snow-adapter"}}

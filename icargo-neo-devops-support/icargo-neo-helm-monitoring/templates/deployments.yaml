@@ -1,0 +1,116 @@
+{{/*
+ Txprobe aggregator daemonset deployment
+*/}}
+{{- if .Values.txProbe.webEnabled }}
+{{- $hasFullURL := hasKey (first .Values.elasticSearchUrl) "externalDNSName" }}
+{{- $esUrl := $hasFullURL | ternary (printf "-Des.serverUrl=%s://elasticsearch:80" .Values.txProbe.esProto) (printf "-Des.serverUrl=%s://elasticsearch:80" .Values.txProbe.esProto) }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "neo-txprobe-web"
+  namespace: {{ .Values.monitoringNamespace | quote }}
+  labels:
+    app: "neo-txprobe-web"
+    srvtyp: "monitoring_service"
+    prctyp: "java"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 300
+  strategy:
+    type: "RollingUpdate"
+  selector:
+    matchLabels:
+      app: "neo-txprobe-web"
+  template:
+    metadata:
+      labels:
+        app: "neo-txprobe-web"
+        srvtyp: "monitoring_service"
+        prctyp: "java"
+    spec:
+      dnsPolicy: "ClusterFirst"
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: "neo-txprobe-web"
+          image: {{ printf "%s/%s" .Values.dockerRegistry .Values.txProbe.webImage | quote }}
+          imagePullPolicy: "IfNotPresent"
+          args: ["export-web"]
+          ports:
+            - name: "http"
+              containerPort: 8080
+              protocol: "TCP"
+          env:
+            - name: "JAVA_TOOL_OPTIONS"
+              {{- $javaEnv := concat .Values.txProbe.webJavaEnv (list $esUrl "-Dserver.port=8080" "-Des.maxFetchSize=100" "-Djava.awt.headless=true") }}
+              value: {{ $javaEnv | join " " | quote }}
+---
+# Source: icargo-neo-helm/templates/services.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: "neo-txprobe-web"
+  namespace: {{ .Values.monitoringNamespace | quote }}
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb-ip"
+  labels:
+    app: "neo-txprobe-web"
+    srvtyp: "monitoring_service"
+    prctyp: "java"
+spec:
+  type: LoadBalancer
+  sessionAffinity: ClientIP
+  selector:
+    app: "neo-txprobe-web"
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+{{- end }}
+
+---
+{{- if .Values.dataMonitor.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "neo-datamonitor"
+  namespace: {{ .Values.monitoringNamespace | quote }}
+  labels:
+    app: "neo-datamonitor"
+    srvtyp: "monitoring_service"
+    prctyp: "java"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 300
+  strategy:
+    type: "RollingUpdate"
+  selector:
+    matchLabels:
+      app: "neo-datamonitor"
+  template:
+    metadata:
+      labels:
+        app: "neo-datamonitor"
+        srvtyp: "monitoring_service"
+        prctyp: "java"
+    spec:
+      dnsPolicy: "ClusterFirst"
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: "neo-datamonitor"
+          image: {{ printf "%s/%s" .Values.dockerRegistry .Values.dataMonitor.image | quote }}
+          imagePullPolicy: "IfNotPresent"
+          args: ["export-web"] # check with sinono fro arguments
+          ports:
+            - name: "http"
+              containerPort: 8080
+              protocol: "TCP"
+          env:
+            - name: "JAVA_TOOL_OPTIONS" # check with sinoob arument for here as well -- like nv variable -Dthings
+              {{- $javaEnv :=  (list " -Dspring.profiles.active=k8s -Dspring.application.name=neo-datamonitor -DhostedTenants=AV -Dspring.cloud.config.uri=http://neo-config-server.alpha.svc.cluster.local/config-service  -Dserver.port=8080" "-Des.maxFetchSize=100" "-Djava.awt.headless=true") }}
+              value: {{ $javaEnv | join " " | quote }}
+{{- end }}

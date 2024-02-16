@@ -1,0 +1,1483 @@
+<test-configurations>
+	<configuration-id>operations.flthandling.cto.saveCTOExportManifest</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO2.freightDetailsVO.manifestUldDetails}) 	
+			#foreach( $uldManifestVO in $uldManifestVOs)
+				#foreach( $shipmentManifestVO in $uldManifestVO.manifestShipmentDetails)
+				#set( $query= "SELECT MFTPCS, BDPPCS from oprsegshp where DOCOWRIDR = '$!{shipmentManifestVO.ownerId}' AND MSTDOCNUM='$!{shipmentManifestVO.masterDocumentNumber}' AND DUPNUM ='$!{shipmentManifestVO.duplicateNumber}' AND SEQNUM = '$!{shipmentManifestVO.sequenceNumber}' AND CMPCOD='$!{shipmentManifestVO.companyCode}';")
+					#set( $data= $data + $query)
+				#end			
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				"#{MFTPCS}"== "#{BDPPCS}"
+			</evaluation-condition>					
+		</testcase>		
+		<testcase type="CASE2" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO2.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			  #set( $query= "SELECT ARPCOD,STUCOD,STUTYPNAM,WHSCOD,DEFLOCCOD,DEFWHSCOD,CURLOCCOD,CURWHSCOD,OCPSTA,TXNBLKFLG FROM WHSSTUMST WHERE CMPCOD = '${VO1.companyCode}' AND STUCOD = '${uldManifestVO.uldNumber}';")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUTYPNAM}".equals("null")
+			</evaluation-condition>					
+		</testcase>			
+		<testcase type="CASE3" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO2.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			  #set( $query= "SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${uldManifestVO.uldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD = SHP.CMPCOD
+			  AND LOC.WHSCOD = SHP.WHSCOD
+			  AND LOC.ARPCOD = SHP.ARPCOD
+			  AND LOC.LOCCOD = SHP.CURLOCCOD);")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>		
+		</testcase>			
+		<testcase type="CASE4" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO2.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			  #set( $query= "SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${uldManifestVO.uldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD=SHP.CMPCOD
+			  AND LOC.WHSCOD  =SHP.WHSCOD
+			  AND LOC.ARPCOD  =SHP.ARPCOD
+			  AND LOC.LOCCOD  =SHP.DEFLOCCOD);")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>	
+		</testcase>			
+		<testcase type="CASE5" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO2.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			  #set( $query= "SELECT ARPCOD,
+			  WHSCOD,
+			  LOCCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  STUCOD,
+			  LOCPCS,
+			  TXNPCS
+			  FROM WHSOPRSHPLOC
+			  WHERE (ARPCOD,WHSCOD,STUCOD) IN
+			  (SELECT ARPCOD,
+				WHSCOD,
+				STUCOD
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${uldManifestVO.uldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+				(SELECT 1
+				FROM WHSLOCMST LOC
+				WHERE LOC.CMPCOD=SHP.CMPCOD
+				AND LOC.WHSCOD  =SHP.WHSCOD
+				AND LOC.ARPCOD  =SHP.ARPCOD
+				AND LOC.LOCCOD  =SHP.CURLOCCOD		
+				));")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>			
+		</testcase>			
+		<testcase type="CASE6" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO2.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			#foreach( $shipmentManifestVO in $uldManifestVO.manifestShipmentDetails)
+			  #set( $query= "SELECT ARPCOD,
+			  WHSCOD,
+			  LOCCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  STUCOD,
+			  LOCPCS,
+			  TXNPCS
+			  FROM WHSOPRSHPLOC
+			  WHERE CMPCOD = '${shipmentManifestVO.companyCode}'
+			  AND MSTDOCNUM = '${shipmentManifestVO.masterDocumentNumber}'
+			  AND DUPNUM = '${shipmentManifestVO.duplicateNumber}'
+			  AND SEQNUM = '${shipmentManifestVO.sequenceNumber}'
+			  AND DOCOWRIDR = '${shipmentManifestVO.ownerId}';")
+			  #set( $data= $data + $query)
+			#end
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				"#{LOCPCS}" >= 0
+			</evaluation-condition>	
+		</testcase>		
+		<testcase type="CASE7" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO2.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			#foreach( $shipmentManifestVO in $uldManifestVO.manifestShipmentDetails)
+			  #set( $query= "SELECT ARPCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  AVLPCS
+			  FROM OPRARPSHP
+			  WHERE CMPCOD = '${shipmentManifestVO.companyCode}'
+			  AND MSTDOCNUM = '${shipmentManifestVO.masterDocumentNumber}'
+			  AND DUPNUM = '${shipmentManifestVO.duplicateNumber}'
+			  AND SEQNUM = '${shipmentManifestVO.sequenceNumber}'
+			  AND DOCOWRIDR = '${shipmentManifestVO.ownerId}';")
+			  #set( $data= $data + $query)
+			#end
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				"#{AVLPCS}" >= 0
+			</evaluation-condition>	
+		</testcase>	
+		<testcase type="CASE8" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO2.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			#foreach( $shipmentManifestVO in $uldManifestVO.manifestShipmentDetails)
+			  #set( $query= "SELECT MST.SHPPFX,MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD,MST.STDPCS,ARPSHP.AVLPCS,
+				SUM(SEGSHP.MFTPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)MFTPCS,
+				SUM(SEGSHP.OFLPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)OFLPCS,
+				SUM(SEGSHP.BDPPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)BDPPCS,
+				SUM(SEGSHP.RCVPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)RCVPCS,
+				ARPSHP.MFTPCS ARPMFTPCS,ARPSHP.BDPPCS ARPBDPPCS
+				FROM
+				OPRSEGSHP SEGSHP
+				INNER JOIN OPRARPSHP ARPSHP
+				ON SEGSHP.CMPCOD = ARPSHP.CMPCOD
+				AND SEGSHP.DOCOWRIDR = ARPSHP.DOCOWRIDR
+				AND SEGSHP.DUPNUM = ARPSHP.DUPNUM
+				AND SEGSHP.SEQNUM = ARPSHP.SEQNUM
+				AND SEGSHP.MSTDOCNUM = ARPSHP.MSTDOCNUM
+				INNER JOIN OPRSHPMST MST
+				ON MST.CMPCOD = ARPSHP.CMPCOD
+				AND MST.MSTDOCNUM = ARPSHP.MSTDOCNUM
+				AND MST.SEQNUM = ARPSHP.SEQNUM
+				AND MST.DUPNUM = ARPSHP.DUPNUM
+				AND MST.DOCOWRIDR = ARPSHP.DOCOWRIDR
+				WHERE ARPSHP.CMPCOD = '${shipmentManifestVO.companyCode}'
+				AND ARPSHP.MSTDOCNUM = '${shipmentManifestVO.masterDocumentNumber}'
+				AND ARPSHP.SEQNUM = '${shipmentManifestVO.sequenceNumber}'
+				AND ARPSHP.DUPNUM = '${shipmentManifestVO.duplicateNumber}'
+				AND ARPSHP.DOCOWRIDR = '${shipmentManifestVO.ownerId}';")
+			  #set( $data= $data + $query)
+			#end
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+			"#{STDPCS}" >= "#{MFTPCS}"				
+			</evaluation-condition>
+		</testcase>
+
+			</test-cases>
+	
+	
+	<configuration-id>operations.flthandling.closeFlightForImportManifest</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			SELECT ULD.CLSFLG ULDCLSFLG, ULD.ULDNUM
+			FROM OPRARPIMPFLT IMP
+			JOIN OPRULDDTL ULD
+			ON IMP.CMPCOD     = ULD.CMPCOD
+			AND IMP.FLTCARIDR = ULD.FLTCARIDR
+			AND IMP.FLTNUM    = ULD.FLTNUM
+			AND IMP.FLTSEQNUM = ULD.FLTSEQNUM
+			AND IMP.LEGSERNUM = ULD.LEGSERNUM
+			JOIN SHRUSEARPPAR PAR
+			ON ULD.CMPCOD  = PAR.CMPCOD
+			AND PAR.PARCOD = 'operation.flthandling.triggerpointforuldrelease'
+			AND PAR.ARPCOD = IMP.ARPCOD
+			WHERE  PAR.PARVAL   ='CLSFLT'
+			AND IMP.CLSFLG ='Y'
+			AND IMP.CMPCOD  = '${VO1.companyCode}'
+			AND IMP.FLTCARIDR = '${VO1.carrierId}'
+			AND IMP.FLTNUM    = '${VO1.flightNumber}'
+			AND IMP.FLTSEQNUM = '${VO1.flightSequenceNumber}'
+			AND IMP.LEGSERNUM = '${VO1.legSerialNumber}'
+			AND IMP.ARPCOD  = '${VO1.airportCode}';
+			</query>
+			<evaluation-condition>
+				"#{ULDCLSFLG}".equals("Y") || "#{ULDNUM}".equals("null")
+			</evaluation-condition>					
+		</testcase>	
+		<!--<testcase type="CASE2" >				
+			<query>
+			#foreach( $ShipmentDiscrepancyVO in $!{VO1})
+			SELECT MSTDOCNUM FROM OPRSHPFLTDIS DIS 
+			Where DIS.CMPCOD = '${VO1.companyCode}' 
+			And DIS.Fltcaridr = '${VO1.carrierId}' 
+			And DIS.Fltnum = '${VO1.flightNumber}' 
+			And DIS.Fltseqnum = '${VO1.flightSequenceNumber}' 
+			And DIS.LEGSERNUM = '${VO1.legSerialNumber}' 
+			DIS.CMPCOD = '${ShipmentDiscrepancyVO.companyCode}' 
+			AND DIS.DOCOWRIDR = '${ShipmentDiscrepancyVO.ownerId}'
+			AND DIS.MSTDOCNUM ='${ShipmentDiscrepancyVO.masterDocumentNumber}'
+			AND DIS.DUPNUM = '${ShipmentDiscrepancyVO.duplicateNumber}'
+			AND DIS.SEQNUM ='${ShipmentDiscrepancyVO.sequenceNumber}' ;
+			</query>
+			<evaluation-condition>
+				!"#{MSTDOCNUM}".equals("null")
+			</evaluation-condition>	
+            </testcase>
+            <testcase type="CASE3" >				
+			<query>
+			#foreach( $ShipmentDiscrepancyVO in $!{VO2})
+			SELECT MSTDOCNUM FROM TRCCASMST TRA
+			Where TRA.CMPCOD = '${VO1.companyCode}' 
+			And TRA.Fltcaridr = '${VO1.carrierId}' 
+			And TRA.Fltnum = '${VO1.flightNumber}' 
+			And TRA.Fltseqnum = '${VO1.flightSequenceNumber}' 
+			And LEG.LEGSERNUM = '${VO1.legSerialNumber}' 
+			TRA.CMPCOD = '${ShipmentDiscrepancyVO.companyCode}' 
+			AND TRA.DOCOWRIDR = '${ShipmentDiscrepancyVO.ownerId}'
+			AND TRA.MSTDOCNUM ='${ShipmentDiscrepancyVO.masterDocumentNumber}'
+			AND TRA.DUPNUM = '${ShipmentDiscrepancyVO.duplicateNumber}'
+			AND TRA.SEQNUM ='${ShipmentDiscrepancyVO.sequenceNumber}' ;
+			</query>
+			<evaluation-condition>
+				!"#{MSTDOCNUM}".equals("null")
+			</evaluation-condition>					
+		   </testcase>	-->
+	</test-cases>
+	<configuration-id>operations.flthandling.closeFlight</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			SELECT ULD.CLSFLG ULDCLSFLG, ULD.ULDNUM
+			FROM OprarpIMPflT IMP
+			JOIN Oprulddtl Uld
+			ON IMP.Cmpcod     = Uld.Cmpcod
+			AND IMP.Fltcaridr = Uld.Fltcaridr
+			AND IMP.Fltnum    = Uld.Fltnum
+			AND IMP.Fltseqnum = Uld.Fltseqnum
+			AND IMP.LEGSERNUM = Uld.LEGSERNUM
+			JOIN SHRUSEARPPAR PAR
+			ON ULD.CMPCOD  = PAR.CMPCOD
+			AND PAR.PARCOD = 'operation.flthandling.triggerpointforuldrelease'
+			AND PAR.ARPCOD = IMP.ARPCOD
+			WHERE  PAR.PARVAL   ='CLSFLT'
+			AND IMP.CLSFLG ='Y'
+			AND IMP.CMPCOD  = '${VO1.companyCode}'
+			AND IMP.Fltcaridr = '${VO1.carrierId}'
+			AND IMP.Fltnum    = '${VO1.flightNumber}'
+			AND IMP.Fltseqnum = '${VO1.flightSequenceNumber}'
+			AND IMP.LEGSERNUM = '${VO1.legSerialNumber}'
+			AND IMP.ARPCOD  = '${VO1.airportCode}';
+			</query>
+			<evaluation-condition>
+				"#{ULDCLSFLG}".equals("Y") || "#{ULDNUM}".equals("null")
+			</evaluation-condition>					
+		</testcase>	
+		
+			<!--<testcase type="CASE2" >				
+			<query>
+			#foreach( $ShipmentDiscrepancyVO in $!{VO2})
+			SELECT MSTDOCNUM FROM OPRSHPFLTDIS DIS 
+			Where DIS.CMPCOD = '${VO1.companyCode}' 
+			And DIS.Fltcaridr = '${VO1.carrierId}' 
+			And DIS.Fltnum = '${VO1.flightNumber}' 
+			And DIS.Fltseqnum = '${VO1.flightSequenceNumber}' 
+			And DIS.LEGSERNUM = '${VO1.legSerialNumber}' 
+			DIS.CMPCOD = '${ShipmentDiscrepancyVO.companyCode}' 
+			AND DIS.DOCOWRIDR = '${ShipmentDiscrepancyVO.ownerId}'
+			AND DIS.MSTDOCNUM ='${ShipmentDiscrepancyVO.masterDocumentNumber}'
+			AND DIS.DUPNUM = '${ShipmentDiscrepancyVO.duplicateNumber}'
+			AND DIS.SEQNUM ='${ShipmentDiscrepancyVO.sequenceNumber}' ;
+			</query>
+			<evaluation-condition>
+				!"#{MSTDOCNUM}".equals("null")
+			</evaluation-condition>	
+            </testcase>
+            <testcase type="CASE3" >				
+			<query>
+			#foreach( $ShipmentDiscrepancyVO in $!{VO2})
+			SELECT MSTDOCNUM FROM TRCCASMST TRA
+			Where TRA.CMPCOD = '${VO1.companyCode}' 
+			And TRA.Fltcaridr = '${VO1.carrierId}' 
+			And TRA.Fltnum = '${VO1.flightNumber}' 
+			And TRA.Fltseqnum = '${VO1.flightSequenceNumber}' 
+			And LEG.LEGSERNUM = '${VO1.legSerialNumber}' 
+			TRA.CMPCOD = '${ShipmentDiscrepancyVO.companyCode}' 
+			AND TRA.DOCOWRIDR = '${ShipmentDiscrepancyVO.ownerId}'
+			AND TRA.MSTDOCNUM ='${ShipmentDiscrepancyVO.masterDocumentNumber}'
+			AND TRA.DUPNUM = '${ShipmentDiscrepancyVO.duplicateNumber}'
+			AND TRA.SEQNUM ='${ShipmentDiscrepancyVO.sequenceNumber}' ;
+			</query>
+			<evaluation-condition>
+				!"#{MSTDOCNUM}".equals("null")
+			</evaluation-condition>					
+		   </testcase>	-->
+		
+	</test-cases>	
+	
+	<configuration-id>operations.flthandling.saveBreakdownDetails</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			#set($data="")			
+			#foreach( $breakdownDetail in $!{VO2.breakdownDetails})			
+			#set( $query= "SELECT SUM(AVLPCS) TOTAVLPCS, SUM(LOCPCS) TOTLOCPCS, MAX(ROL.USRTYP)  USRTYP
+			FROM OPRARPSHP ARP LEFT OUTER JOIN WHSOPRSHPLOC LOC ON
+			ARP.CMPCOD = LOC.CMPCOD
+			AND ARP.DOCOWRIDR = LOC.DOCOWRIDR 
+			AND ARP.MSTDOCNUM = LOC.MSTDOCNUM
+			AND ARP.SEQNUM = LOC.SEQNUM
+			AND ARP.DUPNUM = LOC.DUPNUM
+			LEFT OUTER JOIN ADMUSRMST USR ON
+			ARP.CMPCOD = USR.CMPCOD
+			AND ARP.LSTUPDUSR = USR.USRCOD
+			LEFT OUTER JOIN ADMROLGRPMST ROL ON
+			USR.CMPCOD = ROL.CMPCOD
+			AND USR.DEFROLGRP = ROL.ROLGRPCOD
+			WHERE 
+			ARP.CMPCOD = '${breakdownDetail.companyCode}' 
+			AND ARP.DOCOWRIDR = '${breakdownDetail.ownerId}'
+			AND ARP.MSTDOCNUM ='${breakdownDetail.masterDocumentNumber}'
+			AND ARP.DUPNUM = '${breakdownDetail.duplicateNumber}'
+			AND ARP.SEQNUM ='${breakdownDetail.sequenceNumber}'
+			GROUP BY ARP.CMPCOD, ARP.DOCOWRIDR, ARP.MSTDOCNUM, ARP.SEQNUM, ARP.DUPNUM;")			
+			#set( $data= $data + $query)
+			#end			
+			$data
+			</query>
+			<evaluation-condition>
+				"#{TOTAVLPCS}"== "#{TOTLOCPCS}"  &amp;&amp; !"#{USRTYP}".equals("GHA")
+			</evaluation-condition>					
+		</testcase>	
+		<testcase type="CASE2" >				
+			<query>
+			  SELECT ARPCOD,
+			  STUCOD,
+			  STUTYPNAM,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST
+			  WHERE CMPCOD = '${VO1.companyCode}'
+			  AND STUCOD = '${VO1.uldNumber}';
+			</query>
+			<evaluation-condition>
+				!"#{STUTYPNAM}".equals("null")
+			</evaluation-condition>			
+		</testcase>		
+		<testcase type="CASE3" >				
+			<query>
+			  SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${VO1.uldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD = SHP.CMPCOD
+			  AND LOC.WHSCOD = SHP.WHSCOD
+			  AND LOC.ARPCOD = SHP.ARPCOD
+			  AND LOC.LOCCOD = SHP.CURLOCCOD);
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>				
+		</testcase>		
+		<testcase type="CASE4" >				
+			<query>
+			  SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${VO1.uldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD=SHP.CMPCOD
+			  AND LOC.WHSCOD  =SHP.WHSCOD
+			  AND LOC.ARPCOD  =SHP.ARPCOD
+			  AND LOC.LOCCOD  =SHP.DEFLOCCOD);
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>					
+		</testcase>		
+		<testcase type="CASE5" >				
+			<query>
+			  SELECT ARPCOD,
+			  WHSCOD,
+			  LOCCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  STUCOD,
+			  LOCPCS,
+			  TXNPCS
+			  FROM WHSOPRSHPLOC
+			  WHERE (ARPCOD,WHSCOD,STUCOD) IN
+			  (SELECT ARPCOD,
+				WHSCOD,
+				STUCOD
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${VO1.uldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+				(SELECT 1
+				FROM WHSLOCMST LOC
+				WHERE LOC.CMPCOD=SHP.CMPCOD
+				AND LOC.WHSCOD  =SHP.WHSCOD
+				AND LOC.ARPCOD  =SHP.ARPCOD
+				AND LOC.LOCCOD  =SHP.CURLOCCOD		
+				));
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>					
+		</testcase>		
+		<testcase type="CASE6" >				
+			<query>
+			#set($data="")
+			#set($shipmentBreakdownVOs=$!{VO1.breakdownDetails}) 
+			#foreach( $shipmentBreakdownVO in $shipmentBreakdownVOs)
+			  #set( $query= "SELECT ARPCOD,
+			  WHSCOD,
+			  LOCCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  STUCOD,
+			  LOCPCS,
+			  TXNPCS
+			  FROM WHSOPRSHPLOC
+			  WHERE CMPCOD = '${shipmentBreakdownVO.companyCode}'
+			  AND MSTDOCNUM = '${shipmentBreakdownVO.masterDocumentNumber}'
+			  AND DUPNUM = '${shipmentBreakdownVO.duplicateNumber}'
+			  AND SEQNUM = '${shipmentBreakdownVO.sequenceNumber}'
+			  AND DOCOWRIDR = '${shipmentBreakdownVO.ownerId}';")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				"#{LOCPCS}" >= 0
+			</evaluation-condition>			
+		</testcase>		
+			<testcase type="CASE7" >				
+			<query>
+			SELECT ULD.CLSFLG ULDCLSFLG, ULD.ULDNUM
+			FROM OPRSEGULD SEG
+			JOIN OPRULDDTL ULD
+			ON SEG.CMPCOD     = ULD.CMPCOD
+			AND SEG.FLTCARIDR = ULD.FLTCARIDR
+			AND SEG.FLTNUM    = ULD.FLTNUM
+			AND SEG.FLTSEQNUM = ULD.FLTSEQNUM
+			JOIN SHRUSEARPPAR PAR
+			ON ULD.CMPCOD  = PAR.CMPCOD
+			AND PAR.PARCOD = 'operation.flthandling.triggerpointforuldrelease'
+			WHERE  PAR.PARVAL   ='BDN'
+			AND PAR.ARPCOD =  '${VO1.airportCode}'
+			AND SEG.CMPCOD  = '${VO1.companyCode}'
+			AND SEG.FLTCARIDR = '${VO1.carrierId}'
+			AND SEG.FLTNUM    = '${VO1.flightNumber}'
+			AND SEG.FLTSEQNUM = '${VO1.flightSequenceNumber}'
+			AND SEG.SEGSERNUM = '${VO1.segmentSerialNumber}'
+			AND ULD.LEGSERNUM = '${VO1.legSerialNumber}';
+			</query>
+			<evaluation-condition>
+				"#{ULDCLSFLG}".equals("Y") || "#{ULDNUM}".equals("null")
+			</evaluation-condition>					
+		</testcase>	
+	</test-cases>	
+	<configuration-id>operations.flthandling.reassignShipments</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			  SELECT ARPCOD,
+			  STUCOD,
+			  STUTYPNAM,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST
+			  WHERE CMPCOD = '${VO1.companyCode}'
+			  AND STUCOD = '${VO1.toUldNumber}';
+			</query>
+			<evaluation-condition>
+				!"#{STUTYPNAM}".equals("null")
+			</evaluation-condition>	
+		</testcase>	
+		<testcase type="CASE2" >				
+			<query>
+			  SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${VO1.toUldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD = SHP.CMPCOD
+			  AND LOC.WHSCOD = SHP.WHSCOD
+			  AND LOC.ARPCOD = SHP.ARPCOD
+			  AND LOC.LOCCOD = SHP.CURLOCCOD	  
+			  );
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>	
+		</testcase>	
+		<testcase type="CASE3" >				
+			<query>
+			  SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${VO1.toUldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD=SHP.CMPCOD
+			  AND LOC.WHSCOD  =SHP.WHSCOD
+			  AND LOC.ARPCOD  =SHP.ARPCOD
+			  AND LOC.LOCCOD  =SHP.DEFLOCCOD	  
+			  );
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>					
+		</testcase>			
+		<testcase type="CASE4" >				
+			<query>
+			  SELECT ARPCOD,
+			  WHSCOD,
+			  LOCCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  STUCOD,
+			  LOCPCS,
+			  TXNPCS
+			  FROM WHSOPRSHPLOC
+			  WHERE (ARPCOD,WHSCOD,STUCOD) IN
+			  (SELECT ARPCOD,
+				WHSCOD,
+				STUCOD
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${VO1.toUldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+				(SELECT 1
+				FROM WHSLOCMST LOC
+				WHERE LOC.CMPCOD=SHP.CMPCOD
+				AND LOC.WHSCOD  =SHP.WHSCOD
+				AND LOC.ARPCOD  =SHP.ARPCOD
+				AND LOC.LOCCOD  =SHP.CURLOCCOD		
+				));
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>					
+		</testcase>			
+		<testcase type="CASE5" >				
+			<query>
+				#set($data="")
+				#set($reassignShipmentVOs=$!{VO1.reassignedShipments}) 
+				#foreach( $reassignShipmentVO in $reassignShipmentVOs)
+				  #set( $query= "SELECT ARPCOD,
+				  WHSCOD,
+				  LOCCOD,
+				  DOCOWRIDR,
+				  MSTDOCNUM,
+				  DUPNUM,
+				  SEQNUM,
+				  STUCOD,
+				  LOCPCS,
+				  TXNPCS
+				  FROM WHSOPRSHPLOC
+				  WHERE CMPCOD = '${reassignShipmentVO.companyCode}'
+				  AND MSTDOCNUM = '${reassignShipmentVO.masterDocumentNumber}'
+				  AND DUPNUM = '${reassignShipmentVO.duplicateNumber}'
+				  AND SEQNUM = '${reassignShipmentVO.sequenceNumber}'
+				  AND DOCOWRIDR = '${reassignShipmentVO.ownerId}';")
+				  #set( $data= $data + $query)
+				#end
+				$data
+			</query>
+			<evaluation-condition>
+				"#{LOCPCS}" >= 0
+			</evaluation-condition>	
+		</testcase>				
+	</test-cases>	
+	<configuration-id>operations.flthandling.saveBuildupDetails</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			  #set( $query= "SELECT ARPCOD,
+			  STUCOD,
+			  STUTYPNAM,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST
+			  WHERE CMPCOD = '${VO1.companyCode}'
+			  AND STUCOD = '${uldManifestVO.uldNumber}';")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUTYPNAM}".equals("null")
+			</evaluation-condition>					
+		</testcase>			
+		<testcase type="CASE2" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			  #set( $query= "SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${uldManifestVO.uldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD = SHP.CMPCOD
+			  AND LOC.WHSCOD = SHP.WHSCOD
+			  AND LOC.ARPCOD = SHP.ARPCOD
+			  AND LOC.LOCCOD = SHP.CURLOCCOD);")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>		
+		</testcase>			
+		<testcase type="CASE3" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			  #set( $query= "SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${uldManifestVO.uldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD=SHP.CMPCOD
+			  AND LOC.WHSCOD  =SHP.WHSCOD
+			  AND LOC.ARPCOD  =SHP.ARPCOD
+			  AND LOC.LOCCOD  =SHP.DEFLOCCOD);")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>	
+		</testcase>			
+		<testcase type="CASE4" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			  #set( $query= "SELECT ARPCOD,
+			  WHSCOD,
+			  LOCCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  STUCOD,
+			  LOCPCS,
+			  TXNPCS
+			  FROM WHSOPRSHPLOC
+			  WHERE (ARPCOD,WHSCOD,STUCOD) IN
+			  (SELECT ARPCOD,
+				WHSCOD,
+				STUCOD
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${uldManifestVO.uldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+				(SELECT 1
+				FROM WHSLOCMST LOC
+				WHERE LOC.CMPCOD=SHP.CMPCOD
+				AND LOC.WHSCOD  =SHP.WHSCOD
+				AND LOC.ARPCOD  =SHP.ARPCOD
+				AND LOC.LOCCOD  =SHP.CURLOCCOD		
+				));")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>			
+		</testcase>			
+		<testcase type="CASE5" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			#foreach( $shipmentManifestVO in $uldManifestVO.manifestShipmentDetails)
+			  #set( $query= "SELECT ARPCOD,
+			  WHSCOD,
+			  LOCCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  STUCOD,
+			  LOCPCS,
+			  TXNPCS
+			  FROM WHSOPRSHPLOC
+			  WHERE CMPCOD = '${shipmentManifestVO.companyCode}'
+			  AND MSTDOCNUM = '${shipmentManifestVO.masterDocumentNumber}'
+			  AND DUPNUM = '${shipmentManifestVO.duplicateNumber}'
+			  AND SEQNUM = '${shipmentManifestVO.sequenceNumber}'
+			  AND DOCOWRIDR = '${shipmentManifestVO.ownerId}';")
+			  #set( $data= $data + $query)
+			#end
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				"#{LOCPCS}" >= 0
+			</evaluation-condition>	
+		</testcase>		
+		<testcase type="CASE6" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			#foreach( $shipmentManifestVO in $uldManifestVO.manifestShipmentDetails)
+			  #set( $query= "SELECT ARPCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  AVLPCS
+			  FROM OPRARPSHP
+			  WHERE CMPCOD = '${shipmentManifestVO.companyCode}'
+			  AND MSTDOCNUM = '${shipmentManifestVO.masterDocumentNumber}'
+			  AND DUPNUM = '${shipmentManifestVO.duplicateNumber}'
+			  AND SEQNUM = '${shipmentManifestVO.sequenceNumber}'
+			  AND DOCOWRIDR = '${shipmentManifestVO.ownerId}';")
+			  #set( $data= $data + $query)
+			#end
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				"#{AVLPCS}" >= 0
+			</evaluation-condition>	
+		</testcase>	
+		<testcase type="CASE7" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			#foreach( $shipmentManifestVO in $uldManifestVO.manifestShipmentDetails)
+			  #set( $query= "SELECT MST.SHPPFX,MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD,MST.STDPCS,ARPSHP.AVLPCS,
+				SUM(SEGSHP.MFTPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)MFTPCS,
+				SUM(SEGSHP.OFLPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)OFLPCS,
+				SUM(SEGSHP.BDPPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)BDPPCS,
+				SUM(SEGSHP.RCVPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)RCVPCS,
+				ARPSHP.MFTPCS ARPMFTPCS,ARPSHP.BDPPCS ARPBDPPCS
+				FROM
+				OPRSEGSHP SEGSHP
+				INNER JOIN OPRARPSHP ARPSHP
+				ON SEGSHP.CMPCOD = ARPSHP.CMPCOD
+				AND SEGSHP.DOCOWRIDR = ARPSHP.DOCOWRIDR
+				AND SEGSHP.DUPNUM = ARPSHP.DUPNUM
+				AND SEGSHP.SEQNUM = ARPSHP.SEQNUM
+				AND SEGSHP.MSTDOCNUM = ARPSHP.MSTDOCNUM
+				INNER JOIN OPRSHPMST MST
+				ON MST.CMPCOD = ARPSHP.CMPCOD
+				AND MST.MSTDOCNUM = ARPSHP.MSTDOCNUM
+				AND MST.SEQNUM = ARPSHP.SEQNUM
+				AND MST.DUPNUM = ARPSHP.DUPNUM
+				AND MST.DOCOWRIDR = ARPSHP.DOCOWRIDR
+				WHERE ARPSHP.CMPCOD = '${shipmentManifestVO.companyCode}'
+				AND ARPSHP.MSTDOCNUM = '${shipmentManifestVO.masterDocumentNumber}'
+				AND ARPSHP.SEQNUM = '${shipmentManifestVO.sequenceNumber}'
+				AND ARPSHP.DUPNUM = '${shipmentManifestVO.duplicateNumber}'
+				AND ARPSHP.DOCOWRIDR = '${shipmentManifestVO.ownerId}';")
+			  #set( $data= $data + $query)
+			#end
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+			"#{STDPCS}" >= "#{MFTPCS}"				 
+			</evaluation-condition>	
+		</testcase>	
+	</test-cases>	
+	<configuration-id>operations.flthandling.saveBuildupDetailsForHHT</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			  #set( $query= "SELECT ARPCOD,
+			  STUCOD,
+			  STUTYPNAM,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST
+			  WHERE CMPCOD = '${VO1.companyCode}'
+			  AND STUCOD = '${uldManifestVO.uldNumber}';")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUTYPNAM}".equals("null")
+			</evaluation-condition>					
+		</testcase>			
+		<testcase type="CASE2" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			  #set( $query= "SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${uldManifestVO.uldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD = SHP.CMPCOD
+			  AND LOC.WHSCOD = SHP.WHSCOD
+			  AND LOC.ARPCOD = SHP.ARPCOD
+			  AND LOC.LOCCOD = SHP.CURLOCCOD);")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>		
+		</testcase>			
+		<testcase type="CASE3" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			  #set( $query= "SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${uldManifestVO.uldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD=SHP.CMPCOD
+			  AND LOC.WHSCOD  =SHP.WHSCOD
+			  AND LOC.ARPCOD  =SHP.ARPCOD
+			  AND LOC.LOCCOD  =SHP.DEFLOCCOD);")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>	
+		</testcase>			
+		<testcase type="CASE4" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			  #set( $query= "SELECT ARPCOD,
+			  WHSCOD,
+			  LOCCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  STUCOD,
+			  LOCPCS,
+			  TXNPCS
+			  FROM WHSOPRSHPLOC
+			  WHERE (ARPCOD,WHSCOD,STUCOD) IN
+			  (SELECT ARPCOD,
+				WHSCOD,
+				STUCOD
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${uldManifestVO.uldNumber}'
+			  AND SHP.CMPCOD = '${VO1.companyCode}'
+			  AND NOT EXISTS
+				(SELECT 1
+				FROM WHSLOCMST LOC
+				WHERE LOC.CMPCOD=SHP.CMPCOD
+				AND LOC.WHSCOD  =SHP.WHSCOD
+				AND LOC.ARPCOD  =SHP.ARPCOD
+				AND LOC.LOCCOD  =SHP.CURLOCCOD		
+				));")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>			
+		</testcase>			
+		<testcase type="CASE5" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			#foreach( $shipmentManifestVO in $uldManifestVO.manifestShipmentDetails)
+			  #set( $query= "SELECT ARPCOD,
+			  WHSCOD,
+			  LOCCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  STUCOD,
+			  LOCPCS,
+			  TXNPCS
+			  FROM WHSOPRSHPLOC
+			  WHERE CMPCOD = '${shipmentManifestVO.companyCode}'
+			  AND MSTDOCNUM = '${shipmentManifestVO.masterDocumentNumber}'
+			  AND DUPNUM = '${shipmentManifestVO.duplicateNumber}'
+			  AND SEQNUM = '${shipmentManifestVO.sequenceNumber}'
+			  AND DOCOWRIDR = '${shipmentManifestVO.ownerId}';")
+			  #set( $data= $data + $query)
+			#end
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				"#{LOCPCS}" >= 0
+			</evaluation-condition>	
+		</testcase>	
+		<testcase type="CASE6" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			#foreach( $shipmentManifestVO in $uldManifestVO.manifestShipmentDetails)
+			  #set( $query= "SELECT ARPCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  AVLPCS
+			  FROM OPRARPSHP
+			  WHERE CMPCOD = '${shipmentManifestVO.companyCode}'
+			  AND MSTDOCNUM = '${shipmentManifestVO.masterDocumentNumber}'
+			  AND DUPNUM = '${shipmentManifestVO.duplicateNumber}'
+			  AND SEQNUM = '${shipmentManifestVO.sequenceNumber}'
+			  AND DOCOWRIDR = '${shipmentManifestVO.ownerId}';")
+			  #set( $data= $data + $query)
+			#end
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				"#{AVLPCS}" >= 0
+			</evaluation-condition>	
+		</testcase>	
+		<testcase type="CASE7" >				
+			<query>
+			#set($data="")
+			#set($uldManifestVOs=$!{VO1.freightDetailsVO.manifestUldDetails}) 
+			#foreach( $uldManifestVO in $uldManifestVOs)
+			#foreach( $shipmentManifestVO in $uldManifestVO.manifestShipmentDetails)
+			  #set( $query= "SELECT MST.SHPPFX,MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD,MST.STDPCS,ARPSHP.AVLPCS,
+				SUM(SEGSHP.MFTPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)MFTPCS,
+				SUM(SEGSHP.OFLPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)OFLPCS,
+				SUM(SEGSHP.BDPPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)BDPPCS,
+				SUM(SEGSHP.RCVPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)RCVPCS,
+				ARPSHP.MFTPCS ARPMFTPCS,ARPSHP.BDPPCS ARPBDPPCS
+				FROM
+				OPRSEGSHP SEGSHP
+				INNER JOIN OPRARPSHP ARPSHP
+				ON SEGSHP.CMPCOD = ARPSHP.CMPCOD
+				AND SEGSHP.DOCOWRIDR = ARPSHP.DOCOWRIDR
+				AND SEGSHP.DUPNUM = ARPSHP.DUPNUM
+				AND SEGSHP.SEQNUM = ARPSHP.SEQNUM
+				AND SEGSHP.MSTDOCNUM = ARPSHP.MSTDOCNUM
+				INNER JOIN OPRSHPMST MST
+				ON MST.CMPCOD = ARPSHP.CMPCOD
+				AND MST.MSTDOCNUM = ARPSHP.MSTDOCNUM
+				AND MST.SEQNUM = ARPSHP.SEQNUM
+				AND MST.DUPNUM = ARPSHP.DUPNUM
+				AND MST.DOCOWRIDR = ARPSHP.DOCOWRIDR
+				WHERE ARPSHP.CMPCOD = '${shipmentManifestVO.companyCode}'
+				AND ARPSHP.MSTDOCNUM = '${shipmentManifestVO.masterDocumentNumber}'
+				AND ARPSHP.SEQNUM = '${shipmentManifestVO.sequenceNumber}'
+				AND ARPSHP.DUPNUM = '${shipmentManifestVO.duplicateNumber}'
+				AND ARPSHP.DOCOWRIDR = '${shipmentManifestVO.ownerId}';")
+			  #set( $data= $data + $query)
+			#end
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				"#{STDPCS}" >= "#{MFTPCS}"				 
+			</evaluation-condition>	
+		</testcase>	
+	</test-cases>	
+	<configuration-id>operations.flthandling.saveOffloadDetails</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+			#set($data="")
+			#set($offloadDetails=$!{VO1.offloadDetails}) 
+			#foreach( $offloadDetailVO in $offloadDetails)
+			  #set( $query= "SELECT ARPCOD,
+			  STUCOD,
+			  STUTYPNAM,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST
+			  WHERE CMPCOD = '${offloadDetailVO.companyCode}'
+			  AND STUCOD = '${offloadDetailVO.uldNumber}';")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUTYPNAM}".equals("null")
+			</evaluation-condition>			
+		</testcase>			
+		<testcase type="CASE2" >				
+			<query>
+			#set($data="")
+			#set($offloadDetails=$!{VO1.offloadDetails}) 
+			#foreach( $offloadDetailVO in $offloadDetails)
+			  #set( $query= "SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${offloadDetailVO.uldNumber}'
+			  AND SHP.CMPCOD = '${offloadDetailVO.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD = SHP.CMPCOD
+			  AND LOC.WHSCOD = SHP.WHSCOD
+			  AND LOC.ARPCOD = SHP.ARPCOD
+			  AND LOC.LOCCOD = SHP.CURLOCCOD);")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>	
+		</testcase>			
+		<testcase type="CASE3" >				
+			<query>
+			#set($data="")
+			#set($offloadDetails=$!{VO1.offloadDetails}) 
+			#foreach( $offloadDetailVO in $offloadDetails)
+			  #set( $query= "SELECT ARPCOD,
+			  STUCOD,
+			  WHSCOD,
+			  DEFLOCCOD,
+			  DEFWHSCOD,
+			  CURLOCCOD,
+			  CURWHSCOD,
+			  OCPSTA,
+			  TXNBLKFLG
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${offloadDetailVO.uldNumber}'
+			  AND SHP.CMPCOD = '${offloadDetailVO.companyCode}'
+			  AND NOT EXISTS
+			  (SELECT 1
+			  FROM WHSLOCMST LOC
+			  WHERE LOC.CMPCOD=SHP.CMPCOD
+			  AND LOC.WHSCOD  =SHP.WHSCOD
+			  AND LOC.ARPCOD  =SHP.ARPCOD
+			  AND LOC.LOCCOD  =SHP.DEFLOCCOD);")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>		
+		</testcase>			
+		<testcase type="CASE4" >				
+			<query>
+			#set($data="")
+			#set($offloadDetails=$!{VO1.offloadDetails}) 
+			#foreach( $offloadDetailVO in $offloadDetails)
+			  #set( $query= "SELECT ARPCOD,
+			  WHSCOD,
+			  LOCCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  STUCOD,
+			  LOCPCS,
+			  TXNPCS
+			  FROM WHSOPRSHPLOC
+			  WHERE (ARPCOD,WHSCOD,STUCOD) IN
+			  (SELECT ARPCOD,
+				WHSCOD,
+				STUCOD
+			  FROM WHSSTUMST SHP
+			  WHERE 
+			  SHP.STUCOD = '${offloadDetailVO.uldNumber}'
+			  AND SHP.CMPCOD = '${offloadDetailVO.companyCode}'
+			  AND NOT EXISTS
+				(SELECT 1
+				FROM WHSLOCMST LOC
+				WHERE LOC.CMPCOD=SHP.CMPCOD
+				AND LOC.WHSCOD  =SHP.WHSCOD
+				AND LOC.ARPCOD  =SHP.ARPCOD
+				AND LOC.LOCCOD  =SHP.CURLOCCOD		
+				));")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				!"#{STUCOD}".equals("null")
+			</evaluation-condition>		
+		</testcase>			
+		<testcase type="CASE5" >				
+			<query>
+			#set($data="")
+			#set($offloadDetails=$!{VO1.offloadDetails}) 
+			#foreach( $offloadDetailVO in $offloadDetails)
+			  #set( $query= "SELECT ARPCOD,
+			  WHSCOD,
+			  LOCCOD,
+			  DOCOWRIDR,
+			  MSTDOCNUM,
+			  DUPNUM,
+			  SEQNUM,
+			  STUCOD,
+			  LOCPCS,
+			  TXNPCS
+			  FROM WHSOPRSHPLOC
+			  WHERE CMPCOD = '${shipmentManifestVO.companyCode}'
+			  AND MSTDOCNUM = '${shipmentManifestVO.masterDocumentNumber}'
+			  AND DUPNUM = '${shipmentManifestVO.duplicateNumber}'
+			  AND SEQNUM = '${shipmentManifestVO.sequenceNumber}'
+			  AND DOCOWRIDR = '${shipmentManifestVO.ownerId}';")
+			  #set( $data= $data + $query)
+			#end
+			$data
+			</query>
+			<evaluation-condition>
+				"#{LOCPCS}" >= 0
+			</evaluation-condition>	
+		</testcase>			
+	</test-cases>
+	<configuration-id>operations.flthandling.finaliseExportFlight</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+		<testcase type="CASE1" >				
+			<query>
+				SELECT MST.SHPPFX,MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD,MST.STDPCS,ARPSHP.AVLPCS,
+				SUM(SEGSHP.MFTPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)MFTPCS,
+				SUM(SEGSHP.OFLPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)OFLPCS,
+				SUM(SEGSHP.BDPPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)BDPPCS,
+				SUM(SEGSHP.RCVPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD)RCVPCS,
+				SUM(SHPLOC.LOCPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD,SHPLOC.WHSCOD)LOCPCS,
+				SUM(SHPLOC.TXNPCS)OVER(PARTITION BY MST.MSTDOCNUM,MST.DOCNUM,MST.DOCOWRIDR,MST.SEQNUM,MST.DUPNUM,ARPSHP.ARPCOD,SHPLOC.WHSCOD)TXNPCS,
+				EXPFLT.FLTOPRSTA,ARPSHP.MFTPCS ARPMFTPCS,ARPSHP.BDPPCS ARPBDPPCS,SHPLOC.WHSCOD,EXPFLT.FLTCARCOD,EXPFLT.FLTNUM,EXPFLT.FLTDAT,EXPFLT.FLTCARIDR
+				FROM 
+				OPRARPEXPFLT EXPFLT
+				INNER JOIN FLTOPRSEG FLTSEG
+				ON FLTSEG.FLTSEQNUM = EXPFLT.FLTSEQNUM
+				AND FLTSEG.FLTNUM = EXPFLT.FLTNUM
+				AND FLTSEG.FLTCARIDR = EXPFLT.FLTCARIDR
+				AND FLTSEG.CMPCOD = EXPFLT.CMPCOD
+				AND FLTSEG.SEGORG = EXPFLT.ARPCOD
+				INNER JOIN OPRSEGSHP SEGSHP
+				ON SEGSHP.CMPCOD = EXPFLT.CMPCOD
+				AND SEGSHP.FLTCARIDR = EXPFLT.FLTCARIDR
+				AND SEGSHP.FLTNUM = EXPFLT.FLTNUM
+				AND SEGSHP.FLTSEQNUM = EXPFLT.FLTSEQNUM
+				AND SEGSHP.SEGSERNUM = FLTSEG.SEGSERNUM
+				AND SEGSHP.MFTPCS > 0
+				INNER JOIN OPRARPSHP ARPSHP
+				ON EXPFLT.ARPCOD = ARPSHP.ARPCOD
+				AND SEGSHP.CMPCOD = ARPSHP.CMPCOD
+				AND SEGSHP.DOCOWRIDR = ARPSHP.DOCOWRIDR
+				AND SEGSHP.DUPNUM = ARPSHP.DUPNUM
+				AND SEGSHP.SEQNUM = ARPSHP.SEQNUM
+				AND SEGSHP.MSTDOCNUM = ARPSHP.MSTDOCNUM
+				AND ARPSHP.AVLPCS = 0
+				INNER JOIN OPRSHPMST MST
+				ON MST.CMPCOD = ARPSHP.CMPCOD
+				AND MST.MSTDOCNUM = ARPSHP.MSTDOCNUM
+				AND MST.SEQNUM = ARPSHP.SEQNUM
+				AND MST.DUPNUM = ARPSHP.DUPNUM
+				AND MST.DOCOWRIDR = ARPSHP.DOCOWRIDR
+				INNER JOIN WHSOPRSHPLOC SHPLOC
+				ON SHPLOC.ARPCOD = ARPSHP.ARPCOD
+				AND SHPLOC.CMPCOD = ARPSHP.CMPCOD
+				AND SHPLOC.DOCOWRIDR = ARPSHP.DOCOWRIDR
+				AND SHPLOC.DUPNUM = ARPSHP.DUPNUM
+				AND SHPLOC.SEQNUM = ARPSHP.SEQNUM
+				AND SHPLOC.MSTDOCNUM = ARPSHP.MSTDOCNUM
+				WHERE EXPFLT.CMPCOD = '${VO1.companyCode}'
+				AND EXPFLT.FLTOPRSTA = 'F'
+				AND EXPFLT.FLTDAT = '${VO1.flightDate}'
+				AND EXPFLT.FLTCARCOD = '${VO1.carrierCode}'
+				AND EXPFLT.ARPCOD = '${VO1.airportCode}'
+				AND EXPFLT.FLTNUM = '${VO1.flightNumber}'
+				AND EXPFLT.FLTCARIDR = '${VO1.carrierId}'
+				ORDER BY SHPLOC.SHPCINTIM DESC;
+			</query>
+			<evaluation-condition>
+				"#{LOCPCS}" == 0
+			</evaluation-condition>					
+		</testcase>			
+
+	</test-cases>	
+	<configuration-id>operations.flthandling.markBreakdownComplete</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+			<testcase type="CASE1" >				
+			<query>
+			SELECT ULD.CLSFLG ULDCLSFLG, ULD.ULDNUM
+			FROM OPRSEGULD SEG
+			JOIN OPRULDDTL ULD
+			ON SEG.CMPCOD     = ULD.CMPCOD
+			AND SEG.FLTCARIDR = ULD.FLTCARIDR
+			AND SEG.FLTNUM    = ULD.FLTNUM
+			AND SEG.FLTSEQNUM = ULD.FLTSEQNUM
+			JOIN SHRUSEARPPAR PAR
+			ON ULD.CMPCOD  = PAR.CMPCOD
+			AND PAR.PARCOD = 'operation.flthandling.triggerpointforuldrelease'
+			WHERE  PAR.PARVAL   ='BDNCPL'
+			AND PAR.ARPCOD =  '${VO1.airportCode}'
+			AND SEG.CMPCOD  = '${VO1.companyCode}'
+			AND SEG.FLTCARIDR = '${VO1.carrierId}'
+			AND SEG.FLTNUM    = '${VO1.flightNumber}'
+			AND SEG.FLTSEQNUM = '${VO1.flightSequenceNumber}'
+			AND SEG.SEGSERNUM = '${VO1.segmentSerialNumber}'
+			AND ULD.LEGSERNUM = '${VO1.legSerialNumber}';
+			</query>
+			<evaluation-condition>
+				"#{ULDCLSFLG}".equals("Y") || "#{ULDNUM}".equals("null")
+			</evaluation-condition>					
+		</testcase>			
+	</test-cases>	
+	
+	<configuration-id>operations.flthandling.saveULDArrivalDetails</configuration-id>
+	<connection-type>ONLINE</connection-type>
+	<test-cases>
+			<testcase type="CASE1" >				
+			<query>
+			SELECT ULD.CLSFLG ULDCLSFLG, ULD.ULDNUM
+			FROM OPRARPIMPFLT IMP
+			JOIN OPRULDDTL ULD
+			ON IMP.CMPCOD     = ULD.CMPCOD
+			AND IMP.FLTCARIDR = ULD.FLTCARIDR
+			AND IMP.FLTNUM    = ULD.FLTNUM
+			AND IMP.FLTSEQNUM = ULD.FLTSEQNUM
+			AND IMP.LEGSERNUM = ULD.LEGSERNUM
+			JOIN SHRUSEARPPAR PAR
+			ON ULD.CMPCOD  = PAR.CMPCOD
+			AND PAR.PARCOD = 'operation.flthandling.triggerpointforuldrelease'
+			AND PAR.ARPCOD = IMP.ARPCOD
+			WHERE  PAR.PARVAL   ='ARR'
+			AND IMP.FLTSTA ='A'
+			AND IMP.CMPCOD  = '${VO1.companyCode}'
+			AND IMP.FLTCARIDR = '${VO1.carrierId}'
+			AND IMP.FLTNUM    = '${VO1.flightNumber}'
+			AND IMP.FLTSEQNUM = '${VO1.flightSequenceNumber}'
+			AND IMP.LEGSERNUM = '${VO1.legSerialNumber}'
+			AND IMP.ARPCOD  = '${VO1.airportCode}';
+			</query>
+			<evaluation-condition>
+				"#{ULDCLSFLG}".equals("Y") || "#{ULDNUM}".equals("null")
+			</evaluation-condition>					
+		</testcase>			
+	</test-cases>
+</test-configurations>	

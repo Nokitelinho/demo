@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Mail Implementation Properties file for erma monitoring -->
+
+<mailConfig>
+	<!-- Mail Server properties -->
+	<mail.store.protocol>pop3</mail.store.protocol>
+	<mail.transport.protocol>smtp</mail.transport.protocol>
+	<mail.host>ica1232</mail.host>
+	<mail.user>ganesh</mail.user>
+	<mail.inbox>INBOX</mail.inbox>
+	<mail.pop3.host>ica1232</mail.pop3.host>
+	<mail.server.hostaddress>192.168.17.232</mail.server.hostaddress>
+	
+	<!-- eMail properties for each transactions -->
+	
+	
+	<emailProperties>
+		<emailProperty transactionId="JDBCPoolStats">
+			<icargo.email.fromaddress>kiran@ibspls.com</icargo.email.fromaddress>
+			<icargo.email.toaddress>ganesh@icargo.com</icargo.email.toaddress>
+			<icargo.email.ccaddress>icargo@icargo.com</icargo.email.ccaddress>
+			<icargo.email.bccaddress>icargo2@icargo.com</icargo.email.bccaddress>
+			<icargo.email.subject>JDBC Connection Pool Statistics</icargo.email.subject>
+			<icargo.email.username>ICARGO</icargo.email.username>
+			<icargo.email.password>weblogic</icargo.email.password>
+			<icargo.email.attachements.filepath></icargo.email.attachements.filepath>
+			<icargo.email.content>
+			<![CDATA[
+Hi,<n>
+	Notification Mail From AdminServer,<n>
+	JDBC Connection Pool Statistics Details<n>
+		Recording Time		- &1<n>
+		DataSource Name		- &2<n>
+		Maximum Pool Size	- &3<n>
+		Free Pool Size		- &4<n><n>
+Regards ,<n>
+Admin
+]]></icargo.email.content>
+		</emailProperty>
+	
+	
+		<emailProperty transactionId="ThreadStats">
+			<icargo.email.fromaddress>kiran@ibspls.com</icargo.email.fromaddress>
+			<icargo.email.toaddress>ganesh@icargo.com</icargo.email.toaddress>
+			<icargo.email.ccaddress>icargo@icargo.com</icargo.email.ccaddress>
+			<icargo.email.bccaddress>icargo2@icargo.com</icargo.email.bccaddress>
+			<icargo.email.subject>Server Thread Count</icargo.email.subject>
+			<icargo.email.username>ICARGO</icargo.email.username>
+			<icargo.email.password>weblogic</icargo.email.password>
+			<icargo.email.attachements.filepath></icargo.email.attachements.filepath>
+			<icargo.email.content>
+			<![CDATA[
+Hi,<n>
+	Notification Mail From AdminServer,<n>
+	The no of thread accessing the server is above the expected maximum limit.
+		Recording Time		- &1<n>
+		Node Name		- &2<n>
+		Count of Thread		- &3<n><n>		
+Regards ,<n>
+Admin
+]]></icargo.email.content>
+		</emailProperty>
+		
+		
+		<emailProperty transactionId="jobScheduleStats">
+			<icargo.email.fromaddress>kiran@ibspls.com</icargo.email.fromaddress>
+			<icargo.email.toaddress>ganesh@icargo.com</icargo.email.toaddress>
+			<icargo.email.ccaddress>icargo@icargo.com</icargo.email.ccaddress>
+			<icargo.email.bccaddress>icargo2@icargo.com</icargo.email.bccaddress>
+			<icargo.email.subject>Job Scheduler Exception Alert</icargo.email.subject>
+			<icargo.email.username>ICARGO</icargo.email.username>
+			<icargo.email.password>weblogic</icargo.email.password>
+			<icargo.email.attachements.filepath>Y</icargo.email.attachements.filepath>
+			<icargo.email.content>
+			<![CDATA[
+Hi,<n>
+	Notification Mail From AdminServer,<n>
+	Exception occured while running a configured Job.<n>
+		Recording Time		- &1<n>
+		Owner Id		- &2<n>
+		Schedule Id		- &3<n>		
+		Process Id		- &4<n>
+		Root Cause		- &5<n>
+		Worker Class	- &6<n>
+		User Id			- &7<n>
+		Node Name		- &8<n>
+		
+Regards ,<n>
+Admin
+]]></icargo.email.content>
+		</emailProperty>
+		
+		
+		<emailProperty transactionId="iCargoTransactionMonitorStats">
+							<icargo.email.fromaddress>kiran@ibspls.com</icargo.email.fromaddress>
+							<icargo.email.toaddress>ganesh@icargo.com</icargo.email.toaddress>
+							<icargo.email.ccaddress>icargo@icargo.com</icargo.email.ccaddress>
+							<icargo.email.bccaddress>icargo2@icargo.com</icargo.email.bccaddress>
+							<icargo.email.subject>Exception Occured During Transaction</icargo.email.subject>
+							<icargo.email.username>ICARGO</icargo.email.username>
+							<icargo.email.password>weblogic</icargo.email.password>
+							<icargo.email.attachements.filepath>Y</icargo.email.attachements.filepath>
+							<icargo.email.content>
+							<![CDATA[
+		Hi,<n>
+			Error Notification Mail From AdminServer<n>
+			An Exception occured during the transaction.<n>
+			The details are given below -<n>
+				Recording Time		- &1<n>
+				Airline Code		- &2<n>
+				Product Name		- &3<n>
+				SubProduct Name		- &4<n>		
+				User Id			- &5<n>		
+				Method Name		- &6<n>		
+				OutCome			- &7<n>
+				ErrorCode		- &8<n>	
+				Error Description 	- &9<n>		
+				Transaction Id		- &10<n>		
+				Node Name		- &11<n>		
+				Transaction Entry Time  - &12<n>
+				Transaction Exit Time	- &13<n><n>
+						
+		Regards ,<n>
+		Admin
+				]]></icargo.email.content>
+		</emailProperty>
+		
+		
+		<emailProperty transactionId="JMSQueueDepth">
+							<icargo.email.fromaddress>kiran@ibspls.com</icargo.email.fromaddress>
+							<icargo.email.toaddress>ganesh@icargo.com</icargo.email.toaddress>
+							<icargo.email.ccaddress>icargo@icargo.com</icargo.email.ccaddress>
+							<icargo.email.bccaddress>icargo2@icargo.com</icargo.email.bccaddress>
+							<icargo.email.subject>JMS Queue Depth Statistics</icargo.email.subject>
+							<icargo.email.username>ICARGO</icargo.email.username>
+							<icargo.email.password>weblogic</icargo.email.password>
+							<icargo.email.attachements.filepath></icargo.email.attachements.filepath>
+							<icargo.email.content>
+							<![CDATA[
+		Hi,<n>
+			Error Notification Mail From AdminServer<n>
+			Depth of the monitored Queue has exceeded the threshold.<n>
+			The details are given below -<n>
+				Recording Time		- &1<n>
+				Node Name		- &2<n>
+				ServerRuntime		- &3<n>
+				JMS Module		- &4<n>
+				Queue Name		- &5<n>		
+				MessageCurrentCount	- &6<n><n>		
+										
+		Regards ,<n>
+		Admin
+				]]></icargo.email.content>
+		</emailProperty>
+		
+		<emailProperty transactionId="webMonitorStats">
+							<icargo.email.fromaddress>kiran@ibspls.com</icargo.email.fromaddress>
+							<icargo.email.toaddress>ganesh@icargo.com</icargo.email.toaddress>
+							<icargo.email.ccaddress>icargo@icargo.com</icargo.email.ccaddress>
+							<icargo.email.bccaddress>icargo2@icargo.com</icargo.email.bccaddress>
+							<icargo.email.subject>Web Monitor Threshold violation</icargo.email.subject>
+							<icargo.email.username>ICARGO</icargo.email.username>
+							<icargo.email.password>weblogic</icargo.email.password>
+							<icargo.email.attachements.filepath></icargo.email.attachements.filepath>
+							<icargo.email.content>
+							<![CDATA[
+									Hi,<n>
+										A threshold violation has occured in the following transaction <n><n>
+								
+												&1<n><n>																	
+																
+										Details are -<n><n>
+											Node Name		    		- &4<n>
+											Latest Measured Response Time   - &2<n>
+											Latest Occurence Time		- &3<n>
+											Observed Time Interval		- &Interval seconds<n>
+																	
+																	
+									Regards ,<n>
+									Admin
+							]]></icargo.email.content>
+		</emailProperty>
+
+		
+		
+	</emailProperties>
+
+</mailConfig> 

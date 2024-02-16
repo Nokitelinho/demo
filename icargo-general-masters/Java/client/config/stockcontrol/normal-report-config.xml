@@ -1,0 +1,59 @@
+<report-mapping>
+	
+	<report 
+		id="RPRSTK001" 
+		name="ReserveAWBReport"
+		type="normal" 
+		orientation = "P"
+		paper-size = "PAPER_A4"
+		report-files="/reports/stockcontrol/defaults/ReservedAWBReport.rpt"		
+		attribute-builder-class="com.ibsplc.icargo.presentation.report.attributebuilder.stockcontrol.defaults.ReserveAWBAttributeBuilder">
+	</report>
+	<report 
+		id="RPRSTK002" 
+		name="ReservationListingReport"
+		type="normal" 
+		orientation = "L"
+		paper-size = "PAPER_A4"
+		report-files="/reports/stockcontrol/defaults/ReservationListingReport.rpt"	
+		helper-class="com.ibsplc.icargo.presentation.report.helper.stockcontrol.defaults.ReservationListingReportHelper">	
+	</report>
+	<report 
+		id="RPRSTK003" 
+		name="StockListingReport"
+		type="normal" 
+		orientation = "L"
+		paper-size = "PAPER_A4"
+		report-files="/reports/stockcontrol/defaults/StockListingReport.rpt"	
+		helper-class="com.ibsplc.icargo.presentation.report.helper.stockcontrol.defaults.StockListReportHelper">	
+	</report>
+	<report 
+		id="RPRSTK004" 
+		name="AWBStockReport"
+		type="normal" 
+		orientation = "P"
+		paper-size = "PAPER_A4"
+		report-files="/reports/stockcontrol/defaults/AWBStockReport.rpt"		
+		attribute-builder-class="com.ibsplc.icargo.presentation.report.attributebuilder.stockcontrol.defaults.AWBStockAttributeBuilder">
+	</report>
+	<!--ICRD-3082 ADDED BY A-4562  STARTS-->
+	<report 
+		id="RPRSTK005" 
+		name="AWBStockHistory"
+		type="normal" 
+		orientation = "P"
+		paper-size = "PAPER_A4"
+		report-files="/reports/stockcontrol/defaults/AWBStockHistory.rpt"		
+		attribute-builder-class="com.ibsplc.icargo.presentation.report.attributebuilder.stockcontrol.defaults.AWBStockHistoryAttributeBuilder">
+	</report>
+	<!--ICRD-3082 ADDED BY A-4562  ENDS-->
+	<report 
+	id="RPRSTK006" 
+	name="StockAllocationReport"
+	type="normal" 
+	orientation = "P"
+	paper-size = "PAPER_A4"
+	report-files="/reports/stockcontrol/defaults/StockAllocationReport.rpt" 
+	attribute-builder-class="com.ibsplc.icargo.presentation.report.attributebuilder.stockcontrol.defaults.StockAllocationAttributeBuilder">
+	</report> 
+</report-mapping>

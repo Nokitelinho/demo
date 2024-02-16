@@ -1,0 +1,129 @@
+{{/*
+ Txprobe aggregator daemonset deployment
+*/}}
+{{- if .Values.txProbe.enabled }}
+{{- $hasFullURL := hasKey (first .Values.elasticSearchUrl) "externalDNSName" }}
+{{- $esUrl := $hasFullURL | ternary (printf "-Dout.handler.es.serverUrl=%s://elasticsearch:80" .Values.txProbe.esProto) (printf "-Dout.handler.es.serverUrl=%s://elasticsearch:80" .Values.txProbe.esProto) }}
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: "neo-txprobe-aggregator"
+  namespace: {{ .Values.monitoringNamespace | quote }}
+  labels:
+    app: "neo-txprobe-aggregator"
+    srvtyp: "monitoring_service"
+    prctyp: "java"
+spec:
+  selector:
+    matchLabels:
+      app: "neo-txprobe-aggregator"
+  template:
+    metadata:
+      labels:
+        app: "neo-txprobe-aggregator"
+        srvtyp: "monitoring_service"
+        prctyp: "java"
+    spec:
+      dnsPolicy: "ClusterFirst"
+      terminationGracePeriodSeconds: 15
+      containers:
+        - name: "neo-txprobe-aggregator"
+          image: {{ printf "%s/%s" .Values.dockerRegistry .Values.txProbe.image | quote }}
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - name: "http"
+              containerPort: {{ .Values.txProbe.httpPort }}
+              protocol: "TCP"
+            - name: "transport"
+              containerPort: {{ .Values.txProbe.transportPort }}
+              protocol: "TCP"
+          env:
+            - name: "JAVA_TOOL_OPTIONS"
+              {{- $javaEnv := append .Values.txProbe.javaEnv $esUrl }}
+              value: {{ $javaEnv | join " " | quote }}
+{{- end }}
+{{/*
+ Logstash daemonset deployment
+*/}}
+{{- if .Values.logstash.enabled }}
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: "icargo-neo-logstash"
+  namespace: {{ .Values.monitoringNamespace | quote }}
+  labels:
+    app: "icargo-neo-logstash"
+    srvtyp: "monitoring_service"
+    prctyp: "jruby"
+spec:
+  selector:
+    matchLabels:
+      app: "icargo-neo-logstash"
+  template:
+    metadata:
+      labels:
+        app: "icargo-neo-logstash"
+        srvtyp: "monitoring_service"
+        prctyp: "jruby"
+    spec:
+      dnsPolicy: "ClusterFirst"
+      terminationGracePeriodSeconds: 15
+      containers:
+        - name: "icargo-neo-logstash"
+          image: {{ printf "%s/%s" .Values.dockerRegistry .Values.logstash.image | quote }}
+          imagePullPolicy: "Always"
+          ports:
+            - name: "udp-appender"
+              containerPort: {{ .Values.logstash.udpPort }}
+              protocol: "UDP"
+{{- end }}
+{{/*
+Crash collector daemonset
+*/}}
+{{- if .Values.crashCollector.enabled }}
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: "icargo-neo-crash-collector"
+  namespace: {{ .Values.monitoringNamespace | quote }}
+  labels:
+    app: "icargo-neo-crash-collector"
+    srvtyp: "monitoring_service"
+    prctyp: "shell"
+spec:
+  selector:
+    matchLabels:
+      app: "icargo-neo-crash-collector"
+  template:
+    metadata:
+      labels:
+        app: "icargo-neo-crash-collector"
+        srvtyp: "monitoring_service"
+        prctyp: "bash"
+    spec:
+      dnsPolicy: "ClusterFirst"
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: "icargo-neo-crash-collector"
+          image: {{ printf "%s/%s" .Values.dockerRegistry .Values.crashCollector.image | quote }}
+          imagePullPolicy: "Always"
+          env:
+            - name: "S3_BUCKET"
+              value: {{ .Values.crashCollector.s3Bucket | quote }}
+            - name: "CRASH_REMOTE_DIR"
+              value: {{ .Values.crashCollector.remoteS3Directory | quote }}
+            - name: "CRASH_WATCH_DIR"
+              value: {{ .Values.crashCollector.hostWatchDirectory | quote }}
+          volumeMounts:
+            - mountPath: {{ .Values.crashCollector.hostWatchDirectory | quote }}
+              name: "icargo-crash-dump-volume"
+      volumes:
+        - name: "icargo-crash-dump-volume"
+          hostPath:
+            path: {{ .Values.crashCollector.hostWatchDirectory | quote }}
+            type: "DirectoryOrCreate"
+
+{{- end }}

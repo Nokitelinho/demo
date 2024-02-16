@@ -1,0 +1,503 @@
+<?xml version="1.0"?>
+<components screenId="stockcontrol.defaults.blackliststock"
+	xmlns="http://www.ibsplc.com/icargo/components-details">
+
+	<!--***************************Text Fields******************************-->
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_BLACKLISTSTOCK_RANGEFROM" name="Range From">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.blackliststock.tooltip.rangefrom</value>
+			</attribute>
+
+			<attribute>
+				<name>type</name>
+				<value>details</value>
+			</attribute>
+
+		<attribute>
+		<name>type</name>
+		<value>filter</value>
+	</attribute>
+
+
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_BLACKLISTSTOCK_RANGETO" name="Range To">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>  
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.blackliststock.tooltip.rangeto</value>
+			</attribute>
+
+			<attribute>
+				<name>type</name>
+				<value>details</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+
+
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_BLACKLISTSTOCK_REMARKS" name="Remarks">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_FREE_TEXT_DEFAULT</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.blackliststock.tooltip.remarks</value>
+			</attribute>
+
+			<attribute>
+				<name>type</name>
+				<value>details</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_MONITORSTOCK_STOCKHOLDERCODE" name="Stock Holder Code">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.blackliststock.tooltip.stockholdercode</value>
+			</attribute>
+
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+			<attribute>
+				<name>lov</name>
+				<value>true</value>
+			</attribute>
+	</component>
+
+
+	<!--***************************Comboboxes******************************-->
+
+	<component id="CMB_STOCKCONTROL_DEFAULTS_MONITORSTOCK_STOCKHOLDERTYPE" name="Stock Holder Type">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_SELECT</value>
+		</attribute>
+		<attribute>
+			<name>styleclass-id</name>
+			<value>ST_CMB_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.stockholdertype</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>filter</value>
+		</attribute>
+	</component>
+
+<!--***************************Checkboxes******************************-->
+
+	<component id="CHK_STOCKCONTROL_DEFAULTS_MONITORSTOCK_CHECK" name="Check">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CHECKBOX</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.check</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+		<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+	</component>
+
+	<component id="CHK_STOCKCONTROL_DEFAULTS_MONITORSTOCK_MANUAL" name="Manual">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_CHECKBOX</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.manual</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+		<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+		
+	</component>
+
+	<!--***************************Buttons******************************-->
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_BLACKLISTSTOCK_NOTIFY" name="Notify button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BTN_SMALL</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.blackliststock.tooltip.notify</value>
+			</attribute>
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_VIEW</value>
+			</attribute>
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_BLACKLISTSTOCK_BLACKLIST" name="Blacklist button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON_MEDIUM</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.blackliststock.tooltip.blacklist</value>
+			</attribute>
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_VIEW</value>
+			</attribute>
+	</component>
+
+
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_BLACKLISTSTOCK_CLOSE" name="Close button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BTN_SMALL</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.blackliststock.tooltip.close</value>
+			</attribute>
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_VIEW</value>
+			</attribute>
+	</component>
+
+    <component id="BTN_STOCKCONTROL_DEFAULTS_BLACKLISTSTOCK_CLEAR" name="Clear button">
+                <attribute>
+                    <name>businesstype-id</name>
+                    <value>BT_BTN_SMALL</value>
+                </attribute>
+
+                <attribute>
+                    <name>tooltip</name>
+                    <value>stockcontrol.defaults.monitorstock.tooltip.clear</value>
+                </attribute>
+                <attribute>
+                    <name>formatter-id</name>
+                    <value>FRM_VIEW</value>
+                </attribute>
+    </component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MONITORSTOCK_LIST" name="List button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.list</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MONITORSTOCK_CLEAR" name="Clear button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.clear</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MONITORSTOCK_MONITOR" name="Monitor button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.monitor</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MONITORSTOCK_VIEWRANGE" name="View Range button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.viewrange</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_BLACKLISTSTOCK_VOID" name="Void button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BUTTON_MEDIUM</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.blackliststock.tooltip.void</value>
+			</attribute>
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_VIEW</value>
+			</attribute>
+	</component>
+	
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MONITORSTOCK_RETURN" name="Return button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.return</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MONITORSTOCK_TRANSFER" name="Transfer button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.transfer</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MONITORSTOCK_CREATESTOCK" name="Create Stock button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.createstock</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MONITORSTOCK_ALLOCATESTOCK" name="Allocate Stock button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.allocatestock</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MONITORSTOCK_CREATEREQUEST" name="Create Request button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BUTTON_MEDIUM</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.createrequest</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MONITORSTOCK_CLOSE" name="Close button">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_BTN_SMALL</value>
+		</attribute>
+
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.monitorstock.tooltip.close</value>
+		</attribute>
+		<attribute>
+			<name>formatter-id</name>
+			<value>FRM_VIEW</value>
+		</attribute>
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_BLACKLISTSTOCK_DYNAMICOPTIONLIST" name="DynamicOptionList">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_OPTIONLIST</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.blackliststock.tooltip.doctypesubtype</value>
+		</attribute>
+	    <attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>details</value>
+		</attribute>
+		<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_BLACKLISTSTOCKPOPUP_DYNAMICOPTIONLIST" name="DynamicOptionList">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_OPTIONLIST</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.blackliststock.tooltip.doctypesubtype</value>
+		</attribute>
+	    <attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<value>details</value>
+		</attribute>
+		<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+	</component>
+
+	<component id="CHK_STOCKCONTROL_DEFAULTS_CREATESTOCK_PRTARL_CHK" name="Partner Airline">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CHECKBOX</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.blacklist.partnerAirlines.lbl</value>
+			</attribute>
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_VIEW</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>details</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+	</component>
+	
+	<component id="CHK_STOCKCONTROL_DEFAULTS_CREATESTOCK_PRTARL_CMB" name="Partner Airline">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CMB_GENCOMBO</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.blacklist.awbPrefix.lbl</value>
+			</attribute>			
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>			
+	</component>
+	
+	<component id="CHK_STOCKCONTROL_DEFAULTS_CREATESTOCK_PRTARL" name="Partner Airline code">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_EXTRA_LONG</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.blacklist.partnerAirlines.lbl</value>
+			</attribute>	
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>				
+	</component>
+
+</components>

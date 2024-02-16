@@ -1,0 +1,228 @@
+body{
+	display:flex;
+	height:0px;
+}
+#container{
+	display:flex;
+	flex-direction: column;
+}
+.header-panel{
+    display:flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+.section-panel{
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $sm;
+}
+.inner-panel{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.common-header {
+    width: 100%;
+    display: block;
+}
+
+.ico-arrow-left-modify {
+    @include sprite($arrow-left);
+}
+
+.date-range-display {
+    position: relative;
+    background: $white;
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -13px;
+        left: calc(50% - 6px);
+        transform: rotate(-90deg);
+        @extend .ico-arrow-left-modify;
+    }
+}
+.rest-fliper a.flipper {
+    position: relative !important;
+    top: inherit !important;
+    right: inherit !important;
+}
+//Side Bar
+.scribble-container {
+    .handle {
+        background-color: $white;
+        border: 1px solid #8e9194;
+        border-right: 0;
+        left: -30px;
+        padding: 2px 5px;
+        position: absolute;
+        top: 16px;
+        width: 30px;
+        cursor: pointer;
+        @include border-radius(15px 0px 0px 15px);
+        box-shadow: -4px 2px 20px -5px #484747;
+    }
+}
+.scribble-container-inner{
+   overflow-y: visible !important;
+}
+.scribble-overlay{
+    z-index: 2;
+}
+.scratch-header {
+    textarea {
+        width: 100%;
+        margin-right: 10px;
+        resize: none;
+        height: 32px;
+        border-radius: 3px;
+        color: $grey600;
+        border: solid 1px $popup-header-border;
+    }
+}
+.scratch-body {
+    bottom: 54px;
+    position: absolute;
+    left: 0;
+    top: 85px;
+    right: 0;
+    overflow-y: auto;
+    padding: 0 $md;
+    margin: $md 0;
+    li {
+        padding: 0;
+        margin-bottom: 10px;
+        list-style: none;
+        border: 0;
+    }
+    .scratch-content {
+        background: $thead-bg;
+    }
+}
+.gradient-table {
+    .table-row{
+        &:nth-child(1){
+            background: #f3fbf2 !important;   
+        }
+        &:nth-child(2){
+            background: #f1f6f1 !important;
+        }
+        &:nth-child(3){
+            background: #fff3e6 !important;
+        }
+        &:nth-child(4){
+            background: #faf0e7 !important;
+        }
+        &:nth-child(5){
+            background: #f7ece8 !important;
+        }
+        &:nth-child(6){
+            background: #ffeeea !important;
+        }
+        &:nth-child(7){
+            background: #fce8e8 !important;
+        }
+    }
+
+    
+}
+
+.cc_custom_tab {
+    .table-header__customheader {
+        padding: 0 !important;
+    }
+    .date-range-display {
+        background: none;
+    }
+    .ReactVirtualized__Grid__innerScrollContainer {
+        .ReactVirtualized__Table__row {
+            &:last-child {
+                border-bottom: solid 1px $border-color;
+            }
+        }
+    }
+}
+.common-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 10px;
+    z-index: 99;
+    text-align: right;
+    border: solid 1px $grey-border;
+}
+.money-reset{
+    .money-display{
+        margin: 0px;
+        padding: 5px 0;
+    }
+}
+.chartpanel-tooltip-wraper{
+    background: #2d4679;
+    border-radius: 3px;
+    .chartpanel-header{
+        display: flex;
+        border-bottom: solid 1px #04215b;
+        padding: $xs2 $xs;
+        font-weight: bold;
+        color: #fff;
+        font-size: $sm;
+    }
+    .chartpanel-body{
+        display: flex;
+        padding:$xs;
+        font-size: $sm;
+        .chartpanel-body-content{
+            color: #fff;
+            font-size: $md2;
+            .form-group{
+                margin: 0;
+            }
+            .money-value{
+                color: #fff !important;
+            }
+        }
+    }
+}
+.recharts-legend-item{
+    display: flex !important;
+    -webkit-box-align: center !important;
+    -webkit-align-items: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
+    margin: 0 !important;
+}
+.recharts-legend-wrapper{
+    label{
+        font-weight: bold;
+    }
+}
+.money-value{
+    font-size: 12px;
+    color: #343a40 !important;
+}
+.tab-line-set{
+    .reset_header_icons{
+        .card-header{
+            padding-bottom: 0px;
+        }
+    }
+}
+.default-view-set{
+    min-height: 350px;
+}
+.svg-area{
+    height: 250px;
+}
+.popup-area{
+    height: 400px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    .modal-body{
+        display: flex;
+    }
+}

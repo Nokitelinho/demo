@@ -1,0 +1,1607 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN "
+	"http://struts.apache.org/dtds/struts-config_1_2.dtd " >
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="ListProductForm" type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.ListProductForm"  />
+		<form-bean name="ListSubProductForm" type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.ListSubProductForm"  />
+		<form-bean name="MaintainSubProductForm" type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.MaintainSubProductForm"  />
+
+		<form-bean name="MaintainProductForm"
+		type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.MaintainProductForm"  />
+
+		<form-bean name="CustomerGroupForm"
+		type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.CustomerGroupLovForm"/>
+
+		<form-bean name="CommodityForm"
+		type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.CommodityLovForm"/>
+
+
+		<form-bean name="StationForm"
+		type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.StationLovForm"/>
+
+
+		<form-bean name="SegmentForm"
+		type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.SegmentLovForm"/>
+
+		 <form-bean name="priorityLovForm"
+		 type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.PriorityLovForm"/>
+
+		 <form-bean name="TransportModeLovForm"
+		 type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.TransportModeLovForm"  />
+		 <form-bean name="ServiceLovForm"
+		 type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.ServiceLovForm"  />
+
+		 <form-bean name="SccLovForm"
+		 type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.SccLovForm"  />
+
+		<form-bean name="MileStoneLovActionForm"
+		type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.MileStoneLovForm"  />
+
+		<form-bean name="productLovForm"
+		type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.ProductLovForm"  />
+		
+		<form-bean name="productLovUXForm"
+		type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.ux.ProductLovForm"  />
+
+		<!-- Mappings for SCC Lov from shared -->
+		<form-bean name="SCCLovForm"
+		type="com.ibsplc.icargo.presentation.web.struts.form.shared.scc.SCCLovForm"  />
+
+		<form-bean name="CheckAvailabilityForm"
+		type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.CheckAvailabilityForm"  />
+
+		<form-bean name="ProductCatalogueForm"
+		type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.ProductCatalogueForm" />
+
+		<form-bean name="ProductCatalogueListForm"
+		type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.ProductCatalogueListForm" />
+
+		<form-bean name="commodityLovForm" type="com.ibsplc.icargo.presentation.web.struts.form.shared.commodity.CommodityLovForm" >
+		</form-bean>
+
+		 <form-bean name="FeedbackForm" type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.FeedbackForm" >
+		</form-bean>
+
+		 <form-bean name="SendEmailForm" type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.SendEmailForm" >
+		</form-bean>
+
+		 <form-bean name="ListFeedbackForm" type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.ListFeedbackForm" >
+		</form-bean>
+		<form-bean name="ProductPerformanceForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.ProductPerformanceForm"  />
+
+		<form-bean name="PrintProductForm"
+			type="com.ibsplc.icargo.presentation.web.struts.form.products.defaults.PrintProductForm"  />
+
+
+
+
+        </form-beans>
+
+	<global-forwards>
+		<forward name="error_fwd" path="/jsp/icargo_logon.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+
+
+
+	<!-- **********************  Maintain Products  Action mapping STARTS ****************************-->
+
+
+		 <!-- ************ Added By Dhanya Starts********-->
+
+		<action
+				name="MaintainProductForm"
+				path="/products.defaults.maintainproduct.closeaction"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="close_maintainproduct_success" path="/products.defaults.refreshListProduct.do" />
+				<forward name="close_maintainproduct_screen_success" path="/products.defaults.screenloadlistproducts.do" />
+				<forward name="close_success" path="/products.defaults.closemaintainproduct.do" />
+
+			</action>
+
+
+			<action path="/products.defaults.closemaintainproduct"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				scope="request"
+				validate="false"
+			forward="/home.jsp" />
+
+		<!-- ************ Added By Dhanya Ends********-->
+
+
+
+
+
+
+
+
+
+
+		<action path="/products.defaults.screenloadmaintainprd"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainProductForm"
+			  scope="request"
+			  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.clearmaintainproduct"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+
+
+		<action path="/products.defaults.beforeOpenLov"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+
+<!-- addded by merrill -->
+
+	<action path="/products.defaults.downloadImage" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				scope="request"
+				name="MaintainProductForm"
+				validate="false">
+	</action>
+
+		<action path="/products.defaults.beforeOpenMileStoneLov"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_MileStoneTable.jsp" />
+		</action>
+		<action path="/products.defaults.beforeOpenTransportModeLov"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_TransportModeTable.jsp" />
+		</action>
+
+
+		<action path="/products.defaults.beforeOpenPriorityLov"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_PriorityTable.jsp" />
+		</action>
+
+
+		<action path="/products.defaults.beforeOpenSCCLov"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_SccTable.jsp" />
+		</action>
+
+
+		<action path="/products.defaults.beforeOpenServiceLov"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_ServiceTable.jsp" />
+		</action>
+
+
+		<action path="/products.defaults.beforeOpenCommodityLov"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_CommodityTable.jsp" />
+		</action>
+
+<!-- addded by merrill ends-->
+
+		<!-- addded by Divya for new change-->
+
+			<action path="/products.defaults.beforeOpenOriginLov"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_OriginTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.beforeOpenDestnLov"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_DestinationTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.beforeOpenCustGrpLov"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_CustGroupTable.jsp" />
+			</action>
+
+		<!-- addded by Divya ends-->
+
+		<action path="/products.defaults.selectTransportMode"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.selectPriority"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.selectScc"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.selectService"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+
+		</action>
+
+		<action path="/products.defaults.selectMilestone"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<!-- added by Merrill -->
+			<action path="/products.defaults.selectMilestoneNew"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_MileStoneTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.deleteMilestoneNew"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_MileStoneTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.selectTransportModeNew"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_TransportModeTable.jsp" />
+			</action>
+			<action path="/products.defaults.deleteTransportModeNew"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MaintainProductForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_TransportModeTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.selectPriorityNew"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_PriorityTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.deletePriorityNew"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_PriorityTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.selectSccNew"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_SccTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.deleteSCCNew"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_SccTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.selectServiceNew"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_ServiceTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.servicesDeleteNew"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MaintainProductForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_ServiceTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.selectCommodityNew"
+				   type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_CommodityTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.deleteCommodityNew"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_CommodityTable.jsp" />
+			</action>
+
+		<!--Merrill ends -->
+
+		<!--Mappings added by Divya for new change -->
+
+			<action path="/products.defaults.addSegmentNew"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_SegmentTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.deleteSegmentNew"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_SegmentTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.selectOriginNew"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_OriginTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.deleteOriginNew"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_OriginTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.selectDestinationNew"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_DestinationTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.deleteDestinationNew"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_DestinationTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.selectCustomerGroupNew"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_CustGroupTable.jsp" />
+			</action>
+
+			<action path="/products.defaults.deleteCustomerGroupNew"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct_CustGroupTable.jsp" />
+			</action>
+
+		<!--Mappings added by Divya ends -->
+
+		<action path="/products.defaults.selectCommodity"
+		   type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+
+		<action path="/products.defaults.selectOrigin"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.selectDestination"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.selectCustomerGroup"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.deleteTransportMode"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainProductForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.deletePriority"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.deleteSCC"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.servicesDelete"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		name="MaintainProductForm"
+		scope="request"
+		validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.deleteMilestone"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.deleteCommodity"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.deleteSegment"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.deleteOrigin"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.deleteDestination"
+		type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.deleteCustomerGroup"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.viewDetails"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.showProductList"
+		 type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/ProductListing.jsp" />
+		</action>
+
+		<action path="/products.defaults.findProductDetails"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.removeDataFromSession"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.showAffectedProducts"
+		 type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/SubProductMapping.jsp" />
+		</action>
+
+		<action path="/products.defaults.updateSubProduct"
+		 type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.addSegment"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.saveProductDetails"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+		<forward name="screenload_failure" path="/jsp/products/defaults/MaintainProduct.jsp" />
+
+		</action>
+
+		<action path="/products.defaults.findProducts"
+		   type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainProduct.jsp" />
+
+		</action>
+
+		<!-- Mappings for TMode LOV START -->
+
+		<action path="/products.defaults.screenloadtransportmodelov"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="TransportModeLovForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/TransportModeLov.jsp" />
+		</action>
+
+		<action path="/products.defaults.getSelectedTransportModeData"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="TransportModeLovForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/TransportModeLov.jsp" />
+		</action>
+		<!-- Mappings for TMode LOV ENDS -->
+
+		<!-- Mappings for priority LOV START -->
+
+		<action  path="/products.defaults.screenloadprioritylov"
+			 type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			 name="priorityLovForm"
+			 scope="request"
+			 validate="false" >
+			 <forward name="screenload_success" path="/jsp/products/defaults/PriorityLov.jsp"/>
+		</action>
+
+		<action path="/products.defaults.getSelectedPriorityData"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="priorityLovForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/PriorityLov.jsp" />
+		</action>
+		<!-- Mappings for priority LOV END -->
+		<!-- Mappings for scc LOV START -->
+
+		<action path="/products.defaults.screenloadSccLov"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="SccLovForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/SCCLov.jsp" />
+		</action>
+
+		<action path="/products.defaults.clearSccLovScreen"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="SccLovForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/SCCLov.jsp" />
+		</action>
+
+		<action path="/products.defaults.getSelectedSccData"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="SccLovForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/SCCLov.jsp" />
+		</action>
+
+		<!-- Mappings for scc LOV END -->
+
+		<!-- Mappings for SERVICE LOV START -->
+
+		<action path="/products.defaults.screenloadservicelov"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ServiceLovForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/ServicesLov.jsp" />
+		</action>
+		<action path="/products.defaults.clearservicelovscreen"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ServiceLovForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/ServicesLov.jsp" />
+		</action>
+
+		<action path="/products.defaults.getSelectedServiceData"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ServiceLovForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/ServicesLov.jsp" />
+		</action>
+		<!-- Mappings for Services LOV END -->
+
+
+		<!-- Mappings for Milestone LOV START -->
+		<action path="/products.defaults.screenloadMileStoneLov"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MileStoneLovActionForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MileStoneLov.jsp" />
+		</action>
+		<action path="/products.defaults.getSelectedMileStoneData"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="MileStoneLovActionForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MileStoneLov.jsp" />
+		</action>
+		<!-- Mappings for Milestone LOV END -->
+
+
+
+		<!-- Mappings for Commodity LOV START -->
+
+		<action path="/products.defaults.screenloadCommodityLov"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="CommodityForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/CommodityLov.jsp" />
+		</action>
+
+		<action path="/products.defaults.clearCommodityLovScreen"
+		 type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="CommodityForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/CommodityLov.jsp" />
+		</action>
+
+		<action path="/products.defaults.getSelectedCommodity"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="CommodityForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/CommodityLov.jsp" />
+		</action>
+
+		<!-- Mappings for Commodity LOV END -->
+		<!-- Mappings for Station LOV STARTS -->
+
+		<action path="/products.defaults.screenloadStationLov"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="StationForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/StationLov.jsp" />
+		</action>
+
+
+		<action path="/products.defaults.clearStationLovScreen"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="StationForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/StationLov.jsp" />
+		</action>
+
+		<action path="/products.defaults.getSelectedStationData"
+		   type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="StationForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/StationLov.jsp" />
+		</action>
+
+
+		<!-- Mappings for Station LOV end -->
+
+		<!-- Mappings for Customer Grp LOV START -->
+
+		<action path="/products.defaults.screenloadCustGroupLov"
+		 type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="CustomerGroupForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/CustomerGroupLov.jsp" />
+		</action>
+
+		<action path="/products.defaults.getSelectedCustomerGroup"
+		 type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="CustomerGroupForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/CustomerGroupLov.jsp" />
+		</action>
+
+		<!-- Mappings for Customer Grp  LOV END -->
+
+		<!-- ###################### List product action mappings ############################-->
+
+		<!-- ************ Added By Dhanya Starts********-->
+		<action
+				name="ListProductForm"
+				path="/products.defaults.refreshListProduct"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="refresh_success" path="/jsp/products/defaults/ListProduct.jsp" />
+				<forward name="refresh_failure" path="/jsp/products/defaults/ListProduct.jsp" />
+			</action>
+
+
+			<action
+				name="ListProductForm"
+				path="/products.defaults.viewproductdetails"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="viewdetails_success" path="/products.defaults.viewDetails.do" />
+			</action>
+
+			<action
+				name="ListProductForm"
+				path="/products.defaults.viewmaintainprd"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="view_success" path="/products.defaults.screenloadmaintainprd.do" />
+			</action>
+		<!-- ************ Added By Dhanya Ends********-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<action path="/products.defaults.screenloadlistproducts"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListProductForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/ListProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.listproducts"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListProductForm"
+				scope="request"
+				validate="false">
+				<forward name="list_success" path="/jsp/products/defaults/ListProduct.jsp" />
+				<forward name="list_failure" path="/jsp/products/defaults/ListProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.listproductspagination"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListProductForm"
+				scope="request"
+				validate="false">
+				<forward name="list_success" path="/jsp/products/defaults/ListProduct.jsp" />
+
+		</action>
+
+		<action path="/products.defaults.clearlistproducts"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListProductForm"
+				scope="request"
+				validate="false">
+				<forward name="clear_success" path="/jsp/products/defaults/ListProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.deleteproducts"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListProductForm"
+				scope="request"
+				validate="false">
+				<forward name="deleteproduct_success" path="/jsp/products/defaults/ListProduct.jsp" />
+				<forward name="screenload_failure" path="/jsp/products/defaults/ListProduct.jsp" />
+				<forward name="list_success" path="/jsp/products/defaults/ListProduct.jsp" />
+				<forward name="list_failure" path="/jsp/products/defaults/ListProduct.jsp" />
+				<forward name="delete_failure" path="/jsp/products/defaults/ListProduct.jsp" />				
+		</action>
+
+		<action path="/deletesubproduct"
+				type="com.ibsplc.icargo.presentation.web.struts.action.products.defaults.ListProductAction"
+				name="ListProductForm"
+				scope="request"
+				validate="false">
+				<forward name="deletesubproduct_success" path="/jsp/products/defaults/ListProduct.jsp" />
+				<forward name="screenload_failure" path="/jsp/products/defaults/ListProduct.jsp" />
+				<forward name="list_success" path="/jsp/products/defaults/ListProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.listproducts.listsubproducts"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListProductForm"
+				scope="request"
+				validate="false">
+				<forward name="list_subproduct_success" path="/products.defaults.screenloadlistsubproducts.do" />
+		</action>
+		<action path="/products.defaults.reloadListProducts"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListProductForm"
+				scope="request"
+				validate="false">
+				<forward name="reload_success" path="/jsp/products/defaults/ListProduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.clearlistsubproducts" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListSubProductForm"
+				scope="request"
+				validate="false">
+				<forward name="clear_success" path="/jsp/products/defaults/ListSubproduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.closelistsubproduct" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListSubProductForm"
+				scope="request"
+				validate="false">
+
+				<forward name="returnToMaintainProduct_success" path="/products.defaults.findProducts.do" />
+				<forward name="returnToListProduct_success" path="/products.defaults.reloadListProducts.do" />
+		</action>
+
+		<!-- ************ Added By Dhanya Starts********-->
+
+		<action
+				name="ListSubProductForm"
+				path="/products.defaults.listsubproduct.viewdetails"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="details_success" path="/products.defaults.maintainsubproductscreenload.do" />
+		</action>
+
+
+		<action
+			name="ListSubProductForm"
+			path="/products.defaults.reloadListSubproduct"
+			scope="request"
+			validate="false"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+			<forward name="reload_success" path="/jsp/products/defaults/ListSubproduct.jsp" />
+
+		</action>
+
+		<!-- ************ Added By Dhanya Ends********-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- ###################### Activate/Inactivate product action mappings ############################-->
+		<action path="/products.defaults.activateproduct"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListProductForm"
+				scope="request"
+				validate="false">
+				<forward name="activate_success" path="/products.defaults.listproducts.do" />
+				<forward name="activate_failure" path="/jsp/products/defaults/ListProduct.jsp" />
+
+		</action>
+		<action path="/products.defaults.inactivateproduct"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListProductForm"
+				scope="request"
+				validate="false">
+				<forward name="inactivate_success" path="/products.defaults.listproducts.do" />
+				<forward name="inactivate_failure" path="/jsp/products/defaults/ListProduct.jsp" />
+
+		</action>
+
+
+		<!-- Mappings for product LOV START -->
+
+		<action path="/products.defaults.screenloadProductLov"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="productLovForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/ProductLov.jsp" />
+		</action>
+		<!-- For product lov UX -->
+		<action path="/products.defaults.ux.screenloadProductLov"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="productLovUXForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/ux/ProductLov.jsp" />
+		</action>
+
+
+		<action path="/removeProductLovFromSession"
+			  type="com.ibsplc.icargo.presentation.web.struts.action.products.defaults.ProductLovAction"
+			  name="productLovForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/ProductLov.jsp" />
+		</action>
+
+		<action path="/products.defaults.clearProductLovScreen"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="productLovForm"
+			scope="request"
+			validate="false">
+			<forward name="clear_success" path="/jsp/products/defaults/ProductLov.jsp" />
+		</action>
+
+		<action path="/products.defaults.getSelectedProductData"
+			  type="com.ibsplc.icargo.presentation.web.struts.action.products.defaults.ProductLovAction"
+			  name="productLovForm"
+			  scope="request"
+			  validate="false">
+			<forward name="select_success" path="/jsp/products/defaults/ProductLov.jsp" />
+		</action>
+
+		<!--****************************** List Sub Products***************-->
+
+		<action path="/products.defaults.screenloadlistsubproducts"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListSubProductForm"
+				scope="request"
+				validate="false">
+				<forward name="nextscreenload_success" path="/jsp/products/defaults/ListSubproduct.jsp" />
+				<forward name="list_failure" path="/jsp/products/defaults/ListSubproduct.jsp" />
+
+		</action>
+		<action path="/products.defaults.listsubproducts"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListSubProductForm"
+				scope="request"
+				validate="false">
+				<forward name="subproductlist_success" path="/jsp/products/defaults/ListSubproduct.jsp" />
+				<forward name="list_failure" path="/jsp/products/defaults/ListSubproduct.jsp" />
+		</action>
+		<action path="/products.defaults.listsubproductspagination"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListSubProductForm"
+				scope="request"
+				validate="false">
+				<forward name="subproductlist_success" path="/jsp/products/defaults/ListSubproduct.jsp" />
+
+		</action>
+
+		<action path="/products.defaults.subactivate" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListSubProductForm"
+				scope="request"
+				validate="false">
+				<forward name="subactivate_success" path="/products.defaults.listsubproducts" />
+				<forward name="subactivate_failure" path="/jsp/products/defaults/ListSubproduct.jsp" />
+				<forward name="subproductlist_success" path="/jsp/products/defaults/ListSubproduct.jsp" />
+
+		</action>
+		<action path="/products.defaults.subinactivate" type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="ListSubProductForm"
+				scope="request"
+				validate="false">
+				<forward name="subinactivate_success" path="/products.defaults.listsubproducts" />
+				<forward name="subinactivate_failure" path="/jsp/products/defaults/ListSubproduct.jsp" />
+				<forward name="subproductlist_success" path="/jsp/products/defaults/ListSubproduct.jsp" />
+		</action>
+		<action path="/products.defaults.maintainsubproductscreenload"
+						type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				name="MaintainSubProductForm"
+				scope="request"
+				validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+		</action>
+
+		<!-- ************************ Maintain Sub Product**********************-->
+
+
+
+			<!-- ************ Added By Dhanya Starts********-->
+
+
+			<action
+				name="MaintainSubProductForm"
+				path="/products.defaults.maintainsubproduct.closeaction"
+				scope="request"
+				validate="false"
+				type="com.ibsplc.icargo.framework.struts.action.GenericAction">
+				<forward name="close_maintainsubproducts_success" path="/products.defaults.reloadListSubproduct.do" />
+
+			</action>
+
+			<!-- ************ Added By Dhanya Ends********-->
+
+
+
+
+
+
+			<action path="/products.defaults.deleteSubOrigin"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+			</action>
+
+			<action path="/products.defaults.deleteSubDestination"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+			</action>
+
+			<action path="/products.defaults.deleteSubCustomerGroup"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+			</action>
+
+			<action path="/products.defaults.selectSubCustomerGroup"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+			</action>
+
+			<action path="/products.defaults.selectSubOrigin"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+			</action>
+
+			<action path="/products.defaults.selectSubDestination"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+			</action>
+
+			<action path="/products.defaults.addSubProductSegment"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+					  </action>
+
+			<action path="/products.defaults.deleteSubSegment"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+			</action>
+
+			<action path="/products.defaults.selectSubProductCommodity"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			 <forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+			   </action>
+			   <action path="/products.defaults.deleteSubProductCommodity"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.selectSubProductMilestone"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+		</action>
+<!-- newly added by raji for refresh-->
+ 		<action path="/products.defaults.selectSubProductMilestoneNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_Milestone.jsp" />
+		</action>
+
+		<action path="/products.defaults.deleteSubProductMilestoneNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_Milestone.jsp" />
+		</action>
+
+	       <action path="/products.defaults.beforeOpenSubLovMilestoneNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_Milestone.jsp" />
+		</action>
+		 <action path="/products.defaults.beforeOpenSubLovCommodityNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_CommodityTable.jsp" />
+		</action>
+		<action path="/products.defaults.selectSubProductCommodityNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			 <forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_CommodityTable.jsp" />
+	  	 </action>
+	  	  <action path="/products.defaults.deleteSubProductCommodityNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			  <forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_CommodityTable.jsp" />
+		</action>
+		<action path="/products.defaults.beforeOpenSubLovOriginNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_OriginTable.jsp" />
+		</action>
+		<action path="/products.defaults.selectSubOriginNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_OriginTable.jsp" />
+		</action>
+		<action path="/products.defaults.deleteSubOriginNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_OriginTable.jsp" />
+		</action>
+		<action path="/products.defaults.beforeOpenSubLovDestinationNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_DestinationTable.jsp" />
+		</action>
+                <action path="/products.defaults.selectSubDestinationNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_DestinationTable.jsp" />
+		</action>
+
+		<action path="/products.defaults.deleteSubDestinationNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_DestinationTable.jsp" />
+		</action>
+
+		<action path="/products.defaults.beforeOpenSubLovCustomerNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_CustomerTable.jsp" />
+		</action>
+		<action path="/products.defaults.selectSubCustomerGroupNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_CustomerTable.jsp" />
+		</action>
+		<action path="/products.defaults.deleteSubCustomerGroupNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_CustomerTable.jsp" />
+		</action>
+		<action path="/products.defaults.addSubProductSegmentNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_SegmentTable.jsp" />
+
+		</action>
+
+		<action path="/products.defaults.deleteSubSegmentNew"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct_SegmentTable.jsp" />
+		</action>
+
+
+<!-- newly added ends-->
+		<action path="/products.defaults.deleteSubProductMilestone"
+		  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		  name="MaintainSubProductForm"
+		  scope="request"
+		  validate="false">
+		<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+		</action>
+
+		<action path="/products.defaults.saveSubProductDetails"
+			  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			  name="MaintainSubProductForm"
+			  scope="request"
+			  validate="false">
+			<forward name="save_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+			<forward name="save_failure" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+			<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+		 </action>
+
+		 <action path="/products.defaults.beforeOpenSubLov"
+				  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+				  name="MaintainSubProductForm"
+				  scope="request"
+				  validate="false">
+				<forward name="screenload_success" path="/jsp/products/defaults/MaintainSubproduct.jsp" />
+		</action>
+
+		<!-- ************************ Product Catalogue List**********************-->
+				<action path="/products.defaults.screenloadproductcataloguelist"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="ProductCatalogueListForm"
+					  scope="request"
+					  validate="false">
+					 <forward name="screenload_success"
+					 path="/jsp/products/defaults/ProductCatalogueList.jsp" />
+					 <forward name="list_failure"
+					 path="/jsp/products/defaults/ProductCatalogueList.jsp" />
+				</action>
+
+				<action path="/showimage"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="ProductCatalogueListForm"
+					  scope="request"
+					  validate="false">
+					  <forward name="screenload_success"
+					  path="/jsp/products/defaults/ProductCatalogueList.jsp" />
+				</action>
+
+				<!-- ************************ Product Catalogue*********************-->
+				<action path="/products.defaults.screenloadproductcatalogue"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="ProductCatalogueForm"
+					  scope="request"
+					  validate="false">
+					 <forward name="screenload_success"
+					 path="/jsp/products/defaults/ProductCatalogue.jsp" />
+					  <forward name="list_failure"
+					 path="/jsp/products/defaults/ProductCatalogue.jsp" />
+				</action>
+
+				<!-- ************************ Check Availability*********************-->
+				<action path="/products.defaults.screenloadcheckavailability"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="CheckAvailabilityForm"
+					  scope="request"
+					  validate="false">
+					 <forward name="screenload_success"
+					 path="/jsp/products/defaults/CheckAvailability.jsp" />
+				</action>
+				<action path="/products.defaults.checkavailability"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="CheckAvailabilityForm"
+					  scope="request"
+					  validate="false">
+					 <forward name="check_success"
+					 path="/jsp/products/defaults/CheckAvailability.jsp" />
+					 <forward name="check_failure"
+			         path="/jsp/products/defaults/CheckAvailability.jsp" />
+				</action>
+
+				<!-- ************************ shared Commodity*********************-->
+				<action path="/showCommodity"
+				        type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="commodityLovForm"
+					scope="request"
+					validate="false">
+					<forward name="findCommodityLov_success"
+					path="/jsp/shared/commodity/CommodityLov.jsp" />
+				</action>
+
+
+				<action path="/clearCommodity"
+				        type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					name="commodityLovForm"
+					scope="request"
+					validate="false">
+					<forward name="clearCommodity_success"
+					path="/jsp/shared/commodity/CommodityLov.jsp" />
+			        </action>
+			        <!-- ************************ feedback*********************-->
+			        <action path="/products.defaults.screenloadfeedback"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="FeedbackForm"
+					  scope="request"
+					  validate="false">
+					 <forward name="screenload_success"
+					 path="/jsp/products/defaults/Feedback.jsp" />
+				</action>
+
+				<action path="/products.defaults.savefeedback"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="FeedbackForm"
+					  scope="request"
+					  validate="false">
+					 <forward name="save_success"
+					 path="/jsp/products/defaults/Feedback.jsp" />
+					 <forward name="save_failure"
+					 path="/jsp/products/defaults/Feedback.jsp" />
+				</action>
+			         <!-- ************************ send email********************-->
+		                  <action path="/products.defaults.screenloadsendemail"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="SendEmailForm"
+					  scope="request"
+					  validate="false">
+					 <forward name="screenload_success"
+					 path="/jsp/products/defaults/SendEmail.jsp" />
+				</action>
+				<action path="/products.defaults.saveemail"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="SendEmailForm"
+					  scope="request"
+					  validate="false">
+					 <forward name="send_success"
+					 path="/jsp/products/defaults/SendEmail.jsp" />
+					 <forward name="send_failure"
+					 path="/jsp/products/defaults/SendEmail.jsp" />
+				 </action>
+
+				 <!-- ************************list feedback*********************-->
+
+				 <action path="/products.defaults.screenloadlistfeedback"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="ListFeedbackForm"
+					  scope="request"
+					  validate="false">
+					 <forward name="screenload_success"
+					 path="/jsp/products/defaults/ListFeedback.jsp" />
+				 </action>
+				 <action path="/products.defaults.listfeedback"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="ListFeedbackForm"
+					  scope="request"
+					  validate="false">
+					 <forward name="list_success"
+					 path="/jsp/products/defaults/ListFeedback.jsp" />
+					 <forward name="list_failure"
+					 path="/jsp/products/defaults/ListFeedback.jsp" />
+				 </action>
+
+				 <action path="/products.defaults.clearlistfeedback"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="ListFeedbackForm"
+					  scope="request"
+					  validate="false">
+					 <forward name="clear_success"
+					 path="/jsp/products/defaults/ListFeedback.jsp" />
+				 </action>
+
+				 <action path="/products.defaults.viewfeedback"
+					  type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+					  name="FeedbackForm"
+					  scope="request"
+					  validate="false">
+					 <forward name="view_success"
+					 path="/jsp/products/defaults/Feedback.jsp" />
+				 </action>
+
+
+
+
+		<!-- ************************ SCC Lov**********************-->
+		 <!-- ************ Reports********-->
+		 <action path="/products.defaults.printProductDetails"
+		 	type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+		 	name="PrintProductForm"
+		 	scope="request"
+		 	validate="false">
+		 </action>
+		<action path="/products.defaults.screenloadproductperformancereport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ProductPerformanceForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/ProductPerformance.jsp" />
+		</action>
+		<action path="/products.defaults.viewproductperformancereport"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ProductPerformanceForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/ProductPerformance.jsp" />
+		</action>
+		<action path="/products.defaults.clearproductperformance"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			name="ProductPerformanceForm"
+			scope="request"
+			validate="false">
+			<forward name="screenload_success" path="/jsp/products/defaults/ProductPerformance.jsp" />
+		</action>
+		<action path="/home"
+			name="ProductPerformanceForm"
+			scope="request"
+			type="com.ibsplc.icargo.framework.struts.action.GenericAction"
+			validate="false"
+		forward ="/home.jsp" />
+
+
+	</action-mappings>
+
+	<message-resources  key="MaintainProduct"  parameter="resources.products.defaults.MaintainProduct" null="false"/>
+	<message-resources key="PriorityLov" parameter="resources.products.defaults.PriorityLov" null="false"/>
+	<message-resources key="SCCLov" parameter="resources.products.defaults.SCCLov" null="false"/>
+	<message-resources key="ServicesLov" parameter="resources.products.defaults.ServicesLov" null="false"/>
+	<message-resources key="TransportModeLov" parameter="resources.products.defaults.TransportModeLov" null="false"/>
+	<message-resources key="CommodityLov" parameter="resources.products.defaults.CommodityLov" null="false"/>
+	<message-resources key="CustomerGroupLov" parameter="resources.products.defaults.CustomerGroupLov" null="false"/>
+	<message-resources key="MileStoneLov" parameter="resources.products.defaults.MileStoneLov" null="false"/>
+	<message-resources key="ProductLov" parameter="resources.products.defaults.ProductLov" null="false"/>
+	<message-resources key="ListProduct" parameter="resources.products.defaults.ListProduct" null="false"/>
+	<message-resources key="ListSubProduct" parameter="resources.products.defaults.ListSubProduct" null="false"/>
+	<message-resources key="MaintainSubProduct" parameter="resources.products.defaults.MaintainSubProduct" null="false"/>
+	<message-resources key="StationLov" parameter="resources.products.defaults.StationLov" null="false"/>
+	<message-resources key="productCatalogueResources" parameter="resources.products.defaults.ProductCatalogue" null="false"/>
+	<message-resources key="checkAvailabilityResources" parameter="resources.products.defaults.CheckAvailability" null="false"/>
+	<message-resources key="productCatalogueListResources" parameter="resources.products.defaults.ProductCatalogueList" null="false"/>
+	<message-resources key="sendEmailResources" parameter="resources.products.defaults.SendEmail" null="false"/>
+	<message-resources key="feedbackResources" parameter="resources.products.defaults.Feedback" null="false"/>
+	<message-resources key="listfeedbackResources" parameter="resources.products.defaults.ListFeedback" null="false"/>
+	<message-resources key="productperformanceresources" parameter="resources.products.defaults.ProductPerformance" null="false"/>
+
+
+	<plug-in className="com.ibsplc.icargo.framework.plugin.ErrorTagsPlugin">
+		<set-property
+		property="configFileName"
+		value="/WEB-INF/errortags/products/defaults/errortags.xml"/>
+	</plug-in>
+
+	
+
+
+</struts-config>

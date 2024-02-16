@@ -1,0 +1,162 @@
+
+/* If a new build is triggered (may be by a new commit in git), the currently running build can be aborted */
+ 
+def cancelPreviousBuilds() {
+    def jobName = env.JOB_NAME
+    def buildNumber = env.BUILD_NUMBER.toInteger()
+    /* Get job name */
+    def currentJob = Jenkins.instance.getItemByFullName(jobName)
+
+    /* Iterating over the builds for specific job */
+    for (def build : currentJob.builds) {
+        def exec = build.getExecutor()
+        /* If there is a build that is currently running and it's not current build */
+        if (build.isBuilding() && build.number.toInteger() != buildNumber && exec != null) {
+            /* Then stop it */
+            exec.interrupt(
+                Result.ABORTED,
+                new CauseOfInterruption.UserInterruption("Aborted by #${currentBuild.number}")
+            )
+            println("Aborted previously running build #${build.number}")            
+        }
+    }
+}
+
+pipeline {
+    agent any
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '1'))
+    }
+    stages {
+		stage('Initial Setup') {
+			steps {
+                script {
+                	cancelPreviousBuilds()
+					Stage_Name = 'Initial Setup'
+					env.JAVA_HOME="/home/icargoadm/del/jdk1.8.0_271"	
+					env.M2_HOME="/opt/apache-maven-3.6.2"
+					env.repo = sh(returnStdout: true, script: 'git config remote.origin.url').trim()
+					env.token="f60d9763-39f7-4e73-8467-258d60f1d7f6"
+                }
+
+            }
+        }
+			
+        stage('Build Stage') {
+			when {
+				expression { BRANCH_NAME ==~ /(master)/ }
+            }
+			
+            steps {
+                script {
+					Stage_Name = 'Build Stage'					
+					echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+                }
+
+                checkout([$class           : 'GitSCM',
+                          branches         : [[name: env.BRANCH_NAME]],
+                          userRemoteConfigs: [[credentialsId: env.token, url : env.repo]]])
+
+                 dir(path: '.') {
+                    sh '''export M2_HOME=$M2_HOME
+                      export M2=$M2_HOME/bin
+                      export JAVA_HOME=$JAVA_HOME
+                      export PATH=$M2:$JAVA_HOME:$PATH
+                      mvn clean deploy -DcompanyCode="QF" -U -DsendCredentialsOverHttp=true -Dproj.name=$project_name '''
+                }
+				script {
+                    Stage_Name = 'Build Stage'
+					echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+					def notifyBitbucket = {
+					  echo "Building env.BRANCH_NAME ${env.BRANCH_NAME}"
+					  return "ees"
+					}
+					echo "   notifyBitbucket  ${notifyBitbucket}"
+                }
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+				
+            }
+        }
+		
+	}
+
+    post {
+		success{
+			script {
+				echo "GIT_COMMIT is ${env.GIT_COMMIT}"
+				data='{"key": "'+env.BUILD_ID+'","state":"SUCCESSFUL", "name":"'+env.JOB_NAME+'","url":"'+env.BUILD_URL+'","description":"Build is successful."}'
+							bitbucketURL="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"+env.GIT_COMMIT
+							echo "bitbucketURL  ${bitbucketURL}"
+							bitbucketresponse = ["curl", "-u", "icargo-release:Icargo-release", "-X", "POST", "-H", "Content-Type: application/json", "-d", "${data}", "${bitbucketURL}"].execute().text
+							echo "bitbucketresponse ${bitbucketresponse}"
+			
+				if (env.BRANCH_NAME == 'master') {
+					env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+					echo "GIT_COMMIT_MSG is ${env.GIT_COMMIT_MSG}"
+					env.GIT_AUTHOR = sh (script: 'git log -1 --pretty=%cn ${GIT_COMMIT}', returnStdout: true).trim()
+					echo "GIT_COMMIT is ${env.GIT_COMMIT[0..6]}"
+					                  
+                    emailext(
+                            subject: "Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+							Check console output at:  ${env.BUILD_URL}  
+
+							Job Name:  ${env.JOB_NAME} 
+
+							Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'cc:'
+                    )
+                } 				
+			}			
+		}
+	
+        failure {
+            script {			
+				echo "GIT_COMMIT is ${env.GIT_COMMIT}"
+				data='{"key": "'+env.BUILD_ID+'","state":"FAILED", "name":"'+env.JOB_NAME+'","url":"'+env.BUILD_URL+'","description":"Build has failed"}'
+							bitbucketURL="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"+env.GIT_COMMIT
+							echo "bitbucketURL  ${bitbucketURL}"
+							bitbucketresponse = ["curl", "-u", "icargo-release:Icargo-release", "-X", "POST", "-H", "Content-Type: application/json", "-d", "${data}", "${bitbucketURL}"].execute().text
+							echo "bitbucketresponse ${bitbucketresponse}"
+			 
+				if (env.BRANCH_NAME == 'master') {
+                    emailext(
+                            subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+							Failure happened in ${Stage_Name}.
+										
+							Check console output at:  ${env.BUILD_URL}  
+
+							Job Name:  ${env.JOB_NAME} 
+
+							Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'cc:'
+                    )					
+                } 
+            }
+        }		
+		
+		always {
+			dir("${env.WORKSPACE}@tmp") {
+			  deleteDir()
+			}
+			dir("${env.WORKSPACE}@script") {
+			  deleteDir()
+			}
+			dir("${env.WORKSPACE}@script@tmp") {
+			  deleteDir()
+			}
+		}
+    }
+}

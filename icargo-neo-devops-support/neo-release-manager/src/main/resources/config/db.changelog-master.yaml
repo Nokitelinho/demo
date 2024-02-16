@@ -1,0 +1,294 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: A-2394
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: ARTMST
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE ARTMST (
+          ARTIDR varchar(150),
+          PORT integer not null,
+          HLTENP varchar(100),
+          DOMNAM varchar(100) not null,
+          SRVTYP varchar(25) not null,
+          SRVTCH varchar(10) not null,
+          CTXPTH varchar(50) not null,
+          DSC varchar(250),
+          constraint ARTMST_PK primary key (ARTIDR));
+  - changeSet:
+      id: 2
+      author: A-2394
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: TNTCTG
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE TNTCTG (
+          TNTIDR varchar(15),
+          ARTIDR varchar(150),
+          APPIDR varchar(50),
+          constraint TNTCTG_PK primary key (TNTIDR, ARTIDR, APPIDR));
+  - changeSet:
+      id: 3
+      author: A-2394
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: RELCTG
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE RELCTG (
+          ARTIDR varchar(150),
+          ARTVER varchar(50),
+          RELBRH varchar(100) not null,
+          RELDSC varchar(250),
+          RELTIM timestamp not null,
+          constraint RELCTG_PK primary key (ARTIDR, ARTVER));
+  - changeSet:
+      id: 4
+      author: A-2394
+      preConditions:
+        - onFail: MARK_RAN
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: alter table artmst add column IF NOT EXISTS  pubapi boolean not null default false;
+          alter table artmst add column IF NOT EXISTS  prvapi boolean not null default false;
+          alter table artmst add column IF NOT EXISTS  entapi boolean not null default false;
+  - changeSet: #Build Catalagoue
+      id: 5
+      author: P-1025
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: BLDCTG
+      changes:
+        - createTableBLDCTG:
+          dbms: h2, postgres
+          endDelimiter: \nGO
+          splitStatements: false
+          sql: CREATE TABLE BLDCTG (
+            BLDNUM integer not null,
+            APPIDR varchar(50),
+            TNTIDR varchar(15),
+            DEPCTG jsonb,
+            BLDSTA varchar(20),
+            BLDQLY varchar(20),
+            BLDSTRTIM timestamp with time zone not null,
+            BLDENDTIM timestamp with time zone,
+            constraint BLDCTG_PK primary key (BLDNUM));
+  - changeSet:
+      id: 6
+      author: P-1025
+      preConditions:
+        - onFail: MARK_RAN
+      changes:
+        - comments:
+          dbms: h2, postgres
+          endDelimiter: \nGO
+          splitStatements: false
+          sql: comment on column BLDCTG.APPIDR is 'Optional App-Id';
+            comment on column BLDCTG.TNTIDR is 'Optional Tenant Id';
+            comment on column BLDCTG.BLDSTA is 'In-Progress, Success, Failed';
+            CREATE SEQUENCE IF NOT EXISTS BUILDNUM_SEQ INCREMENT BY 100 START WITH 1000;
+        - createBLDSEQ:
+          dbms: h2, postgres
+          endDelimiter: \nGO
+          splitStatements: false
+          sql: CREATE SEQUENCE IF NOT EXISTS BUILDNUM_SEQ INCREMENT BY 100 START WITH 1000;
+  - changeSet:
+      id: 7
+      author: P-1025
+      preConditions:
+        - onFail: MARK_RAN
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: alter table RELCTG
+          add column IF NOT EXISTS RELSTA varchar(15) not null default 'ALPHA';
+          comment on column RELCTG.RELSTA is 'ALPHA, BETA, FINAL';
+  - changeSet: #App Catalogue
+      id: 8
+      author: P-1025
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: APPCTG
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE APPCTG (
+          APPIDR varchar(50) not null,
+          APPDSC varchar(250),
+          TNTIDR varchar(15) not null,
+          constraint APPCTG_PK primary key (APPIDR,TNTIDR));
+  - changeSet: #Release Package (For a Build Num + App Id + Tenant+  Environment)
+      id: 9
+      author: P-1025
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE IF NOT EXISTS RELPKG (
+          PKGID SERIAL not null,
+          BLDNUM integer not null,
+          APPIDR varchar(50) not null,
+          TNTIDR varchar(15) not null,
+          ENVREF varchar(20) not null,
+          PLNDAT date,
+          CRTDAT date not null,
+          APRDAT date,
+          CSTCHGRFN varchar(150),
+          PKGRMK varchar(250),
+          PKGSTA varchar(20) not null,
+          UNIQUE (BLDNUM,APPIDR,TNTIDR,ENVREF),
+          constraint RELPKG_PK primary key (PKGID));
+  - changeSet: #Release package (For a Build Num + App Id + Tenant+  Environment)
+      id: 10
+      author: P-1025
+      changes:
+        - comments:
+          dbms: h2, postgres
+          endDelimiter: \nGO
+          splitStatements: false
+          sql: comment on column RELPKG.ENVREF is 'Prod,Staging,Env-1,Env-2,Env-3 etc';
+            comment on column RELPKG.CSTCHGRFN is 'Customer change reference number (if any)';
+            comment on column RELPKG.PKGSTA is 'Draft,Planned, Implemented';
+  - changeSet:
+      id: 11
+      author: P-1025
+      changes:
+        - indices:
+          dbms: h2, postgres
+          endDelimiter: \nGO
+          splitStatements: false
+          sql: CREATE INDEX IF NOT EXISTS IDX_BLDCTG_BLDSTRTIM ON BLDCTG (BLDSTRTIM);
+            CREATE INDEX IF NOT EXISTS IDX_RELCTG_RELTIM ON RELCTG (RELTIM);
+            CREATE INDEX IF NOT EXISTS IDX_RELPKG_TNTIDR ON RELPKG (TNTIDR);
+  - changeSet:
+      id: 12
+      author: P-1025
+      changes:
+        - syspar:
+          dbms: h2, postgres
+          endDelimiter: \nGO
+          splitStatements: false
+          sql: CREATE TABLE IF NOT EXISTS SYSPAR (
+            PARCOD varchar(100) not null,
+            CSVVAL varchar(300),
+            constraint SYSPAR_PK primary key (PARCOD));
+        - defaults:
+          dbms: h2, postgres
+          endDelimiter: \nGO
+          splitStatements: false
+          sql: INSERT INTO SYSPAR (PARCOD,CSVVAL) VALUES('TENANTS','American,Base,Etihad,Korean,NAS,LH,Qantas,IAG,Asiana,British,ANA,SAA,Turkish,IACT,MEA,NCA,S7,IAG,Singapore,Amazon,JAL,Avianca');
+  - changeSet:
+      id: 13
+      author: A-2394
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: alter table relctg add column if not exists cmtemladd varchar(100);
+          alter table artmst add column if not exists prjnam varchar(25), add column if not exists prjrepnam varchar(50);
+  - changeSet:
+      id: 14
+      author: P-1025
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: TNTMST
+      changes:
+        - TNTMST:
+          dbms: h2, postgres
+          endDelimiter: \nGO
+          splitStatements: false
+          sql: CREATE TABLE TNTMST (
+            TNTIDR varchar(15) not null,
+            TNTDSC varchar(100),
+            ACTIVE boolean not null default true,
+            constraint TNTMST_PK primary key (TNTIDR));
+        - default:
+          dbms: h2, postgres
+          endDelimiter: \nGO
+          splitStatements: false
+          sql: INSERT INTO TNTMST (TNTIDR,TNTDSC) VALUES('base','Default base implementation.Please Do not change the id of this');
+  - changeSet:
+      id: 15
+      author: A-8634
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: alter table relctg add column if not exists  actvtyref varchar(100);
+  - changeSet:
+      id: 16
+      author: A-2394
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: alter table tntctg add column if not exists depgrp varchar(100) default 'default';
+  - changeSet:
+      id: 17
+      author: A-2394
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE IF NOT EXISTS ARTTSTMST (
+          TNTIDR varchar(15) not null,
+          ARTIDR varchar(150) not null,
+          TSTTYP varchar(50) not null,
+          GITRPO varchar(250) not null,
+          GITBRH varchar(50) not null default 'master',
+          EXEJAR varchar(150) not null,
+          constraint ARTTSTMST_PK primary key (TNTIDR, ARTIDR, TSTTYP));
+  - changeSet: # Adding release number support for application
+      id: 18
+      author: A-1759
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: ALTER TABLE appctg ADD COLUMN RELNUM VARCHAR(20);
+  - changeSet: # Altering BLDCTG PK to BLDNUM + RELNUM. RELNUM defaulted to appidr for old records. 
+      id: 19
+      author: A-1759
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: true
+        sql: ALTER TABLE bldctg ADD COLUMN RELNUM VARCHAR(20) NOT NULL DEFAULT 'DUMMY';
+             UPDATE bldctg SET RELNUM=APPIDR;
+             ALTER TABLE bldctg drop constraint bldctg_pk;
+             alter table bldctg add constraint bldctg_pk primary key (bldnum, relnum);
+  - changeSet: # Altering BLDNUM in package to VARCHAR. 
+      id: 20
+      author: A-1759
+      changes:
+        dbms: h2, postgres
+        endDelimiter: \nGO
+        splitStatements: true
+        sql: alter table relpkg alter column bldnum type VARCHAR(50);        
+        
+        

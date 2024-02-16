@@ -1,0 +1,62 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-54540_MSM001.yml
+  - changeSet:
+      id: STK_001
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: STKHLDMST_SEQ
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE STKHLDMST_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;
+
+  - changeSet:
+      id: STK_002
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: STKHLDMST
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE STKHLDMST(
+          STKHLDMSTSERNUM BIGINT,
+          CMPCOD VARCHAR(6) NOT NULL,
+          STKHLDCOD VARCHAR(15) NOT NULL,
+          STKHLDTYP VARCHAR(8) NOT NULL,
+          STKHLDNAM VARCHAR(150) NOT NULL,
+          STKHLDDES VARCHAR(100),
+          CTLPVG VARCHAR(50) NOT NULL,
+          LSTUPDUSR VARCHAR(50) NOT NULL,
+          LSTUPDTIM TIMESTAMP NOT NULL,
+          CNTADR VARCHAR(300),
+          TXNSEQNUM NUMERIC DEFAULT 1,
+          TAGIDX NUMERIC(1,0) DEFAULT 0 NOT NULL,
+          CONSTRAINT "stkhldmst_pk" PRIMARY KEY (STKHLDMSTSERNUM),
+          CONSTRAINT "stkhldmst_cmpcod_stkhldcod_unique" UNIQUE (CMPCOD, STKHLDCOD));
+
+          COMMENT ON COLUMN STKHLDMST.STKHLDMSTSERNUM is 'Stockholder serial number';
+          COMMENT ON COLUMN STKHLDMST.CMPCOD IS 'Company Code.The company code that uniquely identifies the company for which the application is hosted';
+          COMMENT ON COLUMN STKHLDMST.STKHLDCOD IS 'Stock Hodler Code';
+          COMMENT ON COLUMN STKHLDMST.STKHLDTYP IS 'Stock Holder Type';
+          COMMENT ON COLUMN STKHLDMST.STKHLDNAM IS 'Stock Holder Name';
+          COMMENT ON COLUMN STKHLDMST.STKHLDDES IS 'Stock Holder Description';
+          COMMENT ON COLUMN STKHLDMST.CTLPVG IS 'Control privilege';
+          COMMENT ON COLUMN STKHLDMST.LSTUPDUSR IS 'Last Update User.The application user code who performed the operation on the record';
+          COMMENT ON COLUMN STKHLDMST.LSTUPDTIM IS 'The date and time at which record was last updated';
+          COMMENT ON COLUMN STKHLDMST.CNTADR IS 'Contact Address';
+          COMMENT ON COLUMN STKHLDMST.TXNSEQNUM IS 'Transaction Sequence Number';
+          COMMENT ON COLUMN STKHLDMST.TAGIDX IS 'This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment';
+          COMMENT ON TABLE STKHLDMST IS 'Stock Holder Master';

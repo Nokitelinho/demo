@@ -1,0 +1,113 @@
+{{/*
+Internal services to be custom deployed
+*/}}
+{{- if and (hasKey .Values.deployments .Values.configServerArtifactId) (get .Values.deployments .Values.configServerArtifactId).image }}
+{{- $configServerDeploy := get .Values.deployments .Values.configServerArtifactId -}}
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ .Values.configServerArtifactId | quote }}
+  namespace: {{ .Values.namespace | quote }}
+  labels:
+    app: {{ .Values.configServerArtifactId | quote }}
+    tenant: {{ .Values.tenants | join "-" | lower | quote }}
+    release: {{ .Release.Name | quote }}
+    srvtyp: {{ $configServerDeploy.serviceType | lower | quote }}
+    prctyp: "java"
+spec:
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: {{ .Values.configServerArtifactId | quote }}
+      tenant: {{ .Values.tenants | join "-" | lower | quote }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.configServerArtifactId | quote }}
+        tenant: {{ .Values.tenants | join "-" | lower | quote }}
+        srvtyp: {{ $configServerDeploy.serviceType | lower | quote }}
+        prctyp: "java"
+    spec:
+      dnsPolicy: "ClusterFirst"
+      terminationGracePeriodSeconds: 15
+      containers:
+        - name: {{ .Values.configServerArtifactId | quote }}
+          image: {{ printf "%s/%s" .Values.dockerRegistry $configServerDeploy.image | quote }}
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - name: {{ print "http-" $configServerDeploy.port | quote }}
+              containerPort: {{ $configServerDeploy.port }}
+              protocol: "TCP"
+          env:
+            - name: "JAVA_TOOL_OPTIONS"
+              {{- $javaMemProfile := $configServerDeploy.javaMemoryProfile | default .Values.default.javaMemoryProfile -}}
+              {{- $javaMemArgs := get (get .Values.environment .Values.environmentProfile) $javaMemProfile }}
+              value: {{ printf "-Dserver.port=%s %s" ($configServerDeploy.port | toString) $javaMemArgs | quote }}
+          readinessProbe:
+            periodSeconds: 10
+            tcpSocket:
+              port: {{ print "http-" $configServerDeploy.port | quote }}
+          startupProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 15
+            httpGet:
+              path: {{ $configServerDeploy.healthEndpoint | quote }}
+              port: {{ print "http-" $configServerDeploy.port | quote }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.configServerArtifactId | quote }}
+  namespace: {{ .Values.namespace | quote }}
+  labels:
+    app: {{ .Values.configServerArtifactId | quote }}
+    tenant: {{ .Values.tenants | join "-" | lower | quote }}
+    release: {{ .Release.Name | quote }}
+    srvtyp: {{ $configServerDeploy.serviceType | lower | quote }}
+    prctyp: "java"
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ .Values.configServerArtifactId | quote }}
+    tenant: {{ .Values.tenants | join "-" | lower | quote }}
+  ports:
+    - name: {{ print "http-" $configServerDeploy.port | quote }}
+      protocol: "TCP"
+      port: 80
+      targetPort: {{ $configServerDeploy.port }}
+
+{{- if not .Values.disable.ingress }}
+{{- range $tenant := .Values.tenants }}
+{{- $tenantLower := lower $tenant }}
+{{- $tenantIngress := get $.Values.ingress $tenant }}
+{{- if and $tenantIngress.devIngress }}
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ printf "%s-%s-min-cfg-igrs" $.Release.Name $tenantLower | quote }}
+  namespace: {{ $.Values.namespace | quote }}
+  annotations:
+    nginx.org/mergeable-ingress-type: "minion"
+  labels:
+    release: "{{ $.Release.Name }}"
+    tenant: {{ $tenantLower | quote }}
+    type: "app"
+spec:
+  ingressClassName: {{ $tenantIngress.ingressClassName | quote }}
+  rules:
+    - http:
+       paths:
+          - path: {{ default "/config-service" $configServerDeploy.contextPath | quote }}
+            pathType: "Prefix"
+            backend:
+              serviceName: {{ $configServerDeploy.serviceName | lower | quote }}
+              servicePort: 80
+      host: {{ $tenantIngress.host | quote }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- end }}

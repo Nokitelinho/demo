@@ -1,0 +1,151 @@
+def Stage_Name="Init"
+def ENV
+def releaseVersion
+def bom_beta
+def tenantId = "base"
+def applicationId ="icargo-neo"
+def currentVersion
+def jiraIds
+//env.EMAIL_SUBSCRIBERS="sinoob.saithumuhammed@ibsplc.com, Sander.Joseph@ibsplc.com, Tibin.Kuriackose@ibsplc.com, Vinu.Venu@ibsplc.com, iCargoNeoDesign@ibsplc.com, iCargoNeoSMs@ibsplc.com, iCargoNeoQA@ibsplc.com"
+
+env.EMAIL_SUBSCRIBERS="sinoob.saithumuhammed@ibsplc.com,Sander.Joseph@ibsplc.com,anjana.narayanan@ibsplc.com,jesin.zachariah@ibsplc.com,jiji.joseph@ibsplc.com,jojeet.philip@ibsplc.com,Lakshmi.Ramachandran@ibsplc.com,leena.joseph@ibsplc.com,Santhi.Kaimala@ibsplc.com,shinu.john@ibsplc.com,Arun.Padinhare@ibsplc.com,arun.thomas@ibsplc.com,aswin.ravikumar@ibsplc.com,bejoy.kunjumon@ibsplc.com,binish.prabhakaran@ibsplc.com,freddy.kurien@ibsplc.com,hari.reddy@ibsplc.com,jayakrishnan.jayaram@ibsplc.com,jens.parappallil@ibsplc.com,juby.mathew@ibsplc.com,Kannan.Muraleedharan@ibsplc.com,kashyap.prakasan@ibsplc.com,lakshmi.narayanan@ibsplc.com,manoj.balan@ibsplc.com,manu.purushothaman@ibsplc.com,manu.raghavan@ibsplc.com,philip.scaria@ibsplc.com,Remya.Mathew@ibsplc.com,rony.john@ibsplc.com,sharika.narayanankutty@ibsplc.com,sooraj.sadasivanpillai@ibsplc.com,Vijayakumar.Ramasamy@ibsplc.com,vivek.radhakrishnan@ibsplc.com,Akshaya.Raj@ibsplc.com,Arathy.Sathy@ibsplc.com,Arjun.Villadath@ibsplc.com,Arya.Geetha@ibsplc.com,Gokul.Gopinathpillai@ibsplc.com,Jisha.Joshi@ibsplc.com,Pallabi.Nath@ibsplc.com,Preethi.Lalitha@ibsplc.com,rajani.chandran@ibsplc.com,Rinimol.Ramdas@ibsplc.com,Sandra.Thadathil@ibsplc.com,Shabab.Erkkara@ibsplc.com,Tresa.Jayan@ibsplc.com"
+
+
+pipeline {
+    agent any
+
+	options {
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '1'))
+    }
+	
+    stages {			
+		
+		stage("BETA Deploy Phase") {			
+			steps {
+				echo "BETA Deploy Phase"
+				sh '''
+					if [ -e ${WORKSPACE}/bom_beta.yaml ]; then
+							echo "---- >Deleting bom_beta ---  "
+							rm  ${WORKSPACE}/bom_beta.yaml
+					fi
+				'''
+				dir("icargo-neo-cli"){
+					sh"pwd"
+					sh '''
+						export ENABLE_COLOR=false
+						./iconctl.sh app-version beta full >${WORKSPACE}/version
+					'''	
+					
+				}
+				script {
+                	env.HELM_TMOUT_DEFAULT="600s"
+					Stage_Name='BETA_Deploy'
+					currentVersion = readFile ("${env.WORKSPACE}/version").trim()
+					echo "Current Version Running is ${currentVersion}"
+					env.POSTURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds?tenantId="+tenantId+"&applicationId="+applicationId
+					echo "POSTURL is ${env.POSTURL}"
+					releaseVersion = ["curl","-X", "POST", "-H", "Content-Type: application/json", "${env.POSTURL}"].execute().text
+                    env.RELVER=releaseVersion
+                    echo "ReleaseVersion is ${releaseVersion}"
+					env.GETURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds/"+releaseVersion+"/bom"
+					bom_beta = ["curl","-o","${WORKSPACE}/bom_beta.yaml" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/yaml", "${env.GETURL}"].execute().text
+                    env.JIRAURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds/base/icargo-neo/activity/list?currentVersion="+currentVersion+"&newVersion="+releaseVersion
+                    echo "JIRAURL  -> is ${env.JIRAURL}"
+                    jiraIds = ["curl","-o","${WORKSPACE}/jiraIds.txt" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/json", "${env.JIRAURL}"].execute().text
+				}
+				dir("icargo-neo-cli"){
+					sh"pwd"
+					sh '''
+						export ENABLE_COLOR=false
+						./iconctl.sh deploy-full beta ${WORKSPACE}/bom_beta.yaml
+					'''					
+				}
+			}
+		}
+	
+		
+	}
+
+	
+	post {
+		success{
+			script {
+				recipientProvidersForBETADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForBETADeploy   ->  ${recipientProvidersForBETADeploy}"
+			
+            	echo "Triggering the regression build asynchronously"
+                build job : "neo-beta-regression-job", parameters: [[$class: 'StringParameterValue', name: 'releaseVersion', value: releaseVersion]], propagate: false, wait : false
+				
+				emailext( 
+						attachmentsPattern: "icargo-neo-cli/beta.zip,bom_beta.yaml,jiraIds.txt",
+						recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']],
+						mimeType: 'text/html',
+						to : "${env.EMAIL_SUBSCRIBERS}",
+                        subject: "Success: Job '${env.JOB_NAME} [${env.RELVER}]'",
+                        body: """Success: Job '${env.JOB_NAME} [${env.RELVER}]':
+							<br />
+							Check console output at:  ${env.BUILD_URL}/console 
+							<br />
+							Job Name:  ${env.JOB_NAME} 
+                            Release Version: ${env.RELVER}
+							<br />
+							Jenkins Build Number: [${env.BUILD_NUMBER}]"""             
+                    )      
+                    
+                    try {
+                        build job: "Jira Update", parameters: [[$class: 'StringParameterValue', name: 'currentVersion', value: currentVersion ], [$class: 'StringParameterValue', name: 'releaseVersion', value: releaseVersion]],wait: false , propagate: true
+                        sleep(20)
+                    }
+                    catch (Exception e) {
+                        echo "WARNING: ${e.message}"
+                    }	
+			}
+			
+			sh '''
+				if [ -e ${WORKSPACE}/bom_beta.yaml ]; then
+					rm  ${WORKSPACE}/bom_beta.yaml
+				fi
+				
+				if [ -e ${WORKSPACE}/icargo-neo-cli/beta.zip ]; then
+					rm  ${WORKSPACE}/icargo-neo-cli/beta.zip
+				fi
+				
+				'''
+			
+	}
+	
+        failure {
+            script {
+				recipientProvidersForBETADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForBETADeploy   ->  ${recipientProvidersForBETADeploy}"			
+				emailext(
+						attachmentsPattern: "icargo-neo-cli/beta.zip",
+						mimeType: 'text/html',
+						recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+										[$class: 'RequesterRecipientProvider'],
+										[$class: 'DevelopersRecipientProvider']],
+						to : "${env.EMAIL_SUBSCRIBERS}",
+						subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+						body: """
+								<div style="color:red;font-size:20px">
+								FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+								</div>
+								Failure happened in ${Stage_Name}.
+								<br />
+								Check console output at:  ${env.BUILD_URL}/console
+								<br />
+								Job Name:  ${env.JOB_NAME} 
+								<br />
+								Build Number: [${env.BUILD_NUMBER}]"""
+						)				
+            }
+        }
+    }
+
+}

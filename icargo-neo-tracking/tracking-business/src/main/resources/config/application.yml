@@ -1,0 +1,97 @@
+server:
+    port: 6090
+    servlet:
+      context-path: /tracking
+
+neo:
+ component-scan:
+    basePackages: "com.ibsplc.neoicargo.tracking,com.ibsplc.neoicargo.awb,com.ibsplc.neoicargo.masters, org.springframework.boot.autoconfigure.mustache"
+ security:
+   tokenService:
+     #signingKey: "ebl-very-secret-key"
+     tokenValidityHours: 10
+   exclusions.urls: /**/shipments,/**/shipments/splits/**,/**/shipments/activities/**,/**/tracking/milestonemaster
+   system:
+     password: weblogic
+     username: ICOADMIN
+ jaxrs:
+   client:
+     serviceBindings:
+       - name: neo-masters-business
+         address: http://k8s-nginxalp-icargong-ed546127d1-89f64463d339106d.elb.ap-south-1.amazonaws.com/masters
+         basePath: /private
+       - name: neo-commonshipment-business
+         address: http://k8s-nginxalp-icargong-ed546127d1-89f64463d339106d.elb.ap-south-1.amazonaws.com/common-shipment
+         basePath: /private
+       - name: auth-service
+         address: http://k8s-nginxalp-icargong-ed546127d1-89f64463d339106d.elb.ap-south-1.amazonaws.com/auth
+         basePath: /private
+       - name: neo-msgbroker-eai-notif-base-rt
+         address: http://k8s-nginxalp-icargong-ed546127d1-89f64463d339106d.elb.ap-south-1.amazonaws.com/notification
+         basePath: /private
+
+debug: true
+logging:
+    level:
+        liquibase: INFO
+spring:
+  application:
+    name: "neo-tracking"
+  redis:
+   masterSlave:
+    masterAddress: redis://10.246.12.39:6379
+    slaveAddresses: redis://10.246.12.39:6379
+  cloud:
+      service-registry:
+          auto-registration:
+              enabled: false
+      stream:
+        bindings:
+         AWB_EVENT_CHANNEL_IN:
+           destination: ${com.ibsplc.neoicargo.tenant}-awb-domain-events
+           content-type: application/json
+         QMS_DOMAIN_EVENTS_CHANNEL_IN:
+           destination: ${com.ibsplc.neoicargo.tenant}-qms-domain-events
+           content-type: application/json
+        kafka:
+          binder:
+            brokers: localhost:9092
+            headers: messageType
+          bindings:
+            AWB_EVENT_CHANNEL_IN:
+              consumer:
+                configuration:
+                  key:
+                    deserialiser: org.apache.kafka.common.serialization.StringDeserializer
+            QMS_DOMAIN_EVENTS_CHANNEL_IN:
+              consumer:
+                configuration:
+                  key:
+                    deserialiser: org.apache.kafka.common.serialization.StringDeserializer
+  liquibase:
+    enabled: true
+    change-log: classpath:/config/db.changelog-master.yaml
+  datasource:
+    url: jdbc:postgresql://10.246.13.8:5432/ico_neo_av_dev_tracking
+    username: ico_av_usr
+    password: ico_av_usr
+    platform: postgres
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      leakDetectionThreshold: 10000
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+      #maximumPoolSize: 5
+      minimumIdle: 1
+  mail:
+    from: icargodev@ibsplc.com
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+EBL_LOGIN_URL: http://10.250.3.67:9050/v1/auth/token
+

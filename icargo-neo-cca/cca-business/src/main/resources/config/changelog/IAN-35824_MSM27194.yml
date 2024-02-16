@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-35824_MSM27194.yml
+  - changeSet:
+       id: 27194
+       author: A-10597
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: ccamst
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE ccamst (	
+            ccasernum integer,	
+            cmpcod varchar(6) NOT NULL,	
+            ccarefnum varchar(12),	
+            ccaissdat date,	
+            ccatyp varchar(1),	
+            autccaflg varchar(1),	
+            ccastatus varchar(1),	
+            mstdocnum varchar(20),	
+            shppfx varchar(4),	
+            awbsernum integer,	
+            ccarmk varchar(4000),	
+            ccarsn varchar(100),	
+            ccaasgnee varchar(15),	
+            lstupdtim timestamp(3) NOT NULL,	
+            lstupdusr varchar(50) NOT NULL,		
+            updagtflg varchar(1) DEFAULT 'N',	
+            ccasrc varchar(10),	
+            expblgsta varchar(1),	
+            impblgsta varchar(1),	
+            CONSTRAINT "CCAMST_pkey" PRIMARY KEY (ccasernum)
+           );
+            
+            comment on table ccamst is 'CCA Master table';
+            
+            comment on column ccamst.ccasernum is 'CCA serial number';
+            comment on column ccamst.cmpcod is 'The code that uniquely identifies the company for which the application is hosted';
+            comment on column ccamst.ccarefnum is 'CCA Reference Number';
+            comment on column ccamst.ccaissdat is 'CCA Issue Date. Date on which CCA has been raised/issued';
+            comment on column ccamst.ccatyp is 'CCA Type. Specifies whether the CCA is Actual(A), Internal(I)';
+            comment on column ccamst.autccaflg is 'Flag to indicate whether system issued CCA.Possible values are Y or N';
+            comment on column ccamst.ccastatus is 'CCA Status. Specifies whether it is Approved(A), New(N) or Rejected(R)';
+            comment on column ccamst.mstdocnum is 'Master Document Number for the AWB';
+            comment on column ccamst.shppfx is 'ShipmentPrefix of the AWB';
+            comment on column ccamst.awbsernum is 'AWB serial number';
+            comment on column ccamst.ccarmk is 'Remarks for the CCA';
+            comment on column ccamst.ccarsn is 'Reason for CCA creation. The field accepts multiple values separated by ~';
+            comment on column ccamst.ccaasgnee is 'CCA Assignee';
+            comment on column ccamst.lstupdtim is 'The date and time at which record was last updated';
+            comment on column ccamst.lstupdusr is 'Last Update User.The application user code who performed the operation on the record';
+            comment on column ccamst.updagtflg is 'Flag to indicate whether to update AWB agent or not';
+            comment on column ccamst.ccasrc is 'Source of CCA';
+            comment on column ccamst.expblgsta is 'Export Billing Status';
+            comment on column ccamst.impblgsta is 'Import Billing Status';

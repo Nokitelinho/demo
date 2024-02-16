@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <groupId>com.ibsplc.neoicargo</groupId>
+      <artifactId>neo-support</artifactId>
+      <version>2.0.2-SNAPSHOT</version>
+      <relativePath/>
+   </parent>
+
+   <artifactId>neo-icargo-compat</artifactId>
+   <name>${project.artifactId}</name>
+   <description>Compatibility Lib for iCargo Classic</description>
+   <properties>
+      <maven.compiler.source>11</maven.compiler.source>
+      <maven.compiler.target>11</maven.compiler.target>
+   </properties>
+
+   <dependencies>
+      <dependency>
+         <groupId>com.ibsplc.neoicargo</groupId>
+         <artifactId>neo-framework-core</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>com.ibsplc.neoicargo</groupId>
+         <artifactId>neo-framework-jpa</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>com.ibsplc.neoicargo</groupId>
+         <artifactId>neo-common</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>com.ibsplc.icargo</groupId>
+         <artifactId>ebl-icargo-support</artifactId>
+         <version>${ebl-framework.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>com.ibsplc.neoicargo</groupId>
+         <artifactId>neo-test-framework</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>com.ibsplc.icargo</groupId>
+         <artifactId>icargo-vo</artifactId>
+         <version>iCO_4.10.0-SNAPSHOT</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+               <argLine>-Xmx1024M ${argLine}</argLine>
+               <argLine>${surefireArgLine}</argLine>
+               <skipTests>${skip.unit.tests}</skipTests>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+</project>

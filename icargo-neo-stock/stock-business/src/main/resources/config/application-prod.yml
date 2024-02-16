@@ -1,0 +1,9 @@
+spring:
+    profiles: prod
+neo:
+ logging:
+    appenders: udp,console # comma separated list of appenders to be added, supported values are console,tcp,udp
+    root-level: WARN       # root logger level 
+    udp:
+      host: 10.250.3.92    # the hostname of the logstash server 
+      port: 3000           # udp port

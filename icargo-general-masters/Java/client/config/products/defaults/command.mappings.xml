@@ -1,0 +1,1337 @@
+<?xml version="1.0"?>
+<command-mappings xmlns="http://www.ibsplc.com/icargo/command/mappings"
+	product="products" subproduct="defaults">
+
+	<screen name="MaintainProduct" id="products.defaults.maintainproduct">
+	
+		<!-- Added by dhanya starts-->
+		<action name="products.defaults.maintainproduct.closeaction" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.CloseMaintainProductCommand"
+			order="1"/>
+		</action>
+		<!-- Added by dhanya ends-->
+	
+	
+		<action name="products.defaults.screenloadmaintainprd" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.ScreenLoadCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.clearmaintainproduct" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.ClearScreenCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.beforeOpenLov" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.OpenLovCommand"
+			order="3"/>
+		</action>
+
+<!-- addded by merrill -->
+
+
+
+		<action name="products.defaults.downloadImage" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.GetImageCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.framework.web.command.ImageDownLoadCommand"
+				order="2"/>
+		</action>
+
+		<action name="products.defaults.beforeOpenMileStoneLov" >
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+					order="1"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+					order="2"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.OpenLovCommand"
+					order="3"/>
+		</action>
+
+		<action name="products.defaults.beforeOpenTransportModeLov" >
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+					order="1"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+					order="2"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.OpenLovCommand"
+					order="3"/>
+		</action>
+		
+<!-- added by amritha for the new change -->
+
+		<action name="products.defaults.beforeOpenPriorityLov" >
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+					order="1"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+					order="2"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.OpenLovCommand"
+					order="3"/>
+		</action>
+
+		<action name="products.defaults.beforeOpenSCCLov" >
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+					order="1"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+					order="2"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.OpenLovCommand"
+					order="3"/>
+		</action>
+
+		<action name="products.defaults.beforeOpenServiceLov" >
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+					order="1"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+					order="2"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.OpenLovCommand"
+					order="3"/>
+		</action>
+
+		<action name="products.defaults.beforeOpenCommodityLov" >
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+					order="1"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+					order="2"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.OpenLovCommand"
+					order="3"/>
+		</action>
+
+<!-- added by amritha ends-->
+
+
+<!-- added by Divya for new change -->
+
+		<action name="products.defaults.beforeOpenOriginLov" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.OpenLovCommand"
+			order="3"/>
+		</action>
+		
+		<action name="products.defaults.beforeOpenDestnLov" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.OpenLovCommand"
+			order="3"/>
+		</action>
+		
+		<action name="products.defaults.beforeOpenCustGrpLov" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.OpenLovCommand"
+			order="3"/>
+		</action>		
+		
+<!-- added by Divya ends-->
+
+		<action name="products.defaults.selectTransportMode" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdTransModeCommand"
+			order="2"/>
+		</action>
+
+		<action name="products.defaults.selectMilestone" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdEventCommand"
+			order="2"/>
+		</action>
+
+		
+		<!-- Added by Amritha -->
+		<action name="products.defaults.selectMilestoneNew" >
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+					order="1"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdEventCommand"
+					order="2"/>
+		</action>
+		
+		<action name="products.defaults.deleteMilestoneNew" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteMilestoneCommand"
+			order="3"/>
+		</action>
+		
+		<action name="products.defaults.selectTransportModeNew" >
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+					order="1"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdTransModeCommand"
+					order="2"/>
+		</action>
+		
+		
+		<action name="products.defaults.deleteTransportModeNew" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteTransModeCommand"
+			order="3"/>
+		</action>
+				
+		<action name="products.defaults.selectPriorityNew" >
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+					order="1"/>
+					<command
+					class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdPriorityCommand"
+					order="2"/>
+		</action>
+		<action name="products.defaults.deletePriorityNew" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeletePriorityCommand"
+			order="3"/>
+		</action>
+		<action name="products.defaults.selectSccNew" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdSccCommand"
+			order="2"/>
+		</action>
+
+		<action name="products.defaults.deleteSCCNew" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteSccCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.selectServiceNew" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdServiceCommand"
+			order="2"/>
+		</action>
+				
+		<action name="products.defaults.servicesDeleteNew" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteServiceCommand"
+			order="3"/>
+		</action>
+			
+		
+		<action name="products.defaults.selectCommodityNew" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdComdtyCommand"
+			order="2"/>
+		</action>
+		
+		<action name="products.defaults.deleteCommodityNew" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteComdtyCommand"
+			order="3"/>
+		</action>		
+		
+		<!-- Added by Amritha ends -->	
+		
+		<!-- Added by Divya for new change -->	
+
+			<action name="products.defaults.addSegmentNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.AddSegmentCommand"
+				order="3"/>
+			</action>		
+			
+			<action name="products.defaults.deleteSegmentNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteSegmentCommand"
+				order="3"/>
+			</action>			
+
+			<action name="products.defaults.selectOriginNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectRestrnOriginCommand"
+				order="2"/>
+			</action>		
+
+			<action name="products.defaults.deleteOriginNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteOriginCommand"
+				order="3"/>
+			</action>
+			
+			<action name="products.defaults.selectDestinationNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectRestrnDestnCommand"
+				order="2"/>
+			</action>	
+			
+			<action name="products.defaults.deleteDestinationNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteDestnCommand"
+				order="3"/>
+			</action>		
+			
+			<action name="products.defaults.selectCustomerGroupNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdCustGrpCommand"
+				order="2"/>
+			</action>			
+
+			<action name="products.defaults.deleteCustomerGroupNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteCustGrpCommand"
+				order="3"/>
+			</action>			
+			
+		<!-- Added by Divya ends -->	
+		
+		<action name="products.defaults.selectPriority" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdPriorityCommand"
+			order="2"/>
+		</action>
+
+		<action name="products.defaults.selectScc" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdSccCommand"
+			order="2"/>
+		</action>
+
+		<action name="products.defaults.selectService" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdServiceCommand"
+			order="2"/>
+		</action>
+
+		<action name="products.defaults.selectOrigin" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectRestrnOriginCommand"
+			order="2"/>
+		</action>
+
+		<action name="products.defaults.selectDestination" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectRestrnDestnCommand"
+			order="2"/>
+		</action>
+
+		<action name="products.defaults.selectCustomerGroup" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdCustGrpCommand"
+			order="2"/>
+		</action>
+
+		<action name="products.defaults.selectCommodity" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SelectPrdComdtyCommand"
+			order="2"/>
+		</action>
+
+		<action name="products.defaults.deleteTransportMode" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteTransModeCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.deletePriority" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeletePriorityCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.deleteSCC" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteSccCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.servicesDelete" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteServiceCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.deleteMilestone" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteMilestoneCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.deleteCommodity" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteComdtyCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.deleteSegment" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteSegmentCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.deleteOrigin" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteOriginCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.deleteDestination" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteDestnCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.deleteCustomerGroup" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DeleteCustGrpCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.addSegment" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.AddSegmentCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.viewDetails" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.ViewPrdDetailsCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.findProductDetails" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.FindProductDetailsCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.removeDataFromSession" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.RemoveDataCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.showAffectedProducts" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.ShowAffectedPrdsCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.updateSubProduct" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSubProductCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.showProductList" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.ShowProductListCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.saveProductDetails" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateSegmentCommand"
+			order="1"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.UpdateEventCommand"
+			order="2"/>
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.SaveProductCommand"
+			order="3"/>
+		</action>
+
+		<action name="products.defaults.findProducts" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainproduct.DisplayPrdDetailsCommand"
+			order="1"/>
+		</action>
+
+
+		<!-- Mapping for Transportmode LOV starts-->
+
+		<action name="products.defaults.screenloadtransportmodelov" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.ScreenLoadTransLovCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.getSelectedTransportModeData" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.SelectFromTransLovCommand"
+			order="1"/>
+		</action>
+
+		<!-- Mapping for Transportmode LOV ends-->
+
+		<!-- Mapping for priority LOV starts-->
+
+		<action name="products.defaults.screenloadprioritylov" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.ScreenLoadPrtyLovCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.getSelectedPriorityData" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.SelectFromPrtyLovCommand"
+			order="1"/>
+		</action>
+
+		<!-- Mapping for priority LOV ends-->
+
+		<!-- Mapping for SCC LOV starts-->
+
+		<action name="products.defaults.screenloadSccLov" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.ScreenLoadSccLovCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.clearSccLovScreen" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.ClearSccLovCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.getSelectedSccData" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.SelectFromSccLovCommand"
+			order="1"/>
+		</action>
+
+		<!-- Mapping for SCC LOV ENDS-->
+		<!-- Mapping for service LOV ENDS-->
+
+		<action name="products.defaults.screenloadservicelov" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.ScreenLoadSrvLovCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.clearservicelovscreen" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.ClearSrvLovCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.getSelectedServiceData" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.SelectFromSrvLovCommand"
+			order="1"/>
+		</action>
+
+		<!-- Mapping for service LOV ENDS-->
+		<!-- Mapping for milestone LOV STARTS-->
+
+		<action name="products.defaults.screenloadMileStoneLov" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.ScrnLdMilestoneLovCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.getSelectedMileStoneData" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.SelectMilestoneLovCommand"
+			order="1"/>
+		</action>
+
+
+		<!-- Mapping for milestone LOV ENDS-->
+		<!-- Mapping for commodity LOV starts-->
+
+		<action name="products.defaults.screenloadCommodityLov" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.ScreenLoadComdtyLovCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.clearCommodityLovScreen" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.ClearComdtyLovCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.getSelectedCommodity" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.SelectFromCmdtyLovCommand"
+			order="1"/>
+		</action>
+
+
+		<!-- Mapping for commodity LOV ENDS-->
+
+		<!-- Mapping for stn LOV starts-->
+
+		<action name="products.defaults.screenloadStationLov" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.ScreenLoadStnLovCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.clearStationLovScreen" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.ClearStnLovCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.getSelectedStationData" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.SelectFromStnLovCommand"
+			order="1"/>
+		</action>
+
+		<!-- Mapping for stn LOV ends-->
+		<!-- Mapping for cust grp LOV starts-->
+
+		<action name="products.defaults.screenloadCustGroupLov" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.ScreenLoadCustGrpLovCommand"
+			order="1"/>
+		</action>
+
+		<action name="products.defaults.getSelectedCustomerGroup" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.common.SelectFromCustGrpLovCommand"
+			order="1"/>
+		</action>
+		<!-- Mapping for cust grp LOV ends-->
+	</screen>
+
+	<screen name="ListProducts" id="UIPDS002">
+			
+			<!-- Added by dhanya starts-->
+			<action name="products.defaults.viewproductdetails" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.ViewDetailsCommand" order="1"/>
+			</action>
+			
+			<action name="products.defaults.viewmaintainprd" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.ViewMaintainProductCommand" order="1"/>
+			</action>
+			
+			<action name="products.defaults.refreshListProduct" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.RefreshCommand" order="1"/>
+			</action>	
+	
+			<!-- Added by dhanya ends-->
+	
+	
+			<action name="products.defaults.screenloadlistproducts" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="products.defaults.listproducts" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.ListProductCommand" order="1"/>
+			</action>
+			<action name="products.defaults.clearlistproducts" >
+			        <command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.ClearListProductCommand" order="1"/>
+			</action>
+			<action name="products.defaults.listproductspagination" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.ListProductPaginationCommand" order="1"/>
+			</action>
+			<action name="products.defaults.activateproduct" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.ActivateProductCommand" order="1"/>
+
+			</action>
+			<action name="products.defaults.inactivateproduct" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.InactivateProductCommand" order="1"/>
+
+			</action>
+			<action name="products.defaults.deleteproducts" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.DeleteProductCommand" order="1"/>
+				<!--<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.ListProductCommand" order="2"/>-->
+			</action>
+
+			<action name="products.defaults.listproducts.listsubproducts" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.ListSubProductsCommand" order="1"/>
+			</action>
+			<action name="products.defaults.reloadListProducts" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listproducts.ReloadCommand" order="1"/>
+			</action>
+		</screen>
+		<screen name="ListSubProducts" id="UIPDS004">
+		
+			<!-- Added by dhanya starts-->
+			
+			<action name="products.defaults.listsubproduct.viewdetails" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listsubproducts.DetailsCommand" order="1"/>
+			</action>			
+			<action name="products.defaults.reloadListSubproduct" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listsubproducts.ReloadCommand" order="1"/>
+			</action>
+		
+			<!-- Added by dhanya ends-->
+		
+		
+		    <action name="products.defaults.screenloadlistsubproducts" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listsubproducts.ScreenLoadCommand" order="1"/>
+			</action>
+			<action name="products.defaults.listsubproducts" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listsubproducts.ListSubProductCommand" order="1"/>
+			</action>
+			<action name="products.defaults.listsubproductspagination" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listsubproducts.ListSubProductPaginationCommand" order="1"/>
+			</action>
+			<action name="products.defaults.clearlistsubproducts" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listsubproducts.ClearSubProductCommand" order="1"/>
+			</action>
+			<action name="products.defaults.subactivate" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listsubproducts.ActivateSubProductCommand" order="1"/>
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listsubproducts.ListSubProductCommand" order="2"/>
+			</action>
+			<action name="products.defaults.subinactivate" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listsubproducts.InactivateSubProductCommand" order="1"/>
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listsubproducts.ListSubProductCommand" order="2"/>
+			</action>
+
+			<action name="products.defaults.closelistsubproduct" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listsubproducts.CloseCommand" order="1"/>
+			</action>
+
+		</screen>
+		<screen name="ProductLov" id="UIPDS007">
+			<action name="products.defaults.screenloadProductLov" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.productlov.ScreenloadProductLovCommand" order="1"/>
+		       </action>
+		       <action name="products.defaults.clearProductLovScreen" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.productlov.ClearProductLovCommand" order="1"/>
+		       </action>
+		       <action name="products.defaults.getSelectedProductData" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.productlov.ScreenloadProductLovCommand" order="1"/>
+		       </action>
+			   <!-- Added by A-7636 for UX revamp-->
+			   <action name="products.defaults.ux.screenloadProductLov" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.ux.productlov.ScreenloadProductLovCommand" order="1"/>
+				</action>
+				<action name="products.defaults.ux.clearProductLovScreen" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.ux.productlov.ClearProductLovCommand" order="1"/>
+		       </action>
+		       <action name="products.defaults.ux.getSelectedProductData" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.ux.productlov.ScreenloadProductLovCommand" order="1"/>
+		       </action>
+	        </screen>
+			
+			
+			<!-- Ends-->
+	        <screen name="MaintainSubProduct" id="UIPDS003">
+	        
+	        <!-- Added by dhanya starts-->
+	        
+			<action name="products.defaults.maintainsubproduct.closeaction" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.CloseMaintainSubProductsCommand" order="1"/>
+			</action>
+	        
+	        <!-- Added by dhanya ends-->
+	        
+	        
+	        
+	        
+			<action name="products.defaults.maintainsubproductscreenload" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.ScreenloadCommand" order="1"/>
+		       </action>
+		       <action name="products.defaults.beforeOpenSubLov" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.OpenLovCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.selectSubProductCommodity" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.SelectPrdComdtyCommand"
+				order="2"/>
+			</action>
+			<action name="products.defaults.selectSubCustomerGroup" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.SelectPrdCustGrpCommand"
+				order="2"/>
+			</action>
+			<action name="products.defaults.deleteSubProductCommodity" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.DeleteComdtyCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.deleteSubCustomerGroup" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.DeleteCustGrpCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.deleteSubSegment" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.DeleteSegmentCommand"
+				order="3"/>
+			</action>
+
+			<action name="products.defaults.deleteSubOrigin" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.DeleteOriginCommand"
+				order="3"/>
+			</action>
+
+			<action name="products.defaults.deleteSubDestination" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.DeleteDestnCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.selectSubOrigin" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.SelectRestrnOriginCommand"
+				order="2"/>
+			</action>
+
+			<action name="products.defaults.selectSubDestination" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.SelectRestrnDestnCommand"
+				order="2"/>
+			</action>
+			<action name="products.defaults.addSubProductSegment" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.AddSegmentCommand"
+				order="3"/>
+			</action>
+				<action name="products.defaults.selectSubProductMilestone" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.SelectPrdEventCommand"
+				order="2"/>
+			</action>
+		<!-- newly added by raji -->
+
+			<action name="products.defaults.selectSubProductMilestoneNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.SelectPrdEventCommand"
+				order="2"/>
+			</action>
+			<action name="products.defaults.deleteSubProductMilestoneNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.DeleteMilestoneCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.beforeOpenSubLovMilestoneNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.OpenLovCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.selectSubProductCommodityNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.SelectPrdComdtyCommand"
+				order="2"/>
+			</action>
+			<action name="products.defaults.deleteSubProductCommodityNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.DeleteComdtyCommand"
+				order="3"/>
+			</action>
+			 <action name="products.defaults.beforeOpenSubLovCommodityNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.OpenLovCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.beforeOpenSubLovOriginNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.OpenLovCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.selectSubOriginNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.SelectRestrnOriginCommand"
+				order="2"/>
+			</action>
+			<action name="products.defaults.deleteSubOriginNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.DeleteOriginCommand"
+				order="3"/>
+			</action>
+			
+			<action name="products.defaults.beforeOpenSubLovDestinationNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.OpenLovCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.selectSubDestinationNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.SelectRestrnDestnCommand"
+				order="2"/>
+			</action>
+			<action name="products.defaults.deleteSubDestinationNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.DeleteDestnCommand"
+				order="3"/>
+			</action>
+			
+			<action name="products.defaults.beforeOpenSubLovCustomerNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.OpenLovCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.selectSubCustomerGroupNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.SelectPrdCustGrpCommand"
+				order="2"/>
+			</action>
+						
+			<action name="products.defaults.deleteSubCustomerGroupNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.DeleteCustGrpCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.addSubProductSegmentNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.AddSegmentCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.deleteSubSegmentNew" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.DeleteSegmentCommand"
+				order="3"/>
+			</action>
+
+
+		<!-- newly added ends-->
+			<action name="products.defaults.deleteSubProductMilestone" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.DeleteMilestoneCommand"
+				order="3"/>
+			</action>
+			<action name="products.defaults.saveSubProductDetails" >
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateSegmentCommand"
+				order="1"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.UpdateEventCommand"
+				order="2"/>
+				<command
+				class="com.ibsplc.icargo.presentation.web.command.products.defaults.maintainsubproduct.SaveSubProductCommand"
+				order="3"/>
+			</action>
+
+        </screen>
+
+        <screen name="ProductCatalogueList" id="products.defaults.catalogue">
+		<action name="products.defaults.screenloadproductcataloguelist" >
+			<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.productcataloguelist.ScreenloadCommand" order="1"/>
+	       </action>
+	       <action name="products.defaults.printProductDetails" >
+	       	<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.productcataloguelist.report.PrintCommand"
+	     			order="2"/>
+	     	</action>
+		   <action name="showimage" >
+				<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.productcataloguelist.ImageCommand" order="1"/>
+				<command class="com.ibsplc.icargo.framework.web.command.ImageDownLoadCommand" order="2"/>
+		   </action>
+
+		<action name="products.defaults.screenloadproductcatalogue" >
+			<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.productcatalogue.ScreenloadCommand" order="1"/>
+		</action>
+
+		<action name="products.defaults.screenloadcheckavailability" >
+			<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.checkstationavailability.ScreenloadCommand" order="1"/>
+		</action>
+		<action name="products.defaults.checkavailability" >
+			<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.checkstationavailability.CheckCommand" order="1"/>
+		</action>
+
+		<action name="products.defaults.screenloadsendemail" >
+			<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.sendemail.ScreenloadCommand" order="1"/>
+		 </action>
+		 <action name="products.defaults.saveemail" >
+			<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.sendemail.SendCommand" order="1"/>
+		 </action>
+
+	</screen>
+
+	<screen name="ListFeedback" id="products.defaults.feeback">
+		<action name="products.defaults.screenloadlistfeedback" >
+			<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listfeedback.ScreenloadCommand" order="1"/>
+		 </action>
+		 <action name="products.defaults.listfeedback" >
+			<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listfeedback.ListCommand" order="1"/>
+		 </action>
+		 <action name="products.defaults.clearlistfeedback" >
+			<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listfeedback.ClearCommand" order="1"/>
+		 </action>
+		 <action name="products.defaults.viewfeedback" >
+			<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.listfeedback.ViewCommand" order="1"/>
+		 </action>
+
+		 <action name="products.defaults.screenloadfeedback" >
+		 	<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.feedback.ScreenloadCommand" order="1"/>
+		  </action>
+
+		 <action name="products.defaults.savefeedback" >
+		 	<command class="com.ibsplc.icargo.presentation.web.command.products.defaults.feedback.SaveCommand" order="1"/>
+		 </action>
+
+	</screen>
+	<screen id="products.defaults.productperformance" name="ProductPerformance">
+
+		<action name="products.defaults.screenloadproductperformancereport" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.productperformance.ScreenLoadCommand"
+			order="1"/>
+
+		</action>
+		<action name="products.defaults.viewproductperformancereport" >
+			<command
+			class="com.ibsplc.icargo.presentation.web.command.products.defaults.productperformance.report.PrintCommand"
+			order="1"/>
+
+		</action>
+
+        </screen>
+
+</command-mappings>

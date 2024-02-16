@@ -1,0 +1,334 @@
+<?xml version="1.0"?>
+<components screenId="products.defaults.listproducts"
+	xmlns="http://www.ibsplc.com/icargo/components-details">
+	<!--***************************Text Fields******************************-->
+	<component id="TXT_PRODUCTS_DEFAULTS_LISTPRODUCTS_PRDNAME" name="Product Name">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>productName</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>    
+	   		<attribute>
+					<name>formatter-id</name>
+					<value>FRM_RESTRICT_ALPHANUMERIC_WITH_SP_CHARS</value>
+	   		</attribute>
+			<attribute>
+			<name>lov</name>
+			<value>true</value>
+	   </attribute>
+	</component>
+	<component id="TXT_PRODUCTS_DEFAULTS_LISTPRODUCTS_SCC" name="SCC">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>scc</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>    
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_RESTRICT_ALPHA</value>
+			</attribute>
+			<attribute>
+			<name>lov</name>
+			<value>true</value>
+	   </attribute>
+	</component>
+	<component id="TXT_PRODUCTS_DEFAULTS_LISTPRODUCTS_FROMDATE" name="Start Date">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>fromDate</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+	</component>
+	<component id="TXT_PRODUCTS_DEFAULTS_LISTPRODUCTS_TODATE" name="End Date">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CALENDAR</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>toDate</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+	</component>
+
+	<!--**********Combo*******************-->
+
+	<component id="CMB_PRODUCTS_DEFAULTS_LISTPRODUCTS_STATUS" name="Status">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_SELECT</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>status</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+	</component>	
+
+	<component id="CMB_PRODUCTS_DEFAULTS_LISTPRODUCTS_TRAMOD" name="TransportMode">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_SELECT</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>transportMode</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+	</component>	
+
+	<component id="CMB_PRODUCTS_DEFAULTS_LISTPRODUCTS_PRIORITY" name="Priority">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_SELECT</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>priority</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+	</component>	
+	
+	<!--********************************CHECK BOX******************************-->
+	<component id="CHK_PRODUCTS_DEFAULTS_LISTPRODUCTS_RATEDEFINED" name="Rate Defined">
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_CHECKBOX</value>
+				</attribute>
+				<attribute>
+					<name>tooltip</name>
+					<value>rateDefined</value>
+				</attribute>
+				<attribute>
+					<name>formatter-id</name>
+					<value>FRM_VIEW</value>
+				</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>				
+	</component>	
+	
+	<!--******************************Buttons*******************************-->
+	<component id="BTN_PRODUCTS_DEFAULTS_LISTPRODUCTS_LIST" name="List button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BTN_SMALL</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>list</value>
+			</attribute>
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_VIEW</value>
+			</attribute>
+	</component>	
+	
+	<component id="BTN_PRODUCTS_DEFAULTS_LISTPRODUCTS_CLEAR" name="Clear button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BTN_SMALL</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>clear</value>
+			</attribute>
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_VIEW</value>
+			</attribute>
+
+	</component>
+	<component id="BTN_PRODUCTS_DEFAULTS_LISTPRODUCTS_LISTSUBPRD" name="List Sub product button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BTN_SMALL</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>listassub</value>
+			</attribute>
+
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_VIEW</value>
+			</attribute>
+			<attribute>
+                <name>styleclass-id</name>
+               <value>ST_BTN_LONG</value>
+            </attribute>
+	</component>
+	<component id="BTN_PRODUCTS_DEFAULTS_LISTPRODUCTS_SAVEAS" name="SaveAs button">
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_BTN_SMALL</value>
+				</attribute>	
+				<attribute>
+					<name>tooltip</name>
+					<value>save</value>
+				</attribute>	
+				<attribute>
+					<name>formatter-id</name>
+					<value>FRM_VIEW</value>
+				</attribute>
+				<attribute>
+              	  <name>styleclass-id</name>
+              	  <value>ST_BTN_LONG</value>
+           		</attribute>
+	</component>
+	<component id="BTN_PRODUCTS_DEFAULTS_LISTPRODUCTS_INACTIVATE" name="Inactivate button">
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_BTN_SMALL</value>
+				</attribute>
+	
+				<attribute>
+					<name>tooltip</name>
+					<value>Inactivate</value>
+				</attribute>
+	
+				<attribute>
+					<name>formatter-id</name>
+					<value>FRM_VIEW</value>
+				</attribute>
+	</component>
+	<component id="BTN_PRODUCTS_DEFAULTS_LISTPRODUCTS_ACTIVATE" name="Activate button">
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_BTN_SMALL</value>
+				</attribute>
+	
+				<attribute>
+					<name>tooltip</name>
+					<value>Activate</value>
+				</attribute>
+	
+				<attribute>
+					<name>formatter-id</name>
+					<value>FRM_VIEW</value>
+				</attribute>
+	</component>
+	<component id="BTN_PRODUCTS_DEFAULTS_LISTPRODUCTS_CREATE" name="Create button">
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_BTN_CREATE</value>
+				</attribute>
+	
+				<attribute>
+					<name>tooltip</name>
+					<value>Create</value>
+				</attribute>
+	
+				<attribute>
+					<name>formatter-id</name>
+					<value>FRM_VIEW</value>
+				</attribute>
+	</component>
+	<component id="BTN_PRODUCTS_DEFAULTS_LISTPRODUCTS_DETAILS" name="Details button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BTN_SMALL</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>Details</value>
+			</attribute>
+
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_VIEW</value>
+			</attribute>
+	</component>
+	<component id="BTN_PRODUCTS_DEFAULTS_LISTPRODUCTS_DELETE" name="Delete Button">
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_BTN_SMALL</value>
+				</attribute>
+	
+				<attribute>
+					<name>tooltip</name>
+					<value>Delete</value>
+				</attribute>
+	
+				<attribute>
+					<name>type</name>
+					<value>FRM_VIEW</value>
+				</attribute>
+	</component>
+	<component id="BTN_PRODUCTS_DEFAULTS_LISTPRODUCTS_CLOSE" name="Close button">
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_BTN_SMALL</value>
+				</attribute>
+	
+				<attribute>
+					<name>tooltip</name>
+					<value>close</value>
+				</attribute>
+	
+				<attribute>
+					<name>formatter-id</name>
+					<value>FRM_VIEW</value>
+				</attribute>
+	</component>
+	<component id="CMP_PRODUCTS_DEFAULTS_LISTPRODUCTS_CATEGORY" name="Product Category">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_SELECT</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>products.defaults.tooltip.productcategory</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>filter</value>
+			</attribute>
+	</component>	
+	
+</components>

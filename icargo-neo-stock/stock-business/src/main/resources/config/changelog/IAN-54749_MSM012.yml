@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-54749_MSM012.yml
+  - changeSet:
+      id: STK_022
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: STKRNG
+        - columnExists:
+            tableName: STKRNG
+            columnName: RNGSEQNUM
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: ALTER TABLE STKRNG DROP CONSTRAINT stkrng_pk_cmpcod_stkhldcod_arlidr_doctyp_docsubtyp_rngseqnum_unique;
+             ALTER TABLE STKRNG DROP COLUMN RNGSEQNUM;

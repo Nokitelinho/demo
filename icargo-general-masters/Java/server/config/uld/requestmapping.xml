@@ -1,0 +1,954 @@
+<?xml version="1.0"?>
+<!--
+	The file contains mapping information for request URI and to its corresponding handler
+	and  screen. There will be entries for each request URI which need to be mapped.
+	This file is used to build request mapping objects.
+-->
+
+<request-mappings>
+
+	<url-mapping url="uld">
+
+
+		<submodule-mapping submodule="defaults">
+
+			<request-service-name>ULD_DEFAULTS</request-service-name>
+			<!-- ULD Group -->
+			<request-action actionName="findAirportsforSCMJob" 
+				methodName="findAirportsforSCMJob" 
+				parameterTypes="java.lang.String,java.util.Collection,java.lang.String" 
+				permissionCheck="false" />
+			
+			<!--Added by A-6991 for ICRD-192685 starts -->
+			<request-action actionName="validateFlightArrival"
+				methodName="validateFlightArrival"
+				parameterTypes="com.ibsplc.icargo.business.flight.operation.vo.FlightValidationVO,java.util.ArrayList"
+				permissionCheck="false"/>
+			
+			<!--Added by A-6991 for ICRD-192685 starts -->
+			
+			
+			<request-action actionName="saveULDGroup" methodName="saveULDGroup"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.setup.vo.ULDGroupVO"
+				permissionCheck="false"/>
+			
+			<request-action actionName="findULDTypeStructuralDetails"
+				methodName="findULDTypeStructuralDetails"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="findULDGroupDetails"
+				methodName="findULDGroupDetails"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="createULDGroup"
+				methodName="createULDGroup"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.setup.vo.ULDGroupVO"
+				permissionCheck="false"/>
+			<request-action actionName="modifyULDGroup"
+				methodName="modifyULDGroup"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.setup.vo.ULDGroupVO"
+				permissionCheck="false"/>
+			<request-action actionName="validateULD" methodName="validateULD"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+
+			<!-- ULD -->
+			<request-action actionName="validateULDFormat"
+				methodName="validateULDFormat"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="findULDDetails"
+				methodName="findULDDetails"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="findULDList" methodName="findULDList"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.vo.ULDListFilterVO,int"
+				permissionCheck="false"/>
+			<request-action actionName="saveULD" methodName="saveULD"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.vo.ULDVO"
+				permissionCheck="false"/>
+			<request-action actionName="createMultipleULDs"
+				methodName="createMultipleULDs"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.vo.ULDVO,java.util.Collection"
+				permissionCheck="false"/>
+			<request-action actionName="saveULDs" methodName="saveULDs"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="validateMultipleULDFormats"
+				methodName="validateMultipleULDFormats"
+				parameterTypes="java.lang.String,java.util.Collection"
+				permissionCheck="false"/>
+			<request-action actionName="offloadULDs" methodName="offloadULDs"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="saveSCMReconcialtionDetails"
+				methodName="saveSCMReconcialtionDetails"
+				 parameterTypes="java.util.Collection"
+				permissionCheck="false"/>
+			<!-- Accessory Stock -->
+			<request-action actionName="findAccessoriesStockDetails"
+				methodName="findAccessoriesStockDetails"
+				parameterTypes="java.lang.String,java.lang.String,java.lang.String,int"
+				permissionCheck="false"/>
+			<request-action actionName="findAccessoryStockList"
+				methodName="findAccessoryStockList"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.stock.vo.AccessoriesStockConfigFilterVO,int"
+				permissionCheck="false"/>
+			<request-action actionName="saveAccessoriesStock"
+				methodName="saveAccessoriesStock"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.stock.vo.AccessoriesStockConfigVO"
+				permissionCheck="false"/>
+			<request-action actionName="saveAccessories"
+				methodName="saveAccessories"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+
+			<!-- ULD Movement History -->
+			<request-action actionName="findULDMovementHistory"
+				methodName="findULDMovementHistory"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDMovementFilterVO,int"
+				permissionCheck="false"/>
+			<request-action actionName="findCurrentULDDetails"
+				methodName="findCurrentULDDetails"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="printExternalMovementsReport"
+				methodName="printExternalMovementsReport"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			<request-action actionName="saveULDMovement"
+				methodName="saveULDMovement"
+				parameterTypes="java.util.Collection,java.util.Collection,java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="deleteULDMovements"
+				methodName="deleteULDMovements"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<!-- ADDED BY JISHA FOR qf 1022  STARTS-->
+			<request-action actionName="findULDActionHistory"
+				methodName="findULDActionHistory"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDMovementFilterVO"
+				permissionCheck="false"/>
+			<!-- ADDED BY JISHA FOR qf 1022  ENDS-->
+			<!-- Added by AG -->
+
+			<!-- ULD Agreement -->
+
+			<request-action actionName="findULDAgreementDetails"
+				methodName="findULDAgreementDetails"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<!-- Added by A-8445 -->
+			<request-action actionName="findULDAgreementDetailsPagination"
+				methodName="findULDAgreementDetailsPagination"
+				parameterTypes="java.lang.String,java.lang.String,com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDAgreementFilterVO"
+				permissionCheck="false"/>
+			<request-action actionName="createULDAgreement"
+				methodName="createULDAgreement"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDAgreementVO"
+				permissionCheck="false"/>
+			
+
+			<!-- ULD Stock -->
+
+			<request-action actionName="saveULDStockConfig"
+				methodName="saveULDStockConfig"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="audit" methodName="audit"
+				parameterTypes="com.ibsplc.xibase.server.framework.audit.vo.AuditVO"
+				permissionCheck="false"/>
+			
+			<request-action actionName="listULDStockConfig"
+				methodName="listULDStockConfig"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.stock.vo.ULDStockConfigFilterVO"
+				permissionCheck="false"/>
+			<request-action actionName="findULDStockList"
+				methodName="findULDStockList"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.stock.vo.ULDStockConfigFilterVO,int"
+				permissionCheck="false"/>
+			<request-action actionName="listFlightDetails"
+				methodName="listFlightDetails"
+				parameterTypes="com.ibsplc.icargo.business.capacity.booking.vo.FlightAvailabilityFilterVO"
+				permissionCheck="false"/>
+
+			<!-- List ULD Agreement -->
+
+			<request-action actionName="listULDAgreements"
+				methodName="listULDAgreements"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDAgreementFilterVO"
+				permissionCheck="false"/>
+			<request-action actionName="updateULDAgreementStatus"
+				methodName="updateULDAgreementStatus"
+				parameterTypes="java.util.Collection,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="populateULDAgreementLOV"
+				methodName="populateULDAgreementLOV"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDAgreementFilterVO"
+				permissionCheck="false"/>
+
+			<!-- Maintain ULD Transaction -->
+
+			<request-action actionName="findStationUlds"
+				methodName="findStationUlds"
+				parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,int"
+				permissionCheck="false"/>
+			
+			<request-action actionName="saveULDTransaction"
+				methodName="saveULDTransaction"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.TransactionVO"
+				permissionCheck="false"/>
+			
+
+			<request-action actionName="checkForDuplicateCRN"
+				methodName="checkForDuplicateCRN"
+				parameterTypes="java.lang.String,com.ibsplc.icargo.business.uld.defaults.transaction.vo.TransactionVO"
+				permissionCheck="false"/>
+
+			<!-- ULD Transaction History-->
+
+			<request-action actionName="listULDTransactionHistoryDetails"
+				methodName="listULDTransactionHistoryDetails"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.ULDTransactionHistoryFilterVO"
+				permissionCheck="false"/>
+
+			<request-action actionName="printLoanBorrowULD"
+				methodName="printLoanBorrowULD"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			
+			<request-action actionName="printLoanBorrowULDForPage"
+				methodName="printLoanBorrowULDForPage"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+
+			<request-action actionName="printUCRLoanBorrowULD"
+				methodName="printUCRLoanBorrowULD"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			
+			<request-action actionName="generateTransactionDetailsReport"
+				methodName="generateTransactionDetailsReport"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+
+
+			<!-- List ULD Transactions -->
+
+			<request-action actionName="listULDTransactionDetails"
+				methodName="listULDTransactionDetails"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.TransactionFilterVO"
+				permissionCheck="false"/>
+			
+			
+			<request-action actionName="generateInvoiceForReturnedUlds"
+				methodName="generateInvoiceForReturnedUlds"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.ULDChargingInvoiceVO,java.util.Collection"
+				permissionCheck="false"/>
+			<request-action actionName="updateULDRepairInvoiceDetails"
+				methodName="updateULDRepairInvoiceDetails"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="findTotalDemmurage"
+				methodName="findTotalDemmurage"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.TransactionFilterVO"
+				permissionCheck="false"/>
+			<!-- Return ULD Transactions -->
+
+			
+			<request-action actionName="saveReturnTransaction"
+				methodName="saveReturnTransaction"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.TransactionListVO"
+				permissionCheck="false"/>
+			<request-action actionName="findAgreementNumberForTransaction"
+				methodName="findAgreementNumberForTransaction"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			
+			<request-action actionName="calculateULDDemmurage"
+				methodName="calculateULDDemmurage"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+
+			<!-- Added  By Sowmya for ULDAvailabilityReports -->
+			<request-action actionName="printuldtransactionReport"
+				methodName="printuldtransactionReport"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+
+			<!-- List Invoice -->
+
+			<request-action actionName="listULDChargingInvoice"
+				methodName="listULDChargingInvoice"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.ChargingInvoiceFilterVO,int"
+				permissionCheck="false"/>
+			<request-action actionName="viewULDChargingInvoiceDetails"
+				methodName="viewULDChargingInvoiceDetails"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="findInvoiceRefNumberLov"
+				methodName="findInvoiceRefNumberLov"
+				parameterTypes="java.lang.String,int,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="printULDChargingInvoice"
+				methodName="printULDChargingInvoice"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+
+			<!-- ULD Damage-->
+
+			<request-action actionName="listDamageRepairDetails"
+				methodName="listDamageRepairDetails"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.UldDmgRprFilterVO,int"
+				permissionCheck="false"/>
+
+			<request-action actionName="listBuildupBreakdowndetails"
+				methodName="listBuildupBreakdowndetails"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDMovementFilterVO"
+				permissionCheck="false"/>
+			<request-action actionName="findULDDamageDetails"
+				methodName="findULDDamageDetails"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDDamageFilterVO"
+				permissionCheck="false"/>
+			<request-action actionName="saveULDDamage" methodName="saveULDDamage"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDDamageRepairDetailsVO"
+				permissionCheck="false"/>
+			<request-action actionName="findULDDamageList"
+				methodName="findULDDamageList"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDDamageFilterVO"
+				permissionCheck="false"/>
+			<request-action actionName="listULDRepairDetails"
+				methodName="listULDRepairDetails"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDRepairFilterVO"
+				permissionCheck="false"/>
+			<request-action actionName="findULDDamageReferenceNumberLov"
+				methodName="findULDDamageReferenceNumberLov"
+				parameterTypes="java.lang.String , java.lang.String , int"
+				permissionCheck="false"/>
+			<request-action actionName="findRepairInvoiceDetails"
+				methodName="findRepairInvoiceDetails"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="deleteULDDamages"
+				methodName="deleteULDDamages"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="findULDDamagePicture"
+				methodName="findULDDamagePicture"
+				parameterTypes="java.lang.String,java.lang.String,long"
+				permissionCheck="false"/>
+			<request-action actionName="fetchULDDamagePicture"
+				methodName="findULDDamagePicture"
+				parameterTypes="java.lang.String,java.lang.String,long,int"
+				permissionCheck="false"/>
+			<request-action actionName="printULDDamageReport"
+				methodName="printULDDamageReport"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+
+			<!-- ULD Message-->
+
+			
+			<request-action actionName="generateSCMFromMonitorULD"
+				methodName="generateSCMFromMonitorULD"
+				parameterTypes="java.lang.String,com.ibsplc.icargo.business.uld.defaults.stock.vo.ULDStockListVO"
+				permissionCheck="false"/>
+
+			
+
+			<request-action actionName="generateLUCMessage"
+				methodName="generateLUCMessage"
+				parameterTypes="com.ibsplc.icargo.business.msgbroker.message.vo.luc.LUCMessageVO"
+				permissionCheck="false"/>
+			
+
+
+			<request-action actionName="processSCMMessage"
+				methodName="processSCMMessage"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.ULDSCMReconcileVO"
+				permissionCheck="false"/>
+			<request-action actionName="processLUCMessage"
+				methodName="processLUCMessage"
+				parameterTypes="com.ibsplc.icargo.business.msgbroker.message.vo.luc.LUCMessageVO"
+				permissionCheck="false"/>
+			<request-action actionName="processMUCMessage"
+				methodName="processMUCMessage"
+				parameterTypes="com.ibsplc.icargo.business.msgbroker.message.vo.muc.MUCMessageVO"
+				permissionCheck="false"/>
+			
+			<request-action actionName="processUCMMessage"
+				methodName="processUCMMessage"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="fetchFlightDetails"
+				methodName="fetchFlightDetails"
+				parameterTypes="com.ibsplc.icargo.business.flight.operation.vo.FlightFilterVO"
+				permissionCheck="false"/>
+
+			<request-action actionName="sendMUCMessage"
+				methodName="sendMUCMessage" parameterTypes="java.util.Collection"
+				permissionCheck="false"/>
+
+			
+			<request-action actionName="saveULDAirportLocation"
+				methodName="saveULDAirportLocation"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="listULDAirportLocation"
+				methodName="listULDAirportLocation"
+				parameterTypes="java.lang.String,java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="populateAirlineCodes"
+				methodName="populateAirlineCodes"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>	
+			<request-action actionName="saveULDFlightMessageReconcile"
+				methodName="saveULDFlightMessageReconcile"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+
+		
+
+			<request-action actionName="listUCMMessage"
+				methodName="listUCMMessage"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightFilterMessageVO"
+				permissionCheck="false"/>
+			<request-action actionName="listUCMErrors" methodName="listUCMErrors"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightFilterMessageVO"
+				permissionCheck="false"/>
+
+			<request-action actionName="findUCMNoLOV" methodName="findUCMNoLOV"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightFilterMessageVO"
+				permissionCheck="false"/>
+
+			<request-action actionName="listUldErrors" methodName="listUldErrors"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightFilterMessageVO"
+				permissionCheck="false"/>
+
+		
+			<request-action actionName="saveCPMDetails"
+				methodName="saveCPMDetails"
+				parameterTypes="com.ibsplc.icargo.business.msgbroker.message.vo.cpm.CPMMessageVO"
+				permissionCheck="false"/>
+
+			<request-action actionName="listUCMsForComparison"
+				methodName="listUCMsForComparison"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightFilterMessageVO"
+				permissionCheck="false"/>
+			<request-action actionName="listUCMINOUTMessage"
+				methodName="listUCMINOUTMessage"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightFilterMessageVO"
+				permissionCheck="false"/>
+			<request-action actionName="reconcileUCMULDError"
+				methodName="reconcileUCMULDError"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.ULDFlightMessageReconcileDetailsVO"
+				permissionCheck="false"/>
+			<request-action actionName="listUCMOUTForInOutMismatch"
+				methodName="listUCMOUTForInOutMismatch"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightFilterMessageVO"
+				permissionCheck="false"/>
+
+			<request-action actionName="findULDCurrentStation"
+				methodName="findULDCurrentStation"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="updateULDTransitStatus"
+				methodName="updateULDTransitStatus"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+
+			<request-action actionName="findUldDetailsForSCM"
+				methodName="findUldDetailsForSCM"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.SCMMessageFilterVO"
+				permissionCheck="false"/>
+
+			<request-action actionName="saveSCMMessage"
+				methodName="saveSCMMessage" parameterTypes="java.util.Collection,com.ibsplc.icargo.business.uld.defaults.vo.ULDListFilterVO,java.util.Collection"
+				permissionCheck="false"/>
+
+			<request-action actionName="listSCMMessage"
+				methodName="listSCMMessage"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.SCMMessageFilterVO"
+				permissionCheck="false"/>
+
+			<request-action actionName="listULDErrorsInSCM"
+				methodName="listULDErrorsInSCM"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.SCMMessageFilterVO"
+				permissionCheck="false"/>
+
+			<request-action actionName="sendUCM" methodName="sendUCM"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.ULDFlightMessageReconcileVO"
+				permissionCheck="false"/>
+
+			<request-action actionName="findCurrentAirportForULD"
+				methodName="findCurrentAirportForULD"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.SCMMessageFilterVO"
+				permissionCheck="false"/>
+
+			
+
+			<request-action actionName="updateUCMULDDetails"
+				methodName="updateUCMULDDetails"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+
+			<request-action actionName="removeErrorCodeForULDsInSCM"
+				methodName="removeErrorCodeForULDsInSCM"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+
+			<request-action actionName="sendSCMMessage"
+				methodName="sendSCMMessage"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.SCMMessageFilterVO,java.util.Collection"
+				permissionCheck="false"/>
+
+			<request-action actionName="deleteULDsInSCM"
+				methodName="deleteULDsInSCM"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+
+			<request-action actionName="listSCMMessageLOV"
+				methodName="listSCMMessageLOV"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.SCMMessageFilterVO"
+				permissionCheck="false"/>
+
+			<!-- ULD Discrepancy-->
+
+			<request-action actionName="saveULDDiscrepencyDetails"
+				methodName="saveULDDiscrepencyDetails"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="listULDDiscrepancyDetails"
+				methodName="listULDDiscrepancyDetails"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDDiscrepancyFilterVO"
+				permissionCheck="false"/>
+
+			
+			
+			<!-- Added by AG -->
+			<request-action actionName="populateLocation"
+				methodName="populateLocation"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="setLocationForULD"
+				methodName="setLocationForULD"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="findOperationalAirlineForULD"
+				methodName="findOperationalAirlineForULD"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			
+			<!-- Added by SreekumarS ANACR 1409 -->
+			<request-action actionName="validateULDsForOperation"
+				methodName="validateULDsForOperation"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightDetailsVO"
+				permissionCheck="false"/>
+			<!-- Added by SreekumarS ANACR 1409 ends-->
+			
+			
+			<request-action actionName="saveULDPoolOwner"
+				methodName="saveULDPoolOwner"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="listULDPoolOwner"
+				methodName="listULDPoolOwner"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDPoolOwnerFilterVO"
+				permissionCheck="false"/>
+			<request-action actionName="checkforPoolOwner"
+				methodName="checkforPoolOwner"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDPoolOwnerFilterVO"
+				permissionCheck="false"/>
+			<request-action actionName="validateULDForWarehouseOccupancy"
+				methodName="validateULDForWarehouseOccupancy"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="checkForULDInOperation"
+				methodName="checkForULDInOperation"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<!--request-action actionName="updateULDForFlightFinalisation"
+				methodName="updateULDForFlightFinalisation"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightDetailsVO"
+				permissionCheck="false"/-->
+			<!--request-action actionName="updateULDForFlightClosure"
+				methodName="updateULDForFlightClosure"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightDetailsVO"
+				permissionCheck="false"/-->
+			<request-action actionName="updateULDForOperations"
+				methodName="updateULDForOperations"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightDetailsVO"
+				permissionCheck="false"/>
+			<!--request-action actionName="updateULDForOffload"
+				methodName="updateULDForOffload"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightDetailsVO"
+				permissionCheck="false"/-->
+			<request-action actionName="updateULDsForOperations"
+				methodName="updateULDsForOperations"
+				parameterTypes="java.util.Collection"
+				permissionCheck="false"/>
+			<request-action actionName="generateUCMMessage"
+				methodName="generateUCMMessage"
+				parameterTypes="java.util.Collection"
+				permissionCheck="false"/>
+			<request-action actionName="updateULDForDelivery"
+				methodName="updateULDForDelivery"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+
+			<!-- Added for HHT -->
+			<request-action actionName="findULDListForHHT"
+				methodName="findULDListForHHT"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+
+			<!-- Added for Job Scheduling -->
+			<!-- Added int parameter by A-7359 for ICRD-233082-->
+			<request-action actionName="updateULDPrice"
+				methodName="updateULDPrice" parameterTypes="java.lang.String,int"
+				permissionCheck="false"/>
+
+			<request-action actionName="updateULDStatusAsLost"
+				methodName="updateULDStatusAsLost"
+				parameterTypes="java.lang.String,int" permissionCheck="false"/>
+
+			<request-action actionName="findUldsForMarkMovement"
+				methodName="findUldsForMarkMovement"
+				parameterTypes="java.lang.String,int" permissionCheck="false"/>
+			
+			<request-action actionName="fetchULDDetailsForTransaction"
+				methodName="fetchULDDetailsForTransaction"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="findCRNForULDTransaction"
+				methodName="findCRNForULDTransaction"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+
+			<!-- Added  By Karthick . V for UCMEXceptionFlights -->
+			<request-action actionName="findExceptionFlights"
+				methodName="findExceptionFlights"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="saveExceptionFlights"
+				methodName="saveExceptionFlights"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+
+			<request-action actionName="printlistuld" methodName="printListULD"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			<request-action actionName="printUldInventoryList" methodName="printUldInventoryList"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			<request-action actionName="printpagelistuld" methodName="printPageListULD"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			<request-action actionName="printmonitoruldstock"
+				methodName="printMonitorULDStock"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+
+			<request-action actionName="printmaintainuldagreement"
+				methodName="printMaintainULDAgreement"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			<request-action actionName="printlistuldagreement"
+				methodName="printListULDAgreement"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			
+			<request-action actionName="printmaintainuldstock"
+				methodName="printMaintainUldStock"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			<request-action actionName="printlistuldmovement"
+				methodName="printListUldMovement"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			<!--added by A-2883-->
+			<request-action actionName="printListRepairULD"
+				methodName="printListRepairULD"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			<request-action actionName="printMaintainDamageRepairReport"
+				methodName="printMaintainDamageRepairReport"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			<!--added by A-2883 ends -->
+			<!-- Added by Kumar Prashant for ULDHistory -->
+			<request-action actionName="listULDHistory"
+				methodName="listULDHistory"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDHistoryVO"
+				permissionCheck="false"/>
+
+			<!-- Added by Kumar Prashant for ULDHistoryReport-->
+
+			<request-action actionName="printULDHistory"
+				methodName="printULDHistory"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			
+
+			<!-- Added by Sreekumar S for ANACR 1471-->
+			
+
+			<!-- Added by Tarun for ANACR 1479-->
+			<request-action actionName="findHandledCarrierSetup"
+				methodName="findHandledCarrierSetup"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDHandledCarrierVO"
+				permissionCheck="false"/>
+
+			<request-action actionName="saveHandledCarrier"
+				methodName="saveHandledCarrier"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<!-- Added by Tarun for ANACR 1479-->
+
+			<!-- Added by Nishanth for CR AirNZ265 starts-->
+			<request-action actionName="generateULDDiscrepancyReport"
+				methodName="generateULDDiscrepancyReport"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+
+			<!-- Added by Nishanth for CR AirNZ265 ends-->
+			<request-action actionName="deleteAccessoryDetails"
+				methodName="deleteAccessoryDetails"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<!-- Added by Sreekumar S for AirNZ431-->
+			
+			<!-- Added by Sreekumar S for AirNZ431 ends-->
+
+			<!-- Added by Sreekumar S for AirNZ434-->
+			<request-action actionName="populateLocationLov"
+				methodName="populateLocationLov"
+				parameterTypes="java.lang.String,int,java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<!-- Added by Sreekumar S for AirNZ434 ends-->
+
+			<!-- Added by Preet for AirNZ 519-->
+			<request-action actionName="findIntULDMovementHistory"
+				methodName="findIntULDMovementHistory"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDIntMvtHistoryFilterVO,int"
+				permissionCheck="false"/>
+			<!-- Added by Preet for AirNZ 519 ends-->
+
+			<!-- Added by Nishanth for AirNZ 269-->
+			<request-action actionName="printULDIntMovementHistory"
+				methodName="printULDIntMovementHistory"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			<!-- Added by Nishanth for AirNZ 269 ends-->
+
+			<!-- Added by  Sreekumar S for AirNZ 421-->
+			<request-action actionName="findULDAuditEnquiryDetails"
+				methodName="findULDAuditEnquiryDetails"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.vo.RelocateULDVO"
+				permissionCheck="false"/>
+			<!-- Added by Sreekumar S  for AirNZ 421 ends-->
+
+			<request-action actionName="sendAlertForULDStockDeviation"
+				methodName="sendAlertForULDStockDeviation"
+				parameterTypes="java.lang.String" permissionCheck="false"/>
+			<!-- Added by Asharaf Binu P  for AirNZ 449 ends-->
+			<request-action actionName="findOwnerCode" methodName="findOwnerCode"
+				parameterTypes="java.lang.String,java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<!-- Added by Nisha  for AirNZ 315 ends-->
+			<request-action actionName="printUldStationStock"
+				methodName="printUldStationStock"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+
+			<!-- Added by Asharaf Binu  for AirNZ 450 ends-->
+			<request-action actionName="sendAlertForULDAccStockDepletion"
+				methodName="sendAlertForULDAccStockDepletion"
+				parameterTypes="java.lang.String" permissionCheck="false"/>
+
+			<!-- Added by Asharaf Binu  for AirNZ 520 ends-->
+			<request-action actionName="sendAlertForDiscrepancy"
+				methodName="sendAlertForDiscrepancy"
+				parameterTypes="java.lang.String,int" permissionCheck="false"/>
+
+			<request-action actionName="printULDAudit"
+				methodName="printUldAuditEnquiry"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+
+			<!--Added By Asharaf Binu for AirNZ413-->
+
+		
+
+			<!-- Added by Manaf Basheer for QFCR 1009-->
+			<request-action actionName="listULDDamageChecklistMaster"
+				methodName="listULDDamageChecklistMaster"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<request-action actionName="saveULDDamageChecklistMaster"
+				methodName="saveULDDamageChecklistMaster"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<!-- Added by Manaf Basheer for BugFix-->
+			<request-action actionName="findAllWarehousesforULD"
+				methodName="findAllWarehousesforULD"
+				parameterTypes="java.lang.String,java.lang.String"
+				permissionCheck="false"/>
+			<!-- Added by Nisha for BugFix-->
+			<request-action actionName="updateSCMStatusForULD"
+				methodName="updateSCMStatusForULD"
+				parameterTypes="java.lang.String,int" permissionCheck="false"/>
+			<request-action actionName="sendSCMMessageforUlds"
+				methodName="sendSCMMessageforUlds"
+				parameterTypes="java.util.Collection,java.util.Collection" permissionCheck="false"/>
+
+			<!-- Added by Tarun for AirNZ511  starts-->
+			<request-action actionName="listInventoryDetails"
+				methodName="listInventoryDetails"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.stock.vo.InventoryULDVO"
+				permissionCheck="false"/>
+
+			<request-action actionName="updateInventoryDetails"
+				methodName="updateInventoryDetails"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+
+			<request-action actionName="findFlightLegULDDetails"
+				methodName="findFlightLegULDDetails"
+				parameterTypes="com.ibsplc.icargo.business.flight.schedule.vo.FlightScheduleFilterVO"
+				permissionCheck="false"/>
+			<!-- Added by Tarun for AirNZ511 ends-->
+			<!-- Added by Deepthi for QF1022  starts-->
+			<request-action actionName="findULDHistoryCounts"
+				methodName="findULDHistoryCounts"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDMovementFilterVO"
+				permissionCheck="false"/>
+			<request-action actionName="printinternalmovements"
+				methodName="printInternalMovements"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+			<request-action actionName="printBuildUpDetails"
+				 methodName="printBuildUpDetails"
+				 parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				 permissionCheck="false" />
+			<!-- Added by Tarun for BUG_14902 ends-->	 
+			<request-action actionName="listDamageRepairDetailsReport"
+				methodName="listDamageRepairDetailsReport"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>
+				
+		
+			<!-- Added by Manaf for QF CR1021  starts-->
+			<request-action actionName="findMissingUCMs"
+				methodName="findMissingUCMs"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.ULDFlightMessageReconcileVO"
+				permissionCheck="false" />
+			<!-- Added by Manaf for QF CR1021  ends-->
+			
+			<!--added by a-3045 for CR QF1013 starts-->	 
+			<request-action actionName="findMUCRefNumberLov"
+				methodName="findMUCRefNumberLov"
+				parameterTypes="java.lang.String,int,java.lang.String,java.lang.String" permissionCheck="false" />
+			<request-action actionName="findULDTransactionDetailsCol"
+				methodName="findULDTransactionDetailsCol"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.TransactionFilterVO"
+				permissionCheck="false" />
+			<request-action actionName="findMUCAuditDetails"
+				methodName="findMUCAuditDetails"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.ULDTransactionDetailsVO"
+				permissionCheck="false" />
+			<request-action actionName="updateULDTransaction"
+				methodName="updateULDTransaction"
+				parameterTypes="java.util.Collection"
+				permissionCheck="false" />
+			<!--added by a-3045 for CR QF1013 ends-->
+			<!--added by a-3045 for CR QF1142 starts-->	 
+			<request-action actionName="updateMUCStatus"
+				methodName="updateMUCStatus"
+				parameterTypes="java.util.Collection"
+				permissionCheck="false" />
+			<!--added by a-3045 for CR QF1142 ends-->	
+			
+			<request-action actionName="markULDFlightMovements"
+				methodName="markULDFlightMovements"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightDetailsVO"
+				permissionCheck="false"/>
+				
+			<!--added by a-3045 for bug17959 starts-->	 
+			<request-action actionName="checkULDInUse"
+				methodName="checkULDInUse"
+				parameterTypes="java.lang.String,java.util.Collection"
+				permissionCheck="false" />
+			<!--added by a-3045 for bug17959 ends-->
+			<!--added by a-3045 for bug20390 starts-->	 
+			<request-action actionName="findTransactionHistory"
+				methodName="findTransactionHistory"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.TransactionFilterVO"
+				permissionCheck="false" />
+			<!--added by a-3045 for bug20390 ends-->
+			<!--added by a-3045 for bug24468 starts-->
+			<request-action actionName="findULDListForSCM" 
+				methodName="findULDListForSCM"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.vo.ULDListFilterVO,int"
+				permissionCheck="false"/>
+			<!--added by a-3045 for bug24468 ends-->
+			
+			<request-action actionName="validateULDsForTransaction"
+						methodName="validateULDsForTransaction"
+						parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.TransactionVO"
+						permissionCheck="false" />
+						
+			
+						
+			<request-action actionName="findSCMValidationList"
+				methodName="findSCMValidationList"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.SCMValidationFilterVO"
+				permissionCheck="false" />
+
+			<request-action actionName="printSCMValidationReport"
+				methodName="printSCMValidationReport"
+				parameterTypes="com.ibsplc.icargo.framework.report.vo.ReportSpec"
+				permissionCheck="false"/>			
+
+			<request-action actionName="saveULDServiceability"
+				methodName="saveULDServiceability"
+				parameterTypes="java.util.Collection" permissionCheck="false"/>
+			<request-action actionName="listULDServiceability"
+				methodName="listULDServiceability"
+				parameterTypes="java.lang.String,java.lang.String"
+			permissionCheck="false"/>
+			<request-action actionName="validateFlightsForSegments"
+				methodName="validateFlightsForSegments"
+				parameterTypes="java.util.Collection"
+			permissionCheck="false"/>
+			
+<request-action actionName="handleEvents" methodName="handleEvents" parameterTypes="com.ibsplc.xibase.server.framework.event.vo.EventAsyncHelperVO" permissionCheck="false" />
+		<request-action actionName="findEstimatedULDStockList"
+				methodName="findEstimatedULDStockList"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.stock.vo.EstimatedULDStockFilterVO,int"
+				permissionCheck="false"/>
+		<request-action actionName="findExcessStockAirportList"
+				methodName="findExcessStockAirportList"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.stock.vo.ExcessStockAirportFilterVO,int"
+				permissionCheck="false"/>				
+		<request-action actionName="sendMessageWithEnvelopeEncoding" 
+						methodName="sendMessageWithEnvelopeEncoding" 
+						parameterTypes="java.util.Collection" 
+						permissionCheck="false" />
+		<request-action actionName="checkIfOpenTransactionExists" 
+						methodName="checkIfOpenTransactionExists" 
+						parameterTypes="java.util.Collection" 
+						permissionCheck="false" />
+		<request-action actionName="findMessageTypeAndVersion" 
+						methodName="findMessageTypeAndVersion" 
+						parameterTypes="java.lang.String,java.lang.String" 
+						permissionCheck="false" />
+		<!--added by a-3791 for ICRD-192217-->				
+		<request-action actionName="sendULDStockNotifications"
+						methodName="sendULDStockNotifications" 
+						parameterTypes="com.ibsplc.icargo.business.uld.defaults.stock.vo.EstimatedULDStockFilterVO" permissionCheck="false"/>
+		<!--added by a-3791 for ICRD-192280-->				
+		<request-action actionName="sendUCMMissingNotifications"
+						methodName="sendUCMMissingNotifications" 
+						parameterTypes="com.ibsplc.icargo.business.uld.defaults.stock.vo.EstimatedULDStockFilterVO" permissionCheck="false"/>						
+		<!--added by A-7359	for ICRD-192413-->						
+		<request-action actionName="findULDDamageRepairDetails"
+			methodName="findULDDamageRepairDetails"
+			parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDDamageFilterVO"
+			permissionCheck="false"/>										
+		<request-action actionName="findConsolidatedUCMsForFlight"
+						methodName="findConsolidatedUCMsForFlight" 
+						parameterTypes="com.ibsplc.icargo.business.uld.defaults.message.vo.FlightFilterMessageVO" permissionCheck="false"/>		
+       <request-action actionName="updateMultipleULDDamageDetails"
+						methodName="updateMultipleULDDamageDetails" 
+						parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findULDDamagePictures"
+				methodName="findULDDamagePictures"
+				parameterTypes="com.ibsplc.icargo.business.uld.defaults.misc.vo.ULDDamageFilterVO"
+				permissionCheck="false"/>
+		<request-action actionName="validateULDAirportLocation"
+						methodName="validateULDAirportLocation"
+						parameterTypes="java.lang.String,java.lang.String,java.lang.String,java.lang.String"
+						permissionCheck="false"/>
+		<request-action actionName="sendSCMReminderNotifications" methodName="sendSCMReminderNotifications" parameterTypes="java.util.Collection" permissionCheck="false"/>
+		<request-action actionName="findBestFitULDAgreement" methodName="findBestFitULDAgreement" parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.ULDTransactionDetailsVO" permissionCheck="false"/>
+		<request-action actionName="updateULDTransactionWithDemurrageDetails" methodName="updateULDTransactionWithDemurrageDetails" parameterTypes="com.ibsplc.icargo.business.uld.defaults.transaction.vo.TransactionVO" permissionCheck="false"/>
+		</submodule-mapping>
+	</url-mapping>
+
+
+</request-mappings>

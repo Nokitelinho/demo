@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+	xsi:schemaLocation="
+           	http://www.springframework.org/schema/beans
+          		http://www.springframework.org/schema/beans/spring-beans.xsd
+           	http://www.springframework.org/schema/webflow-config
+           		http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.3.xsd">
+
+	
+
+	<!-- Bean to load the scenario based flow configuration property files -->
+	<!--<bean id="scenarioFlowConfigurer"
+		class="com.ibsplc.sprout.multitenant.flow.ScenarioFlowConfigManager">
+		<property name="scenarioConfigs">
+			<bean
+				class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+				<property name="locations"
+					value="classpath*:config/**/*scenario-config.properties" />
+				<property name="ignoreResourceNotFound" value="true" />
+			</bean>
+		</property>
+	</bean>-->
+	<!--
+	<bean id="scenarioFlowConfigurer"
+		class="com.ibsplc.sprout.multitenant.flow.ScenarioFlowConfigManager">
+		<property name="scenarioConfigs">
+			<bean
+				class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+				<property name="locations"
+					value="file:${service.properties}/sprout/**/*scenario-config.properties" />
+				<property name="ignoreResourceNotFound" value="true" />
+			</bean>
+		</property>
+	</bean>
+	-->
+	
+	
+</beans>

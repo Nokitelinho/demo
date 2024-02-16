@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<components screenId="stockcontrol.defaults.maintainstockrequest"
+	xmlns="http://www.ibsplc.com/icargo/components-details">
+
+	<!--***************************Text Fields******************************-->
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_REQUESTREFERENCENUMBER" name="Request Reference Number">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.liststockrequest.tooltip.requestreferencenumber</value>
+			</attribute>
+
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_REMARKS" name="Remarks">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_FREE_TEXT_DEFAULT</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.liststockrequest.tooltip.remarks</value>
+			</attribute>
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_APPREJREMARKS" name="Approval/Rejection Remarks">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_FREE_TEXT_DEFAULT</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.liststockrequest.tooltip.apprejremarks</value>
+			</attribute>
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_STOCKHOLDERCODE" name="Stock Holder Code">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.liststockrequest.tooltip.stockholdercode</value>
+			</attribute>
+			<attribute>
+				<name>lov</name>
+				<value>true</value>
+			</attribute>
+
+			<attribute>
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>
+	</component>
+	<component id="TXT_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_ALLOCATEDSTOCK" name="Allocated Stock">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.liststockrequest.tooltip.allocatedstock</value>
+			</attribute>
+
+	</component>
+	<component id="TXT_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_REQUESTEDSTOCK" name="Requested Stock">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_MEDIUM</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.liststockrequest.tooltip.requestedstock</value>
+			</attribute>
+			<attribute>
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>			
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_RESTRICT_INTEGER</value>
+			</attribute>
+	
+	</component>
+	<component id="TXT_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_REQDATE" name="Requested Date">
+				<attribute>
+					<name>businesstype-id</name>
+					<value>BT_CALENDAR</value>
+					</attribute>
+			<attribute>	
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>			
+	</component>
+
+	<!--***************************ComboBoxes******************************-->
+
+	<component id="CMB_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_STATUS" name="Status">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_SELECT</value>
+			</attribute>
+
+			<attribute>
+				<name>styleclass-id</name>
+				<value>ST_CMB_MEDIUM</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.liststockrequest.tooltip.status</value>
+			</attribute>
+
+	</component>
+	<component id="CMB_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_STOCKHOLDERTYPE" name="Stock Holder Type">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_SELECT</value>
+			</attribute>
+			<attribute>
+				<name>styleclass-id</name>
+				<value>ST_CMB_MEDIUM</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.liststockrequest.tooltip.stockholdertype</value>
+			</attribute>
+
+			<attribute>
+				<name>mandatory</name>
+				<value>true</value>
+			</attribute>			
+	</component>
+
+
+	<!--***************************Buttons******************************-->
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_SAVE" name="Save button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BTN_SMALL</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.liststockrequest.tooltip.save</value>
+			</attribute>
+
+	</component>
+
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_CLEAR" name="Clear button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BTN_SMALL</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.liststockrequest.tooltip.clear</value>
+			</attribute>
+
+	</component>
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_CLOSE" name="Close button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BTN_SMALL</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.liststockrequest.tooltip.close</value>
+			</attribute>
+
+	</component>
+
+	<component id="TXT_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_DYNAMICOPTIONLIST" name="DynamicOptionList">
+		<attribute>
+			<name>businesstype-id</name>
+			<value>BT_OPTIONLIST</value>
+		</attribute>
+		<attribute>
+			<name>tooltip</name>
+			<value>stockcontrol.defaults.maintainstockrequest.tooltip.doctypesubtype</value>
+		</attribute>
+		<attribute>
+			<name>mandatory</name>
+			<value>true</value>
+		</attribute>
+	</component>
+	
+	<component id="CHK_STOCKCONTROL_DEFAULTS_CREATESTOCK_PRTARL_CHK" name="Partner Airline">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CHECKBOX</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.maintainstockrequest.partnerAirlines.lbl</value>
+			</attribute>
+			<attribute>
+				<name>formatter-id</name>
+				<value>FRM_VIEW</value>
+			</attribute>
+			<attribute>
+				<name>type</name>
+				<value>details</value>
+			</attribute>
+	</component>
+	
+	<component id="CHK_STOCKCONTROL_DEFAULTS_CREATESTOCK_PRTARL_CMB" name="Partner Airline">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_CMB_GENCOMBO</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.maintainstockrequest.awbPrefix.lbl</value>
+			</attribute>			
+	</component>
+	
+	<component id="CHK_STOCKCONTROL_DEFAULTS_CREATESTOCK_PRTARL" name="Partner Airline code">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_TXT_EXTRA_LONG</value>
+			</attribute>
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.maintainstockrequest.partnerAirlines.lbl</value>
+			</attribute>				
+	</component>	
+	<component id="BTN_STOCKCONTROL_DEFAULTS_MAINTAINSTOCKREQUEST_LIST" name="List button">
+			<attribute>
+				<name>businesstype-id</name>
+				<value>BT_BTN_SMALL</value>
+			</attribute>
+
+			<attribute>
+				<name>tooltip</name>
+				<value>stockcontrol.defaults.liststockrequest.tooltip.list</value>
+			</attribute>
+
+	</component>	
+
+</components>

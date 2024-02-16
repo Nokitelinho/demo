@@ -1,0 +1,739 @@
+directive @key(fields: String!) on OBJECT | INTERFACE
+
+directive @extends on OBJECT | INTERFACE
+
+directive @external on OBJECT | FIELD_DEFINITION
+
+directive @requires(fields: String!) on FIELD_DEFINITION
+
+directive @provides(fields: String!) on FIELD_DEFINITION
+
+"""
+Ensures value is within boundaries. If used on lists, applies to every item.
+"""
+directive @range(
+  """
+  The maximum value (inclusive) to allow. If null, no upper limit is applied
+  """
+  max: Float = null
+
+  """
+  The minimum value (inclusive) to allow. If null, no lower limit is applied
+  """
+  min: Float = null
+
+  """How to handle validation errors"""
+  policy: RangeValidateDirectivePolicy = RESOLVER
+) on ARGUMENT_DEFINITION | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | OBJECT
+
+"""
+Ensures string length is within boundaries. If used on lists, applies to every item.
+"""
+directive @stringLength(
+  """
+  The maximum string length (inclusive) to allow. If null, no upper limit is applied
+  """
+  max: Float = null
+
+  """
+  The minimum string length (inclusive) to allow. If null, no lower limit is applied
+  """
+  min: Float = null
+
+  """How to handle validation errors"""
+  policy: StringLengthValidateDirectivePolicy = RESOLVER
+) on ARGUMENT_DEFINITION | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | OBJECT
+
+"""Ensures list length is within boundaries."""
+directive @listLength(
+  """
+  The maximum list length (inclusive) to allow. If null, no upper limit is applied
+  """
+  max: Float = null
+
+  """
+  The minimum list length (inclusive) to allow. If null, no lower limit is applied
+  """
+  min: Float = null
+
+  """How to handle validation errors"""
+  policy: ListLengthValidateDirectivePolicy = RESOLVER
+) on ARGUMENT_DEFINITION | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | OBJECT
+
+"""ensures value matches pattern"""
+directive @pattern(
+  flags: String
+  regexp: String!
+
+  """How to handle validation errors"""
+  policy: PatternValidateDirectivePolicy = RESOLVER
+) on ARGUMENT_DEFINITION | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | OBJECT
+
+scalar JSON
+
+input SaveUserInput {
+  user_code: String
+  first_name: String
+  last_name: String
+  official_email_address: String
+  official_phone_number: String
+  user_status: String
+  privileges: [String]
+  screens: [String]
+  agent_code: String
+  user_type: String
+  user_role: String
+  source: String
+  additional_stations: [String]
+  station_code: String
+  org_code: String
+  user_locale: String
+  portal_user_type: String
+  validity_date: String
+  new_password: String
+}
+
+type SaveUserResponse {
+  save_status: String
+  errors: [Error]
+}
+
+type User {
+  user_code: String
+  first_name: String
+  last_name: String
+  official_email_address: String
+  official_phone_number: String
+  user_status: String
+  agent_code: String
+  user_type: String
+  user_role: String
+  creation_date: String
+  requested_date: String
+  new_user: String
+  last_seen: String
+  privileges: [String]
+  screens: [String]
+  customerDetails: Customer
+  additional_stations: [String]
+  station_code: String
+  org_code: String
+  user_locale: String
+  portal_user_type: String
+  validity_date: String
+  user_account_expired: String
+  user_role_name: String
+}
+
+type UsersConnection {
+  users: [User]
+}
+
+type PrivilegeData {
+  privilege_code: String
+  privilege_name: String
+  privilege_description: String
+}
+
+type ScreenData {
+  screen_id: String
+  screen_name: String
+  client_type: String
+  value: String
+  label: String
+}
+
+input StatusChangeInput {
+  user_code: String
+  user_type: String
+  to_status: String
+  org_code: String
+}
+
+input ResetPasswordInput {
+  email_address: String
+  user_type: String
+  org_code: String
+}
+
+type StatusChangeResponse {
+  request_status: String
+  errors: [Error]
+}
+
+input ListUserInput {
+  user_type: String
+  portal_user_type: String
+  source: String
+}
+
+input ApproveUserRequestInput {
+  email_address: String
+  privileges: [String]
+  screens: [String]
+  user_type: String
+}
+
+input RoleInput {
+  org_code: String
+}
+
+type RoleGroupData {
+  rolegroup_code: String
+  rolegroup_name: String
+}
+
+input TokenInput {
+  token: String
+  company_code: String
+}
+
+type TokenDetails {
+  usr_idr: String
+  company_code: String
+  user_first_name: String
+}
+
+type ValidateTokenResponse {
+  tokenDetails: TokenDetails
+  errors: [Error]
+}
+
+input ChangePasswordInput {
+  token: String
+  new_password: String
+  current_password: String
+  company_code: String
+  user_id: String
+  user_type: String
+}
+
+type ChangePasswordResponse {
+  request_status: String
+  errors: [Error]
+}
+
+input ForgotPasswordInput {
+  email_address: String
+  company_code: String
+  user_type: String
+}
+
+type ForgotPasswordResponse {
+  request_status: String
+  errors: [Error]
+}
+
+input PasswordPolicyInput {
+  token: String
+  company_code: String
+  user_id: String
+  user_type: String
+}
+
+type PasswordPolicyResponse {
+  max_length: Int
+  min_length: Int
+  max_caps: Int
+  min_caps: Int
+  max_numbers: Int
+  min_numbers: Int
+  max_special_character: Int
+  min_special_character: Int
+  password_recycle_threshold: Int
+}
+
+input GenerateOtpInput {
+  phoneNumber: String!
+  firstName: String
+  lastName: String
+  airportCode: String
+  ownAirlineCode: String
+  language: String
+  defaultWarehouseCode: String
+  ownAirlineIdentifier: Int
+  roleGroupCode: String
+  stationCode: String
+  clientType: String
+}
+
+input AppVersionCheckInput {
+  platform: String!
+  company_code: String
+}
+
+type AppVersionCheckResponseDetails {
+  companyCode: String
+  platform: String
+  appVersion: String
+  forcedUpdate: String
+  fileMode: String
+}
+
+type AppVersionResponse {
+  data: AppVersionCheckResponseDetails
+  error: [Error]
+}
+
+type OtpResponseDetails {
+  phoneNumber: String
+  firstName: String
+  lastName: String
+  airportCode: String
+  ownAirlineCode: String
+  ownAirlineIdentifier: Int
+  language: String
+  roleGroupCode: String
+  defaultWarehouseCode: String
+  oneTimePassword: String
+  stationCode: String
+}
+
+type GenerateOtpResponse {
+  data: OtpResponseDetails
+  error: [Error]
+}
+
+type Error {
+  error_code: String
+  error_description: String
+  error_type: String
+  error_data: [String]
+}
+
+type PageInfo {
+  endCursor: ID
+  hasNextPage: Boolean
+  totalRecords: Int
+}
+
+type OffsetPageInfo {
+  pageNum: Int
+  pageSize: Int
+  startRow: Int
+  endRow: Int
+  total: Int
+  pages: Int
+  count: Boolean
+  firstPage: Boolean
+  lastPage: Boolean
+}
+
+type LoginPageConfig {
+  multiHostingFlag: Boolean!
+  welcomeMessage: String
+  companyCode: String
+  ssoWithClassic: Boolean
+}
+
+type AuthenticationResponse {
+  security: SecurityType
+  loginProfile: LoginProfileTYpe
+  errors: [Error]
+}
+
+type LoginProfileTYpe {
+  company_code: String
+  airport_code: String
+  default_warehouse_code: String
+  own_airline_code: String
+  own_airline_identifier: Int
+  station_code: String
+  first_name: String
+  last_name: String
+  language: String
+  screens: String
+  privileges: String
+  role_group_code: String
+  agent_code: String
+  email_address: String
+  user_type: String
+  portal_user_type: String
+  user_org: String
+  user_id: String
+  password_change_required: String
+  own_airline_numeric_code: String
+  additionalParameters: JSON
+  user_timezone: String
+}
+
+type SecurityType {
+  id_token: String
+  exp: Int
+}
+
+type LogoutResponse {
+  status: String
+  errors: [Error]
+}
+
+type UserFilter {
+  name: String
+  category: String
+  filters: JSON
+}
+
+type UserFavouriteFilter {
+  defaultFilter: String
+  userFilters: [UserFilter]
+}
+
+type UserFilterResponse {
+  screen_id: String
+  master_type: String
+}
+
+input UserFilterInput {
+  name: String
+  category: String
+  filters: JSON
+}
+
+input UserFavouriteFilterInput {
+  defaultFilter: String
+  userFilters: [UserFilterInput]
+}
+
+type StationRolesType {
+  role_group_code: String
+  station_code: String
+}
+
+input SwitchRolesInput {
+  role_group_code: String
+  station_code: String
+}
+
+type ReportInterface {
+  company_code: String
+  report_id: String
+  report_name: String
+  report_dec: String
+  report_type: String
+  module: String
+  sub_module: String
+  report_category: String
+  report_data_type: String
+}
+
+type InterfaceFilter {
+  company_code: String
+  report_id: String
+  report_name: String
+  report_dec: String
+  report_type: String
+  module: String
+  sub_module: String
+  report_category: String
+  report_data_type: String
+}
+
+input FilterInput {
+  module: String
+  sub_module: String
+  report_id: String
+  report_type: String
+  report_category: String
+  report_data_type: String
+  filter_type: String
+}
+
+type checkFavouriteInterface {
+  report_id: String
+  report_type: String
+}
+
+input checkFavouriteInput {
+  module: String
+  sub_module: String
+  report_id: String
+  report_type: String
+  report_category: String
+  report_data_type: String
+}
+
+input listFavouriteReportsInput {
+  report_id: String
+  report_type: String
+}
+
+type command {
+  appName: String
+  command: String
+}
+
+type File {
+  filename: String!
+  mimetype: String!
+  encoding: String!
+}
+
+input LoadReportInput {
+  fileName: String!
+  key: String!
+}
+
+type LoadReportResponse {
+  company_code: String
+  report_id: String
+  report_name: String
+  report_dec: String
+  report_type: String
+  report_data_type: String
+}
+
+scalar Upload
+
+type ReportFilterOutput {
+  report_id: String
+  report_name: String
+  report_dec: String
+  report_type: String
+  report_filter: a
+  report_headers: b
+}
+
+type a {
+  reportFilter: [ReportFilter]
+}
+
+type b {
+  reportHeader: [ReportHeader]
+}
+
+type ReportFilter {
+  companyCode: String
+  tableColumn: String
+  columnDescription: String
+  defaultFiltervalue: String
+  format: String
+}
+
+type ReportHeader {
+  companyCode: String
+  reportID: String
+  tableColumn: String
+  columnDescription: String
+  format: String
+}
+
+input ReportFilterInput {
+  report_name: String
+}
+
+type generateReportOutput {
+  generated_report: ByteArray
+  file_name: String
+}
+
+input generateReportInput {
+  report_code: String
+  report_name: String
+  report_rule: String
+  report_template: String
+  report_filters: [reportDataFilterModel]
+  subtotal_columns: [String]
+  groupby_columns: [String]
+}
+
+input reportDataFilterModel {
+  filter_column: String
+  report_function: String
+  filter_value: String
+  secondary_filter_value: String
+}
+
+scalar ByteArray
+
+type privilege {
+  company_code: String
+  role_group_code: String
+  screen_id: String
+  privilege_type: String
+  privilege_code: String
+  component_type: String
+  component_code: String
+  station_code: String
+  client_type: String
+  privilege_group: String
+}
+
+input PrivilegeInput {
+  privilege_code: String
+}
+
+type JasperFilterOutput {
+  name: String
+  description: String
+  params: [Paramter]
+  output: [OutputData]
+}
+
+type Paramter {
+  name: String
+  description: String
+  type: String
+  required: String
+}
+
+type OutputData {
+  name: String
+  description: String
+  type: String
+  params: [OutputParameter]
+}
+
+type OutputParameter {
+  name: String
+  description: String
+  format: String
+}
+
+input JasperFilterInput {
+  report_code: String
+}
+
+input LoadPivotInput {
+  fileName: String!
+  key: String!
+  report_code: String!
+}
+
+type LoadPivotResponse {
+  report_id: String
+}
+
+"""
+type of the list entry given as `validationErrors` argument that is injected into every field resolver with validated arguments
+"""
+input ValidatedInputError {
+  """The error/exception message that caused the validation error"""
+  message: String!
+
+  """Path to the value that caused the validation error"""
+  path: [String!]!
+
+  """The actual error instance"""
+  error: ValidatedInputErrorInstance!
+}
+
+"""The error/exception that caused the validation error"""
+input ValidatedInputErrorInstance {
+  message: String!
+}
+
+"""Output/return version of ValidatedInputError"""
+type ValidatedInputErrorOutput {
+  """The error/exception message that caused the validation error"""
+  message: String!
+
+  """Path to the value that caused the validation error"""
+  path: [String!]!
+}
+
+enum RangeValidateDirectivePolicy {
+  """
+  Field resolver is responsible to evaluate it using `validationErrors` injected in GraphQLResolverInfo
+  """
+  RESOLVER
+
+  """
+  Field resolver is not called if occurs a validation error, it throws `UserInputError`
+  """
+  THROW
+}
+
+enum StringLengthValidateDirectivePolicy {
+  """
+  Field resolver is responsible to evaluate it using `validationErrors` injected in GraphQLResolverInfo
+  """
+  RESOLVER
+
+  """
+  Field resolver is not called if occurs a validation error, it throws `UserInputError`
+  """
+  THROW
+}
+
+enum ListLengthValidateDirectivePolicy {
+  """
+  Field resolver is responsible to evaluate it using `validationErrors` injected in GraphQLResolverInfo
+  """
+  RESOLVER
+
+  """
+  Field resolver is not called if occurs a validation error, it throws `UserInputError`
+  """
+  THROW
+}
+
+enum PatternValidateDirectivePolicy {
+  """
+  Field resolver is responsible to evaluate it using `validationErrors` injected in GraphQLResolverInfo
+  """
+  RESOLVER
+
+  """
+  Field resolver is not called if occurs a validation error, it throws `UserInputError`
+  """
+  THROW
+}
+
+type Customer {
+  customer_code: String
+}
+
+type Query {
+  _entities(representations: [_Any!]!): [_Entity]!
+  _service: _Service!
+  getPrivileges: [PrivilegeData]
+  getScreens: [ScreenData]
+  listUsers(listUserInput: ListUserInput): [User]
+  getRoles(roleInput: RoleInput): [RoleGroupData]
+  validateToken(tokenInput: TokenInput): ValidateTokenResponse
+  getPasswordPolicy(policyInput: PasswordPolicyInput): PasswordPolicyResponse
+  initializeLoginPage: LoginPageConfig!
+  isAuthenticated: LoginProfileTYpe
+  getLogonAttributes: LoginProfileTYpe
+  findUserFilters(screenId: String): UserFavouriteFilter
+  listStationRoles: [StationRolesType]
+  fetchAllReports: [ReportInterface]
+  fetchAllReportsFilter(filter: FilterInput): [InterfaceFilter]
+  checkFavourite(filter: checkFavouriteInput): checkFavouriteInterface
+  listFavouriteReports(filter: listFavouriteReportsInput): [String]
+  findRoleMenu: JSON
+  fetchCommands: [command]
+  fetchReportParametersForExcel(reportFilter: ReportFilterInput): ReportFilterOutput
+  generateReport(generateReportInput: generateReportInput): generateReportOutput
+  getAllPrivilegesforRoleStn: [privilege]
+  checkForPrivilege(privilegeInput: PrivilegeInput): Boolean
+  fetchReportParametersForJasper(jasperFilter: JasperFilterInput): JasperFilterOutput
+}
+
+union _Entity = Customer
+
+scalar _Any
+
+type _Service {
+  """
+  The sdl representing the federated service capabilities. Includes federation directives, removes federation types, and includes rest of full schema after schema directives have been applied
+  """
+  sdl: String
+}
+
+type Mutation {
+  saveUser(saveUserInput: SaveUserInput): SaveUserResponse
+  changeUserStatus(statusChangeInput: StatusChangeInput): StatusChangeResponse
+  resetUserPassword(resetPasswordInput: ResetPasswordInput): StatusChangeResponse
+  approveUserRequest(approveUserRequestInput: ApproveUserRequestInput): StatusChangeResponse
+  changeUserPassword(changePasswordInput: ChangePasswordInput): ChangePasswordResponse
+  forgotPassword(forgotPasswordInput: ForgotPasswordInput): ForgotPasswordResponse
+  generateOtp(generateOtpInput: GenerateOtpInput): GenerateOtpResponse
+  checkAppUpdates(appVersionCheckInput: AppVersionCheckInput): AppVersionResponse
+  loginUser(userId: String!, password: String!, companyCode: String, clientType: String, userType: String): AuthenticationResponse
+  logout: LogoutResponse
+  saveUserFilters(screenId: String, filter: UserFavouriteFilterInput): UserFilterResponse
+  saveSwitchRoles(switchRolesInput: SwitchRolesInput): AuthenticationResponse
+  loadReport(loadReportData: LoadReportInput): LoadReportResponse
+  loadPivot(loadPivotData: LoadPivotInput): LoadPivotResponse
+}

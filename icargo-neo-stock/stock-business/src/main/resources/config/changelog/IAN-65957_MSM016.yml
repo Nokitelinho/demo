@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-65957_MSM016.yml
+  - changeSet:
+      id: STK_029
+      author: 204083
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE REQUEST_REF_NUMBER_SEQ START WITH 10000 INCREMENT BY 1

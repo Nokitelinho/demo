@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-4605_MSM28503.yml
+  - changeSet:
+      id: 28503
+      author: A-10597
+      preConditions:
+        - tableExists:
+            tableName: ccaawb
+        - not:
+            columnExists:
+              tableName: ccaawb
+              columnName: sptratsta
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccaawb ADD COLUMN sptratsta varchar(4);
+          COMMENT ON COLUMN ccaawb.sptratsta IS 'Spot Rate Status';

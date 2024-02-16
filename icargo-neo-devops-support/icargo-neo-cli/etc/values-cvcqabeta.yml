@@ -1,0 +1,76 @@
+namespace: "cvcqabeta"
+tenants: ["cvc"]
+envName: "cvcqabeta"
+# This would be applied to all the java m/s and node m/s
+applicationProfile: "qa"
+environmentProfile: "QA" # STAG, DEV, PROD
+#dockerRegistry: "ibsbox:5000/icargo-docker-local"
+#dockerRegistry: "192.168.49.43/icargo-docker-local"
+dockerRegistry: "141807520248.dkr.ecr.ap-south-1.amazonaws.com"
+cloudConfigServerUrl: "http://cvc-config-server"
+configServerArtifactId: "cvc-config-server"
+enableGroupedDeployment: false
+# Some Defaults
+default:
+  containerPort: 8080
+  processType: "JAVA"
+  javaMemoryProfile: "JavaDefaultMemArgs" 
+  cpuProfile: "Default"
+  healthEndpoint: "/health"
+
+# Smart Loadbalacer to proxy requests based on application versions for blue-green deployment
+smartLoadbalancer:
+  enabled: false
+  image: "icargo-neo-slb:v1.1.7"
+  port: 2080
+
+crashDumps:
+  enabled: true
+  mountPath: "/icargo-crash-dumps" # Mount path of the volume inside the pod
+  hostPath: "/icargo-crash-dumps"  # The directory in the node which is mounted ( will be created if not present )
+
+# The options can be overriden at a service level as well.
+environment:
+  QA:
+    upgradeStrategy: "RollingUpdate"
+    numberOfReplicas: 1 
+    autoScalingEnabled: false
+    replicaEnabled: false
+    JavaSmallMemArgs: "-Xms128M -Xmx128M -XX:+UseG1GC"
+    JavaDefaultMemArgs: "-Xms256M -Xmx256M -XX:+UseG1GC"
+    JavaHugeMemArgs: "-Xms512M -Xmx512M -XX:+UseG1GC"
+
+# Separate ingress for web and webservice
+ingress:
+  cvc:
+    devIngress: true # Should a separate ingress be created for private API and bff endpoints for dev testing
+    ingressClassName: "nginx-cvcqabeta"
+    host: "*.elb.ap-south-1.amazonaws.com"
+
+# custom deployments properties
+deployments:
+  cvc-config-server:
+    javaMemoryProfile: 'JavaSmallMemArgs'
+    serviceName: 'cvc-config-server'
+
+# Object creation flags, used during incremental deployments with single entry boms
+disable:
+  ns: true # for incremental deployment ns is created offline
+  ingress: false
+  ingressMaster: true # for incremental deployment master resource is created offline
+  prometheus: true
+  serviceaccounts: true
+
+initDependencies:
+  enabled: false
+  image: "icargo-neo-init-controller:1.0.5"
+  dependencies:
+    foo: "bar"
+
+#-------------- Values which are required for icargo-helm-monitoring charts -------------------#
+elasticSearchUrl:
+  - ip: "10.246.12.112"
+    httpPort: 9020
+    transportPort: 9030
+crashCollector:
+  remoteS3Directory: "/icargo-crash-dumps_beta"

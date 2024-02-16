@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-54540_MSM003.yml
+  - changeSet:
+      id: STK_005
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: STKRNG_SEQ
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE STKRNG_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;
+
+  - changeSet:
+      id: STK_006
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: STKRNG
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE STKRNG(
+          STKRNGSERNUM BIGINT,
+          STKHLDSTKSERNUM BIGINT NOT NULL,
+          CMPCOD VARCHAR(6) NOT NULL,
+          ARLIDR NUMERIC(5,0) NOT NULL,
+          STKHLDCOD VARCHAR(15) NOT NULL,
+          DOCTYP VARCHAR(10) NOT NULL,
+          DOCSUBTYP VARCHAR(15) NOT NULL,
+          RNGSEQNUM VARCHAR(10) NOT NULL,
+          STARNG VARCHAR(15) NOT NULL,
+          ENDRNG VARCHAR(15) NOT NULL,
+          DOCNUM NUMERIC NOT NULL,
+          MNLFLG VARCHAR(1) DEFAULT 'N' NOT NULL,
+          ASCSTARNG NUMERIC,
+          ASCENDRNG NUMERIC,
+          RNGACPDAT DATE NOT NULL,
+          LSTUPDTIM TIMESTAMP NOT NULL,
+          LSTUPDUSR VARCHAR(50) NOT NULL,
+          TAGIDX NUMERIC(1,0) DEFAULT 0 NOT NULL,
+          CONSTRAINT "stkrng_pk" PRIMARY KEY (STKRNGSERNUM),
+          CONSTRAINT "stkrng_pk_cmpcod_stkhldcod_arlidr_doctyp_docsubtyp_rngseqnum_unique" UNIQUE (CMPCOD, STKHLDCOD, ARLIDR, DOCTYP, DOCSUBTYP, RNGSEQNUM));
+
+          COMMENT ON COLUMN STKRNG.STKRNGSERNUM is 'Stock range serial number';
+          COMMENT ON COLUMN STKRNG.STKHLDSTKSERNUM is 'Stock serial number';
+          COMMENT ON COLUMN STKRNG.CMPCOD IS 'Company Code.The company code that uniquely identifies the company for which the application is hosted';
+          COMMENT ON COLUMN STKRNG.ARLIDR IS 'Airline Identifier';
+          COMMENT ON COLUMN STKRNG.STKHLDCOD IS 'Stockholder code';
+          COMMENT ON COLUMN STKRNG.DOCTYP IS 'Document type';
+          COMMENT ON COLUMN STKRNG.DOCSUBTYP IS 'Document subtype';
+          COMMENT ON COLUMN STKRNG.RNGSEQNUM IS 'Range sequence NUMERIC';
+          COMMENT ON COLUMN STKRNG.STARNG IS 'Start Range';
+          COMMENT ON COLUMN STKRNG.ENDRNG IS 'End Range';
+          COMMENT ON COLUMN STKRNG.DOCNUM IS 'NUMERIC of documents';
+          COMMENT ON COLUMN STKRNG.MNLFLG IS 'Manual Flag';
+          COMMENT ON COLUMN STKRNG.ASCSTARNG IS 'Ascii value of start range';
+          COMMENT ON COLUMN STKRNG.ASCENDRNG IS 'Ascii end range';
+          COMMENT ON COLUMN STKRNG.RNGACPDAT IS 'Range Accepted Date';
+          COMMENT ON COLUMN STKRNG.LSTUPDTIM IS 'The date and time at which record was last updated';
+          COMMENT ON COLUMN STKRNG.LSTUPDUSR IS 'Last Update User.The application user code who performed the operation on the record';
+          COMMENT ON COLUMN STKRNG.TAGIDX IS 'This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment';
+          COMMENT ON TABLE STKRNG IS 'Stock range';

@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-65106_MSM018.yml
+  - changeSet:
+      id: STK_032
+      author: 203855
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: STKRNGMSGTMP_SEQ
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE STKRNGMSGTMP_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;
+
+  - changeSet:
+      id: STK_033
+      author: 203855
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE STKRNGMSGTMP(
+          STKRNGMSGTMPSERNUM INTEGER,
+          CMPCOD       VARCHAR(6)         NOT NULL,
+          ARLIDR       NUMERIC(5)           NOT NULL,
+          MSTDOCNUM    VARCHAR(20)        NOT NULL,
+          DOCTYP       VARCHAR(10)        NOT NULL,
+          DOCSUBTYP    VARCHAR(15)        NOT NULL,
+          ASCDOCNUM    NUMERIC              NOT NULL,
+          SKPSTKCHKFLG VARCHAR(1),
+          LSTUPDUSR    VARCHAR(50)        NOT NULL,
+          LSTUPDTIMUTC TIMESTAMP(3)        NOT NULL,
+          TAGIDX       NUMERIC(1) DEFAULT 0 NOT NULL,          
+          CONSTRAINT "STKRNGMSGTMP_PKEY" PRIMARY KEY (STKRNGMSGTMPSERNUM),
+          CONSTRAINT "STKRNGMSGTMP_PK_ARLIDR_MSTDOCNUM_DOCTYP_DOCSUBTYP_CMPCOD_UNIQUE" UNIQUE (ARLIDR, MSTDOCNUM, DOCTYP, DOCSUBTYP, CMPCOD));
+
+

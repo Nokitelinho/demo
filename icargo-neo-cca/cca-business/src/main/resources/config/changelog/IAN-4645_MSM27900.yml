@@ -1,0 +1,142 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-4645_MSM27900.yml
+  - changeSet:
+      id: 27339
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: ccaawbdimdtl_seq
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE ccaawbdimdtl_seq INCREMENT BY 1 ;
+
+  - changeSet:
+      id: 27339_1
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: ccaawbdimdtl
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE ccaawbdimdtl (
+          ccaawbdimdtlsernum integer,
+          ccaawbdtlsernum integer NOT NULL,
+          pcs integer,
+          diswgt numeric(16,4),
+          diswgtunt varchar(6) NOT NULL,
+          wgt numeric(16,4),
+          dislen numeric(16,4),
+          dislenunt varchar(6) NOT NULL,
+          len numeric(16,4),
+          diswid numeric(16,4),
+          wid numeric(16,4),
+          dishgt numeric(16,4),
+          hgt numeric(16,4),
+          disvol numeric(16,4),
+          disvolunt varchar(6) NOT NULL,
+          vol numeric(16,4),
+          lstupdtim timestamp(3) NOT NULL,
+          lstupdusr varchar(50) NOT NULL,
+          cmpcod varchar(6),
+
+          CONSTRAINT ccaawbdtldim_pkey PRIMARY KEY (ccaawbdimdtlsernum, ccaawbdtlsernum)
+          );
+
+          COMMENT ON TABLE ccaawbdimdtl IS 'Cca Awb Detail Dimensions , Child Table of CCAAwbDetail (ccaawbdtl)';
+
+          COMMENT ON COLUMN ccaawbdimdtl.ccaawbdimdtlsernum IS 'Serial number of dimension';
+          COMMENT ON COLUMN ccaawbdimdtl.ccaawbdtlsernum IS 'Serial number of CCAAwbDetail';
+          COMMENT ON COLUMN ccaawbdimdtl.pcs IS 'Number of shipment pieces';
+          COMMENT ON COLUMN ccaawbdimdtl.diswgt IS 'Weight in display unit';
+          COMMENT ON COLUMN ccaawbdimdtl.diswgtunt IS 'Display weight unit';
+          COMMENT ON COLUMN ccaawbdimdtl.wgt IS 'Weight';
+          COMMENT ON COLUMN ccaawbdimdtl.dislen IS 'Length in display unit';
+          COMMENT ON COLUMN ccaawbdimdtl.dislenunt IS 'Display length unit';
+          COMMENT ON COLUMN ccaawbdimdtl.len IS 'Length';
+          COMMENT ON COLUMN ccaawbdimdtl.diswid IS 'Width in display unit';
+          COMMENT ON COLUMN ccaawbdimdtl.wid IS 'Width';
+          COMMENT ON COLUMN ccaawbdimdtl.dishgt IS 'Display height unit';
+          COMMENT ON COLUMN ccaawbdimdtl.hgt IS 'Height';
+          COMMENT ON COLUMN ccaawbdimdtl.disvol IS 'Display volume unit';
+          COMMENT ON COLUMN ccaawbdimdtl.disvolunt IS 'Display volume unit';
+          COMMENT ON COLUMN ccaawbdimdtl.vol IS 'Volume';
+          COMMENT ON COLUMN ccaawbdimdtl.lstupdtim IS 'The date and time at which record was last updated';
+          COMMENT ON COLUMN ccaawbdimdtl.lstupdusr IS 'Last Update User.The application user code who performed the operation on the record';
+          COMMENT ON COLUMN ccaawbdimdtl.cmpcod IS 'The code that uniquely identifies the company for which the application is hosted';
+
+  - changeSet:
+      id: 27339_2
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: ccaawbrtg_seq
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE ccaawbrtg_seq INCREMENT BY 1 ;
+
+  - changeSet:
+      id: 27339_3
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: ccaawbrtg
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE ccaawbrtg (
+          ccaawbrtgsernum integer,
+          ccasernum integer NOT NULL,
+          rectyp varchar(1),
+          segorgcod varchar(4),
+          segdstcod varchar(4),
+          fltcar varchar(255),
+          fltnum varchar(255),
+          fltdat date,
+          fstcar boolean,
+          pcs integer,
+          diswgt numeric(16,4),
+          diswgtunt varchar(6) NOT NULL,
+          wgt numeric(16,4),
+          agrmnttyp varchar(255),
+          rtgsrc varchar(255),
+          lstupdtim timestamp(3) NOT NULL,
+          lstupdusr varchar(50) NOT NULL,
+          cmpcod varchar(6),
+
+          CONSTRAINT ccaawbroudet_pkey PRIMARY KEY (ccaawbrtgsernum, ccasernum)
+          );
+          COMMENT ON TABLE ccaawbrtg IS 'Cca Awb Routing Details table , Child Table of AWBMST';
+
+          COMMENT ON COLUMN ccaawbrtg.ccaawbrtgsernum is 'Serial number of Cca Awb Routing Details';
+          COMMENT ON COLUMN ccaawbrtg.ccasernum is 'CCA Serial Number';
+          COMMENT ON COLUMN ccaawbrtg.rectyp is 'CCA Record Type Original-O, Revised-R';
+          COMMENT ON COLUMN ccaawbrtg.segorgcod is 'Segment origin';
+          COMMENT ON COLUMN ccaawbrtg.segdstcod is 'Segment destination';
+          COMMENT ON COLUMN ccaawbrtg.fltcar is 'Flight Carrier';
+          COMMENT ON COLUMN ccaawbrtg.fltnum is 'Flight Number';
+          COMMENT ON COLUMN ccaawbrtg.fltdat is 'Flight Date';
+          COMMENT ON COLUMN ccaawbrtg.fstcar is 'Field to indicate first carrier or not';
+          COMMENT ON COLUMN ccaawbrtg.pcs is 'Number of shipment pieces';
+          COMMENT ON COLUMN ccaawbrtg.diswgt is 'Weight in display unit';
+          COMMENT ON COLUMN ccaawbrtg.diswgtunt is 'Display weight unit';
+          COMMENT ON COLUMN ccaawbrtg.wgt is 'Weight';
+          COMMENT ON COLUMN ccaawbrtg.agrmnttyp is 'Agreement  Type';
+          COMMENT ON COLUMN ccaawbrtg.rtgsrc is 'Source';
+          COMMENT ON COLUMN ccaawbrtg.lstupdtim is 'The date and time at which record was last updated';
+          COMMENT ON COLUMN ccaawbrtg.lstupdusr is 'Last Update User.The application user code who performed the operation on the record';
+          COMMENT ON COLUMN ccaawbrtg.cmpcod is 'The code that uniquely identifies the company for which the application is hosted';

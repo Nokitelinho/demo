@@ -1,0 +1,34 @@
+{{/*
+ Curator CronJobs
+*/}}
+{{- if .Values.curator.enabled }}
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: "icargo-neo-curator"
+  namespace: {{ .Values.monitoringNamespace | quote }}
+  labels:
+    app: "icargo-neo-curator"
+    srvtyp: "monitoring_service"
+    prctyp: "python"
+spec:
+  schedule: "10 * * * *" # Run every 10th minute every hour
+  concurrencyPolicy: "Forbid"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: "icargo-neo-curator"
+              image: {{ printf "%s/%s" .Values.dockerRegistry .Values.curator.image | quote }}
+              imagePullPolicy: "IfNotPresent"
+              env:
+                - name: "TXP_INDEX_RETENTION_HRS"
+                  value: {{ .Values.curator.txProbeIndexRetentionHours | quote }}
+                - name: "LOG_INDEX_RETENTION_HRS"
+                  value: {{ .Values.curator.logIndexRetentionHours | quote }}
+                - name: "FORCE_MERGE_DISABLED"
+                  value: {{ .Values.curator.forceMergeDisabled | quote }}
+          restartPolicy: Never
+{{- end }}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<pomVersion>3</pomVersion>
+	<extend>../../../../../../../project.xml</extend>
+	<groupId>icargo-customermanagement</groupId>
+	<id>business-customermanagement-defaults</id>
+	<artifactId>business-customermanagement-defaults</artifactId>
+	<name>customermanagement defaults business</name>
+	<currentVersion>${customermanagement.defaults.version}</currentVersion>
+	<dependencies>
+	
+	<!-- SHARED DEPENDENCY -->
+	    <dependency>
+			<groupId>icargo-shared</groupId>
+			<artifactId>business-shared-currency</artifactId>
+			<version>${shared.defaults.version}</version>
+	    </dependency>
+	    <dependency>
+			<groupId>icargo-shared</groupId>
+			<artifactId>shared-currency-vo</artifactId>
+			<version>${shared.defaults.version}</version>
+	    </dependency>
+	    <dependency>
+			<groupId>icargo-shared</groupId>
+			<artifactId>shared-defaults-unit-vo</artifactId>
+			<version>${shared.defaults.version}</version>
+	    </dependency>
+	<!-- CUSTOMER MANAGEMENT DEPENDENCY -->	
+		<dependency>
+			<groupId>icargo-customermanagement</groupId>
+			<artifactId>persistence-customermanagement-defaults</artifactId>
+			<version>${customermanagement.defaults.version}</version>
+		</dependency>
+	<!-- SHARED DEPENDENCY -->			
+		<dependency>
+			<groupId>icargo-shared</groupId>
+			<artifactId>shared-customer-vo</artifactId>
+			<version>${shared.defaults.version}</version>
+		</dependency>
+		
+		
+	</dependencies>
+	<build>
+	<sourceDirectory>.</sourceDirectory>
+
+	</build>
+</project>
+

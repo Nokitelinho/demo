@@ -1,0 +1,166 @@
+EBL_URL_NBRIDGE: http://k8s-nginxalp-icargong-ed546127d1-89f64463d339106d.elb.ap-south-1.amazonaws.com/ebl-nbridge/v1/
+EBL_LOGIN_URL: http://10.250.3.67:9050/v1/auth/token
+LB_URL: k8s-nginxalp-icargong-ed546127d1-89f64463d339106d.elb.ap-south-1.amazonaws.com
+
+NEO_OLTP_DB_URL: 10.246.13.8:5432
+
+NEO_DATABASE: ico_neo_av_dev
+NEO_DB_SCHEMA: ico_av_usr
+NEO_DB_USERNAME: ico_av_usr
+NEO_DB_PASSWORD: ico_av_usr
+
+debug: true
+logging:
+  level:
+    com.ibsplc.neoicargo.stock.dao.mybatis: DEBUG
+    com.ibsplc.neoicargo.stock.dao.cqrs-mybatis: DEBUG
+    com.ibsplc: INFO
+    com.ibsplc.neoicargo.stock: DEBUG
+    com.ibsplc.neoicargo.framework.tenant.jaxrs.cxf: WARN
+    liquibase: INFO
+    org.hibernate: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+    org.mybatis: INFO
+    com.zaxxer.hikari: ERROR
+    io.swagger: INFO
+    org.apache.kafka.clients: ERROR
+    org.springframework.cloud.stream: OFF
+server:
+  port: 6103
+  servlet:
+    context-path: /stock
+
+neo:
+  component-scan:
+    basePackages: "com.ibsplc.neoicargo.stock,com.ibsplc.neoicargo.masters,org.springframework.boot.autoconfigure.mustache"
+  security:
+    tokenService:
+      tokenValidityHours: 10
+    system:
+      authtype: ebl
+      ebl:
+        grant_type: password
+        password: weblogic
+        username: ICOADMIN
+  logging:
+    root-level: WARN
+    appenders: console
+  jaxrs.client.serviceBindings:
+    - name: neo-masters-business
+      address: http://${LB_URL}/masters
+      basePath: /private
+  cqrs:
+    component-scan:
+      basePackages: "com.ibsplc.neoicargo.stock"
+    schema-name: ${NEO_DB_SCHEMA}
+    jpa:
+      database: postgresql
+      show-sql: true
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          jdbc.lob.non_contextual_creation: true
+          format_sql: true
+    liquibase:
+      enabled: false
+    datasource:
+      name: ${NEO_DATABASE}_cqrs
+      platform: postgres
+      password: ${NEO_DB_PASSWORD}
+      username: ${NEO_DB_USERNAME}
+      url: jdbc:postgresql://${NEO_OLTP_DB_URL}/${NEO_DATABASE}_cqrs
+      type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      leakDetectionThreshold: 10000
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+      #maximumPoolSize: 5
+      minimumIdle: 1
+    mybatis:
+      config-location: classpath:config/cqrs-mybatis/MyBatis_Configuration.xml
+      mapper-locations: classpath:config/cqrs-mybatis/mappers/*.xml
+
+spring:
+  application:
+    name: "neo-stock-business"
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    service-registry:
+      auto-registration:
+        enabled: false
+    config.enabled: false
+    stream:
+      bindings:
+        AWB_DOMAIN_EVENT_CHANNEL_IN:
+          destination: ${com.ibsplc.neoicargo.tenant}-awb-domain-events
+          content-type: application/json
+        BKG_EVENT_CHANNEL_IN:
+          destination: ${com.ibsplc.neoicargo.tenant}-booking-domain-events
+          content-type: application/json 
+      kafka:
+        bindings:
+          AWB_DOMAIN_EVENT_CHANNEL_IN:
+            consumer:
+              configuration:
+                key:
+                  deserializer: org.apache.kafka.common.serialization.StringDeserializer
+          BKG_EVENT_CHANNEL_IN:
+            consumer:
+              configuration:
+                key:
+                  deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate.naming:
+      implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+    properties.hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      jdbc.lob.non_contextual_creation: true
+      format_sql: true
+  liquibase:
+    enabled: true
+    change-log: classpath:/config/db.changelog-master.yaml
+  datasource:
+    platform: postgres
+    username: ${NEO_DB_USERNAME}
+    password: ${NEO_DB_PASSWORD}
+    url: jdbc:postgresql://${NEO_OLTP_DB_URL}/${NEO_DATABASE}_stk?currentSchema=${NEO_DB_SCHEMA}
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      leakDetectionThreshold: 10000
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+      #maximumPoolSize: 5
+      minimumIdle: 1
+
+mybatis:
+  config-location: classpath:config/mybatis/MyBatis_Configuration.xml
+  mapper-locations: classpath:config/mybatis/mappers/*.xml
+
+addon:
+  enabled: advancedgha,chatbot
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+icargo:
+  http:
+    host: 10.246.12.109
+    port: 7000
+    contextPath: icargo
+    webserviceRoot: webservices
+    eblWebContextPath: icargo-ebl
+  webservice:
+    auth:
+      username: SYSADMIN
+      password: weblogic
+      anonymousSessionId: >-
+        aWNTZXNzaW9uSWQ6SFhQZnVnJTJCUU1INWRwUFV4OWJ6dVZDdkNtbzAlMkZXRzBVOGdsbFNLN2F6YzhhTXhaUVNmYWhabFZ2TXUyaEZhRkZNTm8yOUJIZ3lUbmUlMEQlMEFhenVVRXk2MHBRJTNEJTNE

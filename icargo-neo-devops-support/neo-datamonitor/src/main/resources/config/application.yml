@@ -1,0 +1,26 @@
+server:
+  port: 8181
+  servlet:
+    context-path: /datamonitor
+
+#
+# neo.security.urls - the comma separated contex paths which are excluded
+# from the neo-authorization
+#
+neo:
+  security:
+    urls: /**/private/*,/**/private/,/**/actuator/*,/**/actuator/
+  component-scan:
+    basePackages: "com.ibsplc.neoicargo"
+
+spring:
+  cloud:
+    config:
+      uri: http://k8s-nginxalp-icargong-ed546127d1-89f64463d339106d.elb.ap-south-1.amazonaws.com/config-service
+
+EBL_URL: "http://10.246.12.88:9980/bookings/v1/"
+EBL_URL_NBRIDGE: "http://${LB_URL}/ebl-nbridge/v1/"
+EBL_LOGIN_URL: "http://10.246.12.88:9990/security/qf/v1/auth/token"
+
+
+

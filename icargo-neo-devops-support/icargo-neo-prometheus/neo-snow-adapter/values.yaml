@@ -1,0 +1,68 @@
+
+snowAdapter:
+  # Spring profile to be used. Appended to the config map mounted application.yml
+  springProfile: dev
+
+  ##Values to be over-ridden in the config map mounted application.yml
+  configOverrides:
+    # Example shown below.Edit as required
+    # notify:
+    #   snow:
+    #     enabled: false
+    #     #Instance name of SNOW url https://<instance-name>.service-now.com
+    #     instanceName: ibsplcdev 
+    #     #Source name to be set in the SNOW event
+    #     sourceName: 
+    #     #Basic Auth for the SNOW Rest Ednpoing https://<instance-name>.service-now.com/api/global/em/jsonv2
+    #     basic-auth:
+    #       userId: 
+    #       password: 
+    #   aws:
+    #     sns:
+    #       enabled: true
+    #       email:
+    #         active:
+    #           default:
+    #           #<prom-alert-severity>:<emails as csv>
+    #           #critical:
+    #           #error:
+    #           #warning:
+    #           #info:
+    #         inactive:
+    #         # - list of alert names that should not be alerted
+    #         # - <alert-name>
+    #         # - <alert-name>    
+  mappingsOverrides:
+    snow:      
+      type-mappings:
+        #Altername in Prometheus (As defined in the Prom Rule) to Type name as to be mapped in SNOW
+        TargetDown : 'Availability'
+
+defaultAlertManagerConfigOverrides:
+  namespaceOverride:
+
+replicaCount: 1
+
+image:
+  registry: harbor.ibsplc.com/icargo
+  #registry: 612067252072.dkr.ecr.ap-southeast-2.amazonaws.com/neoicargo
+  name: neo-snow-adapter
+  pullPolicy: IfNotPresent
+  # Overrides the image tag
+  tag: "f822904"
+
+nameOverride: ""
+fullnameOverride: ""
+namespaceOverride:
+serviceAccountNameOverride:
+
+service:
+  type: ClusterIP
+  port: 8080
+
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80

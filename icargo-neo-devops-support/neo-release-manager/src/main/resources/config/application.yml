@@ -1,0 +1,48 @@
+server:
+  port: 5000
+  servlet:
+    context-path: '/release-manager-service'
+  tomcat:
+    threads:  # Put tommy on a lean diet
+      max: 4
+      min-spare: 2
+
+
+spring:
+  application:
+    name: 'neo-release-manager'
+  flyway:
+    enabled: false
+  liquibase:
+    enabled: true
+    change-log: classpath:config/db.changelog-master.yaml
+  jpa:
+    database: postgresql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc.lob.non_contextual_creation: true
+    show-sql: true
+  datasource:
+    platform: postgres
+    password: 'neo_relmgr'
+    username: 'neo_relmgr'
+    url: 'jdbc:postgresql://10.250.3.130:5432/neo_relmgr_db'
+    #url: 'jdbc:postgresql://localhost:5432/neo_relmgr_db'
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 4
+      minimum-idle: 1
+      max-lifetime: 30000
+      idle-timeout: 20000
+      connection-timeout: 5000
+      pool-name: 'release-manager-db-pool'
+cxf:
+  path: '/rest'
+neo:
+  logging:
+    appenders: console
+bitbucket:
+  repositoryUrl: "http://bitbucket.ibsplc.com"
+  user: "icargo-release"
+  password: "Icargo-release"

@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-46677_MSM28577.yml
+  - changeSet:
+      id: 28577
+      author: A-10597
+      preConditions:
+        - tableExists:
+            tableName: ccaawb
+        - not:
+            columnExists:
+              tableName: ccaawb
+              columnName: inbfop
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccaawb ADD COLUMN inbfop VARCHAR(8) DEFAULT 'CREDIT';
+          COMMENT ON COLUMN ccaawb.inbfop IS 'Inbound form of Payment';

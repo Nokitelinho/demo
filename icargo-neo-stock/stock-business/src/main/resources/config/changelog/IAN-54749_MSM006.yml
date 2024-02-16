@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-54749_MSM006.yml
+  - changeSet:
+      id: STK_010
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: STKHLDSTKDTL_SEQ
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE STKHLDSTKDTL_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;
+
+  - changeSet:
+      id: STK_011
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: STKHLDSTKDTL
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE STKHLDSTKDTL(
+                STKHLDSTKDTLSERNUM BIGINT,
+                CMPCOD VARCHAR(6) NOT NULL,
+                STKHLDCOD VARCHAR(15) NOT NULL,
+                DOCTYP VARCHAR(15) NOT NULL,
+                DOCSUBTYP VARCHAR(15) NOT NULL,
+                TXNDATSTR NUMERIC(8,0) NOT NULL,
+                OPGBAL NUMERIC(8,0),
+                RCVSTK NUMERIC(8,0),
+                ALCSTK NUMERIC(8,0),
+                TFDSTK NUMERIC(8,0),
+                RTNSTK NUMERIC(8,0),
+                RTNUTLSTK NUMERIC(8,0),
+                BLKLSTSTK NUMERIC(8,0),
+                UTLSTK NUMERIC(8,0),
+                CLSBAL NUMERIC(8,0),
+                TXNDATUTC DATE,
+                LSTUPDUSR VARCHAR(50) NOT NULL,
+                LSTUPDTIM TIMESTAMP NOT NULL,
+                LSTUPDTIMUTC DATE,
+                TAGIDX NUMERIC(1,0) DEFAULT 0 NOT NULL,
+                CONSTRAINT "stkhldstkdtl_pk" PRIMARY KEY (STKHLDSTKDTLSERNUM),
+                CONSTRAINT "stkhldstkdtl_cmpcod_stkhldcod_doctyp_docsubtyp_txndatstr_unique" UNIQUE (CMPCOD, STKHLDCOD, DOCTYP, DOCSUBTYP, TXNDATSTR));
+

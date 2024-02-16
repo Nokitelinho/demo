@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-35824_MSM27192.yml
+  - changeSet:
+       id: 27192
+       author: A-10597
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            tableExists:
+              tableName: ccaawbrat
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE TABLE ccaawbrat (
+                ccaawbratsernum integer,
+                ccasernum integer,
+                rectyp varchar(1),
+                cmpcod varchar(6) NOT NULL,
+                rattyp varchar(10),
+                comcod varchar(10),
+                chgwgt numeric(16,4),
+                dischgwgt numeric(16,4),
+                chg numeric(16,4),
+                rat numeric,
+                lstupdtim timestamp(3) NOT NULL,
+                lstupdusr varchar(50) NOT NULL,
+                ratdtl json,
+                CONSTRAINT ccaawbrat_pkey PRIMARY KEY (ccaawbratsernum, ccasernum)
+            );
+
+            comment on table ccaawbrat is 'Awb Rate Detail table , Child Table of AWBMST';
+            
+            comment on column ccaawbrat.cmpcod is 'The code that uniquely identifies the company for which the application is hosted';
+            comment on column ccaawbrat.ccasernum is 'CCA Serial Number';
+            comment on column ccaawbrat.rectyp is 'CCA Record Type Original-O, Revised-R';
+            comment on column ccaawbrat.ccaawbratsernum is 'CCA Rate Detil Serial Number';
+            comment on column ccaawbrat.rattyp is 'Rate Type';
+            comment on column ccaawbrat.comcod is 'Commodity Code';
+            comment on column ccaawbrat.chgwgt is 'Chargeable Weight';
+            comment on column ccaawbrat.dischgwgt is 'Display Chargeable Weight';
+            comment on column ccaawbrat.ratdtl is 'Pricing Details of type json';
+            comment on column ccaawbrat.chg is 'Charge';
+            comment on column ccaawbrat.rat is 'Rate';
+            comment on column ccaawbrat.lstupdtim is 'The date and time at which record was last updated';
+            comment on column ccaawbrat.lstupdusr is 'Last Update User.The application user code who performed the operation on the record';

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<localRepository>/data/mavenRepo</localRepository>
+  <servers>
+    <server>
+      <username>admin</username>
+      <password>iCarg0Admin</password>
+      <id>iCargoArtifactory</id>
+    </server>
+    <server>
+      <username>admin</username>
+      <password>iCarg0Admin</password>
+      <id>iCargoSnapshotArtifactory</id>
+    </server>
+  </servers>
+  <profiles>
+    <profile>
+      <repositories>
+        <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>iCargoArtifactory</id>
+          <name>libs-release</name>
+          <url>http://10.246.13.144:8081/artifactory/libs-release</url>
+        </repository>
+        <repository>
+          <snapshots />
+          <id>iCargoSnapshotArtifactory</id>
+          <name>libs-snapshot</name>
+          <url>http://10.246.13.144:8081/artifactory/libs-snapshot</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>iCargoPluginArtifactory</id>
+          <name>plugins-release</name>
+          <url>http://10.246.13.144:8081/artifactory/plugins-release</url>
+        </pluginRepository>
+        <pluginRepository>
+          <snapshots />
+          <id>snapshots2</id>
+          <name>plugins-snapshot</name>
+          <url>http://10.246.13.144:8081/artifactory/plugins-snapshot</url>
+        </pluginRepository>
+      </pluginRepositories>
+      <id>artifactory</id>
+	<properties>
+	      <downloadSources>true</downloadSources>
+		  <repo.release.id>iCargoArtifactory</repo.release.id>  
+		  <repo.release.url>http://10.246.13.144:8081/artifactory/libs-release-local</repo.release.url>
+		  <repo.snapshot.id>iCargoSnapshotArtifactory</repo.snapshot.id>
+		  <repo.snapshot.url>http://10.246.13.144:8081/artifactory/libs-snapshot-local</repo.snapshot.url>
+		  <repo.plugins.snapshot.url>http://10.246.13.144:8081/artifactory/plugins-snapshot-local</repo.plugins.snapshot.url>
+	</properties>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>artifactory</activeProfile>
+  </activeProfiles>
+</settings>
+
+

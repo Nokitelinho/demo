@@ -1,0 +1,228 @@
+/*
+* ULDFlightMessageReconcileDetailsPK.java Created on Jul 20, 2006
+*
+* Copyright 2006 IBS Software Services (P) Ltd. All Rights Reserved.
+*
+* This software is the proprietary information of IBS Software Services (P) Ltd.
+* Use is subject to license terms.
+*/
+
+package com.ibsplc.icargo.business.uld.defaults.message;
+
+import java.io.Serializable;
+
+import javax.persistence.Embeddable;
+
+/**
+ * @author A-2048
+ */
+@Embeddable
+public class ULDFlightMessageReconcileDetailsPK implements Serializable {
+    /**
+     * 
+     */
+	    private  int flightCarrierIdentifier;
+	    /**
+	     * 
+	     */
+	    private String flightNumber;
+	    /**
+	     * 
+	     */
+	    private int flightSequenceNumber;
+	   /**
+	    * 
+	    */
+	    private String airportCode;
+	    /**
+	     * 
+	     */
+	    private String companyCode;
+	    /**
+	     * 
+	     */
+	    private String messageType;
+	    /**
+	     * 
+	     */
+	    private int sequenceNumber;
+	    /**
+	     * 
+	     */
+	    private String uldNumber;
+	 
+    /**
+     *
+     */
+    public ULDFlightMessageReconcileDetailsPK() {
+    }
+/**
+ * 
+ * @param flightCarrierIdentifier
+ * @param flightNumber
+ * @param flightSequenceNumber
+ * @param airportCode
+ * @param companyCode
+ * @param messageType
+ * @param sequenceNumber
+ * @param uldNumber
+ */
+    public ULDFlightMessageReconcileDetailsPK(int flightCarrierIdentifier,
+            String flightNumber,
+            int flightSequenceNumber,
+            String airportCode,
+            String companyCode,
+            String messageType,
+            String sequenceNumber,
+            String uldNumber) {
+    	this.flightCarrierIdentifier =flightCarrierIdentifier;
+    	this.flightNumber = flightNumber;
+    	this.flightSequenceNumber = flightSequenceNumber;
+    	
+    	this.airportCode = airportCode;
+    	this.companyCode = companyCode;
+    	this.messageType = messageType;
+    	this.sequenceNumber =Integer.parseInt(sequenceNumber);
+    	this.uldNumber = uldNumber;
+    }
+
+    /**
+     * @param other
+     * @return
+     */
+    public boolean equals(Object other) {
+        return (other != null) && (hashCode() == other.hashCode());
+    }
+
+    /**
+     * @return
+     */
+    public int hashCode() {
+    	return new StringBuilder().append(flightCarrierIdentifier)
+        .append(flightNumber)
+        .append(flightSequenceNumber)
+        
+        .append(airportCode)
+        .append(companyCode)
+        .append(messageType)
+        .append(sequenceNumber)
+        .append(uldNumber)
+        .toString().hashCode();
+    }
+    /**
+	 * @param messageType The messageType to set.
+	 */
+	public void setMessageType(java.lang.String messageType) {
+		this.messageType=messageType;
+	}
+	/**
+	 * @return Returns the messageType.
+	 */
+	public java.lang.String getMessageType() {
+		return this.messageType;
+	}
+	/**
+	 * @param messageType The airportCode to set.
+	 */
+	public void setAirportCode(java.lang.String airportCode) {
+		this.airportCode=airportCode;
+	}
+	/**
+	 * @return Returns the airportCode.
+	 */
+	public java.lang.String getAirportCode() {
+		return this.airportCode;
+	}
+	/**
+	 * @param flightNumber The flightNumber to set.
+	 */
+	public void setFlightNumber(java.lang.String flightNumber) {
+		this.flightNumber=flightNumber;
+	}
+	/**
+	 * @return Returns the flightNumber.
+	 */
+	public java.lang.String getFlightNumber() {
+		return this.flightNumber;
+	}
+	/**
+	 * @param flightSequenceNumber The flightSequenceNumber to set.
+	 */
+	public void setFlightSequenceNumber(int flightSequenceNumber) {
+		this.flightSequenceNumber=flightSequenceNumber;
+	}
+	/**
+	 * @return Returns the flightSequenceNumber.
+	 */
+	public int getFlightSequenceNumber() {
+		return this.flightSequenceNumber;
+	}
+	/**
+	 * @param flightCarrierIdentifier The flightCarrierIdentifier to set.
+	 */
+	public void setFlightCarrierIdentifier(int flightCarrierIdentifier) {
+		this.flightCarrierIdentifier=flightCarrierIdentifier;
+	}
+	/**
+	 * @return Returns the flightCarrierIdentifier.
+	 */
+	public int getFlightCarrierIdentifier() {
+		return this.flightCarrierIdentifier;
+	}
+	/**
+	 * @param uldNumber The uldNumber to set.
+	 */
+	public void setUldNumber(java.lang.String uldNumber) {
+		this.uldNumber=uldNumber;
+	}
+	/**
+	 * @return Returns the uldNumber.
+	 */
+	public java.lang.String getUldNumber() {
+		return this.uldNumber;
+	}
+	/**
+	 * @param sequenceNumber The sequenceNumber to set.
+	 */
+	public void setSequenceNumber(int sequenceNumber) {
+		this.sequenceNumber=sequenceNumber;
+	}
+	/**
+	 * @return Returns the sequenceNumber.
+	 */
+	public int getSequenceNumber() {
+		return this.sequenceNumber;
+	}
+	/**
+	 * @param companyCode The companyCode to set.
+	 */
+	public void setCompanyCode(java.lang.String companyCode) {
+		this.companyCode=companyCode;
+	}
+	/**
+	 * @return Returns the companyCode.
+	 */
+	public java.lang.String getCompanyCode() {
+		return this.companyCode;
+	}
+	/**
+	 * generated by xibase.tostring plugin at 1 October, 2014 1:14:17 PM IST
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sbul = new StringBuilder(241);
+		sbul.append("ULDFlightMessageReconcileDetailsPK [ ");
+		sbul.append("airportCode '").append(this.airportCode);
+		sbul.append("', companyCode '").append(this.companyCode);
+		sbul.append("', flightCarrierIdentifier '").append(
+				this.flightCarrierIdentifier);
+		sbul.append("', flightNumber '").append(this.flightNumber);
+		sbul.append("', flightSequenceNumber '").append(
+				this.flightSequenceNumber);
+		sbul.append("', messageType '").append(this.messageType);
+		sbul.append("', sequenceNumber '").append(this.sequenceNumber);
+		sbul.append("', uldNumber '").append(this.uldNumber);
+		sbul.append("' ]");
+		return sbul.toString();
+	}
+}

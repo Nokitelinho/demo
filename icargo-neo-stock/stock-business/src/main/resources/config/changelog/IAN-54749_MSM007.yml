@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-54749_MSM007.yml
+  - changeSet:
+      id: STK_012
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: STKRNGUTL_SEQ
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE STKRNGUTL_SEQ
+          START WITH 1
+          INCREMENT BY 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          CACHE 1;
+
+  - changeSet:
+      id: STK_013
+      author: 201132
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: STKRNGUTL
+      changes:
+        dbms: postgres
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE STKRNGUTL(
+          STKRNGUTLSERNUM BIGINT,
+          CMPCOD VARCHAR(6) NOT NULL,
+          ARLIDR NUMERIC(5,0) NOT NULL,
+          STKHLDCOD VARCHAR(15) NOT NULL,
+          DOCTYP VARCHAR(10) NOT NULL,
+          DOCSUBTYP VARCHAR(15) NOT NULL,
+          SEQNUM VARCHAR(10) NOT NULL,
+          ASCDOCNUM NUMERIC NOT NULL,
+          MSTDOCNUM VARCHAR(20) NOT NULL,
+          LSTUPDTIMUTC DATE,
+          STATUS VARCHAR(1),
+          LSTUPDUSR VARCHAR(50),
+          TAGIDX NUMERIC(1,0) DEFAULT 0 NOT NULL,
+          CONSTRAINT "stkrngutl_pk" PRIMARY KEY (STKRNGUTLSERNUM),
+          CONSTRAINT "stkrngutl_cmpcod_stkhldcod_arlidr_doctyp_docsubtyp_mstdocnum_seqnum_unique" UNIQUE (CMPCOD, ARLIDR, STKHLDCOD, DOCTYP, DOCSUBTYP, MSTDOCNUM, SEQNUM));
+
+          COMMENT ON COLUMN STKRNGUTL.STKRNGUTLSERNUM is 'Stock Range Utilized serial number';
+          COMMENT ON COLUMN STKRNGUTL.CMPCOD IS 'Company Code.The company code that uniquely identifies the company for which the application is hosted';
+          COMMENT ON COLUMN STKRNGUTL.ARLIDR IS 'Airline to which stock belongs';
+          COMMENT ON COLUMN STKRNGUTL.STKHLDCOD IS 'Stock Holder Code';
+          COMMENT ON COLUMN STKRNGUTL.DOCTYP IS 'AWB Document type';
+          COMMENT ON COLUMN STKRNGUTL.DOCSUBTYP IS 'AWB Document Sub Type';
+          COMMENT ON COLUMN STKRNGUTL.SEQNUM IS 'Sequence Number';
+          COMMENT ON COLUMN STKRNGUTL.ASCDOCNUM IS 'Ascii value of document number';
+          COMMENT ON COLUMN STKRNGUTL.MSTDOCNUM IS 'Awb number';
+          COMMENT ON COLUMN STKRNGUTL.LSTUPDTIMUTC IS 'The date and time in UTC at which record was last updated';
+          COMMENT ON COLUMN STKRNGUTL.STATUS IS 'Status';
+          COMMENT ON COLUMN STKRNGUTL.LSTUPDUSR IS 'Last Update User.The application user code who performed the operation on the record';
+          COMMENT ON COLUMN STKRNGUTL.TAGIDX IS 'This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment';
+          COMMENT ON TABLE STKRNGUTL  IS 'Table To Hold Utilized Stock Details';
+

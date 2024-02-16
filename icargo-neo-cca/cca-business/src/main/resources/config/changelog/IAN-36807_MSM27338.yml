@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-36807_MSM27338.yml
+  - changeSet:
+       id: 27338
+       author: A-10597
+       preConditions:
+         - onFail: MARK_RAN
+         - not:
+            indexExists:
+              indexName: Keygen_CCA_Reference_Number_DocumentOwnerIDR
+       changes:
+         dbms: h2, oracle
+         endDelimiter: \nGO
+         splitStatements: false
+         sql: CREATE UNIQUE INDEX Keygen_CCA_Reference_Number_DocumentOwnerIDR ON keygen USING btree (seqnam, keycnd);

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Configuration of the xiBase enterprise platform --><xconfig xmlns="http://www.ibsplc.com/xconfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xsd\xconfig.xsd">
+	<application-configuration>
+		<is-self-managed-transactions>true</is-self-managed-transactions>
+		<is-stand-alone>true</is-stand-alone>
+		<is-entities-annotated>true</is-entities-annotated>
+		<is-optimisic-concurrency-self-managed>false</is-optimisic-concurrency-self-managed>
+		<persistence-api>HIBERNATE</persistence-api>
+	</application-configuration>
+<platform companyCode="4ALL" logo="icargologo.jpg" name="iCargo" version="1.0.1">
+
+	<!-- This is configuration of the server on which the application is deployed like ip, port etc -->
+	<server-congfiguration>
+
+		<server-properties>
+		    <descriptor-file-name>serverproperties.xml</descriptor-file-name>
+		</server-properties>
+
+	</server-congfiguration>
+
+
+	<!-- This is configuration for request mapping for individual subsystems -->
+	<request-configuration>
+		<request-mappings product="framework">
+			<descriptor-file-name>framework/requestmapping.xml</descriptor-file-name>
+        	</request-mappings>
+
+	
+		</request-configuration>
+
+	<!-- This is the configuration of the various services exposed by the platform -->
+	<service-configuration>
+
+		<jdbc-configuration defaultAsyncSource="iCargoDefaultAsyncJDBCSource" defaultSource="iCargoDefaultJDBCSource">
+
+			<jdbc-source name="iCargoDefaultJDBCSource">
+				<descriptor-file-name>iCargoDefaultJDBCSource.xml</descriptor-file-name>
+			</jdbc-source>
+			<jdbc-source name="iCargoOLAPJDBCSource">
+				<descriptor-file-name>iCargoOLAPJDBCSource.xml</descriptor-file-name>
+			</jdbc-source>
+			<jdbc-source name="iCargoArchiveJDBCSource">
+				<descriptor-file-name>iCargoArchiveJDBCSource.xml</descriptor-file-name>
+			</jdbc-source>
+			<jdbc-source name="iCargoDefaultAsyncJDBCSource">
+				<descriptor-file-name>iCargoDefaultAsyncJDBCSource.xml</descriptor-file-name>
+			</jdbc-source>
+		</jdbc-configuration>
+
+		<!--The ejb service configuration for common services like KEY_SERVER-->
+		<ejb-services>
+	        	<descriptor-file-name>ejbservices.xml</descriptor-file-name>
+        	</ejb-services>
+
+	
+	</service-configuration>
+
+	<audit-configuration>
+		  <audit-mappings product="operations" subproduct="shipment">
+                                                                <descriptor-file-name>operations/shipment/audit.mappings.xml</descriptor-file-name>
+                                </audit-mappings>
+   </audit-configuration>
+
+
+	<!-- This is the persistence-related configuration for the platform -->
+	<persistence-configuration>
+		<persistence-mappings product="framework" subproduct="session">
+			<descriptor-file-name>framework/session/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+		<persistence-mappings product="framework" subproduct="txaudit">
+			<descriptor-file-name>framework/txaudit/persistence.mappings.xml</descriptor-file-name>
+      		</persistence-mappings>
+      	
+		
+		<persistence-mappings product="operations" subproduct="shipment">
+			<descriptor-file-name>operations/shipment/persistence.mappings.xml</descriptor-file-name>
+		</persistence-mappings>
+
+				
+	</persistence-configuration>
+
+	<!-- This is the configuration of all listeners -->
+	<listener-configuration>
+	        <listener listening="false" name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge"/>
+	</listener-configuration>
+
+        <monitor-configuration>
+       	     <!--<monitor>
+       	     	<descriptor-file-name>monitorproperties.xml</descriptor-file-name>
+       	     </monitor>-->
+       	     <monitor-alarm>
+	     		<descriptor-file-name>alarmConfiguration.xml</descriptor-file-name>
+	     </monitor-alarm>
+        </monitor-configuration>
+
+	<!-- Any extension to the xibase configuration should be configured here -->
+	<extended-configuration>
+			<!--
+			  commented by A-2397 as part of removing mbeans configured in icargo.xml
+			  All the entries defied in this file is moved to icargo-config.xml
+			-->
+      		<!--extension name="com.ibsplc.icargo.framework.management.mbean.impl.configuration.ICargoMBeanImpl">
+            		<descriptor-file-name>icargo.xml</descriptor-file-name>
+        	</extension-->
+
+	</extended-configuration>
+
+</platform>
+
+<platform companyCode="2G" logo="cargoitalia-logo.jpg" name="iCargo" version="1.0.1">
+
+	<!-- This is the configuration of all listeners -->
+	<listener-configuration>
+	        <listener listening="false" name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge"/>
+	</listener-configuration>
+
+</platform>
+
+<platform companyCode="6E" logo="indigo-logo.jpg" name="iCargo" version="1.0.1">
+	<!-- This is the configuration of all listeners -->
+	<listener-configuration>
+		<listener listening="false" name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge"/>
+	</listener-configuration>
+</platform>
+
+<platform companyCode="ICT" logo="iact-logo.jpg" name="iCargo" version="1.0.1">
+	<listener-configuration>
+		<listener listening="false" name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge"/>
+	</listener-configuration>
+</platform>
+
+<platform companyCode="LH" logo="lh-logo.jpg" name="iCargo" version="1.0.1">
+	<listener-configuration>
+		<listener listening="false" name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge"/>
+	</listener-configuration>
+</platform>
+<platform companyCode="TK" logo="TK_logo.png" name="iCargo" version="1.0.1">
+	<listener-configuration>
+		<listener listening="false" name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge"/>
+	</listener-configuration>
+</platform>
+<platform companyCode="PG" logo="PG-logo.jpg" name="iCargo" version="1.0.1">
+	<listener-configuration>
+		<listener listening="false" name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge"/>
+	</listener-configuration>
+</platform>
+<platform companyCode="SQ" logo="SQ-logo.jpg" name="iCargo" version="1.0.1">
+	<listener-configuration>
+		<listener listening="false" name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge"/>
+	</listener-configuration>
+</platform>
+<platform companyCode="TP" logo="TAP_logo.jpg" name="iCargo" version="1.0.1">
+	<listener-configuration>
+		<listener listening="false" name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge"/>
+	</listener-configuration>
+</platform>
+<platform companyCode="NAS" logo="NAS_logo.jpg" name="iCargo" version="1.0.1">
+	<listener-configuration>
+		<listener listening="false" name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge"/>
+	</listener-configuration>
+</platform>
+<platform companyCode="IAG" logo="IAG-logo.jpg" name="iCargo" version="1.0.1">
+	<listener-configuration>
+		<listener listening="false" name="com.ibsplc.xibase.server.framework.management.listener.TopicNotificationBridge"/>
+	</listener-configuration>
+</platform>
+</xconfig><!--This file is modified using iCargo post build release utility on : 2017/02/09 09:58:35--><!--This file is modified using iCargo post build release utility on : 2017/02/09 09:58:35--><!--This file is modified using iCargo post build release utility on : 2017/02/09 09:58:35--><!--This file is modified using iCargo post build release utility on : 2017/02/09 09:58:35-->

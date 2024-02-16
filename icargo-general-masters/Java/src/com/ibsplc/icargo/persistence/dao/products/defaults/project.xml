@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <extend>../../../../../../../../project.xml</extend>
+    <pomVersion>3</pomVersion>
+    <id>persistence-products-defaults</id>
+    <artifactId>persistence-products-defaults</artifactId>
+    <name>Persistence Products Defaults</name>
+    <groupId>icargo-products</groupId>
+    <currentVersion>${products.version}</currentVersion>
+    <inceptionYear>2005</inceptionYear>
+    <logo>/images/logo.gif</logo>
+    <shortDescription>Persistence Products Defaults</shortDescription>
+    <dependencies>
+    <dependency>
+    	<groupId>icargo-products</groupId>
+    	<artifactId>products-defaults-vo</artifactId>
+	    <version>${products.dep.version}</version>
+    </dependency>
+    </dependencies>
+     <build>
+         <sourceDirectory>.</sourceDirectory>
+        <resources>
+			<resource>			
+    	        <targetPath>com/ibsplc/icargo/persistence/dao/products/defaults</targetPath>
+        	    <directory>.</directory>
+            	<includes>
+	    	         <include>*query.xml</include>
+    	        </includes>
+	        </resource>
+	    </resources>    
+        
+    </build>
+</project>
+

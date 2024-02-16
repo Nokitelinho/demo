@@ -1,0 +1,19 @@
+#  Systemd unit file for iCargo Neo GQL Java Build
+[Unit]
+Description=Neo GQL Build Service
+
+[Service]
+Type=forking
+User=icargoadm
+Group=icargoadm
+WorkingDirectory=/opt/icargo-neo-gql-build
+#Environment=JAVA_HOME=${JAVA_HOME}
+#Environment=M2_HOME=${_maven_home}
+ExecStart=/opt/icargo-neo-gql-build/service/servicectl.sh start
+ExecStop=/opt/icargo-neo-gql-build/service/servicectl.sh stop
+PIDFile=/opt/icargo-neo-gql-build/service/service.pid
+RestartSec=10
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<PER:Mappings xmlns:PER="http://www.ibsplc.com/xibase/persistence/mappings" product="ULD">
+
+	<PER:Mapping>
+		<PER:MappingId>1</PER:MappingId>
+		<PER:ModuleName>uld.defaults</PER:ModuleName>
+		<PER:Dao>com.ibsplc.icargo.persistence.dao.uld.defaults.ULDDefaultsSqlDAO</PER:Dao>
+		<PER:ObjectDao>com.ibsplc.icargo.business.uld.defaults.ULDObjectDAO</PER:ObjectDao>
+		<PER:QueryXML>uld-defaults-query.xml</PER:QueryXML>
+		<PER:Entities>
+			<PER:Package Name="com.ibsplc.icargo.business.uld.defaults">
+				<PER:Entity>ULD</PER:Entity>
+				<PER:Entity>ULDAudit</PER:Entity>
+				<PER:Entity>ULDConfigAudit</PER:Entity> 
+				<PER:Entity>UCMExceptionFlight</PER:Entity>
+			</PER:Package>				
+			<PER:Package Name="com.ibsplc.icargo.business.uld.defaults.stock">				
+				<PER:Entity>AccessoriesStockConfig</PER:Entity>
+				<PER:Entity>ULDStockConfig</PER:Entity>
+			</PER:Package>
+			<PER:Package Name="com.ibsplc.icargo.business.uld.defaults.misc">
+				<PER:Entity>ULDDamage</PER:Entity>
+				<PER:Entity>ULDDamagePicture</PER:Entity>
+				<PER:Entity>ULDRepair</PER:Entity>	
+				<PER:Entity>ULDRepairDetails</PER:Entity>			
+				<PER:Entity>ULDAgreement</PER:Entity>
+				<PER:Entity>ULDAgreementDetails</PER:Entity>
+				<PER:Entity>ULDMovement</PER:Entity>
+				<PER:Entity>ULDMovementDetail</PER:Entity>
+				<PER:Entity>ULDDiscrepancy</PER:Entity>
+				<PER:Entity>ULDAirportLocation</PER:Entity>
+				<PER:Entity>ULDPoolOwner</PER:Entity>
+				<PER:Entity>ULDPoolOwnerDetails</PER:Entity>
+				<PER:Entity>ULDPoolSegmentExceptions</PER:Entity>
+				<PER:Entity>ULDHandledCarrier</PER:Entity>
+				<PER:Entity>ULDIntMvt</PER:Entity>
+				<PER:Entity>ULDIntMvtDetail</PER:Entity>
+				<PER:Entity>ULDDamageChecklistMaster</PER:Entity>
+				<PER:Entity>ULDServiceability</PER:Entity>
+			</PER:Package>
+			<PER:Package Name="com.ibsplc.icargo.business.uld.defaults.transaction">
+				<PER:Entity>AccessoryTransaction</PER:Entity>			
+				<PER:Entity>ULDTransaction</PER:Entity>			
+				<PER:Entity>ULDChargingInvoice</PER:Entity>
+			</PER:Package>
+			<PER:Package Name="com.ibsplc.icargo.business.uld.defaults.message">
+				<PER:Entity>ULDFlightMessage</PER:Entity>			
+				<PER:Entity>ULDFlightMessageDetails</PER:Entity>
+				<PER:Entity>ULDFlightMessageReconcile</PER:Entity>
+				<PER:Entity>ULDFlightMessageReconcileDetails</PER:Entity>				
+				<PER:Entity>ULDSCMReconcile</PER:Entity>				
+				<PER:Entity>ULDSCMReconcileDetails</PER:Entity>				
+			</PER:Package>
+		</PER:Entities>
+	</PER:Mapping>
+
+</PER:Mappings>
+
+
+

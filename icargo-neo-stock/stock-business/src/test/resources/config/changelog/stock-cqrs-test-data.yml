@@ -1,0 +1,95 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: TEST_DML_0001
+      author: 201112
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-holder.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkhldmst
+
+  - changeSet:
+      id: TEST_DML_0002
+      author: 201112
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkhldstk
+
+  - changeSet:
+      id: TEST_DML_0003
+      author: 201112
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/range.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkrng
+
+  - changeSet:
+      id: TEST_DML_0004
+      author: 201112
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-range-history.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkrngtxnhis
+  - changeSet:
+      id: TEST_DML_0005
+      author: 201132
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-range-utilization-history.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkrngutlhis
+  - changeSet:
+      id: TEST_DML_0006
+      author: 201132
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/stock-agent.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: stkhldagt
+  - changeSet:
+      id: TEST_DML_0007
+      author: 201132
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/shrdocmst.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: shrdocmst
+  - changeSet:
+      id: TEST_DML_0008
+      author: 201132
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/shragtmst.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: shragtmst
+  - changeSet:
+      id: TEST_DML_0009
+      author: 201132
+      changes:
+        - loadData:
+            encoding: UTF-8
+            file: input-data/shrarlactmst.csv
+            relativeToChangelogFile: true
+            schemaName: public
+            tableName: shrarlactmst

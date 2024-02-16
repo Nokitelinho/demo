@@ -1,0 +1,98 @@
+def Stage_Name
+def APP
+def ENV
+def response
+def bom
+def loadValuesYaml(){
+  def valuesYaml = readYaml file: 'service/app.yml'
+  return valuesYaml;
+}
+
+pipeline {
+    agent any
+
+   parameters {
+        text(defaultValue: "true", description: '', name: 'testvalue')
+    }
+	
+    stages {
+		stage('Deployment to QA') {
+			steps{
+				script {
+				env.dummyvalue ="one,two,three"
+                env.serviceName="auth-service-business"
+				echo "dummyvalue   - ${env.dummyvalue}"
+				def names =Arrays.asList(env.dummyvalue.split(","))
+				echo "names   - ${names}"
+				echo "size of list "+names.size()
+				for (item1 in names) {
+				   echo "  -- item1 in names  ${item1}"
+				}
+				env.tester=names
+				env.dummyone ="one"
+				echo "dummyone   - ${env.dummyone}"
+				
+				def namesone =Arrays.asList(env.dummyone.split("\\,\\n"))
+				echo "namesone   - ${namesone}"
+				
+				echo "size of list namesone "+namesone.size()
+				
+				for (item in namesone) {
+				   echo "  -- item in namesne  ${item}"
+				}
+					}
+				}
+		}
+        
+        
+        stage('Deployment to QA FOR MULTIPE BOM') {
+			steps{
+				sh '''
+				if [ -e ${WORKSPACE}/bom ]; then
+					rm  ${WORKSPACE}/bom
+				fi
+				'''
+                
+                script {
+				env.service_name="auth-service-business"
+					def listOfServices =Arrays.asList(env.service_name.split(","))
+					env.testValue=listOfServices
+					echo "listOfServices   - ${listOfServices}"
+					echo "size of list "+listOfServices.size()
+				}
+				
+				
+				}
+		}
+        
+        
+
+	
+}
+
+	post {
+		success{
+			script {
+				deleteURL="http://10.246.12.51:5000/release-manager-service/rest/api/release/neo-scheduler-quartz-manager/f90075a"
+				delResponse = ["curl","-X", "DELETE", "-H", "Content-Type: application/json", "${deleteURL}"].execute().text
+				echo "delResponse ${delResponse}"
+                
+			}
+			
+			
+			
+	}
+	
+        failure {
+            script {
+			
+				deleteURL="http://10.246.12.51:5000/release-manager-service/rest/api/release/neo-scheduler-quartz-manager/f90075a"
+				delResponse = ["curl","-X", "DELETE", "-H", "Content-Type: application/json", "${deleteURL}"].execute().text
+				echo "delResponse ${delResponse}"
+				
+			
+				
+            }
+        }
+    }
+}

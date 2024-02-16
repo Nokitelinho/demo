@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "neo-snow-adapter.name" . }}
+  namespace: {{ .Values.namespaceOverride | default "icargo-system"  }}
+  labels:
+    {{- include "neo-snow-adapter.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "neo-snow-adapter.selectorLabels" . | nindent 4 }}

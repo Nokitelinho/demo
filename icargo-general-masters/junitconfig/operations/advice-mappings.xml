@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adv:advice-mappings xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+					 xmlns:adv="http://www.ibsplc.com/icargo/business/advice" 
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+					 xsi:schemaLocation="http://www.ibsplc.com/icargo/business/advice xibase/java/server/config/framework/xsd/advice-mappings.xsd"
+					 product="operations">
+	<adv:advice name="operations.shipment.saveDNPaymentDetails">
+		
+           	<adv:action name="initiateWorkflowForDeliveryNote" type="WORKFLOW" 	builder="com.ibsplc.icargo.business.operations.shipment.builder.WorkflowBuilder" 
+              		method="initiateWorkflowforDeliveryNote" async="true"/>
+	</adv:advice>  
+	
+	<adv:advice name="operations.flthandling.markBreakdownComplete"> 
+	  <adv:action name="auditUldBreakdown" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditBreakdownComplete" async="false" enabled="true" />
+	  <adv:action name="stampIrregularityForBreakdown" type="DISCREPANCY" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentIrregularityBuilder" method="stampIrregularityForBreakdown" async="false" enabled="true" />
+	  <!--Added by A-4772 for ICRD-129092 starts here-->
+	 <adv:action name="updateServiceRecoveryRemarkForBreakdown" type="QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.QualityManagementDefaultsBuilder" method="updateServiceRecoveryRemarkForBreakdown" async="true" enabled="true" />	
+	 <!--Added by A-4772 for ICRD-129092 ends here-->
+	</adv:advice>
+	<adv:advice name="operations.flthandling.saveULDNotocAuditDetails"> 
+	  <adv:action name="saveULDNotocAuditDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="saveULDNotocAuditDetails" async="false" enabled="true" />
+	</adv:advice>
+	<adv:advice name="operations.shipment.saveAWBAmendmentDetails"> 
+	  <adv:action name="saveAWBAmendmentDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveAWBAmendmentDetails" async="false" enabled="true" />
+	  <adv:action name="saveNotesForAWBAmendmentDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForAWBAmendmentDetails" async="false" enabled="true" />
+	  <adv:action name="releaseBlockForAWBAmendment" type="BLOCK" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentBlockBuilder" method="releaseBlockForAWBAmendment" async="false" enabled="true" />
+	  <adv:action name="publishAWBDetailsOnSave" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBPublishBuilder" method="publishAWBDetailsOnSave" async="true" enabled="true" /> 
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveShipmentHistoryDetailsForCCA"> 
+      <adv:action name="saveShipmentHistoryDetailsForCCA" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveShipmentHistoryDetailsForCCA" async="false" enabled="true" />	 
+      <adv:action name="auditShipmentHistoryDetailsForCCA" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditShipmentHistoryDetailsForCCA" async="false" enabled="true" />
+    </adv:advice>
+	
+<adv:advice name="operations.shipment.saveAcceptanceDetails"> 
+	   <!--<adv:action name="trackAcceptanceDetails" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForAcceptance" async="true" enabled="true" />-->
+	   <adv:action name="auditAcceptanceDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditAcceptanceDetails" async="false" enabled="true" />
+	   <adv:action name="saveNotesForAcceptance" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForAcceptance" async="false" enabled="true" />
+	   <adv:action name="acceptanceHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForAcceptance" async="false" enabled="true" />	  
+	   
+       <adv:action name="saveAcceptanceHistory" type="ACPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.AcceptanceVersionBuilder" method="saveAcceptanceDetailsHistory" async="false" enabled="true" />
+</adv:advice>
+<adv:advice name="operations.shipment.saveHAWBDetails"> 
+	  <adv:action name="saveNotesForHAWBDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForHAWBDetails" async="false" enabled="true" />	 
+	  <adv:action name="saveHAWBVersionDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveHAWBDetails" async="false" enabled="true" />		
+	  <adv:action name="sendFHL" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendFHL" async="false" enabled="true" />
+	  <adv:action name="markConsolBreakdown" type="DECONSOLIDATION" builder="com.ibsplc.icargo.business.operations.shipment.builder.DeconsolidationBuilder" method="markConsolBreakdown" async="true" enabled="true"/> 
+	  <adv:action name="forwardFHL" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="forwardFHL" async="true" enabled="true" />
+	  <!-- Added by E-1190 for ICRD-176366-->
+	  <adv:action name="handleShipmentBlockonHAWBSave" type="SHPHAWBBLK" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentBlockBuilder" method="handleShipmentBlockonHAWBSave" async="false" enabled="true"/>
+	  <adv:action name="triggerFHLCustomsMessageForShipment" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.CustomsMessageBuilder" method="triggerFHLCustomsMessageForShipment" async="true" enabled="true"/> 
+	  <adv:action name="sendFZB" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendFZB" async="false" enabled="true" />
+	  <adv:action name="forwardFZB" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="forwardFZB" async="true" enabled="true" />
+	  <adv:action name="sendFZBforFHLForward" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendFZBforFHLForward" async="false" enabled="true" />
+	</adv:advice>
+<adv:advice name="operations.shipment.saveHAWBDetails.preadvice"> 
+	<adv:action name="checkHAWBForManualUpdate" type="HAWBMANUPD" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentUtilityBuilder" method="checkHAWBForManualUpdate" async="false" enabled="true"/> 
+</adv:advice>
+<adv:advice name="operations.shipment.saveAWBDetails.preadvice"> 
+	<adv:action name="checkHAWBForManualUpdate" type="HAWBMANUPD" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentUtilityBuilder" method="checkHAWBForManualUpdate" async="false" enabled="true"/> 
+</adv:advice>  
+<adv:advice name="operations.shipment.saveAWBAmendmentDetails.preadvice"> 
+	<adv:action name="checkHAWBForManualUpdate" type="HAWBMANUPD" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentUtilityBuilder" method="checkHAWBForManualUpdate" async="false" enabled="true"/> 
+</adv:advice>  
+<adv:advice name="operations.shipment.saveShipmentDetails"> 
+	  <adv:action name="saveNotesForShipmentDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForShipmentDetails" async="false" enabled="true" />	  
+	  <adv:action name="saveShipmentHistoryForOriginalMessage" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveShipmentHistoryForOriginalMessage" async="true" enabled="true" />	
+	  <adv:action name="saveShipmentDetailsHistory" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveShipmentDetails" async="true" enabled="true" />	
+	  <!--A-5353 as part of ICRD-60160-->
+	  <adv:action name="saveShipmentDataCaptureHistory" type="TXNHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentDataCaptureHistory" async="true" enabled="true" />	
+	  <adv:action name="saveIrregularityForSaveShipment" type="SHPIRR" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentIrregulartyBuilder" method="saveIrregularityForSaveShipment" async="true" enabled="true"/>
+	  <adv:action name="stampIrregularityForAWBAgainstBKG" type="SHPIRR" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentIrregulartyBuilder" method="stampIrregularityForAWBAgainstBKG" async="true" enabled="true"/>
+	  <adv:action name="handleShipmentBlockonSaveAWB" type="SHPBLK" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentBlockBuilder" method="handleShipmentBlockonSaveAWB" async="false" enabled="true"/>
+	  <adv:action name="publishAWBDetailsOnSave" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBPublishBuilder" method="publishAWBDetailsOnSave" async="true" enabled="true" /> 
+	  <adv:action name="sendFDD" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendFDD" async="true" enabled="true" />
+	  <!-- Added by A-5175 for ICRD-32065 starts --> 
+	  <adv:action name="sendCustomsMessages" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.CustomsMessageBuilder" method="sendCustomsMessages" async="true" enabled="true" />
+	  <!-- Added by A-5175 for ICRD-32065 ends--> 
+	  <adv:action name="sendFWBForForwardTxn" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendFWBForForwardTxn" async="true" enabled="true" />
+	  <adv:action name="processMessageFromQueue" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="processMessageFromQueue" async="true" enabled="true" />
+	  <!-- Added by A-5273 for ICRD-79464 starts --> 
+	  <adv:action name="checkAndUpdateINCustomsDetails" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.CustomsMessageBuilder" method="checkAndUpdateINCustomsDetails" async="true" enabled="true" />
+	   <!-- Added by A-5273 for ICRD-79464 End -->
+	   <adv:action name="sendFZBforForward" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendFZBforForward" async="false" enabled="true" />
+	</adv:advice> 
+	
+	  <adv:advice name="operations.shipment.updateShipmentDetailsForAcceptance"> 	
+		<adv:action name="sendFDDForAcceptance" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendFDDForAcceptance" async="true" enabled="true" />	  
+		<adv:action name="publishAWBOnUpdateShipmentDetailsForAcceptance" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBPublishBuilder" method="publishAWBOnUpdateShipmentDetailsForAcceptance" async="true" enabled="true" /> 
+	</adv:advice> 
+	
+    <adv:advice name="operations.shipment.saveShipmentDetailsonExecute"> 	
+		<adv:action name="publishAWBDetails" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBPublishBuilder" method="publishAWBDetails" async="false" enabled="true" /> 
+		<!-- Comment Removed by A-5495 for ICRD-51239-->	
+		<adv:action name="saveShipmentDetailsHistory" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveShipmentDetailsForExecute" async="false" enabled="true" />	
+		 <!--A-5353 as part of ICRD-60160-->
+	  <adv:action name="saveShipmentExecuteHistory" type="TXNHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentExecuteHistory" async="true" enabled="true" />	
+	  <adv:action name="sendFZBforAWBExecute" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendFZBforAWBExecute" async="true" enabled="true" />
+	</adv:advice> 
+	
+	<!-- Added by A-4781 for icrd-66339-->
+	<adv:advice name="operations.shipment.executeShipment"> 	
+		<adv:action name="auditExecuteShipment" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditExecuteShipment" async="false" enabled="true" />
+	</adv:advice> 
+	
+	<adv:advice name="operations.shipment.saveAndPrintShipmentDeeclarations"> 
+	  <adv:action name="saveAndPrintShipmentVersionDeeclarations" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveAndPrintShipmentDeeclarations" async="false" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveShipmentForBooking"> 
+	  <adv:action name="saveShipmentVersionForBooking" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveShipmentForBooking" async="true" enabled="true" />
+	</adv:advice>
+	
+	
+	
+	<adv:advice name="operations.shipment.saveShipmentsForCRA"> 
+	  <adv:action name="saveShipmentsVersionForCRA" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveShipmentsForCRA" async="false" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveHandlingInstructionDetails"> 
+	  <adv:action name="saveHandlingInstructionVersionDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveHandlingInstructionDetails" async="false" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveCTOFoundShipmentDetails"> 
+	  <adv:action name="saveCTOFoundShipmentVersionDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveCTOFoundShipmentDetails" async="false" enabled="true" />
+	  <adv:action name="saveTracingCaseForFoundShipment" type="TRACING" builder="com.ibsplc.icargo.business.operations.shipment.discrepancy.builder.TracingCaseBuilder" method="saveTracingCaseForFoundShipment" async="false" enabled="true" />
+	</adv:advice>
+	<!--Added by A-4809 for ICRD-54800 Starts-->
+	<adv:advice name="operations.shipment.saveTracingCases">
+	  <adv:action name="saveTracingCase" type="TRACING" builder="com.ibsplc.icargo.business.operations.shipment.discrepancy.builder.TracingCaseBuilder" method="saveTracingCase" async="true" enabled="true" />
+	</adv:advice>
+	<adv:advice name="operations.shipment.saveTracingCaseForDocumentDiscrepancy">
+	  <adv:action name="saveTracingCaseForDocumentDiscrepancy" type="TRACING" builder="com.ibsplc.icargo.business.operations.shipment.discrepancy.builder.TracingCaseBuilder" method="saveTracingCaseForDocumentDiscrepancy" async="true" enabled="true" />
+	</adv:advice>	
+	<!--Added by A-4809 for ICRD-54800 Ends-->
+	<adv:advice name="operations.shipment.saveDeliveryNote"> 
+	  <adv:action name="deliveryNoteAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditDeliveryNoteDetails" async="false" enabled="true" />
+	</adv:advice>
+	
+	
+	<adv:advice name="operations.shipment.saveDeliveryDetails"> 
+	  <!--<adv:action name="TrackingForDelivery" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForDelivery" async="true" enabled="true"  />-->
+	  <adv:action name="deliveryAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditDeliveryDetails" async="false" enabled="true"  />	
+	  <adv:action name="saveNotesForDelivery" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForDelivery" async="false" enabled="true"  />
+	  <adv:action name="deliveryHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForDelivery" async="false" enabled="true"  />	  
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveCollectionListDeliveryDetails"> 
+	  <adv:action name="resolveTransaction" type="RSLTXN" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.EventsTriggerBuilder" method="resolveTransaction" async="true" enabled="true"/>  
+	</adv:advice>
+	<adv:advice name="operations.shipment.saveULDAcceptanceDetails"> 
+	  <!--<adv:action name="TrackingForULDAcceptance" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForULDAcceptance" async="true" enabled="true" />-->
+	  <adv:action name="ctoUldAcceptanceAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditULDAcceptanceDetailsForCTO" async="false" enabled="true" />	  
+	  <adv:action name="saveNotesForULDAcceptance" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForULDAcceptance" async="false" enabled="true" />	  
+	  <adv:action name="saveULDAcceptanceVersionDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveULDAcceptanceDetails" async="false" enabled="true" />	
+	  <adv:action name="ctoAcceptanceHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForULDAcceptance" async="false" enabled="true" />
+      <adv:action name="saveULDAcceptanceDetailsHistory" type="ACPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.AcceptanceVersionBuilder" method="saveULDAcceptanceDetails" async="false" enabled="true" />
+	  <adv:action name="initiateWorkflowforUldAcceptanceProcess" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.shipment.builder.WorkflowBuilder" 
+              		method="initiateWorkflowforUldAcceptanceProcess" async="true" enabled="true"/>
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.cto.saveCTODeliveryDetails"> 
+	  <adv:action name="deliveryAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditCTODeliveredDetails" async="false" enabled="true" />
+	 <!-- <adv:action name="TrackingForCTODelivery" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForCTODelivery" async="true" enabled="true" />-->
+	  <adv:action name="ctoDeliveryHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForDelivery" async="false" enabled="true" />	  
+	  
+	</adv:advice>
+
+	<adv:advice name="operations.shipment.saveULDDeliveryDetails"> 
+	  <!--<adv:action name="TrackingForULDDelivery" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForULDDelivery" async="true" enabled="true" />-->
+	  <adv:action name="uldDeliveryAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditShipmentDeliveredDetails" async="false" enabled="true" />	  
+	  <adv:action name="uldDeliveryHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForDelivery" async="false" enabled="true" />	  
+	  <adv:action name="findAndSendFSUForConsolidatedPieces" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="findAndSendFSUForConsolidatedPieces" async="true" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveGroupDeliveryDetails"> 
+	  <adv:action name="groupDeliveryAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditGroupDeliveryDetails" async="false" enabled="true" />
+	   <!--<adv:action name="groupDeliveryTracking" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForGroupDelivery" async="true" enabled="true" />-->
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveFZEMessageDetails"> 
+	  <adv:action name="acceptanceforFZEAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditHAWBAcceptance" async="false" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.identifyAndStampDiscrepancy"> 
+	  <adv:action name="discrepancyAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditShipmentDiscrepancyDetails" async="true" enabled="true" />
+	  <adv:action name="saveShipmentHistoryForImpDiscrepancy" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForImpDiscrepancy" async="true" enabled="true" />
+	  <!-- Added by A-5290 for ICRD-141281 -->
+	  <adv:action name="updateServiceRecoveryRemarkForFinalize" type="QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.QualityManagementDefaultsBuilder" method="updateServiceRecoveryRemarkForFinalize" async="true" enabled="true" evaluator="com.ibsplc.icargo.business.operations.shipment.builder.QualityManagementDefaultsEvaluator"/>
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.createBlock"> 
+	   <adv:action name="shipmentBlockCreatedAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditCreateBlockDetails" async="false" enabled="true" />
+	<!--Added by A-4772 for ICRD-129563 starts here-->
+	<adv:action name="saveServiceRecoveryRemarksForBlock" type = "QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.QualityManagementDefaultsBuilder" method="saveServiceRecoveryRemarksForBlock" async="true" enabled="true"/> 
+	<!--Added by A-4772 for ICRD-129563 ends here-->
+	</adv:advice>
+	<adv:advice name="operations.shipment.releaseBlockForShipment"> 
+	   <adv:action name="shipmentBlockReleasedAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditReleaseBlockDetails" async="false" enabled="true" />
+	<!--Added by A-4772 for ICRD-129563 starts here-->
+	<adv:action name="saveServiceRecoveryRemarksForBlock" type = "QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.QualityManagementDefaultsBuilder" method="saveServiceRecoveryRemarksForBlock" async="true" enabled="true"/> 
+	<!--Added by A-4772 for ICRD-129563 ends here-->
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.releaseBlock"> 
+		<adv:action name="shipmentBlockReleasedAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditReleaseBlockDetails" async="false" enabled="true" />
+	<!--Added by A-4772 for ICRD-129563 starts here-->
+	<adv:action name="saveServiceRecoveryRemarksForBlock" type = "QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.QualityManagementDefaultsBuilder" method="saveServiceRecoveryRemarksForBlock" async="true" enabled="true"/> 
+	<!--Added by A-4772 for ICRD-129563 ends here-->
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveShipperReturnNoteDetails"> 
+		 <adv:action name="shipmentReturnAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditShipmentReturned" async="false" enabled="true" />		
+	     <adv:action name="saveNotesForShipperReturnNoteDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForShipperReturnNoteDetails" async="false" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveDeliveryReturns"> 
+		<adv:action name="deliveryReturnAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditDeliveryReturn" async="false" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveHandoverDocument"> 
+		<adv:action name="documentHandOverAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditDocumentHandOver" async="false" enabled="true" />
+		<adv:action name="saveShipmentHistoryForDocumentHandover" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForDocumentHandover" async="false" enabled="true" />	  
+	</adv:advice> 
+	
+	<adv:advice name="operations.shipment.saveShipmentNotes"> 
+		<adv:action name="auditAwbNotes" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditAwbNotes" async="false" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveCTODeliveryNote"> 		
+		<adv:action name="saveNotesForCTODeliveryNote" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForCTODeliveryNote" async="false" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveCTODeliveryNoteWithTrackingNumber"> 
+		 <adv:action name="saveNotesForCTODeliveryNote" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForCTODeliveryNote" async="false" enabled="true" />	
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveCheckSheetDetails">          
+         <adv:action name="saveCheckSheetDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="saveCheckSheetAuditDetails"   async="false" enabled="true" />         
+    </adv:advice>
+	
+	<adv:advice name="operations.shipment.cto.saveCTOAcceptanceDetails"> 
+	  <adv:action name="ctoAcceptanceAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditShpAcceptanceDetailsForCTO" async="true" enabled="true" />
+	  <!--<adv:action name="TrackingForCTOAcceptance" type="TRACKING" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentTrackingBuilder" method="saveTrackingForCTOAcceptance" async="true" enabled="true" />-->
+	  <adv:action name="ctoAcceptanceHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForAcceptance" async="true" enabled="true" />
+	  
+      <adv:action name="saveAcceptanceDetailsHistory" type="ACPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.AcceptanceVersionBuilder" method="saveAcceptanceDetailsHistory" async="true" enabled="true" />
+      <adv:action name="saveVersionHistoryforAcceptanceDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveCTOAcceptanceDetails" async="true" enabled="true" />
+	 <adv:action name="initiateWorkflowforAcceptance" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.shipment.builder.WorkflowBuilder" 
+              		method="initiateWorkflowforAcceptance" async="true" enabled="true"/>
+	
+	 <adv:action name="initiateWorkflowforAcceptanceProcess" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.shipment.builder.WorkflowBuilder" 
+              		method="initiateWorkflowforAcceptanceProcess" async="true" enabled="true"/>
+	<adv:action name="saveIrregularityForSaveCTOAcceptance" type="SHPIRR" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentIrregulartyBuilder" method="saveIrregularityForSaveCTOAcceptance" async="false" enabled="true"/>
+	   <!--Added by A-6875 -->
+	   <adv:action name="ctoAcceptanceDimensionAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditAcceptanceDimensionDetails" async="true" enabled="true" />
+	</adv:advice>
+	<!-- Added as part of ICRD-90098 starts-->
+	<adv:advice name="operations.shipment.cto.saveCTOAcceptanceDetails.handleBlock"> 			
+		<adv:action name="handleShipmentBlockonAcceptance" type="SHPBLK" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentBlockBuilder" method="handleShipmentBlockonAcceptance" async="false" enabled="true"/>
+	</adv:advice>
+	<!-- Added as part of ICRD-90098 ends-->
+	<adv:advice name="operations.shipment.saveDocumentDiscrepancy">          
+	  <adv:action name="saveServiceRecoveryRemarksForDiscrepancies" type = "QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.QualityManagementDefaultsBuilder" method="saveServiceRecoveryRemarksForDiscrepancies" 
+	  async="true" enabled="true" evaluator="com.ibsplc.icargo.business.operations.shipment.builder.QualityManagementDefaultsEvaluator" />		  
+      <adv:action name="saveNotesForDocumentDiscrepancy" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForDocumentDiscrepancy" async="false" enabled="true" />
+      <adv:action name="saveShipmentHistoryForDocumentDiscrepancy" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForDocumentDiscrepancy" async="false" enabled="true" />
+	  <!-- Added by A-5253 Start -->
+	  <adv:action name="saveIrregularityForWarehouse" type="SHPIRR" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentIrregulartyBuilder" method="saveIrregularityForWarehouse" async="false" enabled="true" />	 
+	  <!-- Added by A-5253 End -->
+    </adv:advice>
+	
+	<!-- Added by T-1927 Start -->
+	<adv:advice name="operations.shipment.cto.saveIrregularityDetails">
+	<adv:action name="saveShipmentHistoryForIrregularity" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForIrregularity" async="false" enabled="true"/>
+	<adv:action name="shipmentIrregularityAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="shipmentIrregularityAudit" async="false" enabled="true"/>
+	</adv:advice>
+	<!-- Added by T-1927 End -->
+	<!--operations-flthandling starts-->
+	<adv:advice name="operations.flthandling.saveCTM"> 
+	   <adv:action name="saveNotesForCTM" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForCTM" async="false" enabled="true" />
+	   <adv:action name="saveCTMShipmentHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveCTMShipmentHistory" async="false" enabled="true" />	  
+	  <adv:action name="saveVersionsForCTM" type="VERHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentVersionBuilder" method="updateOperationalShipmentForCTM" async="false" enabled="true" />	  
+	   
+	   <!--<adv:action name="TrackingForTransferManifest" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForTransferManifest" async="true" />-->
+	</adv:advice>
+	<!-- Added A-5125 for ICRD-22471 starts -->
+	<adv:advice name="operations.flthandling.captureIrregularityOnCTM">
+         <adv:action name="captureIrregularityOnCTM" type="DISCREPANCY" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentIrregularityBuilder" method="saveShipmentIrregularity" async="false" enabled="true" />		  
+    <adv:action name="rejectShipmentOnCTMAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="rejectShipmentOnCTMAudit" async="false" enabled="true"/> 
+	</adv:advice> 
+	<!-- Added A-5125 for ICRD-22471 ends -->
+	
+	<adv:advice name="operations.flthandling.reopenFlight">
+         <adv:action name="reopenFlightAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="reopenFlightAudit" async="false" enabled="true" />		  
+    </adv:advice>
+	
+	<adv:advice name="operations.flthandling.saveManifestDetails"> 
+	   <adv:action name="saveManifestDetails" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForManifest" async="false" enabled="true" />	  
+	</adv:advice>
+	
+	<adv:advice name="operations.flthandling.saveArrivalDetails"> 
+	   <!--<adv:action name="arrivalTracking" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForArrival"   async="true" enabled="true" /> -->
+	   <adv:action name="arrivalAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentArrivalDetails" async="false" enabled="true" />
+	   <adv:action name="saveNotesForArrivalDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForArrivalDetails" async="false"  enabled="true"/>
+	   <adv:action name="saveArrivalDetails" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveArrivalDetails" async="true" enabled="true" />	  
+  <adv:action name="createBlockForArrival" type="BLOCK" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentBlockBuilder" method="createBlockForArrival" async="false" enabled="true" />	  	   
+	<!-- Added by A-5132 as part of ICRD-23929	-->
+		<adv:action name="saveArrivalDetails" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="sendFSUMessageForArrival" async="true" enabled="true" />	  
+	</adv:advice>
+	
+	
+	<adv:advice name="operations.flthandling.closeFlight">
+          <adv:action name="auditCloseFlight" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditCloseFlight" async="true" enabled="true" />		  
+		  <!-- A-5273 for ICRD-76038 adv:action name="saveShipmentHistoryForCloseFlight" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForImpDiscrepancy" async="false" enabled="true" / -->
+		  <!-- Added by A-5132 as part of ICRD-23929 -->
+		  <adv:action name="saveAuditForCloseFlight" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentIrregularityBuilder" method="stampIrregularityForDiscrepancy" async="true" enabled="true" />	  
+		<!-- <adv:action name="sendUCMINMessage" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="sendUCMINMessage" async="false" enabled="true" /> --> 
+		<adv:action name="closeFlightForShipmentHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="closeFlightForArrival" async="false" enabled="true" />
+    </adv:advice>
+	
+	<adv:advice name="operations.flthandling.generateNOTOCMessage"> 
+		 <adv:action name="saveNotocAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditNotocGenerated" async="false" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.flthandling.saveNotocDetails">
+         <adv:action name="saveNotocAuditDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="saveNotocAuditDetails" async="false" enabled="true" />		  
+         <!--Added by A-5353 for CoolTool -->
+		<adv:action name="saveShipmentHistoryForNotoc" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForNotoc" async="true" enabled="true" />		  
+    </adv:advice>
+	
+	<adv:advice name="operations.flthandling.cto.saveOffloadDetails"> 
+	  <!--<adv:action name="saveOffloadDetails" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingDetailsForOffload" async="true" enabled="true" />-->
+	  <adv:action name="offloadAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentsOffloadDetails" async="false" enabled="true" />
+	  <adv:action name="saveShipmentHistoryForOffload" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForOffload" async="false" enabled="true" />	  
+	  <adv:action name="offloadServiceRecovery" type="QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.QualityManagementDefaultsBuilder" method="saveOffloadUldServiceRecoveryDetails" async="true" enabled="true" />		  	  
+	</adv:advice>
+	
+	<adv:advice name="operations.flthandling.cto.saveCTOImportManifestDetails"> 	 
+	 <!--<adv:action name="CTOImportManifestDetails" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForImportManifest" async="true" enabled="true" />-->
+	 <adv:action name="ctoManifestAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditCTOShipmentManifestDetails" async="false" enabled="true" />	
+	 <!--<adv:action name="slamForImportManifest" type="SLAM" builder="com.ibsplc.icargo.business.operations.flthandling.builder.SlamBuilder" method="slamForImportManifest" async="true" enabled="true" />-->
+	 <adv:action name="saveNotesForAddUpdateManifestDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForAddUpdateManifestDetails" async="false" enabled="true" />
+	 <adv:action name="saveCTOImportManifestDetails" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveCTOImportManifestDetails" async="false" enabled="true" />	  
+	 <adv:action name="saveVersionForCTOImportManifestDetails" type="VERHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentVersionBuilder" method="saveCTOImportManifestDetails" async="false" enabled="true" />	  
+	<!--A-5165 for ICRD-54134-->
+	<adv:action name="processFUMMessageFromQueueForImport" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="processFUMMessageFromQueueForImport" async="false" enabled="true" />	  
+    <adv:action name="startInitiateImportWorkflow" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.flthandling.builder.WorkflowBuilder" method="startInitiateImportWorkflow" async="false" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.flthandling.flagFlight">
+        <adv:action name="auditForFlagFlight" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditForFlagFlight" async="false" enabled="true" />		  
+    </adv:advice>
+	
+	<adv:advice name="operations.flthandling.saveBreakdownDetails">
+		<!--<adv:action name="slamForBreakdown" type="SLAM" builder="com.ibsplc.icargo.business.operations.flthandling.builder.SlamBuilder" method="slamForBreakdown" async="true" enabled="true" />-->
+        <adv:action name="auditUldBreakdown" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditUldBreakdown" async="false" enabled="true" />
+        <adv:action name="breakDownAuditForShipment" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditBreakDownDetails" async="false" enabled="true" />
+		<!--<adv:action name="saveBreakdownDetails" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForBreakdown" async="true" enabled="true" />	-->
+		<adv:action name="saveNotesForBreakdown" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForBreakdown" async="false" enabled="true" />
+		<adv:action name="breakdownDetailsShipmentHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveBreakdownDetails" async="false" enabled="true" />
+        <adv:action name="blockHandlingForDamageDiscrepecyAtUldBreakDown" type="BLOCK" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentBlockBuilder" method="blockHandlingForDamageDiscrepecyAtUldBreakDown" async="true" enabled="true" />		
+	<!-- <adv:action name="sendUCMINMessageInBreakDown" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="sendUCMINMessageInBreakDown" async="false" enabled="true" /> -->	  
+		<adv:action name="handleShipmentBlockOnBreakdown" type="BLOCK" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentBlockBuilder" method="handleShipmentBlockOnBreakdown" async="true" enabled="true" />
+		<adv:action name="startBreakdownWorkflow" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.flthandling.builder.WorkflowBuilder" method="startBreakdownWorkflow" async="true" enabled="true" />
+		<adv:action name="startRelocationWorkflow" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.flthandling.builder.WorkflowBuilder" method="startRelocationWorkflow" async="true" enabled="true" />
+		<adv:action name="startWorkFlowForBreakdown" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.flthandling.builder.WorkflowBuilder" method="startWorkFlowForBreakdown" async="false" enabled="true" />
+		<!--Added by A-4772 for ICRD-128202 starts here-->
+		<adv:action name="updateServiceRecoveryRemarkForBreakdown" type="QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.QualityManagementDefaultsBuilder" method="updateServiceRecoveryRemarkForBreakdown" async="true" enabled="true" />		  
+		<!--Added by A-4772 for ICRD-128202 ends here-->
+    </adv:advice>
+	<adv:advice name="operations.shipment.handleShipmentBlockonScreeningBreakDown"> 
+		<adv:action name="handleShipmentBlockonScreeningBreakDown" type="BLOCK" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentBlockBuilder" method="handleShipmentBlockonScreeningBreakDown" async="false" enabled="true"/>
+	</adv:advice>
+    <adv:advice name="operations.flthandling.saveDWSDetails">
+        <adv:action name="saveDWSDetailsAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="saveDWSDetailsAudit" async="false" enabled="true" />		  
+    </adv:advice>	
+	
+	<adv:advice name="operations.flthandling.closeFlightForImportManifest">
+        <adv:action name="auditCloseFlight" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditCloseFlight" async="false" enabled="true" />		  
+		<!--Added by A-4772 for ICRD-129165 starts here-->
+		<adv:action name="saveServiceRecoveryRemarksForDiscrepancies" type = "QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.QualityManagementDefaultsBuilder" method="saveServiceRecoveryRemarksForDiscrepancies" async="true" enabled="true" />
+		<!--Added by A-4772 for ICRD-129165 ends here-->
+		<!--Commented by A-5807 for BUG ICRD-76308
+		<adv:action name="saveAuditForCloseFlight" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentIrregularityBuilder" method="stampIrregularityForDiscrepancy" async="false" enabled="true" />-->	  
+		<!-- A-5273 for ICRD-76038 adv:action name="saveShipmentHistoryForImpDiscrepancy" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForImpDiscrepancy" async="false" enabled="true" / -->	  
+		<adv:action name="closeFlightForImportManifestShipmentHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="closeFlightForImportManifest" async="false" enabled="true" />
+    </adv:advice>
+	
+	<adv:advice name="operations.flthandling.cto.saveCTOExportManifest">
+	<!--Added by A-4772 for ICRD-152852 starts here.For manifest the AWB notes should be saved-->
+	<adv:action name="saveManifestDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForManifestDetails" async="false" enabled="true" />
+	<!--Added by A-4772 for ICRD-152852 ends here-->
+		<!--<adv:action name="slamForManifest" type="SLAM" builder="com.ibsplc.icargo.business.operations.flthandling.builder.SlamBuilder" method="slamForManifest" async="true" enabled="true" /> -->
+        <adv:action name="auditExportFlight" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditExportFlight" async="false" enabled="true" />		  
+	    <adv:action name="printExportManifestAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="printExportManifestAudit" async="false" enabled="true" />
+	    <adv:action name="shipmentManifestAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentManifestDetails" async="false" enabled="true" />		
+	    <!--<adv:action name="saveTrackingForManifest" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForManifest" async="true" enabled="true" />	 -->
+	    <adv:action name="ctoExportManifestShipmentHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForManifest" async="false" enabled="true" />
+	    <!-- adv:action name="ctoExportManifestDiscrepancyShipmentHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForExportDiscrepancy" async="false" enabled="true" /-->
+   		<!-- Added by A-5165 for ICRD-30467 -->
+		<adv:action name="processFUMMessageFromQueueForExportManifest" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="processFUMMessageFromQueueForExportManifest" async="false" enabled="true" />	  
+		<!-- Added by A-5165 for ICRD-30467 ends-->
+		<!-- Added by A-5175 for ICRD-68386 -->
+	    <adv:action name="saveShipmentIrregularityForManifest" type="SHPIRR" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentIrregularityBuilder" method="saveShipmentIrregularityForManifest" async="false" enabled="true"/>
+	    <!-- Added by A-5175 for ICRD-68386-->
+   
+    </adv:advice>
+    
+    <adv:advice name="operations.flthandling.cto.sendFSUDISOVCDMessages">
+	    <adv:action name="sendFSUDISOVCDMessages" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForExportOVCDDiscrepancy" async="false" enabled="true" />
+    </adv:advice>
+	
+	<adv:advice name="operations.flthandling.cto.saveBuildupDetails"> 
+	<!--Added by a-4772 for ICRD-152852 starts here.For Builtup AWB notes should be saved-->
+	<adv:action name="saveBuildupDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForBuildupDetails" async="false" enabled="true" />
+	<!--Added by a-4772 for ICRD-152852 ends here-->
+	   <adv:action name="buildUpAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentBuildUpDetails" async="false" enabled="true" />
+	   <!--<adv:action name="buildTracking" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForBuildup" async="true" enabled="true" />	   -->
+	   <adv:action name="savaBuildupHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForBuildUp" async="true"/>
+		<!-- Added by A-5165 for ICRD-30467 -->
+		<adv:action name="processFUMMessageFromQueueForExport" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="processFUMMessageFromQueueForExport" async="false" enabled="true" />	  
+		<!-- Added by A-5165 for ICRD-30467 ends-->
+	   <!-- Added by A-5175 for ICRD-68386 -->
+	   <adv:action name="saveShipmentIrregularityForBuildUp" type="SHPIRR" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentIrregularityBuilder" method="saveShipmentIrregularityForBuildUp" async="false" enabled="true"/>
+	   <!-- Added by A-5175 for ICRD-68386-->
+	    <adv:action name="startBuildupCompletionWorkflow" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.flthandling.builder.WorkflowBuilder" method="startBuildupCompletionWorkflow" async="true" enabled="true"/>
+	</adv:advice>
+	
+	<adv:advice name="operations.flthandling.reassignShipments"> 
+	  <adv:action name="reAssignAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentReAssignedDetails" async="false" enabled="true" />
+	<adv:action name="savaBuildupHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForReassign" async="true"/>
+	</adv:advice>
+	
+    <adv:advice name="operations.flthandling.cto.finaliseExportFlight">
+         <adv:action name="finalizeFlightAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="finalizeFlightAudit" async="true" enabled="true" />
+         <adv:action name="finaliseFlightAuditForShipment" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentsDepartureDetails" async="true" enabled="true" />
+		 <!--<adv:action name="finaliseExportFlight" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForDeparture" async="true" enabled="true" />	-->
+		 <adv:action name="saveShipmentHistoryForFlightFinalize" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="finaliseExportFlight" async="false" enabled="true" />
+		 <!-- Added by T-1928 for ICRD-14297 -->
+		 <adv:action name="findMalperformedAllotments" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AllotmentWorkflowBuilder" method="findMalperformedAllotments" async="true" enabled="true" />
+		 <!-- Added by A-5125 for ICRD-36091-->
+		 <adv:action name="sendUCMOutMessage" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="sendUCMOutMessage" async="true" enabled="true" />
+		 <!-- Added by A-5791 for ICRD-54588 starts here-->
+		   <adv:action name="sendManifestReport" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="sendManifestReportOnFlightFinalisation" async="true" enabled="true" /> 
+		 <!-- Added by A-5791 for ICRD-54588 ends here-->
+		
+    </adv:advice>
+
+    <adv:advice name="operations.flthandling.saveRampTransferDetails"> 
+	     <adv:action name="auditRampTransferDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditRampTransferDetails" async="false" enabled="true" />
+		<!-- Added by A-5165 for ICRD-30467 -->
+		<adv:action name="processFUMMessageFromQueueForRampTransfer" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.MessageBuilder" method="processFUMMessageFromQueueForRampTransfer" async="false" enabled="true" />	  
+		<!-- Added by A-5165 for ICRD-30467 ends-->
+		 
+		<adv:action name="saveRampTransferDetails" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForRampTransfer" async="true" 
+		enabled="true"/>
+	
+	</adv:advice>	
+	
+	<adv:advice name="operations.flthandling.autoArrive">
+        <!--<adv:action name="saveTrackingForAutoArrival" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForAutoArrival" async="true" enabled="true" />		  -->
+    </adv:advice>
+	<!-- Added saveshipmentHistoryforUldArrival entry below by A-4781 for ICRD-35216 -->
+	<adv:advice name="operations.flthandling.saveULDArrivalDetails"> 
+	    <adv:action name="ULDarrivalAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentULDArrivalDetails" async="false" enabled="true" />
+		<adv:action name="saveNotesForUldArrivalDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForUldArrivalDetails" async="false" enabled="true" />
+		<adv:action name="saveShipmentHistoryForUldArrivalDetails" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForUldArrivalDetails" async="false" enabled="true" />
+	</adv:advice>    
+	
+	<adv:advice name="operations.flthandling.saveLoadPlan">
+        <adv:action name="auditReleaseForOps" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditReleaseForOps" async="false" enabled="true" />		  
+        <adv:action name="loadPlanAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditLoadPlanShipment" async="false" enabled="true" />		 
+		<!--<adv:action name="slamForLoadplan" type="SLAM" builder="com.ibsplc.icargo.business.operations.flthandling.builder.SlamBuilder" method="slamForLoadplan" async="true" enabled="true" />		   -->
+		<!--<adv:action name="saveTrackingForLoadPlan" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForLoadPlan" async="true" enabled="true" />		  -->
+		<adv:action name="saveShipmentIrregularity" type="IRREGULARITY" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentIrregularityBuilder" method="saveShipmentIrregularity" async="true" enabled="true" /> 
+		<!-- Added by A-5132 starts -->
+		<adv:action name="saveNotesForLoadPlan" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForLoadPlan" async="false" enabled="true" />	
+		<!-- Added by A-5132 ends -->
+		<!--Added by A-5374 for ICRD-15718-->
+		<adv:action name="saveLoadPlanVersionDetails" type="VERSION" builder="com.ibsplc.icargo.business.operations.flthandling.builder.LoadPlanVersionBuilder" method="saveLoadPlanVersionDetails" async="false" enabled="true" />		  
+		<adv:action name="updatePolVersion" type="POLVERSION" builder="com.ibsplc.icargo.business.operations.flthandling.builder.LoadPlanVersionBuilder" method="updatePolVersion" async="false" enabled="true" />		  
+		<adv:action name="updatePolVersionForHistory" type="POLVERSIONHISTORY" builder="com.ibsplc.icargo.business.operations.flthandling.builder.LoadPlanVersionBuilder" method="updatePolVersionForHistory" async="true" enabled="true"/>
+		<!--ENDS-->
+		<!--Added by A-5353 for CoolTool -->
+		<adv:action name="saveShipmentHistoryForLoadPlan" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.flthandling.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForLoadPlan" async="true" enabled="true" />
+    </adv:advice>
+	
+	<adv:advice name="operations.flthandling.generateManifestReport">
+        <adv:action name="printManifestAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="printManifestAudit" async="false" enabled="true" />		  
+    </adv:advice>
+	
+	<adv:advice name="operations.flthandling.printDWSEnquiryReport">
+        <adv:action name="auditDWSPrint" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditDWSPrint" async="false" enabled="true" />		  
+    </adv:advice>
+	
+	<adv:advice name="operations.flthandling.autoProcessFlight"> 
+		<!--<adv:action name="TrackingForAutoProcessFlight" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForAutoDeparture" async="true" enabled="true" />-->
+	</adv:advice>         
+	 <!-- Added by A-5132 starts -->
+	 <!-- Modified by A-4781 -->
+	 <adv:advice name="operations.flthandling.cto.saveBuildupForCarrier"> 
+		<adv:action name="saveBuildupDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveNotesForBuildupDetails" async="false" enabled="true" />
+		<adv:action name="buildUpAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditShipmentBuildUpDetails" async="false" enabled="true" />
+		<!--<adv:action name="buildTracking" type="TRACKING" builder="com.ibsplc.icargo.business.operations.flthandling.builder.ShipmentTrackingBuilder" method="saveTrackingForBuildup" async="true" enabled="true" />	   -->
+	</adv:advice> 
+	<!-- Added by A-5132 ends --> 
+	<!-- Added by A-4823 -->
+	<adv:advice name="operations.shipment.saveDangerousGoodsOccurrenceDetails"> 
+		<adv:action name="saveDangerousGoodsOccurrenceDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="saveDangerousGoodsOccurrenceDetails" async="false" />
+	</adv:advice>     
+	<!-- Added for ICRD-37835 by A-5178 -->
+	<adv:advice name="operations.shipment.markShipmentClosure"> 
+		<adv:action name="markShipmentClosure" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="markShipmentClosure" async="true"/>
+	</adv:advice>	
+	
+	<!-- Added for ICRD-37835 by A-5178 -->
+	
+	<adv:advice name="operations.shipment.handlingBookingUpdate"> 
+		<adv:action name="handlingBookingUpdate" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="handlingBookingUpdate" async="true"/>
+	</adv:advice>
+	  <!-- Added by A-5132 starts --> 
+	<adv:advice name="operations.shipment.sendFSUNFD"> 
+		<adv:action name="sendFSUNFD" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="sendFSUNFD" async="true"/>
+	</adv:advice>
+	<!-- Added by A-5250 for ICRD-21260 starts --> 
+	<adv:advice name="operations.shipment.markShipmentReadyForCarriage"> 
+		 <adv:action name="ctoAcceptanceHistory" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="saveShipmentHistoryForReadyForCarriage" async="true" enabled="true" />
+	</adv:advice>
+	<adv:advice name="operations.shipment.cto.finalizeAcceptance"> 
+		<adv:action name="ctoAcceptanceAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditAcceptanceFinalized" async="true" enabled="true" />
+		<adv:action name="saveIrregularityForAcceptance" type="SHPIRR" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentIrregulartyBuilder" method="saveIrregularityForAcceptance" async="false" enabled="true"/>
+		<!-- Added by A-5173 for ICRD-15188 -->
+		<adv:action name="resolveIrregularityForAcceptance" type="SHPIRR" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentIrregulartyBuilder" method="resolveIrregularityForAcceptance" async="false" enabled="true" />
+		<!-- Added by A-5173 for ICRD-15188 -->
+	</adv:advice>
+	<!-- Added by A-5250 for ICRD-21260 end --> 
+	<!-- Added by A-5135 for ICRD-38209 starts --> 
+	<adv:advice name="operations.shipment.markShipmentReadyForCarriageForHistory"> 
+		<adv:action name="saveShipmentMasterHistory" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="markShipmentReadyForCarriage" async="true" enabled="true" />
+		<!-- Added by A-7131 for ICRD-135973 starts-->
+		<adv:action name="saveShipmentMasterAudit" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="markShipmentReadyForCarriage" async="false" enabled="true" />
+		<!-- Added by A-7131 for ICRD-135973 ends -->
+		<!-- Added by A-5954 for ICRD-165506 starts-->
+		<adv:action name="triggerCustomsMessageForShipment" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.CustomsMessageBuilder" method="triggerCustomsMessageForShipment" async="true" enabled="true"/> 
+		<!-- Added by A-5954 for ICRD-165506 ends -->
+	</adv:advice>
+	<!-- Added by A-5135 for ICRD-38209 ends --> 
+	<adv:advice name="operations.shipment.saveScreeningDetails"> 
+			<adv:action name="auditScreeningDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditScreeningDetails" async="true" enabled="true" />
+	   <adv:action name="saveShipmentVersionforScreening" type="VERHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveShipmentVersionforScreening" async="true" enabled="true" />				
+	</adv:advice>
+	<adv:advice name="operations.shipment.saveScreeningDetails.handleBlock"> 			
+		<adv:action name="handleShipmentBlockonScreeningAWB" type="SHPBLK" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentBlockBuilder" method="handleShipmentBlockonScreeningAWB" async="false" enabled="true"/>
+	</adv:advice>
+	
+	
+	<!--Added for ICRD-32065 by A-5163 starts-->
+	<adv:advice name="operations.shipment.triggerFSUMessageForAirline">
+		<adv:action name="triggerFSUMessageForAirline" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="triggerFSUMessageForAirline" async="true" enabled="true"/>
+	</adv:advice>
+	<!--Added for ICRD-32065 by A-5163 ends-->
+	<!--Added by A-5117 for ICRD-85681 starts-->
+	<adv:advice name="operations.shipment.markFlightMovement">
+		<adv:action name="auditMarkFlightMVT" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditMarkFlightMVT" async="true" enabled="true" />
+	</adv:advice>
+	<!--Added by A-5117 for ICRD-85681 ends-->
+	
+	<!--Added by A-5117 for ICRD-85681 ends-->
+	<adv:advice name="operations.shipment.saveShipmentHistory">
+		<adv:action name="triggerFSUMessageForCustoms" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.CustomsMessageBuilder" method="triggerFSUMessageForCustoms" async="true" enabled="true"/>
+		<adv:action name="sendCustomsMessages"  type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.CustomsMessageBuilder" method="sendCustomsMessages" async="true" enabled="true"/>
+	</adv:advice> 
+	<!--Added by A-5117 for ICRD-85681 ends-->
+	
+	
+	<adv:advice name="operations.shipment.triggerForwardFSUMessagetoAgent">
+       <adv:action name="triggerForwardFSUMessagetoAgent" type="MESSAGE" 
+		   builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" 
+		   method="triggerForwardFSUMessagetoAgent" async="true" enabled="true"	/>
+	</adv:advice>
+	
+	
+		<!--Added by A-4809 Starts-->
+	<adv:advice name="operations.shipment.initiateWorkflowForSendMessage"> 
+		<adv:action name="initiateWorkflowForSendMessage" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.shipment.builder.WorkflowBuilder" method="initiateWorkflowForSendMessage" async="true"/>
+	</adv:advice>	
+	<!--Added by A-4809 Ends-->
+
+    <!-- Added by A-4501 starts -->
+	<adv:advice name="operations.shipment.saveIrregularityForTracingReport"> 
+	  <adv:action name="saveIrregularityForTracingReport" type="DISCREPANCY" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentIrregulartyBuilder" method="saveIrregularityForTracingReport" async="true" enabled="true" />
+	   <adv:action name="blockHandlingForDamageDiscrepecy" type="BLOCK" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentBlockBuilder" method="blockHandlingForDamageDiscrepecy" async="true" enabled="true" />
+	   
+	   <adv:action name="auditForDamageDiscrepecy" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditForDamageDiscrepecy" async="true" enabled="true" />
+	   
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveDamageDiscrepancy">
+	
+<adv:action name="auditForDamageDiscrepecy" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditForDamageDiscrepecy" async="true" enabled="true" />
+
+</adv:advice>	
+	<adv:advice name="operations.shipment.saveFlightDiscrepancy"> 	
+	  <adv:action name="blockHandlingForFlightDamageDiscrepecy" type="BLOCK" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentBlockBuilder" method="blockHandlingForFlightDamageDiscrepecy" async="true" enabled="true" />
+	  
+	  <adv:action name="saveFlightDiscrepancy" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="saveFlightDiscrepancy" async="true" 
+enabled="true" />
+	</adv:advice>
+	
+	<!-- Added by A-4501 ends -->
+	<adv:advice name="operations.flthandling.saveDeconsolidationDetails"> 
+	  <adv:action name="auditDeconsolidationDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditDeconsolidationDetails" async="true" enabled="true" />
+	   <adv:action name="startDeconsolidationWorkflow" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.flthandling.builder.WorkflowBuilder" method="startDeconsolidationWorkflow" async="true" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.flthandling.performDeconsolidationDetails"> 
+	  <adv:action name="auditDeconsolidationCompleteDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditDeconsolidationCompleteDetails" async="true" enabled="true" />
+	 </adv:advice>
+	<!-- Added by A-5214 starts -->
+	<adv:advice name="operation.shipment.cto.updatednstatus">
+		<adv:action name="updateDNStatus" type="AUDIT"
+			builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" 
+			method="auditDNNumber" async="false" />	
+	</adv:advice>
+	<!-- Added by A-5214 ends -->
+	<adv:advice name="operations.shipment.qms.identifylateevents">
+		<adv:action name="identifyLateEvents" type="QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.QualityManagementDefaultsBuilder" method="identifyLateEvents" async="true" enabled="true"/>
+	</adv:advice> 
+	<adv:advice name="operations.shipment.sendCCAEMail"> 
+	  <adv:action name="sendCCAEMail" type="message" builder="com.ibsplc.icargo.business.operations.shipment.builder.MessageBuilder" method="sendCCAEMail" async="false" enabled="true" />	  
+	</adv:advice>
+	<!--Added By A-6344 for ICRD-69870 Starts here-->
+	<adv:advice name="operations.shipment.saveIrregularityForEfreightValidation"> 
+	  <adv:action name="saveIrregularityForEfreightValidation" type="SHPIRR" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentIrregulartyBuilder" method="saveIrregularityForEfreightValidation" async="true" enabled="true" />	  
+	</adv:advice> 
+	<!--Added By A-6344 for ICRD-69870 Ends here-->
+	<adv:advice name="operations.shipment.saveShipmentDetailsForQA"> 
+	  <adv:action name="saveNotesForShipmentDetails" type="NOTES" builder="com.ibsplc.icargo.business.operations.shipment.builder.AWBNotesBuilder" method="saveNotesForShipmentDetails" async="false" enabled="true" />	  
+	  <adv:action name="handleShipmentBlockOnCWHSave" type="BLOCK" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentBlockBuilder" method="handleShipmentBlockOnCWHSave" async="true" enabled="true" />
+	</adv:advice> 
+	<!--Added by A-5497 ,regarding ICRD-85131 Starts here-->
+	<adv:advice name="operation.shipment.generateGroupID"> 	
+		<adv:action name="generateGroupID" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="generateGroupID" async="false" enabled="true" />
+		<adv:action name="startBaseDeliveryProcessWorkFlow" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.shipment.builder.WorkflowBuilder" method="startBaseDeliveryProcessWorkFlow" async="true" enabled="true" />
+	</adv:advice>
+	<!--Added by A-5497 ,regarding ICRD-85131 Ends here-->
+	<adv:advice name="operation.shipment.generateGroupIDForExecution"> 	
+		<adv:action name="generateGroupIDForExecution" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="generateGroupIDForExecution" async="false" enabled="true" />
+	</adv:advice>
+	<adv:advice name="operation.shipment.ungroupAWB"> 	
+		<adv:action name="ungroupAWB" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="ungroupAWB" async="false" enabled="true" />
+	</adv:advice>
+	<adv:advice name="operation.shipment.updateGroupIDStatus"> 	
+		<adv:action name="updateGroupIDStatus" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="updateGroupIDStatus" async="false" enabled="true" />
+	</adv:advice>
+	<!-- Added by A-5198 for ICRD-81793 -->
+	<adv:advice name="operations.shipment.qms.voidServiceRecoveryCases">
+       	<adv:action name="voidServiceRecoveryCaseOnShipperReturn" type="QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.QualityManagementDefaultsBuilder" 
+              		method="voidServiceRecoveryCaseOnShipperReturn" async="true"/>
+	</adv:advice>  
+	<adv:advice name="operations.flthandling.markBuildUpStatus">
+         <adv:action name="auditFlightBuildUpClose" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditFlightBuildUpClose" async="true" enabled="true" />		  
+	</adv:advice>  
+	
+	<adv:advice name="operations.shipment.updateDocumentAvailabilityStatus"> 
+	 	<adv:action name="updateDocumentAvailabilityStatus" type="SHPHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder" method="updateDocumentAvailabilityStatus" 
+		async="true" enabled="true"/>  
+	</adv:advice> 
+	
+	<!-- Added by A-5353 for ICRD-88317 -->
+	<adv:advice name="operations.shipment.updateWorkFlowAssignee"> 
+		<adv:action name="updateWorkflowAssignee" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.shipment.builder.WorkflowBuilder" method="claimWorkFlowMessageForShipmentWork" async="true" enabled="true"/>
+	</adv:advice>
+	<adv:advice name="operations.shipment.completeWorkFlow">	
+		<adv:action name="action" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.shipment.builder.WorkflowBuilder" method="completeWorkFlowMessage" async="true" enabled="true"/> 
+		<adv:action name="initiateActualDataWorkFlow" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.shipment.builder.WorkflowBuilder"	method="initiateActualDataWorkFlow" async="true" enabled="true"/> 
+	</adv:advice>
+ 	<!--Added by A-5807 for ICRD-76038-->
+	<adv:advice name="operations.shipment.closeFlightForImportManifest">
+      <adv:action name="stampIrregularityForDiscrepancy" type="SHPIRR" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentIrregulartyBuilder" method="stampIrregularityForDiscrepancy" async="true" enabled="true" />	  
+	</adv:advice>
+	<!--Added by A-6385 for ICRD-96706-->
+	<adv:advice name="operations.shipment.findAndCreateWorkFlowForImmActWork">
+      <adv:action name="findAndCreateWorkFlowForImmActWork" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.shipment.builder.WorkflowBuilder" method="findAndCreateWorkFlowForImmActWork" async="true" enabled="true" />	  
+	</adv:advice>
+	<adv:advice name="operations.flthandling.findIRPsWithOrdinoDetails"> 
+	  <adv:action name="sendFRPMessageForOrdino" type="MESSAGE" builder="com.ibsplc.icargo.business.operations.flthandling.builder.tk.MessageBuilder" method="sendFRPMessageForOrdino" async="false" enabled="true" />	  
+	</adv:advice>
+	
+	<adv:advice name="operations.flthandling.findAndSaveIRPs"> 
+	  <adv:action name="operations.flthandling.findAndSaveIRPs" type="BLOCK" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentBlockBuilder" method="handleBlockForIRPJob" async="false" enabled="true" />	  
+	</adv:advice>
+	
+	<adv:advice name="operations.flthandling.updateOrdinoDetails"> 
+	  <adv:action name="updateOrdinoDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="updateOrdinoDetails" async="false" enabled="true" />	  
+	</adv:advice>
+	<adv:advice name="operations.flthandling.saveIRPDetails"> 
+<adv:action name="operations.flthandling.saveIRPDetails" type="BLOCK" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentBlockBuilder" method="handleBlockForManualIRP" async="false" enabled="true" /> 
+</adv:advice>
+
+
+	<adv:advice name="operations.shipment.auditPrintAwbReport"> 
+	  <adv:action name="auditPrintAwbReport" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" 
+	  method="auditPrintAwbReport" async="true" enabled="true" />	  
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.importAWBRouteToCRA">
+		<adv:action name="updateAWBRouting" type="CRA" builder="com.ibsplc.icargo.business.operations.shipment.builder.RevenueAccountingBuilder" method="updateAWBRouting" async="true" enabled="true"/>
+	</adv:advice> 
+	
+	<!-- adv:advice name="operations.shipment.sendfwr"> 
+	  <adv:action name="sendFWR" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditSendFWRDespatchDetails" async="true" enabled="true" />	  
+	</adv:advice -->
+	
+	<adv:advice name="operations.cooltool.initiateworkflowforemail">
+      <adv:action name="initiateWorkflowForCoolShipmentEmail" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.cooltool.builder.WorkFlowBuilder" method="initiateWorkflowForCoolShipmentEmail" async="true" enabled="true" />	  
+	</adv:advice>
+	<adv:advice name="operations.shipment.saveCoolShipmentDetails">
+      <adv:action name="createOrUpdateWorkPlan" type="COOLSHIPMENTBUILDER" builder="com.ibsplc.icargo.business.operations.cooltool.builder.CoolShipmentBuilder" method="createOrUpdateWorkPlan" async="true" enabled="true" />	  
+	</adv:advice>
+	<adv:advice name="operations.shipment.updateShipmentPlan">
+      <adv:action name="updateShipmentPlan" type="QUALITYMANAGEMENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.QualityManagementDefaultsBuilder" 
+	  method="updateShipmentPlan" async="true" enabled="true" evaluator="com.ibsplc.icargo.business.operations.shipment.builder.QualityManagementDefaultsEvaluator"/>	  
+	</adv:advice>		
+<adv:advice name="operations.shipment.createActualWorkPlan">
+      <adv:action name="createActualWorkPlan" type="SHIPMENTWORKFLOWBUILDER" builder="com.ibsplc.icargo.business.operations.shipment.builder.lh.ShipmentWorkFlowBuilder" method="createActualWorkPlan" async="true" enabled="true" />	  
+	</adv:advice>
+	 <!--Added by A-5117 for ICRD-129514 starts here-->
+	<adv:advice name="operations.shipment.auditAutocloseopendiscrepancies"> 
+	  <adv:action name="auditAutoCloseOpenShipmentDiscrepancy" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="auditAutoCloseOpenShipmentDiscrepancy" async="true" enabled="true" />
+	</adv:advice>
+	  <!--Added by A-5117 for ICRD-129514 ends here-->
+	<!--Added by A-5956 for ICRD-85414(Arrival screen revamp)starts-->
+	<adv:advice name="operations.shipment.saveShipmentDetailForAdditionalParticipants">
+      <adv:action name="saveShipmentHistoryForAdditionalParticipants" type="TXNHIS" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentVersionBuilder" method="saveShipmentHistoryForAdditionalParticipants" async="true" enabled="true" />	  
+	  <adv:action name="sendCustomsMessages" type="EVENT" builder="com.ibsplc.icargo.business.operations.shipment.builder.CustomsMessageBuilder" method="sendCustomsMessages" async="true" enabled="true" />
+	</adv:advice>
+	<!--Added by A-5956 for ICRD-85414(Arrival screen revamp)ends-->
+	
+	  <adv:advice name="operations.flthandling.cto.saveOffloadDetailsforDUOMessage"> 
+	  <adv:action name="auditDUOMessageForFlight" type="AUDIT" 	builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" 
+              		method="auditDUOMessageForFlight" async="true"/>
+	<adv:action name="sendNotificationDetailsforDUO " type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.flthandling.builder.WorkflowBuilder" method="sendNotificationDetailsforDUO" async="true" enabled="true" />
+	</adv:advice>
+<adv:advice name="operations.flthandling.cto.updateCargoFigures"> 
+	  <adv:action name="updateCargoFigures" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditUpdateCargoFigures" async="true" enabled="true" />
+	</adv:advice>
+	<!--Added by A-6850 for ICRD-127766 starts-->
+	<adv:advice name="operations.shipment.detachShipmentFromDeliveryID"> 
+	  <adv:action name="detachShipmentFromDeliveryID" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.ShipmentAuditBuilder" method="detachShipmentFromDeliveryID" async="true" enabled="true" />
+	</adv:advice>
+	<!--Added by A-6850 for ICRD-127766 ends-->
+	
+	<adv:advice name="operations.shipment.saveShipmentDetails.preadvice"> 
+	  <adv:action name="evaluateJV" type="JV" builder="com.ibsplc.icargo.business.operations.shipment.builder.JointVentureBuilder" method="evaluateJV" async="false" enabled="true" />
+	</adv:advice>
+	<!--Added by A-5807 for ICRD-146757 starts-->
+	<adv:advice name="operations.shipment.saveShipmentPieceGroupDetails"> 
+	  <adv:action name="saveShipmentPieceGroupDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.plt.ShipmentPieceGroupAuditBuilder" method="auditPieceGroupDetails" async="true" enabled="true" />
+	</adv:advice>
+	
+	<adv:advice name="operations.shipment.saveTransactionPieceGroupHistory"> 
+	  <adv:action name="saveTransactionPieceGroupHistory" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.plt.ShipmentPieceGroupAuditBuilder" method="auditTransactionsPieceGroupDetails" async="true" enabled="true" />
+	</adv:advice>
+	<!--Added by A-5807 for ICRD-146757 ends-->
+	<adv:advice name="operations.shipment.saveDGRPieceGroupDetails"> 
+	  <adv:action name="saveDGRPieceGroupDetails" type="AUDIT" builder="com.ibsplc.icargo.business.operations.shipment.builder.plt.ShipmentPieceGroupAuditBuilder" method="auditDGRPieceGroupDetails" async="true" enabled="true" />
+	</adv:advice>
+	<adv:advice name="operations.shipment.saveSensorDetails"> 
+	  <adv:action name="sendSensorAlert" type="WORKFLOW" builder="com.ibsplc.icargo.business.operations.shipment.builder.WorkflowBuilder" method="sendSensorAlert"  enabled="true" />
+	</adv:advice>
+	<adv:advice name="operations.shipment.saveHistoryForAutoDocReceival">
+		<adv:action name="saveHistoryForAutoDocReceival" type="SHPHIS"
+			builder="com.ibsplc.icargo.business.operations.shipment.builder.OperationalShipmentHistoryBuilder"
+			method="saveHistoryForAutoDocReceival" async="false" enabled="true" />
+	</adv:advice>
+	<!--Added by A-5525 for ICRD-166560-->
+	<adv:advice name="operations.flthandling.auditULDBuildupComplete"> 
+		<adv:action name="auditBuildupComplete" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditBuildupComplete" async="true" enabled="true" />
+	</adv:advice>
+	<!--Added by A-5525 for ICRD-166560 ends-->
+	<!--A-5954 for ICRD-166560-->
+	<adv:advice name="operations.flthandling.markBuildUpComplete"> 
+		<adv:action name="markBuildUpComplete" type="AUDIT" builder="com.ibsplc.icargo.business.operations.flthandling.builder.FltHandlingAuditBuilder" method="auditULDBuildupComplete" async="false" enabled="true" />
+	</adv:advice>
+	<!-- Added by A-5290 for ICRD-166768 -->
+	<adv:advice name="operations.flthandling.saveAWBNotesForManualNotification"> 
+		<adv:action name="saveAWBNotesForManualNotification" type="NOTES" builder="com.ibsplc.icargo.business.operations.flthandling.builder.AWBNotesBuilder" method="saveAWBNotesForManualNotification" async="true" enabled="true" />
+	</adv:advice>
+</adv:advice-mappings>
+  
+

@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-34181_MSM27867.yaml
+  - changeSet:
+      id: 27867
+      author: A-4789
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              schemaName: ${SCHEMA}
+              tableName: TRKAWBUSRNTFPII
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE TRKAWBUSRNTFPII (
+          TRKAWBSERNUM INTEGER NOT NULL,
+          USRIDR VARCHAR(50) NOT NULL,
+          NTFMILSTN TEXT [] NOT NULL,
+          NTFEMLADR TEXT [] NOT NULL,
+          CMPCOD VARCHAR(6) NOT NULL,
+          LSTUPDTIM TIMESTAMP(3) NOT NULL,
+          LSTUPDUSR VARCHAR(50) NOT NULL,
+          TAGIDX NUMERIC(1,0) DEFAULT 0 NOT NULL,
+          CONSTRAINT "TRKAWBUSRNTFPII_pkey" PRIMARY KEY (TRKAWBSERNUM, USRIDR));
+          
+          COMMENT ON TABLE TRKAWBUSRNTFPII IS 'Tracking user AWB milestone notifications table';
+          COMMENT ON COLUMN TRKAWBUSRNTFPII.TRKAWBSERNUM IS 'AWB serial number. Links to TRKAWBMST.TRKAWBSERNUM';
+          COMMENT ON COLUMN TRKAWBUSRNTFPII.USRIDR IS 'User ID for whom the notifications are subscribed';
+          COMMENT ON COLUMN TRKAWBUSRNTFPII.NTFMILSTN IS 'Milestones for which the notification is subscribed. Possible values - RCS, DEP, ARR, DLV';
+          COMMENT ON COLUMN TRKAWBUSRNTFPII.NTFEMLADR IS 'User email addresses to receive notifications';
+          COMMENT ON COLUMN TRKAWBUSRNTFPII.CMPCOD IS 'The code that uniquely identifies the company for which the application is hosted';
+          COMMENT ON COLUMN TRKAWBUSRNTFPII.LSTUPDTIM IS 'The date and time at which record was last updated';
+          COMMENT ON COLUMN TRKAWBUSRNTFPII.LSTUPDUSR IS 'Last Update User.The application user code who performed the operation on the record';
+          COMMENT ON COLUMN TRKAWBUSRNTFPII.TAGIDX IS 'This column will be used as workaround for the tag setting feature of CDC in its low cost replacement. The value 1 indicate that the records are tagged and will not transferred to the target in a CDC environment';

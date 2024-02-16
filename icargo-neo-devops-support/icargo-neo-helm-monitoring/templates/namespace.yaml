@@ -1,0 +1,8 @@
+{{- if not .Values.disable.ns }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.monitoringNamespace | quote }}
+  labels:
+    release: "icargo-monitoring"
+{{- end }}      

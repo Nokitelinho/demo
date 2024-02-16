@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/IAN-46677_MSM28578.yml
+  - changeSet:
+      id: 28578
+      author: A-10597
+      preConditions:
+        - tableExists:
+            tableName: ccaawb
+        - not:
+            columnExists:
+              tableName: ccaawb
+              columnName: outfop
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccaawb ADD COLUMN outfop VARCHAR(8) DEFAULT 'CREDIT';
+          COMMENT ON COLUMN ccaawb.outfop IS 'Outbound form of Payment';

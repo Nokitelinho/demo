@@ -1,0 +1,54 @@
+# The namespace in which the applications will be deployed
+monitoringNamespace: "icargo-system"
+
+# The registry from which we download docker
+dockerRegistry: "141807520248.dkr.ecr.ap-south-1.amazonaws.com"
+
+disable:
+  ns: false
+
+# Elasticsearch cluster details
+elasticSearchUrl:
+  - ip: "10.246.12.39"
+    httpPort: 9020
+    transportPort: 9030
+#    externalDNSName: null #If sepcified ES url is constructed as ${esProto}://${externalDNSName}. i.e ports are ignored
+
+logstash:
+  enabled: true
+  udpPort: 9040
+  image: "icargo-neo-logstash:1.0.4-7_10_1"
+
+txProbe:
+  enabled: true
+  webEnabled: true
+  webPort: 10280
+  transportPort: 10200
+  httpPort: 10250
+  esProto: "http" # protocol used to connect with es, supported values are http, https (estc support is removed from 3.x versions)
+  image: "neo-txprobe-aggregator:3.1.1.graal"
+  webImage: "neo-txprobe-web-rt:3.1.1-7.10.1"
+  webJavaEnv: ["-Xms256M", "-Xmx256M", "-XX:+ExitOnOutOfMemoryError"]
+  javaEnv: [ "-Xms1G", "-Xmx1G", "-XX:ParallelGCThreads=4", "-XX:G1ConcRefinementThreads=4", "-XX:CICompilerCount=4",
+             "-XX:+ExitOnOutOfMemoryError", "-DhttpServer.authHeaderToken=b2fe5d4ca86649aaa6e07a5e3da310dfd29b5d16",
+             "-Dout.handler.logging.logData=off", "-Dout.handler.es.numberOfReplicas=0",
+             "-Dout.handler.es.maxBatchSize=500", "-Din.ringBuffer.maxQueueDepth=32768", "-Dout.ringBuffer.maxQueueDepth=16384" ]
+
+curator:
+  enabled: true
+  image: "icargo-neo-curator:1.0.1-5_8_1"
+  forceMergeDisabled: "False"
+  txProbeIndexRetentionHours: 48
+  logIndexRetentionHours: 48
+
+crashCollector:
+  enabled: true
+  image: "icargo-neo-crash-collector:1.0.5"
+  s3Bucket: "icargoneoits3"
+  remoteS3Directory: "/icargo-crash-dumps" # Need to create this directory in the s3Bucket
+  hostWatchDirectory: "/icargo-crash-dumps"
+ 
+dataMonitor:
+  enabled: true
+  image: "neo-datamonitor:v1.0.29"
+# applicationname space , Config server , profile 

@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-46178_MSM28515.yml
+  - changeSet:
+      id: 28515
+      author: A-201345
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: ccaawb
+        - not:
+            columnExists:
+              tableName: ccaawb
+              columnName: impduearl
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccaawb ADD COLUMN impduearl numeric(16,4);
+
+          COMMENT ON COLUMN ccaawb.impduearl is 'Net Value Import';

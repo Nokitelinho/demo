@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-41063_MSM28021.yml
+  - changeSet:
+      id: 28021
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sequenceExists:
+              sequenceName: CCACUSDTL_SEQ
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE SEQUENCE CCACUSDTL_SEQ INCREMENT BY 1 ;
+  - changeSet:
+      id: 28021_1
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: ccacusdtl
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql: CREATE TABLE ccacusdtl (
+          ccacusdtlsernum integer,
+          ccasernum integer,
+          cmpcod varchar(6) NOT NULL,
+          rectyp varchar(1),
+          custyp varchar(1),
+          cusnam varchar(150),
+          stncod varchar(4),
+          cntcod varchar(3),
+          accnum varchar(15),
+          iatcod varchar(14),
+          casidr varchar(13),
+          lstupdtim timestamp(3) NOT NULL,
+          lstupdusr varchar(50) NOT NULL,
+          CONSTRAINT "CCACUSDTL_pkey" PRIMARY KEY (ccacusdtlsernum, ccasernum, rectyp),
+          CONSTRAINT "CCACUSDTL_outbound_cass_indicator_check" CHECK (not((custyp='I' AND casidr IS NULL) and (custyp='A' AND casidr IS NULL)))
+          );
+          COMMENT ON TABLE ccacusdtl IS 'Customer Detail table , Child Table of CCAAwb (ccaawb)';
+
+          COMMENT ON COLUMN ccacusdtl.ccacusdtlsernum IS 'Serial number of customer detail';
+          COMMENT ON COLUMN ccacusdtl.ccasernum IS 'Serial number of CCAAwb';
+          COMMENT ON COLUMN ccacusdtl.rectyp IS 'CCA Record Type Original-O, Revised-R';
+          COMMENT ON COLUMN ccacusdtl.custyp IS 'Type of Cusstomer Inbound-I, Ountbound-O, Agent-A';
+          COMMENT ON COLUMN ccacusdtl.cusnam IS 'Customer name';
+          COMMENT ON COLUMN ccacusdtl.stncod IS 'Station code';
+          COMMENT ON COLUMN ccacusdtl.cntcod IS 'Country code';
+          COMMENT ON COLUMN ccacusdtl.accnum IS 'Account number';
+          COMMENT ON COLUMN ccacusdtl.iatcod IS 'IATA code';
+          COMMENT ON COLUMN ccacusdtl.lstupdtim is 'The date and time at which record was last updated';
+          COMMENT ON COLUMN ccacusdtl.lstupdusr is 'Last Update User.The application user code who performed the operation on the record';
+          COMMENT ON COLUMN ccacusdtl.cmpcod is 'The code that uniquely identifies the company for which the application is hosted';

@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - logicalFilePath: classpath:/config/changelog/cca-functions.yml
+  - changeSet:
+      id: CCAFUN01
+      author: A-8634
+      preConditions:
+        - onFail: MARK_RAN
+      changes:
+        sqlFile:
+          path: /config/changelog/functions/format_cca_reasons.sql
+          dbms: all
+          endDelimiter: \nGO
+          splitStatements: true
+          stripComments: true;

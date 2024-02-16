@@ -1,0 +1,130 @@
+def Stage_Name
+def ENV
+def releaseVersion
+def bom
+def tenantId = "base"
+def applicationId ="icargo-neo"
+def currentVersion
+def jiraIds
+
+pipeline {
+    agent any
+
+	options {
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '1'))
+    }
+	
+    stages {			
+		
+		stage("QA Deploy Phase") {			
+			steps {
+				echo "QA Deploy Phase"
+				sh '''
+					if [ -e ${WORKSPACE}/bom ]; then
+							echo "---- >Deleting bom ---  "
+							rm  ${WORKSPACE}/bom
+					fi
+				'''
+				dir("icargo-neo-cli"){
+					sh"pwd"
+					sh '''
+						./iconctl.sh app-version qa full >${WORKSPACE}/version
+					'''	
+					
+				}
+				script {
+                	env.HELM_TMOUT_DEFAULT="600s"
+					Stage_Name='QA_Deploy'
+					currentVersion = readFile ("${env.WORKSPACE}/version").trim()
+					echo "Current Version Running is ${currentVersion}"
+					env.POSTURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds?tenantId="+tenantId+"&applicationId="+applicationId
+					echo "POSTURL is ${env.POSTURL}"
+					releaseVersion = ["curl","-X", "POST", "-H", "Content-Type: application/json", "${env.POSTURL}"].execute().text
+					env.GETURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds/"+releaseVersion+"/bom"
+					bom = ["curl","-o","${WORKSPACE}/bom" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/yaml", "${env.GETURL}"].execute().text
+                    env.JIRAURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds/base/icargo-neo/activity/list?currentVersion="+currentVersion+"&newVersion="+releaseVersion
+                    echo "JIRAURL  -> is ${env.JIRAURL}"
+                    jiraIds = ["curl","-o","${WORKSPACE}/jiraIds.txt" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/json", "${env.JIRAURL}"].execute().text
+				}
+				dir("icargo-neo-cli"){
+					sh"pwd"
+					sh '''
+						./iconctl.sh deploy-full qa ${WORKSPACE}/bom
+					'''					
+				}
+			}
+		}
+	
+		
+	}
+
+	
+	post {
+		success{
+			script {
+				recipientProvidersForQADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForQADeploy   ->  ${recipientProvidersForQADeploy}"
+			
+				
+				emailext( attachmentsPattern: "icargo-neo-cli/qa.zip,bom,jiraIds.txt",
+                            subject: "Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+Check console output at:  ${env.BUILD_URL} 
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'Aswathy.Parameswaran@ibsplc.com, sinoob.saithumuhammed@ibsplc.com, jens.parappallil@ibsplc.com, Sander.Joseph@ibsplc.com, bejoy.kunjumon@ibsplc.com, jesin.zachariah@ibsplc.com, rajani.chandran@ibsplc.com,Sooraj.SadasivanPillai@ibsplc.com,Sharika.Narayanankutty@ibsplc.com,Manu.Purushothaman@ibsplc.com,Jayakrishnan.Jayaram@ibsplc.com,iCargo_BP_ScrumMasters@ibsplc.com,Jijomon.Chacko@ibsplc.com,Manu.Raghavan@ibsplc.com,Binish.Prabhakaran@ibsplc.com,Freddy.Kurien@ibsplc.com,Vivek.Radhakrishnan@ibsplc.com, Vijayakumar.Ramasamy@ibsplc.com, hari.reddy@ibsplc.com, Tibin.Kuriackose@ibsplc.com, Vinu.Venu@ibsplc.com'
+                    )                
+			}
+			
+			sh '''
+				if [ -e ${WORKSPACE}/bom ]; then
+					rm  ${WORKSPACE}/bom
+				fi
+				
+				if [ -e ${WORKSPACE}/icargo-neo-cli/qa.zip ]; then
+					rm  ${WORKSPACE}/icargo-neo-cli/qa.zip
+				fi
+				
+				'''
+			
+	}
+	
+        failure {
+            script {
+				recipientProvidersForQADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForQADeploy   ->  ${recipientProvidersForQADeploy}"			
+				emailext(
+							attachmentsPattern: "icargo-neo-cli/qa.zip",
+                            subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+							
+Failure happened in ${Stage_Name}.
+										
+Check console output at:  ${env.BUILD_URL}  
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+                                                 [$class: 'RequesterRecipientProvider'],
+                                                 [$class: 'DevelopersRecipientProvider']],
+                            to: 'Aswathy.Parameswaran@ibsplc.com, sinoob.saithumuhammed@ibsplc.com, jens.parappallil@ibsplc.com, Sander.Joseph@ibsplc.com, bejoy.kunjumon@ibsplc.com, jesin.zachariah@ibsplc.com, rajani.chandran@ibsplc.com,Sooraj.SadasivanPillai@ibsplc.com,Sharika.Narayanankutty@ibsplc.com,Manu.Purushothaman@ibsplc.com,Jayakrishnan.Jayaram@ibsplc.com,iCargo_BP_ScrumMasters@ibsplc.com,Jijomon.Chacko@ibsplc.com,Manu.Raghavan@ibsplc.com,Binish.Prabhakaran@ibsplc.com,Freddy.Kurien@ibsplc.com,Vivek.Radhakrishnan@ibsplc.com, Vijayakumar.Ramasamy@ibsplc.com, hari.reddy@ibsplc.com, Tibin.Kuriackose@ibsplc.com, Vinu.Venu@ibsplc.com'
+						)				
+            }
+        }
+    }
+
+}

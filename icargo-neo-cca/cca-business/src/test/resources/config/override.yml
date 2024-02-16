@@ -1,0 +1,64 @@
+spring:
+  profile:
+    active: test
+  cloud:
+    stream:
+      defaultBinder: test
+EBL_URL_NBRIDGE: http://k8s-nginxmoc-nginxica-78c7eb9c51-efd03495718133a8.elb.ap-south-1.amazonaws.com/ebl-nbridge/v1/
+neo:
+  jaxrs:
+   client:
+     serviceBindings:
+       - name: auth-service
+         address: http://localhost:7010
+       - name: pricing-service 
+         address: http://k8s-nginxmoc-nginxica-78c7eb9c51-efd03495718133a8.elb.ap-south-1.amazonaws.com/pricing
+         basepath: /private
+       - name: neo-admin-business
+         address: http://k8s-nginxmoc-nginxica-78c7eb9c51-efd03495718133a8.elb.ap-south-1.amazonaws.com/admin
+         basePath: /private
+       - name: neo-masters-business
+         address: http://k8s-nginxmoc-nginxica-78c7eb9c51-efd03495718133a8.elb.ap-south-1.amazonaws.com/masters
+         basePath: /private
+       - name: neo-masters-api
+         address: http://k8s-nginxmoc-nginxica-78c7eb9c51-efd03495718133a8.elb.ap-south-1.amazonaws.com/masters
+         basePath: /private
+       - name: neo-booking-business
+         address: http://k8s-nginxmoc-nginxica-78c7eb9c51-efd03495718133a8.elb.ap-south-1.amazonaws.com/awb-booking
+         basepath: /private
+       - name: neo-businessrules-business
+         address: http://k8s-nginxmoc-nginxica-78c7eb9c51-efd03495718133a8.elb.ap-south-1.amazonaws.com/businessrules
+         basePath: /private
+  cqrs:
+    component-scan:
+      basePackages: "com.ibsplc.neoicargo.bookingcqrs,com.ibsplc.neoicargo.awbcqrs"
+    kafka-bootstrap-servers: localhost:9092
+    streams-application-id: '${com.ibsplc.neoicargo.tenant}-${spring.application.name}'
+    liquibase:
+      enabled: true
+      change-log: classpath:/config/db.test.changelog-cqrs.yaml
+    mybatis:
+      config-location: classpath:config/cqrs-mybatis/MyBatis_Configuration.xml
+      mapper-locations: classpath:config/cqrs-mybatis/mappers/*.xml 
+    jpa:
+      database: postgresql
+      show-sql: true
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          order_inserts: true
+          batch_versioned_data: true
+          order_updates: true
+          jdbc:
+            batch_size: '5'
+            lob:
+              non_contextual_creation: true
+    hierarchical-aggregation: true
+    server-name: icargoneo
+    schema-name: ico_av_usr
+    suppression-window: 2000
+    dummy-event-worker-to-force-suppression-enabled: true
+    dummy-event-worker-frequency: 2000
+logging: 
+  level: 
+    root: ERROR

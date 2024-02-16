@@ -1,0 +1,99 @@
+CCA {{ccaNumber}} updated where CCA Type {{ccaType}}, CCA Status: {{ccaStatus}}, CCA Source: {{ccaSource}}
+
+Updated Values :
+{{#origin}}
+    Origin : {{origin}}
+{{/origin}}
+{{#destination}}
+    Destination : {{destination}}
+{{/destination}}
+{{#inboundCustomerCode}}
+    Inbound customer : {{inboundCustomerCode}}
+{{/inboundCustomerCode}}
+{{#outboundCustomerCode}}
+    Outbound customer : {{outboundCustomerCode}}
+{{/outboundCustomerCode}}
+{{#productName}}
+    Product name : {{productName}}
+{{/productName}}
+{{#productCode}}
+    Product code : {{productCode}}
+{{/productCode}}
+{{#serviceCargoClass}}
+    Service Cargo : {{serviceCargoClass}}
+{{/serviceCargoClass}}
+{{#pieces}}
+    Pieces : {{pieces}}
+{{/pieces}}
+{{#displayWeight}}
+    Gross Weight : {{displayWeight}}
+{{/displayWeight}}
+{{#displayVolumetricWeight}}
+    Volumetric Weight : {{displayVolumetricWeight}}
+{{/displayVolumetricWeight}}
+{{#displayAdjustedWeight}}
+    Adjusted Weight : {{displayAdjustedWeight}}
+{{/displayAdjustedWeight}}
+{{#displayChargeableWeight}}
+    Chargeable Weight : {{displayChargeableWeight}}
+{{/displayChargeableWeight}}
+{{#weightCharge}}
+    IATA Weight Charge : {{weightCharge}}
+{{/weightCharge}}
+{{#netCharge}}
+    Market Weight Charge : {{netCharge}}
+{{/netCharge}}
+{{#payTypeFreight}}
+    Payment Type (Freight Charges): {{payTypeFreight}}
+{{/payTypeFreight}}
+{{#payTypeOther}}
+    Payment Type (Other Charges): {{payTypeOther}}
+{{/payTypeOther}}
+{{#otherCharges}}
+    Other charges :
+    {{#ocdc}}
+        OCDC Charges:
+        {{#ocdc}}
+            {{#entrySet}}
+                {{key}} : {{value}}
+            {{/entrySet}}
+        {{/ocdc}}
+    {{#totalDueCarCCFChg}}
+        Due Carrier Total: {{totalDueCarCCFChg}}
+    {{/totalDueCarCCFChg}}
+    {{#totalDueCarPPDChg}}
+        Due Carrier Total: {{totalDueCarPPDChg}}
+    {{/totalDueCarPPDChg}}
+    {{/ocdc}}
+    {{#ocda}}
+        OCDA Charges:
+        {{#ocda}}
+            {{#entrySet}}
+                {{key}} : {{value}}
+            {{/entrySet}}
+        {{/ocda}}
+    {{#totalDueAgtCCFChg}}
+        Due Carrier Total: {{totalDueAgtCCFChg}}
+    {{/totalDueAgtCCFChg}}
+    {{#totalDueAgtPPDChg}}
+        Due Carrier Total: {{totalDueAgtPPDChg}}
+    {{/totalDueAgtPPDChg}}
+    {{/ocda}}
+{{/otherCharges}}
+{{#taxesAndCommission}}
+    Tax & Commission :
+    {{#awbTaxPP}}
+        PP Tax : {{awbTaxPP}}
+    {{/awbTaxPP}}
+    {{#awbTaxCC}}
+        CC Tax : {{awbTaxCC}}
+    {{/awbTaxCC}}
+    {{#taxes}}
+        {{#entrySet}}
+            {{key}} : {{value}}
+        {{/entrySet}}
+    {{/taxes}}
+    {{#commissionAmount}}
+        Commission : {{commissionAmount}}
+    {{/commissionAmount}}
+{{/taxesAndCommission}}

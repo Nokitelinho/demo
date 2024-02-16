@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-4661_MSM28223.yml
+  - changeSet:
+      id: 28223
+      author: 201112
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: ccamst
+        - not:
+            columnExists:
+              tableName: ccamst
+              columnName: expduearl
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccamst ADD COLUMN expduearl numeric(16,4);
+          ALTER TABLE ccamst ADD COLUMN impduearl numeric(16,4);
+
+          COMMENT ON COLUMN ccamst.expduearl is 'Net Value Export';
+          COMMENT ON COLUMN ccamst.impduearl is 'Net Value Import';

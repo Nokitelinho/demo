@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dyn:DynamicSearch companyCode="4ALL"  xmlns:dyn="http://www.ibsplc.com/icargo/business/dynamicsearch" >
+<dyn:Mapping screenId="ULD002">
+<dyn:properties key="ULDTYPE" mapping="TYPMST.ULDTYPCOD" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+<dyn:properties key="ULDOWRCOD" mapping="SUBSTR(COALESCE(RECDTL.ULDNUM, ULD.ULDNUM),LENGTH(COALESCE(RECDTL.ULDNUM, ULD.ULDNUM))-1,LENGTH(COALESCE(RECDTL.ULDNUM, ULD.ULDNUM)))" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+<dyn:properties key="TYPOFULD" mapping="TYPMST.ULDTYP" action="shared.defaults.loadKeyValuesForDynamicSearch.do" format="A"/>
+</dyn:Mapping>
+</dyn:DynamicSearch>

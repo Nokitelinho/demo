@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - logicalFilePath : classpath:/config/changelog/IAN-15360_MSM27915.yml
+  - changeSet:
+      id: 27340
+      author: A-10597
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: ccaawb
+      changes:
+        dbms: h2, oracle
+        endDelimiter: \nGO
+        splitStatements: false
+        sql:
+          ALTER TABLE ccaawb ADD COLUMN prdnam VARCHAR(30);
+
+          ALTER TABLE ccaawb ADD COLUMN agtcod VARCHAR(15);
+
+          COMMENT ON COLUMN ccaawb.prdnam is 'Product name of AWB';
+          COMMENT ON COLUMN ccaawb.agtcod is 'Agent Code for the AWB';

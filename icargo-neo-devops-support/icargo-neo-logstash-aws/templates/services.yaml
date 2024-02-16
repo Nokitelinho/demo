@@ -1,0 +1,47 @@
+{{/*
+ Elasticsearch headless service
+*/}}
+---
+{{- if not .Values.disable.es.service }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: "elasticsearch"
+  namespace: {{ .Values.namespace | quote }}
+  labels:
+    app: "elasticsearch"
+    srvtyp: "monitoring_service"
+spec:
+  type: ExternalName
+  externalName: {{ .Values.awsElasticSearch.vpcEndpoint }}
+{{- end }}  
+ {{/*
+ Logstash udp service object
+*/}}
+{{- if .Values.logstash.withAwsEnabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  {{- if .Values.logstash.includeEnvProfileInResourceNames }}
+  name: {{ printf "icargo-neo-logstash-%s" .Values.environmentProfile | lower | quote }}  
+  {{- else }}
+  name: {{ printf "icargo-neo-logstash" | lower | quote }}  
+  {{- end }}
+  namespace: {{ .Values.namespace | quote }}
+  labels:
+    app: {{ printf "icargo-neo-logstash-aws-%s" .Values.environmentProfile | lower | quote }} 
+    srvtyp: "monitoring_service"
+    prctyp: "jruby"
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ printf "icargo-neo-logstash-aws-%s" .Values.environmentProfile | lower | quote }} 
+  ports:
+    - name: "udp-appender"
+      protocol: "UDP"
+      port: {{ .Values.logstash.udpPort }}
+    - name: "udp-appender-2"
+      protocol: "UDP"
+      port: {{ .Values.logstash.accesslog.udpPort }}            
+{{- end }}

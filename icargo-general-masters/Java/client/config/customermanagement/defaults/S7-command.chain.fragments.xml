@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<command-mappings xmlns="http://www.ibsplc.com/icargo/command/mappings" product="customermanagement" subproduct="defaults">
+<screen name="MaintainCustomerRegistration" id="customermanagement.defaults.maintainregcustomer">
+	<action name="customermanagement.defaults.screenloadcustomerregistration">
+		<command class="com.ibsplc.icargo.presentation.web.command.customermanagement.defaults.profile.customer.s7.ScreenLoadCustomerRegCommand" order="2" insert="true"/>
+	</action>
+	<action name="customermanagement.defaults.savecustomerregistratrion">
+		<command class="com.ibsplc.icargo.presentation.web.command.customermanagement.defaults.profile.customer.ValidateCustomerGroupCommand" order="1"  delete="true"/>
+		<command class="com.ibsplc.icargo.presentation.web.command.customermanagement.defaults.profile.customer.s7.ClearCustomerRegistrationCommand" order="3" insert="true"/>
+	</action>
+
+	<action name="customermanagement.defaults.clearcustomerregistratrion">
+		<command class="com.ibsplc.icargo.presentation.web.command.customermanagement.defaults.profile.customer.s7.ClearCustomerRegistrationCommand" order="2" insert="true" />
+	</action>
+	 <action name="customermanagement.defaults.listcustomerregistratrion">
+		<command class="com.ibsplc.icargo.presentation.web.command.customermanagement.defaults.profile.customer.s7.PopulateCustomerGroupCommand" order="2" insert="true"/>
+	</action>
+</screen>
+</command-mappings> 

@@ -1,0 +1,104 @@
+def Stage_Name="Init"
+def ENV
+def releaseVersion
+def bom_beta
+def tenantId = "base"
+def applicationId ="icargo-neo"
+def currentVersion
+def jiraIds
+def jsonObj
+//env.EMAIL_SUBSCRIBERS="sinoob.saithumuhammed@ibsplc.com, Sander.Joseph@ibsplc.com, Tibin.Kuriackose@ibsplc.com, Vinu.Venu@ibsplc.com, iCargoNeoDesign@ibsplc.com, iCargoNeoSMs@ibsplc.com, iCargoNeoQA@ibsplc.com"
+env.argoCdRepoRUL="http://Icargo-release@bitbucket.ibsplc.com/scm/icneo/icargo-neo-argocd.git"
+env.EMAIL_SUBSCRIBERS="Sander.Joseph@ibsplc.com"
+
+
+
+pipeline {
+    agent any
+
+	options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '1'))
+    }
+	
+    stages {			
+		
+		stage("Postgres Script ") {
+			steps {
+				
+				dir("icargo-classic"){
+				sh"pwd"
+				sh '''
+				sudo chmod +x -R /data/jenkins/workspace/Postgres-CLasic-Run/icargo-classic/
+				ls -l
+					export ENABLE_COLOR=false
+					/data/jenkins/workspace/Postgres-CLasic-Run/icargo-classic/postgresScripRun.sh IBS  ico_ibs_usr ico_ibs_usr 10.246.13.5:5432 ico_ibs_dev 
+				'''					
+				
+				}
+			}
+		}
+	
+		
+	}
+
+	
+	post {
+		success{
+			script {
+				recipientProvidersForBETADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+			    emailext( 
+						attachmentsPattern: "healthstatus.json,bom_beta.yaml,jiraIds.txt",
+						recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']],
+						mimeType: 'text/html',
+						to : "${env.EMAIL_SUBSCRIBERS}",
+                        subject: "Success: Job '${env.JOB_NAME} [${env.RELVER}]'",
+                        body: """Success: Job '${env.JOB_NAME} [${env.RELVER}]':
+							<br />
+							Check console output at:  ${env.BUILD_URL}/console 
+							<br />
+							Job Name:  ${env.JOB_NAME} 
+                            Release Version: ${env.RELVER}
+							<br />
+							Jenkins Build Number: [${env.BUILD_NUMBER}]"""             
+                    )      
+			}
+
+			
+	}
+	
+        failure {
+        	
+            script {
+				recipientProvidersForBETADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForBETADeploy   ->  ${recipientProvidersForBETADeploy}"			
+				emailext(
+						attachmentsPattern: "healthstatus.json",
+						mimeType: 'text/html',
+						recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+										[$class: 'RequesterRecipientProvider'],
+										[$class: 'DevelopersRecipientProvider']],
+						to : "${env.EMAIL_SUBSCRIBERS}",
+						subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+						body: """
+								<div style="color:red;font-size:20px">
+								FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+								</div>
+								Failure happened in ${Stage_Name}.
+								<br />
+								Check console output at:  ${env.BUILD_URL}/console
+								<br />
+								Job Name:  ${env.JOB_NAME} 
+								<br />
+								Build Number: [${env.BUILD_NUMBER}]"""
+						)				
+            }
+        }
+    }
+
+}

@@ -1,0 +1,1959 @@
+<?xml version="1.0"?>
+<command-mappings xmlns="http://www.ibsplc.com/icargo/command/mappings" product="uld" subproduct="defaults">
+
+	<screen name="MaintainULDGroup" id="shared.defaults.uld.maintainuldgroup">
+
+		<action name="shared.defaults.uld.screenloaduldgroup">
+			<command class="com.ibsplc.icargo.presentation.web.command.shared.defaults.uld.maintainuldgroup.ScreenloadULDGroupCommand" order="1" />
+		</action>
+
+		<action name="shared.defaults.uld.finduldgroupdetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.shared.defaults.uld.maintainuldgroup.ListULDGroupCommand" order="1" />
+		</action>
+
+		<action name="shared.defaults.uld.deleteULDGroup">
+			<command class="com.ibsplc.icargo.presentation.web.command.shared.defaults.uld.maintainuldgroup.DeleteULDGroupCommand" order="1" />
+		</action>
+
+		<action name="shared.defaults.uld.createuldgroup">
+			<command class="com.ibsplc.icargo.presentation.web.command.shared.defaults.uld.maintainuldgroup.SaveULDGroupCommand" order="1" />
+		</action>
+
+		<action name="shared.defaults.uld.modifyuldgroup">
+			<command class="com.ibsplc.icargo.presentation.web.command.shared.defaults.uld.maintainuldgroup.SaveULDGroupCommand" order="1" />
+		</action>
+
+	</screen>
+
+
+	<screen name="MaintainULD" id="uld.defaults.maintainuld">
+
+		<action name="uld.defaults.screenloadmaintainuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.ScreenLoadMaintainULDCommand" order="1" />
+		</action>
+
+
+		<!-- Action code for calling lock -->
+		<action name="uld.defaults.lockonlistmaintainuld" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.lock.LockOnListMaintainULDCommand" order="1"/>
+		</action>
+
+
+		<action name="uld.defaults.listulddetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.ListULDDetailsCommand" order="1" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.lock.LockOnListMaintainULDCommand" order="2" />
+		</action>
+		<action name="uld.defaults.createnewuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.CreateNewULDCommand" order="1" />
+		</action>
+		<action name="uld.defaults.clearulddetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.ClearMaintainULDCommand" order="1" />
+			<command class="com.ibsplc.icargo.framework.web.command.lock.UnlockScreenLocksCommand" order="2"/>
+		</action>
+		<action name="uld.defaults.saveuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.SaveULDCommand" order="1" />
+			<command class="com.ibsplc.icargo.framework.web.command.lock.UnlockScreenLocksCommand" order="2"/>
+		</action>
+
+		<action name="uld.defaults.deleteuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.DeleteMaintainULDCommand" order="1" />
+			<command class="com.ibsplc.icargo.framework.web.command.lock.UnlockScreenLocksCommand" order="2"/>
+		</action>
+
+		<action name="uld.defaults.closeuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.CloseUldCommand" order="1" />
+			<command class="com.ibsplc.icargo.framework.web.command.lock.UnlockScreenLocksCommand" order="2"/>
+		</action>
+
+		<action name="uld.defaults.screenloadmultipleulds">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.ScreenLoadMultipleULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.generateuldnumbers">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.GenerateULDNumberCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.adduldnumbers">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.AddMultipleULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.deleteuldnumbers">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.DeleteMultipleULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.savemultipleulds">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.SaveMultipleULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.refreshmaintainuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.RefreshMaintainULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.validatebeforepopup">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.OKMultipleULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.detailuldinfo">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.DetailListULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.navigateuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.NavigateMaintainULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.tomvthystoryscreenload">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.MovementHistoryLoadCommand" order="1" />
+			<command class="com.ibsplc.icargo.framework.web.command.lock.UnlockScreenLocksCommand" order="2"/>
+		</action>
+
+		<action name="uld.defaults.returnfrommvthystory">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.ReturnMovementHistory" order="1" />
+		</action>
+
+	</screen>
+
+	<screen name="uld.defaults.facilitycodelov" id="uld.defaults.facilitycodelov" >
+		<action name="uld.defaults.lov.screenloadfacilitycodelov" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.PopulateFacilityCodeLOVCommand" order="1"/>
+		</action>
+	</screen>
+	<screen name="uld.defaults.ux.facilitycodelov" id="uld.defaults.ux.facilitycodelov" >
+		<action name="uld.defaults.ux.lov.screenloadfacilitycodelov" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.maintainuld.PopulateFacilityCodeLOVCommand" order="1"/>
+		</action>
+	</screen>
+
+	<screen name="ListULD" id="uld.defaults.listuld">
+		<action name="uld.defaults.screenloadlistuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.ScreenLoadListULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.listuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.ListULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.deletelistuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.DeleteListULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.clearlistuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.ClearListULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.closelistuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.CloseListULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.listuld.doReport">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.report.PrintCommand" order="1" />
+		</action>
+		
+		<action name="uld.defaults.printListUld.doReport">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.report.PrintPageCommand" order="1" />
+		</action>
+		<action name="uld.defaults.listuld.printUldInventory">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.report.PrintInventoryCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.listulddiscrepancies.ulddiscrepancy" >
+		   	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.ScreenLoadULDDiscrepancyCommand" order="1"/>
+		 </action>
+		<action name="uld.defaults.listuld.generatescm" >
+		   	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.GenerateSCMCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.listuld.offloaduld">
+		 	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.OffloadListULDCommand" order="1" />
+		</action>
+
+	</screen>
+
+	<screen name="RelocateULD" id="uld.defaults.relocateuld">
+
+		<action name="uld.defaults.listuld.screenloadrelocateuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.ScreenLoadRelocateULDCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.listuld.saverelocateuld">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.listuld.SaveRelocateULDCommand" order="1" />
+		</action>
+
+	</screen>
+
+	<screen name="MaintainAccessoriesStock" id="uld.defaults.maintainaccessoriesstock">
+
+		<action name="uld.defaults.stock.screenloadmaintainaccessoriesstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainaccessories.ScreenLoadMaintainAccessoriesStockCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.stock.findaccessoriesstockdetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainaccessories.ListAccessoriesStockCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.stock.saveaccessoriesstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainaccessories.SaveAccessoriesStockCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.stock.createaccessoriesstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainaccessories.CreateAccessoriesStockCommand" order="1" />
+		</action>
+
+
+		<action name="uld.defaults.stock.clearaccessoriesstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainaccessories.ClearAccessoriesStockCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.stock.detailslistaccessories">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainaccessories.DetailsListAccessoriesCommand" order="1" />
+ 		</action>
+
+		<action name="uld.defaults.navigateacsrs">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainaccessories.NavigateAcsriesCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.stock.closeaccessoriesstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainaccessories.CloseAccessoriesStockCommand" order="1" />
+		</action>
+
+	</screen>
+
+	<screen name="ListAccessoriesStock" id="uld.defaults.stock.listaccessoriesstock">
+
+  		<action name="uld.defaults.stock.screenloadlistaccessoriesstock">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listaccessories.ScreenLoadListAccessoriesStockCommand" order="1" />
+  		</action>
+
+  		<action name="uld.defaults.stock.findaccessoriesstocklist">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listaccessories.ListAccessoriesStockCommand" order="1" />
+  		</action>
+
+  		<action name="uld.defaults.stock.clearaccessoriesstocklist">
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listaccessories.ClearAccessoriesStockCommand" order="1" />
+  		</action>
+
+    	<action name="uld.defaults.stock.detailaccessoriesstocklist">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listaccessories.AccessoriesStockDetailsCommand" order="1" />
+  		</action>
+
+  		<action name="uld.defaults.stock.deletelistaccessoriess">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listaccessories.DeleteAccessoriesStockCommand" order="1" />
+  		</action>
+
+
+  		<action name="uld.defaults.stock.closeaccessoriesstocklist">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listaccessories.CloseAccessoriesStockCommand" order="1" />
+  		</action>
+
+	</screen>
+<!--List Estimated Stock Count Starts-->
+	<screen name="ListEstimatedULDStock" id="uld.defaults.stock.listestimateduldstock">
+
+  		<action name="uld.defaults.stock.screenloadlistestimateduldstock">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listestimateduldstock.ScreenLoadListEstimatedULDStockCommand" order="1" />
+  		</action>
+
+  		<action name="uld.defaults.stock.findlistestimateduldstockcount">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listestimateduldstock.ListEstimatedULDStockCommand" order="1" />
+  		</action>
+
+  		<action name="uld.defaults.stock.clearlistestimateduldstockcount">
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listestimateduldstock.ClearListEstimatedULDStockCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.stock.closeestimatedULDstock">
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listestimateduldstock.CloseEstimatedULDStockCommand" order="1" />
+  		</action>
+	</screen>
+	<screen name="ListExcessStockAirports" id="uld.defaults.stock.findairportswithexcessstock">
+  		<action name="uld.defaults.stock.findairportswithexcessstock">
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listestimateduldstock.ListExcessStockAirportsCommand" order="1" />
+  		</action>		
+	</screen>
+	<screen name="ListExcessStockAirports" id="uld.defaults.stock.showFlightDetails">
+  		<action name="uld.defaults.stock.showFlightDetails">
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listestimateduldstock.ShowFlightDetailsCommand" order="1" />
+  		</action>		
+	</screen>
+	<screen name="ListEstimatedULDStock" id="uld.defaults.stock.closeFlightDetails">
+  		<action name="uld.defaults.stock.closeexcesstockairportlist">
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listestimateduldstock.CloseListExcessStockAirportsCommand" order="1" />
+  		</action>		
+	</screen>
+<!--List Estimated Stock Count Ends-->
+	<screen name="ListULDMovement" id="uld.defaults.misc.listuldmovement">
+
+<!--  ADDED BY JISHA FOR QF1022 STARTS -->
+
+		<action name="uld.defaults.misc.externallistuldmovement">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.UldExternalMovementHistoryCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.misc.uldmvthistory.generatetxndetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.report.PrintTxnDetailsCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.misc.listintuldmovement">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.ListIntULDMvtDetailsCommand" order="1" />
+		</action>
+		<action name="uld.defaults.misc.listuldtrns">
+ 		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.TransactionDetailsCommand" order="1" />
+     	</action>
+		<action name="uld.defaults.listdamagerepairdetails">
+ 		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.ListDamageRepairDetailsCommand" order="1" />
+     	</action>
+		<action name="uld.defaults.listbuildupbreakdowndetails">
+ 		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.ListBuildupBreakdownDetails" order="1" />
+     	</action>
+
+		<action name="uld.defaults.misc.screenloadlistuldmovement">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.ScreenLoadULDMovementHistoryCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.misc.listuldmovement">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.ListULDMovementHistoryCommand" order="1" />
+		</action>
+		<action name="uld.defaults.misc.clearuldmovement">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.ClearULDMovementHistoryCommand" order="1" />
+		</action>
+		<action name="uld.defaults.misc.closeuldmovement">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.CloseULDMovementHistoryCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.uldmvthistory.doReport">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.report.PrintCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.misc.deleteuldmovementhistory">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.DeleteULDMovementHistoryCommand" order="1" />
+		</action>
+		<action name="uld.defaults.findULDActionHistory">
+ 		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.ListActionHistoryCommand" order="1" />
+     	</action>
+
+		<!-- ADDED BY JISHA FOR QF1022 ENDS -->
+		<action name="uld.defaults.uldmvthistory.generateintmvtreport">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.report.PrintInternalMovementsCommand" order="1" />
+		</action>
+		<action name="uld.defaults.uldmvthistory.generateextmvtreport">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.report.PrintExternalMovementsCommand" order="1" />
+		</action>
+		<action name="uld.defaults.uldmvthistory.buildUpReport">
+ 		    <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.report.PrintBuildUpDetailsCommand" order="1" />
+     	</action>
+		<action name="uld.defaults.misc.mvthistory.report.printdamagerepairdetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldmovementhistory.report.PrintDamageRepairDetailsCommand" order="1" />
+		</action>
+
+	</screen>
+
+	<screen name="RepairInvoice" id="uld.defaults.misc.generaterepairinvoice">
+
+  		<action name="uld.damage.screenloadrepairinvoice">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.generaterepairinvoice.ScreenLoadRepairInvoiceCommand" order="1" />
+  		</action>
+
+  		<action name="uld.defaults.misc.generaterepairinvoice">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.generaterepairinvoice.GenerateRepairInvoiceCommand" order="1" />
+  		</action>
+
+	</screen>
+
+	<screen name="ViewRepairInvoice" id="uld.defaults.repairinvoice">
+
+   		<action name="uld.defaults.viewrepairinvoice">
+   			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.repairinvoice.RepairInvoiceCommand" order="1" />
+   		</action>
+
+   		<action name="uld.defaults.navigaterepairinvoice">
+  		 	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.repairinvoice.NavigateRepairInvoiceCommand" order="1" />
+   		</action>
+
+   		<action name="uld.defaults.repairshowsummary">
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.repairinvoice.ShowSummaryCommand" order="1" />
+   		</action>
+
+   		<action name="uld.defaults.saverepairinvoice">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.repairinvoice.SaveRepairCommand" order="1" />
+   		</action>
+
+   		<action name="uld.defaults.repairinvoice.doReport">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.repairinvoice.report.PrintCommand" order="1" />
+		</action>
+
+   		<action name="uld.defaults.closerepairinvoice">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.repairinvoice.CloseRepairCommand" order="1" />
+   		</action>
+
+   </screen>
+
+
+  <!-- Added by AG -->
+ <screen name="MaintainULDAgreement" id="uld.defaults.maintainuldagreement">
+
+	<action name="uld.defaults.screenloaduldagreement">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.ScreenLoadULDAgreementCommand" order="1" />
+	</action>
+
+	<action name="uld.defaults.finduldagreementdetails">
+ 		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.ListULDAgreementCommand" order="1" />
+	</action>
+
+	<action name="uld.defaults.screenloadadduldagreement">
+  		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.PopulateULDTypeLOVCommand" order="1" />
+  	</action>
+
+  	<action name="uld.defaults.modifyuldagreement">
+ 		 <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.UpdateULDAgreementCommand" order="1" />
+   	</action>
+
+    	<action name="uld.defaults.selectagreementdetails">
+   		 <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.OkCommand" order="1" />
+	</action>
+
+	<action name="uld.defaults.refreshUldAgreement">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.ULDRefreshCommand" order="1" />
+	</action>
+
+	<action name="uld.defaults.createuldagreement">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.SaveULDAgreementCommand" order="1" />
+	</action>
+
+	<action name="uld.defaults.clearuldagreement">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.ClearULDAgreementCommand" order="1" />
+	</action>
+
+	<action name="uld.defaults.deleteuldagreement">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.DeleteULDAgreementCommand" order="1" />
+	</action>
+
+	<action name="uld.defaults.printuldagreements">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.report.PrintCommand" order="1" />
+	</action>
+
+	<action name="uld.defaults.loanborrowagreementdetails">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.LoanBorrowULDAgreementCommand" order="1" />
+	</action>
+	
+	<!-- Added by a-3278 for populating party name on tab out -->
+	
+	<action name="uld.defaults.uldagreement.populate">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.PopulatePartyNameCommand" order="1" />
+	</action>
+	
+	<!-- Added by a-3278 for populating party name on tab out ends -->
+
+<!--pop up commands-->
+
+	<action name="uld.defaults.addagreementdetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.AddAgreementDetailsCommand" order="1" />
+	</action>
+	<action name="uld.defaults.deleteagreementdetails">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.DeleteAgreementDetailsCommand" order="1" />
+	</action>
+	<action name="uld.defaults.selectnextagreementdetails">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.SelectNextAgreementDetailCommand" order="1" />
+	</action>
+
+
+ </screen>
+
+
+
+  <screen name="MaintainULDStockSetup" id="uld.defaults.maintainuldstock">
+
+			<action name="uld.defaults.closeuldstocksetup">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.CloseULDStockSetUpCommand" order="1" />
+    		</action>
+
+			<action name="uld.defaults.deletestockdetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.DeleteULDStockSetUpCommand" order="1" />
+    		</action>
+
+    		<action name="uld.defaults.screenloaduldsetupstock">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.ScreenLoadULDStockSetUpCommand" order="1" />
+    		</action>
+
+    		<action name="uld.defaults.screenloadcreateuldsetupstock">
+		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.ScreenLoadCreateULDStockSetUpCommand" order="1" />
+    		</action>
+
+    		<action name="uld.defaults.validateuldsetupstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.ModifyULDStockSetUpCommand" order="1" />
+    		</action>
+
+    		<action name="uld.defaults.screenloadmodifyuldsetupstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.ScreenLoadModifyULDStockSetUpCommand" order="1" />
+    		</action>
+
+    		<action name="uld.defaults.finduldstocksetup">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.FindULDStockSetUpCommand" order="1" />
+    		</action>
+
+      		<action name="uld.defaults.createuldsetupstock">
+      			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.CreateULDStockSetUpCommand" order="1" />
+
+    		</action>
+
+    		<action name="uld.defaults.reload">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.RefreshCommand" order="1" />
+    		</action>
+
+    		<action name="uld.defaults.saveuldstocksetup">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.SaveULDStockSetUpCommand" order="1" />
+
+    		</action>
+
+    		<action name="uld.defaults.clearuldstocksetup">
+		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.ClearULDStockSetUpCommand" order="1" />
+    		</action>
+
+
+    		<action name="uld.defaults.maintainuldstock.doReport">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.report.PrintCommand" order="1" />
+		</action>
+
+
+		<action name="uld.defaults.stock.maintainstocksetup.adddmg">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.AddULDStockSetUpCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.stock.maintainstocksetup.deletedmg">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.DeleteULDSetUpCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.stock.maintainstocksetup.selectnext">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.SelectNextULDSetUpCommand" order="1" />
+		</action>
+	  <!-- Added by Preet on 1 st Apr for AirNZ 448 starts-->
+		<action name="uld.defaults.stock.maintainstocksetup.findULDGroupCode">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.maintainuldstock.FindULDGroupCodeCommand" order="1" />
+		</action>
+	  <!-- Added by Preet on 1 st Apr for AirNZ 448 ends-->
+  </screen>
+
+
+     <screen name="MonitorULDStock" id="uld.defaults.monitoruldstock">
+
+    		<action name="uld.defaults.screenloadmonitoruldstock">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.monitoruldstock.ScreenLoadMonitorULDStockCommand" order="1" />
+    		</action>
+
+    		<action name="uld.defaults.listuldstockdetails">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.monitoruldstock.ListMonitorULDStockCommand" order="1" />
+    		</action>
+
+			<action name="uld.defaults.navigatefrombuildupplanning">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.monitoruldstock.ScreenLoadMonitorULDStockCommand" order="1" />
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.monitoruldstock.ListMonitorULDStockCommand" order="2" />
+    		</action>
+
+    		<action name="uld.defaults.listuldstockdetails.doReport">
+		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.monitoruldstock.report.PrintCommand" order="1" />
+    		</action>
+    		<action name="uld.defaults.monitoruldstock.sendscmmessage">
+					    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.monitoruldstock.SendSCMMessageCommand" order="1" />
+    		</action>
+    		<action name="uld.defaults.viewuld">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.monitoruldstock.ViewULDCommand" order="1" />
+    		</action>
+			<action name="uld.defaults.listuldstockdetails.printstock">
+		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.monitoruldstock.report.PrintStockCommand" order="1" />
+    		</action>
+  </screen>
+
+
+
+<screen name="ListULDAgreement" id="uld.defaults.listuldagreement">
+	<action name="uld.defaults.screenloadlistuldagreement">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.listuldagreement.ScreenLoadListULDAgreementCommand" order="1" />
+	</action>
+	<action name="uld.defaults.listuldagreements">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.listuldagreement.ListULDAgreementCommand" order="1" />
+	</action>
+	<action name="uld.defaults.updatestatusuldagreements">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.listuldagreement.UpdateULDAgreementStatusCommand" order="1" />
+	</action>
+	<action name="uld.defaults.deleteuldagreements">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.listuldagreement.DeleteULDAgreementStatusCommand" order="1" />
+	</action>
+	<action name="uld.defaults.createuldagreements">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.listuldagreement.CreateULDAgreementCommand" order="1" />
+	</action>
+	<action name="uld.defaults.clearuldagreements">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.listuldagreement.ClearULDAgreementCommand" order="1" />
+	</action>
+	<action name="uld.defaults.viewuldagreements">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.listuldagreement.ViewULDAgreementStatusCommand" order="1" />
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.ListULDAgreementCommand" order="2" />
+	</action>
+	<action name="uld.defaults.navigateuldagreements">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.listuldagreement.NavigateULDAgreementCommand" order="1" />
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.maintainuldagreement.ListULDAgreementCommand" order="2" />
+	</action>
+
+	<action name="uld.defaults.listuldagreement.doReport">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.listuldagreement.report.PrintCommand" order="1" />
+	</action>
+</screen>
+
+
+ <screen name="LoanBorrowULD" id="uld.defaults.loanborrowuld">
+
+     		<action name="uld.defaults.transaction.screenloadloanborrowuld">
+     			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.ScreenLoadMaintainULDTransactionCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.updateloanborrowuld">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.LoanBorrowUpdateSessionCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.refreshloanborrowuld">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.LoanBorrowRefreshCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.refreshloanborrowuldfromdamage">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.LoanBorrowRefreshCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.screenloadaddloandetails">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.ScreenLoadAddLoanDetailsCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.screenloadaddborrowdetails">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.ScreenLoadAddBorrowDetailsCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.screenloadaddaccessorydetails">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.ScreenLoadAddAccessoryDetailsCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.addaccessorydetails">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.AddAccessoryDetailsCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.adduldloandetails">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.AddUldLoanDetailsCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.adduldborrowdetails">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.AddUldBorrowDetailsCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.deleteulddetails">
+ 		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.DeleteLoanBorrowDetailsCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.deleteaccessorydetails">
+ 		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.DeleteAccessoryDetailsCommand" order="1" />
+     		</action>
+			<action name="uld.defaults.transaction.printloanucr">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.report.PrintLoanUCRCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.saveuldtransaction">
+ 		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.SaveULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.agreementloanborrowdetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.FindULDAgreementDetailsCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.closeloanborrowdetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.CloseLoanBorrowCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.dummymovementtxn">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.DummyMovementTxnCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.txnchanged">
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.ChangeTxnTypeCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.generateluc">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.GenerateLUCMessageCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.viewLUCMessageCommand">
+			  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.ScreenLoadLUCMessageCommand" order="1" />
+     		</action>
+			<action name="uld.defaults.transaction.listuldborrowdetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.ListULDBorrowDetailsCommand" order="1" />
+			</action>
+			<action name="uld.defaults.transaction.deluldborrowdetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.DeleteULDBorrowDetailsCommand" order="1" />
+			</action>
+			<action name="uld.defaults.transaction.newuldborrowdetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.AddNewULDBorrowDetailsCommand" order="1" />
+			</action>
+			<action name="uld.defaults.transaction.listuldloandetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.ListULDLoanDetailsCommand" order="1" />
+			</action>
+			<action name="uld.defaults.transaction.deluldloandetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.DeleteULDLoanDetailsCommand" order="1" />
+			</action>
+			<action name="uld.defaults.transaction.newuldloandetails">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.AddNewULDLoanDetailsCommand" order="1" />
+			</action>
+			<action name="uld.defaults.transaction.populate">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.PopulatePartyNameCommand" order="1" />
+			</action>
+			<!--added by a-3045 for CR QF1016-->
+			<action name="uld.defaults.transaction.generatecrn">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.GenerateCRNForULDDetailsCommand" order="1" />
+     		</action>
+			<action name="uld.defaults.transaction.updateloanborrowsession">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.UpdateLoanBorrowULDSessionCommand" order="1" />
+     		</action>
+     		<action name="uld.defaults.transaction.fetchulddetails">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.FetchUldDetailsCommand" order="1" />
+     		</action>
+
+			<!--added by a-3045 for CR QF1016-->
+     		<!--added by a-1883 for CR QF1506-->
+          	<action name="uld.defaults.transaction.listcustomerdetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.FetchCustomerDetailsAjaxCommand" order="1" />
+	 	</action>
+			
+			
+  </screen>
+
+  <screen name="ULDNumberLov" id="uld.defaults.uldnumberlov">
+
+   		<action name="uld.defaults.transaction.finduldnumberlov">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.FindULDNumberLovCommand" order="1" />
+  		</action>
+  		<action name="uld.defaults.uldnumberlovclear">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.maintainuldtransaction.ULDNumberLovClearCommand" order="1" />
+ 		</action>
+
+  </screen>
+
+
+      <screen name="LoanBorrowDetailsEnquiry" id="uld.defaults.loanborrowdetailsenquiry">
+
+   		   <!--Added by Sreekumar S-->
+			<action name="uld.defaults.transaction.validatetransactionstatus">
+ 		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.ValidateTransactionStatusCommand" order="1" />
+     		</action>
+			<!--Added by Sreekumar S ends-->
+
+      		<action name="uld.defaults.transaction.screenloadloanborrowdetailsenquiry">
+        			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.ScreenLoadListULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.listuldtransactions">
+ 		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.ListULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.clearlistuldtransactions">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.ClearULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.deletelistuldtransactions">
+     			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.DeleteULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.updatelistuldtransactions">
+ 		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.UpdateListULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.screenloadmodifyuldtransactions">
+ 		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.ScreenloadModifyULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.modifyuldtransaction">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.ModifyULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.savemodifyuldtransaction">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.SaveModifyULDTransactionCommand" order="1" />
+     		</action>
+
+		  <!--added by a-3278 for CR QF1015-->
+		  	<action name="uld.defaults.transaction.returnuldtransaction">
+				 <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.ReturnULDTransactionCommand" order="1" />
+			 </action>
+
+			 <action name="uld.defaults.showtotaldemmurage">
+				 <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.ShowTotalDemmurageCommand" order="1" />
+			 </action>
+		 <!--added by a-3278 for CR QF1015 ends-->
+
+     		<action name="uld.defaults.transaction.refreshlistuldtransactions">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.RefreshModifyULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.closelistuldtransactions">
+ 		    	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.CloseULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.returnuldtransactiondetails">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.UpdateReturnULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.screenloadreturnuldtransaction">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.ScreenloadReturnULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.calculatedemurragecharges">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.CalculateChargesReturnULDCommand" order="1" />
+ 		</action>
+
+ 		<action name="uld.defaults.transaction.showtotalreturntransactions">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.ShowTotalReturnULDCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.savereturnuldtransaction">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.SaveReturnULDTransactionCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.updateenquirygenerateinvoice">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.UpdateGenerateInvoiceTxnCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.transaction.refreshlistgenerateinvoice">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.RefreshGenerateInvoiceTxnCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.transaction.refreshulddetailstxn">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.RefreshULDDetailsTxnCommand" order="1" />
+     		</action>
+
+     		<action name="uld.defaults.loanborrowulddetails.doReport">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.report.PrintCommand" order="1" />
+		</action>
+		  
+		  <action name="uld.defaults.loanborrowulddetailsforpage.doReport">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.report.PrintPageCommand" order="1" />
+		</action>
+		<action name="uld.defaults.loanborrowulddetails.doUCRReport">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.report.PrintUCRCommand" order="1" />
+		</action>
+		<action name="uld.defaults.transaction.closereturntxn">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.CloseReturnCommand" order="1" />
+		</action>
+		<action name="uld.defaults.transactionenquiry.txnchanged">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.ChangeTxnTypeCommand" order="1" />
+   		</action>
+   		<action name="uld.defaults.transaction.generatelucmessage">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.GenerateLUCCommand" order="1" />
+     	</action>
+		<action name="uld.defaults.transaction.generatemucmessage">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.GenerateMUCCommand" order="1" />
+     	</action>
+     	<action name="uld.defaults.transaction.deletelistaccessorydetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.DeleteAccessoryDetailsCommand" order="1" />
+     	</action>
+		<!--added by a-3045 for CR QF1142 starts-->
+		<action name="uld.defaults.transaction.ignorereinstatemuc">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.IgnoreReinstateMUCCommand" order="1" />
+     	</action>
+		<!--added by a-3045 for CR QF1142 ends-->
+		<action name="uld.defaults.transaction.navigatemodifyuldtxns">
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.NavigateModifyTxnCommand" order="1" />
+     		</action>
+  </screen>
+
+
+
+      <screen name="ReturnULDTransactions" id="uld.defaults.returnuldtransaction">
+
+    		<action name="uld.defaults.calculatedemurragecharges">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.returnuldtransaction.CalculateChargesForReturnedULDsCommand" order="1" />
+    		</action>
+    		<action name="uld.defaults.screenloadreturnuldtransaction">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.returnuldtransaction.ScreenLoadReturnULDTransactionCommand" order="1" />
+    		</action>
+    		<action name="uld.defaults.savereturnedulds">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.returnuldtransaction.SaveReturnedULDsCommand" order="1" />
+    		</action>
+    		<action name="uld.defaults.printreturnborrowucr">
+			   	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransaction.report.PrintReturnBorrowUCRCommand" order="1" />
+    		</action>
+  </screen>
+
+      <screen name="ListULDTransactionHistory" id="uld.defaults.listuldtransactionhistory">
+
+    		<action name="uld.defaults.screenloadlistuldtransactionhistory">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransactionhistory.ScreenLoadListULDTransactionHistoryCommand" order="1" />
+    		</action>
+    		<action name="uld.defaults.listuldtransactionhistory">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listuldtransactionhistory.ListULDTransactionHistoryCommand" order="1" />
+    		</action>
+  </screen>
+
+
+
+      <screen name="ListULDInvoice" id="uld.defaults.listinvoice">
+
+    		<action name="uld.defaults.screenloaduldinvoice">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listinvoice.ScreenLoadListInvoiceCommand" order="1" />
+    		</action>
+    		<action name="uld.defaults.viewuldinvoicedetails">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listinvoice.ViewInvoiceDetailsCommand" order="1" />
+    		</action>
+    		<action name="uld.defaults.listuldinvoice">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listinvoice.ListInvoiceCommand" order="1" />
+    		</action>
+
+		<action name="uld.defaults.invoicerefnolovscreenload">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listinvoice.InvoiceNoLovScreenLoadCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.invoicerefnolovclear">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listinvoice.InvoiceNoLovClearCommand" order="1" />
+	    	</action>
+
+	    	<action name="uld.defaults.listinvoice.doReport">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.listinvoice.report.PrintCommand" order="1" />
+		</action>
+   </screen>
+
+
+ 	<screen name="GenerateInvoice" id="uld.defaults.generateinvoice">
+
+		<action name="uld.defaults.generateinvoice">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.generateinvoice.GenerateInvoiceCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.generateinvoicescreenload">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.generateinvoice.ScreenLoadGenerateInvCommand" order="1" />
+		</action>
+
+  	</screen>
+
+  	<screen name="GenerateTransactionInvoice" id="uld.defaults.generatetransactioninvoice">
+
+		<action name="uld.defaults.generatetransactioninvoice">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.generatetransactioninvoice.UpdateDemerageAmountCommand" order="1" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.generatetransactioninvoice.GenerateTransactionInvoiceCommand" order="2" />
+		</action>
+
+		<action name="uld.defaults.generatetransactioninvoicescreenload">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.generatetransactioninvoice.ScreenLoadGenerateInvCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.updatetransactioninvoicedemerage">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.generatetransactioninvoice.UpdateDemerageAmountCommand" order="1" />
+		</action>
+		<action name="uld.defaults.transaction.populateinvoicetoname">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.generatetransactioninvoice.PopulateAirlineCommand" order="1" />
+		</action>
+  	</screen>
+
+  	<screen name="ViewInvoice" id="uld.defaults.viewinvoice">
+
+ 		<action name="uld.defaults.viewinvoice">
+ 			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.viewinvoice.ViewInvoiceCommand" order="1" />
+ 		</action>
+
+ 		<action name="uld.defaults.navigateinvoice">
+		 	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.viewinvoice.NavigateViewInvoiceCommand" order="1" />
+ 		</action>
+
+ 	</screen>
+
+  <screen name="RecordULDMovement" id="uld.defaults.misc.recorduldmovement">
+
+    		<action name="uld.defaults.misc.screenloadrecorduldmovement">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.recorduldmovement.ScreenLoadRecordULDMovementCommand" order="1" />
+    		</action>
+
+    		<action name="uld.defaults.misc.adduldmovement">
+    		    <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.recorduldmovement.UpdateRecordULDMovementCommand" order="1" />
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.recorduldmovement.AddULDMovementCommand" order="2" />
+    		</action>
+
+    		<action name="uld.defaults.misc.deleteuldmovement">
+  		  	  <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.recorduldmovement.UpdateRecordULDMovementCommand" order="1" />
+  		  	  <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.recorduldmovement.DeleteULDMovementCommand" order="2" />
+    		</action>
+
+
+    		<action name="uld.defaults.misc.adduldnumber">
+  		      <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.recorduldmovement.UpdateRecordULDMovementCommand" order="1" />
+  		      <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.recorduldmovement.AddULDNumberCommand" order="2" />
+  		    </action>
+
+  		    <action name="uld.defaults.misc.deleteuldnumber">
+  		      <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.recorduldmovement.UpdateRecordULDMovementCommand" order="1" />
+  		      <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.recorduldmovement.DeleteULDNumberCommand" order="2" />
+  		    </action>
+
+            <action name="uld.defaults.misc.saveuldmovement">
+              <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.recorduldmovement.UpdateRecordULDMovementCommand" order="1" />
+  			  <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.recorduldmovement.SaveULDMovementCommand" order="1" />
+  		 </action>
+  		 <action name="uld.defaults.recorduld.closerecorduld">
+		 	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.recorduldmovement.CloseRecordULDCommand" order="1" />
+		 </action>
+
+
+	</screen>
+
+  <!-- Added by AG -->
+
+
+	  <screen name="AgreementNoLOV" id="uld.defaults.agreementnolov">
+		<action name="uld.defaults.screenloadagreementnolov">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.agreementnolov.ScreenloadAgreementNoLovCommand" order="1" />
+		</action>
+		<action name="uld.defaults.clearloadagreementnolov">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldagreement.agreementnolov.ClearloadAgreementNoLovCommand" order="1" />
+		</action>
+	  </screen>
+
+    	  <screen name="MaintainDamageReport" id="uld.defaults.maintaindamagereport">
+           	<action name="uld.defaults.screenloadmaintaindamagereport">
+      			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ScreenLoadMaintainDamageReportCommand" order="1" />
+      		</action>
+
+		<action name="uld.defaults.maintaindamageprint">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.report.PrintCommand" order="1" />
+      		</action>
+
+      		<action name="uld.defaults.listulddmgdetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ListDamageReportCommand" order="1" />
+  		</action>
+  		<action name="uld.defaults.clearulddmgdetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ClearDamageReportCommand" order="1" />
+  		</action>
+
+  		<action name="uld.defaults.damageDetailsScreenLoadCommand">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.DamageDetailsScreenLoadCommand" order="1" />
+  		</action>
+
+		<action name="uld.defaults.damageDetailsListCommand">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.DamageListDetailsCommand" order="1" />
+		</action>
+
+      		<action name="uld.defaults.savedmgdetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.AddDamageDetailsCommand" order="1" />
+  		</action>
+  		<action name="uld.defaults.deldmgdetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.DeleteDamageDetailsCommand" order="1" />
+  		</action>
+  		<action name="uld.defaults.repairDetailsScreenLoadCommand">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.RepairDetailsScreenLoadCommand" order="1" />
+  		</action>
+
+  		<action name="uld.defaults.saverepdetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.AddRepairDetailsCommand" order="1" />
+  		</action>
+  		<action name="uld.defaults.delrepdetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.DeleteRepairDetailsCommand" order="1" />
+  		</action>
+
+  		<action name="uld.defaults.saveulddmgdetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.SaveDamageReportCommand" order="1" />
+  		</action>
+  		<action name="uld.defaults.adddmg" >
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.AddDmgCommand" order="1"/>
+  		</action>
+  		<action name="uld.defaults.selectnextdmgcommand" >
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.SelectNextDmgCommand" order="1"/>
+  		</action>
+
+  		<action name="uld.defaults.deletedmg" >
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.DeleteDmgCommand" order="1"/>
+  		</action>
+
+  		<action name="uld.defaults.addrep" >
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.AddRepCommand" order="1"/>
+  		</action>
+  		<action name="uld.defaults.selectnextrepcommand" >
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.SelectNextRepCommand" order="1"/>
+  		</action>
+
+  		<action name="uld.defaults.deleterep" >
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.DeleteRepCommand" order="1"/>
+  		</action>
+
+  		<action name="uld.defaults.totaldmgdetails" >
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.DisplayTotalCommand" order="1"/>
+  		</action>
+
+  		<action name="uld.defaults.showdmgreflov" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ShowDmgRefNoLovCommand" order="1"/>
+		</action>
+
+		<action name="uld.defaults.closecommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.CloseCommand" order="1"/>
+  		</action>
+  		<action name="uld.defaults.showdamage">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ShowDamageCommand" order="1" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ListDamageReportCommand" order="2" />
+		</action>
+		<!--Added by A-7924 as part of ICRD-304117 starts-->
+		<action name="uld.defaults.ux.showdamage">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ShowDamageCommand" order="1" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.ListDamageReportCommand" order="2" />
+		</action>
+		<!--Added by A-7924 as part of ICRD-304117 ends -->
+		<action name="uld.defaults.viewPicScreenLoadCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ScreenLoadViewPicCommand" order="1"/>
+		</action>
+		<action name="uld.defaults.showimage" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ImageCommand" order="1"/>
+			<command class="com.ibsplc.icargo.framework.web.command.ImageDownLoadCommand" order="2"/>
+		</action>
+		<action name="uld.defaults.viewpicture" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ViewPictureCommand" order="1"/>
+		</action>
+		<action name="uld.defaults.updatedmg">
+		     <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.UpdateDamageCommand" order="1" />
+   	    </action>
+   	    <action name="uld.defaults.adddmgpic" >
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.AddPictureCommand" order="1"/>
+		</action>
+
+    	</screen>
+
+	    <screen name="MaintainDamageReport" id="uld.defaults.ux.maintaindamagereport">		                                      
+		<action name="uld.defaults.ux.screenloadmaintaindamagereport">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.ScreenLoadMaintainDamageReportCommand" order="1" />
+		</action> 
+		<action name="uld.defaults.ux.listulddmgdetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.ListDamageReportCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.ux.clearulddmgdetails">
+  		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.ClearDamageReportCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.ux.maintaindamageprint">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.report.PrintCommand" order="1" />
+      	</action>
+		<action name="uld.defaults.ux.saveulddmgdetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.SaveDamageReportCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.ux.closecommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.CloseCommand" order="1"/>
+  		</action>
+		<action name="uld.defaults.ux.totaldmgdetails" >
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.DisplayTotalCommand" order="1"/>
+  		</action>	      	
+		<action name="uld.defaults.ux.deldmgdetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.DeleteDamageDetailsCommand" order="1" />
+  		</action>		
+		<action name="uld.defaults.ux.delrepdetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.DeleteRepairDetailsCommand" order="1" />
+  		</action>
+	    <action name="uld.defaults.ux.damageDetailsListCommand">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.DamageListDetailsCommand" order="1" />
+		</action>
+        <action name="uld.defaults.ux.showdmgreflov" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.ShowDmgRefNoLovCommand" order="1"/>
+		</action>
+         <action name="uld.defaults.ux.adddmgpic" >
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.AddPictureCommand" order="1"/>
+		</action>
+		<action name="uld.defaults.ux.viewpicture" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.ViewPictureCommand" order="1"/>
+		</action>
+		<action name="uld.defaults.ux.viewPicScreenLoadCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.ScreenLoadViewPicCommand" order="1"/>
+		</action>
+		<action name="uld.defaults.ux.showimage" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.ImageCommand" order="1"/>
+			<command class="com.ibsplc.icargo.framework.web.command.ImageDownLoadCommand" order="2"/>
+		</action>
+		</screen> 		  
+		  
+		  
+		  
+		  
+    	 <screen name="uld.defaults.listdamagereport" id="uld.defaults.listdamagereport">
+		 <action name="uld.defaults.screenloadlistdamagereport" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listdamagereport.ScreenLoadListDamageReportCommand" order="1"/>
+		 </action>
+
+		 <action name="uld.defaults.listdamagereportcommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listdamagereport.ListDamageReportCommand" order="1"/>
+		 </action>
+
+		 <action name="uld.defaults.deletescreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listdamagereport.DeleteCommand" order="1"/>
+		 </action>
+
+		 <action name="uld.defaults.clearscreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listdamagereport.ClearListDamageCommand" order="1"/>
+		 </action>
+
+
+		 <action name="uld.defaults.printscreen">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listdamagereport.report.PrintCommand" order="1" />
+		</action>
+		<action name="uld.defaults.navigateulddamage">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listdamagereport.NavigateULDDamageCommand" order="1" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ListDamageReportCommand" order="2" />
+		</action>
+		<action name="uld.defaults.viewulddamage">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listdamagereport.ViewMaintainDamageCommand" order="1" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ListDamageReportCommand" order="2" />
+		</action>
+		<!--Added by A-7924 as part of ICRD-287579 -->
+		<action name="uld.defaults.ux.viewulddamage">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listdamagereport.ViewMaintainDamageCommand" order="1" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.ListDamageReportCommand" order="2" />
+		</action>
+		<!--Added by A-7924 as part of ICRD-287579-->
+		<action name="uld.defaults.listdamage.viewpicture" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listdamagereport.ViewPictureCommand" order="1"/>
+		</action>
+  	</screen>
+
+	<screen name="uld.defaults.listrepairreport" id="uld.defaults.listrepairreport">
+		 <action name="uld.defaults.screenloadlistrepairreport" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listrepairreport.ScreenLoadListRepairReportCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.listrepairreport" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listrepairreport.ListRepairReportCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.clearrepairreports" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listrepairreport.ClearListRepairCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.listrepairreport.printscreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listrepairreport.report.PrintCommand" order="1"/>
+		 </action>
+
+	</screen>
+
+	<screen name="uld.defaults.damagerefnolov" id="uld.defaults.damagerefnolov">
+		 <action name="uld.defaults.lov.screenloadlov" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ScreenLoadDmgRefNoLovCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.lov.listscreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ListDmgRefNoLovCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.lov.clearscreen" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.maintaindamagereport.ClearDmgRefNoLovCommand" order="1"/>
+		 </action>
+	</screen>
+
+	<screen name="uld.defaults.listulddiscrepancies" id="uld.defaults.listulddiscrepancies">
+
+		 <action name="uld.defaults.listulddiscrepancies.screenloadulddiscrepancies" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.ScreenLoadListUldDiscrepancyCommand" order="1"/>
+		 </action>
+
+		 <action name="uld.defaults.listulddiscrepancies.listulddiscrepancies" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.ListUldDiscrepancyCommand" order="1"/>
+		 </action>
+
+		 <action name="uld.defaults.listulddiscrepancies.clearulddiscrepancies" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.ClearListUldDiscrepancyCommand" order="1"/>
+		 </action>
+
+
+		 <action name="uld.defaults.listulddiscrepancies.maintainulddiscrepancy" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.ListMaintainDiscrepancyCommand" order="1"/>
+		 </action>
+
+		 <action name="uld.defaults.listulddiscrepancies.createulddiscrepancies" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.CreateDiscrepancyCommand" order="1"/>
+		 </action>
+
+
+
+		 <action name="uld.defaults.listulddiscrepancies.closediscrepancyulddiscrepancies" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.CloseListUldDiscrepancyCommand" order="1"/>
+		 </action>
+
+
+
+		 <action name="uld.defaults.listulddiscrepancies.refreshcommand" >
+		   	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.RefreshCommand" order="1"/>
+		 </action>
+
+		 <action name="uld.defaults.listulddiscrepancies.screenloadlocationlov" >
+		   	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.ScreenloadLocationLovCommand" order="1"/>
+		 </action>
+	</screen>
+		 
+	<screen name="uld.defaults.maintainulddiscrepancies" id="uld.defaults.maintainulddiscrepancies">		 
+		 <action name="uld.defaults.listulddiscrepancies.detailsulddiscrepancies" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.DetailListUldDiscrepancyCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.listulddiscrepancies.creatediscrepancy" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.CreateCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.maintainulddiscrepancies.save" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.SaveCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.maintainulddiscrepancies.closeaction" >
+		 	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.CloseMaintainDiscrepancyCommand" order="1"/>
+		</action>
+		 <action name="uld.defaults.maintainulddiscrepancies.updatediscrepency" >
+		 	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.UpdateDiscrepancyCommand" order="1"/>
+		 </action>
+		<action name="uld.defaults.listulddiscrepancies.navigatediscrepancy" >
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.NavigateCommand" order="1"/>
+		</action>
+		
+		<action name="uld.defaults.maintainulddiscrepancies.refreshcommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.ReloadCommand" order="1"/>
+		</action>
+	</screen>
+
+	<screen name="uld.defaults.manufacturerlov" id="uld.defaults.manufacturerlov">
+		 <action name="uld.defaults.findmanufacturerlov" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.maintainuld.FindManufacturerLovCommand" order="1"/>
+		 </action>
+	</screen>
+
+	<screen name="uld.defaults.airportfacilitymaster" id="uld.defaults.airportfacilitymaster">
+		 <action name="uld.defaults.airportfacilitymaster.screenloadcommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.airportfacilitymaster.ScreenLoadCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.airportfacilitymaster.listcommand" >
+		 	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.airportfacilitymaster.ListCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.airportfacilitymaster.clearcommand" >
+		 	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.airportfacilitymaster.ClearCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.airportfacilitymaster.addcommand" >
+		 	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.airportfacilitymaster.AddCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.airportfacilitymaster.deletecommand" >
+		 	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.airportfacilitymaster.DeleteCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.airportfacilitymaster.savecommand" >
+		 	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.airportfacilitymaster.SaveCommand" order="1"/>
+		 </action>
+	</screen>
+	<screen name="uld.defaults.ucminoutmessaging" id="uld.defaults.ucminoutmessaging">
+
+	<action name="uld.defaults.ucminout.screenloaducminoutmessaging" >
+			  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucminout.ScreenloadUCMINOUTCommand" order="1"/>
+		 </action>
+	<action name="uld.defaults.ucminout.listucminoutmessaging" >
+			  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucminout.ListUCMINOUTMessageCommand" order="1"/>
+	 </action>
+
+	 <action name="uld.defaults.ucminout.selectflightdetails" >
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucminout.SelectFlightDetailsCommand" order="1"/>
+		 </action>
+
+	 <action name="uld.defaults.ucminout.clearucminoutmessaging" >
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucminout.ClearUCMINOUTMessagingCommand" order="1"/>
+			 </action>
+
+	 <action name="uld.defaults.ucminout.viewulds" >
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucminout.ViewULDsCommand" order="1"/>
+		 </action>
+
+		 <action name="uld.defaults.ucminout.addulddetails" >
+	 					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucminout.AddULDDetailsCommand" order="1"/>
+		 </action>
+
+		<action name="uld.defaults.ucminout.deleteulddetails" >
+	 					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucminout.DeleteULDDetailsCommand" order="1"/>
+	 </action>
+
+
+	<action name="uld.defaults.ucminout.senducmmessage" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucminout.SaveUCMINOUTMessageCommand" order="1"/>
+	 </action>
+
+	</screen>
+
+	<screen name="UCMErrorLog" id="uld.defaults.ucmerrorlog">
+		<action name="uld.defaults.messaging.screenloaducmerrorlog">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmerrorlog.ScreenLoadUCMErrorLogCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.listucmerrorlog">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmerrorlog.ListUCMErrorLogCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.reloadlistucmerrorlog">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmerrorlog.ReloadListCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.clearucmerrorlog">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmerrorlog.ClearUCMErrorLogCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.showulderrorlog">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmerrorlog.ShowULDErrorLogCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.selectduplicateucmreconcile">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmerrorlog.SelectUCMReconcileCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.screenloadduplicateucmreconcile">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmerrorlog.ScreenLoadUCMReconcileCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.duplicateucmreconcilesave">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmerrorlog.ReconcileDuplicateUCMCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.senducmmsg">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmerrorlog.SendUCMMessageCommand" order="1" />
+		</action>
+		<!--Added by A-7359 fro ICRD-225848 starts here-->
+		<action name="uld.defaults.ucmerrorlogcloseaction">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmerrorlog.CloseCommand" order="1" />
+		</action>
+		<!--Added by A-7359 fro ICRD-225848 ends here-->
+	</screen>
+
+	<screen name="ULDErrorLog" id="uld.defaults.ulderrorlog">
+		<action name="uld.defaults.messaging.screenloadulderrorlog">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ulderrorlog.ScreenLoadULDErrorLogCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.listulderrorlog">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ulderrorlog.ListULDErrorLogCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.reloadlistulderrorlog">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ulderrorlog.ReloadListCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.clearulderrorlog">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ulderrorlog.ClearULDErrorLogCommand" order="1" />
+		</action>
+		<action name="uld.defaults.ulderrorlogcloseaction">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ulderrorlog.CloseCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.reconcileulderror">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ulderrorlog.ReconcileULDCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.deleteulderrorlog">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ulderrorlog.DeleteULDErrorLogCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.updatetransit">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ulderrorlog.UpdateTransitCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.addulderrorlog">
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ulderrorlog.AddULDErrorLogCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.saveulderrorlog">
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ulderrorlog.SaveULDErrorLogCommand" order="1" />
+		</action>
+	</screen>
+
+	<screen name="GenerateSCM" id="uld.defaults.generatescm">
+		<action name="uld.defaults.messaging.screenloadgeneratescm">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.generatescm.ScreenLoadCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.listgeneratescm">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.generatescm.ListGenerateSCMCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.listgeneratescmstock">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.generatescm.ListGenerateSCMCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.cleargeneratescm">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.generatescm.ClearCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.stockcleargeneratescm">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.generatescm.ClearStockDetailsCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.addgeneratescm">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.generatescm.AddExtraULDCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.deletegeneratescm">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.generatescm.DeleteExtraULDCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.sendgeneratescm">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.generatescm.SendCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.SaveAsDraftgeneratescm">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.generatescm.SaveAsDraftCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.markmissingulds">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.generatescm.ChangeULDStatusCommand" order="1" />
+			</action>
+
+			<action name="uld.defaults.messsaging.refreshscmulddetails">
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.generatescm.RefreshSCMCommand" order="1" />
+			</action>
+
+	</screen>
+
+	<screen name="uld.defaults.scmreconcile" id="uld.defaults.scmreconcile">
+			<action name="uld.defaults.messaging.screenloadscmreconcile">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmreconcile.ScreenLoadSCMReconcileCommand" order="1" />
+			</action>
+			<action name="uld.defaults.messaging.listscmerrorlog">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmreconcile.ListSCMReconcileCommand" order="1" />
+			</action>
+
+			<action name="uld.defaults.messaging.clearscmreoncile">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmreconcile.ClearSCMReconcileCommand" order="1" />
+			</action>
+			<action name="uld.defaults.messaging.showscmulderrorlog">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmreconcile.ShowULDErrorLogCommand" order="1" />
+			</action>
+
+			<action name="uld.defaults.messaging.sendscmmessagefromscmerr">
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmreconcile.SendSCMCommand" order="1" />
+			</action>
+				<action name="uld.defaults.messaging.viewscmulds">
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmreconcile.ViewULDDetailsCommand" order="1" />
+				</action>
+			<action name="uld.defaults.messaging.screenloadscmseqnolov">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmreconcile.ListSCMSeqNoLOVCommand" order="1" />
+			</action>
+			<action name="uld.defaults.messaging.clearscmseqnolov">
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmreconcile.ClearSCMSeqNoLovCommand" order="1" />
+			</action>
+
+
+
+
+
+
+	</screen>
+
+		<screen name="uld.defaults.scmreconcile" id="uld.defaults.scmulderrorlog">
+				<action name="uld.defaults.messaging.screenloadscmulderrorlog">
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmulderrorlog.ScreenLoadSCMULDErrorCommand" order="1" />
+				</action>
+				<action name="uld.defaults.messaging.listscmulderrorlog">
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmulderrorlog.ListSCMULDCommand" order="1" />
+				</action>
+
+				<action name="uld.defaults.messaging.clearscmulderrorlog">
+						<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmulderrorlog.ClearSCMULDErrorLogCommand" order="1" />
+				</action>
+				<action name="uld.defaults.messaging.reconcilescmulderror">
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmulderrorlog.ReconcileSCMULDErrorCommand" order="1" />
+				</action>
+				<action name="uld.defaults.closescmerrorlog">
+						<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmulderrorlog.CloseCommand" order="1" />
+				</action>
+
+				<action name="uld.defaults.messaging.deletescmulds">
+						<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmulderrorlog.DeleteSCMULDCommand" order="1" />
+				</action>
+
+
+
+
+		</screen>
+	    <!-- Added by DEEPTHI -->
+		<screen name="uld.defaults.uldpoolowners" id="uld.defaults.uldpoolowners">
+
+		<action name="uld.defaults.screenloaduldpoolowners">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldpoolowners.ScreenLoadULDPoolOwnersCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.misc.adduldpoolowners">
+    			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldpoolowners.AddULDPoolOwnersCommand" order="1" />
+    	</action>
+
+		<action name="uld.defaults.misc.deleteuldpoolowners">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldpoolowners.DeleteULDPoolOwnersCommand" order="1" />
+    	</action>
+
+		<action name="uld.defaults.uldpoolowners.listuldpoolowners">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldpoolowners.ListULDPoolOwnersCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.uldpoolowners.clearuldpoolowners">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldpoolowners.ClearULDPoolOwnersCommand" order="1" />
+		</action>
+
+
+
+		<action name="uld.defaults.uldpoolowners.saveuldpoolowners">
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldpoolowners.SaveULDPoolOwnersCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.updateuldpoolowners">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldpoolowners.UpdateULDPoolOwnersCommand" order="1" />
+		</action>
+
+		</screen>
+
+
+		<screen name="uld.defaults.segmentexceptions" id="uld.defaults.segmentexceptions">
+
+		<action name="uld.defaults.screenloadsegmentexceptions">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldpoolowners.ScreenLoadSegmentExceptionsCommand" order="1" />
+		</action>
+		<action name="uld.defaults.savesegmentexceptions">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldpoolowners.SaveExceptionsCommand" order="1" />
+		</action>
+		</screen>
+
+	<screen name="UCMFlightExceptionList" id="uld.defaults.ucmflightexceptionlist">
+
+		<action name="uld.defaults.messaging.screenloaducmflightexceptionlist">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.ScreenLoadUcmFlightExceptionCommand" order="1" />
+		</action>
+		<action name="uld.defaults.messaging.listucmflightexceptionlist">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.ListUcmFlightExceptionCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.messaging.clearucmflightexceptionlist">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.ClearUcmFlightExceptionCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.messaging.adducmflightexceptionlist">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.ValidateUcmFlightCommand" order="1" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.UpdateUcmFlightCommand" order="2" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.ValidateDuplicateFlightCommand" order="3" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.AddUcmFlightCommand" order="4" />
+		</action>
+
+		<action name="uld.defaults.messaging.deleteucmflightexceptionlist">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.DeleteUcmFlightCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.messaging.updateafterflightduplidcte">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.UpdateUcmFlightCommand" order="1" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.ValidateDuplicateFlightCommand" order="2" />
+		</action>
+
+		<action name="uld.defaults.messaging.saveucmflightexceptionlist">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.ValidateUcmFlightCommand" order="1" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.UpdateUcmFlightCommand" order="2" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.ValidateDuplicateFlightCommand" order="3" />
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.ucmflightexceptionlist.SaveUcmFlightExceptionCommand" order="4" />
+		</action>
+	</screen>
+
+	<!--added by kumar prashant for ULDHistory-->
+	<screen name="ULDHistory" id="uld.defaults.uldhistory">
+
+		<action name="uld.defaults.misc.screenloaduldhistory">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldhistory.ScreenLoadULDHistoryCommand" order="1" />
+		</action>
+		<action name="uld.defaults.misc.listuldhistory">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldhistory.ListULDHistoryCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.misc.clearuldhistory">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldhistory.ClearULDHistoryCommand" order="1" />
+		</action>
+		<action name="uld.defaults.misc.closeuldhistory">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldhistory.CloseULDHistoryCommand" order="1" />
+		</action>
+		<action name="uld.defaults.misc.printuldhistory.doReport">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldhistory.report.PrintULDHistoryCommand" order="1" />
+		</action>
+
+
+	</screen>
+	<!--ULDHistory ends-->
+
+
+	<!--added by Tarun  for HandledCarrierSetup-->
+	<screen name="HandledCarrierSetup" id="uld.defaults.misc.handledcarriersetup">
+
+  		<action name="uld.defaults.misc.handledcarrier.screenloadhandledcarriersetup">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.handledcarrier.ScreenLoadHandledCarrierSetupCommand" order="1" />
+  		</action>
+
+		<action name="uld.defaults.misc.handledcarrier.listhandledcarriersetup">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.handledcarrier.ListHandledCarrierSetupCommand" order="1" />
+  		</action>
+
+		<action name="uld.defaults.misc.handledcarrier.savehandledcarriersetup">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.handledcarrier.SaveHandledCarrierSetupCommand" order="1" />
+  		</action>
+
+		<action name="uld.defaults.misc.handledcarrier.clearhandledcarriersetup">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.handledcarrier.ClearHandledCarrierSetupCommand" order="1" />
+  		</action>
+
+	</screen>
+
+
+	<!--added by Nishanth  for ULDDiscrepancyReport-->
+	<screen name="ULDDiscrepancyReport" id="uld.defaults.ulddiscrepancyreport">
+	    <action name="uld.defaults.ulddiscrepancyreport.creatediscrepancyreport">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.report.ScreenLoadULDDiscrepancyReport" order="1" />
+  		</action>
+	    <action name="uld.defaults.ulddiscrepancyreport.clearulddiscrepancyreport">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.report.ClearULDDiscrepancyReportCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.ulddiscrepancyreport.generateulddiscrepancyreport">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.report.GenerateULDDiscrepancyReportCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.ulddiscrepancyreport.printulddiscrepancyreport">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.discrepancy.report.PrintULDDiscrepancyReportCommand" order="1" />
+  		</action>
+
+	</screen>
+
+	<!--Added by Preet  for ULD Internal Movement starts-->
+	<screen name="ULDIntMvtHistory" id="uld.defaults.misc.uldintmvthistory">
+
+  		<action name="uld.defaults.misc.uldIntMvtHistory.screenload">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldintmvthistory.ScreenLoadULDIntMvtCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.misc.listULDIntMvtHistory">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldintmvthistory.ListULDIntMvtCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.misc.closeULDIntMvtHistory">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldintmvthistory.CloseULDIntMvtCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.misc.clearULDIntMvtHistory">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldintmvthistory.ClearULDIntMvtCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.misc.printULDIntMvtHistory">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldintmvthistory.report.PrintULDIntMvtHistoryCommand" order="1" />
+  		</action>
+	</screen>
+	<!--Added by Preet  for ULD Internal Movement ends-->
+
+	<!--added by Sowmya for ULDAvailability-->
+	<screen name="ULDAvailability" id="uld.defaults.uldavailability">
+
+	  		<action name="uld.defaults.screenloaduldavailability">
+	  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.uldavailability.ScreenLoadULDAvailabilityCommand" order="1" />
+	  		</action>
+			<action name="uld.defaults.clearuldavailability">
+				 <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.uldavailability.ClearULDAvailabilityCommand" order="1" />
+			</action>
+			<action name="uld.defaults.closeuldavailability">
+				 <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.uldavailability.CloseULDAvailabilityCommand" order="1" />
+			</action>
+			<action name="uld.defaults.uldavailabilityreport.printscreen">
+				<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.transaction.uldavailability.report.PrintCommand" order="1" />
+			</action>
+	</screen>
+	<!--added by Sowmya for ULDAvailability ends-->
+
+	<!--Added by Sreekumar S - AirNZCR -->
+	<screen name="AuditEnquiry" id="uld.defaults.uldauditenquiry">
+
+		<action name="uld.defaults.misc.screenloadauditenquiry">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.audit.ScreenloadULDAuditEnquiryCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.misc.listauditenquiry">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.audit.ListULDAuditEnquiryCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.misc.clearauditenquiry">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.audit.ClearULDAuditEnquiryCommand" order="1" />
+		</action>
+		<action name="uld.defaults.uldauditenquiry.print">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.audit.report.PrintCommand" order="1" />
+		</action>
+	</screen>
+	<!--Added by Sreekumar S - AirNZCR ends-->
+	<!--Added by Manaf  for ULD Damage Checklist Master starts-->
+	<screen name="DamageChecklistMaster" id="uld.defaults.damagechecklistmaster">
+
+		<action name="uld.defaults.screenloaddamagechecklistmaster">
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.damagechecklistmaster.ScreenLoadCommand" order="1" />
+		</action>
+		<action name="uld.defaults.displaydetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.damagechecklistmaster.ListDamageChecklistMasterCommand" order="1" />
+		</action>
+		<action name="uld.defaults.savedetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.damagechecklistmaster.SaveDamageChecklistMasterCommand" order="1" />
+		</action>
+		<action name="uld.defaults.cleardetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.damagechecklistmaster.ClearDamageChecklistMasterCommand" order="1" />
+		</action>
+
+	</screen>
+	<!--Added by Manaf  for ULD Damage Checklist Master ends-->
+	<!--added by Tarun For AirNZ511-->
+	<screen name="InventoryULD" id="uld.defaults.stock.inventoryuld">
+
+		<action name="uld.defaults.stock.inventory.screenloadlistinventoryuld">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.inventory.ScreenLoadListInventoryCommand" order="1" />
+  		</action>
+
+		<action name="uld.defaults.stock.inventory.listinventorycommand">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.inventory.ListInventoryCommand" order="1" />
+  		</action>
+
+		<action name="uld.defaults.stock.inventory.screenloadinventorydetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.inventory.ScreenLoadInventoryDetailsCommand" order="1" />
+  		</action>
+
+		<action name="uld.defaults.stock.inventory.updateinventorydetails">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.inventory.UpdateInventoryDetailsCommand" order="1" />
+  		</action>
+
+		<action name="uld.defaults.stock.inventory.clearlistinventory">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.inventory.ClearListInventoryCommand" order="1" />
+  		</action>
+
+		<action name="uld.defaults.stock.inventory.saveinventory">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.inventory.SaveInventoryCommand" order="1" />
+  		</action>
+
+		<action name="uld.defaults.stock.inventory.paginationinventory">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.inventory.PaginationInventoryCommand" order="1" />
+  		</action>
+
+		<action name="uld.defaults.stock.inventory.closeinventory">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.inventory.CloseListInventoryCommand" order="1" />
+  		</action>
+
+	</screen>
+	
+	<!--Added by Manaf  for QF CR1021 Starts-->
+	<screen name="MissingUCMList" id="uld.defaults.missingucmlist">
+
+		<action name="uld.defaults.screenloaddmissingucmlist">
+			 <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.missingucms.ScreenLoadMissingUCMListCommand" order="1" />
+		</action>
+
+		<action name="uld.defaults.listmissingucms">
+			 <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.missingucms.ListCommand" order="1" />
+		</action>
+		<action name="uld.defaults.clearmissingucms">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.missingucms.ClearMissingUCMListCommand" order="1" />
+		</action>
+
+   </screen>
+	
+<!--Added by Manaf  for QF CR1021 ends-->
+<!--added by a-3045 for CR starts-->
+	<screen name="MUCTracking" id="uld.defaults.messaging.muctracking">
+		<action name="uld.defaults.messaging.muctracking.screenload">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.muctracking.ScreenLoadMUCTrackingCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.messaging.muctracking.listcommand">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.muctracking.ListMUCTrackingCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.messaging.muctracking.sendcommand">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.muctracking.SendMUCTrackingCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.messaging.muctracking.clearcommand">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.muctracking.ClearMUCTrackingCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.messaging.muctracking.savecommand">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.muctracking.SaveMUCTrackingCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.messaging.mucrefnolov.screenload">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.muctracking.ScreenLoadMUCRefNoLovCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.messaging.mucrefnolov.clear">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.muctracking.ClearMUCRefNoLovCommand" order="1" />
+  		</action>
+		<action name="uld.defaults.messaging.muctracking.actions.screenload">
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.muctracking.ScreenLoadMUCActionsCommand" order="1" />
+  		</action>
+	</screen>
+	<!--added by a-3045 for CR ends-->
+	<screen name="SCMValidation" id="uld.defaults.scmvalidation">
+		<action name="uld.defaults.screenloaddscmvalidation">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmvalidation.ScreenLoadSCMValidationCommand" order="1" />
+		</action>
+		<action name="uld.defaults.scmvalidationlist">
+			 <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmvalidation.ListSCMValidationCommand" order="1" />
+		</action>
+		<action name="uld.defaults.clearscmvalidation">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmvalidation.ClearSCMValidationCommand" order="1" />
+		</action>
+		<action name="uld.defaults.printscmvalidationlist">
+					<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.messaging.scmvalidation.report.PrintCommand" order="1" />
+		</action>
+
+	</screen>
+	
+	<!--added by a-2052 for CR QF1502 starts-->
+	<screen name="uld.defaults.uldserviceability" id="uld.defaults.uldserviceability">
+		 <action name="uld.defaults.uldserviceability.screenloadcommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldserviceabilitymaster.ScreenLoadCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.uldserviceability.listcommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldserviceabilitymaster.ListCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.uldserviceability.clearcommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldserviceabilitymaster.ClearCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.uldserviceability.addcommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldserviceabilitymaster.AddCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.uldserviceability.deletecommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldserviceabilitymaster.DeleteCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.uldserviceability.savecommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.uldserviceabilitymaster.SaveCommand" order="1"/>
+		 </action>
+	</screen>
+	<!--added by a-2052 for CR QF1502 ends-->
+	
+	<screen name="ULDAudit" id="uld.defaults.uldaudit">
+		<action name="uld.defaults.uldauditlist" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.audit.ListCommand" order="1"/>
+		 </action>
+		 <action name="uld.defaults.screenload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.audit.ScreenLoadCommand" order="1"/>
+		 </action>
+	</screen>
+	<!--Added by A-3278 for AccessoryStockSetUp Lov starts-->
+	<screen name="AccessoryStockLov" id="uld.defaults.stock.accessorystocklov">	
+		<action name="uld.defaults.stock.accessorystocksetup.screenloadaccessorylov">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listaccessories.accessorylov.ScreenloadAccessoryLovCommand" order="1" />
+		</action>
+		<action name="uld.defaults.stock.accessorystocksetup.clearaccessorylov">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.stock.listaccessories.accessorylov.ClearAccessoryLovCommand" order="1" />
+		</action>
+	</screen>
+	<!--Added by A-3278 for AccessoryStockSetUp Lov ends-->
+	<screen name="Update Multiple ULD Status Screen" id="uld.defaults.updatemultipleulddetails">	
+		<action name="uld.defaults.misc.updatemultipleulddamage">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.ScreenLoadCommand" order="1" />
+		</action>
+		<action name="uld.defaults.misc.validateuldDetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.PopulateULDCommand" order="1" />
+		</action>
+		<action name="uld.defaults.misc.showDamageDetails">
+		    <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.UpdateSessionCommand" order="1" />
+		</action>
+		<action name="uld.defaults.misc.openDamagePopup">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.ScreenLoadDmgDetailsCommand" order="1" />
+		</action>
+		<action name="uld.defaults.misc.addDamageDetails">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.DamageDetailsOKCommand" order="1" />
+		</action>
+		<action name="uld.defaults.misc.saveDamageDetails">
+        <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.UpdateSessionCommand" order="1" />
+		<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.SaveCommand" order="2" />
+        </action>
+		<action name="uld.defaults.misc.updatesessiondetails">
+        <command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.UpdateSessionCommand" order="1" />
+        </action>
+		<action name="uld.defaults.misc.listDamageDescription">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.DamageDescriptionListCommand" order="1" />
+		</action>
+		 <action name="uld.defaults.misc.adddmgpic">
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.AddPictureCommand" order="1"/>
+		</action>
+		 <action name="uld.defaults.misc.viewpicture">
+		  	<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.ViewPictureCommand" order="1"/>
+		</action>
+		 <action name="uld.defaults.misc.viewPicScreenLoadCommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.ScreenLoadViewPicCommand" order="1"/>
+		</action>
+		<action name="uld.defaults.misc.showimage" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.ImageCommand" order="1"/>
+			<command class="com.ibsplc.icargo.framework.web.command.ImageDownLoadCommand" order="2"/>
+		</action>
+		<action name="uld.defaults.misc.closecommand" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.CloseCommand" order="1"/>
+  		</action>
+		<action name="uld.defaults.misc.populateTotalPoints">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.updatemultipleulddetails.DamageDescriptionListCommand" order="1" />
+		</action>
+		<!-- Start: Added by A-7636 as part of ICRD-245031-->
+		<!-- For upload file action -->
+		<action name="uld.defaults.ux.maintaindamagereport.fileupload" >
+			<command class="com.ibsplc.icargo.framework.web.command.upload.FileUploadCommand" order="1"/>
+		</action>
+		<!-- For delete file action -->
+		<action name="uld.defaults.ux.maintaindamagereport.filedelete" >
+			<command class="com.ibsplc.icargo.framework.web.command.upload.FileDeleteCommand" order="1"/>
+		</action>
+		<!-- Remove image from session-->
+		<action name="uld.defaults.ux.maintaindamagereport.removeImage" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.RemoveImageCommand" order="1"/>
+		</action>
+		<!-- For image upload popup screenload -->
+		<action name="uld.defaults.ux.damageImageUploadScreenLoad" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.DamageImageUploadScreenLoadCommand" order="1"/>
+		</action>
+		<!-- For upload ok action -->
+		<action name="uld.defaults.ux.damageImageUpload.ok" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.DamageImageUploadOKCommand" order="1"/>
+		</action>
+		<!-- While closing the upload popup form kept untouch -->
+		<action name="uld.defaults.ux.damageImageUpload.close" >
+  			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.DamageImageUploadCloseCommad" order="1"/>
+  		</action>
+			<!-- For download image to view in screenload-->
+		<action name="uld.defaults.ux.damageImageDownload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.DisplayImageCommand" order="1"/>
+			<command class="com.ibsplc.icargo.framework.web.command.ImageDownLoadCommand" order="2"/>
+		</action>
+		<!-- For download image to view in list damage reports screenload-->
+		<action name="uld.defaults.listdamageImagesDownload" >
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.misc.listdamagereport.DisplayImageCommand" order="1"/>
+			<command class="com.ibsplc.icargo.framework.web.command.ImageDownLoadCommand" order="2"/>
+		</action>
+		<!-- View image on click filename in upload popup-->
+		<action name="uld.defaults.ux.maintaindamagereport.displayimage">
+			<command class="com.ibsplc.icargo.presentation.web.command.uld.defaults.ux.misc.maintaindamagereport.DamageImageUploadDisplayCommad" order="1"/>
+			<command class="com.ibsplc.icargo.framework.web.command.ImageDownLoadCommand" order="2"/>
+		</action>
+		<!-- End: Added by A-7636 as part of ICRD-245031-->
+	</screen>
+</command-mappings>

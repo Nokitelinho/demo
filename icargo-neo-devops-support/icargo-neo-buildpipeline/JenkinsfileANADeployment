@@ -1,0 +1,234 @@
+def Stage_Name="Init"
+def ENV
+def releaseVersion
+def bom_beta
+def tenantId = "ana"
+def jiraIds
+def jsonObj
+//env.EMAIL_SUBSCRIBERS="sinoob.saithumuhammed@ibsplc.com, Sander.Joseph@ibsplc.com, Tibin.Kuriackose@ibsplc.com, Vinu.Venu@ibsplc.com, iCargoNeoDesign@ibsplc.com, iCargoNeoSMs@ibsplc.com, iCargoNeoQA@ibsplc.com"
+env.argoCdRepoRUL="http://Icargo-release@bitbucket.ibsplc.com/scm/icneo/icargo-neo-argocd.git"
+env.EMAIL_SUBSCRIBERS="Sander.Joseph@ibsplc.com,jasmine.ameena@ibsplc.com"
+
+
+
+pipeline {
+    agent any
+
+	options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '1'))
+    }
+	
+	parameters {
+        text(defaultValue: "ana-alpha", description: '', name: 'applicationId')
+		text(defaultValue: "icargo-app", description: '', name: 'Icargoapplication')
+		text(defaultValue: "icargo-neo-common.yml", description: '', name: 'yamlFile')
+
+	}
+	
+    stages {			
+		
+		stage('Argo Cd Repo Checkout') {
+			steps{
+				checkout([$class           : 'GitSCM',
+				branches         : [[name: "ana-test"]],
+				extensions: [[$class: 'CleanBeforeCheckout'],
+				            [$class: 'RelativeTargetDirectory',
+							relativeTargetDir: 'argocdRepo/']],
+				userRemoteConfigs: [[
+						credentialsId: "f60d9763-39f7-4e73-8467-258d60f1d7f6",
+						url: env.argoCdRepoRUL]]])
+				}
+		}
+		stage("Beta Bom generation") {			
+			steps {
+				echo "BETA Bom Generation Phase"
+				sh '''
+					if [ -e ${WORKSPACE}/bom_beta.yaml ]; then
+							echo "---- >Deleting bom_beta ---  "
+							rm  ${WORKSPACE}/bom_beta.yaml
+					fi
+				'''
+				
+				script {
+                	env.HELM_TMOUT_DEFAULT="600s"
+					Stage_Name='BETA_Deploy'
+					env.POSTURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds?tenantId="+tenantId+"&applicationId="+applicationId
+					echo "POSTURL is ${env.POSTURL}"
+					releaseVersion = ["curl","-X", "POST", "-H", "Content-Type: application/json", "${env.POSTURL}"].execute().text
+                    env.RELVER=releaseVersion
+                    echo "ReleaseVersion is ${releaseVersion}"
+					env.GETURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds/"+releaseVersion+"/bom"
+					bom_beta = ["curl","-o","${WORKSPACE}/bom_beta.yaml" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/yaml", "${env.GETURL}"].execute().text
+				}
+			}
+		}
+		
+		stage("Beta Bom Commit to Branch") {			
+			steps {
+				sshagent( ['gitCommitCrendentials']) {sh '''
+				cat ${WORKSPACE}/bom_beta.yaml > ${WORKSPACE}/argocdRepo/etc/${yamlFile}
+				cd argocdRepo
+				pwd
+                git pull origin ana-test
+				git add --all
+				git commit -m updating_to_latest_yaml
+				git push origin HEAD:ana-test
+				'''}
+			}
+		}
+		
+		stage("Beta Refresh From ArgoCD") {			
+			steps {
+
+                
+				script{
+				    
+					env.tokenURL ="https://k8s-argocd-argocdse-461215ed2d-2ed63954dd827571.elb.ap-south-1.amazonaws.com/api/v1/session"
+					env.data='{"username":"admin","password":"admin123"}'
+					response = sh(script: 'curl -X POST -d $data $tokenURL --insecure ', returnStdout: true)
+					jsonObjToken = readJSON text: response
+					env.tokenValue="'Authorization: Bearer ${jsonObjToken.token}'"
+					echo"Token value   ${env.tokenValue}"
+					if( Icargoapplication == "icargo-app"){
+					    env.RefreshURL=" https://k8s-argocd-argocdse-461215ed2d-2ed63954dd827571.elb.ap-south-1.amazonaws.com/api/v1/applications/icargo-app?refresh=true"
+					    env.getStatusURL=" https://k8s-argocd-argocdse-461215ed2d-2ed63954dd827571.elb.ap-south-1.amazonaws.com/api/v1/applications/icargo-app"
+					}
+					else if( Icargoapplication == "icargo-app-beta"){
+					    env.RefreshURL=" https://k8s-argocd-argocdse-461215ed2d-2ed63954dd827571.elb.ap-south-1.amazonaws.com/api/v1/applications/icargo-app-beta?refresh=true"
+					    env.getStatusURL=" https://k8s-argocd-argocdse-461215ed2d-2ed63954dd827571.elb.ap-south-1.amazonaws.com/api/v1/applications/icargo-app-beta"
+					}
+					env.cont='Content-Type:application/json'
+					response = sh(script: "curl -X GET -H $tokenValue $RefreshURL --insecure ", returnStdout: true)
+					
+					sleep(300)
+
+					statusResponse = sh(script: "curl -X GET -H $tokenValue $getStatusURL --insecure ", returnStdout: true)
+					jsonObj = readJSON text: statusResponse
+					echo "Reponse  Health  ${jsonObj.status.health.status}"
+					while("${jsonObj.status.health.status}"=='Progressing') {
+							sleep(100)
+							statusResponse = sh(script: "curl -X GET -H $tokenValue $getStatusURL --insecure ", returnStdout: true)
+							jsonObj = readJSON text: statusResponse
+					}
+					if("${jsonObj.status.health.status}"!='Healthy') {
+						healthJson ="${jsonObj.status.resources}"
+					    writeFile file: 'healthstatus.json', text: healthJson
+						
+						if( applicationId == "ana-alpha")
+							error "Ana-alpha Deployment Failed.."
+						else
+							error "Ana-beta Deployment Failed.."
+						
+					}
+				}
+
+				
+			}
+		}
+		
+		stage("Restarting ArgoCD Services") {
+			steps {
+				
+				dir("argocdRepo/icargo-neo-cli"){
+				sh"pwd"
+				sh '''
+					export ENABLE_COLOR=false
+					./iconctl.sh restart-services ana-test 
+				'''					
+				
+				}
+			}
+		}
+	
+		
+	}
+
+	
+	post {
+		success{
+			script {
+				recipientProvidersForBETADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForBETADeploy   ->  ${recipientProvidersForBETADeploy}"
+				echo "Triggering the regression build asynchronously"
+                
+                emailext( 
+						attachmentsPattern: "healthstatus.json,bom_beta.yaml,jiraIds.txt",
+						recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']],
+						mimeType: 'text/html',
+						to : "${env.EMAIL_SUBSCRIBERS}",
+                        subject: "Success: Job '${env.JOB_NAME} [${env.RELVER}]'",
+                        body: """Success: Job '${env.JOB_NAME} [${env.RELVER}]':
+							<br />
+							Check console output at:  ${env.BUILD_URL}/console 
+							<br />
+							Job Name:  ${env.JOB_NAME} 
+                            Release Version: ${env.RELVER}
+							<br />
+							Jenkins Build Number: [${env.BUILD_NUMBER}]"""             
+                    )      
+              
+			}
+			
+			sh '''
+				if [ -e ${WORKSPACE}/bom_beta.yaml ]; then
+					rm  ${WORKSPACE}/bom_beta.yaml
+				fi
+				
+				if [ -e ${WORKSPACE}/healthstatus.json ]; then
+					rm  ${WORKSPACE}/healthstatus.json
+				fi
+				
+				'''
+			
+		}
+	
+        failure {
+        	script {
+				dir("argocdRepo"){
+						git_commit_hash = sh(
+							script: "printf \$(git log -1 --pretty=%H)",
+							returnStdout: true
+						)
+						env.git_commit_hash=git_commit_hash
+				}
+			}
+            sshagent( ['gitCommitCrendentials']) {sh '''
+                          pwd
+                          cd argocdRepo
+                    	  git revert $git_commit_hash --no-edit 
+                    	  git push origin HEAD:ana-test
+                      '''}
+            script {
+				recipientProvidersForBETADeploy= emailextrecipients([[$class: 'CulpritsRecipientProvider'],
+								[$class: 'RequesterRecipientProvider'],
+								[$class: 'DevelopersRecipientProvider']])
+				echo "recipientProvidersForBETADeploy   ->  ${recipientProvidersForBETADeploy}"			
+				emailext(
+						attachmentsPattern: "healthstatus.json",
+						mimeType: 'text/html',
+						recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+										[$class: 'RequesterRecipientProvider'],
+										[$class: 'DevelopersRecipientProvider']],
+						to : "${env.EMAIL_SUBSCRIBERS}",
+						subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+						body: """
+								<div style="color:red;font-size:20px">
+								FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+								</div>
+								Failure happened in ${Stage_Name}.
+								<br />
+								Check console output at:  ${env.BUILD_URL}/console
+								<br />
+								Job Name:  ${env.JOB_NAME} 
+								<br />
+								Build Number: [${env.BUILD_NUMBER}]"""
+						)				
+            }
+        }
+    }
+
+}

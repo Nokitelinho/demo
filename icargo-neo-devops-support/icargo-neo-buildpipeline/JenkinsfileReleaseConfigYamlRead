@@ -1,0 +1,128 @@
+def Stage_Name
+def ARTIFACTORY_HOST
+def ARTIFACTORY_REPO
+def APP
+def ENV
+def bitbucketURL ="http://bitbucket.ibsplc.com/rest/build-status/1.0/commits/"
+def commitId
+def response
+def results
+def data
+def bitbucketresponse
+def deploymentList
+def branchName
+def valuesYaml
+env.argoCdRepoRUL="http://Icargo-release@bitbucket.ibsplc.com/scm/icneo/icargo-neo-argocd.git"
+def configValues
+
+def loadValuesYaml(){
+  def valuesYaml = readYaml file: 'icargo-neo-buildpipeline/releaseConfig.yml'
+  return valuesYaml;
+}
+
+pipeline {
+    agent any
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '1'))
+    }
+    stages {
+		stage('Initial Setup') {
+			steps {
+                script {
+                	Stage_Name = 'Initial Setup'
+					configValues = loadValuesYaml()
+					configValues.releaseBranches.each{k,v->
+						echo "- -- ss--- ${k}, ${v}"
+						checkout([$class           : 'GitSCM',
+							branches         : [[name: k]],
+							extensions: [[$class: 'CleanBeforeCheckout'],
+										[$class: 'RelativeTargetDirectory',
+										relativeTargetDir: 'service/']],
+							userRemoteConfigs: [[
+									credentialsId: "f60d9763-39f7-4e73-8467-258d60f1d7f6",
+									url: env.argoCdRepoRUL]]])
+						script {
+								dir("service"){
+									
+								}
+						}
+
+						echo "Deploy Phase"
+						sh '''
+							if [ -e ${WORKSPACE}/bom_env.yaml ]; then
+									echo "---- >Deleting bom_env ---  "
+									rm  ${WORKSPACE}/bom_env.yaml
+							fi
+						'''
+						script {
+								Stage_Name='Deploying The application'
+								if(v.releaseStrategy=='build')	{
+									env.GETURL="http://10.246.12.51:5000/release-manager-service/rest/api/builds?tenantId="+v.releaseTenantId+"&applicationId="+v.applicationId
+								}
+								else
+								{
+									env.GETURL="http://10.246.12.51:5000/release-manager-service/rest/api/"+v.releaseStrategy+"?tenantId="+v.releaseTenantId+"&applicationId="+v.applicationId+"&buildNum="+buildNumer
+								}
+								echo "GET URL --  is for the release version generation -->  ${env.GETURL} "
+								releaseVersion = ["curl","-X", "POST", "-H", "Content-Type: application/json", "${env.GETURL}"].execute().text
+								echo "The version of the release is -> ${releaseVersion} "
+								env.bom_generation_url ="http://10.246.12.51:5000/release-manager-service/rest/api/builds/"+releaseVersion+"/bom"
+								echo "URL for generating BOM  is  -> ${env.bom_generation_url} "
+								bom_env = ["curl","-o","${WORKSPACE}/bom_env.yaml" ,"-X", "GET", "-H", "Content-Type: application/json","-H", "Accept: application/yaml", "${env.bom_generation_url}"].execute().text
+								env.bompath=v.bomPath
+								env.branchtocommit=k
+							}
+                            	sshagent( ['gitCommitCrendentials']) {sh '''
+								cat ${WORKSPACE}/bom_env.yaml > ${WORKSPACE}/service/$bompath
+								cd service
+								pwd
+								git add --all
+								git commit -m updating_to_latest_yaml
+								git push origin HEAD:$branchtocommit
+								'''}
+                                
+							echo "Saas Commit  Build Trigger"
+							try {
+								env.bomfilename=env.bompath.split("/")[1]
+								build job: "SaaS-Sync", parameters: [[$class: 'StringParameterValue', name: 'branchname', value: branchtocommit ], [$class: 'StringParameterValue', name: 'bomyaml', value: bomfilename]],wait: false , propagate: true
+								sleep(20)
+							}
+							catch (Exception e) {
+								echo "WARNING: ${e.message}"
+							}
+						}
+					}
+					
+			
+				script {
+					dir("service"){
+					}
+				}
+            }
+        }
+			
+		
+}
+
+
+	
+
+    post {
+		success{
+			script {
+			 echo "GIT_COMMIT is ${env.GIT_COMMIT}"
+			}
+			
+	}
+	
+        failure {
+            script {
+			 echo "GIT_COMMIT Failure is ${env.GIT_COMMIT}"
+            }
+        }
+		
+
+    }
+}
+

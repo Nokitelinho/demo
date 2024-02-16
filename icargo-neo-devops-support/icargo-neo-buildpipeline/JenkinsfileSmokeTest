@@ -1,0 +1,81 @@
+def Stage_Name
+def APP
+def ENV
+def response
+
+pipeline {
+    agent { label 'agent1' }
+
+	options {
+        buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '1'))
+    }
+	stages {
+		stage('Test Execution') {
+			steps{
+				script {
+						echo "tenant   ->  ${tenant}"
+						echo "artidr   ->  ${artidr}"
+						echo "profile   ->  ${profile}"
+						echo "testType   ->  ${testType}"
+                        echo "commitIDpassed   ->  ${commitIDpassed}"
+                        commitIDpassed
+						echo "recipientProvidersForQADeploy   ->  ${recipientProvidersForQADeploy}"
+                        def POSTURL="10.246.12.51:5050/execute-tests/${tenant}/${artidr}/${profile}/${testType}"
+						echo "POSTURL is ${POSTURL}"
+						def dataForPost='{"notificationEmailIds": "'+recipientProvidersForQADeploy+'"}'
+						echo "dataForPost  ${dataForPost}"
+						response = ["curl","-X", "POST", "-H", "Content-Type: application/json", "${POSTURL}" ,"-d" ,"${dataForPost}" ].execute().text
+						echo "response   is ${response}"
+						env.GETURL="10.246.12.51:5050/test-status/${tenant}/${artidr}/${testType}"
+						statusresponse = sh(script: 'curl -XGET -s -o /dev/null -w %{http_code} ${GETURL}', returnStdout: true)
+						echo "statusresponse   is ->  ${statusresponse}"
+						if (statusresponse != '200') {
+							error "Test Type ${testType} for ${artidr} Failed "
+							}
+				}
+			}
+		}
+	}
+
+	
+	post {
+		success{
+			script {
+				echo "SUCCESS !!!!!!!!!"
+				
+				emailext(
+                            subject: "${testType}  for ${artidr} test is Success '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """${testType} fro ${artidr} Test is success '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+Check console output at:  ${env.BUILD_URL} 
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+                            to: "${recipientProvidersForQADeploy} , rajani.chandran@ibsplc.com, Preethi.Lalitha@ibsplc.com, Arjun.Villadath@ibsplc.com"
+                    )
+			}
+			
+	}
+	
+        failure {
+            script {
+            
+             deleteURL="http://10.246.12.51:5000/release-manager-service/rest/api/release/${artidr}/"+commitIDpassed
+                echo "deleteURL    ${deleteURL}"
+				delResponse = ["curl","-X", "DELETE", "-H", "Content-Type: application/json", "${deleteURL}"].execute().text
+				echo "delResponse ${delResponse}"
+				emailext(
+                            subject: "${testType} for ${artidr} test is Failed '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                            body: """${testType} for ${artidr} Test is Failed '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+Check console output at:  ${env.BUILD_URL} 
+
+Job Name:  ${env.JOB_NAME} 
+
+Build Number: [${env.BUILD_NUMBER}]""",
+                            to: "${recipientProvidersForQADeploy} , rajani.chandran@ibsplc.com, Preethi.Lalitha@ibsplc.com, Arjun.Villadath@ibsplc.com, iCargoNeoSMs@ibsplc.com,iCargoNeoDesign@ibsplc.com,bejoy.kunjumon@ibsplc.com"
+                    )
+            }
+        }
+    }
+
+}

@@ -1,0 +1,6 @@
+{{- if hasKey .Values "rawIncludes" }}
+---
+{{- range  $Name,$Definition :=  .Values.rawIncludes }}
+{{ tpl $Definition $ }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ibsplc.neoicargo.stock.dao.mybatis.UtilisationQueryMapper">
+  <select id="findStockUtilisationForRange" parameterType="map" resultType="java.lang.Long">
+    SELECT
+    COUNT(mstdocnum)
+    FROM
+    stkrngutl
+    WHERE
+    cmpcod = #{utilisationFilterVO.companyCode}
+    AND arlidr = #{utilisationFilterVO.airlineIdentifier}
+    AND doctyp = #{utilisationFilterVO.documentType}
+    AND docsubtyp = #{utilisationFilterVO.documentSubType}
+    AND status <![CDATA[ <> ]]> 'B'
+    <if test="utilisationFilterVO.stockHolderCode != null and not utilisationFilterVO.stockHolderCode.isEmpty()">
+      AND stkhldcod = #{utilisationFilterVO.stockHolderCode}
+    </if>
+    <if test="utilisationFilterVO.getRanges() != null and not utilisationFilterVO.getRanges().isEmpty()">
+      AND
+      <foreach item='range' collection='utilisationFilterVO.getRanges()' open='(' separator=' OR ' close=')'>
+          ascdocnum BETWEEN #{range.asciiStartRange}
+          AND #{range.asciiEndRange}
+      </foreach>
+    </if>
+  </select>
+
+  <select id="validateStockPeriod" parameterType="map" resultType="java.lang.Long">
+    SELECT txn.ascstarng
+    FROM stkrngutlhis txn
+    WHERE txn.cmpcod = #{utilisationFilterVO.companyCode}
+    AND txn.arlidr = #{utilisationFilterVO.airlineIdentifier}
+    AND txn.doctyp = #{utilisationFilterVO.documentType}
+    AND txn.status = 'U'
+    AND txn.txndat + ( ( #{utilisationFilterVO.stockIntroductionPeriod} * 365 ) :: NUMERIC || ' days' ) :: interval > to_timestamp(#{utilisationFilterVO.currentDate}, 'YYYY-MM-DD HH24:MI:SS')
+    <if test="utilisationFilterVO.getRanges() != null and not utilisationFilterVO.getRanges().isEmpty()">
+      AND
+      <foreach item='range' collection='utilisationFilterVO.getRanges()' open='(' separator=' OR ' close=')'>
+        ( ( txn.ascstarng BETWEEN #{range.asciiStartRange} AND #{range.asciiEndRange} ) OR
+          ( txn.ascendrng BETWEEN #{range.asciiStartRange} AND #{range.asciiEndRange} ) )
+      </foreach>
+    </if>
+    ORDER BY ascstarng
+  </select>
+</mapper>

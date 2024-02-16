@@ -1,0 +1,13 @@
+iCargo Neo Application Suite Installed.
+
+Application Namespace : {{ .Values.namespace }}
+Hosted Tenants        : {{ .Values.tenants | join ", " }}
+Environment Profile   : {{ .Values.environmentProfile }}
+Docker Registry       : {{ .Values.dockerRegistry }}
+Config Server URL     : {{ .Values.cloudConfigServerUrl }}
+
+
+1. Watch all cluster members come up.
+  $ kubectl get pods --namespace={{ .Values.namespace }} --watch
+2. Ingress Endpoints
+  $ kubectl get ingresses.networking.k8s.io --namespace={{ .Values.namespace }}
